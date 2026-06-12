@@ -61,7 +61,11 @@
 			winInfo: ({ data }) => {
 				flickering = false;
 
-			 	eventDict = data
+				if (gameState === 'start') {
+					gameState = 'playing';
+				}
+
+				eventDict = data;
 				currentValue = eventDict.numberRolled;
 			},
 			finalWin: ({ data }) => {
