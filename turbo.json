@@ -17,6 +17,8 @@
 			"outputs": []
 		},
 		"storybook": {
+			"cache": false,
+			"persistent": true,
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
