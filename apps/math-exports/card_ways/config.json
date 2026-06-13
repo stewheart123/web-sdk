@@ -1,0 +1,68 @@
+{
+    "workingName": "CARDZ",
+    "frontendConfig": {
+        "file": "fe_config.json",
+        "sha256": "b6b3f902e13d1840dbd13b09e467e14371ad71ee6eae11e111ff47fea5e7558e"
+    },
+    "gameID": "card_ways",
+    "rtp": 97.0,
+    "betDenomination": 1000,
+    "minDenomination": 10,
+    "providerNumber": 0,
+    "standardForceFile": {
+        "file": "force.json",
+        "sha256": "331868e7e1e989654806a46db6436eeec879cfd894e53e0d4f8b30c97b3c0752"
+    },
+    "bookShelfConfig": [
+        {
+            "name": "base",
+            "tables": [
+                {
+                    "file": "lookUpTable_base_0.csv",
+                    "sha256": "fa6406ae507090310fd51d53003c4185c7e76171f32fcc6c0b5a18952f055454"
+                }
+            ],
+            "cost": 1.0,
+            "rtp": 0.97,
+            "std": 7.83,
+            "bookLength": 100000,
+            "feature": true,
+            "autoEndRoundDisabled": false,
+            "buyBonus": false,
+            "maxWin": 5000,
+            "booksFile": {
+                "file": "books_base.jsonl.zst",
+                "sha256": "a79284c358a65d6ca7f81ff5d8efd9c88c31d8908bf238772b83aa847214a5de"
+            },
+            "forceFile": {
+                "file": "force_record_base.json",
+                "sha256": "78b4d197af93c303a10d250a1242dabd9c32e41b6c335b4256365c8f8069ce0c"
+            }
+        },
+        {
+            "name": "bonus",
+            "tables": [
+                {
+                    "file": "lookUpTable_bonus_0.csv",
+                    "sha256": "09d231f81759bf3eb3f519371187b35e4021da2ced1bc203c063d5a1b9011f7c"
+                }
+            ],
+            "cost": 100.0,
+            "rtp": 0.97,
+            "std": 1.19,
+            "bookLength": 100000,
+            "feature": false,
+            "autoEndRoundDisabled": false,
+            "buyBonus": true,
+            "maxWin": 5000,
+            "booksFile": {
+                "file": "books_bonus.jsonl.zst",
+                "sha256": "4488ca7a21a0dd9da281b3bb9069225235db75a63caa2629cf0c43da677f1fbe"
+            },
+            "forceFile": {
+                "file": "force_record_bonus.json",
+                "sha256": "9d6672aebd6c7bf0ed6d572445599ca72804fc3d61e329e521fb7899f93f4d94"
+            }
+        }
+    ]
+}

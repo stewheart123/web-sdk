@@ -1,0 +1,209 @@
+{
+    "reveal": {
+        "type": "reveal",
+        "board": [
+            [
+                {
+                    "name": "Q"
+                },
+                {
+                    "name": "K"
+                },
+                {
+                    "name": "N",
+                    "non_winnable": true
+                },
+                {
+                    "name": "J"
+                }
+            ],
+            [
+                {
+                    "name": "10"
+                },
+                {
+                    "name": "S",
+                    "scatter": true
+                },
+                {
+                    "name": "Q"
+                },
+                {
+                    "name": "J"
+                }
+            ],
+            [
+                {
+                    "name": "S",
+                    "scatter": true
+                },
+                {
+                    "name": "10"
+                },
+                {
+                    "name": "S",
+                    "scatter": true
+                },
+                {
+                    "name": "A"
+                }
+            ],
+            [
+                {
+                    "name": "K"
+                },
+                {
+                    "name": "K"
+                },
+                {
+                    "name": "W",
+                    "wild": true
+                },
+                {
+                    "name": "W",
+                    "wild": true
+                }
+            ],
+            [
+                {
+                    "name": "9"
+                },
+                {
+                    "name": "S",
+                    "scatter": true
+                },
+                {
+                    "name": "9"
+                },
+                {
+                    "name": "N",
+                    "non_winnable": true
+                }
+            ]
+        ],
+        "paddingPositions": [
+            525,
+            325,
+            415,
+            440,
+            917
+        ],
+        "gameType": "basegame",
+        "anticipation": [
+            0,
+            0,
+            0,
+            1,
+            2
+        ]
+    },
+    "modifierReveal": {
+        "type": "modifierReveal",
+        "modifier": {
+            "name": "X1",
+            "modifier": true,
+            "multiplier": 1
+        },
+        "multiplier": 1,
+        "modifierReelId": "MR0",
+        "modifierPosition": 78,
+        "persists": false
+    },
+    "setTotalWin": {
+        "type": "setTotalWin",
+        "amount": 0
+    },
+    "freeSpinTrigger": {
+        "type": "freeSpinTrigger",
+        "totalFs": 10,
+        "positions": [
+            {
+                "reel": 1,
+                "row": 1
+            },
+            {
+                "reel": 2,
+                "row": 2
+            },
+            {
+                "reel": 4,
+                "row": 1
+            }
+        ]
+    },
+    "updateFreeSpin": {
+        "type": "updateFreeSpin",
+        "amount": 0,
+        "total": 10
+    },
+    "winInfo": {
+        "type": "winInfo",
+        "totalWin": 290,
+        "wins": [
+            {
+                "symbol": "Q",
+                "kind": 3,
+                "win": 160,
+                "positions": [
+                    {
+                        "reel": 0,
+                        "row": 1
+                    },
+                    {
+                        "reel": 1,
+                        "row": 1
+                    },
+                    {
+                        "reel": 2,
+                        "row": 2
+                    }
+                ],
+                "meta": {
+                    "ways": 1,
+                    "globalMult": 1,
+                    "winWithoutMult": 160,
+                    "symbolMult": 0
+                }
+            },
+            {
+                "symbol": "10",
+                "kind": 3,
+                "win": 130,
+                "positions": [
+                    {
+                        "reel": 0,
+                        "row": 2
+                    },
+                    {
+                        "reel": 1,
+                        "row": 1
+                    },
+                    {
+                        "reel": 2,
+                        "row": 2
+                    }
+                ],
+                "meta": {
+                    "ways": 1,
+                    "globalMult": 1,
+                    "winWithoutMult": 130,
+                    "symbolMult": 0
+                }
+            }
+        ]
+    },
+    "setWin": {
+        "type": "setWin",
+        "amount": 290,
+        "winLevel": 4
+    },
+    "freeSpinEnd": {
+        "type": "freeSpinEnd",
+        "amount": 10670,
+        "winLevel": 7
+    },
+    "finalWin": {
+        "type": "finalWin",
+        "amount": 10670
+    }
+}
