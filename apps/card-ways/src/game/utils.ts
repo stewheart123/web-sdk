@@ -3,7 +3,7 @@ import { stateBet } from 'state-shared';
 import { createPlayBookUtils } from 'utils-book';
 import { createGetEmptyPaddedBoard } from 'utils-slots';
 
-import { SYMBOL_SIZE, REEL_PADDING, SYMBOL_INFO_MAP, BOARD_DIMENSIONS } from './constants';
+import { SYMBOL_SIZE, REEL_PADDING, SYMBOL_INFO_MAP, BOARD_DIMENSIONS, normalizeRawSymbol } from './constants';
 import { eventEmitter } from './eventEmitter';
 import type { Bet } from './typesBookEvent';
 import { bookEventHandlerMap } from './bookEventHandlerMap';
@@ -30,7 +30,18 @@ export const getSymbolInfo = ({
 	rawSymbol: RawSymbol;
 	state: SymbolState;
 }) => {
-	return (SYMBOL_INFO_MAP as Record<string, (typeof SYMBOL_INFO_MAP)[keyof typeof SYMBOL_INFO_MAP]>)[rawSymbol.name][state];
+	const normalized = normalizeRawSymbol(rawSymbol);
+	const symbolInfo =
+		(SYMBOL_INFO_MAP as Record<string, (typeof SYMBOL_INFO_MAP)[keyof typeof SYMBOL_INFO_MAP]>)[
+			normalized.name
+		];
+
+	if (!symbolInfo) {
+		console.warn(`Unknown symbol "${normalized.name}", using 9`);
+		return SYMBOL_INFO_MAP['9'][state];
+	}
+
+	return symbolInfo[state];
 };
 
 export const convertTorResumableBet = (betToResume: Bet) => betToResume;

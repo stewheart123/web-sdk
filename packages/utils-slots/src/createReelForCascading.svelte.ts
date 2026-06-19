@@ -152,24 +152,36 @@ export function createReelForCascading<TRawSymbol extends object, TSymbolState e
 			const delay =
 				reelState.spinOptions().symbolFallInInterval *
 				(reelLengthInBoard - reelSymbol.symbolIndexOfBoard);
-			const bounceDistance =
-				reelOptions.symbolHeight * reelState.spinOptions().symbolFallInBounceSizeMulti;
-			const bounceDuration = bounceDistance / reelState.spinOptions().symbolFallInBounceSpeed;
-			const landDuration = (distance - bounceDistance) / reelState.spinOptions().symbolFallInSpeed;
+			const bounceMulti = reelState.spinOptions().symbolFallInBounceSizeMulti;
+			const bounceDistance = reelOptions.symbolHeight * bounceMulti;
 
-			await reelSymbol.symbolY.set(newSymbolY - bounceDistance, {
-				duration: landDuration,
-				delay,
-			});
+			if (bounceDistance <= 0) {
+				const duration = distance / reelState.spinOptions().symbolFallInSpeed;
+				await reelSymbol.symbolY.set(newSymbolY, { duration, delay });
+			} else {
+				const bounceDuration = bounceDistance / reelState.spinOptions().symbolFallInBounceSpeed;
+				const landDuration =
+					(distance - bounceDistance) / reelState.spinOptions().symbolFallInSpeed;
+
+				await reelSymbol.symbolY.set(newSymbolY - bounceDistance, {
+					duration: landDuration,
+					delay,
+				});
+				await reelSymbol.symbolY.set(newSymbolY, {
+					duration: bounceDuration,
+					easing: backOut,
+				});
+			}
+
 			reelSymbol.symbolState = 'land' as TSymbolState;
 			reelOptions.onSymbolLand({ rawSymbol: reelSymbol.rawSymbol });
 			if (reelSymbol.symbolIndexOfBoard === reelLengthInBoard - 1) {
 				onSpinFinishing();
 			}
-			await reelSymbol.symbolY.set(newSymbolY, {
-				duration: bounceDuration,
-				easing: backOut,
-			});
+		});
+
+		await moveAllSymbolsWith(async (reelSymbol) => {
+			await reelSymbol.symbolY.set(getSymbolY(reelSymbol.symbolIndexOfBoard), { duration: 0 });
 		});
 
 		reelState.motion = 'stopped';
@@ -228,6 +240,10 @@ export function createReelForCascading<TRawSymbol extends object, TSymbolState e
 		if (value) {
 			updateSymbols(value);
 		}
+
+		reelState.symbols.forEach((reelSymbol) => {
+			void reelSymbol.symbolY.set(getSymbolY(reelSymbol.symbolIndexOfBoard), { duration: 0 });
+		});
 	};
 
 	const stop = () => {

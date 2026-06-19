@@ -17,7 +17,6 @@
 </script>
 
 <SpineProvider
-	anchor={0.5}
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}

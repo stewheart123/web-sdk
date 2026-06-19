@@ -19,6 +19,7 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import BoardMask from './BoardMask.svelte';
 	import BoardBase from './BoardBase.svelte';
+	import { normalizeBoard } from '../game/constants';
 
 	const context = getContext();
 
@@ -26,7 +27,7 @@
 
 	context.eventEmitter.subscribeOnMount({
 		stopButtonClick: () => context.stateGameDerived.enhancedBoard.stop(),
-		boardSettle: ({ board }) => context.stateGameDerived.enhancedBoard.settle(board),
+		boardSettle: ({ board }) => context.stateGameDerived.enhancedBoard.settle(normalizeBoard(board)),
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),
 		boardWithAnimateSymbols: async ({ symbolPositions }) => {
@@ -35,7 +36,7 @@
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
 					reelSymbol.symbolState = 'win';
 					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
-					reelSymbol.symbolState = 'postWinStatic';
+					reelSymbol.symbolState = 'static';
 				});
 
 			await Promise.all(getPromises());
@@ -49,12 +50,6 @@
 	<BoardContext animate={false}>
 		<BoardContainer>
 			<BoardMask />
-			<BoardBase />
-		</BoardContainer>
-	</BoardContext>
-
-	<BoardContext animate={true}>
-		<BoardContainer>
 			<BoardBase />
 		</BoardContainer>
 	</BoardContext>

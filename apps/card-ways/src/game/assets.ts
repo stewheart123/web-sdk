@@ -13,12 +13,11 @@ export default {
 		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url).href,
 		preload: true,
 	},
-	cardSymbols: {
+		cardSymbols: {
 		type: 'spine',
 		src: {
 			atlas: new URL('../../assets/spines/cardSymbols/SYMBOLS.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/cardSymbols/skeleton.json', import.meta.url).href,
-			scale: 1,
 		},
 	},
 	reelsFrame: {

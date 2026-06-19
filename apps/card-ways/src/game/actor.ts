@@ -7,6 +7,7 @@ import { createPrimaryMachines, createIntermediateMachines, createGameActor } fr
 import type { Bet } from './typesBookEvent';
 import { stateXstateDerived } from './stateXstate';
 import { playBet, convertTorResumableBet } from './utils';
+import { normalizeBoard } from './constants';
 import { stateGameDerived } from './stateGame.svelte';
 
 const primaryMachines = createPrimaryMachines<Bet>({
@@ -17,7 +18,7 @@ const primaryMachines = createPrimaryMachines<Bet>({
 			(emitterEvent) => emitterEvent?.type === 'reveal',
 		);
 
-		if (lastRevealEvent) stateGameDerived.enhancedBoard.settle(lastRevealEvent.board);
+		if (lastRevealEvent) stateGameDerived.enhancedBoard.settle(normalizeBoard(lastRevealEvent.board));
 	},
 	onNewGameStart: async () => {
 		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting()) || stateBet.isSpaceHold) return;

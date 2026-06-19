@@ -2,7 +2,20 @@ import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
 
-export const SYMBOL_SIZE = 120;
+export const normalizeRawSymbol = (symbol: RawSymbol): RawSymbol => {
+	if (symbol.name === 'N') {
+		return { ...symbol, non_winnable: true };
+	}
+	return symbol;
+};
+
+export const normalizeBoard = (board: RawSymbol[][]) =>
+	board.map((reel) => reel.map(normalizeRawSymbol));
+
+/** Scales card size and row/column spacing together. Avoid using sizeRatios.height for scale. */
+export const SYMBOL_SCALE = 2;
+const SYMBOL_BASE_SIZE = 120;
+export const SYMBOL_SIZE = SYMBOL_BASE_SIZE * SYMBOL_SCALE;
 
 export const REEL_PADDING = 0.53;
 
@@ -80,7 +93,7 @@ export const SPIN_OPTIONS_DEFAULT = {
 	symbolFallInSpeed: 3.5,
 	symbolFallInInterval: 30,
 	symbolFallInBounceSpeed: 0.15,
-	symbolFallInBounceSizeMulti: 0.5,
+	symbolFallInBounceSizeMulti: 0,
 	symbolFallOutSpeed: 3.5,
 	symbolFallOutInterval: 20,
 };
@@ -90,7 +103,7 @@ export const SPIN_OPTIONS_FAST = {
 	symbolFallInSpeed: 7,
 	symbolFallInInterval: 0,
 	symbolFallInBounceSpeed: 0.3,
-	symbolFallInBounceSizeMulti: 0.25,
+	symbolFallInBounceSizeMulti: 0,
 	symbolFallOutSpeed: 7,
 	symbolFallOutInterval: 0,
 };
@@ -129,6 +142,7 @@ const createCardSymbol = (suffix: string, hasWin = true) => {
 };
 
 export const SYMBOL_INFO_MAP = {
+	'8': createCardSymbol('9'),
 	'9': createCardSymbol('9'),
 	'10': createCardSymbol('10'),
 	A: createCardSymbol('A'),

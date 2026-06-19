@@ -19,7 +19,6 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
-	import Anticipations from './Anticipations.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
@@ -65,7 +64,6 @@
 		<MainContainer>
 			<Board />
 			<ModifierReel />
-			<Anticipations />
 		</MainContainer>
 
 		<UI>
