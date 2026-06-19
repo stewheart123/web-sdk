@@ -16,8 +16,13 @@ export const normalizeBoard = (board: RawSymbol[][]) =>
 export const SYMBOL_SCALE = 2;
 const SYMBOL_BASE_SIZE = 120;
 export const SYMBOL_SIZE = SYMBOL_BASE_SIZE * SYMBOL_SCALE;
+const CARD_ASPECT = 225 / 338;
+export const SYMBOL_WIDTH = SYMBOL_SIZE * CARD_ASPECT;
 
 export const REEL_PADDING = 0.53;
+const GAP_SCALE = 0;
+/** Extra pixels between reel columns. */
+export const REEL_GAP = (SYMBOL_SIZE - SYMBOL_WIDTH) * GAP_SCALE;
 
 // initial board (4 rows per reel; rows 0 and 3 are hidden padding)
 export const INITIAL_BOARD: RawSymbol[][] = [
@@ -56,7 +61,7 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
 
 export const BOARD_SIZES = {
-	width: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
+	width: SYMBOL_WIDTH * BOARD_DIMENSIONS.x + REEL_GAP * (BOARD_DIMENSIONS.x - 1),
 	height: SYMBOL_SIZE * BOARD_DIMENSIONS.y,
 };
 
@@ -117,8 +122,6 @@ export const zIndexes = {
 		feature: -1,
 	},
 };
-
-const CARD_ASPECT = 225 / 338;
 
 const createCardSymbol = (suffix: string, hasWin = true) => {
 	const idle = {

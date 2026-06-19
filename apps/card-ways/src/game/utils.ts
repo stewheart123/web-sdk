@@ -3,7 +3,15 @@ import { stateBet } from 'state-shared';
 import { createPlayBookUtils } from 'utils-book';
 import { createGetEmptyPaddedBoard } from 'utils-slots';
 
-import { SYMBOL_SIZE, REEL_PADDING, SYMBOL_INFO_MAP, BOARD_DIMENSIONS, normalizeRawSymbol } from './constants';
+import {
+	SYMBOL_SIZE,
+	SYMBOL_WIDTH,
+	REEL_PADDING,
+	REEL_GAP,
+	SYMBOL_INFO_MAP,
+	BOARD_DIMENSIONS,
+	normalizeRawSymbol,
+} from './constants';
 import { eventEmitter } from './eventEmitter';
 import type { Bet } from './typesBookEvent';
 import { bookEventHandlerMap } from './bookEventHandlerMap';
@@ -20,7 +28,8 @@ export const playBet = async (bet: Bet) => {
 
 
 // other utils
-export const getSymbolX = (reelIndex: number) => SYMBOL_SIZE * (reelIndex + REEL_PADDING);
+export const getSymbolX = (reelIndex: number) =>
+	SYMBOL_WIDTH * (reelIndex + REEL_PADDING) + REEL_GAP * reelIndex;
 export const getSymbolY = (symbolIndexOfBoard: number) => (symbolIndexOfBoard + 0.5) * SYMBOL_SIZE;
 
 export const getSymbolInfo = ({
