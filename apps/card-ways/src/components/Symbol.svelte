@@ -3,8 +3,8 @@
 	import SymbolSprite from './SymbolSprite.svelte';
 	import { getSymbolInfo } from '../game/utils';
 	import type { SymbolState, RawSymbol } from '../game/types';
-	import { getContext } from '../game/context';
 	import { BitmapText } from 'pixi-svelte';
+	import { waitForTimeout } from 'utils-shared/wait';
 
 	type Props = {
 		x?: number;
@@ -16,9 +16,27 @@
 	};
 
 	const props: Props = $props();
-	const context = getContext();
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
 	const isSprite = $derived(symbolInfo.type === 'sprite');
+
+	$effect(() => {
+		if (props.state === 'land' && symbolInfo.type === 'spine' && symbolInfo.loop) {
+			props.oncomplete?.();
+		}
+	});
+
+	// WIN animations are ~1.6s; fallback so book events (e.g. free spin trigger) never hang.
+	$effect(() => {
+		if (props.state === 'win' && symbolInfo.type === 'spine' && !symbolInfo.loop) {
+			let cancelled = false;
+			waitForTimeout(1700).then(() => {
+				if (!cancelled) props.oncomplete?.();
+			});
+			return () => {
+				cancelled = true;
+			};
+		}
+	});
 </script>
 
 {#if isSprite}
@@ -29,14 +47,8 @@
 		{symbolInfo}
 		x={props.x}
 		y={props.y}
-		showWinFrame={props.state === 'win' && !['S', 'M', 'N', 'X1', 'X2', 'X3'].includes(props.rawSymbol.name)}
 		listener={{
 			complete: props.oncomplete,
-			event: (_, event) => {
-				if (event.data?.name === 'wildExplode') {
-					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_wild_explode' });
-				}
-			},
 		}}
 	/>
 {/if}

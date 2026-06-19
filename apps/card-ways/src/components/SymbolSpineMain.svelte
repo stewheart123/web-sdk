@@ -17,13 +17,14 @@
 </script>
 
 <SpineProvider
+	anchor={0.5}
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}
 	height={SYMBOL_SIZE * props.symbolInfo.sizeRatios.height}
 >
 	<SpineTrack
-		loop={props.loop}
+		loop={props.loop ?? props.symbolInfo.loop ?? false}
 		trackIndex={0}
 		animationName={props.symbolInfo.animationName}
 		timeScale={stateBetDerived.timeScale()}

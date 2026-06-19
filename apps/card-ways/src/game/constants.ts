@@ -66,13 +66,7 @@ export const PORTRAIT_MAIN_SIZES = {
 	height: PORTRAIT_HEIGHT,
 };
 
-export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4', 'H5'];
-
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
-
-const HIGH_SYMBOL_SIZE = 0.9;
-const LOW_SYMBOL_SIZE = 0.9;
-const SPECIAL_SYMBOL_SIZE = 1;
 
 const SPIN_OPTIONS_SHARED = {
 	reelFallInDelay: 80,
@@ -111,202 +105,42 @@ export const zIndexes = {
 	},
 };
 
-const explosion = {
-	type: 'spine',
-	assetKey: 'explosion',
-	animationName: 'explosion',
-	sizeRatios: { width: 1, height: 1 },
+const CARD_ASPECT = 225 / 338;
+
+const createCardSymbol = (suffix: string, hasWin = true) => {
+	const idle = {
+		type: 'spine' as const,
+		assetKey: 'cardSymbols',
+		animationName: `IDLE_${suffix}`,
+		sizeRatios: { width: CARD_ASPECT, height: 1 },
+		loop: true,
+	};
+	const win = hasWin
+		? {
+				type: 'spine' as const,
+				assetKey: 'cardSymbols',
+				animationName: `WIN_${suffix}`,
+				sizeRatios: { width: CARD_ASPECT, height: 1 },
+				loop: false,
+			}
+		: idle;
+
+	return { static: idle, spin: idle, land: idle, postWinStatic: idle, win };
 };
-
-const h1Static = { type: 'sprite', assetKey: 'h1.webp', sizeRatios: { width: 1, height: 1 } };
-const h2Static = { type: 'sprite', assetKey: 'h2.webp', sizeRatios: { width: 1, height: 1 } };
-const h3Static = { type: 'sprite', assetKey: 'h3.webp', sizeRatios: { width: 1, height: 1 } };
-const h4Static = { type: 'sprite', assetKey: 'h4.webp', sizeRatios: { width: 1, height: 1 } };
-const h5Static = { type: 'sprite', assetKey: 'h5.webp', sizeRatios: { width: 1, height: 1 } };
-
-const l1Static = { type: 'sprite', assetKey: 'l1.webp', sizeRatios: { width: 1, height: 1 } };
-const l2Static = { type: 'sprite', assetKey: 'l2.webp', sizeRatios: { width: 1, height: 1 } };
-const l3Static = { type: 'sprite', assetKey: 'l3.webp', sizeRatios: { width: 1, height: 1 } };
-const l4Static = { type: 'sprite', assetKey: 'l4.webp', sizeRatios: { width: 1, height: 1 } };
-const l5Static = {
-	type: 'spine',
-	assetKey: 'M',
-	animationName: 'low_multiplier_static',
-	sizeRatios: { width: 0.3, height: 0.3 },
-};
-
-const sStatic = { type: 'sprite', assetKey: 's.png', sizeRatios: { width: 1.243, height: 1.243 } };
-const wStatic = { type: 'sprite', assetKey: 'w.png', sizeRatios: { width: 1.12, height: 1.12 } };
-
-const wSizeRatios = { width: 1.5 * 0.9, height: SPECIAL_SYMBOL_SIZE * 1.15 };
-const sSizeRatios = { width: 2.5, height: SPECIAL_SYMBOL_SIZE * 2.3 };
 
 export const SYMBOL_INFO_MAP = {
-	H1: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'H1',
-			animationName: 'h1',
-			sizeRatios: { width: 0.5 * 1.15, height: HIGH_SYMBOL_SIZE * 0.57 },
-		},
-		postWinStatic: h1Static,
-		static: h1Static,
-		spin: h1Static,
-		land: h1Static,
-	},
-	H2: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'H2',
-			animationName: 'h2',
-			sizeRatios: { width: 0.5, height: HIGH_SYMBOL_SIZE * 0.57 },
-		},
-		postWinStatic: h2Static,
-		static: h2Static,
-		spin: h2Static,
-		land: h2Static,
-	},
-	H3: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'H3',
-			animationName: 'h3',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
-		},
-		postWinStatic: h3Static,
-		static: h3Static,
-		spin: h3Static,
-		land: h3Static,
-	},
-	H4: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'H4',
-			animationName: 'h4',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
-		},
-		postWinStatic: h4Static,
-		static: h4Static,
-		spin: h4Static,
-		land: h4Static,
-	},
-	H5: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'H5',
-			animationName: 'h5',
-			sizeRatios: { width: 0.5 * 0.9, height: HIGH_SYMBOL_SIZE * 0.53 },
-		},
-		postWinStatic: h5Static,
-		static: h5Static,
-		spin: h5Static,
-		land: h5Static,
-	},
-	L1: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'L1',
-			animationName: 'l1',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.65 },
-		},
-		postWinStatic: l1Static,
-		static: l1Static,
-		spin: l1Static,
-		land: l1Static,
-	},
-	L2: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'L2',
-			animationName: 'l2',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.65 },
-		},
-		postWinStatic: l2Static,
-		static: l2Static,
-		spin: l2Static,
-		land: l2Static,
-	},
-	L3: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'L3',
-			animationName: 'l3',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.63 },
-		},
-		postWinStatic: l3Static,
-		static: l3Static,
-		spin: l3Static,
-		land: l3Static,
-	},
-	L4: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'L4',
-			animationName: 'l4',
-			sizeRatios: { width: 0.5 * 0.75, height: LOW_SYMBOL_SIZE * 0.63 },
-		},
-		postWinStatic: l4Static,
-		static: l4Static,
-		spin: l4Static,
-		land: l4Static,
-	},
-	L5: {
-		explosion,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: 'low_multiplier_pay',
-			sizeRatios: { width: 0.3, height: 0.3 },
-		},
-		postWinStatic: l5Static,
-		static: l5Static,
-		spin: l5Static,
-		land: l5Static,
-	},
-	W: {
-		explosion,
-		postWinStatic: {
-			type: 'sprite',
-			assetKey: 'explodedW.png',
-			sizeRatios: { width: 0.85, height: 0.85 },
-		},
-		static: wStatic,
-		spin: wStatic,
-		win: { type: 'spine', assetKey: 'W', animationName: 'wild_dynamite', sizeRatios: wSizeRatios },
-		land: {
-			type: 'spine',
-			assetKey: 'W',
-			animationName: 'wild_dynamite_land',
-			sizeRatios: wSizeRatios,
-		},
-	},
-	S: {
-		explosion,
-		postWinStatic: sStatic,
-		static: sStatic,
-		spin: {
-			type: 'spine',
-			assetKey: 'S',
-			animationName: 'scatter_spin',
-			sizeRatios: sSizeRatios,
-		},
-		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', sizeRatios: sSizeRatios },
-		land: {
-			type: 'spine',
-			assetKey: 'S',
-			animationName: 'scatter_land',
-			sizeRatios: sSizeRatios,
-		},
-	},
+	'9': createCardSymbol('9'),
+	'10': createCardSymbol('10'),
+	A: createCardSymbol('A'),
+	J: createCardSymbol('J'),
+	K: createCardSymbol('K'),
+	Q: createCardSymbol('Q'),
+	S: createCardSymbol('SCATTER'),
+	W: createCardSymbol('W'),
+	N: createCardSymbol('NW', false),
+	X1: createCardSymbol('X1'),
+	X2: createCardSymbol('X2'),
+	X3: createCardSymbol('X3'),
 };
 
 export const SCATTER_LAND_SOUND_MAP = {
@@ -316,16 +150,3 @@ export const SCATTER_LAND_SOUND_MAP = {
 	4: 'sfx_scatter_stop_4',
 	5: 'sfx_scatter_stop_5',
 } as const;
-
-// Card symbol asset aliases (placeholder art from sample game)
-SYMBOL_INFO_MAP['A'] = SYMBOL_INFO_MAP['H1'];
-SYMBOL_INFO_MAP['K'] = SYMBOL_INFO_MAP['H2'];
-SYMBOL_INFO_MAP['Q'] = SYMBOL_INFO_MAP['H3'];
-SYMBOL_INFO_MAP['J'] = SYMBOL_INFO_MAP['H4'];
-SYMBOL_INFO_MAP['10'] = SYMBOL_INFO_MAP['H5'];
-SYMBOL_INFO_MAP['9'] = SYMBOL_INFO_MAP['L1'];
-SYMBOL_INFO_MAP['8'] = SYMBOL_INFO_MAP['L2'];
-SYMBOL_INFO_MAP['N'] = SYMBOL_INFO_MAP['L3'];
-SYMBOL_INFO_MAP['X1'] = SYMBOL_INFO_MAP['L5'];
-SYMBOL_INFO_MAP['X2'] = SYMBOL_INFO_MAP['L5'];
-SYMBOL_INFO_MAP['X3'] = SYMBOL_INFO_MAP['L5'];
