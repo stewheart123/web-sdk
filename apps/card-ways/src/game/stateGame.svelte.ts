@@ -9,6 +9,7 @@ import type { GameType, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
+import { getBoardLayoutSettings } from './boardLayoutConfig';
 import {
 	SYMBOL_SIZE,
 	BOARD_SIZES,
@@ -81,13 +82,20 @@ export const stateGame = $state({
 	modifierPersists: false,
 });
 
-const boardLayout = () => ({
-	x: stateLayoutDerived.mainLayout().width * 0.5,
-	y: stateLayoutDerived.mainLayout().height * 0.5,
-	anchor: { x: 0.5, y: 0.5 },
-	pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
-	...BOARD_SIZES,
-});
+const boardLayout = () => {
+	const { symbolScale, boardXOffset, boardYOffset } = getBoardLayoutSettings(
+		stateLayoutDerived.layoutType(),
+	);
+
+	return {
+		x: stateLayoutDerived.mainLayout().width * 0.5 + boardXOffset,
+		y: stateLayoutDerived.mainLayout().height * 0.5 - boardYOffset,
+		scale: symbolScale,
+		anchor: { x: 0.5, y: 0.5 },
+		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
+		...BOARD_SIZES,
+	};
+};
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));

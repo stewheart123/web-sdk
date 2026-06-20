@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { SpineProvider, SpineTrack, Container } from 'pixi-svelte';
 	import { stateBetDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
@@ -25,30 +25,35 @@
 	});
 </script>
 
-<SpineProvider
-	key="anticipation"
-	width={SYMBOL_SIZE * 0.56}
-	height={SYMBOL_SIZE * 1.6}
-	x={context.stateGameDerived.boardLayout().x -
-		context.stateGameDerived.boardLayout().width * 0.5 +
-		SYMBOL_WIDTH * (props.reel.reelIndex + REEL_PADDING) + REEL_GAP * props.reel.reelIndex}
-	y={context.stateGameDerived.boardLayout().y - SYMBOL_SIZE * 0.06}
+<Container
+	x={context.stateGameDerived.boardLayout().x}
+	y={context.stateGameDerived.boardLayout().y}
+	pivot={context.stateGameDerived.boardLayout().pivot}
+	scale={context.stateGameDerived.boardLayout().scale}
 >
-	<SpineTrack
-		trackIndex={0}
-		{animationName}
-		loop={animationName === 'anticipation_loop'}
-		timeScale={stateBetDerived.timeScale()}
-		listener={{
-			complete: () => {
-				if (animationName === 'anticipation_intro') {
-					animationName = 'anticipation_loop';
-				}
+	<SpineProvider
+		key="anticipation"
+		width={SYMBOL_SIZE * 0.56}
+		height={SYMBOL_SIZE * 1.6}
+		x={SYMBOL_WIDTH * (props.reel.reelIndex + REEL_PADDING) + REEL_GAP * props.reel.reelIndex}
+		y={context.stateGameDerived.boardLayout().height * 0.5 - SYMBOL_SIZE * 0.06}
+	>
+		<SpineTrack
+			trackIndex={0}
+			{animationName}
+			loop={animationName === 'anticipation_loop'}
+			timeScale={stateBetDerived.timeScale()}
+			listener={{
+				complete: () => {
+					if (animationName === 'anticipation_intro') {
+						animationName = 'anticipation_loop';
+					}
 
-				if (animationName === 'anticipation_out') {
-					props.oncomplete();
-				}
-			},
-		}}
-	/>
-</SpineProvider>
+					if (animationName === 'anticipation_out') {
+						props.oncomplete();
+					}
+				},
+			}}
+		/>
+	</SpineProvider>
+</Container>

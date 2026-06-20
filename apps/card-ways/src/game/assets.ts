@@ -21,8 +21,8 @@ export default {
 		},
 	},
 	reelsFrame: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/reelsFrame/reels_frame.json', import.meta.url).href,
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reelsFrame/VENDING-FRAME.png', import.meta.url).href,
 	},
 	payFrame: {
 		type: 'sprite',

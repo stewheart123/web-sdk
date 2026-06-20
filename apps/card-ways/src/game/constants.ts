@@ -13,7 +13,7 @@ export const normalizeBoard = (board: RawSymbol[][]) =>
 	board.map((reel) => reel.map(normalizeRawSymbol));
 
 /** Scales card size and row/column spacing together. Avoid using sizeRatios.height for scale. */
-export const SYMBOL_SCALE = 2;
+export const SYMBOL_SCALE = 1.7;
 const SYMBOL_BASE_SIZE = 120;
 export const SYMBOL_SIZE = SYMBOL_BASE_SIZE * SYMBOL_SCALE;
 const CARD_ASPECT = 225 / 338;

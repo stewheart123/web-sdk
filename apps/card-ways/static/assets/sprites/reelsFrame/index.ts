@@ -1,6 +1,5 @@
 import { createAsset } from 'pixi-svelte';
 
-import img from './reels_frame.png';
-import atlas from './reels_frame.json';
+import img from './VENDING-FRAME.png';
 
-export default createAsset({ img, atlas });
+export default createAsset({ img });
