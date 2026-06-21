@@ -1,0 +1,66 @@
+{
+"skeleton": {
+	"hash": "YBj4fB0PpVs",
+	"spine": "4.3.17",
+	"x": -632,
+	"y": -421,
+	"width": 1264,
+	"height": 842,
+	"images": "./BG/",
+	"audio": null
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "BACKGROUND", "bone": "root", "attachment": "BACKGROUND_BLUE" },
+	{ "name": "BACKGROUND-GLOW", "bone": "root", "attachment": "BACKGROUND_BLUE_GLOW" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"BACKGROUND": {
+				"BACKGROUND_BLUE": { "width": 1264, "height": 842 },
+				"BACKGROUND_NORMAL": { "width": 1264, "height": 842 }
+			},
+			"BACKGROUND-GLOW": {
+				"BACKGROUND_BLUE_GLOW": { "width": 1264, "height": 842 },
+				"BACKGROUND_NORMAL_GLOW": { "width": 1264, "height": 842 }
+			}
+		}
+	}
+],
+"animations": {
+	"BACKGROUND-BASE": {
+		"slots": {
+			"BACKGROUND": {
+				"attachment": [
+					{ "name": "BACKGROUND_NORMAL" }
+				]
+			},
+			"BACKGROUND-GLOW": {
+				"rgba": [
+					{ "color": "ffffffff" },
+					{ "time": 1.0666667, "color": "fffcfc00" },
+					{ "time": 2.1333334, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "BACKGROUND_NORMAL_GLOW" }
+				]
+			}
+		}
+	},
+	"BACKGROUND-BONUS": {
+		"slots": {
+			"BACKGROUND-GLOW": {
+				"rgba": [
+					{ "color": "ffffffff" },
+					{ "time": 1.0666667, "color": "fffcfc00" },
+					{ "time": 2.1333334, "color": "ffffffff" }
+				]
+			}
+		}
+	}
+}
+}

@@ -95,17 +95,10 @@ export default {
 	foregroundAnimation: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/foregroundAnimation/mm_bg.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/foregroundAnimation/mm_bg.json', import.meta.url).href,
-			scale: 2,
-		},
-		preload: true,
-	},
-	foregroundFeatureAnimation: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/foregroundFeatureAnimation/mm_bg_feature.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/foregroundFeatureAnimation/mm_bg_feature.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/foregroundAnimation/CARDS_BG.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/foregroundAnimation/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/foregroundAnimation/CARDS_BG.png', import.meta.url).href,
+			texturePage2: new URL('../../assets/spines/foregroundAnimation/CARDS_BG_2.png', import.meta.url).href,
 			scale: 2,
 		},
 		preload: true,

@@ -1,0 +1,56 @@
+{
+    "frames": {
+        "Copilot_20260616_064843.png": {
+            "frame": {
+                "x": 1,
+                "y": 1,
+                "w": 1024,
+                "h": 1536
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 1024,
+                "h": 1536
+            },
+            "sourceSize": {
+                "w": 1024,
+                "h": 1536
+            }
+        },
+        "VENDING-FRAME-SPRITE.png": {
+            "frame": {
+                "x": 1027,
+                "y": 1,
+                "w": 1632,
+                "h": 1119
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 1632,
+                "h": 1119
+            },
+            "sourceSize": {
+                "w": 1632,
+                "h": 1119
+            }
+        }
+    },
+    "meta": {
+        "app": "https://www.codeandweb.com/texturepacker",
+        "version": "1.0",
+        "image": "test.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 2660,
+            "h": 1538
+        },
+        "scale": "1",
+        "comment": "Created with TexturePacker Online (free version)\nhttps://www.codeandweb.com/texturepacker-online\n\nTexturePacker desktop offers better support for Pixi and Phaser with sprite trimming, better packing algorithms, hardware texture compression, and PNG optimization.\nTry TexturePacker desktop: https://www.codeandweb.com/texturepacker"
+    }
+}

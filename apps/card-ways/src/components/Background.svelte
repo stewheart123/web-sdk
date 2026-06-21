@@ -6,9 +6,12 @@
 	import { getContext } from '../game/context';
 
 	const context = getContext();
-	const backgroundProps = $derived(
-		context.stateLayoutDerived.normalBackgroundLayout({ scale: 0.5 }),
-	);
+	const backgroundProps = $derived({
+		...context.stateLayoutDerived.normalBackgroundLayout({ scale: 0.5 }),
+		anchor: 0.5,
+		x: context.stateLayoutDerived.canvasSizes().width * 0.6,
+		y: context.stateLayoutDerived.canvasSizes().height * 0.7,
+	});
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freegame');
 </script>
@@ -17,18 +20,12 @@
 
 <FadeContainer show={showBaseBackground} duration={SECOND} zIndex={-2}>
 	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
-	</SpineProvider>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
+		<SpineTrack trackIndex={0} animationName="BACKGROUND-BASE" loop />
 	</SpineProvider>
 </FadeContainer>
 
 <FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={-1}>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
-	</SpineProvider>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
+	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
+		<SpineTrack trackIndex={0} animationName="BACKGROUND-BONUS" loop />
 	</SpineProvider>
 </FadeContainer>
