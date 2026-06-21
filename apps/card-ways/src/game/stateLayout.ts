@@ -1,15 +1,15 @@
 import { createLayout } from 'utils-layout';
 
+/** Skeleton bounds from foregroundAnimation/skeleton.json — used before assets load. */
 export const BACKGROUND_ART_SIZE = {
-	width: 1264 * 2,
-	height: 842 * 2,
+	width: 1264,
+	height: 842,
 } as const;
 
 export const BACKGROUND_OFFSET = {
-	x: 465,
-	y: 400,
+	x: 0,
+	y: 0,
 } as const;
-
 export const { stateLayout, stateLayoutDerived } = createLayout({
 	backgroundRatio: {
 		normal: 1264 / 842,

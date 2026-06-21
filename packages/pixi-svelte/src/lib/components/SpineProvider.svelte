@@ -54,10 +54,16 @@
 	const pivot = $derived.by(() => {
 		if (!spineData) return 0;
 		if (!spineData?.width || !spineData?.height) return 0;
+		if (anchor === undefined) return 0;
+
 		const factWidth = baseSpineProps.width || spineData.width;
 		const factHeight = baseSpineProps.height || spineData.height;
+		const boundsPivot = anchorToPivot({ anchor, sizes: { width: factWidth, height: factHeight } });
 
-		return anchorToPivot({ anchor, sizes: { width: factWidth, height: factHeight } });
+		return {
+			x: (spineData.x ?? 0) + boundsPivot.x,
+			y: (spineData.y ?? 0) + boundsPivot.y,
+		};
 	});
 </script>
 

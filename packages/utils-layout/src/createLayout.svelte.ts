@@ -102,16 +102,47 @@ export const createLayout = (layoutOptions: {
 		createBackgroundLayout({ scale, ratio: layoutOptions.backgroundRatio.portrait });
 
 	const centeredBackgroundLayout =
-		({ scale, artSize }: { scale: number; artSize: Sizes }) =>
+		({
+			artSize,
+			scale = 1,
+			fit = 'cover',
+			debug,
+		}: {
+			artSize: Sizes;
+			scale?: number;
+			fit?: 'cover' | 'oriented';
+			debug?: boolean;
+		}) =>
 		() => {
 			const { width, height } = canvasSizes();
-			const coverScale = Math.max(width / artSize.width, height / artSize.height) * scale;
+			const widthScale = width / artSize.width;
+			const heightScale = height / artSize.height;
+			const isTaller = height > width;
+			const fitAxis = isTaller ? ('height' as const) : ('width' as const);
+			const layoutScale =
+				(fit === 'oriented'
+					? isTaller
+						? heightScale
+						: widthScale
+					: Math.max(widthScale, heightScale)) * scale;
+
+			if (debug) {
+				console.log('[centeredBackgroundLayout]', {
+					window: { width, height },
+					art: artSize,
+					fit,
+					fitAxis,
+					widthScale,
+					heightScale,
+					layoutScale,
+				});
+			}
 
 			return {
 				x: width / 2,
 				y: height / 2,
 				anchor: 0.5 as const,
-				scale: coverScale,
+				scale: layoutScale,
 			};
 		};
 

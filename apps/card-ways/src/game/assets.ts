@@ -99,7 +99,6 @@ export default {
 			skeleton: new URL('../../assets/spines/foregroundAnimation/skeleton.json', import.meta.url).href,
 			texturePage1: new URL('../../assets/spines/foregroundAnimation/CARDS_BG.png', import.meta.url).href,
 			texturePage2: new URL('../../assets/spines/foregroundAnimation/CARDS_BG_2.png', import.meta.url).href,
-			scale: 2,
 		},
 		preload: true,
 	},
