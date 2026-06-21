@@ -117,11 +117,10 @@ export const createLayout = (layoutOptions: {
 			const { width, height } = canvasSizes();
 			const widthScale = width / artSize.width;
 			const heightScale = height / artSize.height;
-			const isTaller = height > width;
-			const fitAxis = isTaller ? ('height' as const) : ('width' as const);
+			const limitingAxis = widthScale >= heightScale ? ('width' as const) : ('height' as const);
 			const layoutScale =
 				(fit === 'oriented'
-					? isTaller
+					? height > width
 						? heightScale
 						: widthScale
 					: Math.max(widthScale, heightScale)) * scale;
@@ -131,7 +130,7 @@ export const createLayout = (layoutOptions: {
 					window: { width, height },
 					art: artSize,
 					fit,
-					fitAxis,
+					limitingAxis,
 					widthScale,
 					heightScale,
 					layoutScale,

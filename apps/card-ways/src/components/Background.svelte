@@ -23,7 +23,6 @@
 	const backgroundProps = $derived.by(() => {
 		const layout = context.stateLayoutDerived.centeredBackgroundLayout({
 			artSize: backgroundArtSize,
-			fit: 'oriented',
 		})();
 
 		return {
@@ -51,9 +50,8 @@
 
 		const widthScale = canvas.width / artSize.width;
 		const heightScale = canvas.height / artSize.height;
-		const isTaller = canvas.height > canvas.width;
-		const fitAxis = isTaller ? 'height' : 'width';
-		const expectedScale = isTaller ? heightScale : widthScale;
+		const limitingAxis = widthScale >= heightScale ? 'width' : 'height';
+		const coverScale = Math.max(widthScale, heightScale);
 
 		const onScreenSize = {
 			width: artSize.width * props.scale,
@@ -67,11 +65,11 @@
 			artSizeUsedForScale: artSize,
 			runtimeSpineBounds,
 			scale: {
-				fit: 'oriented',
-				fitAxis,
+				fit: 'cover',
+				limitingAxis,
 				widthScale,
 				heightScale,
-				expectedScale,
+				coverScale,
 				appliedScale: props.scale,
 			},
 			position: {
@@ -90,9 +88,9 @@
 					: null,
 			},
 			onScreenSize,
-			fitCheck: {
-				matchesWindowWidth: fitAxis === 'width' && onScreenSize.width === canvas.width,
-				matchesWindowHeight: fitAxis === 'height' && onScreenSize.height === canvas.height,
+			coverFillCheck: {
+				fillsWidth: onScreenSize.width >= canvas.width,
+				fillsHeight: onScreenSize.height >= canvas.height,
 			},
 		});
 	});
