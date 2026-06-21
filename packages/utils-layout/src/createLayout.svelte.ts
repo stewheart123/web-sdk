@@ -101,6 +101,20 @@ export const createLayout = (layoutOptions: {
 	const portraitBackgroundLayout = ({ scale }: { scale: number }) =>
 		createBackgroundLayout({ scale, ratio: layoutOptions.backgroundRatio.portrait });
 
+	const centeredBackgroundLayout =
+		({ scale, artSize }: { scale: number; artSize: Sizes }) =>
+		() => {
+			const { width, height } = canvasSizes();
+			const coverScale = Math.max(width / artSize.width, height / artSize.height) * scale;
+
+			return {
+				x: width / 2,
+				y: height / 2,
+				anchor: 0.5 as const,
+				scale: coverScale,
+			};
+		};
+
 	const stateLayout = $state({
 		showLoadingScreen: true,
 	});
@@ -116,6 +130,7 @@ export const createLayout = (layoutOptions: {
 		mainLayoutStandard,
 		normalBackgroundLayout,
 		portraitBackgroundLayout,
+		centeredBackgroundLayout,
 	};
 
 	return {

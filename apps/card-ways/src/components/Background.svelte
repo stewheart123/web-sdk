@@ -4,13 +4,20 @@
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
+	import { BACKGROUND_ART_SIZE, BACKGROUND_OFFSET } from '../game/stateLayout';
 
 	const context = getContext();
-	const backgroundProps = $derived({
-		...context.stateLayoutDerived.normalBackgroundLayout({ scale: 0.5 }),
-		anchor: 0.5,
-		x: context.stateLayoutDerived.canvasSizes().width * 0.6,
-		y: context.stateLayoutDerived.canvasSizes().height * 0.7,
+	const backgroundProps = $derived.by(() => {
+		const layout = context.stateLayoutDerived.centeredBackgroundLayout({
+			scale: 1,
+			artSize: BACKGROUND_ART_SIZE,
+		})();
+
+		return {
+			...layout,
+			x: layout.x + BACKGROUND_OFFSET.x,
+			y: layout.y + BACKGROUND_OFFSET.y,
+		};
 	});
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freegame');

@@ -1,5 +1,15 @@
 import { createLayout } from 'utils-layout';
 
+export const BACKGROUND_ART_SIZE = {
+	width: 1264 * 2,
+	height: 842 * 2,
+} as const;
+
+export const BACKGROUND_OFFSET = {
+	x: 465,
+	y: 400,
+} as const;
+
 export const { stateLayout, stateLayoutDerived } = createLayout({
 	backgroundRatio: {
 		normal: 1264 / 842,
