@@ -54,9 +54,11 @@
 	let multiplier = $state(1);
 	let modifierName = $state<ModifierSymbolName>('X1');
 	let previousModifierName = $state<ModifierSymbolName>('X1');
+	let incomingModifierName = $state<ModifierSymbolName>('X1');
 
 	const previousSymbolInfo = $derived(getModifierSymbolInfo(previousModifierName));
 	const currentSymbolInfo = $derived(getModifierSymbolInfo(modifierName));
+	const incomingSymbolInfo = $derived(getModifierSymbolInfo(incomingModifierName));
 
 	const playScrollAnimation = async () => {
 		const { scrollDistance, scrollDuration } = getModifierLayoutSettings(
@@ -89,24 +91,24 @@
 			let shouldAnimate = false;
 
 			if (emitterEvent.multiplier === 1 && multiplier !== 1) {
-				previousModifierName = modifierName;
-				modifierName = nextName;
 				await waitForTimeout(300);
 				shouldAnimate = true;
 			} else if (emitterEvent.multiplier > multiplier) {
-				previousModifierName = modifierName;
-				modifierName = nextName;
 				shouldAnimate = true;
 			}
 
 			if (shouldAnimate) {
+				previousModifierName = modifierName;
+				incomingModifierName = nextName;
 				multiplier = emitterEvent.multiplier;
 				await playScrollAnimation();
+				modifierName = nextName;
 				previousModifierName = modifierName;
 			} else {
 				multiplier = emitterEvent.multiplier;
 				modifierName = nextName;
 				previousModifierName = modifierName;
+				incomingModifierName = nextName;
 				previousCardY.set(0, { duration: 0 });
 				currentCardY.set(0, { duration: 0 });
 			}
@@ -125,32 +127,46 @@
 			/>
 			<Container y={layout.cardWindowY}>
 				<Rectangle
-				  isMask
+					isMask
 					anchor={0.5}
 					width={layout.cardWindowWidth}
 					height={layout.cardWindowHeight}
-					backgroundAlpha={0.5}
-					backgroundColor={0xff0000}
+					backgroundAlpha={0}
 				/>
 				<Container y={layout.cardYOffset}>
 					{#if isAnimating}
-						<SymbolSpineMain
-							symbolInfo={previousSymbolInfo}
-							y={previousCardY.current}
-							height={layout.cardHeight}
-							anchor={0.5}
-							loop
-							listener={{}}
-						/>
+						{#key previousModifierName}
+							<SymbolSpineMain
+								symbolInfo={previousSymbolInfo}
+								y={previousCardY.current}
+								height={layout.cardHeight}
+								anchor={0.5}
+								loop
+								listener={{}}
+							/>
+						{/key}
+						{#key incomingModifierName}
+							<SymbolSpineMain
+								symbolInfo={incomingSymbolInfo}
+								y={currentCardY.current}
+								height={layout.cardHeight}
+								anchor={0.5}
+								loop
+								listener={{}}
+							/>
+						{/key}
+					{:else}
+						{#key modifierName}
+							<SymbolSpineMain
+								symbolInfo={currentSymbolInfo}
+								y={0}
+								height={layout.cardHeight}
+								anchor={0.5}
+								loop
+								listener={{}}
+							/>
+						{/key}
 					{/if}
-					<SymbolSpineMain
-						symbolInfo={currentSymbolInfo}
-						y={currentCardY.current}
-						height={layout.cardHeight}
-						anchor={0.5}
-						loop
-						listener={{}}
-					/>
 				</Container>
 			</Container>
 		</Container>
