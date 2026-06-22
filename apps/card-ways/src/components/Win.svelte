@@ -82,6 +82,8 @@
 							</WinAnimation>
 						{:else}
 							<ResponsiveBitmapText
+								x={context.stateGameDerived.boardLayout().pivot.x}
+								y={context.stateGameDerived.boardLayout().pivot.y}
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /
 									context.stateLayoutDerived.mainLayout().scale}

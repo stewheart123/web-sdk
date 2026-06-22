@@ -2,6 +2,7 @@
 	import type { Snippet } from 'svelte';
 
 	import {
+		anchorToPivot,
 		Container,
 		SpineProvider,
 		SpineSlot,
@@ -40,8 +41,7 @@
 	<Container
 		x={context.stateGameDerived.boardLayout().x}
 		y={context.stateGameDerived.boardLayout().y}
-		pivot={context.stateGameDerived.boardLayout().pivot}
-		scale={context.stateGameDerived.boardLayout().scale}
+		pivot={anchorToPivot({ anchor: 0.5, sizes: BACKGROUND_SIZES })}
 	>
 		<SpineProvider
 			key="fsIntro"

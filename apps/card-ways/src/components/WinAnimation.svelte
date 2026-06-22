@@ -28,7 +28,12 @@
 	let animationState = $state<AnimationState>('intro');
 </script>
 
-<SpineProvider width={context.stateGameDerived.boardLayout().width} key="bigwin">
+<SpineProvider
+	width={context.stateGameDerived.boardLayout().width}
+	x={context.stateGameDerived.boardLayout().pivot.x}
+	y={context.stateGameDerived.boardLayout().pivot.y}
+	key="bigwin"
+>
 	<SpineTrack
 		trackIndex={0}
 		animationName={props.animationMap[animationState]}

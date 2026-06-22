@@ -28,7 +28,13 @@
 			pivot={context.stateGameDerived.boardLayout().pivot}
 			scale={context.stateGameDerived.boardLayout().scale}
 		>
-			<ParticleEmitter {config} key="coins" emit={props.emit} />
+			<ParticleEmitter
+				x={context.stateGameDerived.boardLayout().pivot.x}
+				y={context.stateGameDerived.boardLayout().pivot.y}
+				{config}
+				key="coins"
+				emit={props.emit}
+			/>
 		</Container>
 	</MainContainer>
 {/if}
