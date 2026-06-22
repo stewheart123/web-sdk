@@ -7,10 +7,10 @@ export type LogoLayoutSettings = {
 };
 
 export const LOGO_LAYOUT_BY_TYPE: Record<LayoutType, LogoLayoutSettings> = {
-	desktop: { width: 140, x: 0, y: 0 },
-	landscape: { width: 120, x: 0, y: 0 },
+	desktop: { width: 100, x: -130, y: 30 },
+	landscape: { width: 100, x: -130, y: 30 },
 	portrait: { width: 100, x: 0, y: 8 },
-	tablet: { width: 110, x: 0, y: 0 },
+	tablet: { width: 100, x: -130, y: 30 },
 };
 
 export const getLogoLayoutSettings = (layoutType: LayoutType) =>
