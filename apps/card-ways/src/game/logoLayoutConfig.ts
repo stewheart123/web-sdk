@@ -13,7 +13,7 @@ export type LogoLayoutSettings = {
 export const LOGO_UI_RIGHT_INSET = 20;
 
 export const LOGO_LAYOUT_BY_TYPE: Record<LayoutType, LogoLayoutSettings> = {
-	desktop: { width: 100, x: -130, y: 30, align: 'topRight' },
+	desktop: { width: 100, x: -150, y: 40, align: 'topRight' },
 	landscape: { width: 100, x: 0, y: 30, align: 'topCenter' },
 	portrait: { width: 80, x: -40, y: 40, align: 'topCenter' },
 	tablet: { width: 100, x: -130, y: 30, align: 'topRight' },

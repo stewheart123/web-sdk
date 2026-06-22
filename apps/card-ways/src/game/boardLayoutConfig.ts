@@ -12,10 +12,10 @@ export type LayoutBoardSettings = {
 
 export const BOARD_LAYOUT_BY_TYPE: Record<LayoutType, LayoutBoardSettings> = {
 	desktop: {
-		symbolScale: 1.0,
+		symbolScale: 1.1,
 		boardXOffset: 0,
-		boardYOffset: 62,
-		frame: { x: 700, y: 420, width: 1000, height: 688 },
+		boardYOffset: 20,
+		frame: { x: 720, y: 450, width: 840, height: 688 },
 	},
 	landscape: {
 		symbolScale: 1.0,
