@@ -113,6 +113,17 @@ export const SPIN_OPTIONS_FAST = {
 	symbolFallOutInterval: 0,
 };
 
+export const SPIN_OPTIONS_FREEGAME = {
+	...SPIN_OPTIONS_SHARED,
+	reelFallInDelay: 100,
+	symbolFallInSpeed: 10,
+	symbolFallInInterval: 0,
+	symbolFallInBounceSpeed: 0.3,
+	symbolFallInBounceSizeMulti: 0,
+	symbolFallOutSpeed: 10,
+	symbolFallOutInterval: 0,
+};
+
 export const MOTION_BLUR_VELOCITY = 31;
 
 export const zIndexes = {
