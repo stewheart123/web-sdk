@@ -2,6 +2,7 @@
 	export type EmitterEventModifierReel =
 		| { type: 'modifierReelShow' }
 		| { type: 'modifierReelHide' }
+		| { type: 'modifierReelWin' }
 		| {
 				type: 'modifierReelUpdate';
 				multiplier: number;
@@ -15,7 +16,7 @@
 
 	import { Container, Rectangle, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
-	import { waitForTimeout } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import BoardContainer from './BoardContainer.svelte';
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
@@ -27,6 +28,7 @@
 		resolveModifierSymbolName,
 		type ModifierSymbolName,
 	} from '../game/utils';
+	import type { SymbolState } from '../game/types';
 
 	const context = getContext();
 	const layout = $derived(getModifierLayoutSettings(context.stateLayoutDerived.layoutType()));
@@ -43,22 +45,36 @@
 		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,
 	);
 
-	const getModifierSymbolInfo = (name: ModifierSymbolName) =>
-		getSymbolInfo({ rawSymbol: { name }, state: 'static' });
+	const getModifierSymbolInfo = (name: ModifierSymbolName, state: SymbolState = 'static') =>
+		getSymbolInfo({ rawSymbol: { name }, state });
 
 	const previousCardY = new Tween(0);
 	const currentCardY = new Tween(0);
 
 	let show = $state(false);
 	let isAnimating = $state(false);
+	let symbolState = $state<SymbolState>('static');
 	let multiplier = $state(1);
 	let modifierName = $state<ModifierSymbolName>('X1');
 	let previousModifierName = $state<ModifierSymbolName>('X1');
 	let incomingModifierName = $state<ModifierSymbolName>('X1');
+	let onWinComplete = $state(() => {});
 
 	const previousSymbolInfo = $derived(getModifierSymbolInfo(previousModifierName));
-	const currentSymbolInfo = $derived(getModifierSymbolInfo(modifierName));
+	const currentSymbolInfo = $derived(getModifierSymbolInfo(modifierName, symbolState));
 	const incomingSymbolInfo = $derived(getModifierSymbolInfo(incomingModifierName));
+
+	const playWinAnimation = async () => {
+		if (!show || isAnimating || multiplier <= 1) return;
+
+		symbolState = 'win';
+		await Promise.race([
+			waitForResolve((resolve) => (onWinComplete = resolve)),
+			waitForTimeout(1700),
+		]);
+		symbolState = 'static';
+		onWinComplete = () => {};
+	};
 
 	const playScrollAnimation = async () => {
 		const { scrollDistance, scrollDuration } = getModifierLayoutSettings(
@@ -82,6 +98,9 @@
 	context.eventEmitter.subscribeOnMount({
 		modifierReelShow: () => (show = true),
 		modifierReelHide: () => (show = false),
+		modifierReelWin: async () => {
+			await playWinAnimation();
+		},
 		modifierReelUpdate: async (emitterEvent) => {
 			const nextName = resolveModifierSymbolName(
 				emitterEvent.modifierName,
@@ -156,14 +175,16 @@
 							/>
 						{/key}
 					{:else}
-						{#key modifierName}
+						{#key `${modifierName}-${symbolState}`}
 							<SymbolSpineMain
 								symbolInfo={currentSymbolInfo}
 								y={0}
 								height={layout.cardHeight}
 								anchor={0.5}
-								loop
-								listener={{}}
+								loop={symbolState === 'static'}
+								listener={{
+									complete: () => onWinComplete(),
+								}}
 							/>
 						{/key}
 					{/if}

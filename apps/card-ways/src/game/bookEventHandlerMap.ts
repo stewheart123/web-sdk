@@ -61,9 +61,18 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_small' });
-		await sequence(bookEvent.wins, async (win) => {
-			await animateSymbols({ positions: win.positions });
-		});
+
+		const modifierWin =
+			stateGame.modifierMultiplier > 1
+				? eventEmitter.broadcastAsync({ type: 'modifierReelWin' })
+				: Promise.resolve();
+
+		await Promise.all([
+			sequence(bookEvent.wins, async (win) => {
+				await animateSymbols({ positions: win.positions });
+			}),
+			modifierWin,
+		]);
 	},
 	setTotalWin: async (bookEvent: BookEventOfType<'setTotalWin'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;
