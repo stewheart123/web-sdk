@@ -125,30 +125,33 @@
 			/>
 			<Container y={layout.cardWindowY}>
 				<Rectangle
-					isMask
+				  isMask
 					anchor={0.5}
 					width={layout.cardWindowWidth}
 					height={layout.cardWindowHeight}
-					backgroundAlpha={0}
+					backgroundAlpha={0.5}
+					backgroundColor={0xff0000}
 				/>
-				{#if isAnimating}
+				<Container y={layout.cardYOffset}>
+					{#if isAnimating}
+						<SymbolSpineMain
+							symbolInfo={previousSymbolInfo}
+							y={previousCardY.current}
+							height={layout.cardHeight}
+							anchor={0.5}
+							loop
+							listener={{}}
+						/>
+					{/if}
 					<SymbolSpineMain
-						symbolInfo={previousSymbolInfo}
-						y={previousCardY.current}
+						symbolInfo={currentSymbolInfo}
+						y={currentCardY.current}
 						height={layout.cardHeight}
 						anchor={0.5}
 						loop
 						listener={{}}
 					/>
-				{/if}
-				<SymbolSpineMain
-					symbolInfo={currentSymbolInfo}
-					y={currentCardY.current}
-					height={layout.cardHeight}
-					anchor={0.5}
-					loop
-					listener={{}}
-				/>
+				</Container>
 			</Container>
 		</Container>
 	</BoardContainer>

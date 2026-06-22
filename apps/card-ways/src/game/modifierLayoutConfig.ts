@@ -6,6 +6,8 @@ export type ModifierLayoutSettings = {
 	slabHeight: number;
 	cardHeight: number;
 	cardWindowY: number;
+	/** Card-only vertical offset inside the mask window. Negative moves the card up. */
+	cardYOffset: number;
 	cardWindowWidth: number;
 	cardWindowHeight: number;
 	scrollDistance: number;
@@ -15,10 +17,11 @@ export type ModifierLayoutSettings = {
 const BASE_MODIFIER_LAYOUT: ModifierLayoutSettings = {
 	slabWidth: SYMBOL_SIZE,
 	slabHeight: SYMBOL_SIZE * 1.45,
-	cardHeight: SYMBOL_SIZE * 1,
-	cardWindowY: SYMBOL_SIZE * -0.285,
-	cardWindowWidth: SYMBOL_SIZE * 1.2,
-	cardWindowHeight: SYMBOL_SIZE * 2.5,
+	cardHeight: SYMBOL_SIZE * 0.95,
+	cardWindowY: SYMBOL_SIZE * 0.15,
+	cardYOffset: SYMBOL_SIZE * -0.45,
+	cardWindowWidth: SYMBOL_SIZE * 1,
+	cardWindowHeight: SYMBOL_SIZE * 1.1,
 	scrollDistance: SYMBOL_SIZE,
 	scrollDuration: 333,
 };
