@@ -25,6 +25,10 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reelsFrame/VENDING-FRAME.png', import.meta.url).href,
 	},
+	modifierSlabFrame: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reelsFrame/SLAB-FRAME.png', import.meta.url).href,
+	},
 	payFrame: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/payFrame/payFrame.png', import.meta.url).href,

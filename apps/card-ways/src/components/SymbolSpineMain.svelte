@@ -10,6 +10,7 @@
 		x?: number;
 		y?: number;
 		height?: number;
+		anchor?: number;
 		listener: SpineTrackProps['listener'];
 		loop?: boolean;
 	};
@@ -24,6 +25,7 @@
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}
+	anchor={props.anchor}
 	{height}
 >
 	<SpineTrack
