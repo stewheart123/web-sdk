@@ -17,21 +17,26 @@
 	const PANEL_KEY_DESKTOP = 'Frame_FSCounter.png';
 	const PANEL_RATIO_DESKTOP = 824 / 622;
 	const panelKey = PANEL_KEY_DESKTOP;
-	const panelWidth = $derived(SYMBOL_SIZE * 2);
+	const PANEL_WIDTH_MULTIPLIER = 1.2;
+	const GAP_FROM_BOARD = 0.2;
+	const panelWidth = $derived(SYMBOL_SIZE * PANEL_WIDTH_MULTIPLIER);
 	const panelSizes = $derived({
 		width: panelWidth,
 		height: panelWidth / PANEL_RATIO_DESKTOP,
 	});
 	const scale = 1;
-	const position = $derived({
-		x:
-			context.stateGameDerived.boardLayout().x -
-			context.stateGameDerived.boardLayout().width * 0.5 -
-			panelSizes.width -
-			SYMBOL_SIZE * 0.7,
-		y:
-			context.stateGameDerived.boardLayout().y -
-			context.stateGameDerived.boardLayout().height * 0.5,
+	const position = $derived.by(() => {
+		const boardLayout = context.stateGameDerived.boardLayout();
+		const scaledBoardHalfWidth = boardLayout.width * 0.5 * boardLayout.scale;
+
+		return {
+			x:
+				boardLayout.x -
+				scaledBoardHalfWidth -
+				panelSizes.width -
+				SYMBOL_SIZE * GAP_FROM_BOARD,
+			y: boardLayout.y - boardLayout.height * 0.5 * boardLayout.scale,
+		};
 	});
 
 	const fontSize = SYMBOL_SIZE * 0.275;
