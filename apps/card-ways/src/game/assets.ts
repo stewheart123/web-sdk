@@ -129,7 +129,7 @@ export default {
 	},
 	progressBar: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/progressBar/LOADING.json', import.meta.url).href,
 		preload: true,
 	},
 	freeSpins: {
