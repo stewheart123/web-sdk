@@ -62,10 +62,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_small' });
 
-		const modifierWin =
-			stateGame.modifierMultiplier > 1
-				? eventEmitter.broadcastAsync({ type: 'modifierReelWin' })
-				: Promise.resolve();
+		const shouldPlayModifierWin =
+			stateGame.modifierMultiplier > 1 || stateGame.gameType === 'freegame';
+
+		const modifierWin = shouldPlayModifierWin
+			? eventEmitter.broadcastAsync({ type: 'modifierReelWin' })
+			: Promise.resolve();
 
 		await Promise.all([
 			sequence(bookEvent.wins, async (win) => {

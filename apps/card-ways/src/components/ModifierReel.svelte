@@ -65,7 +65,10 @@
 	const incomingSymbolInfo = $derived(getModifierSymbolInfo(incomingModifierName));
 
 	const playWinAnimation = async () => {
-		if (!show || isAnimating || multiplier <= 1) return;
+		const inBonus = context.stateGame.gameType === 'freegame';
+
+		if (!show || isAnimating) return;
+		if (!inBonus && multiplier <= 1) return;
 
 		symbolState = 'win';
 		await Promise.race([
