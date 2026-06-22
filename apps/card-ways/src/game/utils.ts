@@ -32,6 +32,21 @@ export const getSymbolX = (reelIndex: number) =>
 	SYMBOL_WIDTH * (reelIndex + REEL_PADDING) + REEL_GAP * reelIndex;
 export const getSymbolY = (symbolIndexOfBoard: number) => (symbolIndexOfBoard + 0.5) * SYMBOL_SIZE;
 
+export type ModifierSymbolName = 'X1' | 'X2' | 'X3';
+
+export const getModifierSymbolName = (multiplier: number): ModifierSymbolName =>
+	`X${multiplier}` as ModifierSymbolName;
+
+export const resolveModifierSymbolName = (
+	modifierName: string | undefined,
+	multiplier: number,
+): ModifierSymbolName => {
+	if (modifierName === 'X1' || modifierName === 'X2' || modifierName === 'X3') {
+		return modifierName;
+	}
+	return getModifierSymbolName(multiplier);
+};
+
 export const getSymbolInfo = ({
 	rawSymbol,
 	state,

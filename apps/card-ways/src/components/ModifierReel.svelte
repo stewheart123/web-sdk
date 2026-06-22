@@ -11,10 +11,7 @@
 </script>
 
 <script lang="ts">
-	import { Tween } from 'svelte/motion';
-
 	import {
-		BitmapText,
 		Container,
 		SpineEventEmitterProvider,
 		SpineProvider,
@@ -26,13 +23,19 @@
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import BoardContainer from './BoardContainer.svelte';
+	import SymbolSpineMain from './SymbolSpineMain.svelte';
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import {
+		getSymbolInfo,
+		resolveModifierSymbolName,
+		type ModifierSymbolName,
+	} from '../game/utils';
 
 	type AnimationName = 'static' | 'win' | 'reset' | 'increment';
 
-	// const PANEL_WIDTH = SYMBOL_SIZE * 0.641;
 	const PANEL_WIDTH = SYMBOL_SIZE;
+	const MODIFIER_SYMBOL_HEIGHT = SYMBOL_SIZE * 0.75;
 	const context = getContext();
 	const scale = $derived(context.stateLayoutDerived.isStacked() ? 1.28 : 1);
 	const desktopPosition = $derived({
@@ -47,33 +50,48 @@
 		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,
 	);
 
+	const getModifierSymbolInfo = (name: ModifierSymbolName) =>
+		getSymbolInfo({ rawSymbol: { name }, state: 'static' });
+
 	let show = $state(false);
 	let animationName = $state<AnimationName>('static');
 	let multiplier = $state(1);
-	let previousMultiplier = new Tween(1);
+	let modifierName = $state<ModifierSymbolName>('X1');
+	let previousModifierName = $state<ModifierSymbolName>('X1');
 	let oncomplete = $state(() => {});
+
+	const previousSymbolInfo = $derived(getModifierSymbolInfo(previousModifierName));
+	const currentSymbolInfo = $derived(getModifierSymbolInfo(modifierName));
 
 	context.eventEmitter.subscribeOnMount({
 		modifierReelShow: () => (show = true),
 		modifierReelHide: () => (show = false),
 		modifierReelUpdate: async (emitterEvent) => {
+			const nextName = resolveModifierSymbolName(
+				emitterEvent.modifierName,
+				emitterEvent.multiplier,
+			);
+
 			if (emitterEvent.multiplier === 1 && multiplier !== 1) {
 				animationName = 'reset';
+				previousModifierName = modifierName;
+				modifierName = nextName;
 				await waitForTimeout(300);
-			}
-
-			if (emitterEvent.multiplier > multiplier) {
+			} else if (emitterEvent.multiplier > multiplier) {
 				animationName = 'increment';
+				previousModifierName = modifierName;
+				modifierName = nextName;
 			}
 
 			if (animationName !== 'static') {
 				multiplier = emitterEvent.multiplier;
 				await waitForResolve((resolve) => (oncomplete = resolve));
 				animationName = 'static';
-				previousMultiplier.set(multiplier, { duration: 0 });
+				previousModifierName = modifierName;
 			} else {
 				multiplier = emitterEvent.multiplier;
-				previousMultiplier.set(multiplier, { duration: 0 });
+				modifierName = nextName;
+				previousModifierName = modifierName;
 			}
 		},
 	});
@@ -95,23 +113,19 @@
 				/>
 				<SpineEventEmitterProvider>
 					<SpineSlot slotName="slot_multi">
-						<BitmapText
-							anchor={0.5}
-							text={`${Math.round(previousMultiplier.current)}×`}
-							style={{
-								fontFamily: 'gold',
-								fontSize: SYMBOL_SIZE * 5.2,
-							}}
+						<SymbolSpineMain
+							symbolInfo={previousSymbolInfo}
+							height={MODIFIER_SYMBOL_HEIGHT}
+							loop
+							listener={{}}
 						/>
 					</SpineSlot>
 					<SpineSlot slotName="slot_multi_next">
-						<BitmapText
-							anchor={0.5}
-							text={`${multiplier}×`}
-							style={{
-								fontFamily: 'gold',
-								fontSize: SYMBOL_SIZE * 5.2,
-							}}
+						<SymbolSpineMain
+							symbolInfo={currentSymbolInfo}
+							height={MODIFIER_SYMBOL_HEIGHT}
+							loop
+							listener={{}}
 						/>
 					</SpineSlot>
 				</SpineEventEmitterProvider>

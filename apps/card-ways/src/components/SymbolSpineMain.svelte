@@ -9,18 +9,22 @@
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
 		x?: number;
 		y?: number;
+		height?: number;
 		listener: SpineTrackProps['listener'];
 		loop?: boolean;
 	};
 
 	const props: Props = $props();
+	const height = $derived(
+		props.height ?? SYMBOL_SIZE * props.symbolInfo.sizeRatios.height,
+	);
 </script>
 
 <SpineProvider
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}
-	height={SYMBOL_SIZE * props.symbolInfo.sizeRatios.height}
+	{height}
 >
 	<SpineTrack
 		loop={props.loop ?? props.symbolInfo.loop ?? false}
