@@ -107,16 +107,12 @@
 				emitterEvent.multiplier,
 			);
 
-			let shouldAnimate = false;
+			const symbolChanged = nextName !== modifierName;
 
-			if (emitterEvent.multiplier === 1 && multiplier !== 1) {
-				await waitForTimeout(300);
-				shouldAnimate = true;
-			} else if (emitterEvent.multiplier > multiplier) {
-				shouldAnimate = true;
-			}
-
-			if (shouldAnimate) {
+			if (symbolChanged) {
+				if (emitterEvent.multiplier === 1 && multiplier !== 1) {
+					await waitForTimeout(300);
+				}
 				previousModifierName = modifierName;
 				incomingModifierName = nextName;
 				multiplier = emitterEvent.multiplier;
