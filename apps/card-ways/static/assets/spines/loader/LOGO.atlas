@@ -1,0 +1,13 @@
+LOGO.png
+size:437,501
+filter:Linear,Linear
+pma:true
+scale:0.4
+LOGO-LETTERING
+bounds:280,63,436,155
+offsets:39,85,497,280
+rotate:90
+LOGO-PACKET
+bounds:2,2,497,276
+offsets:0,4,497,280
+rotate:90

@@ -1,9 +1,10 @@
 export default {
-	loader: {
+	logo: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/loader/loader.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/loader/loader.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/loader/LOGO.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/loader/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/loader/LOGO.png', import.meta.url).href,
 			scale: 2,
 		},
 		preload: true,

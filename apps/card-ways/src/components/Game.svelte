@@ -4,7 +4,7 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Text, REM } from 'pixi-svelte';
+	import { App } from 'pixi-svelte';
 	import { stateModal } from 'state-shared';
 
 	import { UI, UiGameName } from 'components-ui-pixi';
@@ -26,6 +26,7 @@
 	import Transition from './Transition.svelte';
 	import ModifierReel from './ModifierReel.svelte';
 	import I18nTest from './I18nTest.svelte';
+	import GameLogo from './GameLogo.svelte';
 
 	const context = getContext();
 
@@ -71,17 +72,7 @@
 				<UiGameName name="CARD WAYS" />
 			{/snippet}
 			{#snippet logo()}
-				<Text
-					anchor={{ x: 1, y: 0 }}
-					text="ADD YOUR LOGO"
-					style={{
-						fontFamily: 'proxima-nova',
-						fontSize: REM * 1.5,
-						fontWeight: '600',
-						lineHeight: REM * 2,
-						fill: 0xffffff,
-					}}
-				/>
+				<GameLogo />
 			{/snippet}
 		</UI>
 		<Win />

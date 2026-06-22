@@ -1,0 +1,77 @@
+{
+"skeleton": {
+	"hash": "ENuN8rWD3iQ",
+	"spine": "4.3.17",
+	"x": -621.5,
+	"y": -350,
+	"width": 1243,
+	"height": 700,
+	"images": "./LOGO/",
+	"audio": null
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "PACKET-BONE", "parent": "root" },
+	{ "name": "LETTER-BONE", "parent": "root" }
+],
+"slots": [
+	{ "name": "LOGO-PACKET", "bone": "PACKET-BONE", "attachment": "LOGO-PACKET" },
+	{ "name": "LOGO-LETTERING", "bone": "LETTER-BONE", "attachment": "LOGO-LETTERING" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"LOGO-LETTERING": {
+				"LOGO-LETTERING": { "width": 1243, "height": 700 }
+			},
+			"LOGO-PACKET": {
+				"LOGO-PACKET": { "width": 1243, "height": 700 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {},
+	"IDLE": {
+		"bones": {
+			"LETTER-BONE": {
+				"scale": [
+					{},
+					{ "time": 1, "x": 1.02, "y": 1.02 },
+					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"INTRO": {
+		"bones": {
+			"LETTER-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.5, "x": 1.03, "y": 1.03 },
+					{ "time": 1 }
+				]
+			},
+			"PACKET-BONE": {
+				"rotate": [
+					{
+						"curve": [ 0.07333334, -0.165, 0.24444443, -0.5 ]
+					},
+					{
+						"time": 0.3666667,
+						"value": -0.5,
+						"curve": [ 0.4666667, -0.5, 0.6066667, 0.17 ]
+					},
+					{
+						"time": 0.6666667,
+						"value": 0.5,
+						"curve": [ 0.7333333, 0.335, 0.9333333, 0.165 ]
+					},
+					{ "time": 1 }
+				]
+			}
+		}
+	}
+}
+}
