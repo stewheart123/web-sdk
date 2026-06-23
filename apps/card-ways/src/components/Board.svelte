@@ -53,4 +53,10 @@
 			<BoardBase />
 		</BoardContainer>
 	</BoardContext>
+
+	<BoardContext animate={true}>
+		<BoardContainer>
+			<BoardBase />
+		</BoardContainer>
+	</BoardContext>
 {/if}

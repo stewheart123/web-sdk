@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Symbol from './Symbol.svelte';
 	import SymbolWrap from './SymbolWrap.svelte';
-	import { getSymbolX } from '../game/utils';
+	import { getSymbolInfo, getSymbolX } from '../game/utils';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
 
 	type Props = {
@@ -10,21 +10,23 @@
 	};
 
 	const props: Props = $props();
+	const symbolInfo = $derived(
+		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: props.reelSymbol.symbolState }),
+	);
 </script>
 
-{#key `${props.reelIndex}-${props.reelSymbol.symbolIndexOfBoard}-${props.reelSymbol.rawSymbol.name}`}
-	<SymbolWrap
-		x={getSymbolX(props.reelIndex)}
-		y={props.reelSymbol.symbolY.current}
-		animating={false}
-	>
-		<Symbol
-			state={props.reelSymbol.symbolState}
-			rawSymbol={props.reelSymbol.rawSymbol}
-			oncomplete={() => {
-				if (props.reelSymbol.symbolState === 'win') props.reelSymbol.oncomplete();
-				if (props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';
-			}}
-		/>
-	</SymbolWrap>
-{/key}
+<SymbolWrap
+	x={getSymbolX(props.reelIndex)}
+	y={props.reelSymbol.symbolY.current}
+	animating={symbolInfo.type === 'spine' &&
+		(props.reelSymbol.symbolState === 'land' || props.reelSymbol.symbolState === 'win')}
+>
+	<Symbol
+		state={props.reelSymbol.symbolState}
+		rawSymbol={props.reelSymbol.rawSymbol}
+		oncomplete={() => {
+			if (props.reelSymbol.symbolState === 'win') props.reelSymbol.oncomplete();
+			if (props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';
+		}}
+	/>
+</SymbolWrap>

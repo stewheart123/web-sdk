@@ -5,6 +5,7 @@
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { BitmapText } from 'pixi-svelte';
 	import { getBitmapFontStyle } from '../game/fontConfig';
+	import { waitForTimeout } from 'utils-shared/wait';
 
 	type Props = {
 		x?: number;
