@@ -4,7 +4,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import TransitionAnimation from './TransitionAnimation.svelte';
+	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
 	type Props = {
@@ -49,5 +49,5 @@
 
 <!-- transition between the loading screen and the game -->
 <FadeContainer show={loadingType === 'transition'}>
-	<TransitionAnimation oncomplete={props.onloaded} />
+	<BonusTransitionAnimation oncomplete={props.onloaded} />
 </FadeContainer>

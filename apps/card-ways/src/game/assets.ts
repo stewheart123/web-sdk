@@ -156,14 +156,6 @@ export default {
 			scale: 2,
 		},
 	},
-	transition: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/transition/transition.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/transition/transition.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	bonusTransition: {
 		type: 'spine',
 		src: {
