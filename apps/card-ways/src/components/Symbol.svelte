@@ -4,7 +4,7 @@
 	import { getSymbolInfo } from '../game/utils';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { BitmapText } from 'pixi-svelte';
-	import { waitForTimeout } from 'utils-shared/wait';
+	import { getBitmapFontStyle } from '../game/fontConfig';
 
 	type Props = {
 		x?: number;
@@ -59,9 +59,6 @@
 		x={props.x}
 		y={props.y}
 		text={`${props.rawSymbol.multiplier}X`}
-		style={{
-			fontFamily: 'gold',
-			fontSize: 50,
-		}}
+		style={getBitmapFontStyle('symbolMultiplier')}
 	/>
 {/if}

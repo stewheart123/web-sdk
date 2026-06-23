@@ -19,6 +19,7 @@
 	import WinAnimation from './WinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
@@ -72,11 +73,8 @@
 									maxWidth={2130}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
 									style={{
-										fontFamily: 'gold',
-										fontSize: SYMBOL_SIZE * 3.6,
-										align: 'center',
+										...getBitmapFontStyle('winBig', { symbolSize: SYMBOL_SIZE }),
 										fontWeight: 'bold',
-										letterSpacing: 0,
 									}}
 								/>
 							</WinAnimation>
@@ -89,11 +87,8 @@
 									context.stateLayoutDerived.mainLayout().scale}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
-									fontFamily: 'gold',
-									fontSize: SYMBOL_SIZE,
-									align: 'center',
+									...getBitmapFontStyle('winNormal', { symbolSize: SYMBOL_SIZE }),
 									fontWeight: 'bold',
-									letterSpacing: 0,
 								}}
 							/>
 						{/if}

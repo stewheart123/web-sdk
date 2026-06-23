@@ -16,6 +16,7 @@
 	import { OnMount } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
 
+	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
@@ -83,10 +84,7 @@
 							<SpineSlot slotName="slot_number">
 								<ResponsiveBitmapText
 									anchor={0.5}
-									style={{
-										fontFamily: 'gold',
-										fontSize: sizes.width * 0.08,
-									}}
+									style={getBitmapFontStyle('freeSpinOutro', { width: sizes.width })}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
 									maxWidth={sizes.width}
 								/>

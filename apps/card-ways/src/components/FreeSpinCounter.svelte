@@ -11,6 +11,7 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { anchorToPivot, BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
 
 	const context = getContext();
@@ -39,7 +40,9 @@
 		};
 	});
 
-	const fontSize = SYMBOL_SIZE * 0.275;
+	const freeSpinCounterStyle = $derived(
+		getBitmapFontStyle('freeSpinCounter', { symbolSize: SYMBOL_SIZE }),
+	);
 
 	let show = $state(false);
 	let current = $state(0);
@@ -77,8 +80,7 @@
 			<BitmapText
 				text={'FREE SPIN'}
 				style={{
-					fontFamily: 'gold',
-					fontSize,
+					...freeSpinCounterStyle,
 					wordWrap: false,
 				}}
 				onresize={(sizes) => (titleSizes = sizes)}
@@ -87,10 +89,7 @@
 				text={`${current} OF ${total}`}
 				{...counterPosition}
 				anchor={{ x: 0.5, y: 0 }}
-				style={{
-					fontFamily: 'gold',
-					fontSize,
-				}}
+				style={freeSpinCounterStyle}
 				onresize={(sizes) => (counterSizes = sizes)}
 			/>
 		</Container>
