@@ -54,7 +54,7 @@
 
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-				<FreeSpinAnimation>
+				<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 					{#snippet children({ sizes })}
 						{#if isBigWin}
 							<Sprite

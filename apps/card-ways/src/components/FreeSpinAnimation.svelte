@@ -4,6 +4,7 @@
 	import {
 		anchorToPivot,
 		Container,
+		Sprite,
 		SpineProvider,
 		SpineSlot,
 		SpineTrack,
@@ -14,7 +15,10 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
 
+	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
+
 	type Props = {
+		modalKey: ModalKey;
 		children: Snippet<[{ sizes: Sizes }]>;
 	};
 
@@ -23,11 +27,11 @@
 	type AnimationName = 'intro' | 'idle';
 
 	const context = getContext();
-	const BACKGROUND_RATIO = 920 / 720;
+	const MODAL_RATIO = 613 / 391;
 	const BACKGROUND_WIDTH = SYMBOL_SIZE * BOARD_DIMENSIONS.x;
 	const BACKGROUND_SIZES = {
 		width: BACKGROUND_WIDTH,
-		height: BACKGROUND_WIDTH / BACKGROUND_RATIO,
+		height: BACKGROUND_WIDTH / MODAL_RATIO,
 	};
 	const PANEL_SIZES = {
 		width: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
@@ -58,6 +62,12 @@
 				}}
 			/>
 			<SpineSlot slotName="slot_text_placeholder">
+				<Sprite
+					key={props.modalKey}
+					anchor={{ x: 0.5, y: 0.5 }}
+					width={BACKGROUND_SIZES.width}
+					height={BACKGROUND_SIZES.height}
+				/>
 				{@render props.children({ sizes: BACKGROUND_SIZES })}
 			</SpineSlot>
 		</SpineProvider>

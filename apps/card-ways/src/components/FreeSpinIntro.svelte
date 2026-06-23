@@ -43,7 +43,7 @@
 <FadeContainer {show}>
 	<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-	<FreeSpinAnimation>
+	<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
 		{#snippet children({ sizes })}
 			<Sprite
 				anchor={{ x: 0.5, y: 1.2 }}
