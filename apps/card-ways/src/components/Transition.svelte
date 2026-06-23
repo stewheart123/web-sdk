@@ -5,7 +5,7 @@
 <script lang="ts">
 	import { waitForResolve } from 'utils-shared/wait';
 
-	import TransitionAnimation from './TransitionAnimation.svelte';
+	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
@@ -22,7 +22,7 @@
 </script>
 
 {#if transitioning}
-	<TransitionAnimation
+	<BonusTransitionAnimation
 		oncomplete={() => {
 			oncomplete();
 			transitioning = false;

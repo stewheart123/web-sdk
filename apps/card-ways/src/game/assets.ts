@@ -164,6 +164,14 @@ export default {
 			scale: 2,
 		},
 	},
+	bonusTransition: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/bonusTransition/TRANSITION.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bonusTransition/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/bonusTransition/TRANSITION.png', import.meta.url).href,
+		},
+	},
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/SD2_Coin.json', import.meta.url).href,
