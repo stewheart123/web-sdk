@@ -43,7 +43,7 @@ export default {
 	},
 	goldFont: {
 		type: 'font',
-		src: new URL('../../assets/fonts/goldFont/mm_gold.xml', import.meta.url).href,
+		src: new URL('../../assets/fonts/goldFont/stenz-glow-green.xml', import.meta.url).href,
 	},
 	goldBlur: {
 		type: 'font',

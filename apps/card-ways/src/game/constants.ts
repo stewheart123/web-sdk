@@ -113,6 +113,8 @@ export const SPIN_OPTIONS_FAST = {
 	symbolFallOutInterval: 0,
 };
 
+// TODO DIAL IN FREE SPINS REEL BEHAVIOUR
+
 export const SPIN_OPTIONS_FREEGAME = {
 	...SPIN_OPTIONS_SHARED,
 	reelFallInDelay: 100,
