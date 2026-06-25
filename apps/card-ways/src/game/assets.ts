@@ -60,8 +60,9 @@ export default {
 	bigwin: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/bigwin/big_wins.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/bigwin/mm_bigwin.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/bigwin/BIG-WIN.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bigwin/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/bigwin/BIG-WIN.png', import.meta.url).href,
 			scale: 2,
 		},
 	},

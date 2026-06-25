@@ -1,7 +1,7 @@
 import { createAsset } from 'pixi-svelte';
 
-import img from './big_wins.webp';
-import rawAtlas from './big_wins.atlas?raw';
-import spine from './mm_bigwin.json';
+import img from './BIG-WIN.png';
+import rawAtlas from './BIG-WIN.atlas?raw';
+import spine from './skeleton.json';
 
 export default createAsset({ img, rawAtlas, spine });

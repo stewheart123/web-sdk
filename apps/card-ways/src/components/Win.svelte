@@ -67,7 +67,7 @@
 						scale={context.stateGameDerived.boardLayout().scale}
 					>
 						{#if winLevelData?.animation}
-							<WinAnimation animationMap={winLevelData.animation}>
+							<WinAnimation animationName={winLevelData.animation}>
 								<ResponsiveBitmapText
 									anchor={0.5}
 									maxWidth={2130}

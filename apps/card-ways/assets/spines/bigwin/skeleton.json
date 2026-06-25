@@ -1,0 +1,241 @@
+{
+"skeleton": {
+	"hash": "HiIhYwyKlMk",
+	"spine": "4.3.19",
+	"x": -375.5,
+	"y": -249.5,
+	"width": 751,
+	"height": 499,
+	"images": "./BIG WIN/",
+	"audio": null
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "FOIL-BONE", "parent": "root" },
+	{ "name": "GLOW-BONE", "parent": "FOIL-BONE" },
+	{ "name": "TEXT-BONE", "parent": "FOIL-BONE", "y": 73.53554 },
+	{ "name": "WIN-COUNT", "parent": "FOIL-BONE", "y": -93.31598 }
+],
+"slots": [
+	{ "name": "GLOW-SLOT", "bone": "GLOW-BONE" },
+	{ "name": "FOIL-SLOT", "bone": "FOIL-BONE", "attachment": "BIG-WIN-FOIL" },
+	{ "name": "TEXT-SLOT", "bone": "TEXT-BONE", "attachment": "ULTA-RARE-WIN-TEXT" },
+	{ "name": "slot_win_count", "bone": "WIN-COUNT" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"FOIL-SLOT": {
+				"BIG-WIN-FOIL": { "width": 751, "height": 499 }
+			},
+			"GLOW-SLOT": {
+				"LEGENDARY-GLOW": { "width": 751, "height": 499 },
+				"MAX-WIN-GLOW": { "width": 751, "height": 499 },
+				"RARE-GLOW": { "width": 751, "height": 499 },
+				"ULTRA-RARE-GLOW": { "width": 751, "height": 499 },
+				"UNCOMMON-GLOW": { "width": 751, "height": 499 }
+			},
+			"TEXT-SLOT": {
+				"LEGENDARY-WIN-TEXT": { "y": 4.637756, "width": 687, "height": 297 },
+				"MAX-WIN-TEXT": { "y": -10.821426, "width": 413, "height": 313 },
+				"RARE-WIN-TEXT": { "y": -3.091736, "width": 441, "height": 298 },
+				"ULTA-RARE-WIN-TEXT": { "width": 681, "height": 281 },
+				"UNCOMMON-WIN-TEXT": { "y": -1.5459747, "width": 651, "height": 304 }
+			}
+		}
+	}
+],
+"animations": {
+	"LEGENDARY-WIN": {
+		"slots": {
+			"GLOW-SLOT": {
+				"attachment": [
+					{ "name": "LEGENDARY-GLOW" }
+				]
+			},
+			"TEXT-SLOT": {
+				"attachment": [
+					{ "name": "LEGENDARY-WIN-TEXT" }
+				]
+			}
+		},
+		"bones": {
+			"GLOW-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.06666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.13333334 },
+					{ "time": 0.2, "x": 1.01, "y": 1.01 },
+					{ "time": 0.2666667 },
+					{ "time": 0.3333333, "x": 1.01, "y": 1.01 },
+					{ "time": 0.4 },
+					{ "time": 0.4666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.5333333 },
+					{ "time": 0.6, "x": 1.01, "y": 1.01 },
+					{ "time": 0.6666667 },
+					{ "time": 0.7333333, "x": 1.01, "y": 1.01 }
+				]
+			},
+			"TEXT-BONE": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.3666667, "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.7333333 }
+				]
+			}
+		}
+	},
+	"MAX-WIN": {
+		"slots": {
+			"GLOW-SLOT": {
+				"attachment": [
+					{ "name": "MAX-WIN-GLOW" }
+				]
+			},
+			"TEXT-SLOT": {
+				"attachment": [
+					{ "name": "MAX-WIN-TEXT" }
+				]
+			}
+		},
+		"bones": {
+			"GLOW-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.06666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.13333334 },
+					{ "time": 0.2, "x": 1.01, "y": 1.01 },
+					{ "time": 0.2666667 },
+					{ "time": 0.3333333, "x": 1.01, "y": 1.01 },
+					{ "time": 0.4 },
+					{ "time": 0.4666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.5333333 },
+					{ "time": 0.6, "x": 1.01, "y": 1.01 },
+					{ "time": 0.6666667 },
+					{ "time": 0.7333333, "x": 1.01, "y": 1.01 }
+				]
+			},
+			"TEXT-BONE": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.3666667, "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.7333333 }
+				]
+			}
+		}
+	},
+	"RARE-WIN": {
+		"slots": {
+			"GLOW-SLOT": {
+				"attachment": [
+					{ "name": "RARE-GLOW" }
+				]
+			},
+			"TEXT-SLOT": {
+				"attachment": [
+					{ "name": "RARE-WIN-TEXT" }
+				]
+			}
+		},
+		"bones": {
+			"GLOW-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.06666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.13333334 },
+					{ "time": 0.2, "x": 1.01, "y": 1.01 },
+					{ "time": 0.2666667 },
+					{ "time": 0.3333333, "x": 1.01, "y": 1.01 },
+					{ "time": 0.4 },
+					{ "time": 0.4666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.5333333 },
+					{ "time": 0.6, "x": 1.01, "y": 1.01 },
+					{ "time": 0.6666667 },
+					{ "time": 0.7333333, "x": 1.01, "y": 1.01 }
+				]
+			},
+			"TEXT-BONE": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.3666667, "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.7333333 }
+				]
+			}
+		}
+	},
+	"ULTRA-RARE-WIN": {
+		"slots": {
+			"GLOW-SLOT": {
+				"attachment": [
+					{ "name": "ULTRA-RARE-GLOW" }
+				]
+			}
+		},
+		"bones": {
+			"GLOW-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.06666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.13333334 },
+					{ "time": 0.2, "x": 1.01, "y": 1.01 },
+					{ "time": 0.2666667 },
+					{ "time": 0.3333333, "x": 1.01, "y": 1.01 },
+					{ "time": 0.4 },
+					{ "time": 0.4666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.5333333 },
+					{ "time": 0.6, "x": 1.01, "y": 1.01 },
+					{ "time": 0.6666667 },
+					{ "time": 0.7333333, "x": 1.01, "y": 1.01 }
+				]
+			},
+			"TEXT-BONE": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.3666667, "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.7333333 }
+				]
+			}
+		}
+	},
+	"UNCOMMON-WIN": {
+		"slots": {
+			"GLOW-SLOT": {
+				"attachment": [
+					{ "name": "UNCOMMON-GLOW" }
+				]
+			},
+			"TEXT-SLOT": {
+				"attachment": [
+					{ "name": "UNCOMMON-WIN-TEXT" }
+				]
+			}
+		},
+		"bones": {
+			"GLOW-BONE": {
+				"scale": [
+					{},
+					{ "time": 0.06666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.13333334 },
+					{ "time": 0.2, "x": 1.01, "y": 1.01 },
+					{ "time": 0.2666667 },
+					{ "time": 0.3333333, "x": 1.01, "y": 1.01 },
+					{ "time": 0.4 },
+					{ "time": 0.4666667, "x": 1.04, "y": 1.04 },
+					{ "time": 0.5333333 },
+					{ "time": 0.6, "x": 1.01, "y": 1.01 },
+					{ "time": 0.6666667 },
+					{ "time": 0.7333333, "x": 1.01, "y": 1.01 }
+				]
+			},
+			"TEXT-BONE": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.3666667, "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.7333333 }
+				]
+			}
+		}
+	}
+}
+}
