@@ -197,6 +197,11 @@ export default {
 		"amount": 290,
 		"winLevel": 4
 	},
+	"setWinUncommon": {
+		"type": "setWin",
+		"amount": 1500,
+		"winLevel": 6
+	},
 	"freeSpinEnd": {
 		"type": "freeSpinEnd",
 		"amount": 10670,

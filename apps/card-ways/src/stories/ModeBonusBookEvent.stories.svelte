@@ -107,6 +107,16 @@
 />
 
 <Story
+	name="setWinUncommon"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: events.setWinUncommon,
+		action: async (data) => await playBookEvent(data, { bookEvents: [] }),
+	})}
+	{template}
+/>
+
+<Story
 	name="freeSpinEnd"
 	args={templateArgs({
 		skipLoadingScreen: true,
