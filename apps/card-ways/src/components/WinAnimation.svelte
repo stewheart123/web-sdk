@@ -16,6 +16,7 @@
 
 <SpineProvider
 	width={context.stateGameDerived.boardLayout().width}
+	scale={0.55}
 	x={context.stateGameDerived.boardLayout().pivot.x}
 	y={context.stateGameDerived.boardLayout().pivot.y}
 	key="bigwin"
