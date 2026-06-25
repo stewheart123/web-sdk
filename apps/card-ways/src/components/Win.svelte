@@ -15,7 +15,6 @@
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { OnMount } from 'components-shared';
 
-	import WinCoins from './WinCoins.svelte';
 	import WinAnimation from './WinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
@@ -68,15 +67,17 @@
 					>
 						{#if winLevelData?.animation}
 							<WinAnimation animationName={winLevelData.animation}>
-								<ResponsiveBitmapText
-									anchor={0.5}
-									maxWidth={2130}
-									text={bookEventAmountToCurrencyString(countUpAmount)}
-									style={{
-										...getBitmapFontStyle('winBig', { symbolSize: SYMBOL_SIZE }),
-										fontWeight: 'bold',
-									}}
-								/>
+								<Container scale={0.7}>
+									<ResponsiveBitmapText
+										anchor={0.5}
+										maxWidth={2130}
+										text={bookEventAmountToCurrencyString(countUpAmount)}
+										style={{
+											...getBitmapFontStyle('winBig', { symbolSize: SYMBOL_SIZE }),
+											fontWeight: 'bold',
+										}}
+									/>
+								</Container>
 							</WinAnimation>
 						{:else}
 							<ResponsiveBitmapText
@@ -94,8 +95,6 @@
 						{/if}
 					</Container>
 				</MainContainer>
-
-				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 
 				<PressToContinue onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())} />
 			{/snippet}
