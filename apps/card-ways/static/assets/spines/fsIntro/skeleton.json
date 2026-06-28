@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "iWhme+TI5Ic",
+	"hash": "HIDyK923aPc",
 	"spine": "4.3.23",
 	"x": -704,
 	"y": -384,
@@ -79,6 +79,9 @@
 					{ "value": 0.3875 },
 					{ "time": 2.233333, "value": 0.2771 },
 					{ "time": 4.4, "value": 0.243 }
+				],
+				"attachment": [
+					{}
 				]
 			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b2": {
@@ -89,6 +92,9 @@
 					{ "value": 0.3655 },
 					{ "time": 2.166667, "value": 0.7751 },
 					{ "time": 4.4, "value": 0.3647 }
+				],
+				"attachment": [
+					{}
 				]
 			}
 		},
@@ -149,6 +155,16 @@
 	},
 	"NEW-SHINE": {
 		"slots": {
+			"FRAME-BACK": {
+				"attachment": [
+					{}
+				]
+			},
+			"FRAME-BACK-GLOW": {
+				"attachment": [
+					{}
+				]
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"rgb": [
 					{ "color": "ffea00" },
@@ -199,6 +215,16 @@
 	},
 	"NEW-SHINE-INTRO": {
 		"slots": {
+			"FRAME-BACK": {
+				"attachment": [
+					{}
+				]
+			},
+			"FRAME-BACK-GLOW": {
+				"attachment": [
+					{}
+				]
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"rgb": [
 					{ "color": "ffea00" },

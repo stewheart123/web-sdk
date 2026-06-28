@@ -13,7 +13,7 @@
 	import { getContext } from '../game/context';
 
 	const context = getContext();
-	const SPINE_SCALE = { width: 0.62, height: 0.66 };
+	const SPINE_SCALE = { width: (0.62 * 2.5), height: (0.66 * 2) }; // TODO adjust to fit the frame
 	const POSITION_ADJUSTMENT = 1.01;
 	const GLOW_FADE_DURATION = 500;
 	const frame = $derived(
