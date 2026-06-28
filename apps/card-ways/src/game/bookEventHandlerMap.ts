@@ -119,7 +119,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.modifierPersists = false;
 		stateGame.modifierMultiplier = 1;
 		eventEmitter.broadcast({ type: 'modifierReelHide' });
-		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
+		await eventEmitter.broadcastAsync({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_youwon_panel' });
 		winLevelSoundsPlay({ winLevelData });
