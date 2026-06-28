@@ -33,7 +33,10 @@
 	let onCountUpComplete = $state(() => {});
 
 	context.eventEmitter.subscribeOnMount({
-		freeSpinOutroShow: () => (show = true),
+		freeSpinOutroShow: () => {
+			show = true;
+			animationName = 'intro';
+		},
 		freeSpinOutroHide: async () => (show = false),
 		freeSpinOutroCountUp: async (emitterEvent) => {
 			amount = emitterEvent.amount;
@@ -53,51 +56,53 @@
 
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-				<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
-					{#snippet children({ sizes })}
-						{#if isBigWin}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 2.2}
-								height={156 * 2.2}
-								key="freespins_{stateUrlDerived.lang()}.png"
-							/>
-						{:else}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 4.5}
-								height={80 * 4.5}
-								key="winsmall_{stateUrlDerived.lang()}.png"
-							/>
-						{/if}
-
-						<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4}>
-							<SpineTrack
-								trackIndex={0}
-								{animationName}
-								loop={animationName === 'idle'}
-								listener={{
-									complete: () => (animationName = 'idle'),
-								}}
-							/>
-							<SpineSlot slotName="slot_number">
-								<ResponsiveBitmapText
-									anchor={0.5}
-									style={getBitmapFontStyle('freeSpinOutro', { width: sizes.width })}
-									text={bookEventAmountToCurrencyString(countUpAmount)}
-									maxWidth={sizes.width}
+				{#if show}
+					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
+						{#snippet children({ sizes })}
+							{#if isBigWin}
+								<Sprite
+									anchor={{ x: 0.5, y: 1.2 }}
+									width={500 * 2.2}
+									height={156 * 2.2}
+									key="freespins_{stateUrlDerived.lang()}.png"
 								/>
-							</SpineSlot>
-						</SpineProvider>
+							{:else}
+								<Sprite
+									anchor={{ x: 0.5, y: 1.2 }}
+									width={500 * 4.5}
+									height={80 * 4.5}
+									key="winsmall_{stateUrlDerived.lang()}.png"
+								/>
+							{/if}
 
-						<Sprite
-							anchor={{ x: 0.5, y: isBigWin ? -3.2 : -2 }}
-							width={177 * (isBigWin ? 2.2 : 3)}
-							height={42 * (isBigWin ? 2.2 : 3)}
-							key="totalwin.png"
-						/>
-					{/snippet}
-				</FreeSpinAnimation>
+							<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4}>
+								<SpineTrack
+									trackIndex={0}
+									{animationName}
+									loop={animationName === 'idle'}
+									listener={{
+										complete: () => (animationName = 'idle'),
+									}}
+								/>
+								<SpineSlot slotName="slot_number">
+									<ResponsiveBitmapText
+										anchor={0.5}
+										style={getBitmapFontStyle('freeSpinOutro', { width: sizes.width })}
+										text={bookEventAmountToCurrencyString(countUpAmount)}
+										maxWidth={sizes.width}
+									/>
+								</SpineSlot>
+							</SpineProvider>
+
+							<Sprite
+								anchor={{ x: 0.5, y: isBigWin ? -3.2 : -2 }}
+								width={177 * (isBigWin ? 2.2 : 3)}
+								height={42 * (isBigWin ? 2.2 : 3)}
+								key="totalwin.png"
+							/>
+						{/snippet}
+					</FreeSpinAnimation>
+				{/if}
 
 				<PressToContinue onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())} />
 			{/snippet}

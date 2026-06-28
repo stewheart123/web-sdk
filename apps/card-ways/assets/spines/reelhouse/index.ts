@@ -1,7 +1,7 @@
 import { createAsset } from 'pixi-svelte';
 
-import img from './reelhouse_glow.webp';
-import rawAtlas from './reelhouse_glow.atlas?raw';
-import spine from './reelhouse_glow.json';
+import img from '../fsIntro/MODAL.png';
+import rawAtlas from '../fsIntro/MODAL.atlas?raw';
+import spine from '../fsIntro/skeleton.json';
 
 export default createAsset({ img, rawAtlas, spine });

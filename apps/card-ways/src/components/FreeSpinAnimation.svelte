@@ -6,7 +6,6 @@
 		Container,
 		Sprite,
 		SpineProvider,
-		SpineSlot,
 		SpineTrack,
 		type Sizes,
 	} from 'pixi-svelte';
@@ -24,7 +23,7 @@
 
 	const props: Props = $props();
 
-	type AnimationName = 'intro' | 'idle';
+	type AnimationName = 'NEW-SHINE-INTRO' | 'NEW-SHINE';
 
 	const context = getContext();
 	const MODAL_RATIO = 613 / 391;
@@ -38,7 +37,7 @@
 		height: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
 	};
 
-	let animationName = $state<AnimationName>('intro');
+	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
 
 <MainContainer>
@@ -56,20 +55,21 @@
 			<SpineTrack
 				trackIndex={0}
 				{animationName}
-				loop={animationName === 'idle'}
+				loop={animationName === 'NEW-SHINE'}
 				listener={{
-					complete: () => (animationName = 'idle'),
+					complete: () => (animationName = 'NEW-SHINE'),
 				}}
 			/>
-			<SpineSlot slotName="slot_text_placeholder">
-				<Sprite
-					key={props.modalKey}
-					anchor={{ x: 0.5, y: 0.5 }}
-					width={BACKGROUND_SIZES.width}
-					height={BACKGROUND_SIZES.height}
-				/>
-				{@render props.children({ sizes: BACKGROUND_SIZES })}
-			</SpineSlot>
 		</SpineProvider>
+
+		<Container x={PANEL_SIZES.width * 0.5} y={PANEL_SIZES.height * 0.4}>
+			<Sprite
+				key={props.modalKey}
+				anchor={{ x: 0.5, y: 0.5 }}
+				width={BACKGROUND_SIZES.width}
+				height={BACKGROUND_SIZES.height}
+			/>
+			{@render props.children({ sizes: BACKGROUND_SIZES })}
+		</Container>
 	</Container>
 </MainContainer>

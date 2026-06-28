@@ -27,7 +27,10 @@
 	let oncomplete = $state(() => {});
 
 	context.eventEmitter.subscribeOnMount({
-		freeSpinIntroShow: () => (show = true),
+		freeSpinIntroShow: () => {
+			show = true;
+			animationName = 'intro';
+		},
 		freeSpinIntroHide: () => (show = false),
 		freeSpinIntroUpdate: async (emitterEvent) => {
 			// if (emitterEvent.extraSpins) {
@@ -43,39 +46,41 @@
 <FadeContainer {show}>
 	<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-	<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
-		{#snippet children({ sizes })}
-			<Sprite
-				anchor={{ x: 0.5, y: 1.2 }}
-				width={500 * 2.2}
-				height={156 * 2.2}
-				key="freespins_{stateUrlDerived.lang()}.png"
-			/>
-
-			<SpineProvider key="fsIntroNumber" width={sizes.width * 0.3}>
-				<SpineTrack
-					trackIndex={0}
-					{animationName}
-					loop={animationName === 'idle'}
-					listener={{
-						complete: () => (animationName = 'idle'),
-					}}
+	{#if show}
+		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
+			{#snippet children({ sizes })}
+				<Sprite
+					anchor={{ x: 0.5, y: 1.2 }}
+					width={500 * 2.2}
+					height={156 * 2.2}
+					key="freespins_{stateUrlDerived.lang()}.png"
 				/>
-				<SpineSlot slotName="slot_number">
-					<BitmapText
-						anchor={{ x: 0.5, y: 0.5 }}
-						text={freeSpinsFromEvent}
-						style={{
-							...getBitmapFontStyle('freeSpinIntro', { width: sizes.width }),
-							fontWeight: 'bold',
+
+				<SpineProvider key="fsIntroNumber" width={sizes.width * 0.3}>
+					<SpineTrack
+						trackIndex={0}
+						{animationName}
+						loop={animationName === 'idle'}
+						listener={{
+							complete: () => (animationName = 'idle'),
 						}}
 					/>
-				</SpineSlot>
-			</SpineProvider>
+					<SpineSlot slotName="slot_number">
+						<BitmapText
+							anchor={{ x: 0.5, y: 0.5 }}
+							text={freeSpinsFromEvent}
+							style={{
+								...getBitmapFontStyle('freeSpinIntro', { width: sizes.width }),
+								fontWeight: 'bold',
+							}}
+						/>
+					</SpineSlot>
+				</SpineProvider>
 
-			<Sprite anchor={{ x: 0.5, y: -3 }} width={183 * 2.2} height={42 * 2.2} key="freespins.png" />
-		{/snippet}
-	</FreeSpinAnimation>
+				<Sprite anchor={{ x: 0.5, y: -3 }} width={183 * 2.2} height={42 * 2.2} key="freespins.png" />
+			{/snippet}
+		</FreeSpinAnimation>
+	{/if}
 
 	<PressToContinue onpress={() => oncomplete()} />
 </FadeContainer>

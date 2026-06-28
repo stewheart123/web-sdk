@@ -77,8 +77,8 @@ export default {
 	fsIntro: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_screen.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -127,8 +127,8 @@ export default {
 	reelhouse: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/reelhouse/reelhouse_glow.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/reelhouse/reelhouse_glow.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
 			scale: 2,
 		},
 	},
