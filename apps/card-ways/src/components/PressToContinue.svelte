@@ -32,7 +32,7 @@
 		height={displayHeight}
 		anchor={{ x: 0.5, y: 1 }}
 		x={context.stateLayoutDerived.mainLayout().width * 0.5}
-		y={context.stateLayoutDerived.mainLayout().height}
+		y={context.stateLayoutDerived.mainLayout().height * 0.95}
 	/>
 </MainContainer>
 <OnHotkey hotkey="Space" onpress={() => props.onpress()} />
