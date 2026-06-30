@@ -40,10 +40,11 @@
 	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
 
+<!-- TODO Y POSITION OF ENTIRE CONTAINER -->
 <MainContainer>
 	<Container
 		x={context.stateGameDerived.boardLayout().x}
-		y={context.stateGameDerived.boardLayout().y}
+		y={context.stateGameDerived.boardLayout().y - 60}
 		pivot={anchorToPivot({ anchor: 0.5, sizes: BACKGROUND_SIZES })}
 	>
 		<SpineProvider
