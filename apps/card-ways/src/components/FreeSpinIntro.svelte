@@ -184,7 +184,7 @@
 
 
 
-				<Sprite anchor={{ x: 0.5, y: -3 }} width={92 * (335 / 67)} height={92} key="freespins.png" />
+				<Sprite anchor={{ x: 0.5, y: 3 }} width={335 * 2.2} height={67 * 2.2} key="freespins.png" />
 
 			{/snippet}
 
