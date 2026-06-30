@@ -1,6 +1,6 @@
 import { createAsset } from 'pixi-svelte';
 
-import img from './MM_Localisation_winsmall.webp';
-import atlas from './MM_Localisation_winsmall.json';
+import img from './winSmall.png';
+import atlas from './winSmall.json';
 
 export default createAsset({ img, atlas });

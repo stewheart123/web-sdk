@@ -147,7 +147,11 @@ export default {
 	},
 	winSmall: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/winSmall/MM_Localisation_winsmall.json', import.meta.url).href,
+		src: '/assets/sprites/winSmall/winSmall.json',
+	},
+	winSmall2: {
+		type: 'sprites',
+		src: '/assets/sprites/winSmall/winSmall_2.json',
 	},
 	clusterWin: {
 		type: 'spine',

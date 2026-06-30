@@ -54,7 +54,27 @@
 
 	const FADE_DURATION = HALF_SECOND;
 
+	// --- ADJUST FREE SPIN OUTRO LABELS (position / scale) ---
+	const YOU_WON_LABEL = {
+		anchor: { x: 0.5, y: 0.5 },
+		widthScale: 0.7,
+		heightScale: 0.07,
+		x: 0,
+		yRatio: -0.28,
+		zIndex: 2,
+	};
 
+	const TOTAL_WIN_LABEL = {
+		anchor: { x: 0.5, y: 0.5 },
+		widthScale: 0.55,
+		heightScale: 0.055,
+		x: 0,
+		yRatio: 0.28,
+		zIndex: 2,
+		bigWidthScale: 0.4,
+		bigHeightScale: 0.045,
+	};
+	// --- END ADJUST ---
 
 	let show = $state(true);
 
@@ -166,39 +186,7 @@
 
 						{#snippet children({ sizes })}
 
-							{#if isBigWin}
-
-								<Sprite
-
-									anchor={{ x: 0.5, y: 1.2 }}
-
-									width={426 * 2.2}
-
-									height={85 * 2.2}
-
-									key="freespins_{stateUrlDerived.lang()}.png"
-
-								/>
-
-							{:else}
-
-								<Sprite
-
-									anchor={{ x: 0.5, y: 1.2 }}
-
-									width={500 * 4.5}
-
-									height={80 * 4.5}
-
-									key="winsmall_{stateUrlDerived.lang()}.png"
-
-								/>
-
-							{/if}
-
-
-
-							<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4}>
+							<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4} zIndex={1}>
 
 								<SpineTrack
 
@@ -236,16 +224,53 @@
 
 
 
+							{#if isBigWin}
+
+								<Sprite
+
+									anchor={{ x: 0.5, y: 1.2 }}
+
+									width={426 * 2.2}
+
+									height={85 * 2.2}
+
+									key="freespins_{stateUrlDerived.lang()}.png"
+
+									zIndex={YOU_WON_LABEL.zIndex}
+
+								/>
+
+							{:else}
+
+								<Sprite
+									anchor={YOU_WON_LABEL.anchor}
+									width={sizes.width * YOU_WON_LABEL.widthScale}
+									height={sizes.width * YOU_WON_LABEL.heightScale}
+									x={YOU_WON_LABEL.x}
+									y={sizes.height * YOU_WON_LABEL.yRatio}
+									zIndex={YOU_WON_LABEL.zIndex}
+									key="winsmall_{stateUrlDerived.lang()}.png"
+								/>
+
+							{/if}
+
+
+
+							{@const totalWinWidthScale = isBigWin
+								? TOTAL_WIN_LABEL.bigWidthScale
+								: TOTAL_WIN_LABEL.widthScale}
+							{@const totalWinHeightScale = isBigWin
+								? TOTAL_WIN_LABEL.bigHeightScale
+								: TOTAL_WIN_LABEL.heightScale}
+
 							<Sprite
-
-								anchor={{ x: 0.5, y: isBigWin ? -3.2 : -2 }}
-
-								width={(isBigWin ? 92 : 126) * (309 / 71)}
-
-								height={isBigWin ? 92 : 126}
-
-								key="totalwin.png"
-
+								anchor={TOTAL_WIN_LABEL.anchor}
+								width={sizes.width * totalWinWidthScale}
+								height={sizes.width * totalWinHeightScale}
+								x={TOTAL_WIN_LABEL.x}
+								y={sizes.height * TOTAL_WIN_LABEL.yRatio}
+								zIndex={TOTAL_WIN_LABEL.zIndex}
+								key="totalwin_{stateUrlDerived.lang()}.png"
 							/>
 
 						{/snippet}
