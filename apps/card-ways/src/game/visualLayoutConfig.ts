@@ -72,11 +72,11 @@ export type ModifierLayoutSettings = {
 	cardWindowHeight: number;
 	scrollDistance: number;
 	scrollDuration: number;
-	/** Scale applied when layout is stacked (portrait / tablet). */
-	stackedScale: number;
-	/** x = boardLayout.width + offset.x; y = offset.y (board-local pixels). */
-	desktopPosition: VirtualOffset;
-	portraitPosition: VirtualOffset;
+	/** Container scale in board-local space. */
+	scale: number;
+	/** x = boardLayout.width + x; y = y (board-local pixels). */
+	x: number;
+	y: number;
 };
 
 export type FreeSpinCounterLayoutSettings = {
@@ -253,7 +253,7 @@ export const VISUAL_LAYOUT = {
 			tablet: { width: 120, x: 755, y: 50, align: 'topRight' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
-	// layoutSpace: board-local — ModifierReel.svelte; desktopPosition / portraitPosition
+	// layoutSpace: board-local — ModifierReel.svelte; x/y offset from board right edge
 	modifier: {
 		root: { label: 'Modifier/Root' },
 		slab: { label: 'Modifier/Slab' },
@@ -272,9 +272,9 @@ export const VISUAL_LAYOUT = {
 				cardWindowHeight: 224,
 				scrollDistance: 204,
 				scrollDuration: 333,
-				stackedScale: 1.28,
-				desktopPosition: { x: 153, y: 204 },
-				portraitPosition: { x: -680, y: -112 },
+				scale: 1,
+				x: 153,
+				y: 204,
 			},
 			landscape: {
 				slabWidth: 204,
@@ -286,9 +286,9 @@ export const VISUAL_LAYOUT = {
 				cardWindowHeight: 224,
 				scrollDistance: 204,
 				scrollDuration: 333,
-				stackedScale: 1.28,
-				desktopPosition: { x: 153, y: 204 },
-				portraitPosition: { x: -680, y: -112 },
+				scale: 1,
+				x: 153,
+				y: 204,
 			},
 			portrait: {
 				slabWidth: 194,
@@ -300,9 +300,9 @@ export const VISUAL_LAYOUT = {
 				cardWindowHeight: 224,
 				scrollDistance: 204,
 				scrollDuration: 333,
-				stackedScale: 1.28,
-				desktopPosition: { x: 153, y: 204 },
-				portraitPosition: { x: -680, y: -112 },
+				scale: 1,
+				x: -50,
+				y: -170,
 			},
 			tablet: {
 				slabWidth: 204,
@@ -314,9 +314,9 @@ export const VISUAL_LAYOUT = {
 				cardWindowHeight: 224,
 				scrollDistance: 204,
 				scrollDuration: 333,
-				stackedScale: 1.28,
-				desktopPosition: { x: 153, y: 204 },
-				portraitPosition: { x: -680, y: -112 },
+				scale: 0.85,
+				x: -50,
+				y: -170,
 			},
 		} satisfies Record<LayoutType, ModifierLayoutSettings>,
 	},

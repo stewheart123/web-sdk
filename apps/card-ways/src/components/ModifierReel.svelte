@@ -31,20 +31,10 @@
 
 	const context = getContext();
 	const layout = $derived(getModifierLayoutSettings(context.stateLayoutDerived.layoutType()));
-	const scale = $derived(
-		context.stateLayoutDerived.isStacked() ? layout.stackedScale : 1,
-	);
-	const desktopPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width + layout.desktopPosition.x,
-		y: layout.desktopPosition.y,
+	const position = $derived({
+		x: context.stateGameDerived.boardLayout().width + layout.x,
+		y: layout.y,
 	});
-	const portraitPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width + layout.portraitPosition.x,
-		y: layout.portraitPosition.y,
-	});
-	const position = $derived(
-		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,
-	);
 
 	const getModifierSymbolInfo = (name: ModifierSymbolName, state: SymbolState = 'static') =>
 		getSymbolInfo({ rawSymbol: { name }, state });
@@ -137,7 +127,7 @@
 
 <FadeContainer {show} label={SCENE_LABELS.fade.modifier}>
 	<BoardContainer>
-		<Container label={SCENE_LABELS.modifier.root} {...position} {scale}>
+		<Container label={SCENE_LABELS.modifier.root} {...position} scale={layout.scale}>
 			<Sprite
 				label={SCENE_LABELS.modifier.slab}
 				key="modifierSlabFrame"
