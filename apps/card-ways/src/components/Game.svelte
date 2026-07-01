@@ -11,6 +11,7 @@
 	import { GameVersion, Modals } from 'components-ui-html';
 
 	import { getContext } from '../game/context';
+	import { SCENE_LABELS } from '../game/visualLayoutConfig';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
@@ -58,12 +59,12 @@
 		-->
 		<Sound />
 
-		<MainContainer>
+		<MainContainer label={SCENE_LABELS.layout.frameLayer}>
 			<BoardFrame />
-			<GameLogo />
+			<GameLogo  />
 		</MainContainer>
 
-		<MainContainer>
+		<MainContainer label={SCENE_LABELS.layout.boardLayer}>
 			<Board />
 			<ModifierReel />
 		</MainContainer>

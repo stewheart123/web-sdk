@@ -104,13 +104,23 @@
 	zIndex={BACKGROUND_LAYERS.backdrop}
 />
 
-<FadeContainer show={showBaseBackground} duration={SECOND} zIndex={BACKGROUND_LAYERS.normal}>
+<FadeContainer
+	label={SCENE_LABELS.fade.backgroundBase}
+	show={showBaseBackground}
+	duration={SECOND}
+	zIndex={BACKGROUND_LAYERS.normal}
+>
 	<SpineProvider label={SCENE_LABELS.background.base} key="foregroundAnimation" {...backgroundProps}>
 		<SpineTrack trackIndex={0} animationName="BACKGROUND-BASE" loop />
 	</SpineProvider>
 </FadeContainer>
 
-<FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={BACKGROUND_LAYERS.feature}>
+<FadeContainer
+	label={SCENE_LABELS.fade.backgroundFeature}
+	show={showFeatureBackground}
+	duration={SECOND}
+	zIndex={BACKGROUND_LAYERS.feature}
+>
 	<SpineProvider label={SCENE_LABELS.background.feature} key="foregroundAnimation" {...backgroundProps}>
 		<SpineTrack trackIndex={0} animationName="BACKGROUND-BONUS" loop />
 	</SpineProvider>

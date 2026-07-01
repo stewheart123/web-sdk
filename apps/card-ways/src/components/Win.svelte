@@ -42,7 +42,7 @@
 	});
 </script>
 
-<FadeContainer {show}>
+<FadeContainer {show} label={SCENE_LABELS.fade.win}>
 	{#if winLevelData}
 		{@const isBigWin = winLevelData.type === 'big'}
 		{@const duration = winLevelData.presentDuration}
@@ -64,7 +64,7 @@
 					}}
 				/>
 
-				<MainContainer>
+				<MainContainer label={SCENE_LABELS.layout.win}>
 					<Container
 						label={SCENE_LABELS.win.root}
 						x={context.stateGameDerived.boardLayout().x}

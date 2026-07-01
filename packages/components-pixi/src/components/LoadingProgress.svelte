@@ -3,6 +3,7 @@
 	import type { Snippet } from 'svelte';
 
 	type Props = {
+		label?: string;
 		x?: number;
 		y?: number;
 		width: number;
@@ -16,11 +17,17 @@
 	const context = getContextApp();
 
 	const sizes = $derived({ width: props.width, height: props.height });
+	const maskLabel = $derived(props.label ? `${props.label}/Mask` : undefined);
 </script>
 
-<Container x={props.x} y={props.y} pivot={anchorToPivot({ anchor: { x: 0.5, y: 0 }, sizes })}>
+<Container
+	label={props.label}
+	x={props.x}
+	y={props.y}
+	pivot={anchorToPivot({ anchor: { x: 0.5, y: 0 }, sizes })}
+>
 	{@render props.background(sizes)}
-	<Container>
+	<Container label={maskLabel}>
 		{@render props.progress(sizes)}
 
 		<Rectangle

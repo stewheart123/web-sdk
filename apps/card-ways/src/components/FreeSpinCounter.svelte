@@ -62,8 +62,8 @@
 	});
 </script>
 
-<MainContainer>
-	<FadeContainer show={show} {...position} scale={FREE_SPIN_COUNTER.scale}>
+<MainContainer label={SCENE_LABELS.layout.freeSpinCounter}>
+	<FadeContainer show={show} {...position} scale={FREE_SPIN_COUNTER.scale} label={SCENE_LABELS.fade.freeSpinCounter}>
 		<Sprite label={SCENE_LABELS.freeSpin.counter.panel} key={FREE_SPIN_COUNTER.panelKey} {...panelSizes} />
 		<Container
 			label={SCENE_LABELS.freeSpin.counter.text}

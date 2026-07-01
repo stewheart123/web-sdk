@@ -9,8 +9,16 @@
 		alignHorizontal?: 'center' | 'left' | 'right';
 	};
 
-	const { debug, alignVertical, alignHorizontal, children, standard, ...containerProps }: Props =
-		$props();
+	const {
+		debug,
+		alignVertical,
+		alignHorizontal,
+		children,
+		standard,
+		label,
+		...containerProps
+	}: Props = $props();
+	const positionLabel = $derived(label ? `${label}/Position` : undefined);
 	const context = getContextLayout();
 
 	const mainLayout = $derived.by(
@@ -34,8 +42,9 @@
 	const x = $derived.by(getX);
 </script>
 
-<Container {x} {y}>
+<Container label={positionLabel} {x} {y}>
 	<Container
+		{label}
 		{...containerProps}
 		x={mainLayout.x}
 		y={mainLayout.y}

@@ -23,14 +23,15 @@
 	let loadingType = $state<'start' | 'transition'>('start');
 </script>
 
-<FadeContainer show={loadingType === 'start'}>
-	<MainContainer>
+<FadeContainer show={loadingType === 'start'} label={SCENE_LABELS.fade.loadingStart}>
+	<MainContainer label={SCENE_LABELS.layout.loading}>
 		<Container label={SCENE_LABELS.loading.root} x={position.x} y={position.y}>
 			<SpineProvider label={SCENE_LABELS.loading.logo} key="logo" width={LOADING_SCREEN.logoWidth}>
 				<SpineTrack trackIndex={0} animationName="INTRO" loop />
 			</SpineProvider>
 			{#if !context.stateApp.loaded}
 				<LoadingProgress
+					label={SCENE_LABELS.loading.progress}
 					y={LOADING_SCREEN.progressBar.y}
 					width={LOADING_SCREEN.progressBar.width}
 					height={LOADING_SCREEN.progressBar.height}
@@ -48,10 +49,10 @@
 	</MainContainer>
 </FadeContainer>
 
-<FadeContainer show={loadingType === 'start' && context.stateApp.loaded}>
+<FadeContainer show={loadingType === 'start' && context.stateApp.loaded} label={SCENE_LABELS.fade.loadingPressToContinue}>
 	<PressToContinue onpress={() => (loadingType = 'transition')} />
 </FadeContainer>
 
-<FadeContainer show={loadingType === 'transition'}>
+<FadeContainer show={loadingType === 'transition'} label={SCENE_LABELS.fade.loadingTransition}>
 	<BonusTransitionAnimation oncomplete={props.onloaded} />
 </FadeContainer>

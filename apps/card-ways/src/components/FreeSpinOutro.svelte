@@ -71,7 +71,7 @@
 	});
 </script>
 
-<FadeContainer {show} duration={OVERLAY.fadeDurationMs} oncomplete={handleFadeOutComplete}>
+<FadeContainer {show} duration={OVERLAY.fadeDurationMs} oncomplete={handleFadeOutComplete} label={SCENE_LABELS.fade.freeSpinOutro}>
 	{#if winLevelData}
 		{@const duration = winLevelData.presentDuration}
 		{@const isBigWin = winLevelData.type === 'big'}

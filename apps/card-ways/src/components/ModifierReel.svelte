@@ -140,7 +140,7 @@
 	});
 </script>
 
-<FadeContainer {show}>
+<FadeContainer {show} label={SCENE_LABELS.fade.modifier}>
 	<BoardContainer>
 		<Container label={SCENE_LABELS.modifier.root} {...position} {scale}>
 			<Sprite

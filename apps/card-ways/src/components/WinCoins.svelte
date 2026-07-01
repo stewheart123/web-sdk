@@ -22,7 +22,7 @@
 </script>
 
 {#if config}
-	<MainContainer>
+	<MainContainer label={SCENE_LABELS.layout.winCoins}>
 		<Container
 			label={SCENE_LABELS.win.coins}
 			x={context.stateGameDerived.boardLayout().x}

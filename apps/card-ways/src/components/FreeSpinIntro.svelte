@@ -58,6 +58,7 @@
 </script>
 
 <FadeContainer
+	label={SCENE_LABELS.fade.freeSpinIntro}
 	{show}
 	duration={OVERLAY.fadeDurationMs}
 	oncomplete={handleFadeOutComplete}

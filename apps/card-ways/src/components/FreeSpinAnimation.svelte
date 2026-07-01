@@ -35,7 +35,7 @@
 	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
 
-<MainContainer>
+<MainContainer label={SCENE_LABELS.layout.freeSpinModal}>
 	<Container
 		label={SCENE_LABELS.freeSpin.modal.root}
 		x={context.stateGameDerived.boardLayout().x}

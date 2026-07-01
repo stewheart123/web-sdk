@@ -30,7 +30,7 @@
 	});
 </script>
 
-<MainContainer alignVertical="bottom">
+<MainContainer label={SCENE_LABELS.layout.pressToContinue} alignVertical="bottom">
 	<Sprite
 		label={SCENE_LABELS.ui.pressToContinue}
 		key={textureKey}
