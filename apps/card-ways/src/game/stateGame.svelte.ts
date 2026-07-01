@@ -9,7 +9,7 @@ import type { GameType, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
-import { getBoardLayoutSettings } from './boardLayoutConfig';
+import { getBoardLayoutSettings } from './visualLayoutConfig';
 import {
 	SYMBOL_SIZE,
 	BOARD_SIZES,

@@ -60,6 +60,7 @@
 
 		<MainContainer>
 			<BoardFrame />
+			<GameLogo />
 		</MainContainer>
 
 		<MainContainer>
@@ -71,9 +72,7 @@
 			{#snippet gameName()}
 				<UiGameName name="CARD WAYS" />
 			{/snippet}
-			{#snippet logo()}
-				<GameLogo />
-			{/snippet}
+			{#snippet logo()}{/snippet}
 		</UI>
 		<Win />
 		<FreeSpinIntro />

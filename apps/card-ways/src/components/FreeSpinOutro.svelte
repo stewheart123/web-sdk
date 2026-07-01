@@ -39,7 +39,7 @@
 	import { getBitmapFontStyle } from '../game/fontConfig';
 
 	import { getContext } from '../game/context';
-
+	import { FREE_SPIN_OUTRO_LABELS } from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
 	import PressToContinue from './PressToContinue.svelte';
@@ -54,27 +54,8 @@
 
 	const FADE_DURATION = HALF_SECOND;
 
-	// --- ADJUST FREE SPIN OUTRO LABELS (position / scale) ---
-	const YOU_WON_LABEL = {
-		anchor: { x: 0.5, y: 0.5 },
-		widthScale: 0.7,
-		heightScale: 0.07,
-		x: 0,
-		yRatio: -0.28,
-		zIndex: 2,
-	};
-
-	const TOTAL_WIN_LABEL = {
-		anchor: { x: 0.5, y: 0.5 },
-		widthScale: 0.55,
-		heightScale: 0.055,
-		x: 0,
-		yRatio: 0.28,
-		zIndex: 2,
-		bigWidthScale: 0.4,
-		bigHeightScale: 0.045,
-	};
-	// --- END ADJUST ---
+	const YOU_WON_LABEL = FREE_SPIN_OUTRO_LABELS.youWon;
+	const TOTAL_WIN_LABEL = FREE_SPIN_OUTRO_LABELS.totalWin;
 
 	let show = $state(true);
 

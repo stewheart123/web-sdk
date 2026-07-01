@@ -12,6 +12,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
+	import { FREE_SPIN_ANIMATION } from '../game/visualLayoutConfig';
 	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
 
 	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
@@ -40,11 +41,11 @@
 	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
 
-<!-- TODO Y POSITION OF ENTIRE CONTAINER -->
+<!-- Y position from visualLayoutConfig FREE_SPIN_ANIMATION -->
 <MainContainer>
 	<Container
 		x={context.stateGameDerived.boardLayout().x}
-		y={context.stateGameDerived.boardLayout().y - 60}
+		y={context.stateGameDerived.boardLayout().y + FREE_SPIN_ANIMATION.yOffsetFromBoard}
 		pivot={anchorToPivot({ anchor: 0.5, sizes: BACKGROUND_SIZES })}
 	>
 		<SpineProvider

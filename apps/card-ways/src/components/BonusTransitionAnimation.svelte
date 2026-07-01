@@ -2,7 +2,7 @@
 	import { SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { getBonusTransitionLayoutSettings } from '../game/bonusTransitionLayoutConfig';
+	import { getBonusTransitionLayoutSettings } from '../game/visualLayoutConfig';
 
 	type Props = {
 		oncomplete: () => void;

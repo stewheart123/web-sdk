@@ -9,22 +9,29 @@
 
 	import { Sprite, SpineProvider, SpineTrack, Container } from 'pixi-svelte';
 
-	import { getBoardLayoutSettings } from '../game/boardLayoutConfig';
+	import {
+		FRAME_GLOW,
+		getBoardLayoutSettings,
+		resolveFrameLayout,
+	} from '../game/visualLayoutConfig';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
-	const SPINE_SCALE = { width: (0.62 * 2.5), height: (0.66 * 2) }; // TODO adjust to fit the frame
-	const POSITION_ADJUSTMENT = 1.01;
-	const GLOW_FADE_DURATION = 500;
-	const frame = $derived(
-		getBoardLayoutSettings(context.stateLayoutDerived.layoutType()).frame,
-	);
+
+	const frame = $derived.by(() => {
+		const board = context.stateGameDerived.boardLayout();
+		const { frame: frameSettings } = getBoardLayoutSettings(
+			context.stateLayoutDerived.layoutType(),
+		);
+
+		return resolveFrameLayout(board.x, board.y, frameSettings);
+	});
 
 	type AnimationName = 'FS-FRAME-GLOW';
 
 	let animationName = $state<AnimationName | undefined>(undefined);
 	let isHiding = $state(false);
-	const glowAlpha = new Tween(1, { duration: GLOW_FADE_DURATION });
+	const glowAlpha = new Tween(1, { duration: FRAME_GLOW.fadeDuration });
 
 	context.eventEmitter.subscribeOnMount({
 		boardFrameGlowShow: () => {
@@ -36,7 +43,7 @@
 			if (!animationName || isHiding) return;
 
 			isHiding = true;
-			await glowAlpha.set(0, { duration: GLOW_FADE_DURATION });
+			await glowAlpha.set(0, { duration: FRAME_GLOW.fadeDuration });
 			animationName = undefined;
 			isHiding = false;
 		},
@@ -46,8 +53,8 @@
 {#if animationName}
 	<Container
 		alpha={glowAlpha.current}
-		x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-		y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
+		x={context.stateGameDerived.boardLayout().x * FRAME_GLOW.positionAdjustment}
+		y={context.stateGameDerived.boardLayout().y * FRAME_GLOW.positionAdjustment}
 		pivot={context.stateGameDerived.boardLayout().pivot}
 		scale={context.stateGameDerived.boardLayout().scale}
 	>
@@ -56,8 +63,8 @@
 			key="reelhouse"
 			x={context.stateGameDerived.boardLayout().pivot.x}
 			y={context.stateGameDerived.boardLayout().pivot.y}
-			width={context.stateGameDerived.boardLayout().width * SPINE_SCALE.width}
-			height={context.stateGameDerived.boardLayout().height * SPINE_SCALE.height}
+			width={context.stateGameDerived.boardLayout().width * FRAME_GLOW.spineScale.width}
+			height={context.stateGameDerived.boardLayout().height * FRAME_GLOW.spineScale.height}
 		>
 			<SpineTrack trackIndex={0} animationName="FS-FRAME-GLOW" loop={true} />
 		</SpineProvider>

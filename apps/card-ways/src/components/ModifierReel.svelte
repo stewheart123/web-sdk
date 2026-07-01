@@ -22,7 +22,7 @@
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { getModifierLayoutSettings } from '../game/modifierLayoutConfig';
+	import { getModifierLayoutSettings } from '../game/visualLayoutConfig';
 	import {
 		getSymbolInfo,
 		resolveModifierSymbolName,
@@ -32,14 +32,20 @@
 
 	const context = getContext();
 	const layout = $derived(getModifierLayoutSettings(context.stateLayoutDerived.layoutType()));
-	const scale = $derived(context.stateLayoutDerived.isStacked() ? 1.28 : 1);
+	const scale = $derived(
+		context.stateLayoutDerived.isStacked() ? layout.stackedScale : 1,
+	);
 	const desktopPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width + layout.slabWidth * 0.75,
-		y: SYMBOL_SIZE * 1,
+		x:
+			context.stateGameDerived.boardLayout().width +
+			layout.slabWidth * layout.desktopPosition.xOffsetFromBoardWidth,
+		y: SYMBOL_SIZE * layout.desktopPosition.yMultiplier,
 	});
 	const portraitPosition = $derived({
-		x: context.stateGameDerived.boardLayout().width - layout.slabWidth * 3.5,
-		y: -SYMBOL_SIZE * 0.55,
+		x:
+			context.stateGameDerived.boardLayout().width +
+			layout.slabWidth * layout.portraitPosition.xOffsetFromBoardWidth,
+		y: SYMBOL_SIZE * layout.portraitPosition.yMultiplier,
 	});
 	const position = $derived(
 		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,

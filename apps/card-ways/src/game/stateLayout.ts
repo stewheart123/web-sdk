@@ -1,24 +1,15 @@
 import { createLayout } from 'utils-layout';
 
-/** Skeleton bounds from foregroundAnimation/skeleton.json — used before assets load. */
-export const BACKGROUND_ART_SIZE = {
-	width: 1264,
-	height: 842,
-} as const;
+import {
+	BACKGROUND_ART_SIZE,
+	BACKGROUND_OFFSET,
+	BACKGROUND_RATIO,
+	MAIN_SIZES_MAP,
+} from './visualLayoutConfig';
 
-export const BACKGROUND_OFFSET = {
-	x: 0,
-	y: 0,
-} as const;
+export { BACKGROUND_ART_SIZE, BACKGROUND_OFFSET };
+
 export const { stateLayout, stateLayoutDerived } = createLayout({
-	backgroundRatio: {
-		normal: 1264 / 842,
-		portrait: 1242 / 2208,
-	},
-	mainSizesMap: {
-		desktop: { width: 1422, height: 800 },
-		tablet: { width: 1000, height: 1000 },
-		landscape: { width: 1600, height: 900 },
-		portrait: { width: 800, height: 1422 },
-	},
+	backgroundRatio: BACKGROUND_RATIO,
+	mainSizesMap: MAIN_SIZES_MAP,
 });
