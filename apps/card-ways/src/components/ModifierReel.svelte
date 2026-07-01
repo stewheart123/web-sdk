@@ -22,7 +22,7 @@
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { getModifierLayoutSettings } from '../game/visualLayoutConfig';
+	import { getModifierLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import {
 		getSymbolInfo,
 		resolveModifierSymbolName,
@@ -142,25 +142,28 @@
 
 <FadeContainer {show}>
 	<BoardContainer>
-		<Container {...position} {scale}>
+		<Container label={SCENE_LABELS.modifier.root} {...position} {scale}>
 			<Sprite
+				label={SCENE_LABELS.modifier.slab}
 				key="modifierSlabFrame"
 				anchor={0.5}
 				width={layout.slabWidth}
 				height={layout.slabHeight}
 			/>
-			<Container y={layout.cardWindowY}>
+			<Container label={SCENE_LABELS.modifier.cardWindow} y={layout.cardWindowY}>
 				<Rectangle
+					label={SCENE_LABELS.modifier.cardWindowMask}
 					isMask
 					anchor={0.5}
 					width={layout.cardWindowWidth}
 					height={layout.cardWindowHeight}
 					backgroundAlpha={0}
 				/>
-				<Container y={layout.cardYOffset}>
+				<Container label={SCENE_LABELS.modifier.card} y={layout.cardYOffset}>
 					{#if isAnimating}
 						{#key previousModifierName}
 							<SymbolSpineMain
+								label={SCENE_LABELS.modifier.cardSpine}
 								symbolInfo={previousSymbolInfo}
 								y={previousCardY.current}
 								height={layout.cardHeight}
@@ -171,6 +174,7 @@
 						{/key}
 						{#key incomingModifierName}
 							<SymbolSpineMain
+								label={SCENE_LABELS.modifier.cardSpine}
 								symbolInfo={incomingSymbolInfo}
 								y={currentCardY.current}
 								height={layout.cardHeight}
@@ -182,6 +186,7 @@
 					{:else}
 						{#key `${modifierName}-${symbolState}`}
 							<SymbolSpineMain
+								label={SCENE_LABELS.modifier.cardSpine}
 								symbolInfo={currentSymbolInfo}
 								y={0}
 								height={layout.cardHeight}

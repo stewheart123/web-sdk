@@ -5,6 +5,7 @@
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
 
 	type Props = {
+		label: string;
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
 		x?: number;
 		y?: number;
@@ -16,6 +17,7 @@
 </script>
 
 <SymbolSpineMain
+	label={props.label}
 	x={props.x}
 	y={props.y}
 	symbolInfo={props.symbolInfo}

@@ -14,7 +14,7 @@
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_INTRO, OVERLAY } from '../game/visualLayoutConfig';
+	import { FREE_SPIN_INTRO, OVERLAY, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
@@ -63,6 +63,7 @@
 	oncomplete={handleFadeOutComplete}
 >
 	<CanvasSizeRectangle
+		label={SCENE_LABELS.overlay.dim}
 		backgroundColor={OVERLAY.backgroundColor}
 		backgroundAlpha={OVERLAY.backgroundAlpha}
 	/>
@@ -71,6 +72,7 @@
 		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
 			{#snippet children({ sizes })}
 				<Sprite
+					label={SCENE_LABELS.freeSpin.intro.congrats}
 					anchor={FREE_SPIN_INTRO.congratsSprite.anchor}
 					width={FREE_SPIN_INTRO.congratsSprite.width}
 					height={FREE_SPIN_INTRO.congratsSprite.height}
@@ -78,6 +80,7 @@
 				/>
 
 				<SpineProvider
+					label={SCENE_LABELS.freeSpin.intro.numberSpine}
 					key="fsIntroNumber"
 					width={sizes.width * FREE_SPIN_INTRO.numberSpine.widthRatio}
 					y={FREE_SPIN_INTRO.numberSpine.y}
@@ -93,6 +96,7 @@
 					/>
 					<SpineSlot slotName="slot_number">
 						<BitmapText
+							label={SCENE_LABELS.freeSpin.intro.numberText}
 							anchor={FREE_SPIN_INTRO.numberSpine.numberTextAnchor}
 							text={freeSpinsFromEvent}
 							style={{
@@ -107,6 +111,7 @@
 				</SpineProvider>
 
 				<Sprite
+					label={SCENE_LABELS.freeSpin.intro.freeSpinsLabel}
 					anchor={FREE_SPIN_INTRO.freeSpinsLabel.anchor}
 					width={FREE_SPIN_INTRO.freeSpinsLabel.width}
 					height={FREE_SPIN_INTRO.freeSpinsLabel.height}

@@ -5,6 +5,7 @@
 	import { LEVEL_PARTICLE_COIN_MAP } from 'constants-shared/particleCoin';
 
 	import { getContext } from '../game/context';
+	import { SCENE_LABELS } from '../game/visualLayoutConfig';
 	import type { WinLevelAlias } from '../game/winLevelMap';
 
 	type Props = {
@@ -23,12 +24,14 @@
 {#if config}
 	<MainContainer>
 		<Container
+			label={SCENE_LABELS.win.coins}
 			x={context.stateGameDerived.boardLayout().x}
 			y={context.stateGameDerived.boardLayout().y}
 			pivot={context.stateGameDerived.boardLayout().pivot}
 			scale={context.stateGameDerived.boardLayout().scale}
 		>
 			<ParticleEmitter
+				label={SCENE_LABELS.win.coinsEmitter}
 				x={context.stateGameDerived.boardLayout().pivot.x}
 				y={context.stateGameDerived.boardLayout().pivot.y}
 				{config}

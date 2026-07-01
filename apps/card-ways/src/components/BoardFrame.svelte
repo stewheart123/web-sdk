@@ -13,6 +13,7 @@
 		FRAME_GLOW,
 		getBoardLayoutSettings,
 		resolveFrameLayout,
+		SCENE_LABELS,
 	} from '../game/visualLayoutConfig';
 	import { getContext } from '../game/context';
 
@@ -52,6 +53,7 @@
 
 {#if animationName}
 	<Container
+		label={SCENE_LABELS.board.frameGlow}
 		alpha={glowAlpha.current}
 		x={context.stateGameDerived.boardLayout().x * FRAME_GLOW.positionAdjustment}
 		y={context.stateGameDerived.boardLayout().y * FRAME_GLOW.positionAdjustment}
@@ -59,6 +61,7 @@
 		scale={context.stateGameDerived.boardLayout().scale}
 	>
 		<SpineProvider
+			label={SCENE_LABELS.board.frameGlowSpine}
 			zIndex={-1}
 			key="reelhouse"
 			x={context.stateGameDerived.boardLayout().pivot.x}
@@ -72,6 +75,7 @@
 {/if}
 
 <Sprite
+	label={SCENE_LABELS.board.frame}
 	key="reelsFrame"
 	anchor={0.5}
 	x={frame.x}

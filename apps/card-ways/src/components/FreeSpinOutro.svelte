@@ -18,7 +18,7 @@
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_OUTRO, OVERLAY } from '../game/visualLayoutConfig';
+	import { FREE_SPIN_OUTRO, OVERLAY, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -80,6 +80,7 @@
 				<OnMount onmount={() => startCountUp()} />
 
 				<CanvasSizeRectangle
+					label={SCENE_LABELS.overlay.dim}
 					backgroundColor={OVERLAY.backgroundColor}
 					backgroundAlpha={OVERLAY.backgroundAlpha}
 				/>
@@ -88,6 +89,7 @@
 					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 						{#snippet children({ sizes })}
 							<SpineProvider
+								label={SCENE_LABELS.freeSpin.outro.numberSpine}
 								key="fsOutroNumber"
 								width={sizes.width * FREE_SPIN_OUTRO.numberSpine.widthRatio}
 								zIndex={FREE_SPIN_OUTRO.numberSpine.zIndex}
@@ -102,6 +104,7 @@
 								/>
 								<SpineSlot slotName="slot_number">
 									<ResponsiveBitmapText
+										label={SCENE_LABELS.freeSpin.outro.numberText}
 										anchor={0.5}
 										style={getBitmapFontStyle('freeSpinOutro', {
 											width: sizes.width,
@@ -115,6 +118,7 @@
 
 							{#if isBigWin}
 								<Sprite
+									label={SCENE_LABELS.freeSpin.outro.bigWinCongrats}
 									anchor={FREE_SPIN_OUTRO.bigWinCongratsSprite.anchor}
 									width={FREE_SPIN_OUTRO.bigWinCongratsSprite.width}
 									height={FREE_SPIN_OUTRO.bigWinCongratsSprite.height}
@@ -123,6 +127,7 @@
 								/>
 							{:else}
 								<Sprite
+									label={SCENE_LABELS.freeSpin.outro.youWon}
 									anchor={YOU_WON_LABEL.anchor}
 									width={sizes.width * YOU_WON_LABEL.widthScale}
 									height={sizes.width * YOU_WON_LABEL.heightScale}
@@ -141,6 +146,7 @@
 								: TOTAL_WIN_LABEL.heightScale}
 
 							<Sprite
+								label={SCENE_LABELS.freeSpin.outro.totalWin}
 								anchor={TOTAL_WIN_LABEL.anchor}
 								width={sizes.width * totalWinWidthScale}
 								height={sizes.width * totalWinHeightScale}

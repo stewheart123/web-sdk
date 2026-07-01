@@ -4,7 +4,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { LOADING_SCREEN } from '../game/visualLayoutConfig';
+	import { LOADING_SCREEN, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -25,8 +25,8 @@
 
 <FadeContainer show={loadingType === 'start'}>
 	<MainContainer>
-		<Container x={position.x} y={position.y}>
-			<SpineProvider key="logo" width={LOADING_SCREEN.logoWidth}>
+		<Container label={SCENE_LABELS.loading.root} x={position.x} y={position.y}>
+			<SpineProvider label={SCENE_LABELS.loading.logo} key="logo" width={LOADING_SCREEN.logoWidth}>
 				<SpineTrack trackIndex={0} animationName="INTRO" loop />
 			</SpineProvider>
 			{#if !context.stateApp.loaded}
@@ -36,10 +36,10 @@
 					height={LOADING_SCREEN.progressBar.height}
 				>
 					{#snippet background(sizes)}
-						<Sprite key="LOADING-BG" {...sizes} />
+						<Sprite label={SCENE_LABELS.loading.progressBg} key="LOADING-BG" {...sizes} />
 					{/snippet}
 					{#snippet progress(sizes)}
-						<Sprite key="LOADING-PROGRESS" {...sizes} />
+						<Sprite label={SCENE_LABELS.loading.progressFill} key="LOADING-PROGRESS" {...sizes} />
 					{/snippet}
 					{#snippet frame(sizes)}{/snippet}
 				</LoadingProgress>

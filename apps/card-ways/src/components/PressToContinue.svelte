@@ -6,7 +6,7 @@
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { PRESS_TO_CONTINUE } from '../game/visualLayoutConfig';
+	import { PRESS_TO_CONTINUE, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type Props = {
 		onpress: () => void;
@@ -32,6 +32,7 @@
 
 <MainContainer alignVertical="bottom">
 	<Sprite
+		label={SCENE_LABELS.ui.pressToContinue}
 		key={textureKey}
 		width={PRESS_TO_CONTINUE.width}
 		height={displayHeight}

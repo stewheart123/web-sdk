@@ -2,7 +2,7 @@
 	import { SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { getBonusTransitionLayoutSettings } from '../game/visualLayoutConfig';
+	import { getBonusTransitionLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type Props = {
 		oncomplete: () => void;
@@ -18,6 +18,7 @@
 </script>
 
 <SpineProvider
+	label={SCENE_LABELS.transition.bonus}
 	key="bonusTransition"
 	x={canvas.width * layout.xRatio}
 	y={canvas.height * layout.yRatio}

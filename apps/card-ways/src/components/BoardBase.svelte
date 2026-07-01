@@ -7,6 +7,6 @@
 
 {#each context.stateGame.board as reel, reelIndex (reelIndex)}
 	{#each reel.reelState.symbols as reelSymbol, symbolIndex (symbolIndex)}
-		<ReelSymbol {reelIndex} {reelSymbol} />
+		<ReelSymbol {reelIndex} {symbolIndex} {reelSymbol} />
 	{/each}
 {/each}

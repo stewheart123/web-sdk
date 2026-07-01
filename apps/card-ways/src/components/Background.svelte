@@ -5,7 +5,7 @@
 
 	import { getContext } from '../game/context';
 	import { BACKGROUND_ART_SIZE, BACKGROUND_OFFSET } from '../game/stateLayout';
-	import { BACKGROUND_LAYERS } from '../game/visualLayoutConfig';
+	import { BACKGROUND_LAYERS, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 
@@ -97,16 +97,21 @@
 	});
 </script>
 
-<Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={BACKGROUND_LAYERS.backdrop} />
+<Rectangle
+	{...context.stateLayoutDerived.canvasSizes()}
+	label={SCENE_LABELS.background.backdrop}
+	backgroundColor={0x000000}
+	zIndex={BACKGROUND_LAYERS.backdrop}
+/>
 
 <FadeContainer show={showBaseBackground} duration={SECOND} zIndex={BACKGROUND_LAYERS.normal}>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
+	<SpineProvider label={SCENE_LABELS.background.base} key="foregroundAnimation" {...backgroundProps}>
 		<SpineTrack trackIndex={0} animationName="BACKGROUND-BASE" loop />
 	</SpineProvider>
 </FadeContainer>
 
 <FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={BACKGROUND_LAYERS.feature}>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
+	<SpineProvider label={SCENE_LABELS.background.feature} key="foregroundAnimation" {...backgroundProps}>
 		<SpineTrack trackIndex={0} animationName="BACKGROUND-BONUS" loop />
 	</SpineProvider>
 </FadeContainer>

@@ -5,6 +5,8 @@
 		title: 'Components/<Symbol>',
 		component: Symbol,
 		args: {
+			reelIndex: 0,
+			row: 0,
 			x: 100,
 			y: 100,
 			rawSymbol: { name: 'S', scatter: true },
@@ -58,7 +60,7 @@
 						{@const x = (columnIndex + 1) * BASE}
 						{@const y = (rowIndex + 1) * BASE}
 						<Text {x} y={y - 100} anchor={{ x: 0.5, y: 0 }} text={`${symbol.name}: ${state}`} />
-						<Symbol {x} {y} rawSymbol={symbol} {state} loop />
+						<Symbol reelIndex={columnIndex} row={rowIndex} {x} {y} rawSymbol={symbol} {state} loop />
 					{/each}
 				{/each}
 			</Container>
@@ -69,7 +71,7 @@
 						{@const x = (columnIndex + 1) * BASE}
 						{@const y = (rowIndex + 1) * BASE}
 						<Text {x} y={y - 100} anchor={{ x: 0.5, y: 0 }} text={`${symbol.name}: ${state}`} />
-						<Symbol {x} {y} rawSymbol={symbol} {state} loop />
+						<Symbol reelIndex={columnIndex} row={rowIndex} {x} {y} rawSymbol={symbol} {state} loop />
 					{/each}
 				{/each}
 			</Container>

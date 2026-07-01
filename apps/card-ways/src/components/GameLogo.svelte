@@ -2,7 +2,7 @@
 	import { Container, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { getLogoLayoutSettings } from '../game/visualLayoutConfig';
+	import { getLogoLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 
@@ -15,8 +15,8 @@
 	);
 </script>
 
-<Container x={layout.x} y={layout.y}>
-	<SpineProvider key="logo" width={layout.width} {anchor}>
+<Container label={SCENE_LABELS.logo.root} x={layout.x} y={layout.y}>
+	<SpineProvider label={SCENE_LABELS.logo.spine} key="logo" width={layout.width} {anchor}>
 		<SpineTrack trackIndex={0} animationName="IDLE" loop />
 	</SpineProvider>
 </Container>

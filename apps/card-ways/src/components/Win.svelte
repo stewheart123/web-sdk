@@ -20,7 +20,7 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { OVERLAY, WIN_LAYOUT } from '../game/visualLayoutConfig';
+	import { OVERLAY, WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
@@ -50,6 +50,7 @@
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				{#if isBigWin}
 					<CanvasSizeRectangle
+						label={SCENE_LABELS.win.dim}
 						backgroundColor={OVERLAY.backgroundColor}
 						backgroundAlpha={OVERLAY.backgroundAlpha}
 					/>
@@ -65,6 +66,7 @@
 
 				<MainContainer>
 					<Container
+						label={SCENE_LABELS.win.root}
 						x={context.stateGameDerived.boardLayout().x}
 						y={context.stateGameDerived.boardLayout().y}
 						pivot={context.stateGameDerived.boardLayout().pivot}
@@ -72,8 +74,9 @@
 					>
 						{#if winLevelData?.animation}
 							<WinAnimation animationName={winLevelData.animation}>
-								<Container scale={WIN_LAYOUT.bigWinTextContainerScale}>
+								<Container label={SCENE_LABELS.win.bigText} scale={WIN_LAYOUT.bigWinTextContainerScale}>
 									<ResponsiveBitmapText
+										label={SCENE_LABELS.win.bigText}
 										anchor={0.5}
 										maxWidth={WIN_LAYOUT.bigWinTextMaxWidth}
 										text={bookEventAmountToCurrencyString(countUpAmount)}
@@ -89,6 +92,7 @@
 							</WinAnimation>
 						{:else}
 							<ResponsiveBitmapText
+								label={SCENE_LABELS.win.normalText}
 								x={context.stateGameDerived.boardLayout().pivot.x}
 								y={context.stateGameDerived.boardLayout().pivot.y}
 								anchor={0.5}

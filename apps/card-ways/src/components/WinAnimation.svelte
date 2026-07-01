@@ -4,7 +4,7 @@
 	import { SpineProvider, SpineTrack, SpineSlot } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { WIN_LAYOUT } from '../game/visualLayoutConfig';
+	import { WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type Props = {
 		animationName: 'UNCOMMON-WIN' | 'RARE-WIN' | 'ULTRA-RARE-WIN' | 'LEGENDARY-WIN' | 'MAX-WIN';
@@ -16,6 +16,7 @@
 </script>
 
 <SpineProvider
+	label={SCENE_LABELS.win.bigAnimation}
 	width={context.stateGameDerived.boardLayout().width}
 	scale={WIN_LAYOUT.animationScale}
 	x={context.stateGameDerived.boardLayout().pivot.x}

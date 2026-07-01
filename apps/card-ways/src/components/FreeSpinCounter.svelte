@@ -12,7 +12,7 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
-	import { FREE_SPIN_COUNTER } from '../game/visualLayoutConfig';
+	import { FREE_SPIN_COUNTER, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import { anchorToPivot, BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
 
 	const context = getContext();
@@ -64,8 +64,9 @@
 
 <MainContainer>
 	<FadeContainer show={show} {...position} scale={FREE_SPIN_COUNTER.scale}>
-		<Sprite key={FREE_SPIN_COUNTER.panelKey} {...panelSizes} />
+		<Sprite label={SCENE_LABELS.freeSpin.counter.panel} key={FREE_SPIN_COUNTER.panelKey} {...panelSizes} />
 		<Container
+			label={SCENE_LABELS.freeSpin.counter.text}
 			x={panelSizes.width * FREE_SPIN_COUNTER.textContainerXRatio}
 			y={panelSizes.height * FREE_SPIN_COUNTER.textContainerYRatio}
 			pivot={anchorToPivot({
@@ -74,6 +75,7 @@
 			})}
 		>
 			<BitmapText
+				label={SCENE_LABELS.freeSpin.counter.title}
 				text={'FREE SPIN'}
 				style={{
 					...freeSpinCounterStyle,
@@ -82,6 +84,7 @@
 				onresize={(sizes) => (titleSizes = sizes)}
 			/>
 			<BitmapText
+				label={SCENE_LABELS.freeSpin.counter.count}
 				text={`${current} OF ${total}`}
 				{...counterPosition}
 				anchor={FREE_SPIN_COUNTER.counterTextAnchor}

@@ -6,6 +6,7 @@
 
 	type Props = {
 		reelIndex: number;
+		symbolIndex: number;
 		reelSymbol: ReelSymbol;
 	};
 
@@ -16,12 +17,16 @@
 </script>
 
 <SymbolWrap
+	reelIndex={props.reelIndex}
+	row={props.symbolIndex}
 	x={getSymbolX(props.reelIndex)}
 	y={props.reelSymbol.symbolY.current}
 	animating={symbolInfo.type === 'spine' &&
 		(props.reelSymbol.symbolState === 'land' || props.reelSymbol.symbolState === 'win')}
 >
 	<Symbol
+		reelIndex={props.reelIndex}
+		row={props.symbolIndex}
 		state={props.reelSymbol.symbolState}
 		rawSymbol={props.reelSymbol.rawSymbol}
 		oncomplete={() => {

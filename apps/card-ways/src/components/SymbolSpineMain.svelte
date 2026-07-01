@@ -6,6 +6,7 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
+		label?: string;
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
 		x?: number;
 		y?: number;
@@ -22,6 +23,7 @@
 </script>
 
 <SpineProvider
+	label={props.label}
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}

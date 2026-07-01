@@ -3,7 +3,7 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { BOARD_MASK } from '../game/visualLayoutConfig';
+	import { BOARD_MASK, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type Props = { debug?: boolean };
 
@@ -14,6 +14,7 @@
 
 {#if props.debug}
 	<Rectangle
+		label={SCENE_LABELS.board.maskDebug}
 		alpha={0.5}
 		backgroundColor={0xffffff}
 		width={context.stateGameDerived.boardLayout().width}
@@ -22,6 +23,7 @@
 {/if}
 
 <Rectangle
+	label={SCENE_LABELS.board.mask}
 	isMask
 	x={-horizontalPadding}
 	width={context.stateGameDerived.boardLayout().width + horizontalPadding * 2}

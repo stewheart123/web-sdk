@@ -6,9 +6,12 @@
 	import { BitmapText } from 'pixi-svelte';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { sceneLabel } from '../game/visualLayoutConfig';
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	type Props = {
+		reelIndex: number;
+		row: number;
 		x?: number;
 		y?: number;
 		state: SymbolState;
@@ -22,6 +25,7 @@
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
 	const isSprite = $derived(symbolInfo.type === 'sprite');
+	const symbolLabel = $derived(sceneLabel.symbol(props.reelIndex, props.row));
 
 	$effect(() => {
 		if (props.state === 'land' && symbolInfo.type === 'spine' && symbolInfo.loop) {
@@ -44,9 +48,10 @@
 </script>
 
 {#if isSprite}
-	<SymbolSprite {symbolInfo} x={props.x} y={props.y} oncomplete={props.oncomplete} />
+	<SymbolSprite label={symbolLabel} {symbolInfo} x={props.x} y={props.y} oncomplete={props.oncomplete} />
 {:else}
 	<SymbolSpine
+		label={symbolLabel}
 		loop={props.loop}
 		{symbolInfo}
 		x={props.x}
@@ -59,6 +64,7 @@
 
 {#if props.rawSymbol.multiplier}
 	<BitmapText
+		label={sceneLabel.symbolMultiplier(props.reelIndex, props.row)}
 		anchor={0.5}
 		x={props.x}
 		y={props.y}

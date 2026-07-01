@@ -1,6 +1,103 @@
 import { BOARD_DIMENSIONS, SYMBOL_SIZE } from './constants';
 
 // ---------------------------------------------------------------------------
+// Pixi DevTools scene labels (identification only — not layout values)
+// ---------------------------------------------------------------------------
+//
+// Convention: Area/Element (searchable in Pixi DevTools scene tree).
+// Names mirror layout config sections where possible.
+// Dynamic nodes (symbols, per-reel anticipation) use sceneLabel helpers.
+
+export const SCENE_LABELS = {
+	background: {
+		backdrop: 'Background/Backdrop',
+		base: 'Background/Base',
+		feature: 'Background/Feature',
+	},
+	board: {
+		root: 'Board/Root',
+		mask: 'Board/Mask',
+		maskDebug: 'Board/MaskDebug',
+		frame: 'Board/Frame',
+		frameGlow: 'Board/FrameGlow',
+		frameGlowSpine: 'Board/FrameGlow/Spine',
+	},
+	logo: {
+		root: 'Logo/Root',
+		spine: 'Logo/Spine',
+	},
+	modifier: {
+		root: 'Modifier/Root',
+		slab: 'Modifier/Slab',
+		cardWindow: 'Modifier/CardWindow',
+		cardWindowMask: 'Modifier/CardWindow/Mask',
+		card: 'Modifier/Card',
+		cardSpine: 'Modifier/Card/Spine',
+	},
+	freeSpin: {
+		modal: {
+			root: 'FreeSpin/Modal/Root',
+			shine: 'FreeSpin/Modal/Shine',
+			panel: 'FreeSpin/Modal/Panel',
+			foil: 'FreeSpin/Modal/Foil',
+		},
+		intro: {
+			congrats: 'FreeSpin/Intro/Congrats',
+			numberSpine: 'FreeSpin/Intro/NumberSpine',
+			numberText: 'FreeSpin/Intro/NumberText',
+			freeSpinsLabel: 'FreeSpin/Intro/FreeSpinsLabel',
+		},
+		outro: {
+			numberSpine: 'FreeSpin/Outro/NumberSpine',
+			numberText: 'FreeSpin/Outro/NumberText',
+			bigWinCongrats: 'FreeSpin/Outro/BigWinCongrats',
+			youWon: 'FreeSpin/Outro/YouWon',
+			totalWin: 'FreeSpin/Outro/TotalWin',
+		},
+		counter: {
+			panel: 'FreeSpin/Counter/Panel',
+			text: 'FreeSpin/Counter/Text',
+			title: 'FreeSpin/Counter/Title',
+			count: 'FreeSpin/Counter/Count',
+		},
+	},
+	win: {
+		root: 'Win/Root',
+		dim: 'Win/Dim',
+		bigText: 'Win/BigText',
+		normalText: 'Win/NormalText',
+		bigAnimation: 'Win/BigAnimation',
+		coins: 'Win/Coins',
+		coinsEmitter: 'Win/Coins/Emitter',
+	},
+	loading: {
+		root: 'Loading/Root',
+		logo: 'Loading/Logo',
+		progressBg: 'Loading/ProgressBg',
+		progressFill: 'Loading/ProgressFill',
+	},
+	ui: {
+		pressToContinue: 'UI/PressToContinue',
+	},
+	overlay: {
+		dim: 'Overlay/Dim',
+	},
+	transition: {
+		bonus: 'Transition/Bonus',
+	},
+	dev: {
+		i18nTest: 'Dev/I18nTest',
+	},
+} as const;
+
+export const sceneLabel = {
+	symbol: (reel: number, row: number) => `Board/Symbol/R${reel}C${row}`,
+	anticipation: (reel: number) => `Board/Anticipation/R${reel}`,
+	anticipationSpine: (reel: number) => `Board/Anticipation/R${reel}/Spine`,
+	symbolMultiplier: (reel: number, row: number) => `Board/Symbol/R${reel}C${row}/Multiplier`,
+} as const;
+
+// ---------------------------------------------------------------------------
 // Layout types & virtual canvas sizes (game MainContainer coordinate space)
 // ---------------------------------------------------------------------------
 

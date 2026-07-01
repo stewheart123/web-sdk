@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { Sprite, type SpriteProps } from 'pixi-svelte';
+	import { Sprite } from 'pixi-svelte';
 
 	import { getSymbolInfo } from '../game/utils';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { onMount } from 'svelte';
 
 	type Props = {
+		label: string;
 		x?: number;
 		y?: number;
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
@@ -25,6 +26,7 @@
 </script>
 
 <Sprite
+	label={props.label}
 	x={props.x}
 	y={props.y}
 	anchor={0.5}

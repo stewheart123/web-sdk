@@ -5,7 +5,7 @@
 	import { getContext } from '../game/context';
 	import type { Reel } from '../game/stateGame.svelte';
 	import { REEL_GAP, REEL_PADDING, SYMBOL_SIZE, SYMBOL_WIDTH } from '../game/constants';
-	import { ANTICIPATION } from '../game/visualLayoutConfig';
+	import { ANTICIPATION, sceneLabel } from '../game/visualLayoutConfig';
 
 	type Props = {
 		reel: Reel;
@@ -27,12 +27,14 @@
 </script>
 
 <Container
+	label={sceneLabel.anticipation(props.reel.reelIndex)}
 	x={context.stateGameDerived.boardLayout().x}
 	y={context.stateGameDerived.boardLayout().y}
 	pivot={context.stateGameDerived.boardLayout().pivot}
 	scale={context.stateGameDerived.boardLayout().scale}
 >
 	<SpineProvider
+		label={sceneLabel.anticipationSpine(props.reel.reelIndex)}
 		key="anticipation"
 		width={SYMBOL_SIZE * ANTICIPATION.widthMultiplier}
 		height={SYMBOL_SIZE * ANTICIPATION.heightMultiplier}

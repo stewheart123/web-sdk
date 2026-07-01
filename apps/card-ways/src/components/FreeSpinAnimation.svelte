@@ -12,7 +12,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_MODAL, getFreeSpinModalSizes } from '../game/visualLayoutConfig';
+	import { FREE_SPIN_MODAL, getFreeSpinModalSizes, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
 
@@ -37,11 +37,18 @@
 
 <MainContainer>
 	<Container
+		label={SCENE_LABELS.freeSpin.modal.root}
 		x={context.stateGameDerived.boardLayout().x}
 		y={context.stateGameDerived.boardLayout().y + FREE_SPIN_MODAL.yOffsetFromBoard}
 		pivot={anchorToPivot({ anchor: 0.5, sizes: backgroundSizes })}
 	>
-		<SpineProvider key="fsIntro" width={panelSizes.width} x={contentX} y={contentY}>
+		<SpineProvider
+			label={SCENE_LABELS.freeSpin.modal.shine}
+			key="fsIntro"
+			width={panelSizes.width}
+			x={contentX}
+			y={contentY}
+		>
 			<SpineTrack
 				trackIndex={0}
 				{animationName}
@@ -52,8 +59,9 @@
 			/>
 		</SpineProvider>
 
-		<Container x={contentX} y={contentY}>
+		<Container label={SCENE_LABELS.freeSpin.modal.panel} x={contentX} y={contentY}>
 			<Sprite
+				label={SCENE_LABELS.freeSpin.modal.foil}
 				key={props.modalKey}
 				anchor={FREE_SPIN_MODAL.modalSpriteAnchor}
 				width={backgroundSizes.width}
