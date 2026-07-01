@@ -1,7 +1,7 @@
 {
 "skeleton": {
-	"hash": "bIA4yq5tKGQ",
-	"spine": "4.3.17",
+	"hash": "GABTxIG6/HM",
+	"spine": "4.3.23",
 	"x": -1053.0654,
 	"y": -55.53961,
 	"width": 1749.6227,
@@ -257,11 +257,11 @@
 			},
 			"C-4": {
 				"rotate": [
-					{ "time": 1.8 },
+					{ "time": 2 },
 					{ "time": 2.666667, "value": 12.022644 }
 				],
 				"translate": [
-					{ "time": 1.8 },
+					{ "time": 2 },
 					{ "time": 2.666667, "y": -1986 }
 				]
 			}
