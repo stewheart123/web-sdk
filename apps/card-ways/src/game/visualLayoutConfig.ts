@@ -229,10 +229,10 @@ export const VISUAL_LAYOUT = {
 				frame: { offsetX: 2, offsetY: 70, width: 706 * 1.25, height: 550 * 1.5 },
 			},
 			tablet: {
-				symbolScale: 1.1,
+				symbolScale: 1.09,
 				boardXOffset: 0,
-				boardYOffset: 0,
-				frame: { offsetX: 8, offsetY: 70, width: 840, height: 688 },
+				boardYOffset: -80,
+				frame: { offsetX: 8, offsetY: 70, width: 840, height: 688 * 1.1 },
 			},
 		} satisfies Record<LayoutType, LayoutBoardSettings>,
 		anticipation: {
@@ -535,7 +535,7 @@ export const VISUAL_LAYOUT = {
 			layoutByType: {
 				desktop: { x: 711, y: 530, width: 600, anchor: { x: 0.5, y: 0.5 } },
 				landscape: { x: 800, y: 660, width: 600, anchor: { x: 0.5, y: 0.5 } },
-				portrait: { x: 400, y: 960, width: 600, anchor: { x: 0.5, y: 0.5 } },
+				portrait: { x: 400, y: 1050, width: 600, anchor: { x: 0.5, y: 0.5 } },
 				tablet: { x: 500, y: 700, width: 600, anchor: { x: 0.5, y: 0.5 } },
 			} satisfies Record<LayoutType, PressToContinueLayoutSettings>,
 		},
@@ -554,7 +554,7 @@ export const VISUAL_LAYOUT = {
 		layoutByType: {
 			desktop: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.7 },
 			landscape: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.7 },
-			portrait: { xRatio: 0.5, yRatio: 0.48, heightScale: 1.9 },
+			portrait: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.9 },
 			tablet: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.75 },
 		} satisfies Record<LayoutType, BonusTransitionLayoutSettings>,
 	},
