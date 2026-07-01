@@ -91,7 +91,7 @@
 							<SpineProvider
 								label={SCENE_LABELS.freeSpin.outro.numberSpine}
 								key="fsOutroNumber"
-								width={sizes.width * FREE_SPIN_OUTRO.numberSpine.widthRatio}
+								width={FREE_SPIN_OUTRO.numberSpine.width}
 								zIndex={FREE_SPIN_OUTRO.numberSpine.zIndex}
 							>
 								<SpineTrack
@@ -111,7 +111,7 @@
 											layoutType,
 										})}
 										text={bookEventAmountToCurrencyString(countUpAmount)}
-										maxWidth={sizes.width * FREE_SPIN_OUTRO.numberSpine.maxWidthRatio}
+										maxWidth={FREE_SPIN_OUTRO.numberSpine.maxWidth}
 									/>
 								</SpineSlot>
 							</SpineProvider>
@@ -129,29 +129,29 @@
 								<Sprite
 									label={SCENE_LABELS.freeSpin.outro.youWon}
 									anchor={YOU_WON_LABEL.anchor}
-									width={sizes.width * YOU_WON_LABEL.widthScale}
-									height={sizes.width * YOU_WON_LABEL.heightScale}
+									width={YOU_WON_LABEL.width}
+									height={YOU_WON_LABEL.height}
 									x={YOU_WON_LABEL.x}
-									y={sizes.height * YOU_WON_LABEL.yRatio}
+									y={YOU_WON_LABEL.y}
 									zIndex={YOU_WON_LABEL.zIndex}
 									key="winsmall_{stateUrlDerived.lang()}.png"
 								/>
 							{/if}
 
-							{@const totalWinWidthScale = isBigWin
-								? TOTAL_WIN_LABEL.bigWidthScale
-								: TOTAL_WIN_LABEL.widthScale}
-							{@const totalWinHeightScale = isBigWin
-								? TOTAL_WIN_LABEL.bigHeightScale
-								: TOTAL_WIN_LABEL.heightScale}
+							{@const totalWinWidth = isBigWin
+								? TOTAL_WIN_LABEL.bigWidth
+								: TOTAL_WIN_LABEL.width}
+							{@const totalWinHeight = isBigWin
+								? TOTAL_WIN_LABEL.bigHeight
+								: TOTAL_WIN_LABEL.height}
 
 							<Sprite
 								label={SCENE_LABELS.freeSpin.outro.totalWin}
 								anchor={TOTAL_WIN_LABEL.anchor}
-								width={sizes.width * totalWinWidthScale}
-								height={sizes.width * totalWinHeightScale}
+								width={totalWinWidth}
+								height={totalWinHeight}
 								x={TOTAL_WIN_LABEL.x}
-								y={sizes.height * TOTAL_WIN_LABEL.yRatio}
+								y={TOTAL_WIN_LABEL.y}
 								zIndex={TOTAL_WIN_LABEL.zIndex}
 								key="totalwin_{stateUrlDerived.lang()}.png"
 							/>

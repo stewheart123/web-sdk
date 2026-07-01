@@ -21,7 +21,6 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE } from '../game/constants';
 	import { getModifierLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import {
 		getSymbolInfo,
@@ -36,16 +35,12 @@
 		context.stateLayoutDerived.isStacked() ? layout.stackedScale : 1,
 	);
 	const desktopPosition = $derived({
-		x:
-			context.stateGameDerived.boardLayout().width +
-			layout.slabWidth * layout.desktopPosition.xOffsetFromBoardWidth,
-		y: SYMBOL_SIZE * layout.desktopPosition.yMultiplier,
+		x: context.stateGameDerived.boardLayout().width + layout.desktopPosition.x,
+		y: layout.desktopPosition.y,
 	});
 	const portraitPosition = $derived({
-		x:
-			context.stateGameDerived.boardLayout().width +
-			layout.slabWidth * layout.portraitPosition.xOffsetFromBoardWidth,
-		y: SYMBOL_SIZE * layout.portraitPosition.yMultiplier,
+		x: context.stateGameDerived.boardLayout().width + layout.portraitPosition.x,
+		y: layout.portraitPosition.y,
 	});
 	const position = $derived(
 		context.stateLayoutDerived.isStacked() ? portraitPosition : desktopPosition,

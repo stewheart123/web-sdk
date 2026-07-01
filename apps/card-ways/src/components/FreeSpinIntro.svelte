@@ -83,7 +83,7 @@
 				<SpineProvider
 					label={SCENE_LABELS.freeSpin.intro.numberSpine}
 					key="fsIntroNumber"
-					width={sizes.width * FREE_SPIN_INTRO.numberSpine.widthRatio}
+					width={FREE_SPIN_INTRO.numberSpine.width}
 					y={FREE_SPIN_INTRO.numberSpine.y}
 					zIndex={FREE_SPIN_INTRO.numberSpine.zIndex}
 				>

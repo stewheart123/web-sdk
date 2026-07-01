@@ -12,7 +12,11 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_MODAL, getFreeSpinModalSizes, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		getFreeSpinModalLayout,
+		SCENE_LABELS,
+		VISUAL_LAYOUT,
+	} from '../game/visualLayoutConfig';
 
 	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
 
@@ -26,11 +30,10 @@
 	type AnimationName = 'NEW-SHINE-INTRO' | 'NEW-SHINE';
 
 	const context = getContext();
-	const modalSizes = $derived(getFreeSpinModalSizes());
-	const backgroundSizes = $derived(modalSizes.background);
-	const panelSizes = $derived(modalSizes.panel);
-	const contentX = $derived(panelSizes.width * FREE_SPIN_MODAL.contentXRatio);
-	const contentY = $derived(panelSizes.height * FREE_SPIN_MODAL.contentYRatio);
+	const layoutType = $derived(context.stateLayoutDerived.layoutType());
+	const modalLayout = $derived(getFreeSpinModalLayout(layoutType));
+	const modalSizes = $derived({ width: modalLayout.width, height: modalLayout.height });
+	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 
 	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
@@ -38,16 +41,16 @@
 <MainContainer label={SCENE_LABELS.layout.freeSpinModal}>
 	<Container
 		label={SCENE_LABELS.freeSpin.modal.root}
-		x={context.stateGameDerived.boardLayout().x}
-		y={context.stateGameDerived.boardLayout().y + FREE_SPIN_MODAL.yOffsetFromBoard}
-		pivot={anchorToPivot({ anchor: 0.5, sizes: backgroundSizes })}
+		x={boardLayout.x + modalLayout.offsetFromBoard.x}
+		y={boardLayout.y + modalLayout.offsetFromBoard.y}
+		pivot={anchorToPivot({ anchor: 0.5, sizes: modalSizes })}
 	>
 		<SpineProvider
 			label={SCENE_LABELS.freeSpin.modal.shine}
 			key="fsIntro"
-			width={panelSizes.width}
-			x={contentX}
-			y={contentY}
+			width={modalLayout.shineWidth}
+			x={modalLayout.content.x}
+			y={modalLayout.content.y}
 		>
 			<SpineTrack
 				trackIndex={0}
@@ -59,15 +62,19 @@
 			/>
 		</SpineProvider>
 
-		<Container label={SCENE_LABELS.freeSpin.modal.panel} x={contentX} y={contentY}>
+		<Container
+			label={SCENE_LABELS.freeSpin.modal.panel}
+			x={modalLayout.content.x}
+			y={modalLayout.content.y}
+		>
 			<Sprite
 				label={SCENE_LABELS.freeSpin.modal.foil}
 				key={props.modalKey}
-				anchor={FREE_SPIN_MODAL.modalSpriteAnchor}
-				width={backgroundSizes.width}
-				height={backgroundSizes.height}
+				anchor={VISUAL_LAYOUT.freeSpin.modal.spriteAnchor}
+				width={modalSizes.width}
+				height={modalSizes.height}
 			/>
-			{@render props.children({ sizes: backgroundSizes })}
+			{@render props.children({ sizes: modalSizes })}
 		</Container>
 	</Container>
 </MainContainer>

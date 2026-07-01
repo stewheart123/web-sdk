@@ -12,16 +12,13 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
-	import { FREE_SPIN_COUNTER, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { getFreeSpinCounterLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import { anchorToPivot, BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
-	const panelWidth = $derived(SYMBOL_SIZE * FREE_SPIN_COUNTER.widthMultiplier);
-	const panelSizes = $derived({
-		width: panelWidth,
-		height: panelWidth / FREE_SPIN_COUNTER.panelRatio,
-	});
+	const counterLayout = $derived(getFreeSpinCounterLayout(layoutType));
+	const panelSizes = $derived(counterLayout.panel);
 	const position = $derived.by(() => {
 		const boardLayout = context.stateGameDerived.boardLayout();
 		const scaledBoardHalfWidth = boardLayout.width * 0.5 * boardLayout.scale;
@@ -31,7 +28,7 @@
 				boardLayout.x -
 				scaledBoardHalfWidth -
 				panelSizes.width -
-				SYMBOL_SIZE * FREE_SPIN_COUNTER.gapFromBoard,
+				counterLayout.gapFromBoard,
 			y: boardLayout.y - boardLayout.height * 0.5 * boardLayout.scale,
 		};
 	});
@@ -63,15 +60,24 @@
 </script>
 
 <MainContainer label={SCENE_LABELS.layout.freeSpinCounter}>
-	<FadeContainer show={show} {...position} scale={FREE_SPIN_COUNTER.scale} label={SCENE_LABELS.fade.freeSpinCounter}>
-		<Sprite label={SCENE_LABELS.freeSpin.counter.panel} key={FREE_SPIN_COUNTER.panelKey} {...panelSizes} />
+	<FadeContainer
+		show={show}
+		{...position}
+		scale={counterLayout.scale}
+		label={SCENE_LABELS.fade.freeSpinCounter}
+	>
+		<Sprite
+			label={SCENE_LABELS.freeSpin.counter.panel}
+			key={counterLayout.panelKey}
+			{...panelSizes}
+		/>
 		<Container
 			label={SCENE_LABELS.freeSpin.counter.text}
-			x={panelSizes.width * FREE_SPIN_COUNTER.textContainerXRatio}
-			y={panelSizes.height * FREE_SPIN_COUNTER.textContainerYRatio}
+			x={counterLayout.text.x}
+			y={counterLayout.text.y}
 			pivot={anchorToPivot({
 				sizes: textContainerSizes,
-				anchor: FREE_SPIN_COUNTER.textContainerAnchor,
+				anchor: counterLayout.text.containerAnchor,
 			})}
 		>
 			<BitmapText
@@ -87,7 +93,7 @@
 				label={SCENE_LABELS.freeSpin.counter.count}
 				text={`${current} OF ${total}`}
 				{...counterPosition}
-				anchor={FREE_SPIN_COUNTER.counterTextAnchor}
+				anchor={counterLayout.text.counterTextAnchor}
 				style={freeSpinCounterStyle}
 				onresize={(sizes) => (counterSizes = sizes)}
 			/>

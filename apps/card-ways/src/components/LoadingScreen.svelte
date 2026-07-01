@@ -4,7 +4,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { LOADING_SCREEN, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { getLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -14,27 +14,24 @@
 
 	const props: Props = $props();
 	const context = getContext();
-
-	const position = $derived({
-		x: context.stateLayoutDerived.mainLayout().width * LOADING_SCREEN.xRatio,
-		y: context.stateLayoutDerived.mainLayout().height * LOADING_SCREEN.yRatio,
-	});
+	const layoutType = $derived(context.stateLayoutDerived.layoutType());
+	const layout = $derived(getLoadingScreenLayout(layoutType));
 
 	let loadingType = $state<'start' | 'transition'>('start');
 </script>
 
 <FadeContainer show={loadingType === 'start'} label={SCENE_LABELS.fade.loadingStart}>
 	<MainContainer label={SCENE_LABELS.layout.loading}>
-		<Container label={SCENE_LABELS.loading.root} x={position.x} y={position.y}>
-			<SpineProvider label={SCENE_LABELS.loading.logo} key="logo" width={LOADING_SCREEN.logoWidth}>
+		<Container label={SCENE_LABELS.loading.root} x={layout.x} y={layout.y}>
+			<SpineProvider label={SCENE_LABELS.loading.logo} key="logo" width={layout.logoWidth}>
 				<SpineTrack trackIndex={0} animationName="INTRO" loop />
 			</SpineProvider>
 			{#if !context.stateApp.loaded}
 				<LoadingProgress
 					label={SCENE_LABELS.loading.progress}
-					y={LOADING_SCREEN.progressBar.y}
-					width={LOADING_SCREEN.progressBar.width}
-					height={LOADING_SCREEN.progressBar.height}
+					y={layout.progressBar.y}
+					width={layout.progressBar.width}
+					height={layout.progressBar.height}
 				>
 					{#snippet background(sizes)}
 						<Sprite label={SCENE_LABELS.loading.progressBg} key="LOADING-BG" {...sizes} />

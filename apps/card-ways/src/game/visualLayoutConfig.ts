@@ -1,5 +1,3 @@
-import { BOARD_DIMENSIONS, SYMBOL_SIZE } from './constants';
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -34,6 +32,33 @@ export type LogoLayoutSettings = {
 	align: LogoAlign;
 };
 
+/** Offset in game virtual pixels (MainContainer space). */
+export type VirtualOffset = {
+	x: number;
+	y: number;
+};
+
+/** Size in game virtual pixels. */
+export type VirtualSize = {
+	width: number;
+	height: number;
+};
+
+export type ModalLayoutSettings = VirtualSize & {
+	/** Offset from boardLayout x/y (board center anchor). */
+	offsetFromBoard: VirtualOffset;
+	/** Shine spine + content panel origin within the modal (top-left local space). */
+	content: VirtualOffset;
+	shineWidth: number;
+};
+
+export type SpriteElementLayout = VirtualSize & {
+	x?: number;
+	y?: number;
+	anchor: { x: number; y: number };
+	zIndex?: number;
+};
+
 export type ModifierLayoutSettings = {
 	slabWidth: number;
 	slabHeight: number;
@@ -47,14 +72,33 @@ export type ModifierLayoutSettings = {
 	scrollDuration: number;
 	/** Scale applied when layout is stacked (portrait / tablet). */
 	stackedScale: number;
-	desktopPosition: {
-		xOffsetFromBoardWidth: number;
-		yMultiplier: number;
+	/** x = boardLayout.width + offset.x; y = offset.y (board-local pixels). */
+	desktopPosition: VirtualOffset;
+	portraitPosition: VirtualOffset;
+};
+
+export type FreeSpinCounterLayoutSettings = {
+	panel: VirtualSize;
+	/** Gap between board edge and counter panel (virtual pixels). */
+	gapFromBoard: number;
+	scale: number;
+	panelKey: string;
+	text: VirtualOffset & {
+		containerAnchor: { x: number; y: number };
+		counterTextAnchor: { x: number; y: number };
 	};
-	portraitPosition: {
-		xOffsetFromBoardWidth: number;
-		yMultiplier: number;
-	};
+};
+
+export type PressToContinueLayoutSettings = {
+	x: number;
+	y: number;
+	width: number;
+	anchor: { x: number; y: number };
+};
+
+export type LoadingScreenLayoutSettings = VirtualOffset & {
+	logoWidth: number;
+	progressBar: VirtualOffset & VirtualSize;
 };
 
 export type BonusTransitionLayoutSettings = {
@@ -88,20 +132,38 @@ export type BitmapFontUsageConfig = {
 
 // ---------------------------------------------------------------------------
 // VISUAL_LAYOUT — labels + layout values (Area/Element convention)
+// Game-layer values are game virtual pixels inside MainContainer unless noted.
 // ---------------------------------------------------------------------------
 
-const BASE_MODIFIER_LAYOUT: Omit<ModifierLayoutSettings, 'slabWidth'> = {
-	slabHeight: SYMBOL_SIZE * 1.45,
-	cardHeight: SYMBOL_SIZE * 0.95,
-	cardWindowY: SYMBOL_SIZE * 0.15,
-	cardYOffset: SYMBOL_SIZE * -0.45,
-	cardWindowWidth: SYMBOL_SIZE * 1,
-	cardWindowHeight: SYMBOL_SIZE * 1.1,
-	scrollDistance: SYMBOL_SIZE,
-	scrollDuration: 333,
-	stackedScale: 1.28,
-	desktopPosition: { xOffsetFromBoardWidth: 0.75, yMultiplier: 1 },
-	portraitPosition: { xOffsetFromBoardWidth: -3.5, yMultiplier: -0.55 },
+const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = {
+	desktop: {
+		width: 1020,
+		height: 651,
+		offsetFromBoard: { x: 0, y: -60 },
+		content: { x: 510, y: 260 },
+		shineWidth: 408,
+	},
+	landscape: {
+		width: 1020,
+		height: 651,
+		offsetFromBoard: { x: 0, y: -60 },
+		content: { x: 510, y: 260 },
+		shineWidth: 408,
+	},
+	portrait: {
+		width: 1020,
+		height: 651,
+		offsetFromBoard: { x: 0, y: -60 },
+		content: { x: 510, y: 260 },
+		shineWidth: 408,
+	},
+	tablet: {
+		width: 1020,
+		height: 651,
+		offsetFromBoard: { x: 0, y: -60 },
+		content: { x: 510, y: 260 },
+		shineWidth: 408,
+	},
 };
 
 export const VISUAL_LAYOUT = {
@@ -152,17 +214,17 @@ export const VISUAL_LAYOUT = {
 				frame: { offsetX: 12, offsetY: 5, width: 706, height: 550 },
 			},
 			tablet: {
-				symbolScale: 1.0,
+				symbolScale: 1.1,
 				boardXOffset: 0,
-				boardYOffset: 0,
-				frame: { offsetX: 0, offsetY: 0, width: 900, height: 620 },
+				boardYOffset: 20,
+				frame: { offsetX: 9, offsetY: 70, width: 840, height: 688 },
 			},
 		} satisfies Record<LayoutType, LayoutBoardSettings>,
 		anticipation: {
-			widthMultiplier: 0.56,
-			heightMultiplier: 1.6,
-			/** Subtracted from board centre y: y = boardHeight * 0.5 - SYMBOL_SIZE * yOffsetMultiplier */
-			yOffsetMultiplier: 0.06,
+			width: 114,
+			height: 326,
+			/** Subtracted from board centre y in board-local pixels. */
+			yOffset: 12,
 		},
 	},
 	logo: {
@@ -183,10 +245,62 @@ export const VISUAL_LAYOUT = {
 		card: { label: 'Modifier/Card' },
 		cardSpine: { label: 'Modifier/Card/Spine' },
 		layoutByType: {
-			desktop: { ...BASE_MODIFIER_LAYOUT, slabWidth: SYMBOL_SIZE },
-			landscape: { ...BASE_MODIFIER_LAYOUT, slabWidth: SYMBOL_SIZE },
-			portrait: { ...BASE_MODIFIER_LAYOUT, slabWidth: SYMBOL_SIZE * 0.95 },
-			tablet: { ...BASE_MODIFIER_LAYOUT, slabWidth: SYMBOL_SIZE },
+			desktop: {
+				slabWidth: 204,
+				slabHeight: 296,
+				cardHeight: 194,
+				cardWindowY: 31,
+				cardYOffset: -92,
+				cardWindowWidth: 204,
+				cardWindowHeight: 224,
+				scrollDistance: 204,
+				scrollDuration: 333,
+				stackedScale: 1.28,
+				desktopPosition: { x: 153, y: 204 },
+				portraitPosition: { x: -680, y: -112 },
+			},
+			landscape: {
+				slabWidth: 204,
+				slabHeight: 296,
+				cardHeight: 194,
+				cardWindowY: 31,
+				cardYOffset: -92,
+				cardWindowWidth: 204,
+				cardWindowHeight: 224,
+				scrollDistance: 204,
+				scrollDuration: 333,
+				stackedScale: 1.28,
+				desktopPosition: { x: 153, y: 204 },
+				portraitPosition: { x: -680, y: -112 },
+			},
+			portrait: {
+				slabWidth: 194,
+				slabHeight: 296,
+				cardHeight: 194,
+				cardWindowY: 31,
+				cardYOffset: -92,
+				cardWindowWidth: 204,
+				cardWindowHeight: 224,
+				scrollDistance: 204,
+				scrollDuration: 333,
+				stackedScale: 1.28,
+				desktopPosition: { x: 153, y: 204 },
+				portraitPosition: { x: -680, y: -112 },
+			},
+			tablet: {
+				slabWidth: 204,
+				slabHeight: 296,
+				cardHeight: 194,
+				cardWindowY: 31,
+				cardYOffset: -92,
+				cardWindowWidth: 204,
+				cardWindowHeight: 224,
+				scrollDistance: 204,
+				scrollDuration: 333,
+				stackedScale: 1.28,
+				desktopPosition: { x: 153, y: 204 },
+				portraitPosition: { x: -680, y: -112 },
+			},
 		} satisfies Record<LayoutType, ModifierLayoutSettings>,
 	},
 	freeSpin: {
@@ -195,29 +309,19 @@ export const VISUAL_LAYOUT = {
 			shine: { label: 'FreeSpin/Modal/Shine' },
 			panel: { label: 'FreeSpin/Modal/Panel' },
 			foil: { label: 'FreeSpin/Modal/Foil' },
-			/** Aspect ratio of the foil modal sprite (width / height). */
-			modalRatio: 613 / 391,
-			/** Multiplier on SYMBOL_SIZE * BOARD_DIMENSIONS.x for modal background width. */
-			widthMultiplier: 1,
-			panelWidthMultiplier: 1,
-			panelHeightMultiplier: 1,
-			/** Vertical offset from boardLayout y (negative = up). */
-			yOffsetFromBoard: -60,
-			/** Position of shine spine and modal content container within panel space. */
-			contentXRatio: 0.5,
-			contentYRatio: 0.4,
-			modalSpriteAnchor: { x: 0.5, y: 0.5 },
+			spriteAnchor: { x: 0.5, y: 0.5 },
+			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
 		intro: {
 			congrats: {
 				label: 'FreeSpin/Intro/Congrats',
-				width: 426 * 1.6,
-				height: 85 * 1.6,
+				width: 682,
+				height: 136,
 				anchor: { x: 0.5, y: 2 },
 			},
 			numberSpine: {
 				label: 'FreeSpin/Intro/NumberSpine',
-				widthRatio: 0.4,
+				width: 408,
 				y: -200,
 				zIndex: 1,
 				numberTextAnchor: { x: 0.5, y: 0.5 },
@@ -233,36 +337,35 @@ export const VISUAL_LAYOUT = {
 		outro: {
 			numberSpine: {
 				label: 'FreeSpin/Outro/NumberSpine',
-				widthRatio: 0.4,
+				width: 408,
 				zIndex: 1,
-				maxWidthRatio: 1,
+				maxWidth: 1020,
 			},
 			numberText: { label: 'FreeSpin/Outro/NumberText' },
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
-				width: 426 * 2.2,
-				height: 85 * 2.2,
+				width: 937,
+				height: 187,
 				anchor: { x: 0.5, y: 1.2 },
 			},
 			youWon: {
 				label: 'FreeSpin/Outro/YouWon',
 				anchor: { x: 0.5, y: 0.5 },
-				widthScale: 0.7,
-				heightScale: 0.07,
+				width: 714,
+				height: 71,
 				x: 0,
-				yRatio: -0.28,
+				y: -182,
 				zIndex: 2,
 			},
 			totalWin: {
 				label: 'FreeSpin/Outro/TotalWin',
 				anchor: { x: 0.5, y: 0.5 },
-				widthScale: 0.55,
-				heightScale: 0.055,
+				width: 561,
+				height: 56,
 				x: 0,
-				yRatio: 0.28,
+				y: 182,
 				zIndex: 2,
-				bigWidthScale: 0.4,
-				bigHeightScale: 0.045,
+				big: { width: 408, height: 29 },
 			},
 		},
 		counter: {
@@ -270,17 +373,56 @@ export const VISUAL_LAYOUT = {
 			text: { label: 'FreeSpin/Counter/Text' },
 			title: { label: 'FreeSpin/Counter/Title' },
 			count: { label: 'FreeSpin/Counter/Count' },
-			layout: {
-				panelKey: 'Frame_FSCounter.png',
-				panelRatio: 824 / 622,
-				widthMultiplier: 1.2,
-				gapFromBoard: 0.2,
-				scale: 1,
-				textContainerXRatio: 0.5,
-				textContainerYRatio: 0.48,
-				textContainerAnchor: { x: 0.5, y: 0.5 },
-				counterTextAnchor: { x: 0.5, y: 0 },
-			},
+			layoutByType: {
+				desktop: {
+					panel: { width: 245, height: 185 },
+					gapFromBoard: 41,
+					scale: 1,
+					panelKey: 'Frame_FSCounter.png',
+					text: {
+						x: 122,
+						y: 89,
+						containerAnchor: { x: 0.5, y: 0.5 },
+						counterTextAnchor: { x: 0.5, y: 0 },
+					},
+				},
+				landscape: {
+					panel: { width: 245, height: 185 },
+					gapFromBoard: 41,
+					scale: 1,
+					panelKey: 'Frame_FSCounter.png',
+					text: {
+						x: 122,
+						y: 89,
+						containerAnchor: { x: 0.5, y: 0.5 },
+						counterTextAnchor: { x: 0.5, y: 0 },
+					},
+				},
+				portrait: {
+					panel: { width: 245, height: 185 },
+					gapFromBoard: 41,
+					scale: 1,
+					panelKey: 'Frame_FSCounter.png',
+					text: {
+						x: 122,
+						y: 89,
+						containerAnchor: { x: 0.5, y: 0.5 },
+						counterTextAnchor: { x: 0.5, y: 0 },
+					},
+				},
+				tablet: {
+					panel: { width: 245, height: 185 },
+					gapFromBoard: 41,
+					scale: 1,
+					panelKey: 'Frame_FSCounter.png',
+					text: {
+						x: 122,
+						y: 89,
+						containerAnchor: { x: 0.5, y: 0.5 },
+						counterTextAnchor: { x: 0.5, y: 0 },
+					},
+				},
+			} satisfies Record<LayoutType, FreeSpinCounterLayoutSettings>,
 		},
 	},
 	win: {
@@ -305,14 +447,32 @@ export const VISUAL_LAYOUT = {
 		progressBg: { label: 'Loading/ProgressBg' },
 		progressFill: { label: 'Loading/ProgressFill' },
 		screen: {
-			logoWidth: 300,
-			xRatio: 0.5,
-			yRatio: 0.5,
-			progressBar: {
-				y: 250,
-				width: 1967 * 0.2,
-				height: 346 * 0.2,
-			},
+			layoutByType: {
+				desktop: {
+					x: 711,
+					y: 400,
+					logoWidth: 300,
+					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+				},
+				landscape: {
+					x: 800,
+					y: 450,
+					logoWidth: 300,
+					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+				},
+				portrait: {
+					x: 400,
+					y: 711,
+					logoWidth: 300,
+					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+				},
+				tablet: {
+					x: 500,
+					y: 500,
+					logoWidth: 300,
+					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+				},
+			} satisfies Record<LayoutType, LoadingScreenLayoutSettings>,
 		},
 	},
 	layout: {
@@ -340,10 +500,12 @@ export const VISUAL_LAYOUT = {
 	ui: {
 		pressToContinue: {
 			label: 'UI/PressToContinue',
-			width: 600,
-			xRatio: 0.5,
-			yRatio: 0.8,
-			anchor: { x: 0.5, y: 1 },
+			layoutByType: {
+				desktop: { x: 711, y: 640, width: 600, anchor: { x: 0.5, y: 1 } },
+				landscape: { x: 800, y: 720, width: 600, anchor: { x: 0.5, y: 1 } },
+				portrait: { x: 400, y: 1138, width: 600, anchor: { x: 0.5, y: 1 } },
+				tablet: { x: 500, y: 800, width: 600, anchor: { x: 0.5, y: 1 } },
+			} satisfies Record<LayoutType, PressToContinueLayoutSettings>,
 		},
 	},
 	overlay: {
@@ -417,22 +579,23 @@ export const resolveFrameLayout = (
 	height: frame.height,
 });
 
-export const getFreeSpinModalSizes = () => {
-	const modal = VISUAL_LAYOUT.freeSpin.modal;
-	const baseWidth = SYMBOL_SIZE * BOARD_DIMENSIONS.x;
-	const backgroundWidth = baseWidth * modal.widthMultiplier;
+export const getFreeSpinModalLayout = (layoutType: LayoutType) =>
+	VISUAL_LAYOUT.freeSpin.modal.layoutByType[layoutType];
 
-	return {
-		background: {
-			width: backgroundWidth,
-			height: backgroundWidth / modal.modalRatio,
-		},
-		panel: {
-			width: baseWidth * modal.panelWidthMultiplier,
-			height: baseWidth * modal.panelHeightMultiplier,
-		},
-	};
+/** @deprecated Use getFreeSpinModalLayout — returns modal content size for intro/outro snippets. */
+export const getFreeSpinModalSizes = (layoutType: LayoutType) => {
+	const layout = getFreeSpinModalLayout(layoutType);
+	return { width: layout.width, height: layout.height };
 };
+
+export const getPressToContinueLayout = (layoutType: LayoutType) =>
+	VISUAL_LAYOUT.ui.pressToContinue.layoutByType[layoutType];
+
+export const getLoadingScreenLayout = (layoutType: LayoutType) =>
+	VISUAL_LAYOUT.loading.screen.layoutByType[layoutType];
+
+export const getFreeSpinCounterLayout = (layoutType: LayoutType) =>
+	VISUAL_LAYOUT.freeSpin.counter.layoutByType[layoutType];
 
 export const getBoardLayoutSettings = (layoutType: LayoutType) =>
 	VISUAL_LAYOUT.board.layoutByType[layoutType];
@@ -603,14 +766,8 @@ export const ANTICIPATION = VISUAL_LAYOUT.board.anticipation;
 export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutByType;
 
 export const FREE_SPIN_MODAL = {
-	modalRatio: VISUAL_LAYOUT.freeSpin.modal.modalRatio,
-	widthMultiplier: VISUAL_LAYOUT.freeSpin.modal.widthMultiplier,
-	panelWidthMultiplier: VISUAL_LAYOUT.freeSpin.modal.panelWidthMultiplier,
-	panelHeightMultiplier: VISUAL_LAYOUT.freeSpin.modal.panelHeightMultiplier,
-	yOffsetFromBoard: VISUAL_LAYOUT.freeSpin.modal.yOffsetFromBoard,
-	contentXRatio: VISUAL_LAYOUT.freeSpin.modal.contentXRatio,
-	contentYRatio: VISUAL_LAYOUT.freeSpin.modal.contentYRatio,
-	modalSpriteAnchor: VISUAL_LAYOUT.freeSpin.modal.modalSpriteAnchor,
+	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
+	modalSpriteAnchor: VISUAL_LAYOUT.freeSpin.modal.spriteAnchor,
 } as const;
 
 export const FREE_SPIN_INTRO = {
@@ -620,7 +777,7 @@ export const FREE_SPIN_INTRO = {
 		anchor: VISUAL_LAYOUT.freeSpin.intro.congrats.anchor,
 	},
 	numberSpine: {
-		widthRatio: VISUAL_LAYOUT.freeSpin.intro.numberSpine.widthRatio,
+		width: VISUAL_LAYOUT.freeSpin.intro.numberSpine.width,
 		y: VISUAL_LAYOUT.freeSpin.intro.numberSpine.y,
 		zIndex: VISUAL_LAYOUT.freeSpin.intro.numberSpine.zIndex,
 		numberTextAnchor: VISUAL_LAYOUT.freeSpin.intro.numberSpine.numberTextAnchor,
@@ -634,9 +791,9 @@ export const FREE_SPIN_INTRO = {
 
 export const FREE_SPIN_OUTRO = {
 	numberSpine: {
-		widthRatio: VISUAL_LAYOUT.freeSpin.outro.numberSpine.widthRatio,
+		width: VISUAL_LAYOUT.freeSpin.outro.numberSpine.width,
 		zIndex: VISUAL_LAYOUT.freeSpin.outro.numberSpine.zIndex,
-		maxWidthRatio: VISUAL_LAYOUT.freeSpin.outro.numberSpine.maxWidthRatio,
+		maxWidth: VISUAL_LAYOUT.freeSpin.outro.numberSpine.maxWidth,
 	},
 	bigWinCongratsSprite: {
 		width: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.width,
@@ -645,21 +802,21 @@ export const FREE_SPIN_OUTRO = {
 	},
 	youWon: {
 		anchor: VISUAL_LAYOUT.freeSpin.outro.youWon.anchor,
-		widthScale: VISUAL_LAYOUT.freeSpin.outro.youWon.widthScale,
-		heightScale: VISUAL_LAYOUT.freeSpin.outro.youWon.heightScale,
+		width: VISUAL_LAYOUT.freeSpin.outro.youWon.width,
+		height: VISUAL_LAYOUT.freeSpin.outro.youWon.height,
 		x: VISUAL_LAYOUT.freeSpin.outro.youWon.x,
-		yRatio: VISUAL_LAYOUT.freeSpin.outro.youWon.yRatio,
+		y: VISUAL_LAYOUT.freeSpin.outro.youWon.y,
 		zIndex: VISUAL_LAYOUT.freeSpin.outro.youWon.zIndex,
 	},
 	totalWin: {
 		anchor: VISUAL_LAYOUT.freeSpin.outro.totalWin.anchor,
-		widthScale: VISUAL_LAYOUT.freeSpin.outro.totalWin.widthScale,
-		heightScale: VISUAL_LAYOUT.freeSpin.outro.totalWin.heightScale,
+		width: VISUAL_LAYOUT.freeSpin.outro.totalWin.width,
+		height: VISUAL_LAYOUT.freeSpin.outro.totalWin.height,
 		x: VISUAL_LAYOUT.freeSpin.outro.totalWin.x,
-		yRatio: VISUAL_LAYOUT.freeSpin.outro.totalWin.yRatio,
+		y: VISUAL_LAYOUT.freeSpin.outro.totalWin.y,
 		zIndex: VISUAL_LAYOUT.freeSpin.outro.totalWin.zIndex,
-		bigWidthScale: VISUAL_LAYOUT.freeSpin.outro.totalWin.bigWidthScale,
-		bigHeightScale: VISUAL_LAYOUT.freeSpin.outro.totalWin.bigHeightScale,
+		bigWidth: VISUAL_LAYOUT.freeSpin.outro.totalWin.big.width,
+		bigHeight: VISUAL_LAYOUT.freeSpin.outro.totalWin.big.height,
 	},
 } as const;
 
@@ -669,16 +826,11 @@ export const FREE_SPIN_OUTRO_LABELS = {
 	totalWin: FREE_SPIN_OUTRO.totalWin,
 };
 
-export const FREE_SPIN_COUNTER = VISUAL_LAYOUT.freeSpin.counter.layout;
+export const FREE_SPIN_COUNTER = getFreeSpinCounterLayout('desktop');
 
-export const PRESS_TO_CONTINUE = {
-	width: VISUAL_LAYOUT.ui.pressToContinue.width,
-	xRatio: VISUAL_LAYOUT.ui.pressToContinue.xRatio,
-	yRatio: VISUAL_LAYOUT.ui.pressToContinue.yRatio,
-	anchor: VISUAL_LAYOUT.ui.pressToContinue.anchor,
-} as const;
+export const PRESS_TO_CONTINUE = getPressToContinueLayout('desktop');
 
-export const LOADING_SCREEN = VISUAL_LAYOUT.loading.screen;
+export const LOADING_SCREEN = getLoadingScreenLayout('desktop');
 
 export const WIN_LAYOUT = VISUAL_LAYOUT.win.layout;
 
