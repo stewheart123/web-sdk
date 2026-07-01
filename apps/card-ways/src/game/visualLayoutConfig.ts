@@ -249,8 +249,8 @@ export const VISUAL_LAYOUT = {
 		layoutByType: {
 			desktop: { width: 140, x: 55, y: 145, align: 'topLeft', offset: { x: 24, y: 0 } },
 			landscape: { width: 120, x: 900, y: 30, align: 'topCenter' },
-			portrait: { width: 200, x: 320, y: 100, align: 'topCenter' },
-			tablet: { width: 120, x: 755, y: 50, align: 'topRight' },
+			portrait: { width: 150, x: 55, y: 100, align: 'topLeft' },
+			tablet: { width: 120, x: 150, y: 50, align: 'topLeft' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
 	// layoutSpace: board-local — ModifierReel.svelte; x/y offset from board right edge
@@ -300,9 +300,9 @@ export const VISUAL_LAYOUT = {
 				cardWindowHeight: 224,
 				scrollDistance: 204,
 				scrollDuration: 333,
-				scale: 1,
-				x: -50,
-				y: -170,
+				scale: 0.9,
+				x: -100,
+				y: -200,
 			},
 			tablet: {
 				slabWidth: 204,
