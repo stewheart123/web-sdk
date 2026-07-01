@@ -134,9 +134,18 @@ export type BitmapFontUsageConfig = {
 
 // ---------------------------------------------------------------------------
 // VISUAL_LAYOUT — labels + layout values (Area/Element convention)
-// Game-layer values are game virtual pixels inside MainContainer unless noted.
+//
+// layoutSpace labels (top-level blocks):
+//   canvas      — screen pixels / fractions; applied outside MainContainer
+//   virtual     — fixed coords inside MainContainer (scaled design box)
+//   board       — offset from boardLayout center (reel grid)
+//   board-local — offset from board edges / board-local origin (modifier, frame)
+//   modal-local — offset inside free-spin modal panel (intro/outro children)
+//   meta        — defines coordinate system, not element placement
+//   n/a         — labels, styling, or sizing only (no position)
 // ---------------------------------------------------------------------------
 
+// layoutSpace: board — FreeSpinAnimation.svelte: boardLayout + offsetFromBoard
 const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = {
 	desktop: {
 		width: 1020 * 0.7,
@@ -169,6 +178,7 @@ const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = 
 };
 
 export const VISUAL_LAYOUT = {
+	// layoutSpace: canvas — Background.svelte; centeredBackgroundLayout on window
 	background: {
 		backdrop: { label: 'Background/Backdrop', zIndex: -3 },
 		base: { label: 'Background/Base', zIndex: -2 },
@@ -180,6 +190,7 @@ export const VISUAL_LAYOUT = {
 		artSize: { width: 1264, height: 842 },
 		offset: { x: 0, y: 0 },
 	},
+	// layoutSpace: virtual — board origin derived in stateGame; frame.offset* is board-local
 	board: {
 		root: { label: 'Board/Root' },
 		mask: {
@@ -229,6 +240,7 @@ export const VISUAL_LAYOUT = {
 			yOffset: 12,
 		},
 	},
+	// layoutSpace: virtual — GameLogo.svelte inside MainContainer
 	logo: {
 		root: { label: 'Logo/Root' },
 		spine: { label: 'Logo/Spine' },
@@ -239,6 +251,7 @@ export const VISUAL_LAYOUT = {
 			tablet: { width: 120, x: 900, y: 50, align: 'topRight' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
+	// layoutSpace: board-local — ModifierReel.svelte; desktopPosition / portraitPosition
 	modifier: {
 		root: { label: 'Modifier/Root' },
 		slab: { label: 'Modifier/Slab' },
@@ -306,6 +319,7 @@ export const VISUAL_LAYOUT = {
 		} satisfies Record<LayoutType, ModifierLayoutSettings>,
 	},
 	freeSpin: {
+		// layoutSpace: board — see FREE_SPIN_MODAL_LAYOUT_BY_TYPE
 		modal: {
 			root: { label: 'FreeSpin/Modal/Root' },
 			shine: { label: 'FreeSpin/Modal/Shine' },
@@ -314,6 +328,7 @@ export const VISUAL_LAYOUT = {
 			spriteAnchor: { x: 0.5, y: 0.5 },
 			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
+		// layoutSpace: modal-local — children positioned inside modal panel
 		intro: {
 			congrats: {
 				label: 'FreeSpin/Intro/Congrats',
@@ -337,6 +352,7 @@ export const VISUAL_LAYOUT = {
 				anchor: { x: 0.5, y: -2 },
 			},
 		},
+		// layoutSpace: modal-local — children positioned inside modal panel
 		outro: {
 			numberSpine: {
 				label: 'FreeSpin/Outro/NumberSpine',
@@ -371,6 +387,7 @@ export const VISUAL_LAYOUT = {
 				big: { width: 408, height: 29 },
 			},
 		},
+		// layoutSpace: board — FreeSpinCounter.svelte; position computed from boardLayout
 		counter: {
 			panel: { label: 'FreeSpin/Counter/Panel' },
 			text: { label: 'FreeSpin/Counter/Text' },
@@ -432,6 +449,7 @@ export const VISUAL_LAYOUT = {
 			} satisfies Record<LayoutType, FreeSpinCounterLayoutSettings>,
 		},
 	},
+	// layoutSpace: board — Win.svelte anchored to boardLayout; dim overlay is canvas
 	win: {
 		root: { label: 'Win/Root' },
 		dim: { label: 'Win/Dim' },
@@ -447,6 +465,7 @@ export const VISUAL_LAYOUT = {
 			countUpCompleteDelayMs: 300,
 		},
 	},
+	// layoutSpace: virtual — LoadingScreen.svelte inside MainContainer
 	loading: {
 		root: { label: 'Loading/Root' },
 		logo: { label: 'Loading/Logo' },
@@ -482,6 +501,7 @@ export const VISUAL_LAYOUT = {
 			} satisfies Record<LayoutType, LoadingScreenLayoutSettings>,
 		},
 	},
+	// layoutSpace: n/a — MainContainer scene labels only
 	layout: {
 		frameLayer: { label: 'Layout/FrameLayer' },
 		boardLayer: { label: 'Layout/BoardLayer' },
@@ -492,6 +512,7 @@ export const VISUAL_LAYOUT = {
 		freeSpinCounter: { label: 'Layout/FreeSpinCounter' },
 		loading: { label: 'Layout/Loading' },
 	},
+	// layoutSpace: n/a — FadeContainer scene labels only
 	fade: {
 		backgroundBase: { label: 'Fade/Background/Base' },
 		backgroundFeature: { label: 'Fade/Background/Feature' },
@@ -505,6 +526,8 @@ export const VISUAL_LAYOUT = {
 		loadingTransition: { label: 'Fade/Loading/Transition' },
 	},
 	ui: {
+		// layoutSpace: virtual — PressToContinue.svelte; MainContainer alignVertical=bottom
+		// note: drifts on portrait height — candidate for canvas yRatio
 		pressToContinue: {
 			label: 'UI/PressToContinue',
 			layoutByType: {
@@ -515,6 +538,7 @@ export const VISUAL_LAYOUT = {
 			} satisfies Record<LayoutType, PressToContinueLayoutSettings>,
 		},
 	},
+	// layoutSpace: n/a — overlay colour/alpha; win dim applied as canvas in Win.svelte
 	overlay: {
 		dim: { label: 'Overlay/Dim' },
 		backgroundColor: 0x000000,
@@ -522,6 +546,7 @@ export const VISUAL_LAYOUT = {
 		/** Fade duration in ms — matches HALF_SECOND. */
 		fadeDurationMs: 500,
 	},
+	// layoutSpace: canvas — BonusTransitionAnimation.svelte; xRatio/yRatio on window
 	transition: {
 		bonus: { label: 'Transition/Bonus' },
 		layoutByType: {
@@ -531,9 +556,11 @@ export const VISUAL_LAYOUT = {
 			tablet: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.75 },
 		} satisfies Record<LayoutType, BonusTransitionLayoutSettings>,
 	},
+	// layoutSpace: n/a — dev-only labels
 	dev: {
 		i18nTest: { label: 'Dev/I18nTest' },
 	},
+	// layoutSpace: meta — mainSizesByType defines the virtual design box per layoutType
 	canvas: {
 		mainSizesByType: {
 			desktop: { width: 1422, height: 800 },
@@ -542,6 +569,7 @@ export const VISUAL_LAYOUT = {
 			portrait: { width: 800, height: 1422 },
 		} satisfies Record<LayoutType, { width: number; height: number }>,
 	},
+	// layoutSpace: n/a — bitmap font sizing rules, not position
 	fonts: {
 		textLayout: {
 			winBig: { font: 'gold', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },

@@ -28,6 +28,7 @@
 	import ModifierReel from './ModifierReel.svelte';
 	import I18nTest from './I18nTest.svelte';
 	import GameLogo from './GameLogo.svelte';
+	import MainContainerDebugOverlay from './MainContainerDebugOverlay.svelte';
 
 	const context = getContext();
 
@@ -68,6 +69,8 @@
 			<Board />
 			<ModifierReel />
 		</MainContainer>
+
+		<MainContainerDebugOverlay />
 
 		<UI>
 			{#snippet gameName()}
