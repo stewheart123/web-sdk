@@ -223,16 +223,16 @@ export const VISUAL_LAYOUT = {
 				frame: { offsetX: -100, offsetY: 32, width: 1000, height: 688 },
 			},
 			portrait: {
-				symbolScale: 1.0,
-				boardXOffset: -45,
-				boardYOffset: 0,
-				frame: { offsetX: 12, offsetY: 5, width: 706, height: 550 },
+				symbolScale: 1.18,
+				boardXOffset: 0,
+				boardYOffset: -100,
+				frame: { offsetX: 2, offsetY: 70, width: 706 * 1.25, height: 550 * 1.5 },
 			},
 			tablet: {
 				symbolScale: 1.1,
 				boardXOffset: 0,
-				boardYOffset: 20,
-				frame: { offsetX: 9, offsetY: 70, width: 840, height: 688 },
+				boardYOffset: 0,
+				frame: { offsetX: 8, offsetY: 70, width: 840, height: 688 },
 			},
 		} satisfies Record<LayoutType, LayoutBoardSettings>,
 		anticipation: {
