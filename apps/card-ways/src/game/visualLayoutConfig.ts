@@ -217,10 +217,10 @@ export const VISUAL_LAYOUT = {
 				frame: { offsetX: 9, offsetY: 70, width: 840, height: 688 },
 			},
 			landscape: {
-				symbolScale: 1.0,
-				boardXOffset: 0,
-				boardYOffset: 62,
-				frame: { offsetX: -100, offsetY: 32, width: 1000, height: 688 },
+				symbolScale: 1.4,
+				boardXOffset: -250,
+				boardYOffset: -100,
+				frame: { offsetX: 10, offsetY: 110, width: 1100, height: 688 * 1.4 },
 			},
 			portrait: {
 				symbolScale: 1.18,
@@ -287,8 +287,8 @@ export const VISUAL_LAYOUT = {
 				scrollDistance: 204,
 				scrollDuration: 333,
 				scale: 1,
-				x: 153,
-				y: 204,
+				x: 170,
+				y: 150,
 			},
 			portrait: {
 				slabWidth: 194,
