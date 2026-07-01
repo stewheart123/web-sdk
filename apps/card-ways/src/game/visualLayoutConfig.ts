@@ -86,6 +86,8 @@ export type FreeSpinCounterLayoutSettings = {
 	text: VirtualOffset & {
 		containerAnchor: { x: number; y: number };
 		counterTextAnchor: { x: number; y: number };
+		/** Vertical gap between title and count lines (virtual pixels). */
+		lineGap: number;
 	};
 };
 
@@ -137,32 +139,32 @@ export type BitmapFontUsageConfig = {
 
 const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = {
 	desktop: {
-		width: 1020,
-		height: 651,
+		width: 1020 * 0.7,
+		height: 651 * 0.7,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510, y: 260 },
-		shineWidth: 408,
+		content: { x: 510 * 0.7, y: 260 },
+		shineWidth: 1020,
 	},
 	landscape: {
 		width: 1020,
 		height: 651,
 		offsetFromBoard: { x: 0, y: -60 },
 		content: { x: 510, y: 260 },
-		shineWidth: 408,
+		shineWidth: 1020,
 	},
 	portrait: {
-		width: 1020,
-		height: 651,
+		width: 1020 * 0.7,
+		height: 651 * 0.7,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510, y: 260 },
-		shineWidth: 408,
+		content: { x: 510 * 0.7, y: 260 },
+		shineWidth: 1020,
 	},
 	tablet: {
-		width: 1020,
-		height: 651,
+		width: 1020 * 0.7,
+		height: 651 * 0.7,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510, y: 260 },
-		shineWidth: 408,
+		content: { x: 510 * 0.7, y: 260 },
+		shineWidth: 1020 * 0.95,
 	},
 };
 
@@ -231,10 +233,10 @@ export const VISUAL_LAYOUT = {
 		root: { label: 'Logo/Root' },
 		spine: { label: 'Logo/Spine' },
 		layoutByType: {
-			desktop: { width: 120, x: 1252, y: 40, align: 'topRight' },
-			landscape: { width: 120, x: 800, y: 30, align: 'topCenter' },
+			desktop: { width: 200, x: 0, y: 140, align: 'topCenter' },
+			landscape: { width: 120, x: 900, y: 30, align: 'topCenter' },
 			portrait: { width: 100, x: 400, y: 40, align: 'topCenter' },
-			tablet: { width: 120, x: 870, y: 30, align: 'topRight' },
+			tablet: { width: 120, x: 900, y: 50, align: 'topRight' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
 	modifier: {
@@ -317,12 +319,13 @@ export const VISUAL_LAYOUT = {
 				label: 'FreeSpin/Intro/Congrats',
 				width: 682,
 				height: 136,
-				anchor: { x: 0.5, y: 2 },
+				y: 80,
+				anchor: { x: 0.5, y: 1.5 },
 			},
 			numberSpine: {
 				label: 'FreeSpin/Intro/NumberSpine',
-				width: 408,
-				y: -200,
+				width: 600,
+				y: -250,
 				zIndex: 1,
 				numberTextAnchor: { x: 0.5, y: 0.5 },
 			},
@@ -331,7 +334,7 @@ export const VISUAL_LAYOUT = {
 				label: 'FreeSpin/Intro/FreeSpinsLabel',
 				width: 335,
 				height: 67,
-				anchor: { x: 0.5, y: 5 },
+				anchor: { x: 0.5, y: -2 },
 			},
 		},
 		outro: {
@@ -375,7 +378,7 @@ export const VISUAL_LAYOUT = {
 			count: { label: 'FreeSpin/Counter/Count' },
 			layoutByType: {
 				desktop: {
-					panel: { width: 245, height: 185 },
+					panel: { width: 245, height: 85 },
 					gapFromBoard: 41,
 					scale: 1,
 					panelKey: 'Frame_FSCounter.png',
@@ -384,6 +387,7 @@ export const VISUAL_LAYOUT = {
 						y: 89,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
+						lineGap: 30,
 					},
 				},
 				landscape: {
@@ -396,6 +400,7 @@ export const VISUAL_LAYOUT = {
 						y: 89,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
+						lineGap: 30,
 					},
 				},
 				portrait: {
@@ -408,6 +413,7 @@ export const VISUAL_LAYOUT = {
 						y: 89,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
+						lineGap: 30,
 					},
 				},
 				tablet: {
@@ -420,6 +426,7 @@ export const VISUAL_LAYOUT = {
 						y: 89,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
+						lineGap: 30,
 					},
 				},
 			} satisfies Record<LayoutType, FreeSpinCounterLayoutSettings>,
@@ -501,10 +508,10 @@ export const VISUAL_LAYOUT = {
 		pressToContinue: {
 			label: 'UI/PressToContinue',
 			layoutByType: {
-				desktop: { x: 711, y: 640, width: 600, anchor: { x: 0.5, y: 1 } },
-				landscape: { x: 800, y: 720, width: 600, anchor: { x: 0.5, y: 1 } },
-				portrait: { x: 400, y: 1138, width: 600, anchor: { x: 0.5, y: 1 } },
-				tablet: { x: 500, y: 800, width: 600, anchor: { x: 0.5, y: 1 } },
+				desktop: { x: 711, y: 530, width: 600, anchor: { x: 0.5, y: 0.5 } },
+				landscape: { x: 800, y: 660, width: 600, anchor: { x: 0.5, y: 0.5 } },
+				portrait: { x: 400, y: 960, width: 600, anchor: { x: 0.5, y: 0.5 } },
+				tablet: { x: 500, y: 700, width: 600, anchor: { x: 0.5, y: 0.5 } },
 			} satisfies Record<LayoutType, PressToContinueLayoutSettings>,
 		},
 	},

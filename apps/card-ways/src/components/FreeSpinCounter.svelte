@@ -43,11 +43,15 @@
 	let titleSizes: Sizes = $state({ width: 0, height: 0 });
 	let counterSizes: Sizes = $state({ width: 0, height: 0 });
 
+	const lineGap = $derived(counterLayout.text.lineGap);
 	const textContainerSizes = $derived({
 		width: titleSizes.width,
-		height: titleSizes.height + counterSizes.height,
+		height: titleSizes.height + lineGap + counterSizes.height,
 	});
-	const counterPosition = $derived({ x: titleSizes.width / 2, y: titleSizes.height });
+	const counterPosition = $derived({
+		x: titleSizes.width / 2,
+		y: titleSizes.height + lineGap,
+	});
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinCounterShow: () => (show = true),
@@ -91,7 +95,7 @@
 			/>
 			<BitmapText
 				label={SCENE_LABELS.freeSpin.counter.count}
-				text={`${current} OF ${total}`}
+				text={`${current}`+ ` OF ` +`${total}`}
 				{...counterPosition}
 				anchor={counterLayout.text.counterTextAnchor}
 				style={freeSpinCounterStyle}
