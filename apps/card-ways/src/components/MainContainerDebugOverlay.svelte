@@ -12,6 +12,6 @@
 		width={mainLayout.width}
 		height={mainLayout.height}
 		backgroundColor={0xff0000}
-		backgroundAlpha={0.0}
+		backgroundAlpha={0.3}
 	/>
 </MainContainer>

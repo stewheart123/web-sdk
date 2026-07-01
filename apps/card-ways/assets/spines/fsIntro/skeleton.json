@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "ALicgX4RDNo",
+	"hash": "euvsIf+W1p8",
 	"spine": "4.3.23",
 	"x": -704,
 	"y": -384,
@@ -13,16 +13,25 @@
 	{ "name": "root" },
 	{ "name": "CARD-MODAL", "parent": "root" },
 	{ "name": "NEW-SHINE", "parent": "root" },
-	{ "name": "NEW-SHINE2", "parent": "root" }
+	{ "name": "NEW-SHINE2", "parent": "root" },
+	{ "name": "FRAME-BACK-GLOW", "parent": "CARD-MODAL" }
 ],
 "slots": [
 	{ "name": "Gemini_Generated_Image_mu3blrmu3blrmu3b", "bone": "NEW-SHINE", "attachment": "Gemini_Generated_Image_mu3blrmu3blrmu3b" },
-	{ "name": "Gemini_Generated_Image_mu3blrmu3blrmu3b2", "bone": "NEW-SHINE2", "attachment": "Gemini_Generated_Image_mu3blrmu3blrmu3b" }
+	{ "name": "Gemini_Generated_Image_mu3blrmu3blrmu3b2", "bone": "NEW-SHINE2", "attachment": "Gemini_Generated_Image_mu3blrmu3blrmu3b" },
+	{ "name": "FRAME-BACK-GLOW", "bone": "FRAME-BACK-GLOW", "color": "ffffffbc", "attachment": "FRAME-BACK-GLOW" },
+	{ "name": "FRAME-BACK", "bone": "CARD-MODAL", "attachment": "FRAME-BACK" }
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
+			"FRAME-BACK": {
+				"FRAME-BACK": { "scaleX": 0.5, "scaleY": 0.5, "width": 1111, "height": 670 }
+			},
+			"FRAME-BACK-GLOW": {
+				"FRAME-BACK-GLOW": { "scaleX": 0.5, "scaleY": 0.5, "width": 1111, "height": 670 }
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"Gemini_Generated_Image_mu3blrmu3blrmu3b": { "width": 1408, "height": 768 }
 			},
@@ -35,6 +44,33 @@
 "animations": {
 	"FS-FRAME-GLOW": {
 		"slots": {
+			"FRAME-BACK": {
+				"rgba": [
+					{ "color": "ffffffff" },
+					{ "time": 0.2, "color": "ffffff99" },
+					{ "time": 0.4, "color": "ffffffff" },
+					{ "time": 0.6, "color": "ffffff99" },
+					{ "time": 0.8, "color": "ffffffff" },
+					{ "time": 1, "color": "ffffff99" },
+					{ "time": 1.2, "color": "ffffffff" },
+					{ "time": 1.4, "color": "ffffff99" },
+					{ "time": 1.6, "color": "ffffffff" },
+					{ "time": 1.8, "color": "ffffff99" },
+					{ "time": 2, "color": "ffffffff" },
+					{ "time": 2.2, "color": "ffffff99" },
+					{ "time": 2.4, "color": "ffffffff" },
+					{ "time": 2.6, "color": "ffffff99" },
+					{ "time": 2.8, "color": "ffffffff" },
+					{ "time": 3, "color": "ffffff99" },
+					{ "time": 3.2, "color": "ffffffff" },
+					{ "time": 3.4, "color": "ffffff99" },
+					{ "time": 3.6, "color": "ffffffff" },
+					{ "time": 3.8, "color": "ffffff99" },
+					{ "time": 4, "color": "ffffffff" },
+					{ "time": 4.2, "color": "ffffff99" },
+					{ "time": 4.4, "color": "ffffffff" }
+				]
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"rgb": [
 					{ "color": "6eff00" }
@@ -42,7 +78,10 @@
 				"alpha": [
 					{ "value": 0.3875 },
 					{ "time": 2.233333, "value": 0.2771 },
-					{ "time": 4.333333, "value": 0.243 }
+					{ "time": 4.4, "value": 0.243 }
+				],
+				"attachment": [
+					{}
 				]
 			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b2": {
@@ -52,16 +91,46 @@
 				"alpha": [
 					{ "value": 0.3655 },
 					{ "time": 2.166667, "value": 0.7751 },
-					{ "time": 4.333333, "value": 0.3647 }
+					{ "time": 4.4, "value": 0.3647 }
+				],
+				"attachment": [
+					{}
 				]
 			}
 		},
 		"bones": {
+			"FRAME-BACK-GLOW": {
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.2, "x": 1.1, "y": 1.1 },
+					{ "time": 0.4, "curve": "stepped" },
+					{ "time": 0.6, "x": 1.1, "y": 1.1 },
+					{ "time": 0.8, "curve": "stepped" },
+					{ "time": 1, "x": 1.1, "y": 1.1 },
+					{ "time": 1.2, "curve": "stepped" },
+					{ "time": 1.4, "x": 1.1, "y": 1.1 },
+					{ "time": 1.6, "curve": "stepped" },
+					{ "time": 1.8, "x": 1.1, "y": 1.1 },
+					{ "time": 2, "curve": "stepped" },
+					{ "time": 2.2, "x": 1.1, "y": 1.1 },
+					{ "time": 2.4, "curve": "stepped" },
+					{ "time": 2.6, "x": 1.1, "y": 1.1 },
+					{ "time": 2.8, "curve": "stepped" },
+					{ "time": 3, "x": 1.1, "y": 1.1 },
+					{ "time": 3.2, "curve": "stepped" },
+					{ "time": 3.4, "x": 1.1, "y": 1.1 },
+					{ "time": 3.6, "curve": "stepped" },
+					{ "time": 3.8, "x": 1.1, "y": 1.1 },
+					{ "time": 4, "curve": "stepped" },
+					{ "time": 4.2, "x": 1.1, "y": 1.1 },
+					{ "time": 4.4 }
+				]
+			},
 			"NEW-SHINE": {
 				"rotate": [
 					{},
 					{ "time": 2.233333, "value": 10.8 },
-					{ "time": 4.333333 }
+					{ "time": 4.4 }
 				],
 				"translate": [
 					{ "x": 14.637573, "y": 20.910797 }
@@ -74,35 +143,40 @@
 				"rotate": [
 					{},
 					{ "time": 2.1333334, "value": -8.15097 },
-					{ "time": 4.333333 }
+					{ "time": 4.4 }
 				],
 				"scale": [
 					{},
 					{ "time": 2.166667, "x": 0.9, "y": 0.9 },
-					{ "time": 4.333333 }
+					{ "time": 4.4 }
 				]
 			}
 		}
 	},
 	"NEW-SHINE": {
 		"slots": {
+			"FRAME-BACK": {
+				"attachment": [
+					{}
+				]
+			},
+			"FRAME-BACK-GLOW": {
+				"attachment": [
+					{}
+				]
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"rgb": [
-					{ "color": "ffea00" },
+					{ "color": "ff0000" },
 					{ "time": 2.2, "color": "ff1d00" },
-					{ "time": 4.333333, "color": "ffea00" }
+					{ "time": 4.333333, "color": "ff0000" }
 				]
 			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b2": {
 				"rgb": [
-					{ "color": "5100ff" },
-					{ "time": 2.166667, "color": "00f7ff" },
-					{ "time": 4.333333, "color": "5100ff" }
-				],
-				"alpha": [
-					{ "value": 1.0 },
-					{ "time": 2.166667, "value": 0.45889997 },
-					{ "time": 4.333333, "value": 1.0 }
+					{ "color": "ff5b00" },
+					{ "time": 2.166667, "color": "fd00ff" },
+					{ "time": 4.333333, "color": "ff5b00" }
 				]
 			}
 		},
@@ -123,7 +197,7 @@
 			"NEW-SHINE2": {
 				"rotate": [
 					{},
-					{ "time": 2.1333334, "value": -8.15097 },
+					{ "time": 2.166667, "value": -8.15097 },
 					{ "time": 4.333333 }
 				],
 				"scale": [
@@ -136,23 +210,28 @@
 	},
 	"NEW-SHINE-INTRO": {
 		"slots": {
+			"FRAME-BACK": {
+				"attachment": [
+					{}
+				]
+			},
+			"FRAME-BACK-GLOW": {
+				"attachment": [
+					{}
+				]
+			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
 				"rgb": [
-					{ "color": "ffea00" },
-					{ "time": 0.7666666, "color": "ff1d00" },
-					{ "time": 1.7, "color": "ffea00" }
+					{ "color": "ff0000" },
+					{ "time": 0.5, "color": "ff1d00" },
+					{ "time": 1.0666667, "color": "ff0000" }
 				]
 			},
 			"Gemini_Generated_Image_mu3blrmu3blrmu3b2": {
 				"rgb": [
-					{ "color": "5100ff" },
-					{ "time": 0.7666666, "color": "00f7ff" },
-					{ "time": 1.6666666, "color": "5100ff" }
-				],
-				"alpha": [
-					{ "value": 1.0 },
-					{ "time": 0.7666666, "value": 0.45889997 },
-					{ "time": 1.6666666, "value": 1.0 }
+					{ "color": "ff5b00" },
+					{ "time": 0.5, "color": "fd00ff" },
+					{ "time": 1.0666667, "color": "ff5b00" }
 				]
 			}
 		},
@@ -160,26 +239,81 @@
 			"NEW-SHINE": {
 				"rotate": [
 					{},
-					{ "time": 0.8, "value": 10.8 },
-					{ "time": 1.7 }
+					{ "time": 0.5333333, "value": 10.8 },
+					{ "time": 1.0666667 }
 				],
 				"translate": [
 					{ "x": 14.637573, "y": 20.910797 }
 				],
 				"scale": [
 					{ "x": 1.0E-5, "y": 1.0E-5 },
-					{ "time": 1.7, "y": -1 }
+					{ "time": 1.0666667, "y": -1 }
 				]
 			},
 			"NEW-SHINE2": {
 				"rotate": [
 					{},
-					{ "time": 0.7333333, "value": -8.15097 },
-					{ "time": 1.6666666 }
+					{ "time": 0.4666667, "value": -8.15097 },
+					{ "time": 1.0666667 }
 				],
 				"scale": [
 					{ "x": 1.0E-5, "y": 1.0E-5 },
-					{ "time": 1.6666666 }
+					{ "time": 1.0666667 }
+				]
+			}
+		}
+	},
+	"NEW-SHINE2": {
+		"slots": {
+			"FRAME-BACK": {
+				"attachment": [
+					{}
+				]
+			},
+			"FRAME-BACK-GLOW": {
+				"attachment": [
+					{}
+				]
+			},
+			"Gemini_Generated_Image_mu3blrmu3blrmu3b": {
+				"rgb": [
+					{ "color": "ffbb00" },
+					{ "time": 2.233333, "color": "ff7e00" },
+					{ "time": 4.333333, "color": "ffbb00" }
+				]
+			},
+			"Gemini_Generated_Image_mu3blrmu3blrmu3b2": {
+				"rgb": [
+					{ "color": "ff6539" },
+					{ "time": 2.166667, "color": "ff0000" },
+					{ "time": 4.333333, "color": "ff6539" }
+				]
+			}
+		},
+		"bones": {
+			"NEW-SHINE": {
+				"rotate": [
+					{},
+					{ "time": 2.233333, "value": 10.8 },
+					{ "time": 4.333333 }
+				],
+				"translate": [
+					{ "x": 14.637573, "y": 20.910797 }
+				],
+				"scale": [
+					{ "y": -1 }
+				]
+			},
+			"NEW-SHINE2": {
+				"rotate": [
+					{},
+					{ "time": 2.166667, "value": -8.15097 },
+					{ "time": 4.333333 }
+				],
+				"scale": [
+					{},
+					{ "time": 2.166667, "x": 0.9, "y": 0.9 },
+					{ "time": 4.333333 }
 				]
 			}
 		}
