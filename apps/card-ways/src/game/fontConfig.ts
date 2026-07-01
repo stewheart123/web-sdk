@@ -1,6 +1,15 @@
 import type * as PIXI from 'pixi.js';
 
-export type BitmapFontId = 'gold' | 'goldBlur' | 'silver' | 'purple';
+import {
+	type BitmapFontId,
+	type BitmapFontUsage,
+	type BitmapFontUsageConfig,
+	type LayoutType,
+	TEXT_LAYOUT,
+	getFontScale,
+} from './visualLayoutConfig';
+
+export type { BitmapFontId, BitmapFontUsage, BitmapFontUsageConfig };
 
 export type BitmapFontConfig = {
 	family: string;
@@ -16,36 +25,15 @@ export const BITMAP_FONTS: Record<BitmapFontId, BitmapFontConfig> = {
 	purple: { family: 'purple', scale: 1, letterSpacing: 0, atlasSize: 177 },
 };
 
-export type BitmapFontUsage =
-	| 'winBig'
-	| 'winNormal'
-	| 'symbolMultiplier'
-	| 'freeSpinCounter'
-	| 'freeSpinIntro'
-	| 'freeSpinOutro';
-
-export type BitmapFontUsageConfig = {
-	font: BitmapFontId;
-	sizeMode: 'symbolMultiplier' | 'absolute' | 'widthRatio';
-	size: number;
-	letterSpacing?: number;
-	align?: 'left' | 'center' | 'right';
-};
-
-export const BITMAP_FONT_USAGES: Record<BitmapFontUsage, BitmapFontUsageConfig> = {
-	winBig: { font: 'gold', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },
-	winNormal: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.5, align: 'center' },
-	symbolMultiplier: { font: 'gold', sizeMode: 'absolute', size: 50 },
-	freeSpinCounter: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.275 },
-	freeSpinIntro: { font: 'gold', sizeMode: 'widthRatio', size: 0.05 },
-	freeSpinOutro: { font: 'gold', sizeMode: 'widthRatio', size: 0.08 },
-};
+/** @deprecated Use TEXT_LAYOUT from visualLayoutConfig */
+export const BITMAP_FONT_USAGES = TEXT_LAYOUT;
 
 const REFERENCE_ATLAS_SIZE = 72;
 
 export type BitmapFontStyleContext = {
 	symbolSize?: number;
 	width?: number;
+	layoutType?: LayoutType;
 };
 
 export type BitmapFontStyle = Pick<
@@ -60,24 +48,27 @@ const resolveFontSize = (
 	font: BitmapFontConfig,
 	context: BitmapFontStyleContext,
 ) => {
+	const layoutScale = context.layoutType ? getFontScale(context.layoutType) : 1;
 	const compensated = atlasCompensation(font);
 
 	if (usage.sizeMode === 'symbolMultiplier') {
-		return (context.symbolSize ?? 0) * usage.size * font.scale * compensated;
+		return (
+			(context.symbolSize ?? 0) * usage.size * font.scale * compensated * layoutScale
+		);
 	}
 
 	if (usage.sizeMode === 'absolute') {
-		return usage.size * font.scale * compensated;
+		return usage.size * font.scale * compensated * layoutScale;
 	}
 
-	return (context.width ?? 0) * usage.size * font.scale * compensated;
+	return (context.width ?? 0) * usage.size * font.scale * compensated * layoutScale;
 };
 
 export const getBitmapFontStyle = (
 	usageKey: BitmapFontUsage,
 	context: BitmapFontStyleContext = {},
 ): BitmapFontStyle => {
-	const usage = BITMAP_FONT_USAGES[usageKey];
+	const usage = TEXT_LAYOUT[usageKey];
 	const font = BITMAP_FONTS[usage.font];
 
 	return {

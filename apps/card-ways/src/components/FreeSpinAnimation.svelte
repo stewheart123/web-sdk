@@ -12,8 +12,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_ANIMATION } from '../game/visualLayoutConfig';
-	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
+	import { FREE_SPIN_MODAL, getFreeSpinModalSizes } from '../game/visualLayoutConfig';
 
 	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
 
@@ -27,33 +26,22 @@
 	type AnimationName = 'NEW-SHINE-INTRO' | 'NEW-SHINE';
 
 	const context = getContext();
-	const MODAL_RATIO = 613 / 391;
-	const BACKGROUND_WIDTH = SYMBOL_SIZE * BOARD_DIMENSIONS.x;
-	const BACKGROUND_SIZES = {
-		width: BACKGROUND_WIDTH,
-		height: BACKGROUND_WIDTH / MODAL_RATIO,
-	};
-	const PANEL_SIZES = {
-		width: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
-		height: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
-	};
+	const modalSizes = $derived(getFreeSpinModalSizes());
+	const backgroundSizes = $derived(modalSizes.background);
+	const panelSizes = $derived(modalSizes.panel);
+	const contentX = $derived(panelSizes.width * FREE_SPIN_MODAL.contentXRatio);
+	const contentY = $derived(panelSizes.height * FREE_SPIN_MODAL.contentYRatio);
 
 	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
 </script>
 
-<!-- Y position from visualLayoutConfig FREE_SPIN_ANIMATION -->
 <MainContainer>
 	<Container
 		x={context.stateGameDerived.boardLayout().x}
-		y={context.stateGameDerived.boardLayout().y + FREE_SPIN_ANIMATION.yOffsetFromBoard}
-		pivot={anchorToPivot({ anchor: 0.5, sizes: BACKGROUND_SIZES })}
+		y={context.stateGameDerived.boardLayout().y + FREE_SPIN_MODAL.yOffsetFromBoard}
+		pivot={anchorToPivot({ anchor: 0.5, sizes: backgroundSizes })}
 	>
-		<SpineProvider
-			key="fsIntro"
-			width={PANEL_SIZES.width}
-			x={PANEL_SIZES.width * 0.5}
-			y={PANEL_SIZES.height * 0.4}
-		>
+		<SpineProvider key="fsIntro" width={panelSizes.width} x={contentX} y={contentY}>
 			<SpineTrack
 				trackIndex={0}
 				{animationName}
@@ -64,14 +52,14 @@
 			/>
 		</SpineProvider>
 
-		<Container x={PANEL_SIZES.width * 0.5} y={PANEL_SIZES.height * 0.4}>
+		<Container x={contentX} y={contentY}>
 			<Sprite
 				key={props.modalKey}
-				anchor={{ x: 0.5, y: 0.5 }}
-				width={BACKGROUND_SIZES.width}
-				height={BACKGROUND_SIZES.height}
+				anchor={FREE_SPIN_MODAL.modalSpriteAnchor}
+				width={backgroundSizes.width}
+				height={backgroundSizes.height}
 			/>
-			{@render props.children({ sizes: BACKGROUND_SIZES })}
+			{@render props.children({ sizes: backgroundSizes })}
 		</Container>
 	</Container>
 </MainContainer>

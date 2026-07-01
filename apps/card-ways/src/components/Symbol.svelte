@@ -5,6 +5,7 @@
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { BitmapText } from 'pixi-svelte';
 	import { getBitmapFontStyle } from '../game/fontConfig';
+	import { getContext } from '../game/context';
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	type Props = {
@@ -17,6 +18,8 @@
 	};
 
 	const props: Props = $props();
+	const context = getContext();
+	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
 	const isSprite = $derived(symbolInfo.type === 'sprite');
 
@@ -60,6 +63,6 @@
 		x={props.x}
 		y={props.y}
 		text={`${props.rawSymbol.multiplier}X`}
-		style={getBitmapFontStyle('symbolMultiplier')}
+		style={getBitmapFontStyle('symbolMultiplier', { layoutType })}
 	/>
 {/if}

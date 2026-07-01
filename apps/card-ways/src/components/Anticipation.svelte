@@ -5,6 +5,7 @@
 	import { getContext } from '../game/context';
 	import type { Reel } from '../game/stateGame.svelte';
 	import { REEL_GAP, REEL_PADDING, SYMBOL_SIZE, SYMBOL_WIDTH } from '../game/constants';
+	import { ANTICIPATION } from '../game/visualLayoutConfig';
 
 	type Props = {
 		reel: Reel;
@@ -33,10 +34,11 @@
 >
 	<SpineProvider
 		key="anticipation"
-		width={SYMBOL_SIZE * 0.56}
-		height={SYMBOL_SIZE * 1.6}
+		width={SYMBOL_SIZE * ANTICIPATION.widthMultiplier}
+		height={SYMBOL_SIZE * ANTICIPATION.heightMultiplier}
 		x={SYMBOL_WIDTH * (props.reel.reelIndex + REEL_PADDING) + REEL_GAP * props.reel.reelIndex}
-		y={context.stateGameDerived.boardLayout().height * 0.5 - SYMBOL_SIZE * 0.06}
+		y={context.stateGameDerived.boardLayout().height * 0.5 -
+			SYMBOL_SIZE * ANTICIPATION.yOffsetMultiplier}
 	>
 		<SpineTrack
 			trackIndex={0}

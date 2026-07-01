@@ -20,8 +20,10 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { OVERLAY, WIN_LAYOUT } from '../game/visualLayoutConfig';
 
 	const context = getContext();
+	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 
 	let show = $state(false);
 	let amount = $state(0);
@@ -47,13 +49,16 @@
 		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				{#if isBigWin}
-					<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
+					<CanvasSizeRectangle
+						backgroundColor={OVERLAY.backgroundColor}
+						backgroundAlpha={OVERLAY.backgroundAlpha}
+					/>
 				{/if}
 
 				<OnMount
 					onmount={async () => {
 						await startCountUp();
-						await waitForTimeout(300);
+						await waitForTimeout(WIN_LAYOUT.countUpCompleteDelayMs);
 						oncomplete();
 					}}
 				/>
@@ -67,13 +72,16 @@
 					>
 						{#if winLevelData?.animation}
 							<WinAnimation animationName={winLevelData.animation}>
-								<Container scale={0.7}>
+								<Container scale={WIN_LAYOUT.bigWinTextContainerScale}>
 									<ResponsiveBitmapText
 										anchor={0.5}
-										maxWidth={2130}
+										maxWidth={WIN_LAYOUT.bigWinTextMaxWidth}
 										text={bookEventAmountToCurrencyString(countUpAmount)}
 										style={{
-											...getBitmapFontStyle('winBig', { symbolSize: SYMBOL_SIZE }),
+											...getBitmapFontStyle('winBig', {
+												symbolSize: SYMBOL_SIZE,
+												layoutType,
+											}),
 											fontWeight: 'bold',
 										}}
 									/>
@@ -88,7 +96,10 @@
 									context.stateLayoutDerived.mainLayout().scale}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
-									...getBitmapFontStyle('winNormal', { symbolSize: SYMBOL_SIZE }),
+									...getBitmapFontStyle('winNormal', {
+										symbolSize: SYMBOL_SIZE,
+										layoutType,
+									}),
 									fontWeight: 'bold',
 								}}
 							/>

@@ -3,11 +3,13 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { BOARD_MASK } from '../game/visualLayoutConfig';
 
 	type Props = { debug?: boolean };
 
 	const props: Props = $props();
 	const context = getContext();
+	const horizontalPadding = $derived(SYMBOL_SIZE * BOARD_MASK.horizontalPadding);
 </script>
 
 {#if props.debug}
@@ -21,7 +23,7 @@
 
 <Rectangle
 	isMask
-	x={-SYMBOL_SIZE}
-	width={context.stateGameDerived.boardLayout().width + SYMBOL_SIZE * 2}
+	x={-horizontalPadding}
+	width={context.stateGameDerived.boardLayout().width + horizontalPadding * 2}
 	height={context.stateGameDerived.boardLayout().height}
 />

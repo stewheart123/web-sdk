@@ -1,4 +1,4 @@
-import { SYMBOL_SIZE } from './constants';
+import { BOARD_DIMENSIONS, SYMBOL_SIZE } from './constants';
 
 // ---------------------------------------------------------------------------
 // Layout types & virtual canvas sizes (game MainContainer coordinate space)
@@ -26,6 +26,23 @@ export const BACKGROUND_ART_SIZE = {
 export const BACKGROUND_OFFSET = {
 	x: 0,
 	y: 0,
+} as const;
+
+export const BACKGROUND_LAYERS = {
+	backdrop: -3,
+	normal: -2,
+	feature: -1,
+} as const;
+
+// ---------------------------------------------------------------------------
+// Shared overlay (dim background on modals / win screens)
+// ---------------------------------------------------------------------------
+
+export const OVERLAY = {
+	backgroundColor: 0x000000,
+	backgroundAlpha: 0.5,
+	/** Fade duration in ms — matches HALF_SECOND. */
+	fadeDurationMs: 500,
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -76,6 +93,11 @@ export const BOARD_LAYOUT_BY_TYPE: Record<LayoutType, LayoutBoardSettings> = {
 		frame: { offsetX: 0, offsetY: 0, width: 900, height: 620 },
 	},
 };
+
+export const BOARD_MASK = {
+	/** Horizontal mask padding as a multiple of SYMBOL_SIZE (applied left and right). */
+	horizontalPadding: 1,
+} as const;
 
 export const FRAME_GLOW = {
 	spineScale: { width: 0.62 * 2.5, height: 0.66 * 2 },
@@ -164,6 +186,17 @@ export const MODIFIER_LAYOUT_BY_TYPE: Record<LayoutType, ModifierLayoutSettings>
 };
 
 // ---------------------------------------------------------------------------
+// Anticipation spine (per reel)
+// ---------------------------------------------------------------------------
+
+export const ANTICIPATION = {
+	widthMultiplier: 0.56,
+	heightMultiplier: 1.6,
+	/** Subtracted from board centre y: y = boardHeight * 0.5 - SYMBOL_SIZE * yOffsetMultiplier */
+	yOffsetMultiplier: 0.06,
+} as const;
+
+// ---------------------------------------------------------------------------
 // Bonus transition (full canvas space)
 // ---------------------------------------------------------------------------
 
@@ -186,15 +219,82 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE: Record<LayoutType, BonusTransition
 };
 
 // ---------------------------------------------------------------------------
-// Free spin overlays
+// Free spin modal (shared by intro & outro)
 // ---------------------------------------------------------------------------
 
-export const FREE_SPIN_ANIMATION = {
-	/** Vertical offset from board center (negative = up). */
+export const FREE_SPIN_MODAL = {
+	/** Aspect ratio of the foil modal sprite (width / height). */
+	modalRatio: 613 / 391,
+	/** Multiplier on SYMBOL_SIZE * BOARD_DIMENSIONS.x for modal background width. */
+	widthMultiplier: 1,
+	panelWidthMultiplier: 1,
+	panelHeightMultiplier: 1,
+	/** Vertical offset from boardLayout y (negative = up). */
 	yOffsetFromBoard: -60,
+	/** Position of shine spine and modal content container within panel space. */
+	contentXRatio: 0.5,
+	contentYRatio: 0.4,
+	modalSpriteAnchor: { x: 0.5, y: 0.5 },
 } as const;
 
-export const FREE_SPIN_OUTRO_LABELS = {
+export const getFreeSpinModalSizes = () => {
+	const baseWidth = SYMBOL_SIZE * BOARD_DIMENSIONS.x;
+	const backgroundWidth = baseWidth * FREE_SPIN_MODAL.widthMultiplier;
+
+	return {
+		background: {
+			width: backgroundWidth,
+			height: backgroundWidth / FREE_SPIN_MODAL.modalRatio,
+		},
+		panel: {
+			width: baseWidth * FREE_SPIN_MODAL.panelWidthMultiplier,
+			height: baseWidth * FREE_SPIN_MODAL.panelHeightMultiplier,
+		},
+	};
+};
+
+// ---------------------------------------------------------------------------
+// Free spin intro
+// ---------------------------------------------------------------------------
+
+export const FREE_SPIN_INTRO = {
+	/** "Congratulations" / freespins_{lang}.png header sprite. */
+	congratsSprite: {
+		width: 426 * 1.6,
+		height: 85 * 1.6,
+		anchor: { x: 0.5, y: 2 },
+	},
+	/** Spine + bitmap number (e.g. "10"). */
+	numberSpine: {
+		widthRatio: 0.4,
+		y: -200,
+		zIndex: 1,
+		numberTextAnchor: { x: 0.5, y: 0.5 },
+	},
+	/** "FREE SPINS" label sprite (freespins.png). */
+	freeSpinsLabel: {
+		width: 335,
+		height: 67,
+		anchor: { x: 0.5, y: 5 },
+	},
+} as const;
+
+// ---------------------------------------------------------------------------
+// Free spin outro
+// ---------------------------------------------------------------------------
+
+export const FREE_SPIN_OUTRO = {
+	numberSpine: {
+		widthRatio: 0.4,
+		zIndex: 1,
+		maxWidthRatio: 1,
+	},
+	/** Big-win variant of congrats header (freespins_{lang}.png). */
+	bigWinCongratsSprite: {
+		width: 426 * 2.2,
+		height: 85 * 2.2,
+		anchor: { x: 0.5, y: 1.2 },
+	},
 	youWon: {
 		anchor: { x: 0.5, y: 0.5 },
 		widthScale: 0.7,
@@ -215,9 +315,95 @@ export const FREE_SPIN_OUTRO_LABELS = {
 	},
 } as const;
 
+/** @deprecated Use FREE_SPIN_OUTRO */
+export const FREE_SPIN_OUTRO_LABELS = {
+	youWon: FREE_SPIN_OUTRO.youWon,
+	totalWin: FREE_SPIN_OUTRO.totalWin,
+};
+
 // ---------------------------------------------------------------------------
-// Font scale multipliers per layout (used in phase 4)
+// Free spin counter (desktop / landscape HUD)
 // ---------------------------------------------------------------------------
+
+export const FREE_SPIN_COUNTER = {
+	panelKey: 'Frame_FSCounter.png',
+	panelRatio: 824 / 622,
+	widthMultiplier: 1.2,
+	gapFromBoard: 0.2,
+	scale: 1,
+	textContainerXRatio: 0.5,
+	textContainerYRatio: 0.48,
+	textContainerAnchor: { x: 0.5, y: 0.5 },
+	counterTextAnchor: { x: 0.5, y: 0 },
+} as const;
+
+// ---------------------------------------------------------------------------
+// Press to continue (intro, outro, win, loading)
+// ---------------------------------------------------------------------------
+
+export const PRESS_TO_CONTINUE = {
+	width: 600,
+	xRatio: 0.5,
+	yRatio: 0.8,
+	anchor: { x: 0.5, y: 1 },
+} as const;
+
+// ---------------------------------------------------------------------------
+// Loading screen
+// ---------------------------------------------------------------------------
+
+export const LOADING_SCREEN = {
+	logoWidth: 300,
+	xRatio: 0.5,
+	yRatio: 0.5,
+	progressBar: {
+		y: 250,
+		width: 1967 * 0.2,
+		height: 346 * 0.2,
+	},
+} as const;
+
+// ---------------------------------------------------------------------------
+// Win overlay
+// ---------------------------------------------------------------------------
+
+export const WIN_LAYOUT = {
+	bigWinTextContainerScale: 0.7,
+	bigWinTextMaxWidth: 2130,
+	animationScale: 0.55,
+	countUpCompleteDelayMs: 300,
+} as const;
+
+// ---------------------------------------------------------------------------
+// Bitmap text sizes (used by fontConfig)
+// ---------------------------------------------------------------------------
+
+export type BitmapFontId = 'gold' | 'goldBlur' | 'silver' | 'purple';
+
+export type BitmapFontUsage =
+	| 'winBig'
+	| 'winNormal'
+	| 'symbolMultiplier'
+	| 'freeSpinCounter'
+	| 'freeSpinIntro'
+	| 'freeSpinOutro';
+
+export type BitmapFontUsageConfig = {
+	font: BitmapFontId;
+	sizeMode: 'symbolMultiplier' | 'absolute' | 'widthRatio';
+	size: number;
+	letterSpacing?: number;
+	align?: 'left' | 'center' | 'right';
+};
+
+export const TEXT_LAYOUT: Record<BitmapFontUsage, BitmapFontUsageConfig> = {
+	winBig: { font: 'gold', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },
+	winNormal: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.5, align: 'center' },
+	symbolMultiplier: { font: 'gold', sizeMode: 'absolute', size: 50 },
+	freeSpinCounter: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.275 },
+	freeSpinIntro: { font: 'gold', sizeMode: 'widthRatio', size: 0.05 },
+	freeSpinOutro: { font: 'gold', sizeMode: 'widthRatio', size: 0.08 },
+};
 
 export const FONT_SCALE_BY_TYPE: Record<LayoutType, number> = {
 	desktop: 1,
@@ -243,3 +429,8 @@ export const getBonusTransitionLayoutSettings = (layoutType: LayoutType) =>
 	BONUS_TRANSITION_LAYOUT_BY_TYPE[layoutType];
 
 export const getFontScale = (layoutType: LayoutType) => FONT_SCALE_BY_TYPE[layoutType];
+
+/** @deprecated Use FREE_SPIN_MODAL */
+export const FREE_SPIN_ANIMATION = {
+	yOffsetFromBoard: FREE_SPIN_MODAL.yOffsetFromBoard,
+};

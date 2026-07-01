@@ -4,6 +4,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
+	import { LOADING_SCREEN } from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -14,21 +15,26 @@
 	const props: Props = $props();
 	const context = getContext();
 
+	const position = $derived({
+		x: context.stateLayoutDerived.mainLayout().width * LOADING_SCREEN.xRatio,
+		y: context.stateLayoutDerived.mainLayout().height * LOADING_SCREEN.yRatio,
+	});
+
 	let loadingType = $state<'start' | 'transition'>('start');
 </script>
 
-<!-- logo and loading progress -->
 <FadeContainer show={loadingType === 'start'}>
 	<MainContainer>
-		<Container
-			x={context.stateLayoutDerived.mainLayout().width * 0.5}
-			y={context.stateLayoutDerived.mainLayout().height * 0.5}
-		>
-			<SpineProvider key="logo" width={300}>
+		<Container x={position.x} y={position.y}>
+			<SpineProvider key="logo" width={LOADING_SCREEN.logoWidth}>
 				<SpineTrack trackIndex={0} animationName="INTRO" loop />
 			</SpineProvider>
 			{#if !context.stateApp.loaded}
-				<LoadingProgress y={250} width={1967 * 0.2} height={346 * 0.2}>
+				<LoadingProgress
+					y={LOADING_SCREEN.progressBar.y}
+					width={LOADING_SCREEN.progressBar.width}
+					height={LOADING_SCREEN.progressBar.height}
+				>
 					{#snippet background(sizes)}
 						<Sprite key="LOADING-BG" {...sizes} />
 					{/snippet}
@@ -42,12 +48,10 @@
 	</MainContainer>
 </FadeContainer>
 
-<!-- press to continue -->
 <FadeContainer show={loadingType === 'start' && context.stateApp.loaded}>
 	<PressToContinue onpress={() => (loadingType = 'transition')} />
 </FadeContainer>
 
-<!-- transition between the loading screen and the game -->
 <FadeContainer show={loadingType === 'transition'}>
 	<BonusTransitionAnimation oncomplete={props.onloaded} />
 </FadeContainer>

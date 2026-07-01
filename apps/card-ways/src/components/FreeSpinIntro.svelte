@@ -9,19 +9,19 @@
 	import { CanvasSizeRectangle } from 'components-layout';
 	import { stateUrlDerived } from 'state-shared';
 	import { FadeContainer } from 'components-pixi';
-	import { HALF_SECOND } from 'constants-shared/time';
 	import { waitForResolve } from 'utils-shared/wait';
 	import { BitmapText, SpineProvider, SpineSlot, SpineTrack, Sprite } from 'pixi-svelte';
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { FREE_SPIN_INTRO, OVERLAY } from '../game/visualLayoutConfig';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
 	type AnimationName = 'intro' | 'idle';
 
 	const context = getContext();
-	const FADE_DURATION = HALF_SECOND;
+	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 
 	let show = $state(false);
 	let introKey = $state(0);
@@ -57,20 +57,32 @@
 	});
 </script>
 
-<FadeContainer {show} duration={FADE_DURATION} oncomplete={handleFadeOutComplete}>
-	<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
+<FadeContainer
+	{show}
+	duration={OVERLAY.fadeDurationMs}
+	oncomplete={handleFadeOutComplete}
+>
+	<CanvasSizeRectangle
+		backgroundColor={OVERLAY.backgroundColor}
+		backgroundAlpha={OVERLAY.backgroundAlpha}
+	/>
 
 	{#key introKey}
 		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
 			{#snippet children({ sizes })}
 				<Sprite
-					anchor={{ x: 0.5, y: 2 }}
-					width={426 * 1.6}
-					height={85 * 1.6}
+					anchor={FREE_SPIN_INTRO.congratsSprite.anchor}
+					width={FREE_SPIN_INTRO.congratsSprite.width}
+					height={FREE_SPIN_INTRO.congratsSprite.height}
 					key="freespins_{stateUrlDerived.lang()}.png"
 				/>
 
-				<SpineProvider key="fsIntroNumber" width={sizes.width * 0.4}  y={-200}>
+				<SpineProvider
+					key="fsIntroNumber"
+					width={sizes.width * FREE_SPIN_INTRO.numberSpine.widthRatio}
+					y={FREE_SPIN_INTRO.numberSpine.y}
+					zIndex={FREE_SPIN_INTRO.numberSpine.zIndex}
+				>
 					<SpineTrack
 						trackIndex={0}
 						{animationName}
@@ -81,18 +93,25 @@
 					/>
 					<SpineSlot slotName="slot_number">
 						<BitmapText
-							anchor={{ x: 0.5, y: 0.5 }}
+							anchor={FREE_SPIN_INTRO.numberSpine.numberTextAnchor}
 							text={freeSpinsFromEvent}
 							style={{
-								...getBitmapFontStyle('freeSpinIntro', { width: sizes.width }),
+								...getBitmapFontStyle('freeSpinIntro', {
+									width: sizes.width,
+									layoutType,
+								}),
 								fontWeight: 'bold',
 							}}
 						/>
 					</SpineSlot>
 				</SpineProvider>
 
-				<!-- TODO ADJUST FREE SPINS TEXT -->
-				<Sprite anchor={{ x: 0.5, y: 5 }} width={335 * 1} height={67 * 1} key="freespins.png" />
+				<Sprite
+					anchor={FREE_SPIN_INTRO.freeSpinsLabel.anchor}
+					width={FREE_SPIN_INTRO.freeSpinsLabel.width}
+					height={FREE_SPIN_INTRO.freeSpinsLabel.height}
+					key="freespins.png"
+				/>
 			{/snippet}
 		</FreeSpinAnimation>
 	{/key}
