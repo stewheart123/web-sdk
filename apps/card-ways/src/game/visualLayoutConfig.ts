@@ -22,14 +22,16 @@ export type LayoutBoardSettings = {
 	frame: FrameLayoutSettings;
 };
 
-export type LogoAlign = 'topRight' | 'topCenter';
+export type LogoAlign = 'topLeft' | 'topCenter' | 'topRight';
 
 export type LogoLayoutSettings = {
 	width: number;
-	/** Position in game virtual space. For topRight: right edge x. For topCenter: center x. */
+	/** Position in game virtual space. topLeft: left edge x; topCenter: center x; topRight: right edge x. */
 	x: number;
 	y: number;
 	align: LogoAlign;
+	/** Extra nudge after align (virtual pixels). Use for spine animation/bleed past bounds. */
+	offset?: VirtualOffset;
 };
 
 /** Offset in game virtual pixels (MainContainer space). */
@@ -245,10 +247,10 @@ export const VISUAL_LAYOUT = {
 		root: { label: 'Logo/Root' },
 		spine: { label: 'Logo/Spine' },
 		layoutByType: {
-			desktop: { width: 200, x: 0, y: 140, align: 'topCenter' },
+			desktop: { width: 140, x: 55, y: 145, align: 'topLeft', offset: { x: 24, y: 0 } },
 			landscape: { width: 120, x: 900, y: 30, align: 'topCenter' },
-			portrait: { width: 100, x: 400, y: 40, align: 'topCenter' },
-			tablet: { width: 120, x: 900, y: 50, align: 'topRight' },
+			portrait: { width: 200, x: 320, y: 100, align: 'topCenter' },
+			tablet: { width: 120, x: 755, y: 50, align: 'topRight' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
 	// layoutSpace: board-local — ModifierReel.svelte; desktopPosition / portraitPosition
