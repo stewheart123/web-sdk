@@ -552,10 +552,10 @@ export const VISUAL_LAYOUT = {
 	transition: {
 		bonus: { label: 'Transition/Bonus' },
 		layoutByType: {
-			desktop: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.7 },
+			desktop: { xRatio: 0.5, yRatio: 0.5, heightScale: 1 },
 			landscape: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.7 },
-			portrait: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.9 },
-			tablet: { xRatio: 0.5, yRatio: 0.5, heightScale: 1.75 },
+			portrait: { xRatio: 0.5, yRatio: 0.9, heightScale: 1.9 },
+			tablet: { xRatio: 0.5, yRatio: 0.9, heightScale: 2 },
 		} satisfies Record<LayoutType, BonusTransitionLayoutSettings>,
 	},
 	// layoutSpace: n/a — dev-only labels
