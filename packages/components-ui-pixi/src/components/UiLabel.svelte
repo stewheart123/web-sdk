@@ -3,7 +3,8 @@
 	import { WHITE } from 'constants-shared/colors';
 
 	import UiSprite from './UiSprite.svelte';
-	import { UI_BASE_FONT_SIZE, UI_COLORS } from '../constants';
+	import { UI_BASE_FONT_SIZE, UI_COLORS, UI_BORDER_RADIUS } from '../constants';
+	import { UI_BAR_CONTENT_MAX_HEIGHT } from '../uiLayoutConfig';
 
 	type Props = {
 		label: string;
@@ -11,50 +12,58 @@
 		tiled?: boolean;
 		stacked?: boolean;
 		variant?: 'default' | 'win';
+		width?: number;
+		maxHeight?: number;
 	};
 
 	const props: Props = $props();
 
-	const labelStyle = {
-		fontFamily: 'proxima-nova',
-		fontSize: UI_BASE_FONT_SIZE,
-		fill: WHITE,
-	} as const;
+	const contentHeight = $derived(props.maxHeight ?? UI_BAR_CONTENT_MAX_HEIGHT);
+	const contentWidth = $derived(props.width ?? UI_BASE_FONT_SIZE * 3 * (326 / 73));
+	const fontSize = $derived(
+		Math.min(UI_BASE_FONT_SIZE, contentHeight * 0.22, contentWidth * 0.12),
+	);
+	const lineGap = $derived(fontSize * 1.15);
+	const tickerHeight = $derived(contentHeight * 0.95);
+	const tickerWidth = $derived(contentWidth * 0.98);
 
-	const valueStyle = {
+	const labelStyle = $derived({
 		fontFamily: 'proxima-nova',
-		fontSize: UI_BASE_FONT_SIZE,
+		fontSize,
 		fill: WHITE,
-	} as const;
+	} as const);
+
+	const valueStyle = $derived({
+		fontFamily: 'proxima-nova',
+		fontSize,
+		fill: WHITE,
+	} as const);
 
 	const tickerVariant = $derived(props.variant === 'win' ? 'win' : 'default');
-	const tickerWidth = UI_BASE_FONT_SIZE * 3 * (326 / 73);
-	const tickerHeight = UI_BASE_FONT_SIZE * 3;
 </script>
 
 {#if props.stacked}
 	{#if props.tiled}
 		<UiSprite
-			y={-20}
-			anchor={{ x: 0.5, y: 0 }}
+			anchor={{ x: 0.5, y: 0.5 }}
 			variant={tickerVariant}
 			width={tickerWidth}
 			height={tickerHeight}
-			borderRadius={35}
+			borderRadius={UI_BORDER_RADIUS.label}
 			{...props.variant === 'win' ? { backgroundColor: UI_COLORS.winTicker } : {}}
 		/>
 	{/if}
-	<Text anchor={{ x: 0.5, y: 0 }} text={props.label} style={labelStyle} />
-	<Text anchor={{ x: 0.5, y: 0 }} text={props.value} style={valueStyle} y={UI_BASE_FONT_SIZE} />
+	<Text anchor={{ x: 0.5, y: 0.5 }} text={props.label} style={labelStyle} y={-lineGap * 0.5} />
+	<Text anchor={{ x: 0.5, y: 0.5 }} text={props.value} style={valueStyle} y={lineGap * 0.5} />
 {:else}
 	{#if props.tiled}
 		<UiSprite
-			x={-90}
+			x={-contentWidth * 0.5}
 			anchor={{ x: 0, y: 0.5 }}
 			variant={tickerVariant}
 			width={tickerWidth}
 			height={tickerHeight}
-			borderRadius={35}
+			borderRadius={UI_BORDER_RADIUS.label}
 			{...props.variant === 'win' ? { backgroundColor: UI_COLORS.winTicker } : {}}
 		/>
 	{/if}
@@ -63,6 +72,6 @@
 		anchor={{ x: 1, y: 0.5 }}
 		text={props.value}
 		style={valueStyle}
-		x={UI_BASE_FONT_SIZE * 10}
+		x={contentWidth}
 	/>
 {/if}

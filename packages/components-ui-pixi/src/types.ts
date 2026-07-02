@@ -40,6 +40,8 @@ export type ButtonIcon =
 export type LabelUiProps = {
 	stacked?: boolean;
 	variant?: 'default' | 'win';
+	width?: number;
+	maxHeight?: number;
 };
 
 export type LayoutUiProps = {

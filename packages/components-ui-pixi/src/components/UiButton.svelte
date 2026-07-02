@@ -6,7 +6,7 @@
 	import type { ButtonIcon } from '../types';
 	import type { Snippet } from 'svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import { UI_BASE_FONT_SIZE } from '../constants';
+	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		icon: ButtonIcon;
@@ -23,6 +23,12 @@
 		children: childrenFromParent,
 		...buttonProps
 	}: Props = $props();
+
+	const isCompact = $derived(buttonProps.sizes.width < UI_BASE_SIZE * 0.75);
+	const fontSize = $derived(
+		isCompact ? buttonProps.sizes.width * 0.5 : UI_BASE_FONT_SIZE * 0.9,
+	);
+	const wordWrapWidth = $derived(isCompact ? buttonProps.sizes.width : 200);
 </script>
 
 <Button {...buttonProps}>
@@ -40,7 +46,7 @@
 				: {}}
 			{...active
 				? {
-						borderWidth: 10,
+						borderWidth: isCompact ? 4 : 10,
 						borderColor: variant === 'dark' ? 0xffffff : 0x000000,
 					}
 				: {}}
@@ -53,10 +59,10 @@
 			style={{
 				align: 'center',
 				wordWrap: true,
-				wordWrapWidth: 200,
+				wordWrapWidth,
 				fontFamily: 'proxima-nova',
 				fontWeight: '600',
-				fontSize: UI_BASE_FONT_SIZE * 0.9,
+				fontSize,
 				fill: variant === 'dark' ? 0xffffff : 0x000000,
 			}}
 		/>

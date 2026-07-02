@@ -7,18 +7,18 @@
 </script>
 
 <script lang="ts">
-	import { UI_COLORS } from '../constants';
+	import { UI_COLORS, UI_BORDER_RADIUS } from '../constants';
 
 	const { variant = 'default', backgroundColor, borderRadius, ...restProps }: Props = $props();
 
 	const variantDefaults = {
-		default: { backgroundColor: UI_COLORS.button, borderRadius: 50 },
-		bar: { backgroundColor: UI_COLORS.bar, borderRadius: 40 },
-		win: { backgroundColor: UI_COLORS.winTicker, borderRadius: 35 },
-		button: { backgroundColor: UI_COLORS.button, borderRadius: 50 },
-		buttonLight: { backgroundColor: UI_COLORS.buttonLight, borderRadius: 50 },
-		menuItem: { backgroundColor: UI_COLORS.menuItem, borderRadius: 50 },
-		buyBonus: { backgroundColor: UI_COLORS.buyBonus, borderRadius: 50 },
+		default: { backgroundColor: UI_COLORS.button, borderRadius: UI_BORDER_RADIUS.button },
+		bar: { backgroundColor: UI_COLORS.bar, borderRadius: UI_BORDER_RADIUS.controlBar },
+		win: { backgroundColor: UI_COLORS.winTicker, borderRadius: UI_BORDER_RADIUS.win },
+		button: { backgroundColor: UI_COLORS.button, borderRadius: UI_BORDER_RADIUS.button },
+		buttonLight: { backgroundColor: UI_COLORS.buttonLight, borderRadius: UI_BORDER_RADIUS.buttonLight },
+		menuItem: { backgroundColor: UI_COLORS.menuItem, borderRadius: UI_BORDER_RADIUS.menuItem },
+		buyBonus: { backgroundColor: UI_COLORS.buyBonus, borderRadius: UI_BORDER_RADIUS.buyBonus },
 	} as const;
 
 	const defaults = variantDefaults[variant];

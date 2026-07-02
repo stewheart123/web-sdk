@@ -12,6 +12,19 @@ export const UI_COLORS = {
 	disabled: 0xaaaaaa,
 } as const;
 
+/** Corner radius for Pixi UI rectangles — tune here for the whole HUD. */
+export const UI_BORDER_RADIUS = {
+	button: 8,
+	buttonLight: 8,
+	menuItem: 8,
+	buyBonus: 6,
+	win: 8,
+	controlBar: 8,
+	label: 8,
+	menuPanel: 8,
+	counter: 8,
+} as const;
+
 export const UI_BASE_FONT_SIZE = UI_BASE_SIZE * 0.3;
 
 export const UI_TEXT_STYLES = {

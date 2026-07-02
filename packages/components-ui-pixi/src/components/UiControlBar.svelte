@@ -3,6 +3,7 @@
 	import { BLACK } from 'constants-shared/colors';
 
 	import { UI_BAR_HEIGHT, UI_BAR_WIDTH, UI_SCENE_LABELS } from '../uiLayoutConfig';
+	import { UI_BORDER_RADIUS } from '../constants';
 
 	type Props = {
 		width?: number;
@@ -18,5 +19,5 @@
 	{width}
 	{height}
 	backgroundColor={BLACK}
-	borderRadius={height * 0.45}
+	borderRadius={UI_BORDER_RADIUS.controlBar}
 />

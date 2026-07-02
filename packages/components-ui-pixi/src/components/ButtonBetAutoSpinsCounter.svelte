@@ -3,7 +3,7 @@
 	import { stateBet } from 'state-shared';
 	import { WHITE } from 'constants-shared/colors';
 
-	import { UI_BASE_SIZE } from '../constants';
+	import { UI_BASE_SIZE, UI_BORDER_RADIUS } from '../constants';
 
 	const fontSizeMultiplier = $derived.by(() => {
 		if (stateBet.autoSpinsCounter === Infinity) return 3;
@@ -18,7 +18,7 @@
 		anchor={0.5}
 		width={UI_BASE_SIZE * 0.9}
 		height={UI_BASE_SIZE * 0.9}
-		borderRadius={50}
+		borderRadius={UI_BORDER_RADIUS.counter}
 	/>
 	<Text
 		anchor={0.5}

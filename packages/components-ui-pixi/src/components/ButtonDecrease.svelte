@@ -4,11 +4,11 @@
 
 	import UiButton from './UiButton.svelte';
 	import { getContext } from '../context';
-	import { UI_BASE_SIZE } from '../constants';
+	import { UI_BET_STEPPER_SIZE } from '../uiLayoutConfig';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const sizes = { width: UI_BET_STEPPER_SIZE, height: UI_BET_STEPPER_SIZE };
 	const smallest = $derived(stateConfig.betAmountOptions[0]);
 	const disabled = $derived(
 		!context.stateXstateDerived.isIdle() || stateBet.betAmount === smallest,
