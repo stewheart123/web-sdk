@@ -5,6 +5,7 @@
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../context';
+	import { UI_SCENE_LABELS } from '../uiLayoutConfig';
 
 	type Props = {
 		children: Snippet;
@@ -32,6 +33,6 @@
 	});
 </script>
 
-<FadeContainer persistent {show} {oncomplete}>
+<FadeContainer persistent {show} {oncomplete} label={UI_SCENE_LABELS.fade}>
 	{@render props.children()}
 </FadeContainer>

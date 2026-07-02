@@ -11,6 +11,9 @@ export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.55;
 export const UI_LABEL_SCALE = 0.85;
 
+/** Horizontal inset from the standard layout edges when fitting the bar. */
+export const UI_SIDE_PADDING = 24;
+
 export const UI_LAYOUT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
 	desktop: 1,
 	tablet: 0.92,
@@ -25,16 +28,31 @@ export const UI_BAR_BOTTOM_PADDING_BY_TYPE: Record<UiLayoutType, number> = {
 	portrait: 20,
 };
 
+/**
+ * Slot positions as fractions of {@link UI_BAR_WIDTH} so elements stay inside the bar
+ * at the design reference size.
+ */
+export const UI_BAR_SLOT_RATIOS = {
+	menu: 0.04,
+	balance: 0.17,
+	win: 0.34,
+	bet: 0.5,
+	decrease: 0.64,
+	increase: 0.7,
+	spin: 0.82,
+	autoSpin: 0.94,
+} as const;
+
 /** X positions relative to the left edge of the control bar (y is always bar center). */
 export const UI_BAR_SLOTS = {
-	menu: UI_BUTTON_SIZE * 0.65,
-	balance: UI_BUTTON_SIZE * 2.2,
-	win: UI_BUTTON_SIZE * 5.8,
-	bet: UI_BUTTON_SIZE * 8.8,
-	decrease: UI_BUTTON_SIZE * 11.6,
-	increase: UI_BUTTON_SIZE * 12.8,
-	spin: UI_BUTTON_SIZE * 15.2,
-	autoSpin: UI_BUTTON_SIZE * 17.4,
+	menu: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.menu,
+	balance: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.balance,
+	win: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.win,
+	bet: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.bet,
+	decrease: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.decrease,
+	increase: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.increase,
+	spin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.spin,
+	autoSpin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.autoSpin,
 } as const;
 
 export const UI_BUY_BONUS_OFFSET_X = -(UI_BUY_BONUS_SIZE * 0.55 + UI_BUTTON_SIZE * 0.4);
@@ -46,7 +64,86 @@ export const UI_MENU_PANEL = {
 	borderRadius: 12,
 } as const;
 
+export type UiDesignBounds = {
+	left: number;
+	right: number;
+	width: number;
+	centerX: number;
+};
+
+export const getUiDesignBounds = (): UiDesignBounds => {
+	const left = UI_BUY_BONUS_OFFSET_X - UI_BUY_BONUS_SIZE * 0.5;
+	const right = Math.max(
+		UI_BAR_WIDTH,
+		UI_BAR_SLOTS.spin + UI_SPIN_BUTTON_SIZE * 0.5,
+		UI_BAR_SLOTS.autoSpin + UI_BUTTON_SIZE * 0.5,
+	);
+
+	return {
+		left,
+		right,
+		width: right - left,
+		centerX: (left + right) * 0.5,
+	};
+};
+
 export const getUiLayoutScale = (layoutType: UiLayoutType) => UI_LAYOUT_SCALE_BY_TYPE[layoutType];
 
 export const getUiBarBottomPadding = (layoutType: UiLayoutType) =>
 	UI_BAR_BOTTOM_PADDING_BY_TYPE[layoutType];
+
+/** Scene-graph labels for the Pixi UI (debug overlay, tooling). */
+export const UI_SCENE_LABELS = {
+	root: 'UI',
+	fade: 'UI/Fade',
+	layout: 'UI/Layout',
+	controlBar: {
+		root: 'UI/ControlBar',
+		background: 'UI/ControlBar/Background',
+		buyBonus: 'UI/ControlBar/BuyBonus',
+		menu: 'UI/ControlBar/Menu',
+		balance: 'UI/ControlBar/Balance',
+		win: 'UI/ControlBar/Win',
+		bet: 'UI/ControlBar/Bet',
+		decrease: 'UI/ControlBar/Decrease',
+		increase: 'UI/ControlBar/Increase',
+		spin: 'UI/ControlBar/Spin',
+		autoSpin: 'UI/ControlBar/AutoSpin',
+	},
+	menu: {
+		root: 'UI/Menu',
+		overlay: 'UI/Menu/Overlay',
+		panel: 'UI/Menu/Panel',
+		sound: 'UI/Menu/Sound',
+		music: 'UI/Menu/Music',
+		turbo: 'UI/Menu/Turbo',
+		info: 'UI/Menu/Info',
+	},
+	chrome: {
+		gameName: 'UI/Chrome/GameName',
+		logo: 'UI/Chrome/Logo',
+	},
+} as const;
+
+/**
+ * Scale the control bar so the full design (including buy bonus) fits the available width.
+ * Never scales above the layout-type preference.
+ */
+export const getUiFitScale = ({
+	layoutType,
+	availableWidth,
+}: {
+	layoutType: UiLayoutType;
+	availableWidth: number;
+}) => {
+	const preferredScale = getUiLayoutScale(layoutType);
+	const { width: designWidth } = getUiDesignBounds();
+
+	if (designWidth <= 0 || availableWidth <= 0) {
+		return preferredScale;
+	}
+
+	const widthFitScale = availableWidth / designWidth;
+
+	return Math.min(preferredScale, widthFitScale);
+};
