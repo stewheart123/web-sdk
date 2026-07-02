@@ -34,6 +34,10 @@ type ModalGameRules = {
 	name: 'gameRules';
 };
 
+type ModalGameInfo = {
+	name: 'gameInfo';
+};
+
 type ModalSettings = {
 	name: 'settings';
 };
@@ -48,6 +52,7 @@ type Modal =
 	| ModalAutoSpinMessage
 	| ModalPayTable
 	| ModalGameRules
+	| ModalGameInfo
 	| ModalSettings;
 
 export const stateModal = $state({

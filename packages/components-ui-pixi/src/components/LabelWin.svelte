@@ -9,6 +9,7 @@
 
 	type Props = {
 		stacked?: boolean;
+		variant?: 'default' | 'win';
 	};
 
 	const props: Props = $props();
@@ -21,4 +22,4 @@
 	});
 </script>
 
-<UiLabel tiled {label} {value} stacked={props.stacked} />
+<UiLabel tiled {label} {value} stacked={props.stacked} variant={props.variant ?? 'win'} />

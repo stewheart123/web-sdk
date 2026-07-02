@@ -2,13 +2,14 @@
 	import type { ButtonProps } from 'components-pixi';
 	import { stateBet, stateBetDerived } from 'state-shared';
 
-	import UiButton from './UiButton.svelte';
-	import { UI_BASE_SIZE } from '../constants';
+	import UiMenuButton from './UiMenuButton.svelte';
+	import { UI_MENU_BUTTON_SIZE } from '../uiLayoutConfig';
 	import { getContext } from '../context';
+	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const sizes = { width: UI_MENU_BUTTON_SIZE, height: UI_MENU_BUTTON_SIZE };
 	const active = $derived(stateBet.isTurbo);
 	const disabled = $derived(stateBet.isSpaceHold);
 
@@ -23,4 +24,12 @@
 	});
 </script>
 
-<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" />
+<UiMenuButton
+	{...props}
+	{sizes}
+	{active}
+	{onpress}
+	{disabled}
+	label={i18nDerived.turbo()}
+	variant="light"
+/>

@@ -31,16 +31,23 @@ export type ButtonIcon =
 	| 'payTable'
 	| 'info'
 	| 'settings'
+	| 'sound'
+	| 'music'
 	| 'soundOn'
 	| 'soundOff'
 	| 'menuExit';
 
+export type LabelUiProps = {
+	stacked?: boolean;
+	variant?: 'default' | 'win';
+};
+
 export type LayoutUiProps = {
 	gameName: Snippet;
 	logo: Snippet;
-	amountBalance: Snippet<[{ stacked?: boolean }]>;
-	amountWin: Snippet<[{ stacked?: boolean }]>;
-	amountBet: Snippet<[{ stacked?: boolean }]>;
+	amountBalance: Snippet<[LabelUiProps]>;
+	amountWin: Snippet<[LabelUiProps]>;
+	amountBet: Snippet<[LabelUiProps]>;
 	buttonBuyBonus: Snippet<[Partial<ButtonProps>]>;
 	buttonBet: Snippet<[Partial<ButtonProps>]>;
 	buttonTurbo: Snippet<[Partial<ButtonProps>]>;
@@ -48,9 +55,7 @@ export type LayoutUiProps = {
 	buttonIncrease: Snippet<[Partial<ButtonProps>]>;
 	buttonDecrease: Snippet<[Partial<ButtonProps>]>;
 	buttonMenu: Snippet<[Partial<ButtonProps>]>;
-	buttonMenuClose: Snippet<[Partial<ButtonProps>]>;
-	buttonPayTable: Snippet<[Partial<ButtonProps>]>;
 	buttonGameRules: Snippet<[Partial<ButtonProps>]>;
-	buttonSettings: Snippet<[Partial<ButtonProps>]>;
 	buttonSoundSwitch: Snippet<[Partial<ButtonProps>]>;
+	buttonMusicSwitch: Snippet<[Partial<ButtonProps>]>;
 };

@@ -2,6 +2,16 @@ import { WHITE } from 'constants-shared/colors';
 
 export const UI_BASE_SIZE = 150;
 
+export const UI_COLORS = {
+	bar: 0x000000,
+	winTicker: 0x1b8f3a,
+	buyBonus: 0x1a7a3a,
+	button: 0x111111,
+	buttonLight: 0xffffff,
+	menuItem: 0xffffff,
+	disabled: 0xaaaaaa,
+} as const;
+
 export const UI_BASE_FONT_SIZE = UI_BASE_SIZE * 0.3;
 
 export const UI_TEXT_STYLES = {

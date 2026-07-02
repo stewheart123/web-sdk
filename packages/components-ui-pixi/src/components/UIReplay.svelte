@@ -4,13 +4,11 @@
 	import UiFadeContainer from './UiFadeContainer.svelte';
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
-	import ButtonPayTable from './ButtonPayTable.svelte';
 	import ButtonGameRules from './ButtonGameRules.svelte';
-	import ButtonSettings from './ButtonSettings.svelte';
-	import ButtonTurbo from './ButtonTurbo.svelte';
 	import ButtonMenu from './ButtonMenu.svelte';
-	import ButtonMenuClose from './ButtonMenuClose.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
+	import ButtonMusicSwitch from './ButtonMusicSwitch.svelte';
+	import ButtonTurbo from './ButtonTurbo.svelte';
 	import { stateUi } from 'state-shared';
 	import { BLACK } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
@@ -18,6 +16,7 @@
 	import { getContext } from '../context';
 	import type { LayoutUiProps } from '../types';
 	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
+	import { UI_MENU_PANEL } from '../uiLayoutConfig';
 
 	type Props = {
 		gameName: LayoutUiProps['gameName'];
@@ -26,6 +25,11 @@
 
 	const props: Props = $props();
 	const context = getContext();
+
+	const menuItemYs = Array.from({ length: 4 }, (_, index) => {
+		const fromBottom = 4 - index;
+		return -UI_MENU_PANEL.itemSpacing * fromBottom - UI_MENU_PANEL.itemSpacing * 0.5;
+	});
 </script>
 
 <EnableSpaceHold />
@@ -64,18 +68,10 @@
 
 		<Container
 			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 270 - 15}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
 			scale={0.7}
 		>
 			<ButtonMenu />
-		</Container>
-
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 150 - 15}
-			scale={0.7}
-		>
-			<ButtonTurbo />
 		</Container>
 	</MainContainer>
 
@@ -96,26 +92,32 @@
 		<MainContainer standard alignVertical="bottom">
 			<Container
 				x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-				y={context.stateLayoutDerived.mainLayoutStandard().height - 270 - 15}
+				y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
 			>
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 3}>
-					<ButtonPayTable anchor={0.5} />
-				</Container>
+				<Rectangle
+					x={-UI_MENU_PANEL.width * 0.15}
+					y={menuItemYs[0] - UI_MENU_PANEL.itemSpacing * 0.5}
+					anchor={{ x: 0, y: 0 }}
+					width={UI_MENU_PANEL.width}
+					height={UI_MENU_PANEL.height}
+					backgroundColor={BLACK}
+					borderRadius={UI_MENU_PANEL.borderRadius}
+				/>
 
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 2}>
-					<ButtonGameRules anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 1}>
-					<ButtonSettings anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5 - 150}>
+				<Container scale={0.8} y={menuItemYs[0]}>
 					<ButtonSoundSwitch anchor={0.5} />
 				</Container>
 
-				<Container scale={0.8} y={0 * 0.5}>
-					<ButtonMenuClose anchor={0.5} />
+				<Container scale={0.8} y={menuItemYs[1]}>
+					<ButtonMusicSwitch anchor={0.5} />
+				</Container>
+
+				<Container scale={0.8} y={menuItemYs[2]}>
+					<ButtonTurbo anchor={0.5} />
+				</Container>
+
+				<Container scale={0.8} y={menuItemYs[3]}>
+					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>
 		</MainContainer>

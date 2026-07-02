@@ -1,20 +1,14 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { getContextLayout } from 'utils-layout';
 	import { EnableSpaceHold } from 'components-shared';
 
 	import UiFadeContainer from './UiFadeContainer.svelte';
-	import LayoutDesktop from './LayoutDesktop.svelte';
-	import LayoutPortrait from './LayoutPortrait.svelte';
-	import LayoutLandscape from './LayoutLandscape.svelte';
-	import LayoutTablet from './LayoutTablet.svelte';
+	import LayoutUnified from './LayoutUnified.svelte';
 	import LabelBalance from './LabelBalance.svelte';
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
-	import ButtonPayTable from './ButtonPayTable.svelte';
 	import ButtonGameRules from './ButtonGameRules.svelte';
-	import ButtonSettings from './ButtonSettings.svelte';
 	import ButtonBuyBonus from './ButtonBuyBonus.svelte';
 	import ButtonBet from './ButtonBet.svelte';
 	import ButtonTurbo from './ButtonTurbo.svelte';
@@ -22,8 +16,8 @@
 	import ButtonIncrease from './ButtonIncrease.svelte';
 	import ButtonDecrease from './ButtonDecrease.svelte';
 	import ButtonMenu from './ButtonMenu.svelte';
-	import ButtonMenuClose from './ButtonMenuClose.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
+	import ButtonMusicSwitch from './ButtonMusicSwitch.svelte';
 
 	type Props = {
 		gameName: Snippet;
@@ -31,23 +25,12 @@
 	};
 
 	const props: Props = $props();
-
-	const { stateLayoutDerived } = getContextLayout();
-
-	const LAYOUT_COMPONENT_MAP = {
-		desktop: LayoutDesktop,
-		portrait: LayoutPortrait,
-		landscape: LayoutLandscape,
-		tablet: LayoutTablet,
-	};
-
-	const LayoutComponent = $derived(LAYOUT_COMPONENT_MAP[stateLayoutDerived.layoutType()]);
 </script>
 
 <EnableSpaceHold />
 
 <UiFadeContainer>
-	<LayoutComponent>
+	<LayoutUnified>
 		{#snippet gameName()}
 			{@render props.gameName()}
 		{/snippet}
@@ -96,24 +79,16 @@
 			<ButtonMenu {...buttonProps} />
 		{/snippet}
 
-		{#snippet buttonMenuClose(buttonProps)}
-			<ButtonMenuClose {...buttonProps} />
-		{/snippet}
-
-		{#snippet buttonPayTable(buttonProps)}
-			<ButtonPayTable {...buttonProps} />
-		{/snippet}
-
 		{#snippet buttonGameRules(buttonProps)}
 			<ButtonGameRules {...buttonProps} />
-		{/snippet}
-
-		{#snippet buttonSettings(buttonProps)}
-			<ButtonSettings {...buttonProps} />
 		{/snippet}
 
 		{#snippet buttonSoundSwitch(buttonProps)}
 			<ButtonSoundSwitch {...buttonProps} />
 		{/snippet}
-	</LayoutComponent>
+
+		{#snippet buttonMusicSwitch(buttonProps)}
+			<ButtonMusicSwitch {...buttonProps} />
+		{/snippet}
+	</LayoutUnified>
 </UiFadeContainer>

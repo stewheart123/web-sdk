@@ -21,4 +21,7 @@ export const i18nDerived = {
 	lossLimitReached: () => stateI18nDerived.translate('LOSS LIMIT REACHED'),
 	singleWinLimitReached: () => stateI18nDerived.translate('SINGLE WIN LIMIT REACHED'),
 	settings: () => stateI18nDerived.translate('SETTINGS'),
+	info: () => stateI18nDerived.translate('INFO'),
+	payTable: () => stateI18nDerived.translate('PAYTABLE'),
+	gameRules: () => stateI18nDerived.translate('GAME RULES'),
 };

@@ -55,6 +55,7 @@
 			anchor={0.5}
 			width={sizes.width}
 			height={sizes.height}
+			variant="buyBonus"
 			{...disabled
 				? {
 						backgroundColor: 0xaaaaaa,

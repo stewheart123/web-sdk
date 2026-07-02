@@ -22,6 +22,7 @@
 				<Container {...center}>
 					<UiSprite
 						key="bet"
+						variant="button"
 						width={sizes.width}
 						height={sizes.height}
 						anchor={0.5}

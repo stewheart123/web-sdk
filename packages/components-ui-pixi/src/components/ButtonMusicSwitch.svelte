@@ -10,15 +10,15 @@
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const sizes = { width: UI_MENU_BUTTON_SIZE, height: UI_MENU_BUTTON_SIZE };
-	const active = $derived(stateSound.volumeValueMaster > 0);
+	const active = $derived(stateSound.volumeValueMusic > 0);
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 
-		if (stateSound.volumeValueMaster === 0) {
-			stateSound.volumeValueMaster = 50;
+		if (stateSound.volumeValueMusic === 0) {
+			stateSound.volumeValueMusic = 50;
 		} else {
-			stateSound.volumeValueMaster = 0;
+			stateSound.volumeValueMusic = 0;
 		}
 	};
 </script>
@@ -28,6 +28,6 @@
 	{sizes}
 	{onpress}
 	{active}
-	label={i18nDerived.sound()}
+	label={i18nDerived.music()}
 	variant="light"
 />

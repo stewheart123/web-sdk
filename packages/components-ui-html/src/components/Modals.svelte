@@ -9,6 +9,7 @@
 	import ModalAutoSpinMessage from './ModalAutoSpinMessage.svelte';
 	import ModalPayTable from './ModalPayTable.svelte';
 	import ModalGameRules from './ModalGameRules.svelte';
+	import ModalGameInfo from './ModalGameInfo.svelte';
 	import ModalSettings from './ModalSettings.svelte';
 
 	type Props = {
@@ -30,6 +31,14 @@
 <ModalGameRules>
 	{@render props.version()}
 </ModalGameRules>
+<ModalGameInfo>
+	{#snippet payTable()}
+		{@render props.version()}
+	{/snippet}
+	{#snippet gameRules()}
+		{@render props.version()}
+	{/snippet}
+</ModalGameInfo>
 <ModalSettings />
 
 <style lang="scss">

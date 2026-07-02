@@ -13,6 +13,12 @@
 	};
 
 	const props: Props = $props();
+
+	$effect(() => {
+		if (stateModal.modal?.name === 'gameRules') {
+			stateModal.modal = { name: 'gameInfo' };
+		}
+	});
 </script>
 
 {#if stateModal.modal?.name === 'gameRules'}
