@@ -17,12 +17,19 @@
 	const props: Props = $props();
 	const parentContext = getContextParent();
 	const bitmapText = new PIXI.BitmapText({ text: props.text, style: props.style });
+	bitmapText.roundPixels = true;
 
-	propsSyncEffect({ props, target: bitmapText, ignore: ['onresize'] });
+	propsSyncEffect({ props, target: bitmapText, ignore: ['onresize', 'style', 'text'] });
 
 	$effect(() => {
-		props?.text;
-		props?.style;
+		bitmapText.text = props.text;
+	});
+
+	$effect(() => {
+		const style = props.style;
+		if (!style) return;
+
+		Object.assign(bitmapText.style, { fill: 0xffffff, ...style });
 		props.onresize?.({ width: bitmapText.width, height: bitmapText.height });
 	});
 

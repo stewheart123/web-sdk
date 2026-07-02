@@ -6,6 +6,7 @@
 
 	type Props = {
 		layout: ResolvedFreeSpinNumberTextLayout;
+		layoutKey: string;
 		text: string;
 		responsive?: boolean;
 		textStyle: BitmapTextProps['style'];
@@ -21,19 +22,23 @@
 	zIndex={props.layout.zIndex}
 >
 	<Container y={props.layout.offsetY}>
-		{#if props.responsive && props.layout.maxWidth !== undefined}
-			<ResponsiveBitmapText
-				anchor={props.layout.anchor}
-				style={props.textStyle}
-				text={props.text}
-				maxWidth={props.layout.maxWidth}
-			/>
-		{:else}
-			<BitmapText
-				anchor={props.layout.anchor}
-				text={props.text}
-				style={props.textStyle}
-			/>
-		{/if}
+		{#key props.layoutKey}
+			{#if props.responsive && props.layout.maxWidth !== undefined}
+				<ResponsiveBitmapText
+					label={props.layout.label}
+					anchor={props.layout.anchor}
+					style={props.textStyle}
+					text={props.text}
+					maxWidth={props.layout.maxWidth}
+				/>
+			{:else}
+				<BitmapText
+					anchor={props.layout.anchor}
+					text={props.text}
+					style={props.textStyle}
+					roundPixels
+				/>
+			{/if}
+		{/key}
 	</Container>
 </Container>

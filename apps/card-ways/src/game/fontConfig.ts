@@ -40,10 +40,12 @@ export type BitmapFontStyleContext = {
 
 export type BitmapFontStyle = Pick<
 	PIXI.TextStyleOptions,
-	'fontFamily' | 'fontSize' | 'letterSpacing' | 'align'
+	'fontFamily' | 'fontSize' | 'letterSpacing' | 'align' | 'fill'
 >;
 
 const atlasCompensation = (font: BitmapFontConfig) => REFERENCE_ATLAS_SIZE / font.atlasSize;
+
+const roundFontSize = (size: number) => Math.max(1, Math.round(size));
 
 const resolveFontSize = (
 	usage: BitmapFontUsageConfig,
@@ -54,16 +56,18 @@ const resolveFontSize = (
 	const compensated = atlasCompensation(font);
 
 	if (usage.sizeMode === 'symbolMultiplier') {
-		return (
-			(context.symbolSize ?? 0) * usage.size * font.scale * compensated * layoutScale
+		return roundFontSize(
+			(context.symbolSize ?? 0) * usage.size * font.scale * compensated * layoutScale,
 		);
 	}
 
 	if (usage.sizeMode === 'absolute') {
-		return usage.size * font.scale * compensated * layoutScale;
+		return roundFontSize(usage.size * font.scale * compensated * layoutScale);
 	}
 
-	return (context.width ?? 0) * (context.sizeRatio ?? usage.size) * font.scale * compensated * layoutScale;
+	return roundFontSize(
+		(context.width ?? 0) * (context.sizeRatio ?? usage.size) * font.scale * compensated * layoutScale,
+	);
 };
 
 export const getBitmapFontStyle = (
@@ -76,6 +80,7 @@ export const getBitmapFontStyle = (
 	return {
 		fontFamily: font.family,
 		fontSize: resolveFontSize(usage, font, context),
+		fill: 0xffffff,
 		letterSpacing: usage.letterSpacing ?? font.letterSpacing,
 		...(usage.align ? { align: usage.align } : {}),
 	};

@@ -81,15 +81,13 @@
 
 				<FreeSpinNumberDisplay
 					layout={layout.numberText}
+					layoutKey={layoutType}
 					text={String(freeSpinsFromEvent)}
-					textStyle={{
-						...getBitmapFontStyle('freeSpinIntro', {
-							width: sizes.width,
-							layoutType,
-							sizeRatio: layout.numberText.fontSizeRatio,
-						}),
-						fontWeight: 'bold',
-					}}
+					textStyle={getBitmapFontStyle('freeSpinIntro', {
+						width: sizes.width,
+						layoutType,
+						sizeRatio: layout.numberText.fontSizeRatio,
+					})}
 				/>
 
 				<AspectFitSprite

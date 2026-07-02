@@ -86,6 +86,7 @@
 
 							<FreeSpinNumberDisplay
 								layout={layout.numberText}
+								layoutKey={layoutType}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								responsive
 								textStyle={getBitmapFontStyle('freeSpinOutro', {
