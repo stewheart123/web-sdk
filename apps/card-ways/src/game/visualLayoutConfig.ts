@@ -168,6 +168,23 @@ export type LoadingPressToContinueLayout = {
 	anchor: { x: number; y: number };
 };
 
+/** layoutSpace: board-local — PressToContinue inside Win/Root; offsets from board pivot */
+export type WinPressToContinueLayout = {
+	label: string;
+	/** Horizontal offset from board pivot.x */
+	x?: number;
+	/** Vertical offset from board pivot.y. Positive moves down. */
+	y: number;
+	/** Display width as a fraction of board width. */
+	widthRatio: number;
+	anchor: { x: number; y: number };
+	zIndex?: number;
+};
+
+export type BoardLayoutRect = VirtualSize & {
+	pivot: VirtualOffset;
+};
+
 export type LoadingScreenLayoutSettings = VirtualOffset & {
 	logoWidth: number;
 	progressBar: VirtualOffset & VirtualSize;
@@ -409,7 +426,7 @@ export const VISUAL_LAYOUT = {
 				maxWidth: 682,
 				maxHeight: 160,
 				y: 0,
-				anchor: { x: 0.5, y: 1.5 },
+				anchor: { x: 0.5, y: 1.7 },
 			},
 			numberText: {
 				label: 'FreeSpin/Intro/NumberText',
@@ -557,6 +574,25 @@ export const VISUAL_LAYOUT = {
 			bigWinTextMaxWidth: 2130,
 			animationScale: 0.55,
 			countUpCompleteDelayMs: 300,
+		},
+		// layoutSpace: board-local — offsets from board pivot inside Win/Root
+		pressToContinue: {
+			bigWin: {
+				label: 'Win/BigWin/PressToContinue',
+				x: 0,
+				y: 220,
+				widthRatio: 0.7,
+				anchor: { x: 0.5, y: 0.5 },
+				zIndex: 10,
+			},
+			normalWin: {
+				label: 'Win/NormalWin/PressToContinue',
+				x: 0,
+				y: 140,
+				widthRatio: 0.6,
+				anchor: { x: 0.5, y: 0.5 },
+				zIndex: 10,
+			},
 		},
 	},
 	// layoutSpace: virtual — LoadingScreen.svelte inside MainContainer
@@ -813,6 +849,22 @@ export const resolveLoadingScreenLayout = (
 	};
 };
 
+export const resolveWinPressToContinueLayout = (
+	variant: 'bigWin' | 'normalWin',
+	boardLayout: BoardLayoutRect,
+): EmbeddedPressToContinueLayout => {
+	const layout = VISUAL_LAYOUT.win.pressToContinue[variant];
+
+	return {
+		label: layout.label,
+		x: boardLayout.pivot.x + (layout.x ?? 0),
+		y: boardLayout.pivot.y + layout.y,
+		width: boardLayout.width * layout.widthRatio,
+		anchor: layout.anchor,
+		zIndex: layout.zIndex,
+	};
+};
+
 export const getFreeSpinCounterLayout = (layoutType: LayoutType) =>
 	VISUAL_LAYOUT.freeSpin.counter.layoutByType[layoutType];
 
@@ -896,6 +948,10 @@ export const SCENE_LABELS = {
 		bigAnimation: VISUAL_LAYOUT.win.bigAnimation.label,
 		coins: VISUAL_LAYOUT.win.coins.label,
 		coinsEmitter: VISUAL_LAYOUT.win.coinsEmitter.label,
+		pressToContinue: {
+			bigWin: VISUAL_LAYOUT.win.pressToContinue.bigWin.label,
+			normalWin: VISUAL_LAYOUT.win.pressToContinue.normalWin.label,
+		},
 	},
 	loading: {
 		root: VISUAL_LAYOUT.loading.root.label,

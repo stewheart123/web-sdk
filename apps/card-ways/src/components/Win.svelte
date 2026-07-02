@@ -20,10 +20,11 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { OVERLAY, WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { OVERLAY, resolveWinPressToContinueLayout, WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
+	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 
 	let show = $state(false);
 	let amount = $state(0);
@@ -48,6 +49,10 @@
 		{@const duration = winLevelData.presentDuration}
 		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
+				{@const pressToContinueLayout = resolveWinPressToContinueLayout(
+					winLevelData.animation ? 'bigWin' : 'normalWin',
+					boardLayout,
+				)}
 				{#if isBigWin}
 					<CanvasSizeRectangle
 						label={SCENE_LABELS.win.dim}
@@ -67,10 +72,10 @@
 				<MainContainer label={SCENE_LABELS.layout.win}>
 					<Container
 						label={SCENE_LABELS.win.root}
-						x={context.stateGameDerived.boardLayout().x}
-						y={context.stateGameDerived.boardLayout().y}
-						pivot={context.stateGameDerived.boardLayout().pivot}
-						scale={context.stateGameDerived.boardLayout().scale}
+						x={boardLayout.x}
+						y={boardLayout.y}
+						pivot={boardLayout.pivot}
+						scale={boardLayout.scale}
 					>
 						{#if winLevelData?.animation}
 							<WinAnimation animationName={winLevelData.animation}>
@@ -93,8 +98,8 @@
 						{:else}
 							<ResponsiveBitmapText
 								label={SCENE_LABELS.win.normalText}
-								x={context.stateGameDerived.boardLayout().pivot.x}
-								y={context.stateGameDerived.boardLayout().pivot.y}
+								x={boardLayout.pivot.x}
+								y={boardLayout.pivot.y}
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /
 									context.stateLayoutDerived.mainLayout().scale}
@@ -108,10 +113,14 @@
 								}}
 							/>
 						{/if}
+
+						<PressToContinue
+							embedded
+							layout={pressToContinueLayout}
+							onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())}
+						/>
 					</Container>
 				</MainContainer>
-
-				<PressToContinue onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())} />
 			{/snippet}
 		</WinCountUpProvider>
 	{/if}
