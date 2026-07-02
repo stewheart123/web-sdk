@@ -458,9 +458,9 @@ export const VISUAL_LAYOUT = {
 			pressToContinue: {
 				label: 'FreeSpin/Outro/PressToContinue',
 				x: 0,
-				y: 200,
+				y: 180,
 				widthRatio: 0.65,
-				anchor: { x: 0.5, y: 0.5 },
+				anchor: { x: 0.5, y: -1 },
 				zIndex: 3,
 			},
 		},
