@@ -129,13 +129,15 @@
 								zIndex={layout.totalWin.zIndex}
 								key="totalwin_{stateUrlDerived.lang()}.png"
 							/>
+
+							<PressToContinue
+								embedded
+								layout={layout.pressToContinue}
+								onpress={() => handleContinue(countUpCompleted, finishCountUp)}
+							/>
 						{/snippet}
 					</FreeSpinAnimation>
 				{/key}
-
-				<PressToContinue
-					onpress={() => handleContinue(countUpCompleted, finishCountUp)}
-				/>
 			{/snippet}
 		</WinCountUpProvider>
 	{/if}

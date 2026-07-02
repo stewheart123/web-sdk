@@ -97,9 +97,13 @@
 					maxHeight={layout.freeSpinsLabel.maxHeight}
 					key="freespins.png"
 				/>
+
+				<PressToContinue
+					embedded
+					layout={layout.pressToContinue}
+					onpress={handleContinue}
+				/>
 			{/snippet}
 		</FreeSpinAnimation>
 	{/key}
-
-	<PressToContinue onpress={handleContinue} />
 </FadeContainer>

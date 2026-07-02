@@ -135,6 +135,26 @@ export type PressToContinueLayoutSettings = {
 	anchor: { x: number; y: number };
 };
 
+/** layoutSpace: modal-local — PressToContinue inside free-spin intro/outro panel */
+export type FreeSpinPressToContinueLayout = {
+	label: string;
+	x?: number;
+	y: number;
+	/** Display width as a fraction of modal width. */
+	widthRatio: number;
+	anchor: { x: number; y: number };
+	zIndex?: number;
+};
+
+export type ResolvedFreeSpinPressToContinueLayout = {
+	label: string;
+	x: number;
+	y: number;
+	width: number;
+	anchor: { x: number; y: number };
+	zIndex?: number;
+};
+
 export type LoadingScreenLayoutSettings = VirtualOffset & {
 	logoWidth: number;
 	progressBar: VirtualOffset & VirtualSize;
@@ -389,6 +409,13 @@ export const VISUAL_LAYOUT = {
 				maxHeight: 80,
 				anchor: { x: 0.5, y: -2 },
 			},
+			pressToContinue: {
+				label: 'FreeSpin/Intro/PressToContinue',
+				x: 0,
+				y: 180,
+				widthRatio: 0.65,
+				anchor: { x: 0.5, y: -1 },
+			},
 		},
 		// layoutSpace: modal-local — children positioned inside modal panel
 		outro: {
@@ -427,6 +454,14 @@ export const VISUAL_LAYOUT = {
 				x: 0,
 				y: 182,
 				zIndex: 2,
+			},
+			pressToContinue: {
+				label: 'FreeSpin/Outro/PressToContinue',
+				x: 0,
+				y: 200,
+				widthRatio: 0.65,
+				anchor: { x: 0.5, y: 0.5 },
+				zIndex: 3,
 			},
 		},
 		// layoutSpace: board — FreeSpinCounter.svelte; position computed from boardLayout
@@ -685,6 +720,18 @@ const resolveAspectFitSprite = ({
 	...layout
 }: AspectFitSpriteLayout): ResolvedAspectFitSprite => layout;
 
+const resolveFreeSpinPressToContinueLayout = (
+	layout: FreeSpinPressToContinueLayout,
+	modalWidth: number,
+): ResolvedFreeSpinPressToContinueLayout => ({
+	label: layout.label,
+	x: layout.x ?? 0,
+	y: layout.y,
+	width: modalWidth * layout.widthRatio,
+	anchor: layout.anchor,
+	zIndex: layout.zIndex,
+});
+
 export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize) => {
 	const { intro } = VISUAL_LAYOUT.freeSpin;
 
@@ -692,6 +739,10 @@ export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize) => {
 		congrats: resolveAspectFitSprite(intro.congrats),
 		freeSpinsLabel: resolveAspectFitSprite(intro.freeSpinsLabel),
 		numberText: resolveNumberTextLayout(intro.numberText, modalSizes.width),
+		pressToContinue: resolveFreeSpinPressToContinueLayout(
+			intro.pressToContinue,
+			modalSizes.width,
+		),
 	};
 };
 
@@ -706,6 +757,10 @@ export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize) => {
 			...resolveAspectFitSprite(outro.totalWin),
 			bigMaxWidth: outro.totalWin.bigMaxWidth,
 		} satisfies ResolvedFreeSpinTotalWinLayout,
+		pressToContinue: resolveFreeSpinPressToContinueLayout(
+			outro.pressToContinue,
+			modalSizes.width,
+		),
 	};
 };
 
@@ -774,12 +829,14 @@ export const SCENE_LABELS = {
 			congrats: VISUAL_LAYOUT.freeSpin.intro.congrats.label,
 			numberText: VISUAL_LAYOUT.freeSpin.intro.numberText.label,
 			freeSpinsLabel: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.label,
+			pressToContinue: VISUAL_LAYOUT.freeSpin.intro.pressToContinue.label,
 		},
 		outro: {
 			numberText: VISUAL_LAYOUT.freeSpin.outro.numberText.label,
 			bigWinCongrats: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.label,
 			youWon: VISUAL_LAYOUT.freeSpin.outro.youWon.label,
 			totalWin: VISUAL_LAYOUT.freeSpin.outro.totalWin.label,
+			pressToContinue: VISUAL_LAYOUT.freeSpin.outro.pressToContinue.label,
 		},
 		counter: {
 			panel: VISUAL_LAYOUT.freeSpin.counter.panel.label,

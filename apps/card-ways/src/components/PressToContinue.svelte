@@ -6,36 +6,64 @@
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { getPressToContinueLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		getPressToContinueLayout,
+		SCENE_LABELS,
+		type ResolvedFreeSpinPressToContinueLayout,
+	} from '../game/visualLayoutConfig';
 
 	type Props = {
 		onpress: () => void;
+		/** When true, render inside modal-local space (no MainContainer wrapper). */
+		embedded?: boolean;
+		layout?: ResolvedFreeSpinPressToContinueLayout;
 	};
 
 	const props: Props = $props();
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
-	const layout = $derived(getPressToContinueLayout(layoutType));
+	const screenLayout = $derived(getPressToContinueLayout(layoutType));
+	const spriteLayout = $derived(
+		props.embedded && props.layout ? props.layout : screenLayout,
+	);
+	const spriteLabel = $derived(
+		props.embedded && props.layout ? props.layout.label : SCENE_LABELS.ui.pressToContinue,
+	);
 
 	const textureKey = $derived(`pressToContinueText_${stateUrlDerived.lang()}.png`);
 	const texture = $derived(
 		(context.stateApp.loadedAssets?.[textureKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
 	);
 	const displayHeight = $derived(
-		texture.width > 0 ? layout.width * (texture.height / texture.width) : layout.width,
+		texture.width > 0
+			? spriteLayout.width * (texture.height / texture.width)
+			: spriteLayout.width,
 	);
 </script>
 
-<MainContainer label={SCENE_LABELS.layout.pressToContinue} alignVertical="bottom">
+{#if props.embedded}
 	<Sprite
-		label={SCENE_LABELS.ui.pressToContinue}
+		label={spriteLabel}
 		key={textureKey}
-		width={layout.width}
+		width={spriteLayout.width}
 		height={displayHeight}
-		anchor={layout.anchor}
-		x={layout.x}
-		y={layout.y}
+		anchor={spriteLayout.anchor}
+		x={spriteLayout.x}
+		y={spriteLayout.y}
+		zIndex={spriteLayout.zIndex}
 	/>
-</MainContainer>
+{:else}
+	<MainContainer label={SCENE_LABELS.layout.pressToContinue} alignVertical="bottom">
+		<Sprite
+			label={spriteLabel}
+			key={textureKey}
+			width={spriteLayout.width}
+			height={displayHeight}
+			anchor={spriteLayout.anchor}
+			x={spriteLayout.x}
+			y={spriteLayout.y}
+		/>
+	</MainContainer>
+{/if}
 <OnHotkey hotkey="Space" onpress={() => props.onpress()} />
 <OnPressFullScreen onpress={() => props.onpress()} />
