@@ -342,9 +342,9 @@ export const VISUAL_LAYOUT = {
 			numberSpine: {
 				label: 'FreeSpin/Intro/NumberSpine',
 				width: 600,
-				y: -250,
+				y: -300,
 				zIndex: 1,
-				numberTextAnchor: { x: 0.5, y: 0.5 },
+				numberTextAnchor: { x: 0.7, y: 0},
 			},
 			numberText: { label: 'FreeSpin/Intro/NumberText' },
 			freeSpinsLabel: {
@@ -358,16 +358,18 @@ export const VISUAL_LAYOUT = {
 		outro: {
 			numberSpine: {
 				label: 'FreeSpin/Outro/NumberSpine',
-				width: 408,
+				width: 250,
 				zIndex: 1,
-				maxWidth: 1020,
+				maxWidth: 350,
+				anchor: { x: 0.5, y: -2 },
 			},
 			numberText: { label: 'FreeSpin/Outro/NumberText' },
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
-				width: 937,
-				height: 187,
-				anchor: { x: 0.5, y: 1.2 },
+				width: 682,
+				height: 136,
+				y: 80,
+				anchor: { x: 0.5, y: 1.5 },
 			},
 			youWon: {
 				label: 'FreeSpin/Outro/YouWon',
