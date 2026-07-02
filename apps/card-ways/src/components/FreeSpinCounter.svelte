@@ -95,7 +95,7 @@
 			/>
 			<BitmapText
 				label={SCENE_LABELS.freeSpin.counter.count}
-				text={`${current}`+ ` OF ` +`${total}`}
+				text={`${current}`+ ` / ` +`${total}`}
 				{...counterPosition}
 				anchor={counterLayout.text.counterTextAnchor}
 				style={freeSpinCounterStyle}
