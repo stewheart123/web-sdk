@@ -155,9 +155,26 @@ export type ResolvedFreeSpinPressToContinueLayout = {
 	zIndex?: number;
 };
 
+/** Shared resolved layout for PressToContinue rendered inside a parent container. */
+export type EmbeddedPressToContinueLayout = ResolvedFreeSpinPressToContinueLayout;
+
+/** layoutSpace: loading-local — PressToContinue inside LoadingScreen root container */
+export type LoadingPressToContinueLayout = {
+	label: string;
+	x?: number;
+	y: number;
+	/** Display width as a fraction of the loading progress bar width. */
+	widthRatio: number;
+	anchor: { x: number; y: number };
+};
+
 export type LoadingScreenLayoutSettings = VirtualOffset & {
 	logoWidth: number;
 	progressBar: VirtualOffset & VirtualSize;
+};
+
+export type ResolvedLoadingScreenLayout = LoadingScreenLayoutSettings & {
+	pressToContinue: EmbeddedPressToContinueLayout;
 };
 
 export type BonusTransitionLayoutSettings = {
@@ -413,7 +430,7 @@ export const VISUAL_LAYOUT = {
 				label: 'FreeSpin/Intro/PressToContinue',
 				x: 0,
 				y: 180,
-				widthRatio: 0.65,
+				widthRatio: 1,
 				anchor: { x: 0.5, y: -1 },
 			},
 		},
@@ -426,8 +443,8 @@ export const VISUAL_LAYOUT = {
 				zIndex: 1,
 				anchor: { x: 0.5, y: 0.5 },
 				offsetY: -20,
-				fontSizeRatio: 0.3,
-				maxWidthRatio: 0.5,
+				fontSizeRatio: 0.2,
+				maxWidthRatio: 0.4,
 			},
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
@@ -459,7 +476,7 @@ export const VISUAL_LAYOUT = {
 				label: 'FreeSpin/Outro/PressToContinue',
 				x: 0,
 				y: 180,
-				widthRatio: 0.65,
+				widthRatio: 1,
 				anchor: { x: 0.5, y: -1 },
 				zIndex: 3,
 			},
@@ -576,6 +593,14 @@ export const VISUAL_LAYOUT = {
 					progressBar: { x: 0, y: 250, width: 393, height: 69 },
 				},
 			} satisfies Record<LayoutType, LoadingScreenLayoutSettings>,
+		},
+		// layoutSpace: loading-local — offset from Loading/Root (same origin as progress bar)
+		pressToContinue: {
+			label: 'Loading/PressToContinue',
+			x: 0,
+			y: 242,
+			widthRatio: 2,
+			anchor: { x: 0.5, y: 0.5 },
 		},
 	},
 	// layoutSpace: n/a — MainContainer scene labels only
@@ -770,6 +795,24 @@ export const getPressToContinueLayout = (layoutType: LayoutType) =>
 export const getLoadingScreenLayout = (layoutType: LayoutType) =>
 	VISUAL_LAYOUT.loading.screen.layoutByType[layoutType];
 
+export const resolveLoadingScreenLayout = (
+	layoutType: LayoutType,
+): ResolvedLoadingScreenLayout => {
+	const screen = getLoadingScreenLayout(layoutType);
+	const { pressToContinue } = VISUAL_LAYOUT.loading;
+
+	return {
+		...screen,
+		pressToContinue: {
+			label: pressToContinue.label,
+			x: pressToContinue.x ?? 0,
+			y: pressToContinue.y,
+			width: screen.progressBar.width * pressToContinue.widthRatio,
+			anchor: pressToContinue.anchor,
+		},
+	};
+};
+
 export const getFreeSpinCounterLayout = (layoutType: LayoutType) =>
 	VISUAL_LAYOUT.freeSpin.counter.layoutByType[layoutType];
 
@@ -860,6 +903,7 @@ export const SCENE_LABELS = {
 		progress: VISUAL_LAYOUT.loading.progress.label,
 		progressBg: VISUAL_LAYOUT.loading.progressBg.label,
 		progressFill: VISUAL_LAYOUT.loading.progressFill.label,
+		pressToContinue: VISUAL_LAYOUT.loading.pressToContinue.label,
 	},
 	layout: {
 		frameLayer: VISUAL_LAYOUT.layout.frameLayer.label,

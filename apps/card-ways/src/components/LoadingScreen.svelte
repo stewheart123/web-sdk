@@ -4,7 +4,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { getLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { resolveLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -15,7 +15,7 @@
 	const props: Props = $props();
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
-	const layout = $derived(getLoadingScreenLayout(layoutType));
+	const layout = $derived(resolveLoadingScreenLayout(layoutType));
 
 	let loadingType = $state<'start' | 'transition'>('start');
 </script>
@@ -41,13 +41,15 @@
 					{/snippet}
 					{#snippet frame(sizes)}{/snippet}
 				</LoadingProgress>
+			{:else}
+				<PressToContinue
+					embedded
+					layout={layout.pressToContinue}
+					onpress={() => (loadingType = 'transition')}
+				/>
 			{/if}
 		</Container>
 	</MainContainer>
-</FadeContainer>
-
-<FadeContainer show={loadingType === 'start' && context.stateApp.loaded} label={SCENE_LABELS.fade.loadingPressToContinue}>
-	<PressToContinue onpress={() => (loadingType = 'transition')} />
 </FadeContainer>
 
 <FadeContainer show={loadingType === 'transition'} label={SCENE_LABELS.fade.loadingTransition}>

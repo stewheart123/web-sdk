@@ -9,14 +9,14 @@
 	import {
 		getPressToContinueLayout,
 		SCENE_LABELS,
-		type ResolvedFreeSpinPressToContinueLayout,
+		type EmbeddedPressToContinueLayout,
 	} from '../game/visualLayoutConfig';
 
 	type Props = {
 		onpress: () => void;
-		/** When true, render inside modal-local space (no MainContainer wrapper). */
+		/** When true, render inside a parent container (no MainContainer wrapper). */
 		embedded?: boolean;
-		layout?: ResolvedFreeSpinPressToContinueLayout;
+		layout?: EmbeddedPressToContinueLayout;
 	};
 
 	const props: Props = $props();
