@@ -4,6 +4,7 @@ import LoadingProgress from './src/components/LoadingProgress.svelte';
 import WinCountUpProvider from './src/components/WinCountUpProvider.svelte';
 import ResponsiveBitmapText from './src/components/ResponsiveBitmapText.svelte';
 import ResponsiveText from './src/components/ResponsiveText.svelte';
+import AspectFitSprite from './src/components/AspectFitSprite.svelte';
 import Button, { type Props as ButtonProps } from './src/components/Button.svelte';
 import Amount, { type Props as AmountProps } from './src/components/Amount.svelte';
 
@@ -14,6 +15,7 @@ export {
 	WinCountUpProvider,
 	ResponsiveBitmapText,
 	ResponsiveText,
+	AspectFitSprite,
 	Amount,
 	Button,
 };

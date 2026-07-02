@@ -8,8 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { Sprite, SpineProvider, SpineTrack, SpineSlot } from 'pixi-svelte';
-	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
+	import { AspectFitSprite, FadeContainer, WinCountUpProvider } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve } from 'utils-shared/wait';
 	import { CanvasSizeRectangle } from 'components-layout';
@@ -18,20 +17,16 @@
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { FREE_SPIN_OUTRO, OVERLAY, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { OVERLAY, resolveFreeSpinOutroLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
+	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
 	import PressToContinue from './PressToContinue.svelte';
-
-	type AnimationName = 'intro' | 'idle';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
-	const YOU_WON_LABEL = FREE_SPIN_OUTRO.youWon;
-	const TOTAL_WIN_LABEL = FREE_SPIN_OUTRO.totalWin;
 
 	let show = $state(true);
 	let outroKey = $state(0);
-	let animationName = $state<AnimationName>('intro');
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
@@ -60,7 +55,6 @@
 		freeSpinOutroShow: () => {
 			outroKey += 1;
 			show = true;
-			animationName = 'intro';
 		},
 		freeSpinOutroHide: async () => (show = false),
 		freeSpinOutroCountUp: async (emitterEvent) => {
@@ -88,71 +82,50 @@
 				{#key outroKey}
 					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 						{#snippet children({ sizes })}
-							<SpineProvider
-								label={SCENE_LABELS.freeSpin.outro.numberSpine}
-								key="fsOutroNumber"
-								width={FREE_SPIN_OUTRO.numberSpine.width}
-								zIndex={FREE_SPIN_OUTRO.numberSpine.zIndex}
-							>
-								<SpineTrack
-									trackIndex={0}
-									{animationName}
-									loop={animationName === 'idle'}
-									listener={{
-										complete: () => (animationName = 'idle'),
-									}}
-								/>
-								<SpineSlot slotName="slot_number">
-									<ResponsiveBitmapText
-										label={SCENE_LABELS.freeSpin.outro.numberText}
-										anchor={0.5}
-										style={getBitmapFontStyle('freeSpinOutro', {
-											width: sizes.width,
-											layoutType,
-										})}
-										text={bookEventAmountToCurrencyString(countUpAmount)}
-										maxWidth={FREE_SPIN_OUTRO.numberSpine.maxWidth}
-									/>
-								</SpineSlot>
-							</SpineProvider>
+							{@const layout = resolveFreeSpinOutroLayout(sizes)}
+
+							<FreeSpinNumberDisplay
+								layout={layout.numberText}
+								text={bookEventAmountToCurrencyString(countUpAmount)}
+								responsive
+								textStyle={getBitmapFontStyle('freeSpinOutro', {
+									width: sizes.width,
+									layoutType,
+									sizeRatio: layout.numberText.fontSizeRatio,
+								})}
+							/>
 
 							{#if isBigWin}
-								<Sprite
+								<AspectFitSprite
 									label={SCENE_LABELS.freeSpin.outro.bigWinCongrats}
-									anchor={FREE_SPIN_OUTRO.bigWinCongratsSprite.anchor}
-									width={FREE_SPIN_OUTRO.bigWinCongratsSprite.width}
-									height={FREE_SPIN_OUTRO.bigWinCongratsSprite.height}
+									anchor={layout.bigWinCongrats.anchor}
+									maxWidth={layout.bigWinCongrats.maxWidth}
+									maxHeight={layout.bigWinCongrats.maxHeight}
+									y={layout.bigWinCongrats.y}
 									key="freespins_{stateUrlDerived.lang()}.png"
-									zIndex={YOU_WON_LABEL.zIndex}
+									zIndex={layout.youWon.zIndex}
 								/>
 							{:else}
-								<Sprite
+								<AspectFitSprite
 									label={SCENE_LABELS.freeSpin.outro.youWon}
-									anchor={YOU_WON_LABEL.anchor}
-									width={YOU_WON_LABEL.width}
-									height={YOU_WON_LABEL.height}
-									x={YOU_WON_LABEL.x}
-									y={YOU_WON_LABEL.y}
-									zIndex={YOU_WON_LABEL.zIndex}
+									anchor={layout.youWon.anchor}
+									maxWidth={layout.youWon.maxWidth}
+									maxHeight={layout.youWon.maxHeight}
+									x={layout.youWon.x}
+									y={layout.youWon.y}
+									zIndex={layout.youWon.zIndex}
 									key="winsmall_{stateUrlDerived.lang()}.png"
 								/>
 							{/if}
 
-							{@const totalWinWidth = isBigWin
-								? TOTAL_WIN_LABEL.bigWidth
-								: TOTAL_WIN_LABEL.width}
-							{@const totalWinHeight = isBigWin
-								? TOTAL_WIN_LABEL.bigHeight
-								: TOTAL_WIN_LABEL.height}
-
-							<Sprite
+							<AspectFitSprite
 								label={SCENE_LABELS.freeSpin.outro.totalWin}
-								anchor={TOTAL_WIN_LABEL.anchor}
-								width={totalWinWidth}
-								height={totalWinHeight}
-								x={TOTAL_WIN_LABEL.x}
-								y={TOTAL_WIN_LABEL.y}
-								zIndex={TOTAL_WIN_LABEL.zIndex}
+								anchor={layout.totalWin.anchor}
+								maxWidth={isBigWin ? layout.totalWin.bigMaxWidth : layout.totalWin.maxWidth}
+								maxHeight={layout.totalWin.maxHeight}
+								x={layout.totalWin.x}
+								y={layout.totalWin.y}
+								zIndex={layout.totalWin.zIndex}
 								key="totalwin_{stateUrlDerived.lang()}.png"
 							/>
 						{/snippet}

@@ -34,6 +34,8 @@ export type BitmapFontStyleContext = {
 	symbolSize?: number;
 	width?: number;
 	layoutType?: LayoutType;
+	/** Overrides TEXT_LAYOUT size when sizeMode is widthRatio. */
+	sizeRatio?: number;
 };
 
 export type BitmapFontStyle = Pick<
@@ -61,7 +63,7 @@ const resolveFontSize = (
 		return usage.size * font.scale * compensated * layoutScale;
 	}
 
-	return (context.width ?? 0) * usage.size * font.scale * compensated * layoutScale;
+	return (context.width ?? 0) * (context.sizeRatio ?? usage.size) * font.scale * compensated * layoutScale;
 };
 
 export const getBitmapFontStyle = (

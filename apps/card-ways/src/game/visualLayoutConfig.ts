@@ -54,11 +54,46 @@ export type ModalLayoutSettings = VirtualSize & {
 	shineWidth: number;
 };
 
-export type SpriteElementLayout = VirtualSize & {
+export type AspectFitSpriteLayout = {
+	label: string;
+	maxWidth: number;
+	maxHeight?: number;
 	x?: number;
 	y?: number;
 	anchor: { x: number; y: number };
 	zIndex?: number;
+};
+
+/** layoutSpace: modal-local — static bitmap number in FreeSpinNumberDisplay.svelte */
+export type FreeSpinNumberTextLayout = {
+	label: string;
+	x?: number;
+	y?: number;
+	zIndex?: number;
+	anchor: { x: number; y: number };
+	/** Fine vertical nudge after y. Negative moves up. */
+	offsetY?: number;
+	/** Font size as a fraction of modal width (see fonts.textLayout sizeMode widthRatio). */
+	fontSizeRatio: number;
+	/** Max display width as a fraction of modal width (outro ResponsiveBitmapText). */
+	maxWidthRatio?: number;
+};
+
+export type ResolvedFreeSpinNumberTextLayout = {
+	label: string;
+	x: number;
+	y: number;
+	zIndex?: number;
+	anchor: { x: number; y: number };
+	offsetY: number;
+	fontSizeRatio: number;
+	maxWidth?: number;
+};
+
+export type ResolvedAspectFitSprite = Omit<AspectFitSpriteLayout, 'label'>;
+
+export type ResolvedFreeSpinTotalWinLayout = ResolvedAspectFitSprite & {
+	bigMaxWidth: number;
 };
 
 export type ModifierLayoutSettings = {
@@ -334,48 +369,51 @@ export const VISUAL_LAYOUT = {
 		intro: {
 			congrats: {
 				label: 'FreeSpin/Intro/Congrats',
-				width: 682,
-				height: 136,
-				y: 80,
+				maxWidth: 682,
+				maxHeight: 160,
+				y: 0,
 				anchor: { x: 0.5, y: 1.5 },
 			},
-			numberSpine: {
-				label: 'FreeSpin/Intro/NumberSpine',
-				width: 600,
-				y: -300,
+			numberText: {
+				label: 'FreeSpin/Intro/NumberText',
+				x: 0,
+				y: 0,
 				zIndex: 1,
-				numberTextAnchor: { x: 0.7, y: 0},
+				anchor: { x: 0.5, y: 0.5 },
+				offsetY: -50,
+				fontSizeRatio: 0.25,
 			},
-			numberText: { label: 'FreeSpin/Intro/NumberText' },
 			freeSpinsLabel: {
 				label: 'FreeSpin/Intro/FreeSpinsLabel',
-				width: 335,
-				height: 67,
+				maxWidth: 335,
+				maxHeight: 80,
 				anchor: { x: 0.5, y: -2 },
 			},
 		},
 		// layoutSpace: modal-local — children positioned inside modal panel
 		outro: {
-			numberSpine: {
-				label: 'FreeSpin/Outro/NumberSpine',
-				width: 250,
+			numberText: {
+				label: 'FreeSpin/Outro/NumberText',
+				x: 0,
+				y: 0,
 				zIndex: 1,
-				maxWidth: 350,
-				anchor: { x: 0.5, y: -2 },
+				anchor: { x: 0.5, y: 0.5 },
+				offsetY: -20,
+				fontSizeRatio: 0.3,
+				maxWidthRatio: 0.5,
 			},
-			numberText: { label: 'FreeSpin/Outro/NumberText' },
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
-				width: 682,
-				height: 136,
+				maxWidth: 682,
+				maxHeight: 360,
 				y: 80,
-				anchor: { x: 0.5, y: 1.5 },
+				anchor: { x: 0.5, y: 2.3 },
 			},
 			youWon: {
 				label: 'FreeSpin/Outro/YouWon',
 				anchor: { x: 0.5, y: 0.5 },
-				width: 714,
-				height: 71,
+				maxWidth: 714,
+				maxHeight: 120,
 				x: 0,
 				y: -182,
 				zIndex: 2,
@@ -383,12 +421,12 @@ export const VISUAL_LAYOUT = {
 			totalWin: {
 				label: 'FreeSpin/Outro/TotalWin',
 				anchor: { x: 0.5, y: 0.5 },
-				width: 561,
-				height: 56,
+				maxWidth: 561,
+				bigMaxWidth: 408,
+				maxHeight: 80,
 				x: 0,
 				y: 182,
 				zIndex: 2,
-				big: { width: 408, height: 29 },
 			},
 		},
 		// layoutSpace: board — FreeSpinCounter.svelte; position computed from boardLayout
@@ -627,6 +665,50 @@ export const getFreeSpinModalSizes = (layoutType: LayoutType) => {
 	return { width: layout.width, height: layout.height };
 };
 
+const resolveNumberTextLayout = (
+	text: FreeSpinNumberTextLayout,
+	modalWidth: number,
+): ResolvedFreeSpinNumberTextLayout => ({
+	label: text.label,
+	x: text.x ?? 0,
+	y: text.y ?? 0,
+	zIndex: text.zIndex,
+	anchor: text.anchor,
+	offsetY: text.offsetY ?? 0,
+	fontSizeRatio: text.fontSizeRatio,
+	maxWidth:
+		text.maxWidthRatio !== undefined ? modalWidth * text.maxWidthRatio : undefined,
+});
+
+const resolveAspectFitSprite = ({
+	label: _label,
+	...layout
+}: AspectFitSpriteLayout): ResolvedAspectFitSprite => layout;
+
+export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize) => {
+	const { intro } = VISUAL_LAYOUT.freeSpin;
+
+	return {
+		congrats: resolveAspectFitSprite(intro.congrats),
+		freeSpinsLabel: resolveAspectFitSprite(intro.freeSpinsLabel),
+		numberText: resolveNumberTextLayout(intro.numberText, modalSizes.width),
+	};
+};
+
+export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize) => {
+	const { outro } = VISUAL_LAYOUT.freeSpin;
+
+	return {
+		numberText: resolveNumberTextLayout(outro.numberText, modalSizes.width),
+		bigWinCongrats: resolveAspectFitSprite(outro.bigWinCongrats),
+		youWon: resolveAspectFitSprite(outro.youWon),
+		totalWin: {
+			...resolveAspectFitSprite(outro.totalWin),
+			bigMaxWidth: outro.totalWin.bigMaxWidth,
+		} satisfies ResolvedFreeSpinTotalWinLayout,
+	};
+};
+
 export const getPressToContinueLayout = (layoutType: LayoutType) =>
 	VISUAL_LAYOUT.ui.pressToContinue.layoutByType[layoutType];
 
@@ -690,12 +772,10 @@ export const SCENE_LABELS = {
 		},
 		intro: {
 			congrats: VISUAL_LAYOUT.freeSpin.intro.congrats.label,
-			numberSpine: VISUAL_LAYOUT.freeSpin.intro.numberSpine.label,
 			numberText: VISUAL_LAYOUT.freeSpin.intro.numberText.label,
 			freeSpinsLabel: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.label,
 		},
 		outro: {
-			numberSpine: VISUAL_LAYOUT.freeSpin.outro.numberSpine.label,
 			numberText: VISUAL_LAYOUT.freeSpin.outro.numberText.label,
 			bigWinCongrats: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.label,
 			youWon: VISUAL_LAYOUT.freeSpin.outro.youWon.label,
@@ -809,61 +889,15 @@ export const FREE_SPIN_MODAL = {
 	modalSpriteAnchor: VISUAL_LAYOUT.freeSpin.modal.spriteAnchor,
 } as const;
 
-export const FREE_SPIN_INTRO = {
-	congratsSprite: {
-		width: VISUAL_LAYOUT.freeSpin.intro.congrats.width,
-		height: VISUAL_LAYOUT.freeSpin.intro.congrats.height,
-		anchor: VISUAL_LAYOUT.freeSpin.intro.congrats.anchor,
-	},
-	numberSpine: {
-		width: VISUAL_LAYOUT.freeSpin.intro.numberSpine.width,
-		y: VISUAL_LAYOUT.freeSpin.intro.numberSpine.y,
-		zIndex: VISUAL_LAYOUT.freeSpin.intro.numberSpine.zIndex,
-		numberTextAnchor: VISUAL_LAYOUT.freeSpin.intro.numberSpine.numberTextAnchor,
-	},
-	freeSpinsLabel: {
-		width: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.width,
-		height: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.height,
-		anchor: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.anchor,
-	},
-} as const;
+/** @deprecated Use resolveFreeSpinIntroLayout(modalSizes) */
+export const FREE_SPIN_INTRO = resolveFreeSpinIntroLayout(
+	getFreeSpinModalSizes('desktop'),
+);
 
-export const FREE_SPIN_OUTRO = {
-	numberSpine: {
-		width: VISUAL_LAYOUT.freeSpin.outro.numberSpine.width,
-		zIndex: VISUAL_LAYOUT.freeSpin.outro.numberSpine.zIndex,
-		maxWidth: VISUAL_LAYOUT.freeSpin.outro.numberSpine.maxWidth,
-	},
-	bigWinCongratsSprite: {
-		width: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.width,
-		height: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.height,
-		anchor: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.anchor,
-	},
-	youWon: {
-		anchor: VISUAL_LAYOUT.freeSpin.outro.youWon.anchor,
-		width: VISUAL_LAYOUT.freeSpin.outro.youWon.width,
-		height: VISUAL_LAYOUT.freeSpin.outro.youWon.height,
-		x: VISUAL_LAYOUT.freeSpin.outro.youWon.x,
-		y: VISUAL_LAYOUT.freeSpin.outro.youWon.y,
-		zIndex: VISUAL_LAYOUT.freeSpin.outro.youWon.zIndex,
-	},
-	totalWin: {
-		anchor: VISUAL_LAYOUT.freeSpin.outro.totalWin.anchor,
-		width: VISUAL_LAYOUT.freeSpin.outro.totalWin.width,
-		height: VISUAL_LAYOUT.freeSpin.outro.totalWin.height,
-		x: VISUAL_LAYOUT.freeSpin.outro.totalWin.x,
-		y: VISUAL_LAYOUT.freeSpin.outro.totalWin.y,
-		zIndex: VISUAL_LAYOUT.freeSpin.outro.totalWin.zIndex,
-		bigWidth: VISUAL_LAYOUT.freeSpin.outro.totalWin.big.width,
-		bigHeight: VISUAL_LAYOUT.freeSpin.outro.totalWin.big.height,
-	},
-} as const;
-
-/** @deprecated Use FREE_SPIN_OUTRO */
-export const FREE_SPIN_OUTRO_LABELS = {
-	youWon: FREE_SPIN_OUTRO.youWon,
-	totalWin: FREE_SPIN_OUTRO.totalWin,
-};
+/** @deprecated Use resolveFreeSpinOutroLayout(modalSizes) */
+export const FREE_SPIN_OUTRO = resolveFreeSpinOutroLayout(
+	getFreeSpinModalSizes('desktop'),
+);
 
 export const FREE_SPIN_COUNTER = getFreeSpinCounterLayout('desktop');
 
