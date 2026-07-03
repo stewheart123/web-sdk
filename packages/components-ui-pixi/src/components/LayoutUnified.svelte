@@ -32,8 +32,6 @@
 
 		UI_BAR_SLOTS,
 
-		UI_BET_STEPPER_SIZE,
-
 		UI_BUY_BONUS_OFFSET_X,
 
 		UI_BUTTON_SIZE,
@@ -51,6 +49,10 @@
 		getUiBarSlotRegion,
 
 		getUiBarY,
+
+		getUiBetStepperScale,
+
+		getBetStepperButtonOffsetY,
 
 		getUiClusterPivot,
 
@@ -94,9 +96,7 @@
 
 	const betRegion = getUiBarSlotRegion('bet');
 
-	const decreaseRegion = getUiBarSlotRegion('decrease');
-
-	const increaseRegion = getUiBarSlotRegion('increase');
+	const betStepperRegion = getUiBarSlotRegion('betStepper');
 
 	const spinRegion = getUiBarSlotRegion('spin');
 
@@ -124,19 +124,9 @@
 
 	});
 
-	const decreaseScale = getUiBarSlotButtonScale({
+	const betStepperScale = getUiBetStepperScale({
 
-		regionWidth: decreaseRegion.width,
-
-		baseSize: UI_BET_STEPPER_SIZE,
-
-	});
-
-	const increaseScale = getUiBarSlotButtonScale({
-
-		regionWidth: increaseRegion.width,
-
-		baseSize: UI_BET_STEPPER_SIZE,
+		regionWidth: betStepperRegion.width,
 
 	});
 
@@ -290,35 +280,41 @@
 
 		<Container
 
-			label={UI_SCENE_LABELS.controlBar.decrease}
+			label={UI_SCENE_LABELS.controlBar.betStepper}
 
-			x={decreaseRegion.centerX}
-
-			y={UI_BAR_SLOT_CENTER_Y}
-
-			scale={decreaseScale}
-
-		>
-
-			{@render props.buttonDecrease({ anchor: 0.5 })}
-
-		</Container>
-
-
-
-		<Container
-
-			label={UI_SCENE_LABELS.controlBar.increase}
-
-			x={increaseRegion.centerX}
+			x={betStepperRegion.centerX}
 
 			y={UI_BAR_SLOT_CENTER_Y}
 
-			scale={increaseScale}
+			scale={betStepperScale}
 
 		>
 
-			{@render props.buttonIncrease({ anchor: 0.5 })}
+			<Container
+
+				label={UI_SCENE_LABELS.controlBar.betStepperIncrease}
+
+				y={getBetStepperButtonOffsetY('increase')}
+
+			>
+
+				{@render props.buttonIncrease({ anchor: 0.5 })}
+
+			</Container>
+
+
+
+			<Container
+
+				label={UI_SCENE_LABELS.controlBar.betStepperDecrease}
+
+				y={getBetStepperButtonOffsetY('decrease')}
+
+			>
+
+				{@render props.buttonDecrease({ anchor: 0.5 })}
+
+			</Container>
 
 		</Container>
 

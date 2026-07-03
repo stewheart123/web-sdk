@@ -22,6 +22,10 @@ export const UI_BUTTON_SIZE = UI_BASE_SIZE * 0.85;
 export const UI_SPIN_BUTTON_SIZE = UI_BASE_SIZE * 1.35;
 export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.55;
+/** Vertical gap between stacked +/- bet buttons. */
+export const UI_BET_STEPPER_VERTICAL_GAP = 6;
+export const UI_BET_STEPPER_STACK_HEIGHT =
+	UI_BET_STEPPER_SIZE * 2 + UI_BET_STEPPER_VERTICAL_GAP;
 export const UI_LABEL_SCALE = 0.85;
 
 /** Gap between adjacent slot regions inside the bar. */
@@ -32,8 +36,7 @@ export const UI_BAR_SLOT_ORDER = [
 	'balance',
 	'win',
 	'bet',
-	'decrease',
-	'increase',
+	'betStepper',
 	'spin',
 	'autoSpin',
 ] as const;
@@ -56,10 +59,9 @@ export const UI_BAR_SLOT_RATIOS = {
 	balance: 0.17,
 	win: 0.34,
 	bet: 0.5,
-	decrease: 0.64,
-	increase: 0.7,
-	spin: 0.82,
-	autoSpin: 0.94,
+	betStepper: 0.65,
+	spin: 0.78,
+	autoSpin: 0.92,
 } as const;
 
 export const getUiBarSlotRegion = (slotKey: UiBarSlotKey): UiBarSlotRegion => {
@@ -92,6 +94,26 @@ export const getUiBarSlotButtonScale = ({
 	baseSize: number;
 	maxHeight?: number;
 }) => Math.min(regionWidth / baseSize, maxHeight / baseSize) * 0.92;
+
+/** Scale factor for the vertically stacked +/- bet stepper column. */
+export const getUiBetStepperScale = ({
+	regionWidth,
+	maxHeight = UI_BAR_CONTENT_MAX_HEIGHT,
+}: {
+	regionWidth: number;
+	maxHeight?: number;
+}) =>
+	Math.min(
+		regionWidth / UI_BET_STEPPER_SIZE,
+		maxHeight / UI_BET_STEPPER_STACK_HEIGHT,
+	) * 0.92;
+
+/** Y offset from the bet-stepper slot centre for each stacked button. */
+export const getBetStepperButtonOffsetY = (position: 'increase' | 'decrease') => {
+	const offset = (UI_BET_STEPPER_SIZE + UI_BET_STEPPER_VERTICAL_GAP) * 0.5;
+
+	return position === 'increase' ? -offset : offset;
+};
 
 /** Horizontal inset from the standard layout edges when fitting the bar. */
 export const UI_SIDE_PADDING = 24;
@@ -128,8 +150,7 @@ export const UI_BAR_SLOTS = {
 	balance: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.balance,
 	win: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.win,
 	bet: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.bet,
-	decrease: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.decrease,
-	increase: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.increase,
+	betStepper: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.betStepper,
 	spin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.spin,
 	autoSpin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.autoSpin,
 } as const;
@@ -200,8 +221,9 @@ export const UI_SCENE_LABELS = {
 		balance: 'UI/ControlBar/Balance',
 		win: 'UI/ControlBar/Win',
 		bet: 'UI/ControlBar/Bet',
-		decrease: 'UI/ControlBar/Decrease',
-		increase: 'UI/ControlBar/Increase',
+		betStepper: 'UI/ControlBar/BetStepper',
+		betStepperIncrease: 'UI/ControlBar/BetStepper/Increase',
+		betStepperDecrease: 'UI/ControlBar/BetStepper/Decrease',
 		spin: 'UI/ControlBar/Spin',
 		autoSpin: 'UI/ControlBar/AutoSpin',
 	},

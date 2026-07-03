@@ -1,4 +1,5 @@
 import type { BaseBet } from 'utils-bet';
+import { stateConfig } from './stateConfig.svelte';
 import { stateMeta } from './stateMeta.svelte';
 
 export type Currency = string;
@@ -62,6 +63,40 @@ const betCost = () => stateBet.betAmount * betCostMultiplier();
 const isBetCostAvailable = () => betCost() > 0 && betCost() <= stateBet.balanceAmount;
 const hasAutoBetCounter = () => stateBet.autoSpinsCounter !== 0;
 
+/** Index of the current bet in {@link stateConfig.betAmountOptions}, or nearest lower option. */
+const getBetAmountOptionIndex = () => {
+	const options = stateConfig.betAmountOptions;
+	if (!options.length) return 0;
+
+	const exactIndex = options.indexOf(stateBet.betAmount);
+	if (exactIndex !== -1) return exactIndex;
+
+	for (let i = options.length - 1; i >= 0; i--) {
+		if (options[i] <= stateBet.betAmount) return i;
+	}
+
+	return 0;
+};
+
+const stepBetAmountOption = (delta: -1 | 1) => {
+	const options = stateConfig.betAmountOptions;
+	if (!options.length) return;
+
+	const index = getBetAmountOptionIndex();
+	const nextIndex = Math.max(0, Math.min(options.length - 1, index + delta));
+	stateBet.betAmount = options[nextIndex];
+};
+
+const canStepBetAmount = (delta: -1 | 1) => {
+	const options = stateConfig.betAmountOptions;
+	if (!options.length) return false;
+
+	const index = getBetAmountOptionIndex();
+	if (delta === -1) return index > 0;
+
+	return index < options.length - 1;
+};
+
 export const stateBetDerived = {
 	setBetAmount,
 	updateBetAmount,
@@ -72,4 +107,7 @@ export const stateBetDerived = {
 	betCost,
 	isBetCostAvailable,
 	hasAutoBetCounter,
+	getBetAmountOptionIndex,
+	stepBetAmountOption,
+	canStepBetAmount,
 };
