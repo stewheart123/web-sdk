@@ -4,12 +4,11 @@
 
 	import UiMenuButton from './UiMenuButton.svelte';
 	import { getContext } from '../context';
-	import { UI_MENU_ITEM_SIZE } from '../uiLayoutConfig';
+	import { UI_MENU_TOGGLE_SIZES } from '../uiLayoutConfig';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_MENU_ITEM_SIZE, height: UI_MENU_ITEM_SIZE };
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
@@ -20,7 +19,7 @@
 
 <UiMenuButton
 	{...props}
-	{sizes}
+	sizes={UI_MENU_TOGGLE_SIZES}
 	{onpress}
 	label={i18nDerived.info()}
 	variant="light"

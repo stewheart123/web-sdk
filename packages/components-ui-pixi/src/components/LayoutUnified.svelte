@@ -394,7 +394,7 @@
 
 			<Container label={UI_SCENE_LABELS.menu.sound} x={menuPanel.rowLeftX} y={menuPanel.soundY}>
 
-				{@render props.buttonSoundSwitch({ anchor: { x: 0, y: 0.5 } })}
+				{@render props.buttonSoundSwitch({})}
 
 			</Container>
 
@@ -402,13 +402,13 @@
 
 			<Container label={UI_SCENE_LABELS.menu.music} x={menuPanel.rowLeftX} y={menuPanel.musicY}>
 
-				{@render props.buttonMusicSwitch({ anchor: { x: 0, y: 0.5 } })}
+				{@render props.buttonMusicSwitch({})}
 
 			</Container>
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.info} x={menuPanel.menuCenterX} y={menuPanel.infoY}>
+			<Container label={UI_SCENE_LABELS.menu.info} x={menuPanel.infoCenterX} y={menuPanel.infoY}>
 
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 

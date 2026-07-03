@@ -17,7 +17,7 @@
 		value: number;
 	};
 
-	let { label, value = $bindable(), ...buttonProps }: Props = $props();
+	let { label, value = $bindable(), anchor: _anchor, ..._buttonProps }: Props = $props();
 
 	const context = getContext();
 	const layout = getUiMenuAudioRowLayout();
@@ -42,9 +42,9 @@
 	};
 </script>
 
-<Container {...buttonProps}>
+<Container>
 	<Container x={layout.toggleCenterX}>
-		<UiMenuButton sizes={toggleSizes} {active} onpress={onToggle} {label} variant="light" />
+		<UiMenuButton anchor={0.5} sizes={toggleSizes} {active} onpress={onToggle} {label} variant="light" />
 	</Container>
 
 	<Container x={layout.sliderCenterX}>

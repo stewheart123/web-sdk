@@ -105,14 +105,14 @@
 				/>
 
 				<Container x={menuPanel.rowLeftX} y={menuPanel.soundY}>
-					<ButtonSoundSwitch anchor={{ x: 0, y: 0.5 }} />
+					<ButtonSoundSwitch />
 				</Container>
 
 				<Container x={menuPanel.rowLeftX} y={menuPanel.musicY}>
-					<ButtonMusicSwitch anchor={{ x: 0, y: 0.5 }} />
+					<ButtonMusicSwitch />
 				</Container>
 
-				<Container x={menuPanel.menuCenterX} y={menuPanel.infoY}>
+				<Container x={menuPanel.infoCenterX} y={menuPanel.infoY}>
 					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>

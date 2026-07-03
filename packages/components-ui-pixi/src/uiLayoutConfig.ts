@@ -51,8 +51,11 @@ export const UI_MENU_AUDIO_THUMB_SIZE = 24;
 export const UI_MENU_AUDIO_ROW_WIDTH =
 	UI_MENU_AUDIO_LABEL_WIDTH + UI_MENU_AUDIO_GAP + UI_MENU_AUDIO_SLIDER_WIDTH;
 
-/** Square menu items (e.g. info) — same height as audio toggles. */
-export const UI_MENU_ITEM_SIZE = UI_MENU_AUDIO_TOGGLE_HEIGHT;
+/** Shared size for SOUND / MUSIC / INFO menu toggle buttons. */
+export const UI_MENU_TOGGLE_SIZES = {
+	width: UI_MENU_AUDIO_LABEL_WIDTH,
+	height: UI_MENU_AUDIO_TOGGLE_HEIGHT,
+} as const;
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
 /** Font size for +/- icons — sized for legibility after bar height scaling. */
 export const UI_BET_STEPPER_ICON_FONT_RATIO = 0.82;
@@ -344,11 +347,11 @@ export const UI_BUY_BONUS_EDGE_PADDING = 12;
 
 export const UI_MENU_PANEL = {
 	rowGap: 12,
-	paddingX: UI_BASE_SIZE * 0.04,
+	paddingX: 2,
 	paddingY: 10,
 	gapAboveMenu: 8,
 	itemSpacing: UI_MENU_AUDIO_ROW_HEIGHT + 12,
-	width: UI_MENU_AUDIO_ROW_WIDTH + UI_BASE_SIZE * 0.08,
+	width: UI_MENU_AUDIO_ROW_WIDTH + 4,
 	borderRadius: UI_BORDER_RADIUS.menuPanel,
 } as const;
 
@@ -368,6 +371,7 @@ export type UiMenuPanelLayout = {
 	panelHeight: number;
 	rowLeftX: number;
 	menuCenterX: number;
+	infoCenterX: number;
 	soundY: number;
 	musicY: number;
 	infoY: number;
@@ -383,23 +387,24 @@ export const getUiMenuPanelLayout = (
 	const panelLeftX = menuCenterX - menuButtonSize * 0.5;
 	const rowLeftX = panelLeftX + UI_MENU_PANEL.paddingX;
 	const panelWidth = Math.max(UI_MENU_PANEL.width, menuButtonSize + UI_MENU_PANEL.paddingX * 2);
+	const infoCenterX = rowLeftX + UI_MENU_AUDIO_LABEL_WIDTH * 0.5;
 
 	const menuButtonTop = menuCenterY - menuButtonSize * 0.5;
 	const panelBottomY = menuButtonTop - UI_MENU_PANEL.gapAboveMenu;
 
-	const infoY = panelBottomY - UI_MENU_ITEM_SIZE * 0.5 - UI_MENU_PANEL.paddingY;
+	const infoY = panelBottomY - UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 - UI_MENU_PANEL.paddingY;
 	const musicY =
 		infoY -
-		UI_MENU_ITEM_SIZE * 0.5 -
+		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 -
 		UI_MENU_PANEL.rowGap -
-		UI_MENU_AUDIO_ROW_HEIGHT * 0.5;
+		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5;
 	const soundY =
 		musicY -
-		UI_MENU_AUDIO_ROW_HEIGHT * 0.5 -
+		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 -
 		UI_MENU_PANEL.rowGap -
-		UI_MENU_AUDIO_ROW_HEIGHT * 0.5;
+		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5;
 	const panelTopY =
-		soundY - UI_MENU_AUDIO_ROW_HEIGHT * 0.5 - UI_MENU_PANEL.paddingY;
+		soundY - UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 - UI_MENU_PANEL.paddingY;
 	const panelHeight = panelBottomY - panelTopY;
 
 	return {
@@ -409,6 +414,7 @@ export const getUiMenuPanelLayout = (
 		panelHeight,
 		rowLeftX,
 		menuCenterX,
+		infoCenterX,
 		soundY,
 		musicY,
 		infoY,
