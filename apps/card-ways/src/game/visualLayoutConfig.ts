@@ -115,11 +115,9 @@ export type ModifierLayoutSettings = {
 };
 
 export type FreeSpinCounterLayoutSettings = {
-	panel: VirtualSize;
-	/** Gap between board edge and counter panel (virtual pixels). */
+	/** Gap between board edge and counter anchor point (virtual pixels). */
 	gapFromBoard: number;
 	scale: number;
-	panelKey: string;
 	text: VirtualOffset & {
 		containerAnchor: { x: number; y: number };
 		counterTextAnchor: { x: number; y: number };
@@ -500,61 +498,52 @@ export const VISUAL_LAYOUT = {
 		},
 		// layoutSpace: board — FreeSpinCounter.svelte; position computed from boardLayout
 		counter: {
-			panel: { label: 'FreeSpin/Counter/Panel' },
 			text: { label: 'FreeSpin/Counter/Text' },
 			title: { label: 'FreeSpin/Counter/Title' },
 			count: { label: 'FreeSpin/Counter/Count' },
 			layoutByType: {
 				desktop: {
-					panel: { width: 245, height: 85 },
 					gapFromBoard: 41,
 					scale: 1,
-					panelKey: 'Frame_FSCounter.png',
 					text: {
-						x: 122,
-						y: 189,
-						containerAnchor: { x: 0.5, y: 0.5 },
+						x: -5,
+						y: 150,
+						containerAnchor: { x: 1, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
 					},
 				},
 				landscape: {
-					panel: { width: 245, height: 185 },
 					gapFromBoard: 41,
-					scale: 1,
-					panelKey: 'Frame_FSCounter.png',
+					scale: 0.9,
 					text: {
-						x: 122,
-						y: 189,
-						containerAnchor: { x: 0.5, y: 0.5 },
+						x: 700,
+						y: -250,
+						containerAnchor: { x: 1, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
 					},
 				},
 				portrait: {
-					panel: { width: 245, height: 185 },
 					gapFromBoard: 41,
-					scale: 1,
-					panelKey: 'Frame_FSCounter.png',
+					scale: 0.7,
 					text: {
-						x: 122,
-						y: 89,
-						containerAnchor: { x: 0.5, y: 0.5 },
+						x: 400,
+						y: -300,
+						containerAnchor: { x: 1, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
 					},
 				},
 				tablet: {
-					panel: { width: 245, height: 185 },
 					gapFromBoard: 41,
-					scale: 1,
-					panelKey: 'Frame_FSCounter.png',
+					scale: 0.7,
 					text: {
-						x: 122,
-						y: 19,
-						containerAnchor: { x: 0.5, y: 0.5 },
+						x: 160,
+						y: -260,
+						containerAnchor: { x: 0.5, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 0 },
-						lineGap: 30,
+						lineGap: 10,
 					},
 				},
 			} satisfies Record<LayoutType, FreeSpinCounterLayoutSettings>,
@@ -934,7 +923,6 @@ export const SCENE_LABELS = {
 			pressToContinue: VISUAL_LAYOUT.freeSpin.outro.pressToContinue.label,
 		},
 		counter: {
-			panel: VISUAL_LAYOUT.freeSpin.counter.panel.label,
 			text: VISUAL_LAYOUT.freeSpin.counter.text.label,
 			title: VISUAL_LAYOUT.freeSpin.counter.title.label,
 			count: VISUAL_LAYOUT.freeSpin.counter.count.label,

@@ -8,27 +8,23 @@
 <script lang="ts">
 	import { MainContainer } from 'components-layout';
 	import { FadeContainer } from 'components-pixi';
+	import { stateUi } from 'state-shared';
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getFreeSpinCounterLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
-	import { anchorToPivot, BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
+	import { anchorToPivot, BitmapText, Container, type Sizes } from 'pixi-svelte';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const counterLayout = $derived(getFreeSpinCounterLayout(layoutType));
-	const panelSizes = $derived(counterLayout.panel);
 	const position = $derived.by(() => {
 		const boardLayout = context.stateGameDerived.boardLayout();
 		const scaledBoardHalfWidth = boardLayout.width * 0.5 * boardLayout.scale;
 
 		return {
-			x:
-				boardLayout.x -
-				scaledBoardHalfWidth -
-				panelSizes.width -
-				counterLayout.gapFromBoard,
+			x: boardLayout.x - scaledBoardHalfWidth - counterLayout.gapFromBoard,
 			y: boardLayout.y - boardLayout.height * 0.5 * boardLayout.scale,
 		};
 	});
@@ -37,9 +33,10 @@
 		getBitmapFontStyle('freeSpinCounter', { symbolSize: SYMBOL_SIZE, layoutType }),
 	);
 
-	let show = $state(false);
-	let current = $state(0);
-	let total = $state(0);
+	const show = $derived(stateUi.freeSpinCounterShow);
+	const current = $derived(stateUi.freeSpinCounterCurrent);
+	const total = $derived(stateUi.freeSpinCounterTotal);
+
 	let titleSizes: Sizes = $state({ width: 0, height: 0 });
 	let counterSizes: Sizes = $state({ width: 0, height: 0 });
 
@@ -52,29 +49,16 @@
 		x: titleSizes.width / 2,
 		y: titleSizes.height + lineGap,
 	});
-
-	context.eventEmitter.subscribeOnMount({
-		freeSpinCounterShow: () => (show = true),
-		freeSpinCounterHide: () => (show = false),
-		freeSpinCounterUpdate: (emitterEvent) => {
-			if (emitterEvent.current !== undefined) current = emitterEvent.current;
-			if (emitterEvent.total !== undefined) total = emitterEvent.total;
-		},
-	});
 </script>
 
 <MainContainer label={SCENE_LABELS.layout.freeSpinCounter}>
 	<FadeContainer
-		show={show}
+		persistent
+		{show}
 		{...position}
 		scale={counterLayout.scale}
 		label={SCENE_LABELS.fade.freeSpinCounter}
 	>
-		<Sprite
-			label={SCENE_LABELS.freeSpin.counter.panel}
-			key={counterLayout.panelKey}
-			{...panelSizes}
-		/>
 		<Container
 			label={SCENE_LABELS.freeSpin.counter.text}
 			x={counterLayout.text.x}
@@ -95,7 +79,7 @@
 			/>
 			<BitmapText
 				label={SCENE_LABELS.freeSpin.counter.count}
-				text={`${current}`+ ` / ` +`${total}`}
+				text={`${current}` + ` / ` + `${total}`}
 				{...counterPosition}
 				anchor={counterLayout.text.counterTextAnchor}
 				style={freeSpinCounterStyle}
