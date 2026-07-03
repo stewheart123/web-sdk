@@ -11,6 +11,7 @@
 	type Props = Omit<ButtonProps, 'children'> & {
 		icon: ButtonIcon;
 		sizes: { width: number; height: number };
+		iconFontSize?: number;
 		active?: boolean;
 		children?: Snippet;
 		variant?: 'dark' | 'light';
@@ -20,13 +21,15 @@
 		icon,
 		active,
 		variant = 'dark',
+		iconFontSize,
 		children: childrenFromParent,
 		...buttonProps
 	}: Props = $props();
 
 	const isCompact = $derived(buttonProps.sizes.width < UI_BASE_SIZE * 0.75);
 	const fontSize = $derived(
-		isCompact ? buttonProps.sizes.width * 0.5 : UI_BASE_FONT_SIZE * 0.9,
+		iconFontSize ??
+			(isCompact ? buttonProps.sizes.width * 0.5 : UI_BASE_FONT_SIZE * 0.9),
 	);
 	const wordWrapWidth = $derived(isCompact ? buttonProps.sizes.width : 200);
 </script>

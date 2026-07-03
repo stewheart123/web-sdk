@@ -28,6 +28,10 @@ export const UI_AUTO_SPIN_BUTTON_SIZE = UI_BASE_SIZE * 1.25;
 export const UI_SPIN_BUTTON_SIZE = (UI_BASE_SIZE * 1.35) / 2.5;
 export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
+/** Font size for +/- icons — sized for legibility after bar height scaling. */
+export const UI_BET_STEPPER_ICON_FONT_RATIO = 0.82;
+export const getUiBetStepperIconFontSize = () =>
+	UI_BET_STEPPER_SIZE * UI_BET_STEPPER_ICON_FONT_RATIO;
 /** Vertical gap between stacked +/- bet buttons. */
 export const UI_BET_STEPPER_VERTICAL_GAP = 8;
 export const UI_BET_STEPPER_STACK_HEIGHT =

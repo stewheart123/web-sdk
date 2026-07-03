@@ -4,11 +4,12 @@
 	import UiButton from './UiButton.svelte';
 	import { getContext } from '../context';
 	import { stateBetDerived } from 'state-shared';
-	import { UI_BET_STEPPER_SIZE } from '../uiLayoutConfig';
+	import { UI_BET_STEPPER_SIZE, getUiBetStepperIconFontSize } from '../uiLayoutConfig';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const sizes = { width: UI_BET_STEPPER_SIZE, height: UI_BET_STEPPER_SIZE };
+	const iconFontSize = getUiBetStepperIconFontSize();
 	const disabled = $derived(
 		!context.stateXstateDerived.isIdle() || !stateBetDerived.canStepBetAmount(-1),
 	);
@@ -19,4 +20,4 @@
 	};
 </script>
 
-<UiButton {...props} {sizes} {onpress} {disabled} icon="decrease" />
+<UiButton {...props} {sizes} {iconFontSize} {onpress} {disabled} icon="decrease" />
