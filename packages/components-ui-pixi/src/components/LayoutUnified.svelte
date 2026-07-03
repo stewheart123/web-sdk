@@ -54,6 +54,8 @@
 
 		getUiFitScale,
 
+		getUiMenuPanelLayout,
+
 		getUiWinFloatCenterX,
 
 		getUiWinFloatWidth,
@@ -104,27 +106,7 @@
 
 	const barContentWidth = getUiBarContentWidth();
 
-
-
-	const menuItemYs = $derived(
-
-		Array.from({ length: 3 }, (_, index) => {
-
-			const fromBottom = 3 - index;
-
-			return (
-
-				UI_BAR_SLOT_CENTER_Y -
-
-				UI_MENU_PANEL.itemSpacing * fromBottom -
-
-				UI_MENU_PANEL.itemSpacing * 0.5
-
-			);
-
-		}),
-
-	);
+	const menuPanel = $derived(getUiMenuPanelLayout(flow.menu.scale));
 
 </script>
 
@@ -392,15 +374,15 @@
 
 				label={UI_SCENE_LABELS.menu.panel}
 
-				x={UI_BAR_SLOTS.menu - UI_MENU_PANEL.width * 0.5}
+				x={menuPanel.panelLeftX}
 
-				y={menuItemYs[0] - UI_MENU_PANEL.itemSpacing * 0.5}
+				y={menuPanel.panelTopY}
 
 				anchor={{ x: 0, y: 0 }}
 
-				width={UI_MENU_PANEL.width}
+				width={menuPanel.panelWidth}
 
-				height={UI_MENU_PANEL.height}
+				height={menuPanel.panelHeight}
 
 				backgroundColor={BLACK}
 
@@ -410,23 +392,23 @@
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.sound} x={UI_BAR_SLOTS.menu} y={menuItemYs[0]}>
+			<Container label={UI_SCENE_LABELS.menu.sound} x={menuPanel.rowLeftX} y={menuPanel.soundY}>
 
-				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
-
-			</Container>
-
-
-
-			<Container label={UI_SCENE_LABELS.menu.music} x={UI_BAR_SLOTS.menu} y={menuItemYs[1]}>
-
-				{@render props.buttonMusicSwitch({ anchor: 0.5 })}
+				{@render props.buttonSoundSwitch({ anchor: { x: 0, y: 0.5 } })}
 
 			</Container>
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.info} x={UI_BAR_SLOTS.menu} y={menuItemYs[2]}>
+			<Container label={UI_SCENE_LABELS.menu.music} x={menuPanel.rowLeftX} y={menuPanel.musicY}>
+
+				{@render props.buttonMusicSwitch({ anchor: { x: 0, y: 0.5 } })}
+
+			</Container>
+
+
+
+			<Container label={UI_SCENE_LABELS.menu.info} x={menuPanel.menuCenterX} y={menuPanel.infoY}>
 
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 

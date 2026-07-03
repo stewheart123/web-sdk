@@ -15,8 +15,8 @@
 
 	let { value = $bindable(), width, onchange }: Props = $props();
 
-	const thumbRadius = UI_MENU_AUDIO_THUMB_SIZE * 0.5;
-	const hitHeight = Math.max(UI_MENU_AUDIO_SLIDER_HEIGHT, UI_MENU_AUDIO_THUMB_SIZE) + 8;
+	const hitHeight = Math.max(UI_MENU_AUDIO_SLIDER_HEIGHT, UI_MENU_AUDIO_THUMB_SIZE) + 16;
+	const hitWidth = width + UI_MENU_AUDIO_THUMB_SIZE;
 
 	let trackBounds = $state({ x: 0, width: 0 });
 
@@ -37,7 +37,10 @@
 
 	const captureTrackBounds = (event: { currentTarget: { getBounds: () => { x: number; width: number } } }) => {
 		const bounds = event.currentTarget.getBounds();
-		trackBounds = { x: bounds.x, width: bounds.width };
+		trackBounds = {
+			x: bounds.x + (bounds.width - width) * 0.5,
+			width,
+		};
 	};
 
 	const onWindowPointerMove = (event: PointerEvent) => {
@@ -61,7 +64,7 @@
 
 <Container>
 	<Rectangle
-		width={width}
+		width={hitWidth}
 		height={hitHeight}
 		anchor={{ x: 0.5, y: 0.5 }}
 		alpha={0}
@@ -94,7 +97,7 @@
 		diameter={UI_MENU_AUDIO_THUMB_SIZE}
 		anchor={0.5}
 		backgroundColor={0xffffff}
-		borderColor={0x000000}
-		borderWidth={1}
+		borderColor={0x333333}
+		borderWidth={2}
 	/>
 </Container>

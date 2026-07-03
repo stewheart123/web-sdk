@@ -16,7 +16,7 @@
 	import { getContext } from '../context';
 	import type { LayoutUiProps } from '../types';
 	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
-	import { UI_MENU_PANEL } from '../uiLayoutConfig';
+	import { UI_MENU_PANEL, getUiMenuPanelLayout } from '../uiLayoutConfig';
 
 	type Props = {
 		gameName: LayoutUiProps['gameName'];
@@ -26,10 +26,8 @@
 	const props: Props = $props();
 	const context = getContext();
 
-	const menuItemYs = Array.from({ length: 3 }, (_, index) => {
-		const fromBottom = 3 - index;
-		return -UI_MENU_PANEL.itemSpacing * fromBottom - UI_MENU_PANEL.itemSpacing * 0.5;
-	});
+	const menuScale = 0.7;
+	const menuPanel = getUiMenuPanelLayout(1, 0, 0);
 </script>
 
 <EnableSpaceHold />
@@ -70,7 +68,7 @@
 		<Container
 			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
 			y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
-			scale={0.7}
+			scale={menuScale}
 		>
 			<ButtonMenu />
 		</Container>
@@ -94,26 +92,27 @@
 			<Container
 				x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
 				y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
+				scale={menuScale}
 			>
 				<Rectangle
-					x={-UI_MENU_PANEL.width * 0.5}
-					y={menuItemYs[0] - UI_MENU_PANEL.itemSpacing * 0.5}
+					x={menuPanel.panelLeftX}
+					y={menuPanel.panelTopY}
 					anchor={{ x: 0, y: 0 }}
-					width={UI_MENU_PANEL.width}
-					height={UI_MENU_PANEL.height}
+					width={menuPanel.panelWidth}
+					height={menuPanel.panelHeight}
 					backgroundColor={BLACK}
 					borderRadius={UI_MENU_PANEL.borderRadius}
 				/>
 
-				<Container y={menuItemYs[0]}>
-					<ButtonSoundSwitch anchor={0.5} />
+				<Container x={menuPanel.rowLeftX} y={menuPanel.soundY}>
+					<ButtonSoundSwitch anchor={{ x: 0, y: 0.5 }} />
 				</Container>
 
-				<Container y={menuItemYs[1]}>
-					<ButtonMusicSwitch anchor={0.5} />
+				<Container x={menuPanel.rowLeftX} y={menuPanel.musicY}>
+					<ButtonMusicSwitch anchor={{ x: 0, y: 0.5 }} />
 				</Container>
 
-				<Container y={menuItemYs[2]}>
+				<Container x={menuPanel.menuCenterX} y={menuPanel.infoY}>
 					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>
