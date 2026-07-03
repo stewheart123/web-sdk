@@ -2,16 +2,17 @@
 	import type { ButtonProps } from 'components-pixi';
 	import { stateBet, stateBetDerived } from 'state-shared';
 
-	import UiMenuButton from './UiMenuButton.svelte';
-	import { UI_MENU_BUTTON_SIZE } from '../uiLayoutConfig';
+	import UiButton from './UiButton.svelte';
+	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
-	import { i18nDerived } from '../i18n/i18nDerived';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_MENU_BUTTON_SIZE, height: UI_MENU_BUTTON_SIZE };
+	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
 	const active = $derived(stateBet.isTurbo);
-	const disabled = $derived(stateBet.isSpaceHold);
+	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
+	const disabled = $derived(stateBet.isSpaceHold || controlsLocked);
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
@@ -24,12 +25,4 @@
 	});
 </script>
 
-<UiMenuButton
-	{...props}
-	{sizes}
-	{active}
-	{onpress}
-	{disabled}
-	label={i18nDerived.turbo()}
-	variant="light"
-/>
+<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" />

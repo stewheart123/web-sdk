@@ -48,6 +48,7 @@
 		getUiBarY,
 
 		getBetStepperButtonOffsetY,
+		getAutoSpinTurboButtonOffsetY,
 
 		getUiClusterPivot,
 
@@ -107,9 +108,9 @@
 
 	const menuItemYs = $derived(
 
-		Array.from({ length: 4 }, (_, index) => {
+		Array.from({ length: 3 }, (_, index) => {
 
-			const fromBottom = 4 - index;
+			const fromBottom = 3 - index;
 
 			return (
 
@@ -319,7 +320,31 @@
 
 		>
 
-			{@render props.buttonAutoSpin({ anchor: 0.5 })}
+			<Container
+
+				label={UI_SCENE_LABELS.controlBar.turbo}
+
+				y={getAutoSpinTurboButtonOffsetY('turbo')}
+
+			>
+
+				{@render props.buttonTurbo({ anchor: 0.5 })}
+
+			</Container>
+
+
+
+			<Container
+
+				label={UI_SCENE_LABELS.controlBar.autoSpinButton}
+
+				y={getAutoSpinTurboButtonOffsetY('autoSpin')}
+
+			>
+
+				{@render props.buttonAutoSpin({ anchor: 0.5 })}
+
+			</Container>
 
 		</Container>
 
@@ -401,15 +426,7 @@
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.turbo} x={UI_BAR_SLOTS.menu} y={menuItemYs[2]}>
-
-				{@render props.buttonTurbo({ anchor: 0.5 })}
-
-			</Container>
-
-
-
-			<Container label={UI_SCENE_LABELS.menu.info} x={UI_BAR_SLOTS.menu} y={menuItemYs[3]}>
+			<Container label={UI_SCENE_LABELS.menu.info} x={UI_BAR_SLOTS.menu} y={menuItemYs[2]}>
 
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 

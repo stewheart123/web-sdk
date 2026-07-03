@@ -36,6 +36,12 @@ export const getUiBetStepperIconFontSize = () =>
 export const UI_BET_STEPPER_VERTICAL_GAP = 8;
 export const UI_BET_STEPPER_STACK_HEIGHT =
 	UI_BET_STEPPER_SIZE * 2 + UI_BET_STEPPER_VERTICAL_GAP;
+/** Shared design size for turbo + auto-spin stacked on the control bar. */
+export const UI_AUTO_SPIN_TURBO_BUTTON_SIZE = UI_BASE_SIZE;
+/** Vertical gap between stacked turbo and auto-spin buttons. */
+export const UI_AUTO_SPIN_TURBO_VERTICAL_GAP = 8;
+export const UI_AUTO_SPIN_TURBO_STACK_HEIGHT =
+	UI_AUTO_SPIN_TURBO_BUTTON_SIZE * 2 + UI_AUTO_SPIN_TURBO_VERTICAL_GAP;
 export const UI_LABEL_SCALE = 0.85;
 
 /** Gap between adjacent slot regions inside the bar (ratio-based fallback). */
@@ -179,6 +185,10 @@ export const getUiBetStepperScale = ({
 export const getUiBetStepperHeightScale = () =>
 	(UI_BAR_CONTENT_MAX_HEIGHT / UI_BET_STEPPER_STACK_HEIGHT) * 0.92;
 
+/** Height-only scale for the turbo + auto-spin column when positioned via flow layout. */
+export const getUiAutoSpinColumnScale = () =>
+	(UI_BAR_CONTENT_MAX_HEIGHT / UI_AUTO_SPIN_TURBO_STACK_HEIGHT) * 0.92;
+
 export type UiBarFlowRegion = {
 	centerX: number;
 	width: number;
@@ -213,8 +223,8 @@ export const getUiBarFlowLayout = (): UiBarFlowLayout => {
 
 	const spinScale = getUiBarButtonHeightScale(UI_SPIN_BUTTON_SIZE);
 	const spinSize = UI_BASE_SIZE * spinScale;
-	const autoSpinScale = getUiBarButtonHeightScale(UI_AUTO_SPIN_BUTTON_SIZE);
-	const autoSpinSize = UI_BASE_SIZE * autoSpinScale;
+	const autoSpinColumnScale = getUiAutoSpinColumnScale();
+	const autoSpinSize = UI_BASE_SIZE * autoSpinColumnScale;
 	const stepperScale = getUiBetStepperHeightScale();
 	const stepperWidth = UI_BET_STEPPER_SIZE * stepperScale;
 
@@ -245,8 +255,15 @@ export const getUiBarFlowLayout = (): UiBarFlowLayout => {
 		},
 		betStepper: { centerX: stepperCenterX, scale: stepperScale },
 		spin: { centerX: spinCenterX, scale: spinScale },
-		autoSpin: { centerX: resolvedAutoSpinCenterX, scale: autoSpinScale },
+		autoSpin: { centerX: resolvedAutoSpinCenterX, scale: autoSpinColumnScale },
 	};
+};
+
+/** Y offset from the auto-spin column centre for each stacked button. */
+export const getAutoSpinTurboButtonOffsetY = (position: 'turbo' | 'autoSpin') => {
+	const offset = (UI_AUTO_SPIN_TURBO_BUTTON_SIZE + UI_AUTO_SPIN_TURBO_VERTICAL_GAP) * 0.5;
+
+	return position === 'turbo' ? -offset : offset;
 };
 
 /** Y offset from the bet-stepper slot centre for each stacked button. */
@@ -302,7 +319,7 @@ export const UI_BUY_BONUS_EDGE_PADDING = 12;
 export const UI_MENU_PANEL = {
 	itemSpacing: UI_MENU_BUTTON_SIZE * 1.05,
 	width: UI_MENU_BUTTON_SIZE * 2.4,
-	height: UI_MENU_BUTTON_SIZE * 4.8,
+	height: UI_MENU_BUTTON_SIZE * 3.6,
 	borderRadius: UI_BORDER_RADIUS.menuPanel,
 } as const;
 
@@ -361,7 +378,9 @@ export const UI_SCENE_LABELS = {
 		betStepperIncrease: 'UI/ControlBar/BetStepper/Increase',
 		betStepperDecrease: 'UI/ControlBar/BetStepper/Decrease',
 		spin: 'UI/ControlBar/Spin',
+		turbo: 'UI/ControlBar/Turbo',
 		autoSpin: 'UI/ControlBar/AutoSpin',
+		autoSpinButton: 'UI/ControlBar/AutoSpin/Button',
 	},
 	menu: {
 		root: 'UI/Menu',
