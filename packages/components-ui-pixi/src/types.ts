@@ -21,7 +21,8 @@ export type EmitterEventUi =
 	| { type: 'resumeBet' }
 	| { type: 'autoBet' }
 	| { type: 'bet' }
-	| { type: 'spinStart' };
+	| { type: 'spinStart' }
+	| { type: 'winFloatShow'; amount: number };
 
 export type ButtonIcon =
 	| 'decrease'

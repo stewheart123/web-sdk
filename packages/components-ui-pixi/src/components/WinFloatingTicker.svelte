@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FadeContainer } from 'components-pixi';
-	import { stateBet } from 'state-shared';
+	import { stateBet, stateUi } from 'state-shared';
 
 	import LabelWin from './LabelWin.svelte';
 	import { getContext } from '../context';
@@ -20,6 +20,13 @@
 			lastCumulativeWin = 0;
 		}
 
+		if (stateUi.freeSpinCounterShow) {
+			if (cumulative > lastCumulativeWin) {
+				lastCumulativeWin = cumulative;
+			}
+			return;
+		}
+
 		const delta = cumulative - lastCumulativeWin;
 
 		if (delta > 0) {
@@ -36,6 +43,14 @@
 		bet: () => {
 			lastCumulativeWin = 0;
 			showWin = false;
+		},
+		winFloatShow: (emitterEvent) => {
+			lastCumulativeWin = stateBet.winBookEventAmount;
+
+			if (emitterEvent.amount > 0) {
+				displayAmount = emitterEvent.amount;
+				showWin = true;
+			}
 		},
 	});
 </script>
