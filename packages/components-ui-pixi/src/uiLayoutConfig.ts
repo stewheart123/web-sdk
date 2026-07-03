@@ -54,13 +54,10 @@ export const UI_AUTO_SPIN_GAP = 8;
 export const UI_BAR_EDGE_PADDING = 12;
 
 /** Vertical offset above the bar top for the floating win ticker. */
-export const UI_WIN_FLOAT_ABOVE_BAR = 20;
+export const UI_WIN_FLOAT_ABOVE_BAR = 90;
 
-/** Design width of the floating win ticker. */
-export const UI_WIN_FLOAT_WIDTH = 280;
-
-/** Max height of the floating win ticker. */
-export const UI_WIN_FLOAT_MAX_HEIGHT = UI_BAR_LABEL_MAX_HEIGHT * 1.1;
+/** Max height of the floating win ticker — short pill, distinct from bar labels. */
+export const UI_WIN_FLOAT_MAX_HEIGHT = UI_BASE_SIZE * 0.5;
 
 export const UI_BAR_SLOT_ORDER = [
 	'menu',
@@ -149,6 +146,13 @@ export const getUiWinFloatCenterX = () => {
 	const { balance, bet } = getUiBarFlowLayout();
 
 	return (balance.centerX + bet.centerX) * 0.5;
+};
+
+/** Design width of the floating win ticker — spans the balance + bet info strip. */
+export const getUiWinFloatWidth = () => {
+	const { balance, bet } = getUiBarFlowLayout();
+
+	return balance.width + bet.width;
 };
 
 /** Y position for the floating win ticker, above the bar top. */

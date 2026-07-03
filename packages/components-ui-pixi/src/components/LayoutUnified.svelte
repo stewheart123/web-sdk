@@ -41,8 +41,6 @@
 
 		UI_WIN_FLOAT_MAX_HEIGHT,
 
-		UI_WIN_FLOAT_WIDTH,
-
 		getUiBarFlowLayout,
 
 		getUiBarContentWidth,
@@ -56,6 +54,8 @@
 		getUiFitScale,
 
 		getUiWinFloatCenterX,
+
+		getUiWinFloatWidth,
 
 		getUiWinFloatY,
 
@@ -185,11 +185,13 @@
 
 			<WinFloatingTicker
 
-				stacked
+				stacked={false}
 
 				variant="win"
 
-				width={UI_WIN_FLOAT_WIDTH}
+				size="winFloat"
+
+				width={getUiWinFloatWidth()}
 
 				maxHeight={UI_WIN_FLOAT_MAX_HEIGHT}
 

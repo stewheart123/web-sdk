@@ -5,6 +5,8 @@ export const UI_BASE_SIZE = 150;
 export const UI_COLORS = {
 	bar: 0x000000,
 	winTicker: 0x1b8f3a,
+	/** Alpha for the floating win ticker pill background. */
+	winTickerAlpha: 0.65,
 	buyBonus: 0x1a7a3a,
 	button: 0x111111,
 	buttonLight: 0xffffff,

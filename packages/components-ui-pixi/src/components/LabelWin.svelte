@@ -9,12 +9,13 @@
 	import type { LabelUiProps } from '../types';
 
 	const props: LabelUiProps = $props();
-	const winBookEventAmountTween = new Tween(stateBet.winBookEventAmount);
+	const sourceAmount = $derived(props.amount ?? stateBet.winBookEventAmount);
+	const winBookEventAmountTween = new Tween(sourceAmount);
 	const label = $derived(i18nDerived.win());
 	const value = $derived(bookEventAmountToCurrencyString(winBookEventAmountTween.current));
 
 	$effect(() => {
-		winBookEventAmountTween.set(stateBet.winBookEventAmount);
+		winBookEventAmountTween.set(sourceAmount);
 	});
 </script>
 
@@ -24,6 +25,7 @@
 	{value}
 	stacked={props.stacked}
 	variant={props.variant ?? 'win'}
+	size={props.size}
 	width={props.width}
 	maxHeight={props.maxHeight}
 />

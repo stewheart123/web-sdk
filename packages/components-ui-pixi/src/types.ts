@@ -20,7 +20,8 @@ export type EmitterEventUi =
 	// bet services
 	| { type: 'resumeBet' }
 	| { type: 'autoBet' }
-	| { type: 'bet' };
+	| { type: 'bet' }
+	| { type: 'spinStart' };
 
 export type ButtonIcon =
 	| 'decrease'
@@ -40,9 +41,10 @@ export type ButtonIcon =
 export type LabelUiProps = {
 	stacked?: boolean;
 	variant?: 'default' | 'win';
-	size?: 'default' | 'bar';
+	size?: 'default' | 'bar' | 'winFloat';
 	width?: number;
 	maxHeight?: number;
+	amount?: number;
 };
 
 export type LayoutUiProps = {

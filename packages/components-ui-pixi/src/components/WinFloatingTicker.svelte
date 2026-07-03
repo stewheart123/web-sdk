@@ -10,31 +10,36 @@
 	const context = getContext();
 
 	let showWin = $state(false);
-	let wasIdle = $state(context.stateXstateDerived.isIdle());
+	let displayAmount = $state(0);
+	let lastCumulativeWin = $state(0);
 
 	$effect(() => {
-		if (stateBet.winBookEventAmount > 0) {
+		const cumulative = stateBet.winBookEventAmount;
+
+		if (cumulative < lastCumulativeWin) {
+			lastCumulativeWin = 0;
+		}
+
+		const delta = cumulative - lastCumulativeWin;
+
+		if (delta > 0) {
+			displayAmount = delta;
 			showWin = true;
+			lastCumulativeWin = cumulative;
 		}
-	});
-
-	$effect(() => {
-		const isIdle = context.stateXstateDerived.isIdle();
-
-		if (wasIdle && !isIdle) {
-			showWin = false;
-		}
-
-		wasIdle = isIdle;
 	});
 
 	context.eventEmitter.subscribeOnMount({
+		spinStart: () => {
+			showWin = false;
+		},
 		bet: () => {
+			lastCumulativeWin = 0;
 			showWin = false;
 		},
 	});
 </script>
 
 <FadeContainer show={showWin} duration={150}>
-	<LabelWin {...props} variant={props.variant ?? 'win'} />
+	<LabelWin {...props} variant={props.variant ?? 'win'} amount={displayAmount} />
 </FadeContainer>
