@@ -16,6 +16,8 @@
 		onpress: () => void;
 		/** When true, render inside a parent container (no MainContainer wrapper). */
 		embedded?: boolean;
+		/** When true with embedded, only render the label sprite; caller owns fullscreen input. */
+		visualOnly?: boolean;
 		layout?: EmbeddedPressToContinueLayout;
 	};
 
@@ -65,5 +67,7 @@
 		/>
 	</MainContainer>
 {/if}
-<OnHotkey hotkey="Space" onpress={() => props.onpress()} />
-<OnPressFullScreen onpress={() => props.onpress()} />
+{#if !(props.embedded && props.visualOnly)}
+	<OnHotkey hotkey="Space" onpress={() => props.onpress()} />
+	<OnPressFullScreen onpress={() => props.onpress()} />
+{/if}

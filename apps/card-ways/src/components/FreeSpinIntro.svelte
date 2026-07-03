@@ -6,7 +6,8 @@
 </script>
 
 <script lang="ts">
-	import { CanvasSizeRectangle } from 'components-layout';
+	import { CanvasSizeRectangle, OnPressFullScreen } from 'components-layout';
+	import { OnHotkey } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
 	import { AspectFitSprite, FadeContainer } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
@@ -100,10 +101,14 @@
 
 				<PressToContinue
 					embedded
+					visualOnly
 					layout={layout.pressToContinue}
 					onpress={handleContinue}
 				/>
 			{/snippet}
 		</FreeSpinAnimation>
 	{/key}
+
+	<OnHotkey hotkey="Space" onpress={handleContinue} />
+	<OnPressFullScreen onpress={handleContinue} />
 </FadeContainer>

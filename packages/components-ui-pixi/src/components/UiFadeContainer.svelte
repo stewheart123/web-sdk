@@ -33,6 +33,13 @@
 	});
 </script>
 
-<FadeContainer persistent {show} {oncomplete} label={UI_SCENE_LABELS.fade}>
+<FadeContainer
+	persistent
+	{show}
+	{oncomplete}
+	label={UI_SCENE_LABELS.fade}
+	eventMode={show ? 'passive' : 'none'}
+	interactiveChildren={show}
+>
 	{@render props.children()}
 </FadeContainer>

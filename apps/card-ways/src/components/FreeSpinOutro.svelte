@@ -11,8 +11,8 @@
 	import { AspectFitSprite, FadeContainer, WinCountUpProvider } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve } from 'utils-shared/wait';
-	import { CanvasSizeRectangle } from 'components-layout';
-	import { OnMount } from 'components-shared';
+	import { CanvasSizeRectangle, OnPressFullScreen } from 'components-layout';
+	import { OnHotkey, OnMount } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
@@ -132,12 +132,21 @@
 
 							<PressToContinue
 								embedded
+								visualOnly
 								layout={layout.pressToContinue}
 								onpress={() => handleContinue(countUpCompleted, finishCountUp)}
 							/>
 						{/snippet}
 					</FreeSpinAnimation>
 				{/key}
+
+				<OnHotkey
+					hotkey="Space"
+					onpress={() => handleContinue(countUpCompleted, finishCountUp)}
+				/>
+				<OnPressFullScreen
+					onpress={() => handleContinue(countUpCompleted, finishCountUp)}
+				/>
 			{/snippet}
 		</WinCountUpProvider>
 	{/if}

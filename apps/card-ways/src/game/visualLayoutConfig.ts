@@ -512,7 +512,7 @@ export const VISUAL_LAYOUT = {
 					panelKey: 'Frame_FSCounter.png',
 					text: {
 						x: 122,
-						y: 89,
+						y: 189,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
@@ -525,7 +525,7 @@ export const VISUAL_LAYOUT = {
 					panelKey: 'Frame_FSCounter.png',
 					text: {
 						x: 122,
-						y: 89,
+						y: 189,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
@@ -551,7 +551,7 @@ export const VISUAL_LAYOUT = {
 					panelKey: 'Frame_FSCounter.png',
 					text: {
 						x: 122,
-						y: 89,
+						y: 19,
 						containerAnchor: { x: 0.5, y: 0.5 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
