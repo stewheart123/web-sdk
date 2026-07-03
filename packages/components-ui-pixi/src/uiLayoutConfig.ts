@@ -11,7 +11,7 @@ export const UI_BAR_CONTENT_MAX_HEIGHT = UI_BAR_HEIGHT * 0.86;
 export const UI_BAR_LABEL_MAX_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 1.3;
 
 /** Nudge interactive controls upward within the bar (standard-layout pixels). */
-export const UI_BAR_CONTENT_Y_NUDGE_UP = 75;
+export const UI_BAR_CONTENT_Y_NUDGE_UP = 70;
 
 /** Vertical anchor for buttons/labels — slightly above bar geometric centre. */
 export const UI_BAR_SLOT_CENTER_Y = UI_BAR_HEIGHT * 0.5 - UI_BAR_CONTENT_Y_NUDGE_UP;
@@ -260,10 +260,10 @@ export const getBetStepperButtonOffsetY = (position: 'increase' | 'decrease') =>
 export const UI_SIDE_PADDING = 24;
 
 export const UI_LAYOUT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
-	desktop: 1,
+	desktop: 0.85,
 	tablet: 0.92,
 	landscape: 0.82,
-	portrait: 0.72,
+	portrait: 1,
 };
 
 export const UI_BAR_BOTTOM_PADDING_BY_TYPE: Record<UiLayoutType, number> = {
@@ -274,7 +274,7 @@ export const UI_BAR_BOTTOM_PADDING_BY_TYPE: Record<UiLayoutType, number> = {
 };
 
 /** Vertical nudge for the control bar in standard-layout coordinates (negative = up). */
-export const UI_BAR_Y_OFFSET = 10;
+export const UI_BAR_Y_OFFSET = 20;
 
 export const getUiBarY = ({
 	mainLayoutHeight,
