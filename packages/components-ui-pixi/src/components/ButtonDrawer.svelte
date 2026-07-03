@@ -7,12 +7,18 @@
 
 	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 	import { getContext } from '../context';
 	import { Tween } from 'svelte/motion';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const layoutType = $derived(context.stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontSize = $derived(
+		UI_BASE_FONT_SIZE * 0.9 * getUiFontScale(layoutType),
+	);
+	const fontWeight = $derived(getUiFontWeight(layoutType));
 
 	const degreesToRads = (degrees: number) => (degrees * Math.PI) / 180.0;
 
@@ -74,8 +80,8 @@
 				wordWrap: true,
 				wordWrapWidth: 200,
 				fontFamily: 'proxima-nova',
-				fontWeight: '600',
-				fontSize: UI_BASE_FONT_SIZE * 0.9,
+				fontWeight,
+				fontSize,
 				fill: 0xffffff,
 			}}
 			rotation={rotationTween.current}

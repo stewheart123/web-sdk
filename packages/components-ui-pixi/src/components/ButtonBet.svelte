@@ -9,6 +9,7 @@
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
@@ -16,6 +17,11 @@
 	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 	const disabled = $derived(controlsLocked || !stateBetDerived.isBetCostAvailable());
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const layoutType = $derived(context.stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontSize = $derived(
+		UI_BASE_FONT_SIZE * 0.9 * getUiFontScale(layoutType),
+	);
+	const fontWeight = $derived(getUiFontWeight(layoutType));
 </script>
 
 <ButtonBetProvider>
@@ -46,8 +52,8 @@
 							wordWrap: true,
 							wordWrapWidth: 200,
 							fontFamily: 'proxima-nova',
-							fontWeight: '600',
-							fontSize: UI_BASE_FONT_SIZE * 0.9,
+							fontWeight,
+							fontSize,
 							fill: 0xffffff,
 						}}
 					/>

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { Text } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
+	import { getContextLayout } from 'utils-layout';
 
 	import UiSprite from './UiSprite.svelte';
+	import { getUiFontWeight, getUiMenuButtonFontSize, type UiLayoutType } from '../uiLayoutConfig';
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		label: string;
@@ -18,6 +20,11 @@
 		sizes,
 		...buttonProps
 	}: Props = $props();
+
+	const { stateLayoutDerived } = getContextLayout();
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontSize = $derived(getUiMenuButtonFontSize(sizes, layoutType));
+	const fontWeight = $derived(getUiFontWeight(layoutType));
 </script>
 
 <Button {...buttonProps} {sizes}>
@@ -45,15 +52,15 @@
 			{...center}
 			anchor={0.5}
 			text={label}
-		style={{
-			align: 'center',
-			wordWrap: true,
-			wordWrapWidth: sizes.width * 0.9,
-			fontFamily: 'proxima-nova',
-			fontWeight: '600',
-			fontSize: sizes.width * 0.28,
-			fill: variant === 'light' ? 0x000000 : 0xffffff,
-		}}
+			style={{
+				align: 'center',
+				wordWrap: true,
+				wordWrapWidth: sizes.width * 0.9,
+				fontFamily: 'proxima-nova',
+				fontWeight,
+				fontSize,
+				fill: variant === 'light' ? 0x000000 : 0xffffff,
+			}}
 		/>
 	{/snippet}
 </Button>

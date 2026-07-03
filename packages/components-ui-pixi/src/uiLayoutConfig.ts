@@ -2,6 +2,26 @@ import { UI_BASE_SIZE, UI_BORDER_RADIUS } from './constants';
 
 export type UiLayoutType = 'desktop' | 'tablet' | 'landscape' | 'portrait';
 
+/** Font-size multiplier per layout — independent of bar/button scale. */
+export const UI_FONT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 1,
+	tablet: 1,
+	landscape: 1,
+	portrait: 1,
+};
+
+/** Heavier weight on smaller viewports for legibility at full font scale. */
+export const UI_FONT_WEIGHT_BY_TYPE: Record<UiLayoutType, '600' | 'bold'> = {
+	desktop: '600',
+	tablet: 'bold',
+	landscape: 'bold',
+	portrait: 'bold',
+};
+
+export const getUiFontScale = (layoutType: UiLayoutType) => UI_FONT_SCALE_BY_TYPE[layoutType];
+
+export const getUiFontWeight = (layoutType: UiLayoutType) => UI_FONT_WEIGHT_BY_TYPE[layoutType];
+
 export const UI_BAR_HEIGHT = UI_BASE_SIZE * 0.9;
 
 /** Max height for labels/buttons inside the bar background. */
@@ -9,6 +29,34 @@ export const UI_BAR_CONTENT_MAX_HEIGHT = UI_BAR_HEIGHT * 0.86;
 
 /** Taller max height for balance/bet labels after win slot removal. */
 export const UI_BAR_LABEL_MAX_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 1.3;
+
+/**
+ * Balance / bet ticker text — tuned independently from buttons and menu labels.
+ * Lower the ratios or per-layout scale to shrink BALANCE/BET only.
+ */
+export const UI_BAR_LABEL_FONT_HEIGHT_RATIO = 0.22;
+export const UI_BAR_LABEL_FONT_WIDTH_RATIO = 0.13;
+
+export const UI_BAR_LABEL_FONT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 0.85,
+	tablet: 1,
+	landscape: 1,
+	portrait: 1,
+};
+
+export const getUiBarLabelFontSize = ({
+	contentHeight,
+	contentWidth,
+	layoutType,
+}: {
+	contentHeight: number;
+	contentWidth: number;
+	layoutType: UiLayoutType;
+}) =>
+	Math.min(
+		contentHeight * UI_BAR_LABEL_FONT_HEIGHT_RATIO,
+		contentWidth * UI_BAR_LABEL_FONT_WIDTH_RATIO,
+	) * UI_BAR_LABEL_FONT_SCALE_BY_TYPE[layoutType];
 
 /** Nudge interactive controls upward within the bar (standard-layout pixels). */
 export const UI_BAR_CONTENT_Y_NUDGE_UP = 70;
@@ -59,8 +107,18 @@ export const UI_MENU_TOGGLE_SIZES = {
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
 /** Font size for +/- icons — sized for legibility after bar height scaling. */
 export const UI_BET_STEPPER_ICON_FONT_RATIO = 0.82;
-export const getUiBetStepperIconFontSize = () =>
-	UI_BET_STEPPER_SIZE * UI_BET_STEPPER_ICON_FONT_RATIO;
+export const getUiBetStepperIconFontSize = (layoutType: UiLayoutType) =>
+	UI_BET_STEPPER_SIZE * UI_BET_STEPPER_ICON_FONT_RATIO * getUiFontScale(layoutType);
+
+/** Font size for SOUND / MUSIC / INFO menu toggle labels. */
+export const getUiMenuButtonFontSize = (
+	sizes: { width: number; height: number },
+	layoutType: UiLayoutType,
+) => {
+	const base = Math.min(sizes.height * 0.48, sizes.width * 0.36);
+
+	return base * getUiFontScale(layoutType);
+};
 /** Vertical gap between stacked +/- bet buttons. */
 export const UI_BET_STEPPER_VERTICAL_GAP = 8;
 export const UI_BET_STEPPER_STACK_HEIGHT =

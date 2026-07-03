@@ -2,9 +2,19 @@
 	import { Text } from 'pixi-svelte';
 	import { WHITE } from 'constants-shared/colors';
 
+	import { getContextLayout } from 'utils-layout';
+
 	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_COLORS, UI_BORDER_RADIUS } from '../constants';
-	import { UI_BAR_CONTENT_MAX_HEIGHT } from '../uiLayoutConfig';
+	import {
+		UI_BAR_CONTENT_MAX_HEIGHT,
+		getUiBarLabelFontSize,
+		getUiFontScale,
+		getUiFontWeight,
+		type UiLayoutType,
+	} from '../uiLayoutConfig';
+
+	const { stateLayoutDerived } = getContextLayout();
 
 	type Props = {
 		label: string;
@@ -21,13 +31,17 @@
 
 	const contentHeight = $derived(props.maxHeight ?? UI_BAR_CONTENT_MAX_HEIGHT);
 	const contentWidth = $derived(props.width ?? UI_BASE_FONT_SIZE * 3 * (326 / 73));
-	const fontSize = $derived(
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontScale = $derived(getUiFontScale(layoutType));
+	const fontWeight = $derived(getUiFontWeight(layoutType));
+	const baseFontSize = $derived(
 		props.size === 'winFloat'
 			? Math.min(contentHeight * 0.55, contentWidth * 0.08)
 			: props.size === 'bar'
-				? Math.min(contentHeight * 0.32, contentWidth * 0.16)
+				? getUiBarLabelFontSize({ contentHeight, contentWidth, layoutType })
 				: Math.min(UI_BASE_FONT_SIZE, contentHeight * 0.22, contentWidth * 0.12),
 	);
+	const fontSize = $derived(props.size === 'bar' ? baseFontSize : baseFontSize * fontScale);
 	const lineGap = $derived(fontSize * 1.15);
 	const tickerHeight = $derived(contentHeight * 0.95);
 	const tickerWidth = $derived(contentWidth * 0.98);
@@ -35,12 +49,14 @@
 	const labelStyle = $derived({
 		fontFamily: 'proxima-nova',
 		fontSize,
+		fontWeight,
 		fill: WHITE,
 	} as const);
 
 	const valueStyle = $derived({
 		fontFamily: 'proxima-nova',
 		fontSize,
+		fontWeight,
 		fill: WHITE,
 	} as const);
 

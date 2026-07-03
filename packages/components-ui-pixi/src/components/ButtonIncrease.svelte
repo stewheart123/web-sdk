@@ -9,8 +9,9 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
+	const layoutType = $derived(context.stateLayoutDerived.layoutType() as UiLayoutType);
 	const sizes = { width: UI_BET_STEPPER_SIZE, height: UI_BET_STEPPER_SIZE };
-	const iconFontSize = getUiBetStepperIconFontSize();
+	const iconFontSize = $derived(getUiBetStepperIconFontSize(layoutType));
 	const disabled = $derived(
 		isBettingControlsLocked(context.stateXstateDerived.isIdle) ||
 			!stateBetDerived.canStepBetAmount(1),

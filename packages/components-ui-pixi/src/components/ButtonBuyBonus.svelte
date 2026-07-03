@@ -5,20 +5,26 @@
 
 	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
-	const { stateXstateDerived, eventEmitter } = getContext();
+	const context = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
-	const disabled = $derived(isBettingControlsLocked(stateXstateDerived.isIdle));
+	const disabled = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
+	const layoutType = $derived(context.stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontSize = $derived(
+		UI_BASE_FONT_SIZE * 0.9 * getUiFontScale(layoutType),
+	);
+	const fontWeight = $derived(getUiFontWeight(layoutType));
 
 	const openModal = () => (stateModal.modal = { name: 'buyBonus' });
 	const disableActiveBetMode = () => (stateBet.activeBetModeKey = 'BASE');
 	const onpress = () => {
-		eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 
 		if (active) {
 			disableActiveBetMode();
@@ -79,8 +85,8 @@
 				wordWrap: true,
 				wordWrapWidth: 200,
 				fontFamily: 'proxima-nova',
-				fontWeight: '600',
-				fontSize: UI_BASE_FONT_SIZE * 0.9,
+				fontWeight,
+				fontSize,
 				fill: 0xffffff,
 			}}
 		/>

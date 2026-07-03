@@ -5,8 +5,13 @@
 	import UiSprite from './UiSprite.svelte';
 	import type { ButtonIcon } from '../types';
 	import type { Snippet } from 'svelte';
+	import { getContextLayout } from 'utils-layout';
+
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
+
+	const { stateLayoutDerived } = getContextLayout();
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		icon: ButtonIcon;
@@ -27,10 +32,14 @@
 	}: Props = $props();
 
 	const isCompact = $derived(buttonProps.sizes.width < UI_BASE_SIZE * 0.75);
-	const fontSize = $derived(
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+	const fontScale = $derived(getUiFontScale(layoutType));
+	const fontWeight = $derived(getUiFontWeight(layoutType));
+	const baseFontSize = $derived(
 		iconFontSize ??
 			(isCompact ? buttonProps.sizes.width * 0.5 : UI_BASE_FONT_SIZE * 0.9),
 	);
+	const fontSize = $derived(baseFontSize * fontScale);
 	const wordWrapWidth = $derived(isCompact ? buttonProps.sizes.width : 200);
 </script>
 
@@ -64,7 +73,7 @@
 				wordWrap: true,
 				wordWrapWidth,
 				fontFamily: 'proxima-nova',
-				fontWeight: '600',
+				fontWeight,
 				fontSize,
 				fill: variant === 'dark' ? 0xffffff : 0x000000,
 			}}
