@@ -7,6 +7,9 @@ export const UI_BAR_HEIGHT = UI_BASE_SIZE * 0.9;
 /** Max height for labels/buttons inside the bar background. */
 export const UI_BAR_CONTENT_MAX_HEIGHT = UI_BAR_HEIGHT * 0.86;
 
+/** Taller max height for balance/bet labels after win slot removal. */
+export const UI_BAR_LABEL_MAX_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 1.3;
+
 /** Nudge interactive controls upward within the bar (standard-layout pixels). */
 export const UI_BAR_CONTENT_Y_NUDGE_UP = 75;
 
@@ -19,26 +22,48 @@ export const UI_BAR_BACKGROUND_CENTER_Y = UI_BAR_HEIGHT * 0.5;
 export const UI_BAR_WIDTH = 1500;
 export const UI_BUY_BONUS_SIZE = UI_BASE_SIZE;
 export const UI_BUTTON_SIZE = UI_BASE_SIZE * 0.85;
-export const UI_SPIN_BUTTON_SIZE = UI_BASE_SIZE * 1.35;
+/** Smaller than {@link UI_BUTTON_SIZE} — used as the scale denominator for auto-spin. */
+export const UI_AUTO_SPIN_BUTTON_SIZE = UI_BASE_SIZE * 1.25;
+/** Scale denominator for the main spin/bet button — lower value = larger on screen. */
+export const UI_SPIN_BUTTON_SIZE = (UI_BASE_SIZE * 1.35) / 2.5;
 export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
-export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.55;
+export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
 /** Vertical gap between stacked +/- bet buttons. */
-export const UI_BET_STEPPER_VERTICAL_GAP = 6;
+export const UI_BET_STEPPER_VERTICAL_GAP = 8;
 export const UI_BET_STEPPER_STACK_HEIGHT =
 	UI_BET_STEPPER_SIZE * 2 + UI_BET_STEPPER_VERTICAL_GAP;
 export const UI_LABEL_SCALE = 0.85;
 
-/** Gap between adjacent slot regions inside the bar. */
+/** Gap between adjacent slot regions inside the bar (ratio-based fallback). */
 export const UI_SLOT_GAP = 8;
+
+/** Tight gap for flow-anchored controls (menu → balance → bet → stepper → spin). */
+export const UI_BAR_FLOW_GAP = 4;
+
+/** Balance share of the info strip between menu and bet-stepper. */
+export const UI_BALANCE_INFO_WIDTH_RATIO = 0.48;
+
+/** Horizontal gap between the spin and auto-spin buttons. */
+export const UI_AUTO_SPIN_GAP = 8;
+
+/** Padding past the rightmost control when sizing the bar background. */
+export const UI_BAR_EDGE_PADDING = 12;
+
+/** Vertical offset above the bar top for the floating win ticker. */
+export const UI_WIN_FLOAT_ABOVE_BAR = 20;
+
+/** Design width of the floating win ticker. */
+export const UI_WIN_FLOAT_WIDTH = 280;
+
+/** Max height of the floating win ticker. */
+export const UI_WIN_FLOAT_MAX_HEIGHT = UI_BAR_LABEL_MAX_HEIGHT * 1.1;
 
 export const UI_BAR_SLOT_ORDER = [
 	'menu',
 	'balance',
-	'win',
 	'bet',
 	'betStepper',
 	'spin',
-	'autoSpin',
 ] as const;
 
 export type UiBarSlotKey = (typeof UI_BAR_SLOT_ORDER)[number];
@@ -56,12 +81,10 @@ export type UiBarSlotRegion = {
  */
 export const UI_BAR_SLOT_RATIOS = {
 	menu: 0.04,
-	balance: 0.17,
-	win: 0.34,
-	bet: 0.5,
-	betStepper: 0.65,
-	spin: 0.78,
-	autoSpin: 0.92,
+	balance: 0.22,
+	bet: 0.38,
+	betStepper: 0.52,
+	spin: 0.66,
 } as const;
 
 export const getUiBarSlotRegion = (slotKey: UiBarSlotKey): UiBarSlotRegion => {
@@ -95,6 +118,42 @@ export const getUiBarSlotButtonScale = ({
 	maxHeight?: number;
 }) => Math.min(regionWidth / baseSize, maxHeight / baseSize) * 0.92;
 
+/** Height-based scale for square bar buttons (ignores wide slot regions). */
+export const getUiBarButtonHeightScale = (baseSize: number) =>
+	(UI_BAR_CONTENT_MAX_HEIGHT / baseSize) * 0.92;
+
+export const getUiBarButtonRenderedSize = (baseSize: number) =>
+	UI_BASE_SIZE * getUiBarButtonHeightScale(baseSize);
+
+export const getUiSpinRenderedSize = () => getUiBarButtonRenderedSize(UI_SPIN_BUTTON_SIZE);
+
+export const getUiAutoSpinRenderedSize = () => getUiBarButtonRenderedSize(UI_AUTO_SPIN_BUTTON_SIZE);
+
+/** Places auto-spin snug against the spin button's right edge. */
+export const getUiAutoSpinCenterX = () => getUiBarFlowLayout().autoSpin.centerX;
+
+/** Bar background width — ends shortly after the auto-spin button. */
+export const getUiBarContentWidth = () => {
+	const { autoSpin } = getUiBarFlowLayout();
+	const autoSize = UI_BASE_SIZE * autoSpin.scale;
+
+	return autoSpin.centerX + autoSize * 0.5 + UI_BAR_EDGE_PADDING;
+};
+
+/** Horizontal centre of the floating win ticker (midpoint of balance + bet). */
+export const getUiWinFloatCenterX = () => {
+	const { balance, bet } = getUiBarFlowLayout();
+
+	return (balance.centerX + bet.centerX) * 0.5;
+};
+
+/** Y position for the floating win ticker, above the bar top. */
+export const getUiWinFloatY = () =>
+	UI_BAR_BACKGROUND_CENTER_Y -
+	UI_BAR_HEIGHT * 0.5 -
+	UI_WIN_FLOAT_ABOVE_BAR -
+	UI_WIN_FLOAT_MAX_HEIGHT * 0.5;
+
 /** Scale factor for the vertically stacked +/- bet stepper column. */
 export const getUiBetStepperScale = ({
 	regionWidth,
@@ -107,6 +166,80 @@ export const getUiBetStepperScale = ({
 		regionWidth / UI_BET_STEPPER_SIZE,
 		maxHeight / UI_BET_STEPPER_STACK_HEIGHT,
 	) * 0.92;
+
+/** Height-only scale for bet stepper when positioned via flow layout. */
+export const getUiBetStepperHeightScale = () =>
+	(UI_BAR_CONTENT_MAX_HEIGHT / UI_BET_STEPPER_STACK_HEIGHT) * 0.92;
+
+export type UiBarFlowRegion = {
+	centerX: number;
+	width: number;
+};
+
+export type UiBarFlowButton = {
+	centerX: number;
+	scale: number;
+};
+
+export type UiBarFlowLayout = {
+	menu: UiBarFlowButton;
+	balance: UiBarFlowRegion;
+	bet: UiBarFlowRegion;
+	betStepper: UiBarFlowButton;
+	spin: UiBarFlowButton;
+	autoSpin: UiBarFlowButton;
+};
+
+/**
+ * Positions bar controls edge-to-edge instead of ratio midpoints.
+ * Menu → balance → bet → stepper → spin → auto-spin, left to right.
+ */
+export const getUiBarFlowLayout = (): UiBarFlowLayout => {
+	const menuRegion = getUiBarSlotRegion('menu');
+	const menuScale = getUiBarSlotButtonScale({
+		regionWidth: menuRegion.width,
+		baseSize: UI_BASE_SIZE,
+	});
+	const menuWidth = UI_BASE_SIZE * menuScale;
+	const menuCenterX = UI_BAR_SLOTS.menu;
+
+	const spinScale = getUiBarButtonHeightScale(UI_SPIN_BUTTON_SIZE);
+	const spinSize = UI_BASE_SIZE * spinScale;
+	const autoSpinScale = getUiBarButtonHeightScale(UI_AUTO_SPIN_BUTTON_SIZE);
+	const autoSpinSize = UI_BASE_SIZE * autoSpinScale;
+	const stepperScale = getUiBetStepperHeightScale();
+	const stepperWidth = UI_BET_STEPPER_SIZE * stepperScale;
+
+	const spinSlotX = UI_BAR_SLOTS.spin;
+	const spinCenterX = spinSlotX;
+	const resolvedAutoSpinCenterX =
+		spinCenterX + spinSize * 0.5 + UI_AUTO_SPIN_GAP + autoSpinSize * 0.5;
+
+	const stepperCenterX =
+		spinCenterX - spinSize * 0.5 - UI_BAR_FLOW_GAP - stepperWidth * 0.5;
+
+	const infoLeft = menuCenterX + menuWidth * 0.5 + UI_BAR_FLOW_GAP;
+	const infoRight = stepperCenterX - stepperWidth * 0.5 - UI_BAR_FLOW_GAP;
+	const infoWidth = Math.max(0, infoRight - infoLeft);
+
+	const balanceWidth = infoWidth * UI_BALANCE_INFO_WIDTH_RATIO;
+	const betWidth = infoWidth - balanceWidth;
+
+	return {
+		menu: { centerX: menuCenterX, scale: menuScale },
+		balance: {
+			centerX: infoLeft + balanceWidth * 0.5,
+			width: balanceWidth,
+		},
+		bet: {
+			centerX: infoLeft + balanceWidth + betWidth * 0.5,
+			width: betWidth,
+		},
+		betStepper: { centerX: stepperCenterX, scale: stepperScale },
+		spin: { centerX: spinCenterX, scale: spinScale },
+		autoSpin: { centerX: resolvedAutoSpinCenterX, scale: autoSpinScale },
+	};
+};
 
 /** Y offset from the bet-stepper slot centre for each stacked button. */
 export const getBetStepperButtonOffsetY = (position: 'increase' | 'decrease') => {
@@ -148,14 +281,12 @@ export const getUiBarY = ({
 export const UI_BAR_SLOTS = {
 	menu: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.menu,
 	balance: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.balance,
-	win: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.win,
 	bet: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.bet,
 	betStepper: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.betStepper,
 	spin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.spin,
-	autoSpin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.autoSpin,
 } as const;
 
-export const UI_BUY_BONUS_OFFSET_X = -(UI_BUY_BONUS_SIZE * 0.55 + UI_BUTTON_SIZE * 0.4);
+export const UI_BUY_BONUS_OFFSET_X = -(UI_BUY_BONUS_SIZE * 0.5 + UI_BUTTON_SIZE * 0.1);
 
 /** Extra left inset when buy bonus shows an active border (see ButtonBuyBonus). */
 export const UI_BUY_BONUS_EDGE_PADDING = 12;
@@ -175,12 +306,10 @@ export type UiDesignBounds = {
 };
 
 export const getUiDesignBounds = (): UiDesignBounds => {
+	const { spin } = getUiBarFlowLayout();
+	const spinSize = UI_BASE_SIZE * spin.scale;
 	const left = UI_BUY_BONUS_OFFSET_X - UI_BUY_BONUS_SIZE * 0.5 - UI_BUY_BONUS_EDGE_PADDING;
-	const right = Math.max(
-		UI_BAR_WIDTH,
-		UI_BAR_SLOTS.spin + UI_SPIN_BUTTON_SIZE * 0.5,
-		UI_BAR_SLOTS.autoSpin + UI_BUTTON_SIZE * 0.5,
-	);
+	const right = Math.max(getUiBarContentWidth(), spin.centerX + spinSize * 0.5);
 
 	return {
 		left,
@@ -219,7 +348,6 @@ export const UI_SCENE_LABELS = {
 		buyBonus: 'UI/ControlBar/BuyBonus',
 		menu: 'UI/ControlBar/Menu',
 		balance: 'UI/ControlBar/Balance',
-		win: 'UI/ControlBar/Win',
 		bet: 'UI/ControlBar/Bet',
 		betStepper: 'UI/ControlBar/BetStepper',
 		betStepperIncrease: 'UI/ControlBar/BetStepper/Increase',
@@ -239,6 +367,7 @@ export const UI_SCENE_LABELS = {
 	chrome: {
 		gameName: 'UI/Chrome/GameName',
 		logo: 'UI/Chrome/Logo',
+		winFloat: 'UI/Chrome/WinFloat',
 	},
 } as const;
 

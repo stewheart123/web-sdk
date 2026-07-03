@@ -12,6 +12,7 @@
 		tiled?: boolean;
 		stacked?: boolean;
 		variant?: 'default' | 'win';
+		size?: 'default' | 'bar';
 		width?: number;
 		maxHeight?: number;
 	};
@@ -21,7 +22,9 @@
 	const contentHeight = $derived(props.maxHeight ?? UI_BAR_CONTENT_MAX_HEIGHT);
 	const contentWidth = $derived(props.width ?? UI_BASE_FONT_SIZE * 3 * (326 / 73));
 	const fontSize = $derived(
-		Math.min(UI_BASE_FONT_SIZE, contentHeight * 0.22, contentWidth * 0.12),
+		props.size === 'bar'
+			? Math.min(contentHeight * 0.32, contentWidth * 0.16)
+			: Math.min(UI_BASE_FONT_SIZE, contentHeight * 0.22, contentWidth * 0.12),
 	);
 	const lineGap = $derived(fontSize * 1.15);
 	const tickerHeight = $derived(contentHeight * 0.95);

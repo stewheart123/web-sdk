@@ -23,6 +23,7 @@
 	{label}
 	{value}
 	stacked={props.stacked}
+	size={props.size}
 	width={props.width}
 	maxHeight={props.maxHeight}
 />

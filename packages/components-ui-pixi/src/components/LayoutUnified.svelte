@@ -13,8 +13,7 @@
 
 
 	import UiControlBar from './UiControlBar.svelte';
-
-	import { UI_BASE_SIZE } from '../constants';
+	import WinFloatingTicker from './WinFloatingTicker.svelte';
 
 	import { getContext } from '../context';
 
@@ -22,7 +21,7 @@
 
 	import {
 
-		UI_BAR_CONTENT_MAX_HEIGHT,
+		UI_BAR_LABEL_MAX_HEIGHT,
 
 		UI_BAR_HEIGHT,
 
@@ -34,29 +33,31 @@
 
 		UI_BUY_BONUS_OFFSET_X,
 
-		UI_BUTTON_SIZE,
-
 		UI_MENU_PANEL,
 
 		UI_SCENE_LABELS,
 
 		UI_SIDE_PADDING,
 
-		UI_SPIN_BUTTON_SIZE,
+		UI_WIN_FLOAT_MAX_HEIGHT,
 
-		getUiBarSlotButtonScale,
+		UI_WIN_FLOAT_WIDTH,
 
-		getUiBarSlotRegion,
+		getUiBarFlowLayout,
+
+		getUiBarContentWidth,
 
 		getUiBarY,
-
-		getUiBetStepperScale,
 
 		getBetStepperButtonOffsetY,
 
 		getUiClusterPivot,
 
 		getUiFitScale,
+
+		getUiWinFloatCenterX,
+
+		getUiWinFloatY,
 
 		type UiLayoutType,
 
@@ -86,65 +87,21 @@
 
 	const clusterPivot = $derived(getUiClusterPivot());
 
-
-
-	const menuRegion = getUiBarSlotRegion('menu');
-
-	const balanceRegion = getUiBarSlotRegion('balance');
-
-	const winRegion = getUiBarSlotRegion('win');
-
-	const betRegion = getUiBarSlotRegion('bet');
-
-	const betStepperRegion = getUiBarSlotRegion('betStepper');
-
-	const spinRegion = getUiBarSlotRegion('spin');
-
-	const autoSpinRegion = getUiBarSlotRegion('autoSpin');
-
-
+	const flow = getUiBarFlowLayout();
 
 	const labelProps = {
 
 		stacked: true as const,
 
+		size: 'bar' as const,
+
 		width: 0,
 
-		maxHeight: UI_BAR_CONTENT_MAX_HEIGHT,
+		maxHeight: UI_BAR_LABEL_MAX_HEIGHT,
 
 	};
 
-
-
-	const menuScale = getUiBarSlotButtonScale({
-
-		regionWidth: menuRegion.width,
-
-		baseSize: UI_BASE_SIZE,
-
-	});
-
-	const betStepperScale = getUiBetStepperScale({
-
-		regionWidth: betStepperRegion.width,
-
-	});
-
-	const spinScale = getUiBarSlotButtonScale({
-
-		regionWidth: spinRegion.width,
-
-		baseSize: UI_SPIN_BUTTON_SIZE,
-
-	});
-
-	const autoSpinScale = getUiBarSlotButtonScale({
-
-		regionWidth: autoSpinRegion.width,
-
-		baseSize: UI_BUTTON_SIZE,
-
-	});
+	const barContentWidth = getUiBarContentWidth();
 
 
 
@@ -212,7 +169,33 @@
 
 
 
-		<UiControlBar x={0} y={UI_BAR_BACKGROUND_CENTER_Y} />
+		<UiControlBar x={0} y={UI_BAR_BACKGROUND_CENTER_Y} width={barContentWidth} />
+
+
+
+		<Container
+
+			label={UI_SCENE_LABELS.chrome.winFloat}
+
+			x={getUiWinFloatCenterX()}
+
+			y={getUiWinFloatY()}
+
+		>
+
+			<WinFloatingTicker
+
+				stacked
+
+				variant="win"
+
+				width={UI_WIN_FLOAT_WIDTH}
+
+				maxHeight={UI_WIN_FLOAT_MAX_HEIGHT}
+
+			/>
+
+		</Container>
 
 
 
@@ -220,11 +203,11 @@
 
 			label={UI_SCENE_LABELS.controlBar.menu}
 
-			x={menuRegion.centerX}
+			x={flow.menu.centerX}
 
 			y={UI_BAR_SLOT_CENTER_Y}
 
-			scale={menuScale}
+			scale={flow.menu.scale}
 
 		>
 
@@ -234,13 +217,13 @@
 
 
 
-		<Container label={UI_SCENE_LABELS.controlBar.balance} x={balanceRegion.centerX} y={UI_BAR_SLOT_CENTER_Y}>
+		<Container label={UI_SCENE_LABELS.controlBar.balance} x={flow.balance.centerX} y={UI_BAR_SLOT_CENTER_Y}>
 
 			{@render props.amountBalance({
 
 				...labelProps,
 
-				width: balanceRegion.width,
+				width: flow.balance.width,
 
 			})}
 
@@ -248,29 +231,13 @@
 
 
 
-		<Container label={UI_SCENE_LABELS.controlBar.win} x={winRegion.centerX} y={UI_BAR_SLOT_CENTER_Y}>
-
-			{@render props.amountWin({
-
-				...labelProps,
-
-				width: winRegion.width,
-
-				variant: 'win',
-
-			})}
-
-		</Container>
-
-
-
-		<Container label={UI_SCENE_LABELS.controlBar.bet} x={betRegion.centerX} y={UI_BAR_SLOT_CENTER_Y}>
+		<Container label={UI_SCENE_LABELS.controlBar.bet} x={flow.bet.centerX} y={UI_BAR_SLOT_CENTER_Y}>
 
 			{@render props.amountBet({
 
 				...labelProps,
 
-				width: betRegion.width,
+				width: flow.bet.width,
 
 			})}
 
@@ -282,11 +249,11 @@
 
 			label={UI_SCENE_LABELS.controlBar.betStepper}
 
-			x={betStepperRegion.centerX}
+			x={flow.betStepper.centerX}
 
 			y={UI_BAR_SLOT_CENTER_Y}
 
-			scale={betStepperScale}
+			scale={flow.betStepper.scale}
 
 		>
 
@@ -324,11 +291,11 @@
 
 			label={UI_SCENE_LABELS.controlBar.spin}
 
-			x={spinRegion.centerX}
+			x={flow.spin.centerX}
 
 			y={UI_BAR_SLOT_CENTER_Y}
 
-			scale={spinScale}
+			scale={flow.spin.scale}
 
 		>
 
@@ -342,11 +309,11 @@
 
 			label={UI_SCENE_LABELS.controlBar.autoSpin}
 
-			x={autoSpinRegion.centerX}
+			x={flow.autoSpin.centerX}
 
 			y={UI_BAR_SLOT_CENTER_Y}
 
-			scale={autoSpinScale}
+			scale={flow.autoSpin.scale}
 
 		>
 
