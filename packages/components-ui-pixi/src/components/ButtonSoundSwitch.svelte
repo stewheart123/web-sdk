@@ -2,32 +2,10 @@
 	import type { ButtonProps } from 'components-pixi';
 	import { stateSound } from 'state-shared';
 
-	import UiMenuButton from './UiMenuButton.svelte';
-	import { getContext } from '../context';
-	import { UI_MENU_BUTTON_SIZE } from '../uiLayoutConfig';
+	import UiAudioControl from './UiAudioControl.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
-	const context = getContext();
-	const sizes = { width: UI_MENU_BUTTON_SIZE, height: UI_MENU_BUTTON_SIZE };
-	const active = $derived(stateSound.volumeValueMaster > 0);
-
-	const onpress = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-
-		if (stateSound.volumeValueMaster === 0) {
-			stateSound.volumeValueMaster = 50;
-		} else {
-			stateSound.volumeValueMaster = 0;
-		}
-	};
 </script>
 
-<UiMenuButton
-	{...props}
-	{sizes}
-	{onpress}
-	{active}
-	label={i18nDerived.sound()}
-	variant="light"
-/>
+<UiAudioControl {...props} label={i18nDerived.sound()} bind:value={stateSound.volumeValueSoundEffect} />

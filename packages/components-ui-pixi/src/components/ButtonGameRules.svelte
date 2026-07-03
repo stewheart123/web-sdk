@@ -4,12 +4,12 @@
 
 	import UiMenuButton from './UiMenuButton.svelte';
 	import { getContext } from '../context';
-	import { UI_MENU_BUTTON_SIZE } from '../uiLayoutConfig';
+	import { UI_MENU_ITEM_SIZE } from '../uiLayoutConfig';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_MENU_BUTTON_SIZE, height: UI_MENU_BUTTON_SIZE };
+	const sizes = { width: UI_MENU_ITEM_SIZE, height: UI_MENU_ITEM_SIZE };
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });

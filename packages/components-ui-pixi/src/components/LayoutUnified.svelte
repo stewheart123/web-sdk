@@ -392,7 +392,7 @@
 
 				label={UI_SCENE_LABELS.menu.panel}
 
-				x={UI_BAR_SLOTS.menu - UI_MENU_PANEL.width * 0.15}
+				x={UI_BAR_SLOTS.menu - UI_MENU_PANEL.width * 0.5}
 
 				y={menuItemYs[0] - UI_MENU_PANEL.itemSpacing * 0.5}
 

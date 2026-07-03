@@ -3,7 +3,6 @@
 	import { Button, type ButtonProps } from 'components-pixi';
 
 	import UiSprite from './UiSprite.svelte';
-	import { UI_BASE_FONT_SIZE } from '../constants';
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		label: string;
@@ -36,7 +35,7 @@
 				: {}}
 			{...active
 				? {
-						borderWidth: 8,
+						borderWidth: Math.max(2, sizes.width * 0.1),
 						borderColor: 0xffffff,
 					}
 				: {}}
@@ -46,15 +45,15 @@
 			{...center}
 			anchor={0.5}
 			text={label}
-			style={{
-				align: 'center',
-				wordWrap: true,
-				wordWrapWidth: sizes.width * 0.9,
-				fontFamily: 'proxima-nova',
-				fontWeight: '600',
-				fontSize: UI_BASE_FONT_SIZE * 0.85,
-				fill: variant === 'light' ? 0x000000 : 0xffffff,
-			}}
+		style={{
+			align: 'center',
+			wordWrap: true,
+			wordWrapWidth: sizes.width * 0.9,
+			fontFamily: 'proxima-nova',
+			fontWeight: '600',
+			fontSize: sizes.width * 0.28,
+			fill: variant === 'light' ? 0x000000 : 0xffffff,
+		}}
 		/>
 	{/snippet}
 </Button>

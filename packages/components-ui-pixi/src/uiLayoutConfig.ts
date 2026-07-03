@@ -27,6 +27,36 @@ export const UI_AUTO_SPIN_BUTTON_SIZE = UI_BASE_SIZE * 1.25;
 /** Scale denominator for the main spin/bet button — lower value = larger on screen. */
 export const UI_SPIN_BUTTON_SIZE = (UI_BASE_SIZE * 1.35) / 2.5;
 export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
+
+/** Compact menu row height — matches bar control density. */
+export const UI_MENU_AUDIO_ROW_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 0.44;
+
+/** Label column width inside an audio menu row. */
+export const UI_MENU_AUDIO_LABEL_WIDTH = UI_BASE_SIZE * 0.38;
+
+/** Gap between columns in an audio menu row. */
+export const UI_MENU_AUDIO_GAP = 6;
+
+/** Square on/off toggle in an audio menu row. */
+export const UI_MENU_AUDIO_TOGGLE_SIZE = UI_MENU_AUDIO_ROW_HEIGHT * 0.82;
+
+/** Slider track width inside the menu audio row. */
+export const UI_MENU_AUDIO_SLIDER_WIDTH = UI_BASE_SIZE * 1.05;
+
+export const UI_MENU_AUDIO_SLIDER_HEIGHT = 8;
+
+export const UI_MENU_AUDIO_THUMB_SIZE = 14;
+
+/** Total width of one audio control row (label + toggle + slider). */
+export const UI_MENU_AUDIO_ROW_WIDTH =
+	UI_MENU_AUDIO_LABEL_WIDTH +
+	UI_MENU_AUDIO_GAP +
+	UI_MENU_AUDIO_TOGGLE_SIZE +
+	UI_MENU_AUDIO_GAP +
+	UI_MENU_AUDIO_SLIDER_WIDTH;
+
+/** Square menu items (e.g. info) — same scale as audio row controls. */
+export const UI_MENU_ITEM_SIZE = UI_MENU_AUDIO_TOGGLE_SIZE;
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
 /** Font size for +/- icons — sized for legibility after bar height scaling. */
 export const UI_BET_STEPPER_ICON_FONT_RATIO = 0.82;
@@ -317,11 +347,32 @@ export const UI_BUY_BONUS_OFFSET_X = -(UI_BUY_BONUS_SIZE * 0.5 + UI_BUTTON_SIZE 
 export const UI_BUY_BONUS_EDGE_PADDING = 12;
 
 export const UI_MENU_PANEL = {
-	itemSpacing: UI_MENU_BUTTON_SIZE * 1.05,
-	width: UI_MENU_BUTTON_SIZE * 2.4,
-	height: UI_MENU_BUTTON_SIZE * 3.6,
+	itemSpacing: UI_MENU_AUDIO_ROW_HEIGHT + 10,
+	width: UI_MENU_AUDIO_ROW_WIDTH + UI_BASE_SIZE * 0.12,
+	height: UI_MENU_AUDIO_ROW_HEIGHT * 3 + 10 * 2 + 8,
 	borderRadius: UI_BORDER_RADIUS.menuPanel,
+	paddingX: UI_BASE_SIZE * 0.06,
 } as const;
+
+/** Horizontal layout offsets for a centred audio menu row (anchor 0.5). */
+export const getUiMenuAudioRowLayout = () => {
+	const halfRow = UI_MENU_AUDIO_ROW_WIDTH * 0.5;
+	const labelCenterX = -halfRow + UI_MENU_AUDIO_LABEL_WIDTH * 0.5;
+	const toggleCenterX =
+		-halfRow +
+		UI_MENU_AUDIO_LABEL_WIDTH +
+		UI_MENU_AUDIO_GAP +
+		UI_MENU_AUDIO_TOGGLE_SIZE * 0.5;
+	const sliderCenterX =
+		-halfRow +
+		UI_MENU_AUDIO_LABEL_WIDTH +
+		UI_MENU_AUDIO_GAP +
+		UI_MENU_AUDIO_TOGGLE_SIZE +
+		UI_MENU_AUDIO_GAP +
+		UI_MENU_AUDIO_SLIDER_WIDTH * 0.5;
+
+	return { labelCenterX, toggleCenterX, sliderCenterX };
+};
 
 export type UiDesignBounds = {
 	left: number;
@@ -387,7 +438,9 @@ export const UI_SCENE_LABELS = {
 		overlay: 'UI/Menu/Overlay',
 		panel: 'UI/Menu/Panel',
 		sound: 'UI/Menu/Sound',
+		soundSlider: 'UI/Menu/Sound/Slider',
 		music: 'UI/Menu/Music',
+		musicSlider: 'UI/Menu/Music/Slider',
 		turbo: 'UI/Menu/Turbo',
 		info: 'UI/Menu/Info',
 	},

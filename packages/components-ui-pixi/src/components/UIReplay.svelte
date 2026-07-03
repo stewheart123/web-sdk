@@ -9,7 +9,6 @@
 	import ButtonMenu from './ButtonMenu.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
 	import ButtonMusicSwitch from './ButtonMusicSwitch.svelte';
-	import ButtonTurbo from './ButtonTurbo.svelte';
 	import { stateUi } from 'state-shared';
 	import { BLACK } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
@@ -27,8 +26,8 @@
 	const props: Props = $props();
 	const context = getContext();
 
-	const menuItemYs = Array.from({ length: 4 }, (_, index) => {
-		const fromBottom = 4 - index;
+	const menuItemYs = Array.from({ length: 3 }, (_, index) => {
+		const fromBottom = 3 - index;
 		return -UI_MENU_PANEL.itemSpacing * fromBottom - UI_MENU_PANEL.itemSpacing * 0.5;
 	});
 </script>
@@ -97,7 +96,7 @@
 				y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
 			>
 				<Rectangle
-					x={-UI_MENU_PANEL.width * 0.15}
+					x={-UI_MENU_PANEL.width * 0.5}
 					y={menuItemYs[0] - UI_MENU_PANEL.itemSpacing * 0.5}
 					anchor={{ x: 0, y: 0 }}
 					width={UI_MENU_PANEL.width}
@@ -106,19 +105,15 @@
 					borderRadius={UI_MENU_PANEL.borderRadius}
 				/>
 
-				<Container scale={0.8} y={menuItemYs[0]}>
+				<Container y={menuItemYs[0]}>
 					<ButtonSoundSwitch anchor={0.5} />
 				</Container>
 
-				<Container scale={0.8} y={menuItemYs[1]}>
+				<Container y={menuItemYs[1]}>
 					<ButtonMusicSwitch anchor={0.5} />
 				</Container>
 
-				<Container scale={0.8} y={menuItemYs[2]}>
-					<ButtonTurbo anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={menuItemYs[3]}>
+				<Container y={menuItemYs[2]}>
 					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>
