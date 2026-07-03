@@ -4,7 +4,7 @@
 	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
 
 	import UiSprite from './UiSprite.svelte';
-	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE, UI_COLORS } from '../constants';
 	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
@@ -65,7 +65,8 @@
 			variant="buyBonus"
 			{...disabled
 				? {
-						backgroundColor: 0xaaaaaa,
+						backgroundColor: UI_COLORS.disabled,
+						backgroundAlpha: UI_COLORS.disabledAlpha,
 					}
 				: {}}
 			{...active

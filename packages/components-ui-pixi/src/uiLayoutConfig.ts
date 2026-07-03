@@ -41,7 +41,7 @@ export const UI_BAR_LABEL_FONT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
 	desktop: 0.85,
 	tablet: 1,
 	landscape: 1,
-	portrait: 1,
+	portrait: 1.2,
 };
 
 export const getUiBarLabelFontSize = ({

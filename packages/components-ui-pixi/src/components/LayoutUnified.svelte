@@ -4,8 +4,6 @@
 
 	import { stateUi } from 'state-shared';
 
-	import { BLACK } from 'constants-shared/colors';
-
 	import { MainContainer } from 'components-layout';
 
 	import { Container, Rectangle } from 'pixi-svelte';
@@ -16,6 +14,8 @@
 	import WinFloatingTicker from './WinFloatingTicker.svelte';
 
 	import { getContext } from '../context';
+
+	import { UI_COLORS } from '../constants';
 
 	import type { LayoutUiProps } from '../types';
 
@@ -346,11 +346,13 @@
 
 		cursor="pointer"
 
-		alpha={0.5}
+		alpha={1}
 
 		anchor={0.5}
 
-		backgroundColor={BLACK}
+		backgroundColor={UI_COLORS.menuOverlay}
+
+		backgroundAlpha={UI_COLORS.menuOverlayAlpha}
 
 		width={context.stateLayoutDerived.canvasSizes().width}
 
@@ -384,7 +386,9 @@
 
 				height={menuPanel.panelHeight}
 
-				backgroundColor={BLACK}
+				backgroundColor={UI_COLORS.menuPanel}
+
+				backgroundAlpha={UI_COLORS.menuPanelAlpha}
 
 				borderRadius={UI_MENU_PANEL.borderRadius}
 

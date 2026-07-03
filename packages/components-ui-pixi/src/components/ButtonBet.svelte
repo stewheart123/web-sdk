@@ -8,7 +8,7 @@
 	import ButtonBetProvider from './ButtonBetProvider.svelte';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
-	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
+	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE, UI_COLORS } from '../constants';
 	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
@@ -38,7 +38,8 @@
 						anchor={0.5}
 						{...disabled || ['spin_disabled', 'stop_disabled'].includes(key)
 							? {
-									backgroundColor: 0xaaaaaa,
+									backgroundColor: UI_COLORS.disabled,
+									backgroundAlpha: UI_COLORS.disabledAlpha,
 								}
 							: {}}
 					/>

@@ -5,6 +5,7 @@
 
 	import UiSprite from './UiSprite.svelte';
 	import { getUiFontWeight, getUiMenuButtonFontSize, type UiLayoutType } from '../uiLayoutConfig';
+	import { UI_COLORS } from '../constants';
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		label: string;
@@ -37,7 +38,8 @@
 			variant={variant === 'light' ? 'menuItem' : 'button'}
 			{...buttonProps.disabled
 				? {
-						backgroundColor: 0xaaaaaa,
+						backgroundColor: UI_COLORS.disabled,
+						backgroundAlpha: UI_COLORS.disabledAlpha,
 					}
 				: {}}
 			{...active

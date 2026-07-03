@@ -71,7 +71,8 @@
 		props.variant === 'win'
 			? {
 					backgroundColor: UI_COLORS.winTicker,
-					...(props.size === 'winFloat' ? { backgroundAlpha: UI_COLORS.winTickerAlpha } : {}),
+					backgroundAlpha:
+						props.size === 'winFloat' ? UI_COLORS.winTickerAlpha : UI_COLORS.winAlpha,
 				}
 			: {},
 	);

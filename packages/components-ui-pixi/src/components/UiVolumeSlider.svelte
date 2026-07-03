@@ -5,7 +5,7 @@
 		UI_MENU_AUDIO_SLIDER_HEIGHT,
 		UI_MENU_AUDIO_THUMB_SIZE,
 	} from '../uiLayoutConfig';
-	import { UI_BORDER_RADIUS } from '../constants';
+	import { UI_BORDER_RADIUS, UI_COLORS } from '../constants';
 
 	type Props = {
 		value: number;
@@ -77,7 +77,8 @@
 		width={width}
 		height={UI_MENU_AUDIO_SLIDER_HEIGHT}
 		anchor={{ x: 0.5, y: 0.5 }}
-		backgroundColor={0x333333}
+		backgroundColor={UI_COLORS.sliderTrack}
+		backgroundAlpha={UI_COLORS.sliderTrackAlpha}
 		borderRadius={UI_BORDER_RADIUS.button}
 	/>
 
@@ -87,7 +88,8 @@
 			width={fillWidth}
 			height={UI_MENU_AUDIO_SLIDER_HEIGHT}
 			anchor={{ x: 0, y: 0.5 }}
-			backgroundColor={0xffffff}
+			backgroundColor={UI_COLORS.sliderFill}
+			backgroundAlpha={UI_COLORS.sliderFillAlpha}
 			borderRadius={UI_BORDER_RADIUS.button}
 		/>
 	{/if}
@@ -96,8 +98,9 @@
 		x={-width * 0.5 + thumbX}
 		diameter={UI_MENU_AUDIO_THUMB_SIZE}
 		anchor={0.5}
-		backgroundColor={0xffffff}
-		borderColor={0x333333}
+		backgroundColor={UI_COLORS.sliderThumb}
+		backgroundAlpha={UI_COLORS.sliderThumbAlpha}
+		borderColor={UI_COLORS.sliderThumbBorder}
 		borderWidth={2}
 	/>
 </Container>
