@@ -22,7 +22,13 @@ export type EmitterEventUi =
 	| { type: 'autoBet' }
 	| { type: 'bet' }
 	| { type: 'spinStart' }
-	| { type: 'winFloatShow'; amount: number };
+	| { type: 'winFloatShow'; amount: number }
+	| { type: 'winShow' }
+	| { type: 'winHide' }
+	| { type: 'freeSpinIntroShow' }
+	| { type: 'freeSpinIntroHide' }
+	| { type: 'freeSpinOutroShow' }
+	| { type: 'freeSpinOutroHide' };
 
 export type ButtonIcon =
 	| 'decrease'

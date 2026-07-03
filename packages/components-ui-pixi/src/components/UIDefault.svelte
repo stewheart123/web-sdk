@@ -3,6 +3,7 @@
 
 	import { EnableSpaceHold } from 'components-shared';
 
+	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
 	import UiFadeContainer from './UiFadeContainer.svelte';
 	import LayoutUnified from './LayoutUnified.svelte';
 	import LabelBalance from './LabelBalance.svelte';
@@ -28,6 +29,7 @@
 </script>
 
 <EnableSpaceHold />
+<BettingControlsLockSync />
 
 <UiFadeContainer>
 	<LayoutUnified>

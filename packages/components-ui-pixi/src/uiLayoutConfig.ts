@@ -274,7 +274,7 @@ export const UI_BAR_BOTTOM_PADDING_BY_TYPE: Record<UiLayoutType, number> = {
 };
 
 /** Vertical nudge for the control bar in standard-layout coordinates (negative = up). */
-export const UI_BAR_Y_OFFSET = 20;
+export const UI_BAR_Y_OFFSET = 40;
 
 export const getUiBarY = ({
 	mainLayoutHeight,

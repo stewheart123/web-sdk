@@ -21,7 +21,7 @@ const primaryMachines = createPrimaryMachines<Bet>({
 		if (lastRevealEvent) stateGameDerived.enhancedBoard.settle(normalizeBoard(lastRevealEvent.board));
 	},
 	onNewGameStart: async () => {
-		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting()) || stateBet.isSpaceHold) return;
+		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting) || stateBet.isSpaceHold) return;
 		stateBet.winBookEventAmount = 0;
 		await stateGameDerived.enhancedBoard.preSpin({});
 	},

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { EnableSpaceHold } from 'components-shared';
 
+	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
 	import UiFadeContainer from './UiFadeContainer.svelte';
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
@@ -33,6 +34,7 @@
 </script>
 
 <EnableSpaceHold />
+<BettingControlsLockSync />
 
 <UiFadeContainer>
 	<Container x={20}>

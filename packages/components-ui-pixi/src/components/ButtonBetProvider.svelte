@@ -8,6 +8,7 @@
 	import { stateBet, stateBetDerived } from 'state-shared';
 
 	import { getContext } from '../context';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 
 	type Props = {
 		children: Snippet<
@@ -24,6 +25,7 @@
 	const context = getContext();
 
 	let stopDisabled = $state(false);
+	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 
 	const bet = () => {
 		if (stateBetDerived.activeBetMode()?.type === 'buy') stateBet.activeBetModeKey = 'BASE';
@@ -38,9 +40,11 @@
 	};
 
 	const onpress = () => {
+		if (controlsLocked) return;
+
 		context.eventEmitter.broadcast({ type: 'soundPressBet' });
 
-		if (context.stateXstateDerived.isIdle()) {
+		if (context.stateXstateDerived.isIdle) {
 			bet();
 		} else {
 			stop();
@@ -48,12 +52,12 @@
 	};
 
 	const getKey = () => {
-		if (context.stateXstateDerived.isIdle()) {
+		if (context.stateXstateDerived.isIdle) {
 			if (!stateBetDerived.isBetCostAvailable()) return 'spin_disabled';
 			return 'spin_default';
 		}
 
-		if (!context.stateXstateDerived.isIdle()) {
+		if (!context.stateXstateDerived.isIdle) {
 			if (stopDisabled) return 'stop_disabled';
 			if (stateBetDerived.hasAutoBetCounter()) return 'stop_default';
 			if (stateBet.isTurbo) return 'stop_disabled';

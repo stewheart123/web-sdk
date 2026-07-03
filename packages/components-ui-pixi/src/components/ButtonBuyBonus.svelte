@@ -6,12 +6,13 @@
 	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const { stateXstateDerived, eventEmitter } = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
-	const disabled = $derived(!stateXstateDerived.isIdle());
+	const disabled = $derived(isBettingControlsLocked(stateXstateDerived.isIdle));
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 
 	const openModal = () => (stateModal.modal = { name: 'buyBonus' });

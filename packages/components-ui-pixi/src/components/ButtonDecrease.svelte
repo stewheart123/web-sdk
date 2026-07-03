@@ -3,6 +3,7 @@
 
 	import UiButton from './UiButton.svelte';
 	import { getContext } from '../context';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { stateBetDerived } from 'state-shared';
 	import { UI_BET_STEPPER_SIZE, getUiBetStepperIconFontSize } from '../uiLayoutConfig';
 
@@ -11,7 +12,8 @@
 	const sizes = { width: UI_BET_STEPPER_SIZE, height: UI_BET_STEPPER_SIZE };
 	const iconFontSize = getUiBetStepperIconFontSize();
 	const disabled = $derived(
-		!context.stateXstateDerived.isIdle() || !stateBetDerived.canStepBetAmount(-1),
+		isBettingControlsLocked(context.stateXstateDerived.isIdle) ||
+			!stateBetDerived.canStepBetAmount(-1),
 	);
 
 	const onpress = () => {

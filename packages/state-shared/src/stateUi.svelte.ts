@@ -65,6 +65,11 @@ export const stateUi = $state({
 	menuOpen: false,
 	drawerFold: false,
 	drawerButtonShow: false,
+	isBoardAnimating: false,
+	isWinOverlayActive: false,
+	isWinFloatShowing: false,
+	isFreeSpinIntroActive: false,
+	isFreeSpinOutroActive: false,
 	config: {
 		mode: 'default' as UIConfigMode,
 	}

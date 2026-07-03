@@ -9,20 +9,39 @@ import {
 } from './constants';
 
 export const createXstate = () => {
-	const matchesXstate = (state: string) => matchesState(state, stateXstate.value);
-
 	const stateXstate = $state({
 		value: '' as StateValue,
 	});
 
+	const matchesXstate = (state: string) => matchesState(state, stateXstate.value);
+
+	const isIdle = $derived(matchesState(STATE_IDLE, stateXstate.value));
+	const isRendering = $derived(matchesState(STATE_RENDERING, stateXstate.value));
+	const isBetting = $derived(matchesState(STATE_BET, stateXstate.value));
+	const isAutoBetting = $derived(matchesState(STATE_AUTOBET, stateXstate.value));
+	const isResumingBet = $derived(matchesState(STATE_RESUME_BET, stateXstate.value));
+	const isPlaying = $derived(!isRendering && !isIdle);
+
 	const stateXstateDerived = {
 		matchesXstate,
-		isRendering: () => matchesXstate(STATE_RENDERING),
-		isIdle: () => matchesXstate(STATE_IDLE),
-		isBetting: () => matchesXstate(STATE_BET),
-		isAutoBetting: () => matchesXstate(STATE_AUTOBET),
-		isResumingBet: () => matchesXstate(STATE_RESUME_BET),
-		isPlaying: () => !matchesXstate(STATE_RENDERING) && !matchesXstate(STATE_IDLE),
+		get isIdle() {
+			return isIdle;
+		},
+		get isRendering() {
+			return isRendering;
+		},
+		get isBetting() {
+			return isBetting;
+		},
+		get isAutoBetting() {
+			return isAutoBetting;
+		},
+		get isResumingBet() {
+			return isResumingBet;
+		},
+		get isPlaying() {
+			return isPlaying;
+		},
 	};
 
 	return {

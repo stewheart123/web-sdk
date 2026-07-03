@@ -5,6 +5,7 @@
 
 	import UiLabel from './UiLabel.svelte';
 	import { getContext } from '../context';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import type { LabelUiProps } from '../types';
 
@@ -12,7 +13,7 @@
 	const context = getContext();
 	const label = $derived(stateBetDerived.activeBetMode()?.text.betAmountLabel || i18nDerived.bet());
 	const value = $derived(numberToCurrencyString(stateBetDerived.betCost()));
-	const disabled = $derived(!context.stateXstateDerived.isIdle());
+	const disabled = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 
 	const onpress = () => {
 		if (disabled) return;

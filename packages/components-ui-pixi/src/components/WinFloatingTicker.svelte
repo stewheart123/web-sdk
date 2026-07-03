@@ -14,6 +14,10 @@
 	let lastCumulativeWin = $state(0);
 
 	$effect(() => {
+		stateUi.isWinFloatShowing = showWin;
+	});
+
+	$effect(() => {
 		const cumulative = stateBet.winBookEventAmount;
 
 		if (cumulative < lastCumulativeWin) {

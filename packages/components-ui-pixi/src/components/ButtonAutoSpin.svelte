@@ -5,6 +5,7 @@
 
 	import UiButton from './UiButton.svelte';
 	import { getContext } from '../context';
+	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { UI_BASE_SIZE } from '../constants';
 	import ButtonBetAutoSpinsCounter from './ButtonBetAutoSpinsCounter.svelte';
 
@@ -12,9 +13,10 @@
 	const context = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
 	const active = $derived(stateBetDerived.hasAutoBetCounter());
+	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 	const disabled = $derived.by(() => {
 		if (stateBet.isSpaceHold) return true;
-		if (!context.stateXstateDerived.isIdle() && !stateBetDerived.hasAutoBetCounter()) return true;
+		if (controlsLocked) return true;
 		if (!stateBetDerived.isBetCostAvailable()) return true;
 		return false;
 	});
