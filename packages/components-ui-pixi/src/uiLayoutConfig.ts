@@ -125,6 +125,8 @@ export const UI_BET_STEPPER_STACK_HEIGHT =
 	UI_BET_STEPPER_SIZE * 2 + UI_BET_STEPPER_VERTICAL_GAP;
 /** Shared design size for turbo + auto-spin stacked on the control bar. */
 export const UI_AUTO_SPIN_TURBO_BUTTON_SIZE = UI_BASE_SIZE;
+/** Render scale boost for the turbo + auto-spin column (1 = bar-fit default). */
+export const UI_AUTO_SPIN_TURBO_SCALE_MULTIPLIER = 1.7;
 /** Vertical gap between stacked turbo and auto-spin buttons. */
 export const UI_AUTO_SPIN_TURBO_VERTICAL_GAP = 8;
 export const UI_AUTO_SPIN_TURBO_STACK_HEIGHT =
@@ -272,7 +274,9 @@ export const getUiBetStepperHeightScale = () =>
 
 /** Height-only scale for the turbo + auto-spin column when positioned via flow layout. */
 export const getUiAutoSpinColumnScale = () =>
-	(UI_BAR_CONTENT_MAX_HEIGHT / UI_AUTO_SPIN_TURBO_STACK_HEIGHT) * 0.92;
+	(UI_BAR_CONTENT_MAX_HEIGHT / UI_AUTO_SPIN_TURBO_STACK_HEIGHT) *
+	0.92 *
+	UI_AUTO_SPIN_TURBO_SCALE_MULTIPLIER;
 
 export type UiBarFlowRegion = {
 	centerX: number;
