@@ -134,10 +134,10 @@ export const UI_LABEL_SCALE = 0.85;
 /** Gap between adjacent slot regions inside the bar (ratio-based fallback). */
 export const UI_SLOT_GAP = 8;
 
-/** Tight gap for flow-anchored controls (menu → balance → bet → stepper → spin). */
+/** Tight gap for flow-anchored controls (menu → balance → bet → spin). */
 export const UI_BAR_FLOW_GAP = 4;
 
-/** Balance share of the info strip between menu and bet-stepper. */
+/** Balance share of the info strip between menu and spin. */
 export const UI_BALANCE_INFO_WIDTH_RATIO = 0.48;
 
 /** Horizontal gap between the spin and auto-spin buttons. */
@@ -156,7 +156,6 @@ export const UI_BAR_SLOT_ORDER = [
 	'menu',
 	'balance',
 	'bet',
-	'betStepper',
 	'spin',
 ] as const;
 
@@ -177,7 +176,6 @@ export const UI_BAR_SLOT_RATIOS = {
 	menu: 0.04,
 	balance: 0.22,
 	bet: 0.38,
-	betStepper: 0.52,
 	spin: 0.66,
 } as const;
 
@@ -290,14 +288,13 @@ export type UiBarFlowLayout = {
 	menu: UiBarFlowButton;
 	balance: UiBarFlowRegion;
 	bet: UiBarFlowRegion;
-	betStepper: UiBarFlowButton;
 	spin: UiBarFlowButton;
 	autoSpin: UiBarFlowButton;
 };
 
 /**
  * Positions bar controls edge-to-edge instead of ratio midpoints.
- * Menu → balance → bet → stepper → spin → auto-spin, left to right.
+ * Menu → balance → bet → spin → auto-spin, left to right.
  */
 export const getUiBarFlowLayout = (): UiBarFlowLayout => {
 	const menuRegion = getUiBarSlotRegion('menu');
@@ -312,19 +309,14 @@ export const getUiBarFlowLayout = (): UiBarFlowLayout => {
 	const spinSize = UI_BASE_SIZE * spinScale;
 	const autoSpinColumnScale = getUiAutoSpinColumnScale();
 	const autoSpinSize = UI_BASE_SIZE * autoSpinColumnScale;
-	const stepperScale = getUiBetStepperHeightScale();
-	const stepperWidth = UI_BET_STEPPER_SIZE * stepperScale;
 
 	const spinSlotX = UI_BAR_SLOTS.spin;
 	const spinCenterX = spinSlotX;
 	const resolvedAutoSpinCenterX =
 		spinCenterX + spinSize * 0.5 + UI_AUTO_SPIN_GAP + autoSpinSize * 0.5;
 
-	const stepperCenterX =
-		spinCenterX - spinSize * 0.5 - UI_BAR_FLOW_GAP - stepperWidth * 0.5;
-
 	const infoLeft = menuCenterX + menuWidth * 0.5 + UI_BAR_FLOW_GAP;
-	const infoRight = stepperCenterX - stepperWidth * 0.5 - UI_BAR_FLOW_GAP;
+	const infoRight = spinCenterX - spinSize * 0.5 - UI_BAR_FLOW_GAP;
 	const infoWidth = Math.max(0, infoRight - infoLeft);
 
 	const balanceWidth = infoWidth * UI_BALANCE_INFO_WIDTH_RATIO;
@@ -340,7 +332,6 @@ export const getUiBarFlowLayout = (): UiBarFlowLayout => {
 			centerX: infoLeft + balanceWidth + betWidth * 0.5,
 			width: betWidth,
 		},
-		betStepper: { centerX: stepperCenterX, scale: stepperScale },
 		spin: { centerX: spinCenterX, scale: spinScale },
 		autoSpin: { centerX: resolvedAutoSpinCenterX, scale: autoSpinColumnScale },
 	};
@@ -351,13 +342,6 @@ export const getAutoSpinTurboButtonOffsetY = (position: 'turbo' | 'autoSpin') =>
 	const offset = (UI_AUTO_SPIN_TURBO_BUTTON_SIZE + UI_AUTO_SPIN_TURBO_VERTICAL_GAP) * 0.5;
 
 	return position === 'turbo' ? -offset : offset;
-};
-
-/** Y offset from the bet-stepper slot centre for each stacked button. */
-export const getBetStepperButtonOffsetY = (position: 'increase' | 'decrease') => {
-	const offset = (UI_BET_STEPPER_SIZE + UI_BET_STEPPER_VERTICAL_GAP) * 0.5;
-
-	return position === 'increase' ? -offset : offset;
 };
 
 /** Horizontal inset from the standard layout edges when fitting the bar. */
@@ -394,7 +378,6 @@ export const UI_BAR_SLOTS = {
 	menu: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.menu,
 	balance: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.balance,
 	bet: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.bet,
-	betStepper: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.betStepper,
 	spin: UI_BAR_WIDTH * UI_BAR_SLOT_RATIOS.spin,
 } as const;
 
@@ -530,9 +513,6 @@ export const UI_SCENE_LABELS = {
 		menu: 'UI/ControlBar/Menu',
 		balance: 'UI/ControlBar/Balance',
 		bet: 'UI/ControlBar/Bet',
-		betStepper: 'UI/ControlBar/BetStepper',
-		betStepperIncrease: 'UI/ControlBar/BetStepper/Increase',
-		betStepperDecrease: 'UI/ControlBar/BetStepper/Decrease',
 		spin: 'UI/ControlBar/Spin',
 		turbo: 'UI/ControlBar/Turbo',
 		autoSpin: 'UI/ControlBar/AutoSpin',

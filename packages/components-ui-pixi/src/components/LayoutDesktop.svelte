@@ -63,14 +63,6 @@
 		<Container y={DESKTOP_BASE_SIZE * 0.5} x={160 + 150 * 6} scale={0.8}>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
-
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={1440} scale={0.8}>
-			{@render props.buttonDecrease({ anchor: 0.5 })}
-		</Container>
-
-		<Container y={DESKTOP_BASE_SIZE * 0.5} x={1440 + 150} scale={0.8}>
-			{@render props.buttonIncrease({ anchor: 0.5 })}
-		</Container>
 	</Container>
 </MainContainer>
 

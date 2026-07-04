@@ -20,6 +20,8 @@
 		label: string;
 		value: string;
 		tiled?: boolean;
+		bordered?: boolean;
+		borderAlpha?: number;
 		stacked?: boolean;
 		variant?: 'default' | 'win';
 		size?: 'default' | 'bar' | 'winFloat';
@@ -76,6 +78,15 @@
 				}
 			: {},
 	);
+	const borderProps = $derived(
+		props.bordered
+			? {
+					borderWidth: 2,
+					borderColor: 0xffffff,
+					borderAlpha: props.borderAlpha ?? 1,
+				}
+			: {},
+	);
 </script>
 
 {#if props.stacked}
@@ -87,6 +98,7 @@
 			height={tickerHeight}
 			borderRadius={UI_BORDER_RADIUS.label}
 			{...winTickerBackground}
+			{...borderProps}
 		/>
 	{/if}
 	<Text anchor={{ x: 0.5, y: 0.5 }} text={props.label} style={labelStyle} y={-lineGap * 0.5} />
@@ -101,6 +113,7 @@
 			height={tickerHeight}
 			borderRadius={UI_BORDER_RADIUS.label}
 			{...winTickerBackground}
+			{...borderProps}
 		/>
 	{/if}
 	{#if props.size === 'winFloat'}

@@ -25,6 +25,8 @@
 <Container eventMode="static" cursor={disabled ? 'not-allowed' : 'pointer'} onpointerup={onpress}>
 	<UiLabel
 		tiled
+		bordered
+		borderAlpha={disabled ? 0.35 : 1}
 		{label}
 		{value}
 		stacked={props.stacked}

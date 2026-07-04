@@ -47,7 +47,6 @@
 
 		getUiBarY,
 
-		getBetStepperButtonOffsetY,
 		getAutoSpinTurboButtonOffsetY,
 
 		getUiClusterPivot,
@@ -225,48 +224,6 @@
 				width: flow.bet.width,
 
 			})}
-
-		</Container>
-
-
-
-		<Container
-
-			label={UI_SCENE_LABELS.controlBar.betStepper}
-
-			x={flow.betStepper.centerX}
-
-			y={UI_BAR_SLOT_CENTER_Y}
-
-			scale={flow.betStepper.scale}
-
-		>
-
-			<Container
-
-				label={UI_SCENE_LABELS.controlBar.betStepperIncrease}
-
-				y={getBetStepperButtonOffsetY('increase')}
-
-			>
-
-				{@render props.buttonIncrease({ anchor: 0.5 })}
-
-			</Container>
-
-
-
-			<Container
-
-				label={UI_SCENE_LABELS.controlBar.betStepperDecrease}
-
-				y={getBetStepperButtonOffsetY('decrease')}
-
-			>
-
-				{@render props.buttonDecrease({ anchor: 0.5 })}
-
-			</Container>
 
 		</Container>
 
