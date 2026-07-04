@@ -6,5 +6,4 @@ export const isBettingControlsLocked = (isIdle: boolean) =>
 	stateUi.freeSpinCounterShow ||
 	stateUi.isFreeSpinIntroActive ||
 	stateUi.isFreeSpinOutroActive ||
-	stateUi.isWinOverlayActive ||
-	stateUi.isWinFloatShowing;
+	stateUi.isWinOverlayActive;
