@@ -16,6 +16,7 @@
 
 	import { stateGame, stateGameDerived } from '../game/stateGame.svelte';
 	import Game from '../components/Game.svelte';
+	import StoryUiIdle from './StoryUiIdle.svelte';
 	import { setContext } from '../game/context';
 	import { eventEmitter } from '../game/eventEmitter';
 	import config from '../game/config';
@@ -39,6 +40,14 @@
 <Story name="component (loadingScreen)">
 	<StoryLocale lang="en">
 		<Game />
+	</StoryLocale>
+</Story>
+
+<Story name="UI controls (idle)">
+	<StoryLocale lang="en">
+		<StoryUiIdle>
+			<Game />
+		</StoryUiIdle>
 	</StoryLocale>
 </Story>
 
