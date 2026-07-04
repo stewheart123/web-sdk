@@ -3,9 +3,15 @@
 	import { stateSound } from 'state-shared';
 
 	import UiAudioControl from './UiAudioControl.svelte';
+	import { UI_AUDIO_ICON_KEYS } from '../uiButtonSkins';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 </script>
 
-<UiAudioControl {...props} label={i18nDerived.sound()} bind:value={stateSound.volumeValueSoundEffect} />
+<UiAudioControl
+	{...props}
+	label={i18nDerived.sound()}
+	iconKey={UI_AUDIO_ICON_KEYS.sfx}
+	bind:value={stateSound.volumeValueSoundEffect}
+/>

@@ -15,9 +15,10 @@
 	type Props = Partial<Omit<ButtonProps, 'children'>> & {
 		label: string;
 		value: number;
+		iconKey?: string;
 	};
 
-	let { label, value = $bindable(), anchor: _anchor, ..._buttonProps }: Props = $props();
+	let { label, value = $bindable(), iconKey, anchor: _anchor, ..._buttonProps }: Props = $props();
 
 	const context = getContext();
 	const layout = getUiMenuAudioRowLayout();
@@ -44,7 +45,7 @@
 
 <Container>
 	<Container x={layout.toggleCenterX}>
-		<UiMenuButton anchor={0.5} sizes={toggleSizes} {active} onpress={onToggle} {label} variant="light" />
+		<UiMenuButton anchor={0.5} sizes={toggleSizes} {active} onpress={onToggle} {label} {iconKey} variant="light" />
 	</Container>
 
 	<Container x={layout.sliderCenterX}>
