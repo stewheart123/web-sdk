@@ -12,6 +12,7 @@
 	import {
 		getUiButtonSkinActiveFrame,
 		getUiButtonSkinFrame,
+		getUiButtonSkinRotation,
 		type UiCircularButtonSkin,
 	} from '../uiButtonSkins';
 	import { i18nDerived } from '../i18n/i18nDerived';
@@ -65,6 +66,7 @@
 			disabled,
 		})}
 		{@const alpha = disabled ? 0.5 : 1}
+		{@const rotation = getUiButtonSkinRotation(frameKey)}
 
 		{#if hasSkin}
 			<Sprite
@@ -74,6 +76,7 @@
 				width={sizes.width}
 				height={sizes.height}
 				{alpha}
+				{rotation}
 			/>
 		{:else if fallbackIcon}
 			<UiSprite

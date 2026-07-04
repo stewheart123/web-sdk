@@ -8,7 +8,7 @@
 				"h": 92
 			},
 			"rotated": true,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -16,8 +16,8 @@
 				"h": 94
 			},
 			"sourceSize": {
-				"w": 94,
-				"h": 92
+				"w": 92,
+				"h": 94
 			}
 		},
 		"autoplay_interact_hover.png": {
@@ -28,7 +28,7 @@
 				"h": 92
 			},
 			"rotated": false,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -48,7 +48,7 @@
 				"h": 92
 			},
 			"rotated": true,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -56,8 +56,8 @@
 				"h": 94
 			},
 			"sourceSize": {
-				"w": 94,
-				"h": 92
+				"w": 92,
+				"h": 94
 			}
 		},
 		"bonus_buy_interact_hover.png": {
@@ -68,7 +68,7 @@
 				"h": 92
 			},
 			"rotated": true,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -76,8 +76,8 @@
 				"h": 94
 			},
 			"sourceSize": {
-				"w": 94,
-				"h": 92
+				"w": 92,
+				"h": 94
 			}
 		},
 		"spin_active.png": {
@@ -88,7 +88,7 @@
 				"h": 152
 			},
 			"rotated": false,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -108,7 +108,7 @@
 				"h": 152
 			},
 			"rotated": true,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -116,8 +116,8 @@
 				"h": 154
 			},
 			"sourceSize": {
-				"w": 154,
-				"h": 152
+				"w": 152,
+				"h": 154
 			}
 		},
 		"turbo_active.png": {
@@ -128,7 +128,7 @@
 				"h": 92
 			},
 			"rotated": true,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
@@ -136,8 +136,8 @@
 				"h": 94
 			},
 			"sourceSize": {
-				"w": 94,
-				"h": 92
+				"w": 92,
+				"h": 94
 			}
 		},
 		"turbo_interact_hover.png": {
@@ -148,7 +148,7 @@
 				"h": 92
 			},
 			"rotated": false,
-			"trimmed": true,
+			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,

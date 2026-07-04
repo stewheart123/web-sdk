@@ -18,3 +18,15 @@ export const getUiButtonSkinFrame = (
 
 export const getUiButtonSkinActiveFrame = (skin: UiCircularButtonSkin): string =>
 	`${skin}_active.png`;
+
+/** Spine atlas rotate:90 frames — Pixi spritesheet un-rotate needs a 180° correction. */
+export const UI_BUTTON_ROTATED_FRAMES = new Set([
+	'autoplay_active.png',
+	'bonus_buy_active.png',
+	'bonus_buy_interact_hover.png',
+	'spin_interact_hover.png',
+	'turbo_active.png',
+]);
+
+export const getUiButtonSkinRotation = (frameKey: string): number =>
+	UI_BUTTON_ROTATED_FRAMES.has(frameKey) ? Math.PI : 0;

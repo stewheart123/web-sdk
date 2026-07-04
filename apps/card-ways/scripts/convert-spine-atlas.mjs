@@ -9,37 +9,49 @@ function parseRegion(lines, startIndex) {
 	const name = lines[i++];
 	const boundsLine = lines[i++];
 	const [, bx, by, bw, bh] = boundsLine.match(/bounds:(\d+),(\d+),(\d+),(\d+)/);
+	const atlasW = Number(bw);
+	const atlasH = Number(bh);
 
 	let ox = 0;
 	let oy = 0;
-	let origW = Number(bw);
-	let origH = Number(bh);
+	let origW = atlasW;
+	let origH = atlasH;
 	let rotated = false;
+	let hasOffsets = false;
 
 	while (i < lines.length && lines[i].includes(':')) {
 		const line = lines[i++];
 		if (line.startsWith('offsets:')) {
+			hasOffsets = true;
 			[, ox, oy, origW, origH] = line.match(/offsets:(\d+),(\d+),(\d+),(\d+)/).map(Number);
 		} else if (line.startsWith('rotate:')) {
 			rotated = true;
 		}
 	}
 
+	if (!hasOffsets && rotated) {
+		origW = atlasH;
+		origH = atlasW;
+	}
+
+	const displayW = rotated ? atlasH : atlasW;
+	const displayH = rotated ? atlasW : atlasH;
 	const frameName = `${name}.png`;
-	const trimmed = ox !== 0 || oy !== 0 || origW !== bw || origH !== bh;
+	const trimmed =
+		ox !== 0 || oy !== 0 || displayW !== origW - ox * 2 || displayH !== origH - oy * 2;
 
 	return {
 		nextIndex: i,
 		region: {
 			name: frameName,
-			frame: { x: Number(bx), y: Number(by), w: Number(bw), h: Number(bh) },
+			frame: { x: Number(bx), y: Number(by), w: atlasW, h: atlasH },
 			rotated,
 			trimmed,
 			spriteSourceSize: {
 				x: ox,
 				y: oy,
-				w: rotated ? Number(bh) : Number(bw),
-				h: rotated ? Number(bw) : Number(bh),
+				w: displayW,
+				h: displayH,
 			},
 			sourceSize: { w: origW, h: origH },
 		},
