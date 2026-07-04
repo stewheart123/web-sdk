@@ -109,10 +109,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateUi.freeSpinCounterShow = true;
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
-			current: bookEvent.amount,
+			current: bookEvent.amount + 1,
 			total: bookEvent.total,
 		});
-		stateUi.freeSpinCounterCurrent = bookEvent.amount;
+		stateUi.freeSpinCounterCurrent = bookEvent.amount + 1;
 		stateUi.freeSpinCounterTotal = bookEvent.total;
 	},
 	freeSpinEnd: async (bookEvent: BookEventOfType<'freeSpinEnd'>) => {
