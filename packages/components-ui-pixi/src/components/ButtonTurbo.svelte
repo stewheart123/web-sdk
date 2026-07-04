@@ -2,7 +2,7 @@
 	import type { ButtonProps } from 'components-pixi';
 	import { stateBet, stateBetDerived } from 'state-shared';
 
-	import UiButton from './UiButton.svelte';
+	import UiCircularButton from './UiCircularButton.svelte';
 	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
@@ -25,4 +25,12 @@
 	});
 </script>
 
-<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" />
+<UiCircularButton
+	{...props}
+	skin="turbo"
+	{sizes}
+	{active}
+	{onpress}
+	{disabled}
+	fallbackIcon="turbo"
+/>

@@ -1,0 +1,175 @@
+{
+	"frames": {
+		"autoplay_active.png": {
+			"frame": {
+				"x": 2,
+				"y": 98,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": true,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 92,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		},
+		"autoplay_interact_hover.png": {
+			"frame": {
+				"x": 96,
+				"y": 98,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 94,
+				"h": 92
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		},
+		"bonus_buy_active.png": {
+			"frame": {
+				"x": 192,
+				"y": 96,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": true,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 92,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		},
+		"bonus_buy_interact_hover.png": {
+			"frame": {
+				"x": 2,
+				"y": 2,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": true,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 92,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		},
+		"spin_active.png": {
+			"frame": {
+				"x": 2,
+				"y": 194,
+				"w": 154,
+				"h": 152
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 154,
+				"h": 152
+			},
+			"sourceSize": {
+				"w": 154,
+				"h": 152
+			}
+		},
+		"spin_interact_hover.png": {
+			"frame": {
+				"x": 158,
+				"y": 192,
+				"w": 154,
+				"h": 152
+			},
+			"rotated": true,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 152,
+				"h": 154
+			},
+			"sourceSize": {
+				"w": 154,
+				"h": 152
+			}
+		},
+		"turbo_active.png": {
+			"frame": {
+				"x": 96,
+				"y": 2,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": true,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 92,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		},
+		"turbo_interact_hover.png": {
+			"frame": {
+				"x": 190,
+				"y": 2,
+				"w": 94,
+				"h": 92
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 94,
+				"h": 92
+			},
+			"sourceSize": {
+				"w": 94,
+				"h": 92
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "UI-BUTTONS.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 312,
+			"h": 348
+		},
+		"scale": "0.4"
+	}
+}

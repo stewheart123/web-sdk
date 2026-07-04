@@ -1,9 +1,11 @@
 <script lang="ts" module>
 	import type { Snippet } from 'svelte';
+	import { Circle as PixiCircle } from 'pixi.js';
 
 	import {
 		Container,
 		Rectangle,
+		Circle,
 		anchorToPivot,
 		type ContainerProps,
 		type Sizes,
@@ -18,13 +20,15 @@
 		| 'onpointerover'
 		| 'onpointerout'
 		| 'onpointerdown'
-		| 'onpointerup';
+		| 'onpointerup'
+		| 'hitArea';
 
 	export type Props = Omit<ContainerProps, ContainerPropsToOmit> & {
 		sizes: Sizes;
 		onpress: () => void;
 		disabled?: boolean;
 		anchor?: PixiPoint;
+		hitShape?: 'rect' | 'circle';
 		children: Snippet<
 			[
 				{
@@ -39,11 +43,26 @@
 </script>
 
 <script lang="ts">
-	const { children, sizes, anchor, disabled, onpress, debug, ...containerProps }: Props = $props();
+	const {
+		children,
+		sizes,
+		anchor,
+		disabled,
+		onpress,
+		debug,
+		hitShape = 'rect',
+		...containerProps
+	}: Props = $props();
 	const center = $derived({
 		x: sizes.width * 0.5,
 		y: sizes.height * 0.5,
 	});
+	const hitRadius = $derived(Math.min(sizes.width, sizes.height) * 0.5);
+	const hitArea = $derived(
+		hitShape === 'circle'
+			? new PixiCircle(center.x, center.y, hitRadius)
+			: undefined,
+	);
 
 	let hovered = $state(false);
 	let pressed = $state(false);
@@ -58,6 +77,7 @@
 
 <Container
 	{...containerProps}
+	{hitArea}
 	eventMode="static"
 	cursor={disabled ? 'not-allowed' : 'pointer'}
 	pivot={anchorToPivot({ sizes, anchor })}
@@ -80,13 +100,26 @@
 	}}
 >
 	{#if debug}
-		<Rectangle
-			width={sizes.width}
-			height={sizes.height}
-			alpha={0.5}
-			borderWidth={2}
-			borderColor={0xffffff}
-		/>
+		{#if hitShape === 'circle'}
+			<Circle
+				x={center.x}
+				y={center.y}
+				anchor={0.5}
+				diameter={hitRadius * 2}
+				backgroundAlpha={0}
+				borderWidth={2}
+				borderColor={0xffffff}
+				borderAlpha={0.5}
+			/>
+		{:else}
+			<Rectangle
+				width={sizes.width}
+				height={sizes.height}
+				alpha={0.5}
+				borderWidth={2}
+				borderColor={0xffffff}
+			/>
+		{/if}
 	{/if}
 	{@render children({ center, hovered, pressed })}
 </Container>

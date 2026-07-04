@@ -3,7 +3,7 @@
 	import type { ButtonProps } from 'components-pixi';
 	import { stateBet, stateBetDerived, stateModal } from 'state-shared';
 
-	import UiButton from './UiButton.svelte';
+	import UiCircularButton from './UiCircularButton.svelte';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
 	import { UI_BASE_SIZE } from '../constants';
@@ -29,8 +29,16 @@
 	};
 </script>
 
-<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="autoSpin">
+<UiCircularButton
+	{...props}
+	skin="autoplay"
+	{sizes}
+	{active}
+	{onpress}
+	{disabled}
+	fallbackIcon="autoSpin"
+>
 	<Container x={sizes.width * 0.5} y={sizes.height * 0.5}>
 		<ButtonBetAutoSpinsCounter />
 	</Container>
-</UiButton>
+</UiCircularButton>

@@ -137,6 +137,11 @@ export default {
 		src: new URL('../../assets/sprites/progressBar/LOADING.json', import.meta.url).href,
 		preload: true,
 	},
+	uiButtons: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.json', import.meta.url).href,
+		preload: true,
+	},
 	freeSpins: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
