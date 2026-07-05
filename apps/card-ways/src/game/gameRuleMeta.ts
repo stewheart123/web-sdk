@@ -53,11 +53,6 @@ const SPECIAL_SYMBOL_IMAGE_MAP: Record<string, string> = {
 	'×3': GAME_RULE_IMAGE.x3,
 };
 
-const UI_ROW_IMAGES: Record<number, string> = {
-	7: GAME_RULE_IMAGE.autoplay,
-	9: GAME_RULE_IMAGE.turbo,
-};
-
 const PAYING_SYMBOL_ORDER = ['A', 'K', 'Q', 'J', '10', '9'] as const;
 
 type ConfigSymbol = {
@@ -145,26 +140,32 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 	return containers;
 };
 
-const buildUiGuideContainers = (): GameRuleContainer[] => {
-	const defaultUiGuide = DEFAULT_GAME_RULE_META.gameRules.find(
-		(section) => section.title === 'USER INTERFACE GUIDE',
-	)!;
-
-	return [
-		...defaultUiGuide.containers.map((container) => ({
-			...container,
-			image: UI_ROW_IMAGES[container.row] ?? container.image,
-		})),
-		{
-			title: '',
-			text: 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
-			image: GAME_RULE_IMAGE.bonusBuy,
-			imagePosition: 'left' as const,
-			row: 8,
-			column: 0,
-		},
-	];
-};
+const buildUiGuideContainers = (): GameRuleContainer[] => [
+	{
+		title: '',
+		text: 'AUTO SPIN | Open the Auto Spin pop-up menu.',
+		image: GAME_RULE_IMAGE.autoplay,
+		imagePosition: 'left',
+		row: 0,
+		column: 0,
+	},
+	{
+		title: '',
+		text: 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
+		image: GAME_RULE_IMAGE.bonusBuy,
+		imagePosition: 'left',
+		row: 1,
+		column: 0,
+	},
+	{
+		title: '',
+		text: 'TURBO | Activate Turbo Mode.',
+		image: GAME_RULE_IMAGE.turbo,
+		imagePosition: 'left',
+		row: 2,
+		column: 0,
+	},
+];
 
 const payTableSections: GameRuleData[] = [
 	{
@@ -225,7 +226,7 @@ const payTableSections: GameRuleData[] = [
 		],
 	},
 	{
-		title: 'PAYTABLEZ',
+		title: 'PAYTABLE',
 		rows: 4,
 		columns: 3,
 		containers: buildSymbolContainers(),
@@ -280,7 +281,7 @@ const gameRulesSections: GameRuleData[] = [
 	},
 	{
 		title: 'USER INTERFACE GUIDE',
-		rows: 17,
+		rows: 3,
 		columns: 1,
 		containers: buildUiGuideContainers(),
 	},
