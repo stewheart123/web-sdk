@@ -57,3 +57,10 @@ packages/e2e/math-testing/*/*.json
 packages/e2e/math-testing/*/*.png
 packages/e2e/math-testing/*/*.txt
 packages/e2e/math-testing/__pycache__/*
+
+# card-ways math books (large; download from math SDK — see apps/math-exports/card_ways/README.md)
+apps/math-exports/**/books_base.json
+apps/math-exports/**/books_bonus.json
+apps/math-exports/**/*.jsonl
+apps/math-exports/**/*.jsonl.zst
+apps/math-exports/**/*.zst

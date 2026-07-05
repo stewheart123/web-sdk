@@ -4,6 +4,10 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
+		"sync:config": "node scripts/sync-config-from-math.mjs",
+		"sync:story-events": "python scripts/sync-story-data-from-math.py --events-only",
+		"sync:story-data": "python scripts/sync-story-data-from-math.py",
+		"sync:math": "npm run sync:config && npm run sync:story-data",
 		"format": "prettier --write --ignore-path=../../.prettierignore .",
 		"lint": "eslint \"src\"",
 		"storybook": "cross-env PUBLIC_CHROMATIC=true storybook dev -p 6007 public",
