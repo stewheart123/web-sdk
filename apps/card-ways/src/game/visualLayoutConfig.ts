@@ -623,8 +623,8 @@ export const VISUAL_LAYOUT = {
 		pressToContinue: {
 			label: 'Loading/PressToContinue',
 			x: 0,
-			y: 242,
-			widthRatio: 2,
+			y: 220,
+			widthRatio: 1.6,
 			anchor: { x: 0.5, y: 0.5 },
 		},
 	},
