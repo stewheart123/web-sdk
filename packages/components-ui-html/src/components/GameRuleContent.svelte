@@ -11,9 +11,11 @@
 	const sections = $derived(stateMeta.gameRuleMeta[props.section] as GameRuleData[]);
 </script>
 
-{#each sections as section (section.title)}
+{#each sections as section (section.title || section.containers[0]?.title || section.rows)}
 	<article class="rule-section">
-		<h3 class="rule-section-title">{section.title}</h3>
+		{#if section.title}
+			<h3 class="rule-section-title">{section.title}</h3>
+		{/if}
 		<div
 			class="rule-grid"
 			style:grid-template-columns="repeat({section.columns}, minmax(0, 1fr))"
@@ -138,5 +140,49 @@
 		line-height: 1.5;
 		color: rgba(255, 255, 255, 0.82);
 		white-space: pre-line;
+	}
+
+	@media (orientation: portrait) {
+		.rule-image {
+			max-width: 6.5rem;
+			max-height: 6.5rem;
+		}
+
+		.rule-container.image-top .rule-image {
+			max-height: 11rem;
+		}
+
+		.rule-images {
+			gap: 0.5rem;
+		}
+
+		.rule-container.image-left {
+			gap: 1rem;
+		}
+	}
+
+	@media (orientation: portrait) and (max-width: 500px) {
+		.rule-image {
+			max-width: 56px;
+			max-height: 56px;
+		}
+
+		.rule-container.image-top .rule-image {
+			max-height: 96px;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.rule-section-title {
+			font-size: 13px;
+		}
+
+		.rule-container-title {
+			font-size: 15px;
+		}
+
+		.rule-container-text {
+			font-size: 14px;
+		}
 	}
 </style>

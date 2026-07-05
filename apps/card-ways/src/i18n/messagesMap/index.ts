@@ -10,6 +10,6 @@ const messagesMapGame = {
 	zh,
 };
 
-const messagesMap = mergeMessagesMaps([messagesMapGame, messagesMapUiPixi, messagesMapUiHtml]);
+const messagesMap = mergeMessagesMaps([messagesMapUiPixi, messagesMapUiHtml, messagesMapGame]);
 
 export default messagesMap;

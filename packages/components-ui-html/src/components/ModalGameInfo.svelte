@@ -26,7 +26,9 @@
 
 				<div class="info-scroll scrollY">
 					<section class="section">
-						<h2 class="section-title">{i18nDerived.payTable()}</h2>
+						{#if i18nDerived.payTable()}
+							<h2 class="section-title">{i18nDerived.payTable()}</h2>
+						{/if}
 						<div class="section-body">
 							{@render props.payTable()}
 						</div>
@@ -111,5 +113,34 @@
 		text-align: center;
 		font-size: 0.75rem;
 		color: rgba(255, 255, 255, 0.45);
+	}
+
+	@media (max-width: 500px) {
+		.info-panel {
+			width: 96vw;
+			max-height: 90vh;
+			padding: 1rem 1rem 0.85rem;
+		}
+
+		.section-title {
+			font-size: 16px;
+		}
+
+		.info-footer {
+			font-size: 12px;
+		}
+	}
+
+	@media (min-width: 501px) and (max-width: 1024px) {
+		.info-panel {
+			width: min(56rem, 96vw);
+			max-height: min(90vh, 60rem);
+		}
+	}
+
+	@media (min-aspect-ratio: 3/4) and (max-aspect-ratio: 5/4) and (min-width: 501px) {
+		.info-panel {
+			width: 96vw;
+		}
 	}
 </style>

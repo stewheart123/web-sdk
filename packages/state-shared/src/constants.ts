@@ -331,65 +331,51 @@ const DEFAULT_GAME_RULE_META = {
 		},
 		{
 			containers: [
-				{
-					title: '',
-					text: 'Malfunction voids all pays and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted bets. The theoretical expected return is calculated over many spins. Movement of reels are not representative of any physical device, and is for illustrative purposes only. TM and \u00a9 2023 Twist Gaming.',
-					image: '',
-					row: 0,
-					column: 0,
-				},
-			],
-			rows: 1,
-			columns: 1,
-			title: 'LEGAL NOTICE',
-		},
-		{
-			containers: [
-				{
-					title: '',
-					text: 'SPIN BUTTON | Initiates the Betting Round.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleSpin.daacc43a.webp',
-					imagePosition: 'left',
-					row: 0,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'STOP BUTTON | Stops the current Spin.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleStop.30db74c5.webp',
-					imagePosition: 'left',
-					row: 1,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'INFORMATION | Provides Game Information.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 2,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'SETTINGS | Adjust Game Settings.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 4,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'PAY TABLE | View the Paytable to see Symbol Values.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 6,
-					column: 0,
-				},
+				// {
+				// 	title: '',
+				// 	text: 'SPIN BUTTON | Initiates the Betting Round.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleSpin.daacc43a.webp',
+				// 	imagePosition: 'left',
+				// 	row: 0,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'STOP BUTTON | Stops the current Spin.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleStop.30db74c5.webp',
+				// 	imagePosition: 'left',
+				// 	row: 1,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'INFORMATION | Provides Game Information.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 2,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'SETTINGS | Adjust Game Settings.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 4,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'PAY TABLE | View the Paytable to see Symbol Values.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 6,
+				// 	column: 0,
+				// },
 				{
 					title: '',
 					text: 'AUTO SPIN | Open the Auto Spin pop-up menu.',
@@ -409,55 +395,71 @@ const DEFAULT_GAME_RULE_META = {
 					row: 9,
 					column: 0,
 				},
-				{
-					title: '',
-					text: 'MENU | Expands the Sidebar Menu for more Options.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 10,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'CLOSE | Exit the pop-up menu.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 11,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'SOUND | Mute or Unmute Game Audio.',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 12,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'INCREASE | Increase your Bet Amount',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 13,
-					column: 0,
-				},
-				{
-					title: '',
-					text: 'DECREASE | Decrease your Bet Amount',
-					image:
-						'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-					imagePosition: 'left',
-					row: 14,
-					column: 0,
-				},
+				// {
+				// 	title: '',
+				// 	text: 'MENU | Expands the Sidebar Menu for more Options.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 10,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'CLOSE | Exit the pop-up menu.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 11,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'SOUND | Mute or Unmute Game Audio.',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 12,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'INCREASE | Increase your Bet Amount',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 13,
+				// 	column: 0,
+				// },
+				// {
+				// 	title: '',
+				// 	text: 'DECREASE | Decrease your Bet Amount',
+				// 	image:
+				// 		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
+				// 	imagePosition: 'left',
+				// 	row: 14,
+				// 	column: 0,
+				// },
+				
 			],
+			
 			rows: 16,
 			columns: 1,
 			title: 'USER INTERFACE GUIDE',
+		},
+		{
+			containers: [
+				{
+					title: '',
+					text: 'Malfunction voids all pays and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted bets. The theoretical expected return is calculated over many spins. Movement of reels are not representative of any physical device, and is for illustrative purposes only. TM and \u00a9 2023 Twist Gaming.',
+					image: '',
+					row: 0,
+					column: 0,
+				},
+			],
+			rows: 1,
+			columns: 1,
+			title: 'LEGAL NOTICE',
 		},
 	],
 	splashScreen: [],

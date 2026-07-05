@@ -168,7 +168,7 @@ const buildUiGuideContainers = (): GameRuleContainer[] => {
 
 const payTableSections: GameRuleData[] = [
 	{
-		title: 'PAYTABLE',
+		title: '',
 		rows: 6,
 		columns: 1,
 		containers: [
@@ -225,7 +225,7 @@ const payTableSections: GameRuleData[] = [
 		],
 	},
 	{
-		title: 'SYMBOLS',
+		title: 'PAYTABLEZ',
 		rows: 4,
 		columns: 3,
 		containers: buildSymbolContainers(),
@@ -279,6 +279,12 @@ const gameRulesSections: GameRuleData[] = [
 		],
 	},
 	{
+		title: 'USER INTERFACE GUIDE',
+		rows: 17,
+		columns: 1,
+		containers: buildUiGuideContainers(),
+	},
+	{
 		title: 'LEGAL NOTICE',
 		rows: 1,
 		columns: 1,
@@ -292,12 +298,6 @@ const gameRulesSections: GameRuleData[] = [
 				column: 0,
 			},
 		],
-	},
-	{
-		title: 'USER INTERFACE GUIDE',
-		rows: 17,
-		columns: 1,
-		containers: buildUiGuideContainers(),
 	},
 ];
 
