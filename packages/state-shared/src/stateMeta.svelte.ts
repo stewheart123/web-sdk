@@ -33,6 +33,7 @@ export type GameRuleContainer = {
 	text: string;
 	textImages?: { [key: string]: string };
 	image: string;
+	images?: string[];
 	row: number;
 	column: number;
 	imagePosition: 'top' | 'left';

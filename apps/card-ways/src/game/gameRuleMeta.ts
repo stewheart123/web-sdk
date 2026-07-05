@@ -19,11 +19,15 @@ const GAME_RULE_IMAGE = {
 	nine: `${GAME_RULES_BASE}/NINE.png`,
 	wild: `${GAME_RULES_BASE}/WILD.png`,
 	scatter: `${GAME_RULES_BASE}/SCATTER.png`,
-	modifier: `${GAME_RULES_BASE}/X1.png`,
+	x1: `${GAME_RULES_BASE}/X1.png`,
+	x2: `${GAME_RULES_BASE}/X2.png`,
+	x3: `${GAME_RULES_BASE}/X3.png`,
 	autoplay: `${GAME_RULES_BASE}/autoplay_interact_hover.png`,
 	bonusBuy: `${GAME_RULES_BASE}/bonus_buy_interact_hover.png`,
 	turbo: `${GAME_RULES_BASE}/turbo_interact_hover.png`,
 } as const;
+
+const MODIFIER_IMAGES = [GAME_RULE_IMAGE.x1, GAME_RULE_IMAGE.x2, GAME_RULE_IMAGE.x3] as const;
 
 const FALLBACK_IMAGE = {
 	winWays: 'https://staging-1-0.twist-game.app/_app/immutable/assets/winWays.be45a8a4.png',
@@ -42,7 +46,9 @@ const SYMBOL_IMAGE_MAP: Record<string, string> = {
 const SPECIAL_SYMBOL_IMAGE_MAP: Record<string, string> = {
 	WILD: GAME_RULE_IMAGE.wild,
 	SCATTER: GAME_RULE_IMAGE.scatter,
-	MODIFIER: GAME_RULE_IMAGE.modifier,
+	'×1': GAME_RULE_IMAGE.x1,
+	'×2': GAME_RULE_IMAGE.x2,
+	'×3': GAME_RULE_IMAGE.x3,
 };
 
 const UI_ROW_IMAGES: Record<number, string> = {
@@ -98,10 +104,22 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 			column: 2,
 		},
 		{
-			title: 'MODIFIER',
-			text: '×1, ×2, or ×3 cards apply to ways wins. No direct pay.',
+			title: '×1',
+			text: 'Modifier card. Applies to ways wins. No direct pay.',
 			row: 3,
 			column: 0,
+		},
+		{
+			title: '×2',
+			text: 'Modifier card. Applies to ways wins. No direct pay.',
+			row: 3,
+			column: 1,
+		},
+		{
+			title: '×3',
+			text: 'Modifier card. Applies to ways wins. No direct pay.',
+			row: 3,
+			column: 2,
 		},
 	];
 
@@ -173,7 +191,8 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'MODIFIER REEL (BASE GAME)',
 				text: 'On each base-game spin, the Modifier Reel reveals a multiplier card: ×1, ×2, or ×3. When a win occurs, the active modifier multiplier is applied to that win. The modifier may change on the next spin. If a ×1 card is revealed after a higher multiplier, the multiplier resets.',
-				image: GAME_RULE_IMAGE.modifier,
+				image: '',
+				images: [...MODIFIER_IMAGES],
 				imagePosition: 'left',
 				row: 3,
 				column: 0,
@@ -181,7 +200,8 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'MODIFIER REEL (FREE SPINS)',
 				text: 'During Free Spins, the Modifier Reel is active on every spin. The revealed multiplier persists for the entire bonus until the feature ends. All wins during Free Spins are multiplied by the active modifier value. When Free Spins end, the modifier resets to ×1.',
-				image: GAME_RULE_IMAGE.modifier,
+				image: '',
+				images: [...MODIFIER_IMAGES],
 				imagePosition: 'left',
 				row: 4,
 				column: 0,

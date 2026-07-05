@@ -22,12 +22,18 @@
 			{#each section.containers as container (`${container.row}-${container.column}-${container.title}`)}
 				<div
 					class="rule-container"
-					class:image-top={container.image && container.imagePosition === 'top'}
-					class:image-left={container.image && container.imagePosition === 'left'}
+					class:image-top={(container.images?.length || container.image) && container.imagePosition === 'top'}
+					class:image-left={(container.images?.length || container.image) && container.imagePosition === 'left'}
 					style:grid-row={container.row + 1}
 					style:grid-column={container.column + 1}
 				>
-					{#if container.image}
+					{#if container.images?.length}
+						<div class="rule-images">
+							{#each container.images as image (`${image}`)}
+								<img class="rule-image" src={image} alt="" />
+							{/each}
+						</div>
+					{:else if container.image}
 						<img class="rule-image" src={container.image} alt="" />
 					{/if}
 					<div class="rule-text">
@@ -88,6 +94,14 @@
 
 	.rule-container.image-top {
 		flex-direction: column;
+	}
+
+	.rule-images {
+		display: flex;
+		flex-shrink: 0;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		align-items: center;
 	}
 
 	.rule-image {
