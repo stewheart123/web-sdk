@@ -158,7 +158,6 @@ const createCardSymbol = (suffix: string, hasWin = true) => {
 };
 
 export const SYMBOL_INFO_MAP = {
-	'8': createCardSymbol('9'),
 	'9': createCardSymbol('9'),
 	'10': createCardSymbol('10'),
 	A: createCardSymbol('A'),

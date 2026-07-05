@@ -8,23 +8,49 @@ const baseRtp = config.betModes.base.rtp * 100;
 const bonusRtp = config.betModes.bonus.rtp * 100;
 const maxWin = config.betModes.base.max_win;
 
-const TEMPLATE_IMAGE = {
-	wild: 'https://staging-1-0.twist-game.app/_app/immutable/assets/wild.ac78fbf6.png',
-	winWays: 'https://staging-1-0.twist-game.app/_app/immutable/assets/winWays.be45a8a4.png',
-	rtp97: 'https://staging-1-0.twist-game.app/_app/immutable/assets/rtp97.d2febd7d.svg',
-	gameRuleSpin:
-		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleSpin.daacc43a.webp',
-	gameRuleStop:
-		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleStop.30db74c5.webp',
-	gameRuleDown:
-		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleDown.716ec429.webp',
-	gameRuleAutoSpin:
-		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleAutoSpin.d542a3b0.webp',
-	gameRuleTurbo:
-		'https://staging-1-0.twist-game.app/_app/immutable/assets/gameRuleTurbo.a0fcfd04.webp',
+const GAME_RULES_BASE = '/assets/sprites/gameRules';
+
+const GAME_RULE_IMAGE = {
+	ace: `${GAME_RULES_BASE}/ACE.png`,
+	king: `${GAME_RULES_BASE}/KING.png`,
+	queen: `${GAME_RULES_BASE}/QUEEN.png`,
+	jack: `${GAME_RULES_BASE}/JACK.png`,
+	ten: `${GAME_RULES_BASE}/TEN.png`,
+	nine: `${GAME_RULES_BASE}/NINE.png`,
+	wild: `${GAME_RULES_BASE}/WILD.png`,
+	scatter: `${GAME_RULES_BASE}/SCATTER.png`,
+	modifier: `${GAME_RULES_BASE}/X1.png`,
+	autoplay: `${GAME_RULES_BASE}/autoplay_interact_hover.png`,
+	bonusBuy: `${GAME_RULES_BASE}/bonus_buy_interact_hover.png`,
+	turbo: `${GAME_RULES_BASE}/turbo_interact_hover.png`,
 } as const;
 
-const PAYING_SYMBOL_ORDER = ['A', 'K', 'Q', 'J', '10', '9', '8'] as const;
+const FALLBACK_IMAGE = {
+	winWays: 'https://staging-1-0.twist-game.app/_app/immutable/assets/winWays.be45a8a4.png',
+	rtp97: 'https://staging-1-0.twist-game.app/_app/immutable/assets/rtp97.d2febd7d.svg',
+} as const;
+
+const SYMBOL_IMAGE_MAP: Record<string, string> = {
+	A: GAME_RULE_IMAGE.ace,
+	K: GAME_RULE_IMAGE.king,
+	Q: GAME_RULE_IMAGE.queen,
+	J: GAME_RULE_IMAGE.jack,
+	'10': GAME_RULE_IMAGE.ten,
+	'9': GAME_RULE_IMAGE.nine,
+};
+
+const SPECIAL_SYMBOL_IMAGE_MAP: Record<string, string> = {
+	WILD: GAME_RULE_IMAGE.wild,
+	SCATTER: GAME_RULE_IMAGE.scatter,
+	MODIFIER: GAME_RULE_IMAGE.modifier,
+};
+
+const UI_ROW_IMAGES: Record<number, string> = {
+	7: GAME_RULE_IMAGE.autoplay,
+	9: GAME_RULE_IMAGE.turbo,
+};
+
+const PAYING_SYMBOL_ORDER = ['A', 'K', 'Q', 'J', '10', '9'] as const;
 
 type ConfigSymbol = {
 	paytable: Array<Record<string, number>> | null;
@@ -51,7 +77,7 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 		return {
 			title: '',
 			text: formatPaytableText(symbol.paytable ?? []),
-			image: TEMPLATE_IMAGE.wild,
+			image: SYMBOL_IMAGE_MAP[symbolName],
 			imagePosition: 'left' as const,
 			row,
 			column,
@@ -83,7 +109,7 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 		containers.push({
 			title: special.title,
 			text: special.text,
-			image: TEMPLATE_IMAGE.wild,
+			image: SPECIAL_SYMBOL_IMAGE_MAP[special.title],
 			imagePosition: 'left',
 			row: special.row,
 			column: special.column,
@@ -91,6 +117,27 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 	}
 
 	return containers;
+};
+
+const buildUiGuideContainers = (): GameRuleContainer[] => {
+	const defaultUiGuide = DEFAULT_GAME_RULE_META.gameRules.find(
+		(section) => section.title === 'USER INTERFACE GUIDE',
+	)!;
+
+	return [
+		...defaultUiGuide.containers.map((container) => ({
+			...container,
+			image: UI_ROW_IMAGES[container.row] ?? container.image,
+		})),
+		{
+			title: '',
+			text: 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
+			image: GAME_RULE_IMAGE.bonusBuy,
+			imagePosition: 'left' as const,
+			row: 8,
+			column: 0,
+		},
+	];
 };
 
 const payTableSections: GameRuleData[] = [
@@ -110,7 +157,7 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'WILD SYMBOL',
 				text: 'The Wild substitutes for all paying symbols. Wild does not substitute for Scatter.',
-				image: TEMPLATE_IMAGE.wild,
+				image: GAME_RULE_IMAGE.wild,
 				imagePosition: 'left',
 				row: 1,
 				column: 0,
@@ -118,7 +165,7 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'SCATTER / FREE SPINS',
 				text: 'Scatter symbols appear on all reels. Landing 3 or more Scatters in a single spin awards 10 Free Spins. Scatter wins are evaluated separately from ways wins.',
-				image: TEMPLATE_IMAGE.wild,
+				image: GAME_RULE_IMAGE.scatter,
 				imagePosition: 'left',
 				row: 2,
 				column: 0,
@@ -126,7 +173,7 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'MODIFIER REEL (BASE GAME)',
 				text: 'On each base-game spin, the Modifier Reel reveals a multiplier card: ×1, ×2, or ×3. When a win occurs, the active modifier multiplier is applied to that win. The modifier may change on the next spin. If a ×1 card is revealed after a higher multiplier, the multiplier resets.',
-				image: TEMPLATE_IMAGE.wild,
+				image: GAME_RULE_IMAGE.modifier,
 				imagePosition: 'left',
 				row: 3,
 				column: 0,
@@ -134,7 +181,7 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: 'MODIFIER REEL (FREE SPINS)',
 				text: 'During Free Spins, the Modifier Reel is active on every spin. The revealed multiplier persists for the entire bonus until the feature ends. All wins during Free Spins are multiplied by the active modifier value. When Free Spins end, the modifier resets to ×1.',
-				image: TEMPLATE_IMAGE.wild,
+				image: GAME_RULE_IMAGE.modifier,
 				imagePosition: 'left',
 				row: 4,
 				column: 0,
@@ -163,7 +210,7 @@ const payTableSections: GameRuleData[] = [
 			{
 				title: '',
 				text: 'All symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
-				image: TEMPLATE_IMAGE.winWays,
+				image: FALLBACK_IMAGE.winWays,
 				imagePosition: 'top',
 				row: 0,
 				column: 0,
@@ -171,10 +218,6 @@ const payTableSections: GameRuleData[] = [
 		],
 	},
 ];
-
-const defaultUiGuide = DEFAULT_GAME_RULE_META.gameRules.find(
-	(section) => section.title === 'USER INTERFACE GUIDE',
-)!;
 
 const gameRulesSections: GameRuleData[] = [
 	{
@@ -185,7 +228,7 @@ const gameRulesSections: GameRuleData[] = [
 			{
 				title: '',
 				text: `The normal mode of this game has a theoretical expected return of ${baseRtp.toFixed(1)}%.\n\nThe player also has the option to buy Free Spins for ${bonusCost}× the underlying bet. The Free Spins buy mode has a theoretical expected return of ${bonusRtp.toFixed(1)}%. Purchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is ${maxWin.toLocaleString()}× the underlying bet.`,
-				image: TEMPLATE_IMAGE.rtp97,
+				image: FALLBACK_IMAGE.rtp97,
 				imagePosition: 'top',
 				row: 0,
 				column: 0,
@@ -200,7 +243,7 @@ const gameRulesSections: GameRuleData[] = [
 			{
 				title: 'BONUS BUY — FREE SPINS',
 				text: `Cost: ${bonusCost}× total bet\nInstantly awards the Free Spins feature (10 spins)\nTheoretical RTP: ${bonusRtp.toFixed(1)}%\nMaximum win: ${maxWin.toLocaleString()}× bet\nBonus Buy may be disabled in certain jurisdictions`,
-				image: '',
+				image: GAME_RULE_IMAGE.bonusBuy,
 				imagePosition: 'left',
 				row: 0,
 				column: 0,
@@ -226,17 +269,7 @@ const gameRulesSections: GameRuleData[] = [
 		title: 'USER INTERFACE GUIDE',
 		rows: 17,
 		columns: 1,
-		containers: [
-			...defaultUiGuide.containers,
-			{
-				title: '',
-				text: 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
-				image: TEMPLATE_IMAGE.gameRuleDown,
-				imagePosition: 'left',
-				row: 8,
-				column: 0,
-			},
-		],
+		containers: buildUiGuideContainers(),
 	},
 ];
 
