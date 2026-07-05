@@ -306,7 +306,7 @@ export const VISUAL_LAYOUT = {
 			landscape: {
 				symbolScale: 1.4,
 				boardXOffset: -250,
-				boardYOffset: -100,
+				boardYOffset: 40,
 				frame: { offsetX: 10, offsetY: 110, width: 1100, height: 688 * 1.4 },
 			},
 			portrait: {
@@ -335,7 +335,7 @@ export const VISUAL_LAYOUT = {
 		spine: { label: 'Logo/Spine' },
 		layoutByType: {
 			desktop: { width: 140, x: 55, y: 145, align: 'topLeft', offset: { x: 24, y: 0 } },
-			landscape: { width: 120, x: 900, y: 30, align: 'topCenter' },
+			landscape: { width: 120, x: 1400, y: 40, align: 'topRight' },
 			portrait: { width: 150, x: 55, y: 100, align: 'topLeft' },
 			tablet: { width: 120, x: 150, y: 50, align: 'topLeft' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
@@ -374,8 +374,8 @@ export const VISUAL_LAYOUT = {
 				scrollDistance: 204,
 				scrollDuration: 333,
 				scale: 1,
-				x: 170,
-				y: 150,
+				x: 166,
+				y: 300,
 			},
 			portrait: {
 				slabWidth: 194,
@@ -514,11 +514,11 @@ export const VISUAL_LAYOUT = {
 					},
 				},
 				landscape: {
-					gapFromBoard: 41,
-					scale: 0.9,
+					gapFromBoard: 0,
+					scale: 0.8,
 					text: {
-						x: 700,
-						y: -250,
+						x: 1860,
+						y: 0,
 						containerAnchor: { x: 1, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 0 },
 						lineGap: 30,
