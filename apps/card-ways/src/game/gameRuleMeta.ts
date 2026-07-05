@@ -19,6 +19,7 @@ const GAME_RULE_IMAGE = {
 	nine: `${GAME_RULES_BASE}/NINE.png`,
 	wild: `${GAME_RULES_BASE}/WILD.png`,
 	scatter: `${GAME_RULES_BASE}/SCATTER.png`,
+	nonWin: `${GAME_RULES_BASE}/NON-WIN.png`,
 	x1: `${GAME_RULES_BASE}/X1.png`,
 	x2: `${GAME_RULES_BASE}/X2.png`,
 	x3: `${GAME_RULES_BASE}/X3.png`,
@@ -44,6 +45,7 @@ const SYMBOL_IMAGE_MAP: Record<string, string> = {
 };
 
 const SPECIAL_SYMBOL_IMAGE_MAP: Record<string, string> = {
+	'NON-WIN': GAME_RULE_IMAGE.nonWin,
 	WILD: GAME_RULE_IMAGE.wild,
 	SCATTER: GAME_RULE_IMAGE.scatter,
 	'×1': GAME_RULE_IMAGE.x1,
@@ -91,6 +93,12 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 	});
 
 	const specialSymbols: Array<{ title: string; text: string; row: number; column: number }> = [
+		{
+			title: 'NON-WIN',
+			text: 'Non-win symbol. Does not pay and cannot form winning ways.',
+			row: 2,
+			column: 0,
+		},
 		{
 			title: 'WILD',
 			text: 'Substitutes for all paying symbols.',
@@ -229,7 +237,7 @@ const payTableSections: GameRuleData[] = [
 		containers: [
 			{
 				title: '',
-				text: 'All symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
+				text: 'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
 				image: FALLBACK_IMAGE.winWays,
 				imagePosition: 'top',
 				row: 0,
