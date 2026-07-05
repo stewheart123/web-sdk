@@ -13,14 +13,14 @@ export default {
 	],
 	"betModes": {
 		"base": {
-			"cost": 1.0,
+			"cost": 1,
 			"feature": true,
 			"buyBonus": false,
 			"rtp": 0.97,
 			"max_win": 5000
 		},
 		"bonus": {
-			"cost": 100.0,
+			"cost": 100,
 			"feature": false,
 			"buyBonus": true,
 			"rtp": 0.97,
@@ -31,13 +31,26 @@ export default {
 		"9": {
 			"paytable": [
 				{
-					"5": 2.0
+					"5": 2
 				},
 				{
 					"4": 1.6
 				},
 				{
 					"3": 1.2
+				}
+			]
+		},
+		"10": {
+			"paytable": [
+				{
+					"5": 2.2
+				},
+				{
+					"4": 1.8
+				},
+				{
+					"3": 1.3
 				}
 			]
 		},
@@ -65,23 +78,10 @@ export default {
 				"wild"
 			]
 		},
-		"10": {
-			"paytable": [
-				{
-					"5": 2.2
-				},
-				{
-					"4": 1.8
-				},
-				{
-					"3": 1.3
-				}
-			]
-		},
 		"K": {
 			"paytable": [
 				{
-					"5": 3.0
+					"5": 3
 				},
 				{
 					"4": 2.4

@@ -25,21 +25,22 @@
 
 	const BASE = 180;
 
-	const SYMBOLS_LEFT = [
-		{ name: 'L1' },
-		{ name: 'L2' },
-		{ name: 'L3' },
-		{ name: 'L4' },
-		{ name: 'L5' },
+	const SYMBOLS_PAYING = [
+		{ name: 'A' },
+		{ name: 'K' },
+		{ name: 'Q' },
+		{ name: 'J' },
+		{ name: '10' },
+		{ name: '9' },
 	] as const;
 
-	const SYMBOLS_RIGHT = [
-		{ name: 'S' },
-		{ name: 'W', multiplier: 2 },
-		{ name: 'H1' },
-		{ name: 'H3' },
-		{ name: 'H2' },
-		{ name: 'H4' },
+	const SYMBOLS_SPECIAL = [
+		{ name: 'W', wild: true },
+		{ name: 'S', scatter: true },
+		{ name: 'N', non_winnable: true },
+		{ name: 'X1' },
+		{ name: 'X2' },
+		{ name: 'X3' },
 	] as const;
 </script>
 
@@ -55,7 +56,7 @@
 	{#snippet template()}
 		<StoryPixiApp {assets}>
 			<Container scale={0.5}>
-				{#each SYMBOLS_LEFT as symbol, rowIndex}
+				{#each SYMBOLS_PAYING as symbol, rowIndex}
 					{#each SYMBOL_STATES as state, columnIndex}
 						{@const x = (columnIndex + 1) * BASE}
 						{@const y = (rowIndex + 1) * BASE}
@@ -66,7 +67,7 @@
 			</Container>
 
 			<Container scale={0.5} x={550}>
-				{#each SYMBOLS_RIGHT as symbol, rowIndex}
+				{#each SYMBOLS_SPECIAL as symbol, rowIndex}
 					{#each SYMBOL_STATES as state, columnIndex}
 						{@const x = (columnIndex + 1) * BASE}
 						{@const y = (rowIndex + 1) * BASE}

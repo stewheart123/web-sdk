@@ -154,17 +154,6 @@ constants = re.sub(
     constants,
 )
 
-CARD_ALIAS = {
-    "A": "H1", "K": "H2", "Q": "H3", "J": "H4", "10": "H5",
-    "9": "L1", "8": "L2", "N": "L3",
-    "W": "W", "S": "S", "X1": "L5", "X2": "L5", "X3": "L5",
-}
-extra = "\n// Card symbol asset aliases (placeholder art from sample game)\n"
-for card, base in CARD_ALIAS.items():
-    if card == base:
-        continue
-    extra += f"SYMBOL_INFO_MAP['{card}'] = SYMBOL_INFO_MAP['{base}'];\n"
-constants = constants.rstrip() + "\n" + extra
-(APP / "game/constants.ts").write_text(constants, encoding="utf-8")
+# SYMBOL_INFO_MAP is defined directly in constants.ts (card-ways spine names).
 
 print("handlers, utils, state, constants done")

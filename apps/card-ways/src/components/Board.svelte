@@ -34,6 +34,9 @@
 			const getPromises = () =>
 				symbolPositions.map(async (position) => {
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+					const { rawSymbol } = reelSymbol;
+					if (rawSymbol.non_winnable || rawSymbol.name === 'N') return;
+
 					reelSymbol.symbolState = 'win';
 					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
 					reelSymbol.symbolState = 'static';
