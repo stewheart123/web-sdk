@@ -1,0 +1,77 @@
+{
+  "resources": [
+    "game_audio_sprite.mp3"
+  ],
+  "spritemap": {
+    "Mystic Deck Grooves": {
+      "start": 0,
+      "end": 180760,
+      "loop": true
+    },
+    "Audio 1": {
+      "start": 180860,
+      "end": 181259,
+      "loop": false
+    },
+    "Audio 2": {
+      "start": 181359,
+      "end": 182158,
+      "loop": false
+    },
+    "Audio 3": {
+      "start": 182258,
+      "end": 182868,
+      "loop": false
+    },
+    "Audio 4": {
+      "start": 182968,
+      "end": 183709,
+      "loop": false
+    },
+    "Audio 5": {
+      "start": 183809,
+      "end": 184549,
+      "loop": false
+    },
+    "Audio 6": {
+      "start": 184649,
+      "end": 186013,
+      "loop": false
+    },
+    "Audio 7": {
+      "start": 186113,
+      "end": 186887,
+      "loop": false
+    },
+    "Audio 8": {
+      "start": 186987,
+      "end": 188096,
+      "loop": false
+    },
+    "Audio 9": {
+      "start": 188196,
+      "end": 188973,
+      "loop": false
+    },
+    "Audio 10": {
+      "start": 189073,
+      "end": 189406,
+      "loop": false
+    },
+    "Audio 11": {
+      "start": 189506,
+      "end": 190145,
+      "loop": false
+    },
+    "Audio 12": {
+      "start": 190245,
+      "end": 191050,
+      "loop": false
+    },
+    "Audio 13": {
+      "start": 191150,
+      "end": 191761,
+      "loop": false
+    }
+  }
+}

@@ -22,36 +22,70 @@
 
 	const context = getContext();
 
+	const warnPlay = (
+		player: 'music' | 'loop' | 'once',
+		name: SoundName,
+		opts?: { forcePlay?: boolean },
+	) => {
+		console.warn(`[sound] ${player}:`, name, opts ?? '');
+	};
+
 	context.eventEmitter.subscribeOnMount({
 		// ui
 		soundBetMode: async ({ betModeKey }) => {
 			if (betModeKey === 'SUPERSPIN') {
 				// check if SUPERSPIN, when changing the bet mode.
+				warnPlay('once', 'sfx_winlevel_end');
 				sound.players.once.play({ name: 'sfx_winlevel_end' });
 				await waitForTimeout(SECOND);
+				warnPlay('music', 'bgm_freespin');
 				sound.players.music.play({ name: 'bgm_freespin' });
 			} else {
+				warnPlay('music', 'bgm_main');
 				sound.players.music.play({ name: 'bgm_main' });
 			}
 		},
-		soundPressGeneral: () => sound.players.once.play({ name: 'sfx_btn_general' }),
-		soundPressBet: () => sound.players.once.play({ name: 'sfx_btn_spin' }),
+		soundPressGeneral: () => {
+			warnPlay('once', 'sfx_btn_general');
+			sound.players.once.play({ name: 'sfx_btn_general' });
+		},
+		soundPressBet: () => {
+			warnPlay('once', 'sfx_btn_spin');
+			sound.players.once.play({ name: 'sfx_btn_spin' });
+		},
 		// scatterCounter
 		soundScatterCounterIncrease: () => (context.stateGame.scatterCounter = context.stateGame.scatterCounter + 1), // prettier-ignore
 		soundScatterCounterClear: () => (context.stateGame.scatterCounter = 0),
 		// game
-		soundMusic: ({ name }) => sound.players.music.play({ name }),
-		soundLoop: ({ name }) => sound.players.loop.play({ name }),
-		soundOnce: ({ name, forcePlay }) => sound.players.once.play({ name, forcePlay }),
-		soundStop: ({ name }) => sound.stop({ name }),
-		soundFade: async ({ name, duration, from, to }) => await sound.fade({ name, duration, from, to }), // prettier-ignore
+		soundMusic: ({ name }) => {
+			warnPlay('music', name);
+			sound.players.music.play({ name });
+		},
+		soundLoop: ({ name }) => {
+			warnPlay('loop', name);
+			sound.players.loop.play({ name });
+		},
+		soundOnce: ({ name, forcePlay }) => {
+			warnPlay('once', name, { forcePlay });
+			sound.players.once.play({ name, forcePlay });
+		},
+		soundStop: ({ name }) => {
+			console.warn('[sound] stop:', name);
+			sound.stop({ name });
+		},
+		soundFade: async ({ name, duration, from, to }) => {
+			console.warn('[sound] fade:', name, { duration, from, to });
+			await sound.fade({ name, duration, from, to });
+		},
 	});
 
 	onMount(() => {
 		if (stateBet.activeBetModeKey === 'SUPERSPIN') {
 			// check if SUPERSPIN, when resume bet and the bet is a super spin.
+			warnPlay('music', 'bgm_freespin');
 			sound.players.music.play({ name: 'bgm_freespin' });
 		} else {
+			warnPlay('music', 'bgm_main');
 			sound.players.music.play({ name: 'bgm_main' });
 
 			//How to control volume per soundfile(use fade)
