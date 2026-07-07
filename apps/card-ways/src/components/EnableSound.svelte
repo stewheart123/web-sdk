@@ -4,20 +4,22 @@
 	import type { LoadedAudio } from 'pixi-svelte';
 	import { stateSoundDerived } from 'state-shared';
 
-	import { MUSIC_LIKE_SFX_VOLUME, MUSIC_VOLUME_SCALE } from '../game/audioConfig';
+	import { LOOP_SFX_VOLUME, MUSIC_LIKE_SFX_VOLUME, MUSIC_VOLUME_SCALE } from '../game/audioConfig';
 	import { sound, type SoundName } from '../game/sound';
 
 	const applyMusicVolume = () => {
 		sound.players?.music?.volume(stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE);
 	};
 
-	const withMusicLikeSfxVolume = (audio: LoadedAudio<SoundName>): LoadedAudio<SoundName> => {
+	const withClipVolumeScales = (audio: LoadedAudio<SoundName>): LoadedAudio<SoundName> => {
 		const config = { ...audio.config };
 
-		for (const [name, scale] of Object.entries(MUSIC_LIKE_SFX_VOLUME)) {
-			const clipConfig = config[name as SoundName];
-			if (!clipConfig || scale === undefined) continue;
-			config[name as SoundName] = { volume: clipConfig.volume * scale };
+		for (const scales of [MUSIC_LIKE_SFX_VOLUME, LOOP_SFX_VOLUME]) {
+			for (const [name, scale] of Object.entries(scales)) {
+				const clipConfig = config[name as SoundName];
+				if (!clipConfig || scale === undefined) continue;
+				config[name as SoundName] = { volume: clipConfig.volume * scale };
+			}
 		}
 
 		return { ...audio, config };
@@ -34,7 +36,7 @@
 
 			if (destroyed) return;
 
-			const loadedAudio = withMusicLikeSfxVolume({
+			const loadedAudio = withClipVolumeScales({
 				...gameAudioSprite,
 				src: new URL('../../assets/audio/game_audio_sprite.mp3', import.meta.url).href,
 			});

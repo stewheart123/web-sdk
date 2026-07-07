@@ -1,8 +1,8 @@
 import { Howl } from 'howler';
 
 import { type LoadedAudio } from 'pixi-svelte';
-import { waitForTimeout } from 'utils-shared/wait';
 
+import { setHowlSoundVolume } from './setHowlSoundVolume';
 import type { StopOptions, FadeOptions, GetSound, GetSoundMap, RateOptions } from './types';
 
 function createPlayer<TSoundName extends string, TPlay extends Function>(playerOptions: {
@@ -35,9 +35,10 @@ function createPlayer<TSoundName extends string, TPlay extends Function>(playerO
 	const initSoundVolume = (soundName: TSoundName) => {
 		const existingSound = soundMap[soundName];
 		if (existingSound) {
-			playerOptions.howl.volume(
-				playerVolume * existingSound.soundVolume * existingSound.soundConfig.volume,
+			setHowlSoundVolume(
+				playerOptions.howl,
 				existingSound.soundId,
+				playerVolume * existingSound.soundVolume * existingSound.soundConfig.volume,
 			);
 		}
 	};
@@ -87,9 +88,10 @@ function createPlayer<TSoundName extends string, TPlay extends Function>(playerO
 
 		//adjust volume per sound
 		(Object.values(soundMap) as Sound[]).forEach((sound) => {
-			playerOptions.howl.volume(
-				playerVolume * sound.soundVolume * sound.soundConfig.volume,
+			setHowlSoundVolume(
+				playerOptions.howl,
 				sound.soundId,
+				playerVolume * sound.soundVolume * sound.soundConfig.volume,
 			);
 		});
 	};

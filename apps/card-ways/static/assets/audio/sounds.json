@@ -70,7 +70,7 @@
 		"jng_intro_fs": { "volume": 1 },
 		"sfx_anticipation": { "volume": 1 },
 		"sfx_anticipation_start": { "volume": 1 },
-		"sfx_bigwin_coinloop": { "volume": 1 },
+		"sfx_bigwin_coinloop": { "volume": 10 },
 		"sfx_btn_general": { "volume": 1 },
 		"sfx_btn_spin": { "volume": 1 },
 		"sfx_fs_respins": { "volume": 1 },
