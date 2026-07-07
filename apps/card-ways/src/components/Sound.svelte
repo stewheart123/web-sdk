@@ -17,8 +17,9 @@
 
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { SECOND } from 'constants-shared/time';
-	import { stateBet } from 'state-shared';
+	import { stateBet, stateSoundDerived } from 'state-shared';
 
+	import { MUSIC_VOLUME_SCALE } from '../game/audioConfig';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
@@ -32,7 +33,8 @@
 	};
 
 	const playMusic = (name: MusicName) => {
-		// Restart so faded-out tracks (e.g. bgm_main during free spins) play at full volume again.
+		// Re-apply scaled volume before each play (fade/stop can leave per-sprite volumes stale).
+		sound.players?.music?.volume(stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE);
 		sound.players?.music?.stop({ name });
 		warnPlay('music', name);
 		sound.players.music.play({ name });

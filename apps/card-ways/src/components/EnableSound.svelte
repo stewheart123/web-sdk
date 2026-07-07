@@ -2,8 +2,26 @@
 	import { onMount } from 'svelte';
 
 	import type { LoadedAudio } from 'pixi-svelte';
+	import { stateSoundDerived } from 'state-shared';
 
+	import { MUSIC_LIKE_SFX_VOLUME, MUSIC_VOLUME_SCALE } from '../game/audioConfig';
 	import { sound, type SoundName } from '../game/sound';
+
+	const applyMusicVolume = () => {
+		sound.players?.music?.volume(stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE);
+	};
+
+	const withMusicLikeSfxVolume = (audio: LoadedAudio<SoundName>): LoadedAudio<SoundName> => {
+		const config = { ...audio.config };
+
+		for (const [name, scale] of Object.entries(MUSIC_LIKE_SFX_VOLUME)) {
+			const clipConfig = config[name as SoundName];
+			if (!clipConfig || scale === undefined) continue;
+			config[name as SoundName] = { volume: clipConfig.volume * scale };
+		}
+
+		return { ...audio, config };
+	};
 
 	onMount(() => {
 		let destroyed = false;
@@ -16,14 +34,15 @@
 
 			if (destroyed) return;
 
-			const loadedAudio: LoadedAudio<SoundName> = {
+			const loadedAudio = withMusicLikeSfxVolume({
 				...gameAudioSprite,
 				src: new URL('../../assets/audio/game_audio_sprite.mp3', import.meta.url).href,
-			};
+			});
 
 			console.warn('[sound] loaded sprite keys:', Object.keys(loadedAudio.sprite));
 			const { destroy } = sound.load(loadedAudio);
 			destroySound = destroy;
+			applyMusicVolume();
 
 			const howl = sound.players?.music?.howl;
 			howl?.on('load', () => console.warn('[sound] howl loaded'));
@@ -37,5 +56,17 @@
 	});
 
 	sound.enableEffect();
-	sound.volumeEffect();
+
+	$effect(() => {
+		stateSoundDerived.volumeMusic();
+		applyMusicVolume();
+	});
+
+	$effect(() => {
+		sound.players?.loop?.volume(stateSoundDerived.volumeSoundEffect());
+	});
+
+	$effect(() => {
+		sound.players?.once?.volume(stateSoundDerived.volumeSoundEffect());
+	});
 </script>
