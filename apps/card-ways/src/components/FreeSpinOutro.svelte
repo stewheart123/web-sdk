@@ -33,7 +33,11 @@
 	let fadeOutResolve = $state<(() => void) | null>(null);
 
 	const stopCoinCountSound = () => {
-		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+		context.eventEmitter.broadcast({
+			type: 'soundStop',
+			name: 'sfx_bigwin_coinloop',
+			afterCurrentLoop: true,
+		});
 	};
 
 	const handleFadeOutComplete = () => {

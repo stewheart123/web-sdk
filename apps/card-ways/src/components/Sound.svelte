@@ -5,7 +5,7 @@
 		| { type: 'soundMusic'; name: MusicName }
 		| { type: 'soundOnce'; name: SoundEffectName; forcePlay?: boolean }
 		| { type: 'soundLoop'; name: SoundEffectName }
-		| { type: 'soundStop'; name: SoundName }
+		| { type: 'soundStop'; name: SoundName; afterCurrentLoop?: boolean }
 		| { type: 'soundFade'; name: SoundName; from: number; to: number; duration: number }
 		| { type: 'soundScatterCounterIncrease' }
 		| { type: 'soundScatterCounterClear' };
@@ -19,10 +19,39 @@
 	import { SECOND } from 'constants-shared/time';
 	import { stateBet, stateSoundDerived } from 'state-shared';
 
-	import { MUSIC_VOLUME_SCALE } from '../game/audioConfig';
+	import { COIN_LOOP_DURATION_MS, MUSIC_VOLUME_SCALE } from '../game/audioConfig';
 	import { getContext } from '../game/context';
 
 	const context = getContext();
+
+	const COIN_LOOP_SOUND = 'sfx_bigwin_coinloop' as const;
+	let coinLoopStartedAt: number | null = null;
+	let coinLoopStopTimeout: ReturnType<typeof setTimeout> | null = null;
+
+	const clearCoinLoopStopTimeout = () => {
+		if (coinLoopStopTimeout !== null) {
+			clearTimeout(coinLoopStopTimeout);
+			coinLoopStopTimeout = null;
+		}
+	};
+
+	const stopSound = (name: SoundName, afterCurrentLoop = false) => {
+		if (name === COIN_LOOP_SOUND && afterCurrentLoop && coinLoopStartedAt !== null) {
+			clearCoinLoopStopTimeout();
+			const elapsed = performance.now() - coinLoopStartedAt;
+			const remaining = COIN_LOOP_DURATION_MS - (elapsed % COIN_LOOP_DURATION_MS);
+			coinLoopStopTimeout = setTimeout(() => {
+				coinLoopStopTimeout = null;
+				coinLoopStartedAt = null;
+				sound.stop({ name: COIN_LOOP_SOUND });
+			}, remaining);
+			return;
+		}
+
+		clearCoinLoopStopTimeout();
+		if (name === COIN_LOOP_SOUND) coinLoopStartedAt = null;
+		sound.stop({ name });
+	};
 
 	const warnPlay = (
 		player: 'music' | 'loop' | 'once',
@@ -67,6 +96,10 @@
 		// game
 		soundMusic: ({ name }) => playMusic(name),
 		soundLoop: ({ name }) => {
+			if (name === COIN_LOOP_SOUND) {
+				clearCoinLoopStopTimeout();
+				coinLoopStartedAt = performance.now();
+			}
 			warnPlay('loop', name);
 			sound.players.loop.play({ name });
 		},
@@ -74,9 +107,9 @@
 			warnPlay('once', name, { forcePlay });
 			sound.players.once.play({ name, forcePlay });
 		},
-		soundStop: ({ name }) => {
-			console.warn('[sound] stop:', name);
-			sound.stop({ name });
+		soundStop: ({ name, afterCurrentLoop }) => {
+			console.warn('[sound] stop:', name, afterCurrentLoop ? '(after loop)' : '');
+			stopSound(name, afterCurrentLoop);
 		},
 		soundFade: async ({ name, duration, from, to }) => {
 			console.warn('[sound] fade:', name, { duration, from, to });
