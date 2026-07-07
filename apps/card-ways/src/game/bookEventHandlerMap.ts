@@ -5,6 +5,7 @@ import { sequence } from 'utils-shared/sequence';
 import { eventEmitter } from './eventEmitter';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import { stateGame, stateGameDerived } from './stateGame.svelte';
+import type { MusicName } from './sound';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
 import { normalizeBoard } from './constants';
@@ -23,14 +24,27 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	}
 };
 
-const winLevelSoundsStop = () => {
+const winLevelSoundsStop = ({
+	winLevelData,
+	forceAmbientBgm,
+}: {
+	winLevelData?: WinLevelData;
+	forceAmbientBgm?: MusicName;
+} = {}) => {
 	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
-	if (stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freegame') {
-		// check if SUPERSPIN, when finishing a bet.
-		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
-	} else {
-		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_main' });
+
+	const ambientBgm: MusicName | undefined =
+		forceAmbientBgm ??
+		(winLevelData?.sound?.bgm
+			? stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freegame'
+				? 'bgm_freespin'
+				: 'bgm_main'
+			: undefined);
+
+	if (ambientBgm) {
+		eventEmitter.broadcast({ type: 'soundMusic', name: ambientBgm });
 	}
+
 	eventEmitter.broadcastAsync({ type: 'uiShow' });
 };
 
@@ -139,7 +153,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			amount: bookEvent.amount,
 			winLevelData,
 		});
-		winLevelSoundsStop();
+		winLevelSoundsStop({ winLevelData, forceAmbientBgm: 'bgm_main' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
@@ -159,7 +173,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			amount: bookEvent.amount,
 			winLevelData,
 		});
-		winLevelSoundsStop();
+		winLevelSoundsStop({ winLevelData });
 		eventEmitter.broadcast({ type: 'winHide' });
 	},
 	finalWin: async (bookEvent: BookEventOfType<'finalWin'>) => {
@@ -193,7 +207,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			amount: bookEvent.amount,
 			winLevelData,
 		});
-		winLevelSoundsStop();
+		winLevelSoundsStop({ winLevelData });
 		eventEmitter.broadcast({ type: 'winHide' });
 	},
 };
