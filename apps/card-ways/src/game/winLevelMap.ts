@@ -52,7 +52,7 @@ export const winLevelMap = {
 		type: 'big',
 		text: 'UNCOMMON WIN',
 		presentDuration: 6 * SECOND,
-		sound: { sfx: undefined, bgm: 'bgm_winlevel_big' },
+		sound: { sfx: undefined, bgm: 'bgm_winlevel_all' },
 		animation: 'UNCOMMON-WIN',
 	},
 	7: {
@@ -61,7 +61,7 @@ export const winLevelMap = {
 		type: 'big',
 		text: 'RARE WIN',
 		presentDuration: 18 * SECOND,
-		sound: { sfx: undefined, bgm: 'bgm_winlevel_superwin' },
+		sound: { sfx: undefined, bgm: 'bgm_winlevel_all' },
 		animation: 'RARE-WIN',
 	},
 	8: {
@@ -70,7 +70,7 @@ export const winLevelMap = {
 		type: 'big',
 		text: 'ULTRA-RARE WIN',
 		presentDuration: 20 * SECOND,
-		sound: { sfx: undefined, bgm: 'bgm_winlevel_mega' },
+		sound: { sfx: undefined, bgm: 'bgm_winlevel_all' },
 		animation: 'ULTRA-RARE-WIN',
 	},
 	9: {
@@ -79,7 +79,7 @@ export const winLevelMap = {
 		type: 'big',
 		text: 'LEGENDARY WIN',
 		presentDuration: 26 * SECOND,
-		sound: { sfx: undefined, bgm: 'bgm_winlevel_epic' },
+		sound: { sfx: undefined, bgm: 'bgm_winlevel_all' },
 		animation: 'LEGENDARY-WIN',
 	},
 	10: {
@@ -88,7 +88,7 @@ export const winLevelMap = {
 		type: 'big',
 		text: 'MAX WIN',
 		presentDuration: 32 * SECOND,
-		sound: { sfx: undefined, bgm: 'bgm_winlevel_max' },
+		sound: { sfx: undefined, bgm: 'bgm_winlevel_all' },
 		animation: 'MAX-WIN',
 	},
 } as const;

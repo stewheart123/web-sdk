@@ -3,20 +3,36 @@
 
 	import type { LoadedAudio } from 'pixi-svelte';
 
-	import { getContext } from '../game/context';
 	import { sound, type SoundName } from '../game/sound';
 
-	const context = getContext();
-
 	onMount(() => {
-		const loadedAudio = $state.snapshot(
-			context.stateApp.loadedAssets['sound'],
-		) as LoadedAudio<SoundName>;
-		const { destroy } = sound.load(loadedAudio);
+		let destroyed = false;
+		let destroySound: (() => void) | undefined;
+
+		void (async () => {
+			const gameAudioSprite = (await fetch(
+				new URL('../../assets/audio/game_audio_sprite_mp3.json', import.meta.url),
+			).then((response) => response.json())) as LoadedAudio<SoundName>;
+
+			if (destroyed) return;
+
+			const loadedAudio: LoadedAudio<SoundName> = {
+				...gameAudioSprite,
+				src: new URL('../../assets/audio/game_audio_sprite.mp3', import.meta.url).href,
+			};
+
+			console.warn('[sound] loaded sprite keys:', Object.keys(loadedAudio.sprite));
+			const { destroy } = sound.load(loadedAudio);
+			destroySound = destroy;
+
+			const howl = sound.players?.music?.howl;
+			howl?.on('load', () => console.warn('[sound] howl loaded'));
+			howl?.on('loaderror', (_id, error) => console.warn('[sound] howl loaderror:', error));
+		})();
 
 		return () => {
-			// Equivalent to onDestroy(); Leave this comment for searching.
-			destroy();
+			destroyed = true;
+			destroySound?.();
 		};
 	});
 

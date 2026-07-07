@@ -19,7 +19,6 @@ import {
 	SPIN_OPTIONS_FAST,
 	SPIN_OPTIONS_FREEGAME,
 	INITIAL_SYMBOL_STATE,
-	SCATTER_LAND_SOUND_MAP,
 } from './constants';
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
@@ -27,7 +26,7 @@ const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: SCATTER_LAND_SOUND_MAP[scatterLandIndex()],
+			name: 'sfx_scatter_stop',
 		});
 	}
 
@@ -48,7 +47,7 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		onReelStopping: () => {
 			eventEmitter.broadcast({
 				type: 'soundOnce',
-				name: 'sfx_reel_stop_1',
+				name: 'sfx_reel_stop',
 				forcePlay: !stateBet.isTurbo,
 			});
 		},
@@ -104,12 +103,6 @@ const boardLayout = () => {
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
 
-const scatterLandIndex = () => {
-	if (stateGame.scatterCounter > 5) return 5;
-	if (stateGame.scatterCounter < 1) return 1;
-	return stateGame.scatterCounter as 1 | 2 | 3 | 4 | 5;
-};
-
 const { enhanceBoard } = createEnhanceBoard();
 const enhancedBoard = enhanceBoard({ board: stateGame.board });
 
@@ -121,7 +114,6 @@ export const stateGameDerived = {
 	onSymbolLand,
 	boardLayout,
 	boardRaw,
-	scatterLandIndex,
 	enhancedBoard,
 	getWinLevelDataByWinLevelAlias,
 };

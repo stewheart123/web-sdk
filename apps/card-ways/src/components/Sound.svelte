@@ -13,6 +13,7 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { Howler } from 'howler';
 
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { SECOND } from 'constants-shared/time';
@@ -30,6 +31,13 @@
 		console.warn(`[sound] ${player}:`, name, opts ?? '');
 	};
 
+	const playMusic = (name: MusicName) => {
+		// Restart so faded-out tracks (e.g. bgm_main during free spins) play at full volume again.
+		sound.players?.music?.stop({ name });
+		warnPlay('music', name);
+		sound.players.music.play({ name });
+	};
+
 	context.eventEmitter.subscribeOnMount({
 		// ui
 		soundBetMode: async ({ betModeKey }) => {
@@ -38,11 +46,9 @@
 				warnPlay('once', 'sfx_winlevel_end');
 				sound.players.once.play({ name: 'sfx_winlevel_end' });
 				await waitForTimeout(SECOND);
-				warnPlay('music', 'bgm_freespin');
-				sound.players.music.play({ name: 'bgm_freespin' });
+				playMusic('bgm_freespin');
 			} else {
-				warnPlay('music', 'bgm_main');
-				sound.players.music.play({ name: 'bgm_main' });
+				playMusic('bgm_main');
 			}
 		},
 		soundPressGeneral: () => {
@@ -57,10 +63,7 @@
 		soundScatterCounterIncrease: () => (context.stateGame.scatterCounter = context.stateGame.scatterCounter + 1), // prettier-ignore
 		soundScatterCounterClear: () => (context.stateGame.scatterCounter = 0),
 		// game
-		soundMusic: ({ name }) => {
-			warnPlay('music', name);
-			sound.players.music.play({ name });
-		},
+		soundMusic: ({ name }) => playMusic(name),
 		soundLoop: ({ name }) => {
 			warnPlay('loop', name);
 			sound.players.loop.play({ name });
@@ -79,14 +82,14 @@
 		},
 	});
 
-	onMount(() => {
+	onMount(async () => {
+		await Howler.ctx.resume();
+
 		if (stateBet.activeBetModeKey === 'SUPERSPIN') {
 			// check if SUPERSPIN, when resume bet and the bet is a super spin.
-			warnPlay('music', 'bgm_freespin');
-			sound.players.music.play({ name: 'bgm_freespin' });
+			playMusic('bgm_freespin');
 		} else {
-			warnPlay('music', 'bgm_main');
-			sound.players.music.play({ name: 'bgm_main' });
+			playMusic('bgm_main');
 
 			//How to control volume per soundfile(use fade)
 			// sound.players.music.fade({ name: 'bgm_main', from: 0, to: 1, duration: 2000 });

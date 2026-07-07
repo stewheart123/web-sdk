@@ -190,7 +190,7 @@ export default {
 	},
 	sound: {
 		type: 'audio',
-		src: new URL('../../assets/audio/sounds.json', import.meta.url).href,
+		src: new URL('../../assets/audio/game_audio_sprite_mp3.json', import.meta.url).href,
 		preload: true,
 	},
 } as const;
