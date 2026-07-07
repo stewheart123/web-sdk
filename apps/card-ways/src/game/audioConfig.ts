@@ -13,5 +13,5 @@ export const MUSIC_LIKE_SFX_VOLUME: Partial<Record<SoundEffectName, number>> = {
 
 /** Per-clip volume on the loop channel. Values above 1 are boosted via Web Audio gain. */
 export const LOOP_SFX_VOLUME: Partial<Record<SoundEffectName, number>> = {
-	sfx_bigwin_coinloop: 10,
+	sfx_bigwin_coinloop: 6,
 };
