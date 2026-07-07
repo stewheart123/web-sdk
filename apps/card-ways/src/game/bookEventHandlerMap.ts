@@ -17,9 +17,14 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	if (winLevelData?.sound?.bgm) {
 		eventEmitter.broadcast({ type: 'soundMusic', name: winLevelData.sound.bgm });
 	}
+	if (winLevelData.presentDuration > 0) {
+		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bigwin_coinloop' });
+	}
 };
 
 const winLevelSoundsStop = () => {
+	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
 	if (stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freegame') {
 		// check if SUPERSPIN, when finishing a bet.
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
@@ -128,6 +133,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
 		eventEmitter.broadcast({ type: 'soundFade', name: 'bgm_freespin', from: 1, to: 0, duration: 300 });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs', forcePlay: true });
+		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
 			amount: bookEvent.amount,

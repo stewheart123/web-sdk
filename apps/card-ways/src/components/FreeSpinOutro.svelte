@@ -30,8 +30,11 @@
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
-	let onCountUpComplete = $state(() => {});
 	let fadeOutResolve = $state<(() => void) | null>(null);
+
+	const stopCoinCountSound = () => {
+		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+	};
 
 	const handleFadeOutComplete = () => {
 		if (!show && fadeOutResolve) {
@@ -69,7 +72,7 @@
 	{#if winLevelData}
 		{@const duration = winLevelData.presentDuration}
 		{@const isBigWin = winLevelData.type === 'big'}
-		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
+		<WinCountUpProvider {amount} {duration} oncomplete={stopCoinCountSound}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				<OnMount onmount={() => startCountUp()} />
 

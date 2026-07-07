@@ -26,11 +26,14 @@
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 
+	const stopCoinCountSound = () => {
+		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+	};
+
 	let show = $state(false);
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
-	let onCountUpComplete = $state(() => {});
 
 	context.eventEmitter.subscribeOnMount({
 		winShow: () => (show = true),
@@ -47,7 +50,7 @@
 	{#if winLevelData}
 		{@const isBigWin = winLevelData.type === 'big'}
 		{@const duration = winLevelData.presentDuration}
-		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
+		<WinCountUpProvider {amount} {duration} oncomplete={stopCoinCountSound}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				{@const pressToContinueLayout = resolveWinPressToContinueLayout(
 					winLevelData.animation ? 'bigWin' : 'normalWin',
