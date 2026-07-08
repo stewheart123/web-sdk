@@ -156,6 +156,10 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
 	},
+	freeSpins2: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/freeSpins/freeSpins_2.json', import.meta.url).href,
+	},
 	freeSpinModal: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/reelsFrame/MODAL.json', import.meta.url).href,

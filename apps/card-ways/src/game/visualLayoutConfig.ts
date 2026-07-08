@@ -1,3 +1,5 @@
+import type { Language } from 'state-shared';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -782,22 +784,42 @@ const resolveFreeSpinPressToContinueLayout = (
 	zIndex: layout.zIndex,
 });
 
-export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize) => {
+/** Per-language tweaks for free-spin press-to-continue (sprite size/padding varies by locale). */
+const FREE_SPIN_PRESS_TO_CONTINUE_LANG_OVERRIDES: Partial<
+	Record<Language, Partial<FreeSpinPressToContinueLayout>>
+> = {
+	ko: {
+		y: 100,
+		widthRatio: 0.85,
+	},
+	vi: {
+		y: 100,
+		widthRatio: 0.85,
+	},
+};
+
+export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize, lang?: Language) => {
 	const { intro } = VISUAL_LAYOUT.freeSpin;
+	const pressToContinueOverride = lang
+		? FREE_SPIN_PRESS_TO_CONTINUE_LANG_OVERRIDES[lang]
+		: undefined;
 
 	return {
 		congrats: resolveAspectFitSprite(intro.congrats),
 		freeSpinsLabel: resolveAspectFitSprite(intro.freeSpinsLabel),
 		numberText: resolveNumberTextLayout(intro.numberText, modalSizes.width),
 		pressToContinue: resolveFreeSpinPressToContinueLayout(
-			intro.pressToContinue,
+			{ ...intro.pressToContinue, ...pressToContinueOverride },
 			modalSizes.width,
 		),
 	};
 };
 
-export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize) => {
+export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize, lang?: Language) => {
 	const { outro } = VISUAL_LAYOUT.freeSpin;
+	const pressToContinueOverride = lang
+		? FREE_SPIN_PRESS_TO_CONTINUE_LANG_OVERRIDES[lang]
+		: undefined;
 
 	return {
 		numberText: resolveNumberTextLayout(outro.numberText, modalSizes.width),
@@ -808,7 +830,7 @@ export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize) => {
 			bigMaxWidth: outro.totalWin.bigMaxWidth,
 		} satisfies ResolvedFreeSpinTotalWinLayout,
 		pressToContinue: resolveFreeSpinPressToContinueLayout(
-			outro.pressToContinue,
+			{ ...outro.pressToContinue, ...pressToContinueOverride },
 			modalSizes.width,
 		),
 	};

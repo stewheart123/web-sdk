@@ -69,7 +69,7 @@
 	{#key introKey}
 		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
 			{#snippet children({ sizes })}
-				{@const layout = resolveFreeSpinIntroLayout(sizes)}
+				{@const layout = resolveFreeSpinIntroLayout(sizes, stateUrlDerived.lang())}
 
 				<AspectFitSprite
 					label={SCENE_LABELS.freeSpin.intro.congrats}

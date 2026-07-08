@@ -2,362 +2,322 @@
 	"frames": {
 		"freespins.png": {
 			"frame": {
-				"x": 442,
-				"y": 189,
-				"w": 320,
-				"h": 55
+				"x": 2,
+				"y": 250,
+				"w": 426,
+				"h": 75
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 8,
-				"y": 7,
-				"w": 320,
-				"h": 55
+				"x": 11,
+				"y": 9,
+				"w": 426,
+				"h": 75
 			},
 			"sourceSize": {
-				"w": 335,
-				"h": 67
+				"w": 446,
+				"h": 90
 			}
 		},
 		"freespins_ar.png": {
 			"frame": {
-				"x": 663,
-				"y": 491,
-				"w": 172,
-				"h": 89
+				"x": 233,
+				"y": 465,
+				"w": 230,
+				"h": 119
 			},
-			"rotated": true,
+			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 14,
-				"y": 7,
-				"w": 89,
-				"h": 172
+				"x": 19,
+				"y": 9,
+				"w": 230,
+				"h": 119
 			},
 			"sourceSize": {
-				"w": 193,
-				"h": 103
+				"w": 258,
+				"h": 137
 			}
 		},
 		"freespins_de.png": {
 			"frame": {
 				"x": 2,
-				"y": 372,
-				"w": 382,
-				"h": 152
+				"y": 819,
+				"w": 510,
+				"h": 204
 			},
-			"rotated": true,
+			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 4,
-				"y": 4,
-				"w": 152,
-				"h": 382
+				"x": 5,
+				"y": 5,
+				"w": 510,
+				"h": 204
 			},
 			"sourceSize": {
-				"w": 391,
-				"h": 157
+				"w": 522,
+				"h": 210
 			}
 		},
 		"freespins_en.png": {
 			"frame": {
-				"x": 407,
-				"y": 246,
-				"w": 406,
-				"h": 69
+				"x": 272,
+				"y": 149,
+				"w": 541,
+				"h": 91
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 8,
-				"y": 8,
-				"w": 406,
-				"h": 69
+				"x": 11,
+				"y": 11,
+				"w": 541,
+				"h": 91
 			},
 			"sourceSize": {
-				"w": 426,
-				"h": 85
-			}
-		},
-		"freespins_es.png": {
-			"frame": {
-				"x": 259,
-				"y": 400,
-				"w": 402,
-				"h": 82
-			},
-			"rotated": false,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 9,
-				"y": 9,
-				"w": 402,
-				"h": 82
-			},
-			"sourceSize": {
-				"w": 422,
-				"h": 99
+				"w": 568,
+				"h": 113
 			}
 		},
 		"freespins_fi.png": {
 			"frame": {
-				"x": 815,
-				"y": 134,
-				"w": 201,
-				"h": 83
-			},
-			"rotated": true,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 8,
-				"y": 9,
-				"w": 83,
-				"h": 201
-			},
-			"sourceSize": {
-				"w": 220,
-				"h": 100
-			}
-		},
-		"freespins_fr.png": {
-			"frame": {
-				"x": 407,
-				"y": 665,
-				"w": 472,
-				"h": 89
+				"x": 2,
+				"y": 138,
+				"w": 268,
+				"h": 110
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 6,
-				"y": 9,
-				"w": 472,
-				"h": 89
+				"x": 11,
+				"y": 12,
+				"w": 268,
+				"h": 110
 			},
 			"sourceSize": {
-				"w": 486,
-				"h": 103
+				"w": 294,
+				"h": 133
 			}
 		},
 		"freespins_hi.png": {
 			"frame": {
-				"x": 506,
-				"y": 560,
-				"w": 147,
-				"h": 103
+				"x": 233,
+				"y": 327,
+				"w": 195,
+				"h": 136
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 4,
-				"y": 9,
-				"w": 147,
-				"h": 103
+				"x": 5,
+				"y": 13,
+				"w": 195,
+				"h": 136
 			},
 			"sourceSize": {
-				"w": 158,
-				"h": 115
+				"w": 210,
+				"h": 153
 			}
 		},
 		"freespins_id.png": {
 			"frame": {
-				"x": 407,
-				"y": 317,
-				"w": 363,
-				"h": 81
-			},
-			"rotated": false,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 11,
-				"y": 14,
-				"w": 363,
-				"h": 81
-			},
-			"sourceSize": {
-				"w": 382,
-				"h": 100
-			}
-		},
-		"freespins_ja.png": {
-			"frame": {
-				"x": 400,
-				"y": 22,
-				"w": 466,
-				"h": 100
-			},
-			"rotated": false,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 9,
-				"y": 8,
-				"w": 466,
-				"h": 100
-			},
-			"sourceSize": {
-				"w": 485,
-				"h": 112
-			}
-		},
-		"freespins_ko.png": {
-			"frame": {
-				"x": 259,
-				"y": 484,
-				"w": 270,
-				"h": 115
-			},
-			"rotated": true,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 11,
-				"y": 6,
-				"w": 115,
-				"h": 270
-			},
-			"sourceSize": {
-				"w": 296,
-				"h": 131
-			}
-		},
-		"freespins_pl.png": {
-			"frame": {
-				"x": 156,
-				"y": 386,
-				"w": 368,
-				"h": 101
-			},
-			"rotated": true,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 9,
-				"y": 6,
-				"w": 101,
-				"h": 368
-			},
-			"sourceSize": {
-				"w": 385,
-				"h": 113
-			}
-		},
-		"freespins_pt.png": {
-			"frame": {
 				"x": 2,
-				"y": 2,
-				"w": 396,
-				"h": 120
-			},
-			"rotated": false,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 8,
-				"y": 10,
-				"w": 396,
-				"h": 120
-			},
-			"sourceSize": {
-				"w": 413,
-				"h": 134
-			}
-		},
-		"freespins_ru.png": {
-			"frame": {
-				"x": 2,
-				"y": 124,
-				"w": 438,
-				"h": 111
+				"y": 708,
+				"w": 484,
+				"h": 109
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
 				"x": 14,
-				"y": 15,
-				"w": 438,
-				"h": 111
+				"y": 19,
+				"w": 484,
+				"h": 109
 			},
 			"sourceSize": {
-				"w": 458,
-				"h": 137
+				"w": 509,
+				"h": 134
+			}
+		},
+		"freespins_ja.png": {
+			"frame": {
+				"x": 2,
+				"y": 2,
+				"w": 622,
+				"h": 134
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 12,
+				"y": 11,
+				"w": 622,
+				"h": 134
+			},
+			"sourceSize": {
+				"w": 647,
+				"h": 150
+			}
+		},
+		"freespins_ko.png": {
+			"frame": {
+				"x": 514,
+				"y": 733,
+				"w": 359,
+				"h": 154
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 15,
+				"y": 8,
+				"w": 359,
+				"h": 154
+			},
+			"sourceSize": {
+				"w": 394,
+				"h": 175
+			}
+		},
+		"freespins_pl.png": {
+			"frame": {
+				"x": 514,
+				"y": 889,
+				"w": 490,
+				"h": 134
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 12,
+				"y": 8,
+				"w": 490,
+				"h": 134
+			},
+			"sourceSize": {
+				"w": 513,
+				"h": 150
+			}
+		},
+		"freespins_pt.png": {
+			"frame": {
+				"x": 465,
+				"y": 392,
+				"w": 529,
+				"h": 159
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 10,
+				"y": 14,
+				"w": 529,
+				"h": 159
+			},
+			"sourceSize": {
+				"w": 551,
+				"h": 178
+			}
+		},
+		"freespins_ru.png": {
+			"frame": {
+				"x": 430,
+				"y": 242,
+				"w": 585,
+				"h": 148
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 18,
+				"y": 20,
+				"w": 585,
+				"h": 148
+			},
+			"sourceSize": {
+				"w": 611,
+				"h": 183
 			}
 		},
 		"freespins_tr.png": {
 			"frame": {
-				"x": 772,
-				"y": 337,
-				"w": 326,
-				"h": 89
+				"x": 2,
+				"y": 586,
+				"w": 435,
+				"h": 120
 			},
-			"rotated": true,
+			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 18,
-				"y": 12,
-				"w": 89,
-				"h": 326
+				"x": 23,
+				"y": 15,
+				"w": 435,
+				"h": 120
 			},
 			"sourceSize": {
-				"w": 353,
-				"h": 105
+				"w": 470,
+				"h": 140
 			}
 		},
 		"freespins_vi.png": {
 			"frame": {
-				"x": 2,
-				"y": 237,
-				"w": 403,
-				"h": 133
+				"x": 488,
+				"y": 553,
+				"w": 539,
+				"h": 178
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 11,
+				"x": 14,
 				"y": 0,
-				"w": 403,
-				"h": 133
+				"w": 539,
+				"h": 178
 			},
 			"sourceSize": {
-				"w": 422,
-				"h": 137
+				"w": 563,
+				"h": 183
 			}
 		},
 		"freespins_zh.png": {
 			"frame": {
-				"x": 376,
-				"y": 491,
-				"w": 172,
-				"h": 128
-			},
-			"rotated": true,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 8,
-				"y": 7,
-				"w": 128,
-				"h": 172
-			},
-			"sourceSize": {
-				"w": 189,
-				"h": 143
-			}
-		},
-		"totalwin.png": {
-			"frame": {
-				"x": 442,
-				"y": 132,
-				"w": 299,
-				"h": 55
+				"x": 2,
+				"y": 413,
+				"w": 229,
+				"h": 171
 			},
 			"rotated": false,
 			"trimmed": true,
 			"spriteSourceSize": {
-				"x": 6,
-				"y": 11,
-				"w": 299,
-				"h": 55
+				"x": 10,
+				"y": 10,
+				"w": 229,
+				"h": 171
 			},
 			"sourceSize": {
-				"w": 309,
-				"h": 71
+				"w": 252,
+				"h": 191
+			}
+		},
+		"totalwin.png": {
+			"frame": {
+				"x": 626,
+				"y": 74,
+				"w": 397,
+				"h": 73
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 9,
+				"y": 14,
+				"w": 397,
+				"h": 73
+			},
+			"sourceSize": {
+				"w": 412,
+				"h": 94
 			}
 		}
 	},
@@ -367,9 +327,12 @@
 		"image": "freeSpinsMessage.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 900,
-			"h": 756
+			"w": 1029,
+			"h": 1025
 		},
-		"scale": "1"
+		"scale": "0.4",
+		"related_multi_packs": [
+			"freeSpins_2.json"
+		]
 	}
 }

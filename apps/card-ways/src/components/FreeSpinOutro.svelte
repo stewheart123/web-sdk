@@ -89,7 +89,7 @@
 				{#key outroKey}
 					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 						{#snippet children({ sizes })}
-							{@const layout = resolveFreeSpinOutroLayout(sizes)}
+							{@const layout = resolveFreeSpinOutroLayout(sizes, stateUrlDerived.lang())}
 
 							<FreeSpinNumberDisplay
 								layout={layout.numberText}
