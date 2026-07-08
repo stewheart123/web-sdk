@@ -116,10 +116,20 @@ export type ModifierLayoutSettings = {
 	y: number;
 };
 
+export type FreeSpinCounterTitleLabelSettings = {
+	maxWidth: number;
+	maxHeight: number;
+	anchor: { x: number; y: number };
+	scale: number;
+	x?: number;
+	y?: number;
+};
+
 export type FreeSpinCounterLayoutSettings = {
 	/** Gap between board edge and counter anchor point (virtual pixels). */
 	gapFromBoard: number;
 	scale: number;
+	titleLabel: FreeSpinCounterTitleLabelSettings;
 	text: VirtualOffset & {
 		containerAnchor: { x: number; y: number };
 		counterTextAnchor: { x: number; y: number };
@@ -503,21 +513,34 @@ export const VISUAL_LAYOUT = {
 			text: { label: 'FreeSpin/Counter/Text' },
 			title: { label: 'FreeSpin/Counter/Title' },
 			count: { label: 'FreeSpin/Counter/Count' },
+			titleLabel: { label: 'FreeSpin/Counter/TitleLabel' },
 			layoutByType: {
 				desktop: {
 					gapFromBoard: 41,
 					scale: 1,
+					titleLabel: {
+						maxWidth: 290,
+						maxHeight: 100,
+						anchor: { x: 0, y: 0 },
+						scale: 1,
+					},
 					text: {
-						x: -5,
+						x: 0,
 						y: 150,
 						containerAnchor: { x: 1, y: 0 },
-						counterTextAnchor: { x: 0.5, y: 0 },
+						counterTextAnchor: { x: 0.5, y: 1 },
 						lineGap: 30,
 					},
 				},
 				landscape: {
 					gapFromBoard: 0,
 					scale: 0.8,
+					titleLabel: {
+						maxWidth: 220,
+						maxHeight: 80,
+						anchor: { x: 0, y: 0 },
+						scale: 0.9,
+					},
 					text: {
 						x: 1860,
 						y: 0,
@@ -529,6 +552,12 @@ export const VISUAL_LAYOUT = {
 				portrait: {
 					gapFromBoard: 41,
 					scale: 0.7,
+					titleLabel: {
+						maxWidth: 200,
+						maxHeight: 72,
+						anchor: { x: 0, y: 0 },
+						scale: 0.85,
+					},
 					text: {
 						x: 400,
 						y: -300,
@@ -540,6 +569,12 @@ export const VISUAL_LAYOUT = {
 				tablet: {
 					gapFromBoard: 41,
 					scale: 0.7,
+					titleLabel: {
+						maxWidth: 210,
+						maxHeight: 76,
+						anchor: { x: 0.5, y: 0 },
+						scale: 0.85,
+					},
 					text: {
 						x: 160,
 						y: -260,
@@ -948,6 +983,7 @@ export const SCENE_LABELS = {
 			text: VISUAL_LAYOUT.freeSpin.counter.text.label,
 			title: VISUAL_LAYOUT.freeSpin.counter.title.label,
 			count: VISUAL_LAYOUT.freeSpin.counter.count.label,
+			titleLabel: VISUAL_LAYOUT.freeSpin.counter.titleLabel.label,
 		},
 	},
 	win: {

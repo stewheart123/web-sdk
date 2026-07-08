@@ -6,9 +6,10 @@
 </script>
 
 <script lang="ts">
+	import * as PIXI from 'pixi.js';
 	import { MainContainer } from 'components-layout';
-	import { FadeContainer } from 'components-pixi';
-	import { stateUi } from 'state-shared';
+	import { AspectFitSprite, FadeContainer } from 'components-pixi';
+	import { stateUi, stateUrlDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
@@ -19,6 +20,7 @@
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const counterLayout = $derived(getFreeSpinCounterLayout(layoutType));
+	const titleLabel = $derived(counterLayout.titleLabel);
 	const position = $derived.by(() => {
 		const boardLayout = context.stateGameDerived.boardLayout();
 		const scaledBoardHalfWidth = boardLayout.width * 0.5 * boardLayout.scale;
@@ -37,7 +39,19 @@
 	const current = $derived(stateUi.freeSpinCounterCurrent);
 	const total = $derived(stateUi.freeSpinCounterTotal);
 
-	let titleSizes: Sizes = $state({ width: 0, height: 0 });
+	const textureKey = $derived(`freespinslabel_${stateUrlDerived.lang()}.png`);
+	const texture = $derived(
+		(context.stateApp.loadedAssets?.[textureKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
+	);
+	const titleSizes = $derived.by(() => {
+		const nw = texture.width || 1;
+		const nh = texture.height || 1;
+		const scaleX = titleLabel.maxWidth / nw;
+		const scaleY = titleLabel.maxHeight / nh;
+		const fitScale = Math.min(scaleX, scaleY) * titleLabel.scale;
+		return { width: nw * fitScale, height: nh * fitScale };
+	});
+
 	let counterSizes: Sizes = $state({ width: 0, height: 0 });
 
 	const lineGap = $derived(counterLayout.text.lineGap);
@@ -68,15 +82,20 @@
 				anchor: counterLayout.text.containerAnchor,
 			})}
 		>
-			<BitmapText
-				label={SCENE_LABELS.freeSpin.counter.title}
-				text={'FREE SPIN'}
-				style={{
-					...freeSpinCounterStyle,
-					wordWrap: false,
-				}}
-				onresize={(sizes) => (titleSizes = sizes)}
-			/>
+			<Container
+				label={SCENE_LABELS.freeSpin.counter.titleLabel}
+				x={titleLabel.x ?? 0}
+				y={titleLabel.y ?? 0}
+				scale={titleLabel.scale}
+			>
+				<AspectFitSprite
+					label={SCENE_LABELS.freeSpin.counter.title}
+					key="freespinslabel_{stateUrlDerived.lang()}.png"
+					anchor={titleLabel.anchor}
+					maxWidth={titleLabel.maxWidth}
+					maxHeight={titleLabel.maxHeight}
+				/>
+			</Container>
 			<BitmapText
 				label={SCENE_LABELS.freeSpin.counter.count}
 				text={`${current}` + ` / ` + `${total}`}
