@@ -3,7 +3,7 @@
 
 	import { Popup } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
-	import { stateModal } from 'state-shared';
+	import { stateI18n, stateModal } from 'state-shared';
 
 	import BaseContent from './BaseContent.svelte';
 	import BaseTitle from './BaseTitle.svelte';
@@ -16,18 +16,33 @@
 	};
 
 	const props: Props = $props();
+
+	const infoTitle = $derived.by(() => {
+		stateI18n.locale;
+		return i18nDerived.info();
+	});
+
+	const payTableTitle = $derived.by(() => {
+		stateI18n.locale;
+		return i18nDerived.payTable();
+	});
+
+	const gameRulesTitle = $derived.by(() => {
+		stateI18n.locale;
+		return i18nDerived.gameRules();
+	});
 </script>
 
 {#if stateModal.modal?.name === 'gameInfo'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<div class="info-panel">
-				<BaseTitle>{i18nDerived.info()}</BaseTitle>
+				<BaseTitle>{infoTitle}</BaseTitle>
 
 				<div class="info-scroll scrollY">
 					<section class="section">
-						{#if i18nDerived.payTable()}
-							<h2 class="section-title">{i18nDerived.payTable()}</h2>
+						{#if payTableTitle}
+							<h2 class="section-title">{payTableTitle}</h2>
 						{/if}
 						<div class="section-body">
 							{@render props.payTable()}
@@ -35,7 +50,7 @@
 					</section>
 
 					<section class="section">
-						<h2 class="section-title">{i18nDerived.gameRules()}</h2>
+						<h2 class="section-title">{gameRulesTitle}</h2>
 						<div class="section-body">
 							{@render props.gameRules()}
 						</div>
