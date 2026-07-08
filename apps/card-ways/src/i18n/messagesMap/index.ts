@@ -6,6 +6,7 @@ import type { MessagesMap } from 'utils-shared/i18n';
 import type { Language } from 'state-shared';
 
 import gameRuleMessagesMap from '../gameRuleMessages';
+import uiMessagesMap from '../uiMessages';
 
 const homeTranslations: Partial<Record<Language, string>> = {
 	en: 'HOME',
@@ -32,6 +33,7 @@ const messagesMapGame = Object.fromEntries(
 		{
 			HOME: homeTranslations[locale] ?? homeTranslations.en ?? 'HOME',
 			...gameRuleMessagesMap[locale],
+			...uiMessagesMap[locale],
 		},
 	]),
 ) as unknown as MessagesMap;

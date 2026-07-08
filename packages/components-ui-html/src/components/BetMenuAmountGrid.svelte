@@ -41,7 +41,7 @@
 		/>
 		<BaseButtonContent>
 			<span style="font-size: 1rem;"
-				>{isMaxValue(option) ? i18nDerived.max() : formatValue(option)}</span
+				>{isMaxValue(option) ? i18nDerived.max : formatValue(option)}</span
 			>
 		</BaseButtonContent>
 	{/snippet}

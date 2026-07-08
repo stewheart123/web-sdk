@@ -1,12 +1,12 @@
 import { DEFAULT_BET_MODE_META } from 'state-shared/src/constants';
 import type { BetModeMeta } from 'state-shared';
 
+import { t } from '../i18n/translate';
 import config from './config';
-import { buildCardWaysGameRuleMeta } from './gameRuleMeta';
 
 const bonusCost = config.betModes.bonus.cost;
 
-export const CARD_WAYS_BET_MODE_META = {
+export const buildCardWaysBetModeMeta = (): BetModeMeta => ({
 	BASE: {
 		...DEFAULT_BET_MODE_META.BASE,
 		type: 'default' as const,
@@ -17,13 +17,13 @@ export const CARD_WAYS_BET_MODE_META = {
 		costMultiplier: bonusCost,
 		text: {
 			...DEFAULT_BET_MODE_META.BONUS.text,
-			title: 'FREE SPINS',
-			dialog: `Purchase FREE SPINS for ${bonusCost}× your bet.`,
-			description: 'Triggers the FREE SPINS feature instantly.',
-			button: 'BUY',
-			tickerSpin: 'BONUS BUY ACTIVATED',
+			title: t('FREE SPINS'),
+			dialog: t('UI.BONUS_BUY.DIALOG', { bonusCost: String(bonusCost) }),
+			description: t('UI.BONUS_BUY.DESCRIPTION'),
+			button: t('BUY'),
+			tickerSpin: t('BONUS BUY ACTIVATED'),
 		},
 	},
-} satisfies BetModeMeta;
+});
 
-export { buildCardWaysGameRuleMeta };
+export { buildCardWaysGameRuleMeta } from './gameRuleMeta';

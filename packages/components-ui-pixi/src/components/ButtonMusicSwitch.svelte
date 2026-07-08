@@ -11,7 +11,7 @@
 
 <UiAudioControl
 	{...props}
-	label={i18nDerived.music()}
+	label={i18nDerived.music}
 	iconKey={UI_AUDIO_ICON_KEYS.music}
 	bind:value={stateSound.volumeValueMusic}
 />

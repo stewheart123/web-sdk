@@ -50,7 +50,7 @@
 				>
 					<BaseIcon width="100%" height="3rem" />
 					<BaseButtonContent>
-						<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
+						<span style="font-size: 1rem;">{i18nDerived.confirm}</span>
 					</BaseButtonContent>
 				</Button>
 			</BaseButtonWrap>

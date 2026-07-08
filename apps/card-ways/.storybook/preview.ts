@@ -4,6 +4,8 @@ import { stateUrlOverride, type Language } from 'state-shared';
 
 import { initLocale } from '../src/game/syncLocale';
 
+initLocale('en');
+
 const preview = {
 	...base,
 	globalTypes: {

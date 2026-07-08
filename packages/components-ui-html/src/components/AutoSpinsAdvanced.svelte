@@ -32,7 +32,7 @@
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
 	}}
 >
-	<span>{i18nDerived.advanced()}</span>
+	<span>{i18nDerived.advanced}</span>
 </DropdownToggle>
 
 {#if open}

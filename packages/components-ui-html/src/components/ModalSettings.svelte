@@ -13,19 +13,19 @@
 {#if stateModal.modal?.name === 'settings'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
-			<BaseTitle>{i18nDerived.settings()}</BaseTitle>
+			<BaseTitle>{i18nDerived.settings}</BaseTitle>
 			<BaseScrollable type="column">
 				<wrap class="wrap">
 					<ModalSettingsSound bind:value={stateSound.volumeValueMaster}>
-						{i18nDerived.masterVolume()}
+						{i18nDerived.masterVolume}
 					</ModalSettingsSound>
 
 					<ModalSettingsSound bind:value={stateSound.volumeValueMusic}>
-						{i18nDerived.musicVolume()}
+						{i18nDerived.musicVolume}
 					</ModalSettingsSound>
 
 					<ModalSettingsSound bind:value={stateSound.volumeValueSoundEffect}>
-						{i18nDerived.soundEffectVolume()}
+						{i18nDerived.soundEffectVolume}
 					</ModalSettingsSound>
 				</wrap>
 			</BaseScrollable>

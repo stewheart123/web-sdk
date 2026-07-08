@@ -22,10 +22,10 @@
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<BaseTitle>
-				{i18nDerived.betMenu()}
+				{i18nDerived.betMenu}
 			</BaseTitle>
 			<BaseScrollable type="column">
-				<span>{i18nDerived.selectYourBet()}</span>
+				<span>{i18nDerived.selectYourBet}</span>
 				<BetMenuAmountToggle />
 				<BetMenuAmountGrid />
 			</BaseScrollable>
@@ -33,7 +33,7 @@
 				<Button data-test="confirm-button" onclick={confirm}>
 					<BaseIcon width="100%" height="3rem" />
 					<BaseButtonContent>
-						<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
+						<span style="font-size: 1rem;">{i18nDerived.confirm}</span>
 					</BaseButtonContent>
 				</Button>
 			</BaseButtonWrap>

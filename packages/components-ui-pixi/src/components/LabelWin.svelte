@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
 
-	import { stateBet } from 'state-shared';
+	import { stateBet, stateI18n } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import UiLabel from './UiLabel.svelte';
@@ -11,7 +11,10 @@
 	const props: LabelUiProps = $props();
 	const sourceAmount = $derived(props.amount ?? stateBet.winBookEventAmount);
 	const winBookEventAmountTween = new Tween(sourceAmount);
-	const label = $derived(i18nDerived.win());
+	const label = $derived.by(() => {
+		stateI18n.locale;
+		return i18nDerived.win;
+	});
 	const value = $derived(bookEventAmountToCurrencyString(winBookEventAmountTween.current));
 
 	$effect(() => {

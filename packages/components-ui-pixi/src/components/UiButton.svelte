@@ -93,7 +93,7 @@
 			<Text
 				{...center}
 				anchor={0.5}
-				text={i18nDerived[icon]()}
+				text={i18nDerived[icon]}
 				style={{
 					align: 'center',
 					wordWrap: true,

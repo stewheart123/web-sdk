@@ -22,7 +22,7 @@
 	{...props}
 	sizes={UI_MENU_TOGGLE_SIZES}
 	{onpress}
-	label={i18nDerived.info()}
+	label={i18nDerived.info}
 	iconKey={UI_BESPOKE_ICON_KEYS.info}
 	iconTint={0xffffff}
 	variant="light"

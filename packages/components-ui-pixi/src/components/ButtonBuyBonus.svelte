@@ -35,5 +35,5 @@
 	{onpress}
 	{active}
 	fallbackVariant="buyBonus"
-	fallbackText={active ? i18nDerived.disable() : i18nDerived.buyBonus()}
+	fallbackText={active ? i18nDerived.disable : i18nDerived.buyBonus}
 />

@@ -1,8 +1,9 @@
 import { stateI18n, stateI18nDerived } from 'state-shared';
 
 import gameRuleMessagesEn from './gameRuleMessages/en';
+import uiMessagesEn from './uiMessages/en';
 
-const englishFallback = gameRuleMessagesEn as Record<string, string>;
+const englishFallback = { ...gameRuleMessagesEn, ...uiMessagesEn } as Record<string, string>;
 
 export const translateWithValues = (
 	key: string,

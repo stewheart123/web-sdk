@@ -9,9 +9,9 @@
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const messageMap = $derived({
-		lossLimitReached: i18nDerived.lossLimitReached(),
-		singleWinLimitReached: i18nDerived.singleWinLimitReached(),
-		insufficientFunds: i18nDerived.insufficientFunds(),
+		lossLimitReached: i18nDerived.lossLimitReached,
+		singleWinLimitReached: i18nDerived.singleWinLimitReached,
+		insufficientFunds: i18nDerived.insufficientFunds,
 	});
 </script>
 
@@ -19,10 +19,10 @@
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<BaseTitle>
-				{i18nDerived.notification()}
+				{i18nDerived.notification}
 			</BaseTitle>
 			<BaseScrollable type="column">
-				<span class="text" data-test="auto-spin-stop-info">{i18nDerived.autoSpinsStopInfo()}</span>
+				<span class="text" data-test="auto-spin-stop-info">{i18nDerived.autoSpinsStopInfo}</span>
 				<div class="scrollY info-text" data-test="auto-spin-stop-content">
 					{messageMap[stateModal.modal.message]}
 				</div>

@@ -1,27 +1,102 @@
-import { stateI18nDerived } from 'state-shared';
+import { stateI18n, stateI18nDerived } from 'state-shared';
+
+const trackLocale = () => {
+	void stateI18n.locale;
+};
 
 export const i18nDerived = {
-	bet: () => stateI18nDerived.translate('BET'),
-	max: () => stateI18nDerived.translate('MAX'),
-	betMenu: () => stateI18nDerived.translate('BET MENU'),
-	selectYourBet: () => stateI18nDerived.translate('SELECT YOUR BET'),
-	confirm: () => stateI18nDerived.translate('CONFIRM'),
-	masterVolume: () => stateI18nDerived.translate('MASTER VOLUME'),
-	musicVolume: () => stateI18nDerived.translate('MUSIC VOLUME'),
-	soundEffectVolume: () => stateI18nDerived.translate('SOUND EFFECT VOLUME'),
-	autoSpins: () => stateI18nDerived.translate('AUTO SPINS'),
-	numberOfRounds: () => stateI18nDerived.translate('NUMBER OF ROUNDS'),
-	advanced: () => stateI18nDerived.translate('ADVANCED'),
-	singleWinLimit: () => stateI18nDerived.translate('SINGLE WIN LIMIT'),
-	lossLimit: () => stateI18nDerived.translate('LOSS LIMIT'),
-	startAutoplay: () => stateI18nDerived.translate('START AUTOPLAY'),
-	notification: () => stateI18nDerived.translate('NOTIFICATION'),
-	autoSpinsStopInfo: () => stateI18nDerived.translate('AUTO PLAY HAS STOPPED DUE TO'),
-	insufficientFunds: () => stateI18nDerived.translate('INSUFFICIENT FUNDS TO PLACE THIS BET. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.'),
-	lossLimitReached: () => stateI18nDerived.translate('LOSS LIMIT REACHED'),
-	singleWinLimitReached: () => stateI18nDerived.translate('SINGLE WIN LIMIT REACHED'),
-	settings: () => stateI18nDerived.translate('SETTINGS'),
-	info: () => stateI18nDerived.translate('INFO'),
-	payTable: () => stateI18nDerived.translate('PAYTABLE'),
-	gameRules: () => stateI18nDerived.translate('GAME RULES'),
+	get bet() {
+		trackLocale();
+		return stateI18nDerived.translate('BET');
+	},
+	get max() {
+		trackLocale();
+		return stateI18nDerived.translate('MAX');
+	},
+	get betMenu() {
+		trackLocale();
+		return stateI18nDerived.translate('BET MENU');
+	},
+	get selectYourBet() {
+		trackLocale();
+		return stateI18nDerived.translate('SELECT YOUR BET');
+	},
+	get confirm() {
+		trackLocale();
+		return stateI18nDerived.translate('CONFIRM');
+	},
+	get masterVolume() {
+		trackLocale();
+		return stateI18nDerived.translate('MASTER VOLUME');
+	},
+	get musicVolume() {
+		trackLocale();
+		return stateI18nDerived.translate('MUSIC VOLUME');
+	},
+	get soundEffectVolume() {
+		trackLocale();
+		return stateI18nDerived.translate('SOUND EFFECT VOLUME');
+	},
+	get autoSpins() {
+		trackLocale();
+		return stateI18nDerived.translate('AUTO SPINS');
+	},
+	get numberOfRounds() {
+		trackLocale();
+		return stateI18nDerived.translate('NUMBER OF ROUNDS');
+	},
+	get advanced() {
+		trackLocale();
+		return stateI18nDerived.translate('ADVANCED');
+	},
+	get singleWinLimit() {
+		trackLocale();
+		return stateI18nDerived.translate('SINGLE WIN LIMIT');
+	},
+	get lossLimit() {
+		trackLocale();
+		return stateI18nDerived.translate('LOSS LIMIT');
+	},
+	get startAutoplay() {
+		trackLocale();
+		return stateI18nDerived.translate('START AUTOPLAY');
+	},
+	get notification() {
+		trackLocale();
+		return stateI18nDerived.translate('NOTIFICATION');
+	},
+	get autoSpinsStopInfo() {
+		trackLocale();
+		return stateI18nDerived.translate('AUTO PLAY HAS STOPPED DUE TO');
+	},
+	get insufficientFunds() {
+		trackLocale();
+		return stateI18nDerived.translate(
+			'INSUFFICIENT FUNDS TO PLACE THIS BET. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.',
+		);
+	},
+	get lossLimitReached() {
+		trackLocale();
+		return stateI18nDerived.translate('LOSS LIMIT REACHED');
+	},
+	get singleWinLimitReached() {
+		trackLocale();
+		return stateI18nDerived.translate('SINGLE WIN LIMIT REACHED');
+	},
+	get settings() {
+		trackLocale();
+		return stateI18nDerived.translate('SETTINGS');
+	},
+	get info() {
+		trackLocale();
+		return stateI18nDerived.translate('INFO');
+	},
+	get payTable() {
+		trackLocale();
+		return stateI18nDerived.translate('PAYTABLE');
+	},
+	get gameRules() {
+		trackLocale();
+		return stateI18nDerived.translate('GAME RULES');
+	},
 };

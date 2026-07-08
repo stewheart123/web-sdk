@@ -11,7 +11,7 @@
 
 <UiAudioControl
 	{...props}
-	label={i18nDerived.sound()}
+	label={i18nDerived.sound}
 	iconKey={UI_AUDIO_ICON_KEYS.sfx}
 	bind:value={stateSound.volumeValueSoundEffect}
 />

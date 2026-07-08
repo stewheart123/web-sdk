@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
 
-	import { stateBet } from 'state-shared';
+	import { stateBet, stateI18n } from 'state-shared';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
 	import UiLabel from './UiLabel.svelte';
@@ -10,7 +10,10 @@
 
 	const props: LabelUiProps = $props();
 	const balanceTween = new Tween(stateBet.balanceAmount);
-	const label = $derived(i18nDerived.balance());
+	const label = $derived.by(() => {
+		stateI18n.locale;
+		return i18nDerived.balance;
+	});
 	const value = $derived(numberToCurrencyString(balanceTween.current));
 
 	$effect(() => {

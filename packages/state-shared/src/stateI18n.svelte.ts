@@ -13,5 +13,9 @@ export const stateI18nDerived = {
 		stateI18n.i18n.activate(lang);
 		stateI18n.locale = lang;
 	},
-	translate: (value: string) => stateI18n.i18n._(stateI18n.i18n.t(value)),
+	translate: (value: string) => {
+		if (!stateI18n.i18n.locale) return value;
+
+		return stateI18n.i18n._(stateI18n.i18n.t(value));
+	},
 };

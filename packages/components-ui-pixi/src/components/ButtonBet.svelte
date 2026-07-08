@@ -29,8 +29,8 @@
 			{disabled}
 			active={false}
 			fallbackText={['spin_default', 'spin_disabled'].includes(key)
-				? i18nDerived.bet()
-				: i18nDerived.stop()}
+				? i18nDerived.bet
+				: i18nDerived.stop}
 		/>
 	{/snippet}
 </ButtonBetProvider>

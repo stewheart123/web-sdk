@@ -1,26 +1,94 @@
-import { stateI18nDerived, stateUrlDerived } from 'state-shared';
+import { stateI18n, stateI18nDerived, stateUrlDerived } from 'state-shared';
+
+const trackLocale = () => {
+	void stateI18n.locale;
+};
 
 export const i18nDerived = {
-	audio: () => stateI18nDerived.translate('AUDIO'),
-	balance: () => stateI18nDerived.translate('BALANCE'),
-	win: () => stateI18nDerived.translate('WIN'),
-	bet: () => stateUrlDerived.social() ? 'SPIN' : stateI18nDerived.translate('BET'),
-	stop: () => stateI18nDerived.translate('STOP'),
-	buyBonus: () => stateUrlDerived.social() ? 'PLAY BONUS' : stateI18nDerived.translate('BUY BONUS'),
-	disable: () => stateI18nDerived.translate('DISABLE'),
-	freeSpins: () => stateI18nDerived.translate('FREE SPINS'),
-	//
-	decrease: () => stateI18nDerived.translate('-'),
-	increase: () => stateI18nDerived.translate('+'),
-	menu: () => stateI18nDerived.translate('MENU'),
-	turbo: () => stateI18nDerived.translate('TURBO'),
-	autoSpin: () => stateI18nDerived.translate('AUTO SPIN'),
-	payTable: () => stateI18nDerived.translate('PAYTABLE'),
-	info: () => stateI18nDerived.translate('INFO'),
-	sound: () => stateI18nDerived.translate('SOUND'),
-	music: () => stateI18nDerived.translate('MUSIC'),
-	settings: () => stateI18nDerived.translate('SETTINGS'),
-	soundOn: () => stateI18nDerived.translate('SOUND ON'),
-	soundOff: () => stateI18nDerived.translate('SOUND OFF'),
-	menuExit: () => stateI18nDerived.translate('EXIT'),
+	get audio() {
+		trackLocale();
+		return stateI18nDerived.translate('AUDIO');
+	},
+	get balance() {
+		trackLocale();
+		return stateI18nDerived.translate('BALANCE');
+	},
+	get win() {
+		trackLocale();
+		return stateI18nDerived.translate('WIN');
+	},
+	get bet() {
+		trackLocale();
+		return stateUrlDerived.social() ? stateI18nDerived.translate('SPIN') : stateI18nDerived.translate('BET');
+	},
+	get stop() {
+		trackLocale();
+		return stateI18nDerived.translate('STOP');
+	},
+	get buyBonus() {
+		trackLocale();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('PLAY BONUS')
+			: stateI18nDerived.translate('BUY BONUS');
+	},
+	get disable() {
+		trackLocale();
+		return stateI18nDerived.translate('DISABLE');
+	},
+	get freeSpins() {
+		trackLocale();
+		return stateI18nDerived.translate('FREE SPINS');
+	},
+	get decrease() {
+		trackLocale();
+		return stateI18nDerived.translate('-');
+	},
+	get increase() {
+		trackLocale();
+		return stateI18nDerived.translate('+');
+	},
+	get menu() {
+		trackLocale();
+		return stateI18nDerived.translate('MENU');
+	},
+	get turbo() {
+		trackLocale();
+		return stateI18nDerived.translate('TURBO');
+	},
+	get autoSpin() {
+		trackLocale();
+		return stateI18nDerived.translate('AUTO SPIN');
+	},
+	get payTable() {
+		trackLocale();
+		return stateI18nDerived.translate('PAYTABLE');
+	},
+	get info() {
+		trackLocale();
+		return stateI18nDerived.translate('INFO');
+	},
+	get sound() {
+		trackLocale();
+		return stateI18nDerived.translate('SOUND');
+	},
+	get music() {
+		trackLocale();
+		return stateI18nDerived.translate('MUSIC');
+	},
+	get settings() {
+		trackLocale();
+		return stateI18nDerived.translate('SETTINGS');
+	},
+	get soundOn() {
+		trackLocale();
+		return stateI18nDerived.translate('SOUND ON');
+	},
+	get soundOff() {
+		trackLocale();
+		return stateI18nDerived.translate('SOUND OFF');
+	},
+	get menuExit() {
+		trackLocale();
+		return stateI18nDerived.translate('EXIT');
+	},
 };

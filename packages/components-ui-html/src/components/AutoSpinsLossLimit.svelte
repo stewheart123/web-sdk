@@ -7,7 +7,7 @@
 	import { i18nDerived } from '../i18n/i18nDerived';
 </script>
 
-<span class="title">{i18nDerived.lossLimit()}</span>
+<span class="title">{i18nDerived.lossLimit}</span>
 
 <OptionsGrid
 	miniSize

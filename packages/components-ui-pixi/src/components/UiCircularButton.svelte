@@ -101,7 +101,7 @@
 			<Text
 				{...center}
 				anchor={0.5}
-				text={i18nDerived[fallbackIcon]()}
+				text={i18nDerived[fallbackIcon]}
 				style={{
 					align: 'center',
 					wordWrap: true,

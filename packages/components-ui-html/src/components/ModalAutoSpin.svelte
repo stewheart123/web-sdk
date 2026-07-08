@@ -18,11 +18,11 @@
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<BaseTitle>
-				{i18nDerived.autoSpins()}
+				{i18nDerived.autoSpins}
 			</BaseTitle>
 			<BaseScrollable type="column">
 				{#snippet children({ element })}
-					<div class="subtitle" data-test="number-of-rounds">{i18nDerived.numberOfRounds()}</div>
+					<div class="subtitle" data-test="number-of-rounds">{i18nDerived.numberOfRounds}</div>
 					<AutoSpinsOptions />
 					<AutoSpinsAdvanced
 						ontoggle={(duration) => {
