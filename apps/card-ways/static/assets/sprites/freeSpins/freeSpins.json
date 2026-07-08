@@ -1,25 +1,5 @@
 {
 	"frames": {
-		"freespins.png": {
-			"frame": {
-				"x": 2,
-				"y": 250,
-				"w": 426,
-				"h": 75
-			},
-			"rotated": false,
-			"trimmed": true,
-			"spriteSourceSize": {
-				"x": 11,
-				"y": 9,
-				"w": 426,
-				"h": 75
-			},
-			"sourceSize": {
-				"w": 446,
-				"h": 90
-			}
-		},
 		"freespins_ar.png": {
 			"frame": {
 				"x": 233,

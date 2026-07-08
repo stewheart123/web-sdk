@@ -1,0 +1,335 @@
+{
+	"frames": {
+		"freespinslabel_ar.png": {
+			"frame": {
+				"x": 2,
+				"y": 221,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_de.png": {
+			"frame": {
+				"x": 245,
+				"y": 221,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_en.png": {
+			"frame": {
+				"x": 488,
+				"y": 221,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_es.png": {
+			"frame": {
+				"x": 731,
+				"y": 221,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_fi.png": {
+			"frame": {
+				"x": 2,
+				"y": 148,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_fr.png": {
+			"frame": {
+				"x": 245,
+				"y": 148,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_hi.png": {
+			"frame": {
+				"x": 488,
+				"y": 148,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_id.png": {
+			"frame": {
+				"x": 731,
+				"y": 148,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_ja.png": {
+			"frame": {
+				"x": 2,
+				"y": 75,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_ko.png": {
+			"frame": {
+				"x": 245,
+				"y": 75,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_pl.png": {
+			"frame": {
+				"x": 488,
+				"y": 75,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_pt.png": {
+			"frame": {
+				"x": 731,
+				"y": 75,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_ru.png": {
+			"frame": {
+				"x": 2,
+				"y": 2,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_tr.png": {
+			"frame": {
+				"x": 245,
+				"y": 2,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_vi.png": {
+			"frame": {
+				"x": 488,
+				"y": 2,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		},
+		"freespinslabel_zh.png": {
+			"frame": {
+				"x": 731,
+				"y": 2,
+				"w": 241,
+				"h": 71
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 241,
+				"h": 71
+			},
+			"sourceSize": {
+				"w": 241,
+				"h": 71
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "freeSpinMultiLang.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 974,
+			"h": 294
+		},
+		"scale": "0.3"
+	}
+}

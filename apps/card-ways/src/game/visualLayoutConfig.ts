@@ -439,9 +439,9 @@ export const VISUAL_LAYOUT = {
 			},
 			freeSpinsLabel: {
 				label: 'FreeSpin/Intro/FreeSpinsLabel',
-				maxWidth: 335,
-				maxHeight: 80,
-				anchor: { x: 0.5, y: -2 },
+				maxWidth: 700,
+				maxHeight: 150,
+				anchor: { x: 0.5, y: -0.5 },
 			},
 			pressToContinue: {
 				label: 'FreeSpin/Intro/PressToContinue',

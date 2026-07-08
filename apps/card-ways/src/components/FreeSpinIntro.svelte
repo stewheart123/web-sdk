@@ -96,7 +96,7 @@
 					anchor={layout.freeSpinsLabel.anchor}
 					maxWidth={layout.freeSpinsLabel.maxWidth}
 					maxHeight={layout.freeSpinsLabel.maxHeight}
-					key="freespins.png"
+					key="freespinslabel_{stateUrlDerived.lang()}.png"
 				/>
 
 				<PressToContinue
