@@ -3,6 +3,9 @@ import { page } from '$app/state';
 
 export type Language = (typeof locales)[number];
 
+/** Storybook/testing override; when unset, lang() falls back to the URL query param. */
+export const stateUrlOverride = $state<{ lang?: Language }>({});
+
 export type Key =
 	// keys for play
 	| 'sessionID'
@@ -25,7 +28,8 @@ const getUrlSearchParam = (key: Key) => page.url.searchParams.get(key) as string
 
 // params for play
 const lang = () =>
-	getUrlSearchParam('lang') === 'br' ? 'pt' : (getUrlSearchParam('lang') as Language) || 'en';
+	stateUrlOverride.lang ??
+	(getUrlSearchParam('lang') === 'br' ? 'pt' : (getUrlSearchParam('lang') as Language) || 'en');
 const sessionID = () => getUrlSearchParam('sessionID') || '';
 const rgsUrl = () => getUrlSearchParam('rgs_url') || '';
 const social = () => getUrlSearchParam('social') === 'true';
