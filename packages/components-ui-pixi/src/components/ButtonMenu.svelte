@@ -5,6 +5,7 @@
 	import UiButton from './UiButton.svelte';
 	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
+	import { UI_BESPOKE_ICON_KEYS } from '../uiButtonSkins';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
@@ -16,4 +17,4 @@
 	};
 </script>
 
-<UiButton {...props} {sizes} {onpress} icon="menu" />
+<UiButton {...props} {sizes} {onpress} icon="menu" iconKey={UI_BESPOKE_ICON_KEYS.menu} />

@@ -5,6 +5,7 @@
 	import UiMenuButton from './UiMenuButton.svelte';
 	import { getContext } from '../context';
 	import { UI_MENU_TOGGLE_SIZES } from '../uiLayoutConfig';
+	import { UI_BESPOKE_ICON_KEYS } from '../uiButtonSkins';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
@@ -22,5 +23,7 @@
 	sizes={UI_MENU_TOGGLE_SIZES}
 	{onpress}
 	label={i18nDerived.info()}
+	iconKey={UI_BESPOKE_ICON_KEYS.info}
+	iconTint={0xffffff}
 	variant="light"
 />

@@ -15,6 +15,7 @@
 		active?: boolean;
 		variant?: 'dark' | 'light';
 		iconKey?: string;
+		iconTint?: number;
 	};
 
 	const {
@@ -22,6 +23,7 @@
 		active,
 		variant = 'light',
 		iconKey,
+		iconTint: iconTintOverride,
 		sizes,
 		...buttonProps
 	}: Props = $props();
@@ -32,7 +34,9 @@
 	const fontSize = $derived(getUiMenuButtonFontSize(sizes, layoutType));
 	const fontWeight = $derived(getUiFontWeight(layoutType));
 	const iconSize = $derived(Math.min(sizes.width, sizes.height) * 0.65);
-	const iconTint = $derived(variant === 'light' ? 0x000000 : 0xffffff);
+	const iconTint = $derived(
+		iconTintOverride ?? (variant === 'light' ? 0x000000 : 0xffffff),
+	);
 	const iconAlpha = $derived(active === false ? 0.45 : 1);
 
 	const hasIcon = $derived.by(() => {

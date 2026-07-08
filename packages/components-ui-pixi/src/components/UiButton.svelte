@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Text } from 'pixi-svelte';
+	import * as PIXI from 'pixi.js';
+	import { Text, Sprite } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 
 	import UiSprite from './UiSprite.svelte';
@@ -7,16 +8,19 @@
 	import type { Snippet } from 'svelte';
 	import { getContextLayout } from 'utils-layout';
 
+	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE, UI_COLORS } from '../constants';
 	import { getUiFontScale, getUiFontWeight, type UiLayoutType } from '../uiLayoutConfig';
 
 	const { stateLayoutDerived } = getContextLayout();
+	const context = getContext();
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		icon: ButtonIcon;
 		sizes: { width: number; height: number };
 		iconFontSize?: number;
+		iconKey?: string;
 		active?: boolean;
 		children?: Snippet;
 		variant?: 'dark' | 'light';
@@ -27,6 +31,7 @@
 		active,
 		variant = 'dark',
 		iconFontSize,
+		iconKey,
 		children: childrenFromParent,
 		...buttonProps
 	}: Props = $props();
@@ -41,6 +46,15 @@
 	);
 	const fontSize = $derived(baseFontSize * fontScale);
 	const wordWrapWidth = $derived(isCompact ? buttonProps.sizes.width : 200);
+	const iconSize = $derived(Math.min(buttonProps.sizes.width, buttonProps.sizes.height) * 0.65);
+	const iconTint = $derived(variant === 'light' ? 0x000000 : 0xffffff);
+	const iconAlpha = $derived(active === false ? 0.45 : 1);
+
+	const hasIcon = $derived.by(() => {
+		if (!iconKey) return false;
+		const texture = context.stateApp.loadedAssets?.[iconKey];
+		return texture != null && texture !== PIXI.Texture.EMPTY;
+	});
 </script>
 
 <Button {...buttonProps}>
@@ -65,20 +79,32 @@
 				: {}}
 		/>
 
-		<Text
-			{...center}
-			anchor={0.5}
-			text={i18nDerived[icon]()}
-			style={{
-				align: 'center',
-				wordWrap: true,
-				wordWrapWidth,
-				fontFamily: 'proxima-nova',
-				fontWeight,
-				fontSize,
-				fill: variant === 'dark' ? 0xffffff : 0x000000,
-			}}
-		/>
+		{#if hasIcon}
+			<Sprite
+				key={iconKey}
+				{...center}
+				anchor={0.5}
+				width={iconSize}
+				height={iconSize}
+				tint={iconTint}
+				alpha={iconAlpha}
+			/>
+		{:else}
+			<Text
+				{...center}
+				anchor={0.5}
+				text={i18nDerived[icon]()}
+				style={{
+					align: 'center',
+					wordWrap: true,
+					wordWrapWidth,
+					fontFamily: 'proxima-nova',
+					fontWeight,
+					fontSize,
+					fill: variant === 'dark' ? 0xffffff : 0x000000,
+				}}
+			/>
+		{/if}
 
 		{@render childrenFromParent?.()}
 	{/snippet}

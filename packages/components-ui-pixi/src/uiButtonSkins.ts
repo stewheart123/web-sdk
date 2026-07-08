@@ -31,7 +31,14 @@ export const UI_BUTTON_ROTATED_FRAMES = new Set([
 export const getUiButtonSkinRotation = (frameKey: string): number =>
 	UI_BUTTON_ROTATED_FRAMES.has(frameKey) ? Math.PI : 0;
 
-export const UI_AUDIO_ICON_KEYS = {
+export const UI_BESPOKE_ICON_KEYS = {
 	sfx: 'sfxIconSm',
 	music: 'musicIconSm',
+	menu: 'burgerIconSm',
+	info: 'infoIconSm',
+} as const;
+
+export const UI_AUDIO_ICON_KEYS = {
+	sfx: UI_BESPOKE_ICON_KEYS.sfx,
+	music: UI_BESPOKE_ICON_KEYS.music,
 } as const;
