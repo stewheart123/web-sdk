@@ -31,20 +31,20 @@
 			await args.action?.(args.data);
 		}}
 	>
-		<StoryLocale lang="en">
+		<StoryLocale>
 			<Game />
 		</StoryLocale>
 	</StoryGameTemplate>
 {/snippet}
 
 <Story name="component (loadingScreen)">
-	<StoryLocale lang="en">
+	<StoryLocale>
 		<Game />
 	</StoryLocale>
 </Story>
 
 <Story name="UI controls (idle)">
-	<StoryLocale lang="en">
+	<StoryLocale>
 		<StoryUiIdle>
 			<Game />
 		</StoryUiIdle>

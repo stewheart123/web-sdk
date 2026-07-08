@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { GlobalStyle } from 'components-ui-html';
-	import { Authenticate, LoaderStakeEngine, LoaderExample, LoadI18n } from 'components-shared';
+	import { Authenticate, LoaderStakeEngine, LoaderExample } from 'components-shared';
 	import Game from '../components/Game.svelte';
+	import InitializeLocale from '../components/InitializeLocale.svelte';
 	import { setContext } from '../game/context';
-
-	import messagesMap from '../i18n/messagesMap';
 
 	type Props = { children: Snippet };
 
@@ -21,9 +20,9 @@
 
 <GlobalStyle>
 	<Authenticate>
-		<LoadI18n {messagesMap}>
+		<InitializeLocale>
 			<Game />
-		</LoadI18n>
+		</InitializeLocale>
 	</Authenticate>
 </GlobalStyle>
 

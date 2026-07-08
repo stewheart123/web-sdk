@@ -8,14 +8,13 @@ import { eventEmitter, type EmitterEvent } from './eventEmitter';
 import { stateXstate, stateXstateDerived } from './stateXstate';
 import { stateLayout, stateLayoutDerived } from './stateLayout';
 import { stateApp } from './stateApp';
-import { CARD_WAYS_BET_MODE_META, CARD_WAYS_GAME_RULE_META } from './betModeMeta';
+import { CARD_WAYS_BET_MODE_META } from './betModeMeta';
 
 import { stateGame, stateGameDerived } from './stateGame.svelte';
 import { i18nDerived } from '../i18n/i18nDerived';
 
 export const setContext = () => {
 	stateMeta.betModeMeta = CARD_WAYS_BET_MODE_META;
-	stateMeta.gameRuleMeta = CARD_WAYS_GAME_RULE_META as typeof stateMeta.gameRuleMeta;
 
 	setContextEventEmitter<EmitterEvent>({ eventEmitter });
 	setContextXstate({ stateXstate, stateXstateDerived });

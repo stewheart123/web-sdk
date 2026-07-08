@@ -1,8 +1,8 @@
 import { preview as base } from 'config-storybook';
 import { locales } from 'config-lingui';
-import { i18n } from '@lingui/core';
-import { stateUrlOverride } from 'state-shared';
-import messagesMap from '../src/i18n/messagesMap';
+import { stateUrlOverride, type Language } from 'state-shared';
+
+import { initLocale } from '../src/game/syncLocale';
 
 const preview = {
 	...base,
@@ -18,11 +18,10 @@ const preview = {
 		},
 	},
 	initialGlobals: { ...(base as any).initialGlobals, locale: 'en' },
-	beforeEach: async ({ globals }: any) => {
-		const locale = globals.locale ?? 'en';
+	beforeEach: async ({ globals }: { globals?: { locale?: string } }) => {
+		const locale = (globals?.locale ?? 'en') as Language;
 		stateUrlOverride.lang = locale;
-		i18n.load(locale, (messagesMap as any)[locale] ?? {});
-		i18n.activate(locale);
+		initLocale(locale);
 	},
 };
 

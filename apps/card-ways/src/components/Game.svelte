@@ -32,7 +32,9 @@
 
 	const context = getContext();
 
-	onMount(() => (context.stateLayout.showLoadingScreen = true));
+	onMount(() => {
+		context.stateLayout.showLoadingScreen = true;
+	});
 
 	context.eventEmitter.subscribeOnMount({
 		buyBonusConfirm: () => {

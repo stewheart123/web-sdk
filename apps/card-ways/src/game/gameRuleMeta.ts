@@ -1,6 +1,7 @@
 import { DEFAULT_GAME_RULE_META } from 'state-shared/src/constants';
 import type { GameRuleContainer, GameRuleData } from 'state-shared';
 
+import { t } from '../i18n/translate';
 import config from './config';
 
 const bonusCost = config.betModes.bonus.cost;
@@ -87,49 +88,19 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 		};
 	});
 
-	const specialSymbols: Array<{ title: string; text: string; row: number; column: number }> = [
-		{
-			title: 'NON-WIN',
-			text: 'Non-win symbol. Does not pay and cannot form winning ways.',
-			row: 2,
-			column: 0,
-		},
-		{
-			title: 'WILD',
-			text: 'Substitutes for all paying symbols.',
-			row: 2,
-			column: 1,
-		},
-		{
-			title: 'SCATTER',
-			text: '3 or more Scatters award 10 Free Spins.',
-			row: 2,
-			column: 2,
-		},
-		{
-			title: '×1',
-			text: 'Modifier card. Applies to ways wins. No direct pay.',
-			row: 3,
-			column: 0,
-		},
-		{
-			title: '×2',
-			text: 'Modifier card. Applies to ways wins. No direct pay.',
-			row: 3,
-			column: 1,
-		},
-		{
-			title: '×3',
-			text: 'Modifier card. Applies to ways wins. No direct pay.',
-			row: 3,
-			column: 2,
-		},
+	const specialSymbols: Array<{ title: string; textKey: string; row: number; column: number }> = [
+		{ title: 'NON-WIN', textKey: 'GR.SYMBOL.NON_WIN', row: 2, column: 0 },
+		{ title: 'WILD', textKey: 'GR.SYMBOL.WILD', row: 2, column: 1 },
+		{ title: 'SCATTER', textKey: 'GR.SYMBOL.SCATTER', row: 2, column: 2 },
+		{ title: '×1', textKey: 'GR.SYMBOL.MODIFIER', row: 3, column: 0 },
+		{ title: '×2', textKey: 'GR.SYMBOL.MODIFIER', row: 3, column: 1 },
+		{ title: '×3', textKey: 'GR.SYMBOL.MODIFIER', row: 3, column: 2 },
 	];
 
 	for (const special of specialSymbols) {
 		containers.push({
 			title: special.title,
-			text: special.text,
+			text: t(special.textKey),
 			image: SPECIAL_SYMBOL_IMAGE_MAP[special.title],
 			imagePosition: 'left',
 			row: special.row,
@@ -143,7 +114,7 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 const buildUiGuideContainers = (): GameRuleContainer[] => [
 	{
 		title: '',
-		text: 'AUTO SPIN | Open the Auto Spin pop-up menu.',
+		text: t('GR.UI.AUTO_SPIN'),
 		image: GAME_RULE_IMAGE.autoplay,
 		imagePosition: 'left',
 		row: 0,
@@ -151,7 +122,7 @@ const buildUiGuideContainers = (): GameRuleContainer[] => [
 	},
 	{
 		title: '',
-		text: 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
+		text: t('GR.UI.BUY_BONUS'),
 		image: GAME_RULE_IMAGE.bonusBuy,
 		imagePosition: 'left',
 		row: 1,
@@ -159,7 +130,7 @@ const buildUiGuideContainers = (): GameRuleContainer[] => [
 	},
 	{
 		title: '',
-		text: 'TURBO | Activate Turbo Mode.',
+		text: t('GR.UI.TURBO'),
 		image: GAME_RULE_IMAGE.turbo,
 		imagePosition: 'left',
 		row: 2,
@@ -167,143 +138,152 @@ const buildUiGuideContainers = (): GameRuleContainer[] => [
 	},
 ];
 
-const payTableSections: GameRuleData[] = [
-	{
-		title: '',
-		rows: 6,
-		columns: 1,
-		containers: [
-			{
-				title: 'GAME OVERVIEW',
-				text: 'CARD WAYS is a 5-reel, 2-row ways slot with a playing-card theme. Wins are formed by matching symbols on adjacent reels from left to right. A Modifier Reel beside the board can boost wins with multipliers up to ×3.',
-				image: '',
-				imagePosition: 'left',
-				row: 0,
-				column: 0,
-			},
-			{
-				title: 'WILD SYMBOL',
-				text: 'The Wild substitutes for all paying symbols. Wild does not substitute for Scatter.',
-				image: GAME_RULE_IMAGE.wild,
-				imagePosition: 'left',
-				row: 1,
-				column: 0,
-			},
-			{
-				title: 'SCATTER / FREE SPINS',
-				text: 'Scatter symbols appear on all reels. Landing 3 or more Scatters in a single spin awards 10 Free Spins. Scatter wins are evaluated separately from ways wins.',
-				image: GAME_RULE_IMAGE.scatter,
-				imagePosition: 'left',
-				row: 2,
-				column: 0,
-			},
-			{
-				title: 'MODIFIER REEL (BASE GAME)',
-				text: 'On each base-game spin, the Modifier Reel reveals a multiplier card: ×1, ×2, or ×3. When a win occurs, the active modifier multiplier is applied to that win. The modifier may change on the next spin. If a ×1 card is revealed after a higher multiplier, the multiplier resets.',
-				image: '',
-				images: [...MODIFIER_IMAGES],
-				imagePosition: 'left',
-				row: 3,
-				column: 0,
-			},
-			{
-				title: 'MODIFIER REEL (FREE SPINS)',
-				text: 'During Free Spins, the Modifier Reel is active on every spin. The revealed multiplier persists for the entire bonus until the feature ends. All wins during Free Spins are multiplied by the active modifier value. When Free Spins end, the modifier resets to ×1.',
-				image: '',
-				images: [...MODIFIER_IMAGES],
-				imagePosition: 'left',
-				row: 4,
-				column: 0,
-			},
-			{
-				title: 'MAX WIN',
-				text: `The maximum win in any bet mode is ${maxWin.toLocaleString()}× the underlying bet. Once reached, the round ends and the win cap is awarded.`,
-				image: '',
-				imagePosition: 'left',
-				row: 5,
-				column: 0,
-			},
-		],
-	},
-	{
-		title: 'PAYTABLE',
-		rows: 4,
-		columns: 3,
-		containers: buildSymbolContainers(),
-	},
-	{
-		title: 'WIN WAYS',
-		rows: 1,
-		columns: 1,
-		containers: [
-			{
-				title: '',
-				text: 'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
-				image: FALLBACK_IMAGE.winWays,
-				imagePosition: 'top',
-				row: 0,
-				column: 0,
-			},
-		],
-	},
-];
+const numericValues = {
+	maxWin: maxWin.toLocaleString(),
+	baseRtp: baseRtp.toFixed(1),
+	bonusRtp: bonusRtp.toFixed(1),
+	bonusCost: String(bonusCost),
+};
 
-const gameRulesSections: GameRuleData[] = [
-	{
-		title: 'BET MODES',
-		rows: 1,
-		columns: 1,
-		containers: [
-			{
-				title: '',
-				text: `The normal mode of this game has a theoretical expected return of ${baseRtp.toFixed(1)}%.\n\nThe player also has the option to buy Free Spins for ${bonusCost}× the underlying bet. The Free Spins buy mode has a theoretical expected return of ${bonusRtp.toFixed(1)}%. Purchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is ${maxWin.toLocaleString()}× the underlying bet.`,
-				image: FALLBACK_IMAGE.rtp97,
-				imagePosition: 'top',
-				row: 0,
-				column: 0,
-			},
-		],
-	},
-	{
-		title: 'BONUS BUY',
-		rows: 1,
-		columns: 1,
-		containers: [
-			{
-				title: 'BONUS BUY — FREE SPINS',
-				text: `Cost: ${bonusCost}× total bet\nInstantly awards the Free Spins feature (10 spins)\nTheoretical RTP: ${bonusRtp.toFixed(1)}%\nMaximum win: ${maxWin.toLocaleString()}× bet\nBonus Buy may be disabled in certain jurisdictions`,
-				image: GAME_RULE_IMAGE.bonusBuy,
-				imagePosition: 'left',
-				row: 0,
-				column: 0,
-			},
-		],
-	},
-	{
-		title: 'USER INTERFACE GUIDE',
-		rows: 3,
-		columns: 1,
-		containers: buildUiGuideContainers(),
-	},
-	{
-		title: 'LEGAL NOTICE',
-		rows: 1,
-		columns: 1,
-		containers: [
-			{
-				title: '',
-				text: 'Malfunction voids all pays and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted bets. The theoretical expected return is calculated over many spins. Movement of reels are not representative of any physical device, and is for illustrative purposes only. TM and © Stake Engine.',
-				image: '',
-				imagePosition: 'left',
-				row: 0,
-				column: 0,
-			},
-		],
-	},
-];
+export const buildCardWaysGameRuleMeta = () => {
+	const payTableSections: GameRuleData[] = [
+		{
+			title: '',
+			rows: 6,
+			columns: 1,
+			containers: [
+				{
+					title: t('GR.GAME_OVERVIEW.TITLE'),
+					text: t('GR.GAME_OVERVIEW.TEXT'),
+					image: '',
+					imagePosition: 'left',
+					row: 0,
+					column: 0,
+				},
+				{
+					title: t('GR.WILD_SYMBOL.TITLE'),
+					text: t('GR.WILD_SYMBOL.TEXT'),
+					image: GAME_RULE_IMAGE.wild,
+					imagePosition: 'left',
+					row: 1,
+					column: 0,
+				},
+				{
+					title: t('GR.SCATTER_FREE_SPINS.TITLE'),
+					text: t('GR.SCATTER_FREE_SPINS.TEXT'),
+					image: GAME_RULE_IMAGE.scatter,
+					imagePosition: 'left',
+					row: 2,
+					column: 0,
+				},
+				{
+					title: t('GR.MODIFIER_BASE.TITLE'),
+					text: t('GR.MODIFIER_BASE.TEXT'),
+					image: '',
+					images: [...MODIFIER_IMAGES],
+					imagePosition: 'left',
+					row: 3,
+					column: 0,
+				},
+				{
+					title: t('GR.MODIFIER_FREE_SPINS.TITLE'),
+					text: t('GR.MODIFIER_FREE_SPINS.TEXT'),
+					image: '',
+					images: [...MODIFIER_IMAGES],
+					imagePosition: 'left',
+					row: 4,
+					column: 0,
+				},
+				{
+					title: t('GR.MAX_WIN.TITLE'),
+					text: t('GR.MAX_WIN.TEXT', numericValues),
+					image: '',
+					imagePosition: 'left',
+					row: 5,
+					column: 0,
+				},
+			],
+		},
+		{
+			title: t('GR.SECTION.PAYTABLE'),
+			rows: 4,
+			columns: 3,
+			containers: buildSymbolContainers(),
+		},
+		{
+			title: t('GR.SECTION.WIN_WAYS'),
+			rows: 1,
+			columns: 1,
+			containers: [
+				{
+					title: '',
+					text: t('GR.WIN_WAYS.TEXT'),
+					image: FALLBACK_IMAGE.winWays,
+					imagePosition: 'top',
+					row: 0,
+					column: 0,
+				},
+			],
+		},
+	];
 
-export const CARD_WAYS_GAME_RULE_META = {
-	payTable: payTableSections,
-	gameRules: gameRulesSections,
-	splashScreen: [],
-} as typeof DEFAULT_GAME_RULE_META;
+	const gameRulesSections: GameRuleData[] = [
+		{
+			title: t('GR.SECTION.BET_MODES'),
+			rows: 1,
+			columns: 1,
+			containers: [
+				{
+					title: '',
+					text: t('GR.BET_MODES.TEXT', numericValues),
+					image: FALLBACK_IMAGE.rtp97,
+					imagePosition: 'top',
+					row: 0,
+					column: 0,
+				},
+			],
+		},
+		{
+			title: t('GR.SECTION.BONUS_BUY'),
+			rows: 1,
+			columns: 1,
+			containers: [
+				{
+					title: t('GR.BONUS_BUY.TITLE'),
+					text: t('GR.BONUS_BUY.TEXT', numericValues),
+					image: GAME_RULE_IMAGE.bonusBuy,
+					imagePosition: 'left',
+					row: 0,
+					column: 0,
+				},
+			],
+		},
+		{
+			title: t('GR.SECTION.UI_GUIDE'),
+			rows: 3,
+			columns: 1,
+			containers: buildUiGuideContainers(),
+		},
+		{
+			title: t('GR.SECTION.LEGAL_NOTICE'),
+			rows: 1,
+			columns: 1,
+			containers: [
+				{
+					title: '',
+					text: t('GR.LEGAL_NOTICE.TEXT'),
+					image: '',
+					imagePosition: 'left',
+					row: 0,
+					column: 0,
+				},
+			],
+		},
+	];
+
+	return {
+		payTable: payTableSections,
+		gameRules: gameRulesSections,
+		splashScreen: [],
+	} as typeof DEFAULT_GAME_RULE_META;
+};

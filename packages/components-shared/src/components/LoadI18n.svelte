@@ -21,7 +21,7 @@
 	let loaded = $state(false);
 
 	const loadMessages = (lang: Language) => {
-		const messages = props.messagesMap[lang];
+		const messages = props.messagesMap[lang] ?? props.messagesMap.en;
 		if (props.debug) console.log({ messages });
 		return messages;
 	};

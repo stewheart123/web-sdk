@@ -2,7 +2,7 @@ import { DEFAULT_BET_MODE_META } from 'state-shared/src/constants';
 import type { BetModeMeta } from 'state-shared';
 
 import config from './config';
-import { CARD_WAYS_GAME_RULE_META } from './gameRuleMeta';
+import { buildCardWaysGameRuleMeta } from './gameRuleMeta';
 
 const bonusCost = config.betModes.bonus.cost;
 
@@ -26,4 +26,4 @@ export const CARD_WAYS_BET_MODE_META = {
 	},
 } satisfies BetModeMeta;
 
-export { CARD_WAYS_GAME_RULE_META };
+export { buildCardWaysGameRuleMeta };
