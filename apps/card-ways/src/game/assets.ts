@@ -142,26 +142,6 @@ export default {
 		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.json', import.meta.url).href,
 		preload: true,
 	},
-	sfxIconSm: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/sfx-icon-sm.png', import.meta.url).href,
-		preload: true,
-	},
-	musicIconSm: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/music-icon-sm.png', import.meta.url).href,
-		preload: true,
-	},
-	burgerIconSm: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/burger-icon-sm.png', import.meta.url).href,
-		preload: true,
-	},
-	infoIconSm: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/info-icon-sm.png', import.meta.url).href,
-		preload: true,
-	},
 	freeSpins: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,

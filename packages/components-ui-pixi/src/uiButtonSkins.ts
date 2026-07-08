@@ -7,35 +7,32 @@ export type UiButtonSkinState = {
 	disabled: boolean;
 };
 
+const SKIN_FRAME_PREFIX: Record<UiCircularButtonSkin, string> = {
+	spin: 'spin_button',
+	bonus_buy: 'bonus_buy',
+	autoplay: 'autoplay',
+	turbo: 'turbo',
+};
+
 export const getUiButtonSkinFrame = (
 	skin: UiCircularButtonSkin,
 	state: UiButtonSkinState,
 ): string => {
 	const useHover = !state.disabled && (state.hovered || state.pressed || state.active);
 	const suffix = useHover ? 'interact_hover' : 'active';
-	return `${skin}_${suffix}.png`;
+	return `${SKIN_FRAME_PREFIX[skin]}_${suffix}.png`;
 };
 
 export const getUiButtonSkinActiveFrame = (skin: UiCircularButtonSkin): string =>
-	`${skin}_active.png`;
+	`${SKIN_FRAME_PREFIX[skin]}_active.png`;
 
-/** Spine atlas rotate:90 frames — Pixi spritesheet un-rotate needs a 180° correction. */
-export const UI_BUTTON_ROTATED_FRAMES = new Set([
-	'autoplay_active.png',
-	'bonus_buy_active.png',
-	'bonus_buy_interact_hover.png',
-	'spin_interact_hover.png',
-	'turbo_active.png',
-]);
-
-export const getUiButtonSkinRotation = (frameKey: string): number =>
-	UI_BUTTON_ROTATED_FRAMES.has(frameKey) ? Math.PI : 0;
+export const getUiButtonSkinRotation = (_frameKey: string): number => 0;
 
 export const UI_BESPOKE_ICON_KEYS = {
-	sfx: 'sfxIconSm',
-	music: 'musicIconSm',
-	menu: 'burgerIconSm',
-	info: 'infoIconSm',
+	sfx: 'sfx-icon.png',
+	music: 'music-icon.png',
+	menu: 'burger-icon.png',
+	info: 'info-icon.png',
 } as const;
 
 export const UI_AUDIO_ICON_KEYS = {
