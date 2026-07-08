@@ -11,6 +11,12 @@
 		sound.players?.music?.volume(stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE);
 	};
 
+	const applySoundEffectVolume = () => {
+		const volume = stateSoundDerived.volumeSoundEffect();
+		sound.players?.loop?.volume(volume);
+		sound.players?.once?.volume(volume);
+	};
+
 	const withClipVolumeScales = (audio: LoadedAudio<SoundName>): LoadedAudio<SoundName> => {
 		const config = { ...audio.config };
 
@@ -45,6 +51,7 @@
 			const { destroy } = sound.load(loadedAudio);
 			destroySound = destroy;
 			applyMusicVolume();
+			applySoundEffectVolume();
 
 			const howl = sound.players?.music?.howl;
 			howl?.on('load', () => console.warn('[sound] howl loaded'));
@@ -65,10 +72,7 @@
 	});
 
 	$effect(() => {
-		sound.players?.loop?.volume(stateSoundDerived.volumeSoundEffect());
-	});
-
-	$effect(() => {
-		sound.players?.once?.volume(stateSoundDerived.volumeSoundEffect());
+		stateSoundDerived.volumeSoundEffect();
+		applySoundEffectVolume();
 	});
 </script>

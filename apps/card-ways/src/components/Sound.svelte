@@ -62,20 +62,73 @@
 	};
 
 	const playMusic = (name: MusicName) => {
-		// Re-apply scaled volume before each play (fade/stop can leave per-sprite volumes stale).
-		sound.players?.music?.volume(stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE);
+		const musicVolume = stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE;
+		sound.players?.music?.volume(musicVolume);
+
+		if (musicVolume === 0) {
+			return;
+		}
+
 		sound.players?.music?.stop({ name });
 		warnPlay('music', name);
 		sound.players.music.play({ name });
 	};
+
+	const playSoundOnce = (name: SoundEffectName, forcePlay?: boolean) => {
+		const volume = stateSoundDerived.volumeSoundEffect();
+		sound.players?.once?.volume(volume);
+
+		if (volume === 0) {
+			return;
+		}
+
+		warnPlay('once', name, { forcePlay });
+		sound.players.once.play({ name, forcePlay });
+	};
+
+	const playSoundLoop = (name: SoundEffectName) => {
+		const volume = stateSoundDerived.volumeSoundEffect();
+		sound.players?.loop?.volume(volume);
+
+		if (volume === 0) {
+			return;
+		}
+
+		if (name === COIN_LOOP_SOUND) {
+			clearCoinLoopStopTimeout();
+			coinLoopStartedAt = performance.now();
+		}
+
+		warnPlay('loop', name);
+		sound.players.loop.play({ name });
+	};
+
+	let lastScaledMusicVolume = stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE;
+
+	const getAmbientMusic = (): MusicName => {
+		if (stateBet.activeBetModeKey === 'SUPERSPIN' || context.stateGame.gameType === 'freegame') {
+			return 'bgm_freespin';
+		}
+
+		return 'bgm_main';
+	};
+
+	$effect(() => {
+		const scaledMusicVolume = stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE;
+
+		if (lastScaledMusicVolume === 0 && scaledMusicVolume > 0) {
+			playMusic(getAmbientMusic());
+		}
+
+		lastScaledMusicVolume = scaledMusicVolume;
+	});
 
 	context.eventEmitter.subscribeOnMount({
 		// ui
 		soundBetMode: async ({ betModeKey }) => {
 			if (betModeKey === 'SUPERSPIN') {
 				// check if SUPERSPIN, when changing the bet mode.
-				warnPlay('once', 'sfx_winlevel_end');
-				sound.players.once.play({ name: 'sfx_winlevel_end' });
+				playSoundOnce('sfx_winlevel_end');
 				await waitForTimeout(SECOND);
 				playMusic('bgm_freespin');
 			} else {
@@ -83,12 +136,10 @@
 			}
 		},
 		soundPressGeneral: () => {
-			warnPlay('once', 'sfx_btn_general');
-			sound.players.once.play({ name: 'sfx_btn_general' });
+			playSoundOnce('sfx_btn_general');
 		},
 		soundPressBet: () => {
-			warnPlay('once', 'sfx_btn_spin');
-			sound.players.once.play({ name: 'sfx_btn_spin' });
+			playSoundOnce('sfx_btn_spin');
 		},
 		// scatterCounter
 		soundScatterCounterIncrease: () => (context.stateGame.scatterCounter = context.stateGame.scatterCounter + 1), // prettier-ignore
@@ -96,16 +147,10 @@
 		// game
 		soundMusic: ({ name }) => playMusic(name),
 		soundLoop: ({ name }) => {
-			if (name === COIN_LOOP_SOUND) {
-				clearCoinLoopStopTimeout();
-				coinLoopStartedAt = performance.now();
-			}
-			warnPlay('loop', name);
-			sound.players.loop.play({ name });
+			playSoundLoop(name);
 		},
 		soundOnce: ({ name, forcePlay }) => {
-			warnPlay('once', name, { forcePlay });
-			sound.players.once.play({ name, forcePlay });
+			playSoundOnce(name, forcePlay);
 		},
 		soundStop: ({ name, afterCurrentLoop }) => {
 			console.warn('[sound] stop:', name, afterCurrentLoop ? '(after loop)' : '');

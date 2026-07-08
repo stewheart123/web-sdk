@@ -106,15 +106,15 @@
 					borderRadius={UI_MENU_PANEL.borderRadius}
 				/>
 
-				<Container x={menuPanel.rowLeftX} y={menuPanel.soundY}>
-					<ButtonSoundSwitch />
+				<Container x={menuPanel.rowCenterX} y={menuPanel.soundY}>
+					<ButtonSoundSwitch anchor={0.5} />
 				</Container>
 
-				<Container x={menuPanel.rowLeftX} y={menuPanel.musicY}>
-					<ButtonMusicSwitch />
+				<Container x={menuPanel.rowCenterX} y={menuPanel.musicY}>
+					<ButtonMusicSwitch anchor={0.5} />
 				</Container>
 
-				<Container x={menuPanel.infoCenterX} y={menuPanel.infoY}>
+				<Container x={menuPanel.rowCenterX} y={menuPanel.infoY}>
 					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>

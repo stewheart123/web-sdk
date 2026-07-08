@@ -1,4 +1,4 @@
-const DEFAULT_VOLUME_VALUE = 75;
+export const DEFAULT_VOLUME_VALUE = 75;
 
 export const stateSound = $state({
 	volumeValueMaster: DEFAULT_VOLUME_VALUE,

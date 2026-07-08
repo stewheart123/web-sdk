@@ -22,6 +22,7 @@ export function createPlayMusic<TSoundName extends string>(options: {
 
 	const newMusic = (sound: Sound) => {
 		pauseAllMusic();
+		sound.soundVolume = 1;
 		const soundId = options.howl.play(sound.soundName);
 		options.getSoundMap()[sound.soundName] = {
 			...sound,

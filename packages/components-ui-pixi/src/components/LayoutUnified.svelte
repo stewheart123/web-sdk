@@ -353,23 +353,23 @@
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.sound} x={menuPanel.rowLeftX} y={menuPanel.soundY}>
+			<Container label={UI_SCENE_LABELS.menu.sound} x={menuPanel.rowCenterX} y={menuPanel.soundY}>
 
-				{@render props.buttonSoundSwitch({})}
-
-			</Container>
-
-
-
-			<Container label={UI_SCENE_LABELS.menu.music} x={menuPanel.rowLeftX} y={menuPanel.musicY}>
-
-				{@render props.buttonMusicSwitch({})}
+				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 
 			</Container>
 
 
 
-			<Container label={UI_SCENE_LABELS.menu.info} x={menuPanel.infoCenterX} y={menuPanel.infoY}>
+			<Container label={UI_SCENE_LABELS.menu.music} x={menuPanel.rowCenterX} y={menuPanel.musicY}>
+
+				{@render props.buttonMusicSwitch({ anchor: 0.5 })}
+
+			</Container>
+
+
+
+			<Container label={UI_SCENE_LABELS.menu.info} x={menuPanel.rowCenterX} y={menuPanel.infoY}>
 
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 

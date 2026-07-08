@@ -1,16 +1,10 @@
 <script lang="ts">
 	import type { ButtonProps } from 'components-pixi';
-	import { Container } from 'pixi-svelte';
+	import { DEFAULT_VOLUME_VALUE } from 'state-shared';
 
-	import UiVolumeSlider from './UiVolumeSlider.svelte';
 	import UiMenuButton from './UiMenuButton.svelte';
 	import { getContext } from '../context';
-	import {
-		UI_MENU_AUDIO_LABEL_WIDTH,
-		UI_MENU_AUDIO_SLIDER_WIDTH,
-		UI_MENU_AUDIO_TOGGLE_HEIGHT,
-		getUiMenuAudioRowLayout,
-	} from '../uiLayoutConfig';
+	import { UI_MENU_TOGGLE_SIZES } from '../uiLayoutConfig';
 
 	type Props = Partial<Omit<ButtonProps, 'children'>> & {
 		label: string;
@@ -21,34 +15,20 @@
 	let { label, value = $bindable(), iconKey, anchor: _anchor, ..._buttonProps }: Props = $props();
 
 	const context = getContext();
-	const layout = getUiMenuAudioRowLayout();
-	const toggleSizes = {
-		width: UI_MENU_AUDIO_LABEL_WIDTH,
-		height: UI_MENU_AUDIO_TOGGLE_HEIGHT,
-	};
 	const active = $derived(value > 0);
 
 	const onToggle = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-
-		if (value === 0) {
-			value = 50;
-		} else {
-			value = 0;
-		}
-	};
-
-	const onSliderChange = () => {
+		value = value === 0 ? DEFAULT_VOLUME_VALUE : 0;
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 	};
 </script>
 
-<Container>
-	<Container x={layout.toggleCenterX}>
-		<UiMenuButton anchor={0.5} sizes={toggleSizes} {active} onpress={onToggle} {label} {iconKey} variant="light" />
-	</Container>
-
-	<Container x={layout.sliderCenterX}>
-		<UiVolumeSlider bind:value width={UI_MENU_AUDIO_SLIDER_WIDTH} onchange={onSliderChange} />
-	</Container>
-</Container>
+<UiMenuButton
+	anchor={0.5}
+	sizes={UI_MENU_TOGGLE_SIZES}
+	{active}
+	onpress={onToggle}
+	{label}
+	{iconKey}
+	variant="light"
+/>

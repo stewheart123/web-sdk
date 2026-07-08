@@ -79,25 +79,14 @@ export const UI_MENU_BUTTON_SIZE = UI_BASE_SIZE * 1.2;
 /** Chunky menu row height — touch-friendly while staying within the bar scale. */
 export const UI_MENU_AUDIO_ROW_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 0.68;
 
-/** Toggle button width — label text (SOUND / MUSIC) is the button. */
+/** Toggle button width — icon toggle button. */
 export const UI_MENU_AUDIO_LABEL_WIDTH = UI_BASE_SIZE * 0.52;
-
-/** Gap between toggle and slider in an audio menu row. */
-export const UI_MENU_AUDIO_GAP = 10;
 
 /** Toggle button height in an audio menu row. */
 export const UI_MENU_AUDIO_TOGGLE_HEIGHT = UI_MENU_AUDIO_ROW_HEIGHT * 0.88;
 
-/** Slider track width inside the menu audio row. */
-export const UI_MENU_AUDIO_SLIDER_WIDTH = UI_BASE_SIZE * 1.35;
-
-export const UI_MENU_AUDIO_SLIDER_HEIGHT = 12;
-
-export const UI_MENU_AUDIO_THUMB_SIZE = 24;
-
-/** Total width of one audio control row (toggle label + slider). */
-export const UI_MENU_AUDIO_ROW_WIDTH =
-	UI_MENU_AUDIO_LABEL_WIDTH + UI_MENU_AUDIO_GAP + UI_MENU_AUDIO_SLIDER_WIDTH;
+/** Total width of one audio control row (toggle only). */
+export const UI_MENU_AUDIO_ROW_WIDTH = UI_MENU_AUDIO_LABEL_WIDTH;
 
 /** Shared size for SOUND / MUSIC / INFO menu toggle buttons. */
 export const UI_MENU_TOGGLE_SIZES = {
@@ -400,39 +389,32 @@ export const UI_MENU_PANEL = {
 	borderRadius: UI_BORDER_RADIUS.menuPanel,
 } as const;
 
-/** Horizontal layout offsets for a left-anchored audio menu row (anchor x = 0). */
-export const getUiMenuAudioRowLayout = () => {
-	const toggleCenterX = UI_MENU_AUDIO_LABEL_WIDTH * 0.5;
-	const sliderCenterX =
-		UI_MENU_AUDIO_LABEL_WIDTH + UI_MENU_AUDIO_GAP + UI_MENU_AUDIO_SLIDER_WIDTH * 0.5;
-
-	return { toggleCenterX, sliderCenterX };
-};
-
 export type UiMenuPanelLayout = {
 	panelLeftX: number;
 	panelTopY: number;
 	panelWidth: number;
 	panelHeight: number;
-	rowLeftX: number;
+	rowCenterX: number;
 	menuCenterX: number;
-	infoCenterX: number;
 	soundY: number;
 	musicY: number;
 	infoY: number;
 };
 
-/** Positions the menu panel flush with the menu button (left-aligned, opens upward). */
+/** Positions the menu panel flush with the menu button (center-aligned, opens upward). */
 export const getUiMenuPanelLayout = (
 	menuScale: number,
 	menuCenterY: number = UI_BAR_SLOT_CENTER_Y,
 	menuCenterX: number = UI_BAR_SLOTS.menu,
 ): UiMenuPanelLayout => {
 	const menuButtonSize = UI_BASE_SIZE * menuScale;
-	const panelLeftX = menuCenterX - menuButtonSize * 0.5;
-	const rowLeftX = panelLeftX + UI_MENU_PANEL.paddingX;
-	const panelWidth = Math.max(UI_MENU_PANEL.width, menuButtonSize + UI_MENU_PANEL.paddingX * 2);
-	const infoCenterX = rowLeftX + UI_MENU_AUDIO_LABEL_WIDTH * 0.5;
+	const panelWidth = Math.max(
+		UI_MENU_PANEL.width,
+		menuButtonSize + UI_MENU_PANEL.paddingX * 2,
+		UI_MENU_AUDIO_ROW_WIDTH + UI_MENU_PANEL.paddingX * 2,
+	);
+	const panelLeftX = menuCenterX - panelWidth * 0.5;
+	const rowCenterX = menuCenterX;
 
 	const menuButtonTop = menuCenterY - menuButtonSize * 0.5;
 	const panelBottomY = menuButtonTop - UI_MENU_PANEL.gapAboveMenu;
@@ -457,9 +439,8 @@ export const getUiMenuPanelLayout = (
 		panelTopY,
 		panelWidth,
 		panelHeight,
-		rowLeftX,
+		rowCenterX,
 		menuCenterX,
-		infoCenterX,
 		soundY,
 		musicY,
 		infoY,
