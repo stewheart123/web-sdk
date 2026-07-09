@@ -215,7 +215,7 @@ export type BonusTransitionLayoutSettings = {
 	scale?: number;
 };
 
-export type BitmapFontId = 'gold' | 'goldBlur' | 'silver' | 'purple';
+export type BitmapFontId = 'gold';
 
 export type BitmapFontUsage =
 	| 'winBig'
@@ -334,12 +334,6 @@ export const VISUAL_LAYOUT = {
 				frame: { offsetX: 8, offsetY: 70, width: 840, height: 688 * 1.1 },
 			},
 		} satisfies Record<LayoutType, LayoutBoardSettings>,
-		anticipation: {
-			width: 114,
-			height: 326,
-			/** Subtracted from board centre y in board-local pixels. */
-			yOffset: 12,
-		},
 	},
 	// layoutSpace: virtual — GameLogo.svelte inside MainContainer
 	logo: {
@@ -593,8 +587,6 @@ export const VISUAL_LAYOUT = {
 		bigText: { label: 'Win/BigText' },
 		normalText: { label: 'Win/NormalText' },
 		bigAnimation: { label: 'Win/BigAnimation' },
-		coins: { label: 'Win/Coins' },
-		coinsEmitter: { label: 'Win/Coins/Emitter' },
 		layout: {
 			bigWinTextContainerScale: 0.7,
 			bigWinTextMaxWidth: 2130,
@@ -672,7 +664,6 @@ export const VISUAL_LAYOUT = {
 		freeSpinModal: { label: 'Layout/FreeSpinModal' },
 		pressToContinue: { label: 'Layout/PressToContinue' },
 		win: { label: 'Layout/Win' },
-		winCoins: { label: 'Layout/WinCoins' },
 		freeSpinCounter: { label: 'Layout/FreeSpinCounter' },
 		loading: { label: 'Layout/Loading' },
 	},
@@ -749,13 +740,11 @@ export const VISUAL_LAYOUT = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// Dynamic scene labels (symbols, per-reel anticipation)
+// Dynamic scene labels (symbols)
 // ---------------------------------------------------------------------------
 
 export const sceneLabel = {
 	symbol: (reel: number, row: number) => `Board/Symbol/R${reel}C${row}`,
-	anticipation: (reel: number) => `Board/Anticipation/R${reel}`,
-	anticipationSpine: (reel: number) => `Board/Anticipation/R${reel}/Spine`,
 	symbolMultiplier: (reel: number, row: number) => `Board/Symbol/R${reel}C${row}/Multiplier`,
 } as const;
 
@@ -988,8 +977,6 @@ export const SCENE_LABELS = {
 		bigText: VISUAL_LAYOUT.win.bigText.label,
 		normalText: VISUAL_LAYOUT.win.normalText.label,
 		bigAnimation: VISUAL_LAYOUT.win.bigAnimation.label,
-		coins: VISUAL_LAYOUT.win.coins.label,
-		coinsEmitter: VISUAL_LAYOUT.win.coinsEmitter.label,
 		pressToContinue: {
 			bigWin: VISUAL_LAYOUT.win.pressToContinue.bigWin.label,
 			normalWin: VISUAL_LAYOUT.win.pressToContinue.normalWin.label,
@@ -1009,7 +996,6 @@ export const SCENE_LABELS = {
 		freeSpinModal: VISUAL_LAYOUT.layout.freeSpinModal.label,
 		pressToContinue: VISUAL_LAYOUT.layout.pressToContinue.label,
 		win: VISUAL_LAYOUT.layout.win.label,
-		winCoins: VISUAL_LAYOUT.layout.winCoins.label,
 		freeSpinCounter: VISUAL_LAYOUT.layout.freeSpinCounter.label,
 		loading: VISUAL_LAYOUT.layout.loading.label,
 	},
@@ -1075,8 +1061,6 @@ export const FRAME_GLOW = {
 export const LOGO_LAYOUT_BY_TYPE = VISUAL_LAYOUT.logo.layoutByType;
 
 export const MODIFIER_LAYOUT_BY_TYPE = VISUAL_LAYOUT.modifier.layoutByType;
-
-export const ANTICIPATION = VISUAL_LAYOUT.board.anticipation;
 
 export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutByType;
 

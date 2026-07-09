@@ -20,9 +20,6 @@ export type BitmapFontConfig = {
 
 export const BITMAP_FONTS: Record<BitmapFontId, BitmapFontConfig> = {
 	gold: { family: 'gold', scale: 0.5, letterSpacing: -10, atlasSize: 72 },
-	goldBlur: { family: 'goldblur', scale: 1, letterSpacing: 0, atlasSize: 376 },
-	silver: { family: 'silver', scale: 0.5, letterSpacing: 0, atlasSize: 97 },
-	purple: { family: 'purple', scale: 1, letterSpacing: 0, atlasSize: 177 },
 };
 
 /** @deprecated Use TEXT_LAYOUT from visualLayoutConfig */
