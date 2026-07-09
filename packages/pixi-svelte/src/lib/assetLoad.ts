@@ -1,5 +1,5 @@
 import * as SPINE_PIXI from '@esotericsoftware/spine-pixi-v8';
-import type { RawType, RawAsset, RawSpine, RawSprites, SpineSrc, RawAudio } from './types';
+import type { FontSrc, RawType, RawAsset, RawSpine, RawSprites, SpineSrc, RawAudio } from './types';
 
 const PROCESS_METHOD_MAP = {
 	spine: ({ key, rawAsset, src }: { key: string; rawAsset: RawSpine; src: SpineSrc }) => {
@@ -35,7 +35,7 @@ export const getProcessed = ({
 	key: string;
 	type: RawType;
 	rawAsset: RawAsset;
-	src: string | SpineSrc;
+	src: string | SpineSrc | FontSrc;
 }) => {
 	if (type === 'font') return; // No need to process raw font data and add it to the loaded assets.
 	const processMethod = PROCESS_METHOD_MAP[type];

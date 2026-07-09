@@ -8,6 +8,12 @@ const config: StorybookConfig = {
 		options: {},
 	},
 	staticDirs: ['../static'],
+	viteFinal: async (config) => {
+		config.build = config.build ?? {};
+		// Keep assets as separate files so spine/spritesheet relative paths resolve in dev.
+		config.build.assetsInlineLimit = 0;
+		return config;
+	},
 };
 
 export default config;

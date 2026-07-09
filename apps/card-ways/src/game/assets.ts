@@ -11,7 +11,10 @@ export default {
 	},
 	pressToContinueText: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE.png', import.meta.url).href,
+		},
 		preload: true,
 	},
 	cardSymbols: {
@@ -19,6 +22,8 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/cardSymbols/SYMBOLS.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/cardSymbols/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/cardSymbols/SYMBOLS.png', import.meta.url).href,
+			texturePage2: new URL('../../assets/spines/cardSymbols/SYMBOLS_2.png', import.meta.url).href,
 		},
 	},
 	reelsFrame: {
@@ -31,7 +36,10 @@ export default {
 	},
 	goldFont: {
 		type: 'font',
-		src: new URL('../../assets/fonts/goldFont/stenz-glow-green.xml', import.meta.url).href,
+		src: {
+			xml: new URL('../../assets/fonts/goldFont/stenz-glow-green.xml', import.meta.url).href,
+			image: new URL('../../assets/fonts/goldFont/stenz-glow-green.png', import.meta.url).href,
+		},
 	},
 	bigwin: {
 		type: 'spine',
@@ -47,6 +55,7 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/fsIntro/MODAL.png', import.meta.url).href,
 			scale: 2,
 		},
 	},
@@ -65,42 +74,67 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/fsIntro/MODAL.png', import.meta.url).href,
 			scale: 2,
 		},
 	},
 	progressBar: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/progressBar/LOADING.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/progressBar/LOADING.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/progressBar/LOADING.png', import.meta.url).href,
+		},
 		preload: true,
 	},
 	uiButtons: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.png', import.meta.url).href,
+		},
 		preload: true,
 	},
 	freeSpins: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage.png', import.meta.url).href,
+		},
 	},
 	freeSpins2: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/freeSpins/freeSpins_2.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/freeSpins/freeSpins_2.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_2.png', import.meta.url).href,
+		},
 	},
 	freeSpinsMultiLang: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.png', import.meta.url).href,
+		},
 	},
 	freeSpinModal: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/reelsFrame/MODAL.json', import.meta.url).href,
+		src: {
+			json: new URL('../../assets/sprites/reelsFrame/MODAL.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/reelsFrame/MODAL.png', import.meta.url).href,
+		},
 	},
 	winSmall: {
 		type: 'sprites',
-		src: '/assets/sprites/winSmall/winSmall.json',
+		src: {
+			json: new URL('../../assets/sprites/winSmall/winSmall.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/winSmall/winSmall.png', import.meta.url).href,
+		},
 	},
 	winSmall2: {
 		type: 'sprites',
-		src: '/assets/sprites/winSmall/winSmall_2.json',
+		src: {
+			json: new URL('../../assets/sprites/winSmall/winSmall_2.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/winSmall/winSmall_2.png', import.meta.url).href,
+		},
 	},
 	bonusTransition: {
 		type: 'spine',

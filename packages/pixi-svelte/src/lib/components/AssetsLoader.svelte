@@ -5,7 +5,8 @@
 	import { getContextApp } from '../context.svelte';
 	import { applyNearestScaleModeToBitmapFont } from '../bitmapFontUtils';
 	import { getProcessed } from '../assetLoad';
-	import type { LoadedAssets, RawAsset } from '../types';
+	import { loadFontBundle, loadSpineBundle, toAbsoluteAssetUrl } from '../resolvedAssetLoad';
+	import type { FontSrc, LoadedAssets, RawAsset, RawSprites, SpineSrc, SpritesSrc } from '../types';
 
 	type Props = { children: Snippet };
 
@@ -40,19 +41,69 @@
 		}
 	};
 
+	const isFontSrc = (src: string | SpritesSrc | SpineSrc | FontSrc): src is FontSrc =>
+		typeof src === 'object' && src !== null && 'xml' in src && 'image' in src;
+
+	const isSpineSrc = (
+		src: string | SpritesSrc | SpineSrc | FontSrc,
+	): src is SpineSrc & Record<string, string | number | undefined> =>
+		typeof src === 'object' && src !== null && 'atlas' in src && 'skeleton' in src;
+
+	const isSpritesSrc = (src: string | SpritesSrc | SpineSrc | FontSrc): src is SpritesSrc =>
+		typeof src === 'object' && src !== null && 'json' in src && 'image' in src;
+
+	const loadSpritesheet = async (src: SpritesSrc): Promise<RawSprites> => {
+		const imageUrl = toAbsoluteAssetUrl(src.image);
+		const jsonUrl = toAbsoluteAssetUrl(src.json);
+		const texture = await PIXI.Assets.load<PIXI.Texture>(imageUrl);
+		const response = await fetch(jsonUrl);
+		if (!response.ok) {
+			throw new Error(`Failed to load spritesheet json: ${jsonUrl}`);
+		}
+		const data = await response.json();
+		const spritesheet = new PIXI.Spritesheet(texture, data);
+		await spritesheet.parse();
+		return { textures: spritesheet.textures };
+	};
+
+	const loadAsset = async ({
+		key,
+		type,
+		src,
+	}: {
+		key: string;
+		type: string;
+		src: string | SpritesSrc | SpineSrc | FontSrc;
+	}) => {
+		if (type === 'sprites' && isSpritesSrc(src)) {
+			const rawAsset = await loadSpritesheet(src);
+			return getProcessed({ key, rawAsset, type, src });
+		}
+
+		if (type === 'spine' && isSpineSrc(src)) {
+			const rawAsset = await loadSpineBundle(src, onProgress);
+			return getProcessed({ key, rawAsset, type, src });
+		}
+
+		if (type === 'font') {
+			const rawAsset = await loadFontBundle(
+				isFontSrc(src) ? src : (src as string),
+				onProgress,
+			);
+			applyNearestScaleModeToBitmapFont(rawAsset);
+			return getProcessed({ key, rawAsset, type, src });
+		}
+
+		const rawAsset = await PIXI.Assets.load<RawAsset>(toAbsoluteAssetUrl(src as string), onProgress);
+		return getProcessed({ key, rawAsset, type, src });
+	};
+
 	const loadAssets = async (nameList: string[]) => {
 		const loadedAssetsArray = await Promise.all(
 			nameList.map(async (key) => {
 				try {
 					const { type, src } = context.stateApp.assets![key];
-					const loadSrc =
-						type === 'spine' ? Object.values(src).filter((item) => typeof item === 'string') : src;
-					const rawAsset = await PIXI.Assets.load<RawAsset>(loadSrc, onProgress);
-					if (type === 'font') {
-						applyNearestScaleModeToBitmapFont(rawAsset);
-					}
-					const processed = getProcessed({ key, rawAsset, type, src });
-					return processed;
+					return await loadAsset({ key, type, src });
 				} catch (error) {
 					console.error(error);
 				}

@@ -1,5 +1,6 @@
 import { DEFAULT_GAME_RULE_META } from 'state-shared/src/constants';
 import type { GameRuleContainer, GameRuleData } from 'state-shared';
+import { toAbsoluteAssetUrl } from 'pixi-svelte';
 
 import { t } from '../i18n/translate';
 import config from './config';
@@ -9,49 +10,51 @@ const baseRtp = config.betModes.base.rtp * 100;
 const bonusRtp = config.betModes.bonus.rtp * 100;
 const maxWin = config.betModes.base.max_win;
 
-const GAME_RULES_BASE = '/assets/sprites/gameRules';
-
-const GAME_RULE_IMAGE = {
-	ace: `${GAME_RULES_BASE}/ACE.png`,
-	king: `${GAME_RULES_BASE}/KING.png`,
-	queen: `${GAME_RULES_BASE}/QUEEN.png`,
-	jack: `${GAME_RULES_BASE}/JACK.png`,
-	ten: `${GAME_RULES_BASE}/TEN.png`,
-	nine: `${GAME_RULES_BASE}/NINE.png`,
-	wild: `${GAME_RULES_BASE}/WILD.png`,
-	scatter: `${GAME_RULES_BASE}/SCATTER.png`,
-	nonWin: `${GAME_RULES_BASE}/NON-WIN.png`,
-	x1: `${GAME_RULES_BASE}/X1.png`,
-	x2: `${GAME_RULES_BASE}/X2.png`,
-	x3: `${GAME_RULES_BASE}/X3.png`,
-	autoplay: `${GAME_RULES_BASE}/autoplay_interact_hover.png`,
-	bonusBuy: `${GAME_RULES_BASE}/bonus_buy_interact_hover.png`,
-	turbo: `${GAME_RULES_BASE}/turbo_interact_hover.png`,
-} as const;
-
-const MODIFIER_IMAGES = [GAME_RULE_IMAGE.x1, GAME_RULE_IMAGE.x2, GAME_RULE_IMAGE.x3] as const;
-
-const FALLBACK_IMAGE = {
-	winWays: 'https://staging-1-0.twist-game.app/_app/immutable/assets/winWays.be45a8a4.png',
-	rtp97: 'https://staging-1-0.twist-game.app/_app/immutable/assets/rtp97.d2febd7d.svg',
-} as const;
-
-const SYMBOL_IMAGE_MAP: Record<string, string> = {
-	A: GAME_RULE_IMAGE.ace,
-	K: GAME_RULE_IMAGE.king,
-	Q: GAME_RULE_IMAGE.queen,
-	J: GAME_RULE_IMAGE.jack,
-	'10': GAME_RULE_IMAGE.ten,
-	'9': GAME_RULE_IMAGE.nine,
+type GameRuleImages = {
+	ace: string;
+	king: string;
+	queen: string;
+	jack: string;
+	ten: string;
+	nine: string;
+	wild: string;
+	scatter: string;
+	nonWin: string;
+	x1: string;
+	x2: string;
+	x3: string;
+	autoplay: string;
+	bonusBuy: string;
+	turbo: string;
 };
 
-const SPECIAL_SYMBOL_IMAGE_MAP: Record<string, string> = {
-	'NON-WIN': GAME_RULE_IMAGE.nonWin,
-	WILD: GAME_RULE_IMAGE.wild,
-	SCATTER: GAME_RULE_IMAGE.scatter,
-	'×1': GAME_RULE_IMAGE.x1,
-	'×2': GAME_RULE_IMAGE.x2,
-	'×3': GAME_RULE_IMAGE.x3,
+/** Resolve hashed Vite asset paths against the live game origin at runtime. */
+const createGameRuleImages = (): GameRuleImages => {
+	const images = {
+		ace: new URL('../../assets/sprites/gameRules/ACE.png', import.meta.url).href,
+		king: new URL('../../assets/sprites/gameRules/KING.png', import.meta.url).href,
+		queen: new URL('../../assets/sprites/gameRules/QUEEN.png', import.meta.url).href,
+		jack: new URL('../../assets/sprites/gameRules/JACK.png', import.meta.url).href,
+		ten: new URL('../../assets/sprites/gameRules/TEN.png', import.meta.url).href,
+		nine: new URL('../../assets/sprites/gameRules/NINE.png', import.meta.url).href,
+		wild: new URL('../../assets/sprites/gameRules/WILD.png', import.meta.url).href,
+		scatter: new URL('../../assets/sprites/gameRules/SCATTER.png', import.meta.url).href,
+		nonWin: new URL('../../assets/sprites/gameRules/NON-WIN.png', import.meta.url).href,
+		x1: new URL('../../assets/sprites/gameRules/X1.png', import.meta.url).href,
+		x2: new URL('../../assets/sprites/gameRules/X2.png', import.meta.url).href,
+		x3: new URL('../../assets/sprites/gameRules/X3.png', import.meta.url).href,
+		autoplay: new URL('../../assets/sprites/gameRules/autoplay_interact_hover.png', import.meta.url)
+			.href,
+		bonusBuy: new URL(
+			'../../assets/sprites/gameRules/bonus_buy_interact_hover.png',
+			import.meta.url,
+		).href,
+		turbo: new URL('../../assets/sprites/gameRules/turbo_interact_hover.png', import.meta.url).href,
+	} satisfies GameRuleImages;
+
+	return Object.fromEntries(
+		Object.entries(images).map(([key, url]) => [key, toAbsoluteAssetUrl(url)]),
+	) as GameRuleImages;
 };
 
 const PAYING_SYMBOL_ORDER = ['A', 'K', 'Q', 'J', '10', '9'] as const;
@@ -72,7 +75,25 @@ const formatPaytableText = (paytable: Array<Record<string, number>>): string => 
 		.join('\n');
 };
 
-const buildSymbolContainers = (): GameRuleContainer[] => {
+const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
+	const symbolImageMap: Record<string, string> = {
+		A: images.ace,
+		K: images.king,
+		Q: images.queen,
+		J: images.jack,
+		'10': images.ten,
+		'9': images.nine,
+	};
+
+	const specialSymbolImageMap: Record<string, string> = {
+		'NON-WIN': images.nonWin,
+		WILD: images.wild,
+		SCATTER: images.scatter,
+		'×1': images.x1,
+		'×2': images.x2,
+		'×3': images.x3,
+	};
+
 	const containers: GameRuleContainer[] = PAYING_SYMBOL_ORDER.map((symbolName, index) => {
 		const symbol = config.symbols[symbolName as keyof typeof config.symbols] as ConfigSymbol;
 		const row = Math.floor(index / 3);
@@ -81,7 +102,7 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 		return {
 			title: '',
 			text: formatPaytableText(symbol.paytable ?? []),
-			image: SYMBOL_IMAGE_MAP[symbolName],
+			image: symbolImageMap[symbolName],
 			imagePosition: 'left' as const,
 			row,
 			column,
@@ -101,7 +122,7 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 		containers.push({
 			title: special.title,
 			text: t(special.textKey),
-			image: SPECIAL_SYMBOL_IMAGE_MAP[special.title],
+			image: specialSymbolImageMap[special.title],
 			imagePosition: 'left',
 			row: special.row,
 			column: special.column,
@@ -111,11 +132,11 @@ const buildSymbolContainers = (): GameRuleContainer[] => {
 	return containers;
 };
 
-const buildUiGuideContainers = (): GameRuleContainer[] => [
+const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => [
 	{
 		title: '',
 		text: t('GR.UI.AUTO_SPIN'),
-		image: GAME_RULE_IMAGE.autoplay,
+		image: images.autoplay,
 		imagePosition: 'left',
 		row: 0,
 		column: 0,
@@ -123,7 +144,7 @@ const buildUiGuideContainers = (): GameRuleContainer[] => [
 	{
 		title: '',
 		text: t('GR.UI.BUY_BONUS'),
-		image: GAME_RULE_IMAGE.bonusBuy,
+		image: images.bonusBuy,
 		imagePosition: 'left',
 		row: 1,
 		column: 0,
@@ -131,7 +152,7 @@ const buildUiGuideContainers = (): GameRuleContainer[] => [
 	{
 		title: '',
 		text: t('GR.UI.TURBO'),
-		image: GAME_RULE_IMAGE.turbo,
+		image: images.turbo,
 		imagePosition: 'left',
 		row: 2,
 		column: 0,
@@ -146,6 +167,9 @@ const numericValues = {
 };
 
 export const buildCardWaysGameRuleMeta = () => {
+	const images = createGameRuleImages();
+	const modifierImages = [images.x1, images.x2, images.x3] as const;
+
 	const payTableSections: GameRuleData[] = [
 		{
 			title: '',
@@ -163,7 +187,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: t('GR.WILD_SYMBOL.TITLE'),
 					text: t('GR.WILD_SYMBOL.TEXT'),
-					image: GAME_RULE_IMAGE.wild,
+					image: images.wild,
 					imagePosition: 'left',
 					row: 1,
 					column: 0,
@@ -171,7 +195,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: t('GR.SCATTER_FREE_SPINS.TITLE'),
 					text: t('GR.SCATTER_FREE_SPINS.TEXT'),
-					image: GAME_RULE_IMAGE.scatter,
+					image: images.scatter,
 					imagePosition: 'left',
 					row: 2,
 					column: 0,
@@ -180,7 +204,7 @@ export const buildCardWaysGameRuleMeta = () => {
 					title: t('GR.MODIFIER_BASE.TITLE'),
 					text: t('GR.MODIFIER_BASE.TEXT'),
 					image: '',
-					images: [...MODIFIER_IMAGES],
+					images: [...modifierImages],
 					imagePosition: 'left',
 					row: 3,
 					column: 0,
@@ -189,7 +213,7 @@ export const buildCardWaysGameRuleMeta = () => {
 					title: t('GR.MODIFIER_FREE_SPINS.TITLE'),
 					text: t('GR.MODIFIER_FREE_SPINS.TEXT'),
 					image: '',
-					images: [...MODIFIER_IMAGES],
+					images: [...modifierImages],
 					imagePosition: 'left',
 					row: 4,
 					column: 0,
@@ -208,7 +232,7 @@ export const buildCardWaysGameRuleMeta = () => {
 			title: t('GR.SECTION.PAYTABLE'),
 			rows: 4,
 			columns: 3,
-			containers: buildSymbolContainers(),
+			containers: buildSymbolContainers(images),
 		},
 		{
 			title: t('GR.SECTION.WIN_WAYS'),
@@ -218,7 +242,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: '',
 					text: t('GR.WIN_WAYS.TEXT'),
-					image: FALLBACK_IMAGE.winWays,
+					image: images.nonWin,
 					imagePosition: 'top',
 					row: 0,
 					column: 0,
@@ -236,7 +260,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: '',
 					text: t('GR.BET_MODES.TEXT', numericValues),
-					image: FALLBACK_IMAGE.rtp97,
+					image: images.scatter,
 					imagePosition: 'top',
 					row: 0,
 					column: 0,
@@ -251,7 +275,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: t('GR.BONUS_BUY.TITLE'),
 					text: t('GR.BONUS_BUY.TEXT', numericValues),
-					image: GAME_RULE_IMAGE.bonusBuy,
+					image: images.bonusBuy,
 					imagePosition: 'left',
 					row: 0,
 					column: 0,
@@ -262,7 +286,7 @@ export const buildCardWaysGameRuleMeta = () => {
 			title: t('GR.SECTION.UI_GUIDE'),
 			rows: 3,
 			columns: 1,
-			containers: buildUiGuideContainers(),
+			containers: buildUiGuideContainers(images),
 		},
 		{
 			title: t('GR.SECTION.LEGAL_NOTICE'),

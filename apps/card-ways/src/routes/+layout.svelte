@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
+	import { base } from '$app/paths';
 	import { GlobalStyle } from 'components-ui-html';
 	import { Authenticate, LoaderStakeEngine, LoaderExample } from 'components-shared';
+	import { toAbsoluteAssetUrl } from 'pixi-svelte';
 	import Game from '../components/Game.svelte';
 	import InitializeLocale from '../components/InitializeLocale.svelte';
 	import { setContext } from '../game/context';
@@ -12,8 +14,9 @@
 
 	let showYourLoader = $state(false);
 
-	const loaderUrlStakeEngine = new URL('../../stake-engine-loader.gif', import.meta.url).href;
-	const loaderUrl = new URL('../../loader.gif', import.meta.url).href;
+	// Static files live in /static and are copied to the build root, not under _app/.
+	const loaderUrlStakeEngine = toAbsoluteAssetUrl(`${base}/stake-engine-loader.gif`);
+	const loaderUrl = toAbsoluteAssetUrl(`${base}/loader.gif`);
 
 	setContext();
 </script>
@@ -30,8 +33,7 @@
 
 {#if showYourLoader}
 	<LoaderExample src={loaderUrl} />
-	<!-- '/loader.gif' is served from static folder of sveltekit -->
-	<!-- File location: apps/scatter/static/loader.gif -->
+	<!-- Served from apps/card-ways/static/ -->
 {/if}
 
 {@render props.children()}
