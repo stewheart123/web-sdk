@@ -26,9 +26,7 @@
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import ModifierReel from './ModifierReel.svelte';
-	import I18nTest from './I18nTest.svelte';
 	import GameLogo from './GameLogo.svelte';
-	import MainContainerDebugOverlay from './MainContainerDebugOverlay.svelte';
 
 	const context = getContext();
 
@@ -72,8 +70,6 @@
 			<ModifierReel />
 		</MainContainer>
 
-		<MainContainerDebugOverlay />
-
 		<UI>
 			{#snippet gameName()}
 				<UiGameName name="CARD WAYS" />
@@ -85,8 +81,6 @@
 		<FreeSpinCounter />
 		<FreeSpinOutro />
 		<Transition />
-
-		<I18nTest />
 	{/if}
 </App>
 

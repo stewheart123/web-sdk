@@ -720,10 +720,6 @@ export const VISUAL_LAYOUT = {
 			tablet: { xRatio: 0.5, yRatio: 0.9, heightScale: 2 },
 		} satisfies Record<LayoutType, BonusTransitionLayoutSettings>,
 	},
-	// layoutSpace: n/a — dev-only labels
-	dev: {
-		i18nTest: { label: 'Dev/I18nTest' },
-	},
 	// layoutSpace: meta — mainSizesByType defines the virtual design box per layoutType
 	canvas: {
 		mainSizesByType: {
@@ -1037,9 +1033,6 @@ export const SCENE_LABELS = {
 	},
 	transition: {
 		bonus: VISUAL_LAYOUT.transition.bonus.label,
-	},
-	dev: {
-		i18nTest: VISUAL_LAYOUT.dev.i18nTest.label,
 	},
 } as const;
 
