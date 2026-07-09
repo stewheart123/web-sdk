@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Aktywuje tryb Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'PRZEGLĄD GRY',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS to automat ways z 5 bębnami i 2 rzędami w tematyce kart. Wygrane powstają przez dopasowanie symboli na sąsiednich bębnach od lewej do prawej. Bęben Modyfikatora obok planszy może zwiększyć wygrane mnożnikami do ×3.',
+		'BOOSTER BREAK WAYS to automat ways z 5 bębnami i 2 rzędami w tematyce kart. Wygrane powstają przez dopasowanie symboli na sąsiednich bębnach od lewej do prawej. Bęben Modyfikatora obok planszy może zwiększyć wygrane mnożnikami do ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'SYMBOL WILD',
 	'GR.WILD_SYMBOL.TEXT': 'Wild zastępuje wszystkie płatne symbole. Wild nie zastępuje Scattera.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / DARMOWE SPINY',

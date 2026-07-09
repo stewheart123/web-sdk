@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Aktivoi turbotilan.',
 	'GR.GAME_OVERVIEW.TITLE': 'PELIN YLEISKATSAUS',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS on 5-rullainen, 2-rivinen tapa-automaatti pelikorttiteemalla. Voitot muodostuvat vastaavista symboleista vierekkäisillä rullilla vasemmalta oikealle. Muokkaajarulla pelialustan vieressä voi kasvattaa voittoja kertoimilla jopa ×3.',
+		'BOOSTER BREAK WAYS on 5-rullainen, 2-rivinen tapa-automaatti pelikorttiteemalla. Voitot muodostuvat vastaavista symboleista vierekkäisillä rullilla vasemmalta oikealle. Muokkaajarulla pelialustan vieressä voi kasvattaa voittoja kertoimilla jopa ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'WILD-SYMBOLI',
 	'GR.WILD_SYMBOL.TEXT': 'Wild korvaa kaikki maksavat symbolit. Wild ei korvaa Scatteria.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / ILMAISKIERROKSET',

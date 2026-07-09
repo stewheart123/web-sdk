@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Turbo Modunu etkinleştirir.',
 	'GR.GAME_OVERVIEW.TITLE': 'OYUNA GENEL BAKIŞ',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS, iskambil kartı temalı 5 makaralı, 2 sıralı bir yollar slotudur. Kazançlar soldan sağa bitişik makaralarda eşleşen sembollerle oluşur. Tahtanın yanındaki Değiştirici Makara, kazançları ×3\'e kadar çarpanlarla artırabilir.',
+		'BOOSTER BREAK WAYS, iskambil kartı temalı 5 makaralı, 2 sıralı bir yollar slotudur. Kazançlar soldan sağa bitişik makaralarda eşleşen sembollerle oluşur. Tahtanın yanındaki Değiştirici Makara, kazançları ×3\'e kadar çarpanlarla artırabilir.',
 	'GR.WILD_SYMBOL.TITLE': 'WILD SEMBOLÜ',
 	'GR.WILD_SYMBOL.TEXT': 'Wild tüm ödemeli sembollerin yerine geçer. Wild, Scatter\'ın yerine geçmez.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / ÜCRETSİZ DÖNDÜRME',

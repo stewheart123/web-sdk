@@ -1,4 +1,4 @@
-ï»¿from pathlib import Path
+from pathlib import Path
 APP = Path(__file__).resolve().parent.parent / "src"
 
 modifier_reel = r"""<script lang="ts" module>
@@ -99,7 +99,7 @@ modifier_reel = r"""<script lang="ts" module>
 					<SpineSlot slotName="slot_multi">
 						<BitmapText
 							anchor={0.5}
-							text={`${Math.round(previousMultiplier.current)}Ã—`}
+							text={`${Math.round(previousMultiplier.current)}×`}
 							style={{
 								fontFamily: 'gold',
 								fontSize: SYMBOL_SIZE * 5.2,
@@ -109,7 +109,7 @@ modifier_reel = r"""<script lang="ts" module>
 					<SpineSlot slotName="slot_multi_next">
 						<BitmapText
 							anchor={0.5}
-							text={`${multiplier}Ã—`}
+							text={`${multiplier}×`}
 							style={{
 								fontFamily: 'gold',
 								fontSize: SYMBOL_SIZE * 5.2,
@@ -142,7 +142,7 @@ game = game.replace(
 )
 game = game.replace(
     "<UiGameName name=\"WAYS GAME\" />",
-    "<UiGameName name=\"CARD WAYS\" />",
+    "<UiGameName name=\"BOOSTER BREAK WAYS\" />",
 )
 game = game.replace(
     "<Anticipations />\n\t\t</MainContainer>",

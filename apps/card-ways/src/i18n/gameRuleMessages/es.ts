@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Activa el Modo Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'RESUMEN DEL JUEGO',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS es una tragamonedas de formas con 5 rodillos y 2 filas con temática de cartas. Los premios se forman al coincidir símbolos en rodillos adyacentes de izquierda a derecha. Un Rodillo Modificador junto al tablero puede aumentar los premios con multiplicadores de hasta ×3.',
+		'BOOSTER BREAK WAYS es una tragamonedas de formas con 5 rodillos y 2 filas con temática de cartas. Los premios se forman al coincidir símbolos en rodillos adyacentes de izquierda a derecha. Un Rodillo Modificador junto al tablero puede aumentar los premios con multiplicadores de hasta ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'SÍMBOLO WILD',
 	'GR.WILD_SYMBOL.TEXT':
 		'El Wild sustituye a todos los símbolos de pago. El Wild no sustituye al Scatter.',

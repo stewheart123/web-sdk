@@ -72,7 +72,7 @@
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="CARD WAYS" />
+				<UiGameName name="BOOSTER BREAK WAYS" />
 			{/snippet}
 			{#snippet logo()}{/snippet}
 		</UI>

@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': '加速 | 激活加速模式。',
 	'GR.GAME_OVERVIEW.TITLE': '游戏概览',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS是一款5转轴、2行、路数赔付的老虎机，采用扑克牌主题。从左至右在相邻转轴上匹配符号即可获胜。棋盘旁的修饰转轴可用最高×3的倍数提升奖金。',
+		'BOOSTER BREAK WAYS是一款5转轴、2行、路数赔付的老虎机，采用扑克牌主题。从左至右在相邻转轴上匹配符号即可获胜。棋盘旁的修饰转轴可用最高×3的倍数提升奖金。',
 	'GR.WILD_SYMBOL.TITLE': '百搭符号',
 	'GR.WILD_SYMBOL.TEXT': '百搭可替代所有赔付符号。百搭不能替代Scatter。',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / 免费旋转',

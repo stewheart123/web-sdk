@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': '터보 | 터보 모드를 활성화합니다.',
 	'GR.GAME_OVERVIEW.TITLE': '게임 개요',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS는 5릴 2행 웨이 슬롯으로 플레이링 카드 테마입니다. 왼쪽에서 오른쪽으로 인접 릴에서 심볼이 일치하면 당첨됩니다. 보드 옆 수정자 릴이 최대 ×3 배수로 당첨을 높일 수 있습니다.',
+		'BOOSTER BREAK WAYS는 5릴 2행 웨이 슬롯으로 플레이링 카드 테마입니다. 왼쪽에서 오른쪽으로 인접 릴에서 심볼이 일치하면 당첨됩니다. 보드 옆 수정자 릴이 최대 ×3 배수로 당첨을 높일 수 있습니다.',
 	'GR.WILD_SYMBOL.TITLE': '와일드 심볼',
 	'GR.WILD_SYMBOL.TEXT': '와일드는 모든 지급 심볼을 대체합니다. 스캐터는 대체하지 않습니다.',
 	'GR.SCATTER_FREE_SPINS.TITLE': '스캐터 / 프리 스핀',

@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Aktifkan Mode Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'RINGKASAN PERMAINAN',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS adalah slot cara 5-gulungan, 2-baris bertema kartu remi. Kemenangan terbentuk dengan mencocokkan simbol pada gulungan berdekatan dari kiri ke kanan. Gulungan Pengubah di samping papan dapat meningkatkan kemenangan dengan pengganda hingga ×3.',
+		'BOOSTER BREAK WAYS adalah slot cara 5-gulungan, 2-baris bertema kartu remi. Kemenangan terbentuk dengan mencocokkan simbol pada gulungan berdekatan dari kiri ke kanan. Gulungan Pengubah di samping papan dapat meningkatkan kemenangan dengan pengganda hingga ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'SIMBOL WILD',
 	'GR.WILD_SYMBOL.TEXT': 'Wild menggantikan semua simbol berbayar. Wild tidak menggantikan Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / PUTARAN GRATIS',

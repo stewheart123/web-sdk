@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Activate Turbo Mode.',
 	'GR.GAME_OVERVIEW.TITLE': 'GAME OVERVIEW',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS is a 5-reel, 2-row ways slot with a playing-card theme. Wins are formed by matching symbols on adjacent reels from left to right. A Modifier Reel beside the board can boost wins with multipliers up to ×3.',
+		'BOOSTER BREAK WAYS is a 5-reel, 2-row ways slot with a playing-card theme. Wins are formed by matching symbols on adjacent reels from left to right. A Modifier Reel beside the board can boost wins with multipliers up to ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'WILD SYMBOL',
 	'GR.WILD_SYMBOL.TEXT':
 		'The Wild substitutes for all paying symbols. Wild does not substitute for Scatter.',

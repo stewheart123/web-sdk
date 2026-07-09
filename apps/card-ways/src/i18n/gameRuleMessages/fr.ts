@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Active le Mode Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'APERÇU DU JEU',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS est une machine à façons à 5 rouleaux et 2 rangées sur le thème des cartes à jouer. Les gains se forment en faisant correspondre des symboles sur des rouleaux adjacents de gauche à droite. Un Rouleau Modificateur à côté du plateau peut augmenter les gains avec des multiplicateurs jusqu\'à ×3.',
+		'BOOSTER BREAK WAYS est une machine à façons à 5 rouleaux et 2 rangées sur le thème des cartes à jouer. Les gains se forment en faisant correspondre des symboles sur des rouleaux adjacents de gauche à droite. Un Rouleau Modificateur à côté du plateau peut augmenter les gains avec des multiplicateurs jusqu\'à ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'SYMBOLE WILD',
 	'GR.WILD_SYMBOL.TEXT':
 		'Le Wild remplace tous les symboles payants. Le Wild ne remplace pas le Scatter.',

@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Aktiviert den Turbo-Modus.',
 	'GR.GAME_OVERVIEW.TITLE': 'SPIELÜBERSICHT',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS ist ein 5-Walzen-, 2-Reihen-Ways-Slot mit Spielkarten-Thema. Gewinne entstehen durch übereinstimmende Symbole auf benachbarten Walzen von links nach rechts. Eine Modifikator-Walze neben dem Spielfeld kann Gewinne mit Multiplikatoren bis ×3 steigern.',
+		'BOOSTER BREAK WAYS ist ein 5-Walzen-, 2-Reihen-Ways-Slot mit Spielkarten-Thema. Gewinne entstehen durch übereinstimmende Symbole auf benachbarten Walzen von links nach rechts. Eine Modifikator-Walze neben dem Spielfeld kann Gewinne mit Multiplikatoren bis ×3 steigern.',
 	'GR.WILD_SYMBOL.TITLE': 'WILD-SYMBOL',
 	'GR.WILD_SYMBOL.TEXT':
 		'Das Wild ersetzt alle zahlenden Symbole. Wild ersetzt kein Scatter.',

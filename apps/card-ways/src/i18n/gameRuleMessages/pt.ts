@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Ativa o Modo Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'VISÃO GERAL DO JOGO',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS é uma slot de formas com 5 rolos e 2 filas com tema de cartas. Os prémios formam-se ao combinar símbolos em rolos adjacentes da esquerda para a direita. Um Rolo Modificador ao lado do tabuleiro pode aumentar prémios com multiplicadores até ×3.',
+		'BOOSTER BREAK WAYS é uma slot de formas com 5 rolos e 2 filas com tema de cartas. Os prémios formam-se ao combinar símbolos em rolos adjacentes da esquerda para a direita. Um Rolo Modificador ao lado do tabuleiro pode aumentar prémios com multiplicadores até ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'SÍMBOLO WILD',
 	'GR.WILD_SYMBOL.TEXT': 'O Wild substitui todos os símbolos pagantes. O Wild não substitui o Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / RODADAS GRÁTIS',

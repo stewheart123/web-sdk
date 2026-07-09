@@ -11,7 +11,7 @@ export default {
 	'GR.UI.TURBO': 'TURBO | Kích hoạt Chế độ Turbo.',
 	'GR.GAME_OVERVIEW.TITLE': 'TỔNG QUAN TRÒ CHƠI',
 	'GR.GAME_OVERVIEW.TEXT':
-		'CARD WAYS là slot đường thắng 5 cuộn, 2 hàng theo chủ đề bài. Thắng được tạo khi khớp biểu tượng trên các cuộn liền kề từ trái sang phải. Cuộn Điều Chỉnh bên cạnh bảng có thể tăng thắng với hệ số nhân lên đến ×3.',
+		'BOOSTER BREAK WAYS là slot đường thắng 5 cuộn, 2 hàng theo chủ đề bài. Thắng được tạo khi khớp biểu tượng trên các cuộn liền kề từ trái sang phải. Cuộn Điều Chỉnh bên cạnh bảng có thể tăng thắng với hệ số nhân lên đến ×3.',
 	'GR.WILD_SYMBOL.TITLE': 'BIỂU TƯỢNG WILD',
 	'GR.WILD_SYMBOL.TEXT': 'Wild thay thế tất cả biểu tượng trả thưởng. Wild không thay thế Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / VÒNG QUAY MIỄN PHÍ',
