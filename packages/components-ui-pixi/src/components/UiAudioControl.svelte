@@ -30,5 +30,6 @@
 	onpress={onToggle}
 	{label}
 	{iconKey}
+	iconTint={0xffffff}
 	variant="light"
 />
