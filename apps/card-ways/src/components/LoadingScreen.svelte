@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { SpineProvider, SpineTrack, Container, Sprite } from 'pixi-svelte';
 	import { FadeContainer, LoadingProgress } from 'components-pixi';
-	import { MainContainer } from 'components-layout';
+	import { MainContainer, OnPressFullScreen } from 'components-layout';
+	import { OnHotkey } from 'components-shared';
 
 	import { getContext } from '../game/context';
 	import { resolveLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
@@ -18,6 +19,10 @@
 	const layout = $derived(resolveLoadingScreenLayout(layoutType));
 
 	let loadingType = $state<'start' | 'transition'>('start');
+
+	const handleContinue = () => {
+		loadingType = 'transition';
+	};
 </script>
 
 <FadeContainer show={loadingType === 'start'} label={SCENE_LABELS.fade.loadingStart}>
@@ -44,12 +49,17 @@
 			{:else}
 				<PressToContinue
 					embedded
+					visualOnly
 					layout={layout.pressToContinue}
-					onpress={() => (loadingType = 'transition')}
+					onpress={handleContinue}
 				/>
 			{/if}
 		</Container>
 	</MainContainer>
+	{#if context.stateApp.loaded}
+		<OnHotkey hotkey="Space" onpress={handleContinue} />
+		<OnPressFullScreen onpress={handleContinue} />
+	{/if}
 </FadeContainer>
 
 <FadeContainer show={loadingType === 'transition'} label={SCENE_LABELS.fade.loadingTransition}>
