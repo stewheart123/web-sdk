@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Menggantikan semua simbol berbayar.',
 	'GR.SYMBOL.SCATTER': '3 atau lebih Scatter memberikan 10 Putaran Gratis.',
 	'GR.SYMBOL.MODIFIER': 'Kartu pengubah. Berlaku untuk kemenangan cara. Tanpa bayaran langsung.',
+	'GR.UI.SPIN': 'PUTAR | Memulai putaran dengan jumlah taruhan saat ini.',
 	'GR.UI.AUTO_SPIN': 'PUTAR OTOMATIS | Buka menu pop-up Putar Otomatis.',
 	'GR.UI.BUY_BONUS': 'BELI BONUS | Buka menu Beli Bonus untuk membeli Putaran Gratis.',
 	'GR.UI.TURBO': 'TURBO | Aktifkan Mode Turbo.',
+	'GR.UI.MUSIC': 'MUSIK | Nyalakan atau matikan musik latar.',
+	'GR.UI.SOUND': 'SUARA | Nyalakan atau matikan efek suara.',
 	'GR.GAME_OVERVIEW.TITLE': 'RINGKASAN PERMAINAN',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS adalah slot cara 5-gulungan, 2-baris bertema kartu remi. Kemenangan terbentuk dengan mencocokkan simbol pada gulungan berdekatan dari kiri ke kanan. Gulungan Pengubah di samping papan dapat meningkatkan kemenangan dengan pengganda hingga ×3.',

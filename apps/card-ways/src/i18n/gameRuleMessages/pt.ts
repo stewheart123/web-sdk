@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Substitui todos os símbolos pagantes.',
 	'GR.SYMBOL.SCATTER': '3 ou mais Scatters concedem 10 Rodadas Grátis.',
 	'GR.SYMBOL.MODIFIER': 'Carta modificadora. Aplica-se a prémios por formas. Sem pagamento direto.',
+	'GR.UI.SPIN': 'RODADA | Inicia uma rodada com o valor de aposta atual.',
 	'GR.UI.AUTO_SPIN': 'RODADA AUTO | Abre o menu pop-up de Rodada Automática.',
 	'GR.UI.BUY_BONUS': 'COMPRAR BÓNUS | Abre o menu Comprar Bónus para adquirir Rodadas Grátis.',
 	'GR.UI.TURBO': 'TURBO | Ativa o Modo Turbo.',
+	'GR.UI.MUSIC': 'MÚSICA | Ativa ou desativa a música de fundo.',
+	'GR.UI.SOUND': 'SOM | Ativa ou desativa os efeitos sonoros.',
 	'GR.GAME_OVERVIEW.TITLE': 'VISÃO GERAL DO JOGO',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS é uma slot de formas com 5 rolos e 2 filas com tema de cartas. Os prémios formam-se ao combinar símbolos em rolos adjacentes da esquerda para a direita. Um Rolo Modificador ao lado do tabuleiro pode aumentar prémios com multiplicadores até ×3.',

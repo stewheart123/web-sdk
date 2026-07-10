@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Tüm ödemeli sembollerin yerine geçer.',
 	'GR.SYMBOL.SCATTER': '3 veya daha fazla Scatter 10 Ücretsiz Döndürme verir.',
 	'GR.SYMBOL.MODIFIER': 'Değiştirici kart. Yol kazançlarına uygulanır. Doğrudan ödeme yok.',
+	'GR.UI.SPIN': 'DÖNDÜR | Mevcut bahis tutarıyla bir döndürme başlatır.',
 	'GR.UI.AUTO_SPIN': 'OTOMATİK DÖNDÜR | Otomatik Döndürme açılır menüsünü açar.',
 	'GR.UI.BUY_BONUS': 'BONUS SATIN AL | Ücretsiz Döndürme satın almak için Bonus Satın Al menüsünü açar.',
 	'GR.UI.TURBO': 'TURBO | Turbo Modunu etkinleştirir.',
+	'GR.UI.MUSIC': 'MÜZİK | Arka plan müziğini açar veya kapatır.',
+	'GR.UI.SOUND': 'SES | Ses efektlerini açar veya kapatır.',
 	'GR.GAME_OVERVIEW.TITLE': 'OYUNA GENEL BAKIŞ',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS, iskambil kartı temalı 5 makaralı, 2 sıralı bir yollar slotudur. Kazançlar soldan sağa bitişik makaralarda eşleşen sembollerle oluşur. Tahtanın yanındaki Değiştirici Makara, kazançları ×3\'e kadar çarpanlarla artırabilir.',

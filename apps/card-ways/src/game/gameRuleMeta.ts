@@ -25,7 +25,10 @@ type GameRuleImages = {
 	x3: string;
 	autoplay: string;
 	bonusBuy: string;
+	spin: string;
 	turbo: string;
+	music: string;
+	sfx: string;
 };
 
 /** Resolve hashed Vite asset paths against the live game origin at runtime. */
@@ -49,7 +52,13 @@ const createGameRuleImages = (): GameRuleImages => {
 			'../../assets/sprites/gameRules/bonus_buy_interact_hover.png',
 			import.meta.url,
 		).href,
+		spin: new URL(
+			'../../assets/sprites/gameRules/spin_button_interact_hover.png',
+			import.meta.url,
+		).href,
 		turbo: new URL('../../assets/sprites/gameRules/turbo_interact_hover.png', import.meta.url).href,
+		music: new URL('../../assets/sprites/gameRules/music_icon.png', import.meta.url).href,
+		sfx: new URL('../../assets/sprites/gameRules/sfx_icon.png', import.meta.url).href,
 	} satisfies GameRuleImages;
 
 	return Object.fromEntries(
@@ -135,10 +144,18 @@ const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
 const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => [
 	{
 		title: '',
+		text: t('GR.UI.SPIN'),
+		image: images.spin,
+		imagePosition: 'left',
+		row: 0,
+		column: 0,
+	},
+	{
+		title: '',
 		text: t('GR.UI.AUTO_SPIN'),
 		image: images.autoplay,
 		imagePosition: 'left',
-		row: 0,
+		row: 1,
 		column: 0,
 	},
 	{
@@ -146,7 +163,7 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 		text: t('GR.UI.BUY_BONUS'),
 		image: images.bonusBuy,
 		imagePosition: 'left',
-		row: 1,
+		row: 2,
 		column: 0,
 	},
 	{
@@ -154,7 +171,23 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 		text: t('GR.UI.TURBO'),
 		image: images.turbo,
 		imagePosition: 'left',
-		row: 2,
+		row: 3,
+		column: 0,
+	},
+	{
+		title: '',
+		text: t('GR.UI.MUSIC'),
+		image: images.music,
+		imagePosition: 'left',
+		row: 4,
+		column: 0,
+	},
+	{
+		title: '',
+		text: t('GR.UI.SOUND'),
+		image: images.sfx,
+		imagePosition: 'left',
+		row: 5,
 		column: 0,
 	},
 ];
@@ -284,7 +317,7 @@ export const buildCardWaysGameRuleMeta = () => {
 		},
 		{
 			title: t('GR.SECTION.UI_GUIDE'),
-			rows: 3,
+			rows: 6,
 			columns: 1,
 			containers: buildUiGuideContainers(images),
 		},

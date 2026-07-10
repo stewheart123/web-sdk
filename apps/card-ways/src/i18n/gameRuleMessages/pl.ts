@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Zastępuje wszystkie płatne symbole.',
 	'GR.SYMBOL.SCATTER': '3 lub więcej Scatterów daje 10 Darmowych Spinów.',
 	'GR.SYMBOL.MODIFIER': 'Karta modyfikatora. Dotyczy wygranych dróg. Brak bezpośredniej wypłaty.',
+	'GR.UI.SPIN': 'SPIN | Rozpoczyna spin z aktualną kwotą zakładu.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Otwiera menu Auto Spin.',
 	'GR.UI.BUY_BONUS': 'KUP BONUS | Otwiera menu Kup Bonus, aby kupić Darmowe Spiny.',
 	'GR.UI.TURBO': 'TURBO | Aktywuje tryb Turbo.',
+	'GR.UI.MUSIC': 'MUZYKA | Włącza lub wyłącza muzykę w tle.',
+	'GR.UI.SOUND': 'DŹWIĘK | Włącza lub wyłącza efekty dźwiękowe.',
 	'GR.GAME_OVERVIEW.TITLE': 'PRZEGLĄD GRY',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS to automat ways z 5 bębnami i 2 rzędami w tematyce kart. Wygrane powstają przez dopasowanie symboli na sąsiednich bębnach od lewej do prawej. Bęben Modyfikatora obok planszy może zwiększyć wygrane mnożnikami do ×3.',

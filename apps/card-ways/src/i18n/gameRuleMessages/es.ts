@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Sustituye a todos los símbolos de pago.',
 	'GR.SYMBOL.SCATTER': '3 o más Scatters otorgan 10 Giros Gratis.',
 	'GR.SYMBOL.MODIFIER': 'Carta modificadora. Se aplica a premios por formas. Sin pago directo.',
+	'GR.UI.SPIN': 'GIRO | Inicia un giro con el importe de apuesta actual.',
 	'GR.UI.AUTO_SPIN': 'GIRO AUTO | Abre el menú emergente de Giro Automático.',
 	'GR.UI.BUY_BONUS': 'COMPRAR BONO | Abre el menú de Compra de Bono para adquirir Giros Gratis.',
 	'GR.UI.TURBO': 'TURBO | Activa el Modo Turbo.',
+	'GR.UI.MUSIC': 'MÚSICA | Activa o desactiva la música de fondo.',
+	'GR.UI.SOUND': 'SONIDO | Activa o desactiva los efectos de sonido.',
 	'GR.GAME_OVERVIEW.TITLE': 'RESUMEN DEL JUEGO',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS es una tragamonedas de formas con 5 rodillos y 2 filas con temática de cartas. Los premios se forman al coincidir símbolos en rodillos adyacentes de izquierda a derecha. Un Rodillo Modificador junto al tablero puede aumentar los premios con multiplicadores de hasta ×3.',

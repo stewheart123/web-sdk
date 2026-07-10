@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': '可替代所有赔付符号。',
 	'GR.SYMBOL.SCATTER': '3个或更多Scatter奖励10次免费旋转。',
 	'GR.SYMBOL.MODIFIER': '修饰卡。适用于路数中奖。无直接赔付。',
+	'GR.UI.SPIN': '旋转 | 以当前投注金额发起一次旋转。',
 	'GR.UI.AUTO_SPIN': '自动旋转 | 打开自动旋转弹出菜单。',
 	'GR.UI.BUY_BONUS': '购买奖励 | 打开奖励购买菜单以购买免费旋转。',
 	'GR.UI.TURBO': '加速 | 激活加速模式。',
+	'GR.UI.MUSIC': '音乐 | 打开或关闭背景音乐。',
+	'GR.UI.SOUND': '音效 | 打开或关闭音效。',
 	'GR.GAME_OVERVIEW.TITLE': '游戏概览',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS是一款5转轴、2行、路数赔付的老虎机，采用扑克牌主题。从左至右在相邻转轴上匹配符号即可获胜。棋盘旁的修饰转轴可用最高×3的倍数提升奖金。',

@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Ersetzt alle zahlenden Symbole.',
 	'GR.SYMBOL.SCATTER': '3 oder mehr Scatter gewähren 10 Freispiele.',
 	'GR.SYMBOL.MODIFIER': 'Modifikator-Karte. Gilt für Wege-Gewinne. Keine direkte Auszahlung.',
+	'GR.UI.SPIN': 'SPIN | Startet einen Spin mit dem aktuellen Einsatzbetrag.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Öffnet das Auto-Spin-Popup-Menü.',
 	'GR.UI.BUY_BONUS': 'BONUS KAUFEN | Öffnet das Bonus-Kauf-Menü zum Kauf von Freispielen.',
 	'GR.UI.TURBO': 'TURBO | Aktiviert den Turbo-Modus.',
+	'GR.UI.MUSIC': 'MUSIK | Hintergrundmusik ein- oder ausschalten.',
+	'GR.UI.SOUND': 'TON | Soundeffekte ein- oder ausschalten.',
 	'GR.GAME_OVERVIEW.TITLE': 'SPIELÜBERSICHT',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS ist ein 5-Walzen-, 2-Reihen-Ways-Slot mit Spielkarten-Thema. Gewinne entstehen durch übereinstimmende Symbole auf benachbarten Walzen von links nach rechts. Eine Modifikator-Walze neben dem Spielfeld kann Gewinne mit Multiplikatoren bis ×3 steigern.',

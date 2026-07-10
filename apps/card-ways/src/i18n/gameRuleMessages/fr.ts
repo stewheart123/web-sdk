@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Remplace tous les symboles payants.',
 	'GR.SYMBOL.SCATTER': '3 Scatters ou plus accordent 10 Tours Gratuits.',
 	'GR.SYMBOL.MODIFIER': 'Carte modificateur. S\'applique aux gains par façons. Pas de paiement direct.',
+	'GR.UI.SPIN': 'TOUR | Lance un tour avec le montant de mise actuel.',
 	'GR.UI.AUTO_SPIN': 'TOUR AUTO | Ouvre le menu contextuel Tour Automatique.',
 	'GR.UI.BUY_BONUS': 'ACHAT BONUS | Ouvre le menu Achat Bonus pour acheter des Tours Gratuits.',
 	'GR.UI.TURBO': 'TURBO | Active le Mode Turbo.',
+	'GR.UI.MUSIC': 'MUSIQUE | Active ou désactive la musique de fond.',
+	'GR.UI.SOUND': 'SON | Active ou désactive les effets sonores.',
 	'GR.GAME_OVERVIEW.TITLE': 'APERÇU DU JEU',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS est une machine à façons à 5 rouleaux et 2 rangées sur le thème des cartes à jouer. Les gains se forment en faisant correspondre des symboles sur des rouleaux adjacents de gauche à droite. Un Rouleau Modificateur à côté du plateau peut augmenter les gains avec des multiplicateurs jusqu\'à ×3.',

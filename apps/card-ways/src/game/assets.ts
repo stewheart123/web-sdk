@@ -144,9 +144,4 @@ export default {
 			texturePage1: new URL('../../assets/spines/bonusTransition/TRANSITION.png', import.meta.url).href,
 		},
 	},
-	sound: {
-		type: 'audio',
-		src: new URL('../../assets/audio/game_audio_sprite_mp3.json', import.meta.url).href,
-		preload: true,
-	},
 } as const;

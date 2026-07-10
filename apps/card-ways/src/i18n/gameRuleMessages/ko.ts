@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': '모든 지급 심볼을 대체합니다.',
 	'GR.SYMBOL.SCATTER': '스캐터 3개 이상 시 프리 스핀 10회 지급.',
 	'GR.SYMBOL.MODIFIER': '수정자 카드. 웨이 당첨에 적용. 직접 지급 없음.',
+	'GR.UI.SPIN': '스핀 | 현재 베팅 금액으로 스핀을 시작합니다.',
 	'GR.UI.AUTO_SPIN': '자동 스핀 | 자동 스핀 팝업 메뉴를 엽니다.',
 	'GR.UI.BUY_BONUS': '보너스 구매 | 프리 스핀 구매를 위한 보너스 구매 메뉴를 엽니다.',
 	'GR.UI.TURBO': '터보 | 터보 모드를 활성화합니다.',
+	'GR.UI.MUSIC': '음악 | 배경 음악을 켜거나 끕니다.',
+	'GR.UI.SOUND': '사운드 | 효과음을 켜거나 끕니다.',
 	'GR.GAME_OVERVIEW.TITLE': '게임 개요',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS는 5릴 2행 웨이 슬롯으로 플레이링 카드 테마입니다. 왼쪽에서 오른쪽으로 인접 릴에서 심볼이 일치하면 당첨됩니다. 보드 옆 수정자 릴이 최대 ×3 배수로 당첨을 높일 수 있습니다.',

@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Substitutes for all paying symbols.',
 	'GR.SYMBOL.SCATTER': '3 or more Scatters award 10 Free Spins.',
 	'GR.SYMBOL.MODIFIER': 'Modifier card. Applies to ways wins. No direct pay.',
+	'GR.UI.SPIN': 'SPIN | Initiates a spin with the current bet amount.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Open the Auto Spin pop-up menu.',
 	'GR.UI.BUY_BONUS': 'BUY BONUS | Opens the Bonus Buy menu to purchase Free Spins.',
 	'GR.UI.TURBO': 'TURBO | Activate Turbo Mode.',
+	'GR.UI.MUSIC': 'MUSIC | Toggle background music on or off.',
+	'GR.UI.SOUND': 'SOUND | Toggle sound effects on or off.',
 	'GR.GAME_OVERVIEW.TITLE': 'GAME OVERVIEW',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS is a 5-reel, 2-row ways slot with a playing-card theme. Wins are formed by matching symbols on adjacent reels from left to right. A Modifier Reel beside the board can boost wins with multipliers up to ×3.',

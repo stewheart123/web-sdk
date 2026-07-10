@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Korvaa kaikki maksavat symbolit.',
 	'GR.SYMBOL.SCATTER': '3 tai useampi Scatter antaa 10 ilmaiskierrosta.',
 	'GR.SYMBOL.MODIFIER': 'Muokkaajakortti. Koskee tapavoittoja. Ei suoraa voittoa.',
+	'GR.UI.SPIN': 'PYÖRÄYTYS | Aloittaa pyöräytyksen nykyisellä panoksella.',
 	'GR.UI.AUTO_SPIN': 'AUTOMAATTINEN PYÖRÄYTYS | Avaa automaattisen pyöräytyksen valikon.',
 	'GR.UI.BUY_BONUS': 'OSTA BONUS | Avaa bonuksen osto -valikon ilmaiskierrosten ostamiseen.',
 	'GR.UI.TURBO': 'TURBO | Aktivoi turbotilan.',
+	'GR.UI.MUSIC': 'MUSIIKKI | Kytkee taustamusiikin päälle tai pois.',
+	'GR.UI.SOUND': 'ÄÄNI | Kytkee äänitehosteet päälle tai pois.',
 	'GR.GAME_OVERVIEW.TITLE': 'PELIN YLEISKATSAUS',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS on 5-rullainen, 2-rivinen tapa-automaatti pelikorttiteemalla. Voitot muodostuvat vastaavista symboleista vierekkäisillä rullilla vasemmalta oikealle. Muokkaajarulla pelialustan vieressä voi kasvattaa voittoja kertoimilla jopa ×3.',

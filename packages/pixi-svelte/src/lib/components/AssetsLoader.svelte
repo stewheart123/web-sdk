@@ -75,6 +75,10 @@
 		type: string;
 		src: string | SpritesSrc | SpineSrc | FontSrc;
 	}) => {
+		if (type === 'audio') {
+			return getProcessed({ key, rawAsset: src as RawAsset, type, src });
+		}
+
 		if (type === 'sprites' && isSpritesSrc(src)) {
 			const rawAsset = await loadSpritesheet(src);
 			return getProcessed({ key, rawAsset, type, src });
@@ -98,12 +102,25 @@
 		return getProcessed({ key, rawAsset, type, src });
 	};
 
+	const ASSET_LOAD_TIMEOUT_MS = 30_000;
+
+	const withTimeout = <T>(promise: Promise<T>, label: string) =>
+		Promise.race([
+			promise,
+			new Promise<never>((_, reject) =>
+				setTimeout(
+					() => reject(new Error(`Asset load timed out: ${label}`)),
+					ASSET_LOAD_TIMEOUT_MS,
+				),
+			),
+		]);
+
 	const loadAssets = async (nameList: string[]) => {
 		const loadedAssetsArray = await Promise.all(
 			nameList.map(async (key) => {
 				try {
 					const { type, src } = context.stateApp.assets![key];
-					return await loadAsset({ key, type, src });
+					return await withTimeout(loadAsset({ key, type, src }), key);
 				} catch (error) {
 					console.error(error);
 				}

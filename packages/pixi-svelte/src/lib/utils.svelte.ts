@@ -60,22 +60,30 @@ export function detectWebGL() {
 
 export const preloadFont = () =>
 	new Promise<void>((resolve) => {
+		const timeout = setTimeout(() => {
+			console.warn('Web font load timed out, continuing without fonts');
+			resolve();
+		}, 5000);
+
+		const finish = () => {
+			clearTimeout(timeout);
+			resolve();
+		};
+
 		try {
 			WebFont.load({
 				typekit: {
 					id: 'aba0ebl',
 				},
-				active: () => {
-					resolve();
-				},
+				active: finish,
 				inactive: () => {
 					console.error('Web font load inactive');
-					resolve();
+					finish();
 				},
 			});
 		} catch (error) {
 			console.error(error);
-			resolve();
+			finish();
 		}
 	});
 

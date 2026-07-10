@@ -6,9 +6,12 @@ export default {
 	'GR.SYMBOL.WILD': 'Thay thế tất cả biểu tượng trả thưởng.',
 	'GR.SYMBOL.SCATTER': '3 Scatter trở lên trao 10 Vòng Quay Miễn Phí.',
 	'GR.SYMBOL.MODIFIER': 'Thẻ điều chỉnh. Áp dụng cho thắng theo đường. Không trả trực tiếp.',
+	'GR.UI.SPIN': 'QUAY | Bắt đầu một vòng quay với số tiền cược hiện tại.',
 	'GR.UI.AUTO_SPIN': 'QUAY TỰ ĐỘNG | Mở menu Quay Tự Động.',
 	'GR.UI.BUY_BONUS': 'MUA BONUS | Mở menu Mua Bonus để mua Vòng Quay Miễn Phí.',
 	'GR.UI.TURBO': 'TURBO | Kích hoạt Chế độ Turbo.',
+	'GR.UI.MUSIC': 'NHẠC | Bật hoặc tắt nhạc nền.',
+	'GR.UI.SOUND': 'ÂM THANH | Bật hoặc tắt hiệu ứng âm thanh.',
 	'GR.GAME_OVERVIEW.TITLE': 'TỔNG QUAN TRÒ CHƠI',
 	'GR.GAME_OVERVIEW.TEXT':
 		'BOOSTER BREAK WAYS là slot đường thắng 5 cuộn, 2 hàng theo chủ đề bài. Thắng được tạo khi khớp biểu tượng trên các cuộn liền kề từ trái sang phải. Cuộn Điều Chỉnh bên cạnh bảng có thể tăng thắng với hệ số nhân lên đến ×3.',
