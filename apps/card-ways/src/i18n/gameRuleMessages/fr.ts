@@ -36,11 +36,11 @@ export default {
 		'Tous les symboles payants paient de gauche à droite sur des rouleaux adjacents, en commençant par le rouleau le plus à gauche. Seuls les symboles sur des rouleaux consécutifs forment une façon valide. Cela ne s\'applique pas aux symboles Scatter. Les symboles non gagnants ne paient pas et ne forment pas de combinaisons. Les façons multiples du même symbole s\'additionnent. Les Wild remplacent pour compléter les façons.',
 	'GR.SECTION.BET_MODES': 'MODES DE MISE',
 	'GR.BET_MODES.TEXT':
-		'Le mode normal a un retour théorique attendu de {baseRtp}%.\n\nLe joueur peut acheter des Tours Gratuits en trois niveaux : {bonusCost3}× (10 tours), {bonusCost4}× (15 tours) ou {bonusCost5}× (20 tours) la mise de base. Chaque mode d\'achat a un retour théorique de {bonusRtp}%. L\'achat déclenche immédiatement la fonction bonus.\n\nLe gain maximum dans chaque mode de mise est de {maxWin}× la mise de base.',
+		'Le mode normal a un retour théorique attendu de {baseRtp}%.\n\nLe joueur peut acheter des Tours Gratuits en trois niveaux :\n• 3 Scatters / {freeSpins3} tours — {bonusCost3}× mise — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} tours — {bonusCost4}× mise — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} tours — {bonusCost5}× mise — RTP {bonusRtp5}%\n\nL\'achat déclenche immédiatement la fonction bonus.\n\nLe gain maximum dans chaque mode de mise est de {maxWin}× la mise de base.',
 	'GR.SECTION.BONUS_BUY': 'ACHAT BONUS',
-	'GR.BONUS_BUY.TIER.TITLE': 'ACHAT BONUS — {scatterCount} SCATTER ({freeSpins} TOURS)',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'Coût : {bonusCost}× mise totale\nAccorde instantanément la fonction Tours Gratuits ({freeSpins} tours)\nRTP théorique : {bonusRtp}%\nGain maximum : {maxWin}× mise\nL\'Achat Bonus peut être désactivé dans certaines juridictions',
+	'GR.BONUS_BUY.TITLE': 'ACHAT BONUS — TOURS GRATUITS',
+	'GR.BONUS_BUY.TEXT':
+		'Accorde instantanément la fonction Tours Gratuits. Les niveaux d\'achat accordent 10, 15 ou 20 tours gratuits.\n\nGain maximum : {maxWin}× mise\nL\'Achat Bonus peut être désactivé dans certaines juridictions',
 	'GR.SECTION.UI_GUIDE': 'GUIDE DE L\'INTERFACE',
 	'GR.SECTION.LEGAL_NOTICE': 'MENTIONS LÉGALES',
 	'GR.LEGAL_NOTICE.TEXT':

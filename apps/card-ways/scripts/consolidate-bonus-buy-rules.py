@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Replace repeated tier game-rule blocks with a single consolidated bonus-buy section."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -23,6 +25,25 @@ GR_BET_MODES = {
     "tr": "Normal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu üç kademede Ücretsiz Döndürme satın alabilir:\n• 3 Scatter / {freeSpins3} döndürme — {bonusCost3}× bahis — RTP %{bonusRtp3}\n• 4 Scatter / {freeSpins4} döndürme — {bonusCost4}× bahis — RTP %{bonusRtp4}\n• 5 Scatter / {freeSpins5} döndürme — {bonusCost5}× bahis — RTP %{bonusRtp5}\n\nSatın alma bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.",
     "vi": "Chế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi có thể mua Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} vòng — {bonusCost3}× cược — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} vòng — {bonusCost4}× cược — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} vòng — {bonusCost5}× cược — RTP {bonusRtp5}%\n\nMua sẽ kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.",
     "fi": "Normaalitilassa teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi ostaa ilmaiskierroksia kolmella tasolla:\n• 3 scatteria / {freeSpins3} kierrosta — {bonusCost3}× panos — RTP {bonusRtp3}%\n• 4 scatteria / {freeSpins4} kierrosta — {bonusCost4}× panos — RTP {bonusRtp4}%\n• 5 scatteria / {freeSpins5} kierrosta — {bonusCost5}× panos — RTP {bonusRtp5}%\n\nOsto käynnistää bonusominaisuuden heti.\n\nMaksimivoitto jokaisessa panostilassa on {maxWin}× peruspanos.",
+}
+
+GR_BONUS_BUY_TITLE = {
+    "en": "BONUS BUY — FREE SPINS",
+    "de": "BONUS KAUFEN — FREISPIELE",
+    "es": "COMPRA DE BONO — GIROS GRATIS",
+    "fr": "ACHAT BONUS — TOURS GRATUITS",
+    "pt": "COMPRAR BÓNUS — RODADAS GRÁTIS",
+    "pl": "KUP BONUS — DARMOWE SPINY",
+    "ru": "ПОКУПКА БОНУСА — БЕСПЛАТНЫЕ ВРАЩЕНИЯ",
+    "ja": "ボーナス購入 — フリースピン",
+    "ko": "보너스 구매 — 프리 스핀",
+    "zh": "奖励购买 — 免费旋转",
+    "ar": "شراء المكافأة — دورات مجانية",
+    "hi": "बोनस खरीदें — फ्री स्पिन",
+    "id": "BELI BONUS — PUTARAN GRATIS",
+    "tr": "BONUS SATIN AL — ÜCRETSİZ DÖNDÜRME",
+    "vi": "MUA BONUS — VÒNG QUAY MIỄN PHÍ",
+    "fi": "OSTA BONUS — ILMAISKIERROKSET",
 }
 
 GR_BONUS_BUY_TEXT = {
@@ -53,11 +74,12 @@ def ts_string(value: str) -> str:
 def fix_file(path: Path) -> None:
     lang = path.stem
     lines = path.read_text(encoding="utf-8").splitlines()
-
     out: list[str] = []
     i = 0
+
     while i < len(lines):
         line = lines[i]
+
         if line == "\t'GR.BET_MODES.TEXT':":
             out.append(line)
             out.append(ts_string(GR_BET_MODES[lang]) + ",")
@@ -65,18 +87,30 @@ def fix_file(path: Path) -> None:
             while i < len(lines) and not lines[i].startswith("\t'GR.SECTION.BONUS_BUY':"):
                 i += 1
             continue
-        if line == "\t'GR.BONUS_BUY.TEXT':":
+
+        if line == "\t'GR.SECTION.BONUS_BUY':":
             out.append(line)
+            out.append(f"\t'GR.BONUS_BUY.TITLE': '{GR_BONUS_BUY_TITLE[lang]}',")
+            out.append("\t'GR.BONUS_BUY.TEXT':")
             out.append(ts_string(GR_BONUS_BUY_TEXT[lang]) + ",")
             i += 1
-            while i < len(lines) and not lines[i].startswith("\t'GR.SECTION."):
+            while i < len(lines):
+                if lines[i].startswith("\t'GR.SECTION.UI_GUIDE':"):
+                    break
+                if lines[i].startswith("\t'GR.BONUS_BUY."):
+                    i += 1
+                    if i < len(lines) and lines[i].startswith("\t\t'"):
+                        while i < len(lines) and not lines[i].startswith("\t'GR.SECTION."):
+                            i += 1
+                    continue
                 i += 1
             continue
+
         out.append(line)
         i += 1
 
     path.write_text("\n".join(out) + "\n", encoding="utf-8")
-    print(f"Fixed {path.relative_to(APP)}")
+    print(f"Updated {path.relative_to(APP)}")
 
 
 def main() -> None:

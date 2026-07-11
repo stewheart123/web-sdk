@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'गेम नियम',
 	BUY: 'खरीदें',
 	'BONUS BUY ACTIVATED': 'बोनस खरीद सक्रिय',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} फ्री स्पिन',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} स्कैटर के साथ तुरंत {freeSpins} फ्री स्पिन देता है।',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} फ्री स्पिन',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} स्कैटर · {bonusCost}× बेट',
 	'UI.BONUS_BUY.TIER.DIALOG': '{bonusCost}× बेट पर खरीदें।',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount}-SCATTER बोनस खरीद सक्रिय',
 };

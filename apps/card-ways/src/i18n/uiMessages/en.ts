@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'GAME RULES',
 	BUY: 'BUY',
 	'BONUS BUY ACTIVATED': 'BONUS BUY ACTIVATED',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} FREE SPINS',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Instantly awards {freeSpins} Free Spins with {scatterCount} Scatters.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} FREE SPINS',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatters · {bonusCost}× your bet',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Purchase for {bonusCost}× your bet.',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount}-SCATTER BONUS BUY ACTIVATED',
 };

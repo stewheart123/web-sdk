@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'ПРАВИЛА ИГРЫ',
 	BUY: 'КУПИТЬ',
 	'BONUS BUY ACTIVATED': 'ПОКУПКА БОНУСА АКТИВИРОВАНА',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} БЕСПЛАТНЫХ ВРАЩЕНИЙ',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Мгновенно даёт {freeSpins} бесплатных вращений с {scatterCount} скаттерами.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} БЕСПЛАТНЫХ ВРАЩЕНИЙ',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} скаттера · {bonusCost}× ставка',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Купить за {bonusCost}× ставки.',
 	'UI.BONUS_BUY.TIER.TICKER': 'ПОКУПКА БОНУСА {scatterCount} SCATTER АКТИВИРОВАНА',
 };

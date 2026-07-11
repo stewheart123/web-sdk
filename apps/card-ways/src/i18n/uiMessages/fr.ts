@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'RÈGLES DU JEU',
 	BUY: 'ACHETER',
 	'BONUS BUY ACTIVATED': 'ACHAT BONUS ACTIVÉ',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} TOURS GRATUITS',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Accorde instantanément {freeSpins} Tours Gratuits avec {scatterCount} Scatters.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} TOURS GRATUITS',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatters · {bonusCost}× mise',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Achetez pour {bonusCost}× votre mise.',
 	'UI.BONUS_BUY.TIER.TICKER': 'ACHAT BONUS {scatterCount} SCATTER ACTIVÉ',
 };

@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'ZASADY GRY',
 	BUY: 'KUP',
 	'BONUS BUY ACTIVATED': 'KUP BONUS AKTYWOWANY',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} DARMOWE SPINY',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Natychmiast przyznaje {freeSpins} Darmowych Spinów z {scatterCount} Scatterami.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} DARMOWE SPINY',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scattery · {bonusCost}× zakład',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Kup za {bonusCost}× zakładu.',
 	'UI.BONUS_BUY.TIER.TICKER': 'KUP BONUS {scatterCount} SCATTER AKTYWOWANY',
 };

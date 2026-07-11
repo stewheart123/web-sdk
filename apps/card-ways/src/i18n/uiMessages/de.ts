@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'SPIELREGELN',
 	BUY: 'KAUFEN',
 	'BONUS BUY ACTIVATED': 'BONUS-KAUF AKTIVIERT',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} FREISPIELE',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Gewährt sofort {freeSpins} Freispiele mit {scatterCount} Scattern.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} FREISPIELE',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatter · {bonusCost}× Einsatz',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Kauf für {bonusCost}× Ihren Einsatz.',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount}-SCATTER BONUS-KAUF AKTIVIERT',
 };

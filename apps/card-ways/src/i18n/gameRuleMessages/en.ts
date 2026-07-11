@@ -36,11 +36,11 @@ export default {
 		'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
 	'GR.SECTION.BET_MODES': 'BET MODES',
 	'GR.BET_MODES.TEXT':
-		'The normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can buy Free Spins at three tiers: {bonusCost3}× (10 spins), {bonusCost4}× (15 spins), or {bonusCost5}× (20 spins) the underlying bet. Each Free Spins buy mode has a theoretical expected return of {bonusRtp}%. Purchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is {maxWin}× the underlying bet.',
+		'The normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can buy Free Spins at three tiers:\n• 3 Scatters / {freeSpins3} spins — {bonusCost3}× bet — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} spins — {bonusCost4}× bet — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} spins — {bonusCost5}× bet — RTP {bonusRtp5}%\n\nPurchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is {maxWin}× the underlying bet.',
 	'GR.SECTION.BONUS_BUY': 'BONUS BUY',
-	'GR.BONUS_BUY.TIER.TITLE': 'BONUS BUY — {scatterCount} SCATTER ({freeSpins} SPINS)',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'Cost: {bonusCost}× total bet\nInstantly awards the Free Spins feature ({freeSpins} spins)\nTheoretical RTP: {bonusRtp}%\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions',
+	'GR.BONUS_BUY.TITLE': 'BONUS BUY — FREE SPINS',
+	'GR.BONUS_BUY.TEXT':
+		'Instantly awards the Free Spins feature. Purchase tiers award 10, 15, or 20 free spins.\n\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions',
 	'GR.SECTION.UI_GUIDE': 'USER INTERFACE GUIDE',
 	'GR.SECTION.LEGAL_NOTICE': 'LEGAL NOTICE',
 	'GR.LEGAL_NOTICE.TEXT':

@@ -34,11 +34,11 @@ export default {
 		'配当シンボルは最左リールから隣接リール上で左から右へ配当します。連続リール上のシンボルのみが有効なウェイです。スキャッターには適用されません。非当たりシンボルは配当なしでウェイを形成できません。同一シンボルの複数ウェイは合算されます。ワイルドはウェイ完成の代用になります。',
 	'GR.SECTION.BET_MODES': 'ベットモード',
 	'GR.BET_MODES.TEXT':
-		'通常モードの理論上の期待還元率は{baseRtp}%です。\n\nプレイヤーは3段階でフリースピンを購入できます：{bonusCost3}×（10回）、{bonusCost4}×（15回）、{bonusCost5}×（20回）のベット。各購入モードの理論還元率は{bonusRtp}%です。購入で即座にボーナス機能が発動します。\n\n各ベットモードの最大当たりはベットの{maxWin}×です。',
+		'通常モードの理論上の期待還元率は{baseRtp}%です。\n\nプレイヤーは3段階でフリースピンを購入できます：\n• 3スキャッター / {freeSpins3}回 — {bonusCost3}×ベット — RTP {bonusRtp3}%\n• 4スキャッター / {freeSpins4}回 — {bonusCost4}×ベット — RTP {bonusRtp4}%\n• 5スキャッター / {freeSpins5}回 — {bonusCost5}×ベット — RTP {bonusRtp5}%\n\n購入で即座にボーナス機能が発動します。\n\n各ベットモードの最大当たりはベットの{maxWin}×です。',
 	'GR.SECTION.BONUS_BUY': 'ボーナス購入',
-	'GR.BONUS_BUY.TIER.TITLE': 'ボーナス購入 — {scatterCount} SCATTER（{freeSpins}回）',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'費用：総ベットの{bonusCost}×\n即座にフリースピン機能（{freeSpins}回）を獲得\n理論RTP：{bonusRtp}%\n最大当たり：ベットの{maxWin}×\n一部地域ではボーナス購入が無効の場合があります',
+	'GR.BONUS_BUY.TITLE': 'ボーナス購入 — フリースピン',
+	'GR.BONUS_BUY.TEXT':
+		'フリースピン機能を即座に付与します。購入段階により10、15、20回のフリースピンを獲得できます。\n\n最大当たり: {maxWin}×ベット\n一部地域ではボーナス購入が無効の場合があります',
 	'GR.SECTION.UI_GUIDE': 'ユーザーインターフェースガイド',
 	'GR.SECTION.LEGAL_NOTICE': '法的通知',
 	'GR.LEGAL_NOTICE.TEXT':

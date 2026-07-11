@@ -34,11 +34,11 @@ export default {
 		'Semua simbol berbayar dari kiri ke kanan pada gulungan berdekatan, dimulai dari gulungan paling kiri. Hanya simbol pada gulungan berurutan yang membentuk cara valid. Ini tidak berlaku untuk simbol Scatter. Simbol non-menang tidak membayar dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara.',
 	'GR.SECTION.BET_MODES': 'MODE TARUHAN',
 	'GR.BET_MODES.TEXT':
-		'Mode normal memiliki pengembalian teoritis yang diharapkan sebesar {baseRtp}%.\n\nPemain dapat membeli Putaran Gratis dalam tiga tingkat: {bonusCost3}× (10 putaran), {bonusCost4}× (15 putaran), atau {bonusCost5}× (20 putaran) taruhan dasar. Setiap mode beli memiliki pengembalian teoritis {bonusRtp}%. Pembelian langsung memicu fitur bonus.\n\nKemenangan maksimum di setiap mode taruhan adalah {maxWin}× taruhan dasar.',
+		'Mode normal memiliki pengembalian teoritis yang diharapkan sebesar {baseRtp}%.\n\nPemain dapat membeli Putaran Gratis dalam tiga tingkat:\n• 3 Scatter / {freeSpins3} putaran — {bonusCost3}× taruhan — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} putaran — {bonusCost4}× taruhan — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} putaran — {bonusCost5}× taruhan — RTP {bonusRtp5}%\n\nPembelian langsung memicu fitur bonus.\n\nKemenangan maksimum di setiap mode taruhan adalah {maxWin}× taruhan dasar.',
 	'GR.SECTION.BONUS_BUY': 'BELI BONUS',
-	'GR.BONUS_BUY.TIER.TITLE': 'BELI BONUS — {scatterCount} SCATTER ({freeSpins} PUTARAN)',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'Biaya: {bonusCost}× total taruhan\nLangsung memberikan fitur Putaran Gratis ({freeSpins} putaran)\nRTP teoritis: {bonusRtp}%\nKemenangan maksimum: {maxWin}× taruhan\nBeli Bonus mungkin dinonaktifkan di yurisdiksi tertentu',
+	'GR.BONUS_BUY.TITLE': 'BELI BONUS — PUTARAN GRATIS',
+	'GR.BONUS_BUY.TEXT':
+		'Langsung memberikan fitur Putaran Gratis. Tingkat pembelian memberi 10, 15, atau 20 putaran gratis.\n\nKemenangan maksimum: {maxWin}× taruhan\nBeli Bonus mungkin dinonaktifkan di yurisdiksi tertentu',
 	'GR.SECTION.UI_GUIDE': 'PANDUAN ANTARMUKA',
 	'GR.SECTION.LEGAL_NOTICE': 'PEMBERITAHUAN HUKUM',
 	'GR.LEGAL_NOTICE.TEXT':

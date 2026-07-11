@@ -34,11 +34,11 @@ export default {
 		'Kaikki maksavat symbolit maksavat vasemmalta oikealle vierekkäisillä rullilla alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleita. Ei-voitto-symbolit eivät maksa eivätkä muodosta voittotapoja. Useat tavat samalle symbolille lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi.',
 	'GR.SECTION.BET_MODES': 'PANOSTILAT',
 	'GR.BET_MODES.TEXT':
-		'Normaalitilassa teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi ostaa ilmaiskierroksia kolmella tasolla: {bonusCost3}× (10 kierrosta), {bonusCost4}× (15 kierrosta) tai {bonusCost5}× (20 kierrosta) peruspanosta. Jokaisen oston teoreettinen tuotto on {bonusRtp}%. Osto käynnistää bonusominaisuuden heti.\n\nMaksimivoitto jokaisessa panostilassa on {maxWin}× peruspanos.',
+		'Normaalitilassa teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi ostaa ilmaiskierroksia kolmella tasolla:\n• 3 scatteria / {freeSpins3} kierrosta — {bonusCost3}× panos — RTP {bonusRtp3}%\n• 4 scatteria / {freeSpins4} kierrosta — {bonusCost4}× panos — RTP {bonusRtp4}%\n• 5 scatteria / {freeSpins5} kierrosta — {bonusCost5}× panos — RTP {bonusRtp5}%\n\nOsto käynnistää bonusominaisuuden heti.\n\nMaksimivoitto jokaisessa panostilassa on {maxWin}× peruspanos.',
 	'GR.SECTION.BONUS_BUY': 'OSTA BONUS',
-	'GR.BONUS_BUY.TIER.TITLE': 'OSTA BONUS — {scatterCount} SCATTER ({freeSpins} KIERROSTA)',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'Hinta: {bonusCost}× kokonaispanos\nAntaa heti ilmaiskierrosominaisuuden ({freeSpins} kierrosta)\nTeoreettinen RTP: {bonusRtp}%\nMaksimivoitto: {maxWin}× panos\nBonuksen osto voi olla pois käytöstä tietyillä alueilla',
+	'GR.BONUS_BUY.TITLE': 'OSTA BONUS — ILMAISKIERROKSET',
+	'GR.BONUS_BUY.TEXT':
+		'Antaa heti ilmaiskierrosominaisuuden. Ostotasot antavat 10, 15 tai 20 ilmaiskierrosta.\n\nMaksimivoitto: {maxWin}× panos\nBonuksen osto voi olla pois käytöstä tietyillä alueilla',
 	'GR.SECTION.UI_GUIDE': 'KÄYTTÖLIITTYMÄOPAS',
 	'GR.SECTION.LEGAL_NOTICE': 'OIKEUDELLINEN ILMOITUS',
 	'GR.LEGAL_NOTICE.TEXT':

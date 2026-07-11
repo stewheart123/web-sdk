@@ -44,8 +44,8 @@ export default {
 	'GAME RULES': 'LUẬT CHƠI',
 	BUY: 'MUA',
 	'BONUS BUY ACTIVATED': 'MUA BONUS ĐÃ KÍCH HOẠT',
-	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} VÒNG QUAY MIỄN PHÍ',
-	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Trao ngay {freeSpins} Vòng Quay Miễn Phí với {scatterCount} Scatter.',
+	'UI.BONUS_BUY.TIER.TITLE': '{freeSpins} VÒNG QUAY MIỄN PHÍ',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatter · {bonusCost}× cược',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Mua với {bonusCost}× cược của bạn.',
 	'UI.BONUS_BUY.TIER.TICKER': 'MUA BONUS {scatterCount} SCATTER ĐÃ KÍCH HOẠT',
 };

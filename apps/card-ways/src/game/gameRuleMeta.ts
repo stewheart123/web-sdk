@@ -7,7 +7,6 @@ import { BONUS_BUY_TIERS } from './bonusBuyTiers';
 import config from './config';
 
 const baseRtp = config.betModes.base.rtp * 100;
-const bonusRtp = config.betModes.bonus_3.rtp * 100;
 const maxWin = config.betModes.base.max_win;
 
 type GameRuleImages = {
@@ -195,32 +194,16 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 const numericValues = {
 	maxWin: maxWin.toLocaleString(),
 	baseRtp: baseRtp.toFixed(1),
-	bonusRtp: bonusRtp.toFixed(1),
 	bonusCost3: String(config.betModes.bonus_3.cost),
 	bonusCost4: String(config.betModes.bonus_4.cost),
 	bonusCost5: String(config.betModes.bonus_5.cost),
+	bonusRtp3: (config.betModes.bonus_3.rtp * 100).toFixed(1),
+	bonusRtp4: (config.betModes.bonus_4.rtp * 100).toFixed(1),
+	bonusRtp5: (config.betModes.bonus_5.rtp * 100).toFixed(1),
+	freeSpins3: String(BONUS_BUY_TIERS[0].freeSpins),
+	freeSpins4: String(BONUS_BUY_TIERS[1].freeSpins),
+	freeSpins5: String(BONUS_BUY_TIERS[2].freeSpins),
 };
-
-const buildBonusBuyContainers = (images: GameRuleImages): GameRuleContainer[] =>
-	BONUS_BUY_TIERS.map((tier, index) => {
-		const betMode = config.betModes[tier.mode as keyof typeof config.betModes];
-		const tierValues = {
-			scatterCount: String(tier.scatters),
-			freeSpins: String(tier.freeSpins),
-			bonusCost: String(betMode.cost),
-			bonusRtp: (betMode.rtp * 100).toFixed(1),
-			maxWin: maxWin.toLocaleString(),
-		};
-
-		return {
-			title: t('GR.BONUS_BUY.TIER.TITLE', tierValues),
-			text: t('GR.BONUS_BUY.TIER.TEXT', tierValues),
-			image: images.bonusBuy,
-			imagePosition: 'left' as const,
-			row: index,
-			column: 0,
-		};
-	});
 
 export const buildCardWaysGameRuleMeta = () => {
 	const images = createGameRuleImages();
@@ -325,9 +308,18 @@ export const buildCardWaysGameRuleMeta = () => {
 		},
 		{
 			title: t('GR.SECTION.BONUS_BUY'),
-			rows: BONUS_BUY_TIERS.length,
+			rows: 1,
 			columns: 1,
-			containers: buildBonusBuyContainers(images),
+			containers: [
+				{
+					title: t('GR.BONUS_BUY.TITLE'),
+					text: t('GR.BONUS_BUY.TEXT', numericValues),
+					image: images.bonusBuy,
+					imagePosition: 'left',
+					row: 0,
+					column: 0,
+				},
+			],
 		},
 		{
 			title: t('GR.SECTION.UI_GUIDE'),

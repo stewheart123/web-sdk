@@ -34,11 +34,11 @@ export default {
 		'Tüm ödemeli semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa öder. Yalnızca ardışık makaralardaki semboller geçerli yol oluşturur. Bu Scatter sembolleri için geçerli değildir. Kazançsız semboller ödeme yapmaz ve kazanç yolu oluşturamaz. Aynı sembolün birden fazla yolu toplanır. Wild sembolleri yolları tamamlamak için yerine geçer.',
 	'GR.SECTION.BET_MODES': 'BAHİS MODLARI',
 	'GR.BET_MODES.TEXT':
-		'Normal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu üç kademede Ücretsiz Döndürme satın alabilir: {bonusCost3}× (10 döndürme), {bonusCost4}× (15 döndürme) veya {bonusCost5}× (20 döndürme) temel bahis. Her satın alma modunun teorik getirisi %{bonusRtp}. Satın alma bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.',
+		'Normal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu üç kademede Ücretsiz Döndürme satın alabilir:\n• 3 Scatter / {freeSpins3} döndürme — {bonusCost3}× bahis — RTP %{bonusRtp3}\n• 4 Scatter / {freeSpins4} döndürme — {bonusCost4}× bahis — RTP %{bonusRtp4}\n• 5 Scatter / {freeSpins5} döndürme — {bonusCost5}× bahis — RTP %{bonusRtp5}\n\nSatın alma bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.',
 	'GR.SECTION.BONUS_BUY': 'BONUS SATIN AL',
-	'GR.BONUS_BUY.TIER.TITLE': 'BONUS SATIN AL — {scatterCount} SCATTER ({freeSpins} DÖNDÜRME)',
-	'GR.BONUS_BUY.TIER.TEXT':
-		'Maliyet: {bonusCost}× toplam bahis\nAnında Ücretsiz Döndürme özelliğini verir ({freeSpins} döndürme)\nTeorik RTP: %{bonusRtp}\nMaksimum kazanç: {maxWin}× bahis\nBonus Satın Al bazı yargı bölgelerinde devre dışı olabilir',
+	'GR.BONUS_BUY.TITLE': 'BONUS SATIN AL — ÜCRETSİZ DÖNDÜRME',
+	'GR.BONUS_BUY.TEXT':
+		'Ücretsiz Döndürme özelliğini anında verir. Satın alma kademeleri 10, 15 veya 20 ücretsiz döndürme verir.\n\nMaksimum kazanç: {maxWin}× bahis\nBonus Satın Al bazı yargı bölgelerinde devre dışı olabilir',
 	'GR.SECTION.UI_GUIDE': 'ARAYÜZ KILAVUZU',
 	'GR.SECTION.LEGAL_NOTICE': 'YASAL UYARI',
 	'GR.LEGAL_NOTICE.TEXT':
