@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'OYUN KURALLARI',
 	BUY: 'SATIN AL',
 	'BONUS BUY ACTIVATED': 'BONUS SATIN ALMA ETKİN',
-	'UI.BONUS_BUY.DIALOG': 'Bahsinizin {bonusCost}× katına Ücretsiz Döndürme satın alın.',
-	'UI.BONUS_BUY.DESCRIPTION': 'Ücretsiz Döndürme özelliğini anında başlatır.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} ÜCRETSİZ DÖNDÜRME',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatter ile anında {freeSpins} Ücretsiz Döndürme verir.',
+	'UI.BONUS_BUY.TIER.DIALOG': 'Bahsinizin {bonusCost}× katına satın alın.',
+	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER BONUS SATIN ALMA ETKİN',
 };

@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': '게임 규칙',
 	BUY: '구매',
 	'BONUS BUY ACTIVATED': '보너스 구매 활성화됨',
-	'UI.BONUS_BUY.DIALOG': '베팅의 {bonusCost}×로 프리 스핀 구매.',
-	'UI.BONUS_BUY.DESCRIPTION': '프리 스핀 기능을 즉시 시작합니다.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} 프리 스핀',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount}개의 스캐터로 {freeSpins}회 프리 스핀을 즉시 지급합니다.',
+	'UI.BONUS_BUY.TIER.DIALOG': '베팅의 {bonusCost}×로 구매.',
+	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER 보너스 구매 활성화',
 };

@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'BẢNG TRẢ THƯỞNG',
 	'GR.SYMBOL.NON_WIN': 'Biểu tượng không thắng. Không trả thưởng và không tạo đường thắng.',
 	'GR.SYMBOL.WILD': 'Thay thế tất cả biểu tượng trả thưởng.',
-	'GR.SYMBOL.SCATTER': '3 Scatter trở lên trao 10 Vòng Quay Miễn Phí.',
+	'GR.SYMBOL.SCATTER': '3 Scatter thưởng 10, 4 thưởng 15 và 5 thưởng 20 Vòng Quay Miễn Phí.',
 	'GR.SYMBOL.MODIFIER': 'Thẻ điều chỉnh. Áp dụng cho thắng theo đường. Không trả trực tiếp.',
 	'GR.UI.SPIN': 'QUAY | Bắt đầu một vòng quay với số tiền cược hiện tại.',
 	'GR.UI.AUTO_SPIN': 'QUAY TỰ ĐỘNG | Mở menu Quay Tự Động.',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': 'Wild thay thế tất cả biểu tượng trả thưởng. Wild không thay thế Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / VÒNG QUAY MIỄN PHÍ',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Biểu tượng Scatter xuất hiện trên tất cả cuộn. Có 3 Scatter trở lên trong một vòng quay trao 10 Vòng Quay Miễn Phí. Thắng Scatter được tính riêng với thắng theo đường.',
+		'Biểu tượng Scatter xuất hiện trên mọi guồng. 3 Scatter thưởng 10, 4 Scatter thưởng 15 và 5 Scatter thưởng 20 Vòng Quay Miễn Phí. Thắng Scatter được tính riêng khỏi thắng ways.',
 	'GR.MODIFIER_BASE.TITLE': 'CUỘN ĐIỀU CHỈNH (TRÒ CHƠI CƠ BẢN)',
 	'GR.MODIFIER_BASE.TEXT':
 		'Mỗi vòng quay cơ bản, Cuộn Điều Chỉnh hiển thị thẻ hệ số nhân: ×1, ×2 hoặc ×3. Khi thắng, hệ số điều chỉnh đang hoạt động được áp dụng. Điều chỉnh có thể thay đổi ở vòng quay tiếp theo. Nếu thẻ ×1 xuất hiện sau hệ số cao hơn, hệ số được đặt lại.',
@@ -34,11 +34,11 @@ export default {
 		'Tất cả biểu tượng trả thưởng từ trái sang phải trên các cuộn liền kề, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ biểu tượng trên các cuộn liên tiếp tạo đường hợp lệ. Không áp dụng cho Scatter. Biểu tượng không thắng không trả thưởng và không tạo đường thắng. Nhiều đường cùng biểu tượng được cộng lại. Wild thay thế để hoàn thành đường.',
 	'GR.SECTION.BET_MODES': 'CHẾ ĐỘ CƯỢC',
 	'GR.BET_MODES.TEXT':
-		'Chế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi cũng có thể mua Vòng Quay Miễn Phí với {bonusCost}× cược cơ bản. Chế độ mua Vòng Quay Miễn Phí có tỷ lệ hoàn trả lý thuyết {bonusRtp}%. Mua Vòng Quay Miễn Phí kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.',
+		'Chế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi có thể mua Vòng Quay Miễn Phí ở ba cấp: {bonusCost3}× (10 vòng), {bonusCost4}× (15 vòng) hoặc {bonusCost5}× (20 vòng) cược cơ bản. Mỗi chế độ mua có tỷ lệ hoàn trả lý thuyết {bonusRtp}%. Mua sẽ kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.',
 	'GR.SECTION.BONUS_BUY': 'MUA BONUS',
-	'GR.BONUS_BUY.TITLE': 'MUA BONUS — VÒNG QUAY MIỄN PHÍ',
-	'GR.BONUS_BUY.TEXT':
-		'Chi phí: {bonusCost}× tổng cược\nTrao ngay tính năng Vòng Quay Miễn Phí (10 vòng quay)\nRTP lý thuyết: {bonusRtp}%\nThắng tối đa: {maxWin}× cược\nMua Bonus có thể bị vô hiệu ở một số khu vực pháp lý',
+	'GR.BONUS_BUY.TIER.TITLE': 'MUA BONUS — {scatterCount} SCATTER ({freeSpins} VÒNG)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Chi phí: {bonusCost}× tổng cược\nTrao ngay tính năng Vòng Quay Miễn Phí ({freeSpins} vòng quay)\nRTP lý thuyết: {bonusRtp}%\nThắng tối đa: {maxWin}× cược\nMua Bonus có thể bị vô hiệu ở một số khu vực pháp lý',
 	'GR.SECTION.UI_GUIDE': 'HƯỚNG DẪN GIAO DIỆN',
 	'GR.SECTION.LEGAL_NOTICE': 'THÔNG BÁO PHÁP LÝ',
 	'GR.LEGAL_NOTICE.TEXT':

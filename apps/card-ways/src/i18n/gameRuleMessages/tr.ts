@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'ÖDEME TABLOSU',
 	'GR.SYMBOL.NON_WIN': 'Kazançsız sembol. Ödeme yapmaz ve kazanç yolları oluşturamaz.',
 	'GR.SYMBOL.WILD': 'Tüm ödemeli sembollerin yerine geçer.',
-	'GR.SYMBOL.SCATTER': '3 veya daha fazla Scatter 10 Ücretsiz Döndürme verir.',
+	'GR.SYMBOL.SCATTER': '3 Scatter 10, 4 Scatter 15 ve 5 Scatter 20 Ücretsiz Döndürme verir.',
 	'GR.SYMBOL.MODIFIER': 'Değiştirici kart. Yol kazançlarına uygulanır. Doğrudan ödeme yok.',
 	'GR.UI.SPIN': 'DÖNDÜR | Mevcut bahis tutarıyla bir döndürme başlatır.',
 	'GR.UI.AUTO_SPIN': 'OTOMATİK DÖNDÜR | Otomatik Döndürme açılır menüsünü açar.',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': 'Wild tüm ödemeli sembollerin yerine geçer. Wild, Scatter\'ın yerine geçmez.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / ÜCRETSİZ DÖNDÜRME',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Scatter sembolleri tüm makaralarda görünür. Tek bir döndürmede 3 veya daha fazla Scatter 10 Ücretsiz Döndürme verir. Scatter kazançları yol kazançlarından ayrı değerlendirilir.',
+		'Scatter sembolleri tüm makaralarda görünür. 3 Scatter 10, 4 Scatter 15 ve 5 Scatter 20 Ücretsiz Döndürme verir. Scatter kazançları ways kazançlarından ayrı değerlendirilir.',
 	'GR.MODIFIER_BASE.TITLE': 'DEĞİŞTİRİCİ MAKARA (TEMEL OYUN)',
 	'GR.MODIFIER_BASE.TEXT':
 		'Her temel oyun döndürmesinde Değiştirici Makara bir çarpan kartı gösterir: ×1, ×2 veya ×3. Kazanç olduğunda aktif değiştirici çarpanı uygulanır. Değiştirici sonraki döndürmede değişebilir. Daha yüksek çarpandan sonra ×1 kartı gösterilirse çarpan sıfırlanır.',
@@ -34,11 +34,11 @@ export default {
 		'Tüm ödemeli semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa öder. Yalnızca ardışık makaralardaki semboller geçerli yol oluşturur. Bu Scatter sembolleri için geçerli değildir. Kazançsız semboller ödeme yapmaz ve kazanç yolu oluşturamaz. Aynı sembolün birden fazla yolu toplanır. Wild sembolleri yolları tamamlamak için yerine geçer.',
 	'GR.SECTION.BET_MODES': 'BAHİS MODLARI',
 	'GR.BET_MODES.TEXT':
-		'Normal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu ayrıca temel bahsin {bonusCost}× katına Ücretsiz Döndürme satın alabilir. Ücretsiz Döndürme satın alma modunun teorik getirisi %{bonusRtp}. Ücretsiz Döndürme satın almak bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.',
+		'Normal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu üç kademede Ücretsiz Döndürme satın alabilir: {bonusCost3}× (10 döndürme), {bonusCost4}× (15 döndürme) veya {bonusCost5}× (20 döndürme) temel bahis. Her satın alma modunun teorik getirisi %{bonusRtp}. Satın alma bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.',
 	'GR.SECTION.BONUS_BUY': 'BONUS SATIN AL',
-	'GR.BONUS_BUY.TITLE': 'BONUS SATIN AL — ÜCRETSİZ DÖNDÜRME',
-	'GR.BONUS_BUY.TEXT':
-		'Maliyet: toplam bahsin {bonusCost}× katı\nAnında Ücretsiz Döndürme özelliğini verir (10 döndürme)\nTeorik RTP: %{bonusRtp}\nMaksimum kazanç: bahsin {maxWin}× katı\nBonus Satın Al bazı yargı bölgelerinde devre dışı olabilir',
+	'GR.BONUS_BUY.TIER.TITLE': 'BONUS SATIN AL — {scatterCount} SCATTER ({freeSpins} DÖNDÜRME)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Maliyet: {bonusCost}× toplam bahis\nAnında Ücretsiz Döndürme özelliğini verir ({freeSpins} döndürme)\nTeorik RTP: %{bonusRtp}\nMaksimum kazanç: {maxWin}× bahis\nBonus Satın Al bazı yargı bölgelerinde devre dışı olabilir',
 	'GR.SECTION.UI_GUIDE': 'ARAYÜZ KILAVUZU',
 	'GR.SECTION.LEGAL_NOTICE': 'YASAL UYARI',
 	'GR.LEGAL_NOTICE.TEXT':

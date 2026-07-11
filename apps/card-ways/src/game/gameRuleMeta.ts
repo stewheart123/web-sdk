@@ -3,11 +3,11 @@ import type { GameRuleContainer, GameRuleData } from 'state-shared';
 import { toAbsoluteAssetUrl } from 'pixi-svelte';
 
 import { t } from '../i18n/translate';
+import { BONUS_BUY_TIERS } from './bonusBuyTiers';
 import config from './config';
 
-const bonusCost = config.betModes.bonus.cost;
 const baseRtp = config.betModes.base.rtp * 100;
-const bonusRtp = config.betModes.bonus.rtp * 100;
+const bonusRtp = config.betModes.bonus_3.rtp * 100;
 const maxWin = config.betModes.base.max_win;
 
 type GameRuleImages = {
@@ -196,8 +196,31 @@ const numericValues = {
 	maxWin: maxWin.toLocaleString(),
 	baseRtp: baseRtp.toFixed(1),
 	bonusRtp: bonusRtp.toFixed(1),
-	bonusCost: String(bonusCost),
+	bonusCost3: String(config.betModes.bonus_3.cost),
+	bonusCost4: String(config.betModes.bonus_4.cost),
+	bonusCost5: String(config.betModes.bonus_5.cost),
 };
+
+const buildBonusBuyContainers = (images: GameRuleImages): GameRuleContainer[] =>
+	BONUS_BUY_TIERS.map((tier, index) => {
+		const betMode = config.betModes[tier.mode as keyof typeof config.betModes];
+		const tierValues = {
+			scatterCount: String(tier.scatters),
+			freeSpins: String(tier.freeSpins),
+			bonusCost: String(betMode.cost),
+			bonusRtp: (betMode.rtp * 100).toFixed(1),
+			maxWin: maxWin.toLocaleString(),
+		};
+
+		return {
+			title: t('GR.BONUS_BUY.TIER.TITLE', tierValues),
+			text: t('GR.BONUS_BUY.TIER.TEXT', tierValues),
+			image: images.bonusBuy,
+			imagePosition: 'left' as const,
+			row: index,
+			column: 0,
+		};
+	});
 
 export const buildCardWaysGameRuleMeta = () => {
 	const images = createGameRuleImages();
@@ -302,18 +325,9 @@ export const buildCardWaysGameRuleMeta = () => {
 		},
 		{
 			title: t('GR.SECTION.BONUS_BUY'),
-			rows: 1,
+			rows: BONUS_BUY_TIERS.length,
 			columns: 1,
-			containers: [
-				{
-					title: t('GR.BONUS_BUY.TITLE'),
-					text: t('GR.BONUS_BUY.TEXT', numericValues),
-					image: images.bonusBuy,
-					imagePosition: 'left',
-					row: 0,
-					column: 0,
-				},
-			],
+			containers: buildBonusBuyContainers(images),
 		},
 		{
 			title: t('GR.SECTION.UI_GUIDE'),

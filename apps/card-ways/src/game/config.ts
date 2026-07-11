@@ -2,7 +2,7 @@ export default {
 	"providerName": "sample_provider",
 	"gameName": "card_ways",
 	"gameID": "card_ways",
-	"rtp": 0.97,
+	"rtp": 0.965,
 	"numReels": 5,
 	"numRows": [
 		2,
@@ -16,14 +16,28 @@ export default {
 			"cost": 1,
 			"feature": true,
 			"buyBonus": false,
-			"rtp": 0.97,
+			"rtp": 0.965,
 			"max_win": 5000
 		},
-		"bonus": {
+		"bonus_3": {
+			"cost": 70,
+			"feature": false,
+			"buyBonus": true,
+			"rtp": 0.965,
+			"max_win": 5000
+		},
+		"bonus_4": {
 			"cost": 100,
 			"feature": false,
 			"buyBonus": true,
-			"rtp": 0.97,
+			"rtp": 0.965,
+			"max_win": 5000
+		},
+		"bonus_5": {
+			"cost": 130,
+			"feature": false,
+			"buyBonus": true,
+			"rtp": 0.965,
 			"max_win": 5000
 		}
 	},
@@ -54,28 +68,17 @@ export default {
 				}
 			]
 		},
-		"S": {
-			"paytable": null,
-			"special_properties": [
-				"scatter"
-			]
-		},
-		"X1": {
-			"paytable": null,
-			"special_properties": [
-				"modifier"
-			]
-		},
-		"N": {
-			"paytable": null,
-			"special_properties": [
-				"non_winnable"
-			]
-		},
-		"W": {
-			"paytable": null,
-			"special_properties": [
-				"wild"
+		"J": {
+			"paytable": [
+				{
+					"5": 2.4
+				},
+				{
+					"4": 1.9
+				},
+				{
+					"3": 1.4
+				}
 			]
 		},
 		"K": {
@@ -91,12 +94,6 @@ export default {
 				}
 			]
 		},
-		"X3": {
-			"paytable": null,
-			"special_properties": [
-				"modifier"
-			]
-		},
 		"A": {
 			"paytable": [
 				{
@@ -108,6 +105,24 @@ export default {
 				{
 					"3": 2.1
 				}
+			]
+		},
+		"X3": {
+			"paytable": null,
+			"special_properties": [
+				"modifier"
+			]
+		},
+		"N": {
+			"paytable": null,
+			"special_properties": [
+				"non_winnable"
+			]
+		},
+		"X2": {
+			"paytable": null,
+			"special_properties": [
+				"modifier"
 			]
 		},
 		"Q": {
@@ -123,23 +138,22 @@ export default {
 				}
 			]
 		},
-		"X2": {
+		"W": {
+			"paytable": null,
+			"special_properties": [
+				"wild"
+			]
+		},
+		"S": {
+			"paytable": null,
+			"special_properties": [
+				"scatter"
+			]
+		},
+		"X1": {
 			"paytable": null,
 			"special_properties": [
 				"modifier"
-			]
-		},
-		"J": {
-			"paytable": [
-				{
-					"5": 2.4
-				},
-				{
-					"4": 1.9
-				},
-				{
-					"3": 1.4
-				}
 			]
 		}
 	},

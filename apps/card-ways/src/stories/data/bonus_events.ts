@@ -4,39 +4,19 @@ export default {
 		"board": [
 			[
 				{
-					"name": "Q"
+					"name": "10"
 				},
 				{
 					"name": "K"
 				},
 				{
-					"name": "N",
-					"non_winnable": true
-				},
-				{
-					"name": "J"
-				}
-			],
-			[
-				{
 					"name": "10"
 				},
 				{
-					"name": "S",
-					"scatter": true
-				},
-				{
 					"name": "Q"
-				},
-				{
-					"name": "J"
 				}
 			],
 			[
-				{
-					"name": "S",
-					"scatter": true
-				},
 				{
 					"name": "10"
 				},
@@ -46,22 +26,23 @@ export default {
 				},
 				{
 					"name": "A"
+				},
+				{
+					"name": "K"
 				}
 			],
 			[
 				{
-					"name": "K"
+					"name": "A"
+				},
+				{
+					"name": "Q"
+				},
+				{
+					"name": "10"
 				},
 				{
 					"name": "K"
-				},
-				{
-					"name": "W",
-					"wild": true
-				},
-				{
-					"name": "W",
-					"wild": true
 				}
 			],
 			[
@@ -73,28 +54,43 @@ export default {
 					"scatter": true
 				},
 				{
-					"name": "9"
-				},
-				{
 					"name": "N",
 					"non_winnable": true
+				},
+				{
+					"name": "Q"
+				}
+			],
+			[
+				{
+					"name": "10"
+				},
+				{
+					"name": "10"
+				},
+				{
+					"name": "S",
+					"scatter": true
+				},
+				{
+					"name": "10"
 				}
 			]
 		],
 		"paddingPositions": [
-			525,
-			325,
-			415,
-			440,
-			917
+			123,
+			759,
+			760,
+			720,
+			12
 		],
 		"gameType": "basegame",
 		"anticipation": [
 			0,
 			0,
 			0,
-			1,
-			2
+			0,
+			1
 		]
 	},
 	"modifierReveal": {
@@ -106,7 +102,7 @@ export default {
 		},
 		"multiplier": 1,
 		"modifierReelId": "MR0",
-		"modifierPosition": 78,
+		"modifierPosition": 92,
 		"persists": false
 	},
 	"setTotalWin": {
@@ -122,12 +118,12 @@ export default {
 				"row": 1
 			},
 			{
-				"reel": 2,
-				"row": 2
+				"reel": 3,
+				"row": 1
 			},
 			{
 				"reel": 4,
-				"row": 1
+				"row": 2
 			}
 		]
 	},
@@ -138,38 +134,17 @@ export default {
 	},
 	"winInfo": {
 		"type": "winInfo",
-		"totalWin": 290,
+		"totalWin": 10240,
 		"wins": [
 			{
-				"symbol": "Q",
-				"kind": 3,
-				"win": 160,
+				"symbol": "A",
+				"kind": 5,
+				"win": 10240,
 				"positions": [
 					{
 						"reel": 0,
 						"row": 1
 					},
-					{
-						"reel": 1,
-						"row": 1
-					},
-					{
-						"reel": 2,
-						"row": 2
-					}
-				],
-				"meta": {
-					"ways": 1,
-					"globalMult": 1,
-					"winWithoutMult": 160,
-					"symbolMult": 0
-				}
-			},
-			{
-				"symbol": "10",
-				"kind": 3,
-				"win": 130,
-				"positions": [
 					{
 						"reel": 0,
 						"row": 2
@@ -179,14 +154,38 @@ export default {
 						"row": 1
 					},
 					{
+						"reel": 1,
+						"row": 2
+					},
+					{
 						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 4,
 						"row": 2
 					}
 				],
 				"meta": {
-					"ways": 1,
+					"ways": 32,
 					"globalMult": 1,
-					"winWithoutMult": 130,
+					"winWithoutMult": 10240,
 					"symbolMult": 0
 				}
 			}
@@ -194,16 +193,16 @@ export default {
 	},
 	"setWin": {
 		"type": "setWin",
-		"amount": 290,
-		"winLevel": 4
+		"amount": 10240,
+		"winLevel": 9
 	},
 	"freeSpinEnd": {
 		"type": "freeSpinEnd",
-		"amount": 10670,
+		"amount": 10240,
 		"winLevel": 7
 	},
 	"finalWin": {
 		"type": "finalWin",
-		"amount": 10670
+		"amount": 10240
 	}
 };

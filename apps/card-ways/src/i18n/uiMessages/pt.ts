@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'REGRAS DO JOGO',
 	BUY: 'COMPRAR',
 	'BONUS BUY ACTIVATED': 'COMPRA DE BÓNUS ATIVADA',
-	'UI.BONUS_BUY.DIALOG': 'Compre Rodadas Grátis por {bonusCost}× a sua aposta.',
-	'UI.BONUS_BUY.DESCRIPTION': 'Ativa instantaneamente a funcionalidade Rodadas Grátis.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} RODADAS GRÁTIS',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Concede instantaneamente {freeSpins} Rodadas Grátis com {scatterCount} Scatters.',
+	'UI.BONUS_BUY.TIER.DIALOG': 'Compre por {bonusCost}× a sua aposta.',
+	'UI.BONUS_BUY.TIER.TICKER': 'COMPRA BÓNUS {scatterCount} SCATTER ATIVADA',
 };

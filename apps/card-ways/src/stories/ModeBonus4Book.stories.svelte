@@ -2,7 +2,7 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 
 	const { Story } = defineMeta({
-		title: 'MODE_BONUS/book',
+		title: 'MODE_BONUS_4/book',
 	});
 </script>
 
@@ -18,7 +18,7 @@
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
 	import { playBet } from '../game/utils';
-	import books from './data/bonus_books';
+	import books from './data/bonus_4_books';
 
 	setContext();
 </script>
@@ -44,7 +44,7 @@
 		action: async () => {
 			const index = randomInteger({ min: 0, max: books.length - 1 });
 			const data = books[index];
-			console.log('Running a book at index', index);
+			console.log('Running a bonus_4 book at index', index);
 			await playBet({ ...data, state: data.events });
 		},
 	})}

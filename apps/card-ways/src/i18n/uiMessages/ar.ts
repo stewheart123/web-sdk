@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'قواعد اللعبة',
 	BUY: 'شراء',
 	'BONUS BUY ACTIVATED': 'تم تفعيل شراء المكافأة',
-	'UI.BONUS_BUY.DIALOG': 'اشترِ دورات مجانية مقابل {bonusCost}× رهانك.',
-	'UI.BONUS_BUY.DESCRIPTION': 'يبدأ ميزة الدورات المجانية فوراً.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} دورات مجانية',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': 'يمنح فوراً {freeSpins} دورات مجانية مع {scatterCount} scatters.',
+	'UI.BONUS_BUY.TIER.DIALOG': 'اشترِ مقابل {bonusCost}× رهانك.',
+	'UI.BONUS_BUY.TIER.TICKER': 'تم تفعيل شراء المكافأة {scatterCount} SCATTER',
 };

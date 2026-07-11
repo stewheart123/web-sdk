@@ -14,11 +14,20 @@ STORIES = APP / "src" / "stories" / "data"
 
 MAX_STORY_BOOKS = 40
 REQUIRED_IDS = {0, 1}
+BONUS_MODES = ("bonus_3", "bonus_4", "bonus_5")
+LEGACY_BOOK = STORIES / "bonus_books.ts"
 
-BOOK_FILES = {
-    "base": MATH / "books_base.json",
-    "bonus": MATH / "books_bonus.json",
-}
+
+def load_manifest() -> dict:
+    return json.loads((MATH / "manifest.json").read_text(encoding="utf-8"))
+
+
+def book_files() -> dict[str, Path]:
+    manifest = load_manifest()
+    files = {"base": MATH / manifest["books"]["base"]}
+    for mode in BONUS_MODES:
+        files[mode] = MATH / manifest["books"][mode]
+    return files
 
 
 def write_ts_export(path: Path, data) -> None:
@@ -28,28 +37,37 @@ def write_ts_export(path: Path, data) -> None:
     print(f"Wrote {path.relative_to(APP)} ({count} entries)")
 
 
+def events_from_samples(sample_path: Path) -> dict:
+    samples = json.loads(sample_path.read_text(encoding="utf-8"))
+    events: dict = {}
+
+    for book in samples.values():
+        for event in book.get("events", []):
+            etype = event.get("type")
+            if etype and etype not in events:
+                events[etype] = {k: v for k, v in event.items() if k != "index"}
+
+    return events
+
+
 def sync_events() -> None:
-    base = json.loads((MATH / "event_config_base.json").read_text(encoding="utf-8"))
-    bonus = json.loads((MATH / "event_config_bonus.json").read_text(encoding="utf-8"))
-    write_ts_export(STORIES / "base_events.ts", base)
-    write_ts_export(STORIES / "bonus_events.ts", bonus)
+    manifest = load_manifest()
+    base_sample = MATH / manifest["curated_samples"]["base"]["file"]
+    bonus_sample = MATH / manifest["curated_samples"]["bonus_3"]["file"]
+
+    write_ts_export(STORIES / "base_events.ts", events_from_samples(base_sample))
+    write_ts_export(STORIES / "bonus_events.ts", events_from_samples(bonus_sample))
 
 
-def iter_books_in_memory(path: Path):
-    """Parse books from a minified JSON array using in-memory brace matching."""
+def iter_jsonl(path: Path):
+    """Yield pretty-printed JSON objects from a jsonl export file."""
     text = path.read_text(encoding="utf-8")
-    if not text.startswith("["):
-        raise ValueError(f"{path.name}: expected JSON array")
-
-    i = 1
-    n = len(text)
     in_string = False
     escape = False
     depth = 0
     start = -1
 
-    while i < n:
-        c = text[i]
+    for i, c in enumerate(text):
         if in_string:
             if escape:
                 escape = False
@@ -68,7 +86,6 @@ def iter_books_in_memory(path: Path):
             if depth == 0 and start >= 0:
                 yield json.loads(text[start : i + 1])
                 start = -1
-        i += 1
 
 
 def book_tags(book: dict) -> set[str]:
@@ -118,7 +135,7 @@ def select_books(path: Path, label: str) -> list[dict]:
     filled_tags: set[str] = set()
 
     print(f"Scanning {path.name} ({path.stat().st_size / 1e6:.0f} MB)...")
-    for book in iter_books_in_memory(path):
+    for book in iter_jsonl(path):
         bid = book.get("id")
         if bid in REQUIRED_IDS:
             selected[bid] = book
@@ -156,12 +173,12 @@ def validate_books(books: list[dict], label: str) -> None:
         print(f"Warning: {label} subset has no N symbols")
 
 
-def require_books() -> None:
-    missing = [p.name for p in BOOK_FILES.values() if not p.is_file()]
+def require_books(files: dict[str, Path]) -> None:
+    missing = [path.name for path in files.values() if not path.is_file()]
     if not missing:
         return
     print(
-        "Missing local math book files (not in git — see apps/math-exports/card_ways/README.md):\n"
+        "Missing local math book files (not in git — see apps/math-exports/card_ways/README.txt):\n"
         + "\n".join(f"  - {MATH / name}" for name in missing)
         + "\n\nExport from the card_ways math SDK, or run: npm run sync:story-events",
         file=sys.stderr,
@@ -170,14 +187,21 @@ def require_books() -> None:
 
 
 def sync_books() -> None:
-    require_books()
-    base_books = select_books(BOOK_FILES["base"], "base")
+    files = book_files()
+    require_books(files)
+
+    base_books = select_books(files["base"], "base")
     validate_books(base_books, "base")
     write_ts_export(STORIES / "base_books.ts", base_books)
 
-    bonus_books = select_books(BOOK_FILES["bonus"], "bonus")
-    validate_books(bonus_books, "bonus")
-    write_ts_export(STORIES / "bonus_books.ts", bonus_books)
+    for mode in BONUS_MODES:
+        books = select_books(files[mode], mode)
+        validate_books(books, mode)
+        write_ts_export(STORIES / f"{mode}_books.ts", books)
+
+    if LEGACY_BOOK.is_file():
+        LEGACY_BOOK.unlink()
+        print(f"Removed {LEGACY_BOOK.relative_to(APP)}")
 
 
 def main() -> None:
@@ -185,7 +209,7 @@ def main() -> None:
     parser.add_argument(
         "--events-only",
         action="store_true",
-        help="Sync event_config_*.json only; skip books (no local books_base/bonus required)",
+        help="Sync sample-derived events only; skip books (no local jsonl books required)",
     )
     args = parser.parse_args()
 

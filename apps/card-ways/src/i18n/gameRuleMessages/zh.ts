@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: '赔付表',
 	'GR.SYMBOL.NON_WIN': '非中奖符号。不赔付且无法形成中奖路。',
 	'GR.SYMBOL.WILD': '可替代所有赔付符号。',
-	'GR.SYMBOL.SCATTER': '3个或更多Scatter奖励10次免费旋转。',
+	'GR.SYMBOL.SCATTER': '3个Scatter奖励10次，4个奖励15次，5个奖励20次免费旋转。',
 	'GR.SYMBOL.MODIFIER': '修饰卡。适用于路数中奖。无直接赔付。',
 	'GR.UI.SPIN': '旋转 | 以当前投注金额发起一次旋转。',
 	'GR.UI.AUTO_SPIN': '自动旋转 | 打开自动旋转弹出菜单。',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': '百搭可替代所有赔付符号。百搭不能替代Scatter。',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / 免费旋转',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Scatter符号出现在所有转轴上。单次旋转中出现3个或更多Scatter可获得10次免费旋转。Scatter奖金与路数奖金分开计算。',
+		'Scatter符号出现在所有转轴上。3个Scatter奖励10次免费旋转，4个奖励15次，5个奖励20次。Scatter赢赏与ways赢赏分开计算。',
 	'GR.MODIFIER_BASE.TITLE': '修饰转轴（基础游戏）',
 	'GR.MODIFIER_BASE.TEXT':
 		'每次基础游戏旋转，修饰转轴会显示一张倍数卡：×1、×2或×3。出现中奖时，当前修饰倍数将应用于该奖金。修饰倍数可能在下次旋转时改变。若在高倍数后显示×1卡，倍数将重置。',
@@ -34,11 +34,11 @@ export default {
 		'所有赔付符号从最左侧转轴开始，在相邻转轴上从左至右赔付。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赔付且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。',
 	'GR.SECTION.BET_MODES': '投注模式',
 	'GR.BET_MODES.TEXT':
-		'本游戏普通模式的理论预期回报率为{baseRtp}%。\n\n玩家也可选择以底注的{bonusCost}×购买免费旋转。免费旋转购买模式的理论预期回报率为{bonusRtp}%。购买免费旋转将立即触发奖励功能。\n\n每种投注模式的最高奖金为底注的{maxWin}×。',
+		'正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档购买免费旋转：{bonusCost3}×（10次）、{bonusCost4}×（15次）或{bonusCost5}×（20次）基础投注。每档购买模式的理论回报为{bonusRtp}%。购买后立即触发奖励功能。\n\n各投注模式的最大赢赏为{maxWin}×基础投注。',
 	'GR.SECTION.BONUS_BUY': '奖励购买',
-	'GR.BONUS_BUY.TITLE': '奖励购买 — 免费旋转',
-	'GR.BONUS_BUY.TEXT':
-		'费用：总投注的{bonusCost}×\n立即获得免费旋转功能（10次旋转）\n理论RTP：{bonusRtp}%\n最高奖金：投注的{maxWin}×\n某些司法管辖区可能禁用奖励购买',
+	'GR.BONUS_BUY.TIER.TITLE': '奖励购买 — {scatterCount} SCATTER（{freeSpins}次）',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'费用：总投注的{bonusCost}×\n立即获得免费旋转功能（{freeSpins}次）\n理论RTP：{bonusRtp}%\n最大赢赏：投注的{maxWin}×\n部分司法管辖区可能禁用奖励购买',
 	'GR.SECTION.UI_GUIDE': '用户界面指南',
 	'GR.SECTION.LEGAL_NOTICE': '法律声明',
 	'GR.LEGAL_NOTICE.TEXT':

@@ -1291,7 +1291,7 @@ export default [
 	},
 	{
 		"id": 1,
-		"payoutMultiplier": 10550,
+		"payoutMultiplier": 120,
 		"events": [
 			{
 				"index": 0,
@@ -1299,21 +1299,24 @@ export default [
 				"board": [
 					[
 						{
-							"name": "N",
-							"non_winnable": true
+							"name": "10"
 						},
 						{
-							"name": "Q"
-						},
-						{
-							"name": "J"
+							"name": "10"
 						},
 						{
 							"name": "N",
 							"non_winnable": true
+						},
+						{
+							"name": "10"
 						}
 					],
 					[
+						{
+							"name": "W",
+							"wild": true
+						},
 						{
 							"name": "K"
 						},
@@ -1323,9 +1326,6 @@ export default [
 						},
 						{
 							"name": "10"
-						},
-						{
-							"name": "Q"
 						}
 					],
 					[
@@ -1333,19 +1333,20 @@ export default [
 							"name": "J"
 						},
 						{
-							"name": "S",
-							"scatter": true
+							"name": "A"
 						},
+						{
+							"name": "K"
+						},
+						{
+							"name": "J"
+						}
+					],
+					[
 						{
 							"name": "10"
 						},
 						{
-							"name": "S",
-							"scatter": true
-						}
-					],
-					[
-						{
 							"name": "Q"
 						},
 						{
@@ -1354,15 +1355,9 @@ export default [
 						},
 						{
 							"name": "Q"
-						},
-						{
-							"name": "J"
 						}
 					],
 					[
-						{
-							"name": "J"
-						},
 						{
 							"name": "Q"
 						},
@@ -1373,36 +1368,39 @@ export default [
 						{
 							"name": "N",
 							"non_winnable": true
+						},
+						{
+							"name": "Q"
 						}
 					]
 				],
 				"paddingPositions": [
-					653,
-					158,
-					414,
-					258,
-					966
+					621,
+					157,
+					36,
+					257,
+					967
 				],
 				"gameType": "basegame",
 				"anticipation": [
 					0,
 					0,
 					0,
-					1,
-					2
+					0,
+					1
 				]
 			},
 			{
 				"index": 1,
 				"type": "modifierReveal",
 				"modifier": {
-					"name": "X1",
+					"name": "X2",
 					"modifier": true,
-					"multiplier": 1
+					"multiplier": 2
 				},
-				"multiplier": 1,
+				"multiplier": 2,
 				"modifierReelId": "MR0",
-				"modifierPosition": 92,
+				"modifierPosition": 20,
 				"persists": false
 			},
 			{
@@ -1417,19 +1415,15 @@ export default [
 				"positions": [
 					{
 						"reel": 1,
-						"row": 1
-					},
-					{
-						"reel": 2,
-						"row": 1
+						"row": 2
 					},
 					{
 						"reel": 3,
-						"row": 1
+						"row": 2
 					},
 					{
 						"reel": 4,
-						"row": 2
+						"row": 1
 					}
 				]
 			},
@@ -1443,7 +1437,7 @@ export default [
 				},
 				"multiplier": 1,
 				"modifierReelId": "MR0",
-				"modifierPosition": 65,
+				"modifierPosition": 81,
 				"persists": true
 			},
 			{
@@ -1458,7 +1452,7 @@ export default [
 				"board": [
 					[
 						{
-							"name": "A"
+							"name": "10"
 						},
 						{
 							"name": "A"
@@ -1467,7 +1461,51 @@ export default [
 							"name": "A"
 						},
 						{
-							"name": "A"
+							"name": "Q"
+						}
+					],
+					[
+						{
+							"name": "K"
+						},
+						{
+							"name": "9"
+						},
+						{
+							"name": "J"
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						}
+					],
+					[
+						{
+							"name": "Q"
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "J"
+						}
+					],
+					[
+						{
+							"name": "K"
+						},
+						{
+							"name": "J"
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "W",
+							"wild": true
 						}
 					],
 					[
@@ -1478,61 +1516,19 @@ export default [
 							"name": "A"
 						},
 						{
-							"name": "A"
+							"name": "9"
 						},
 						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
+							"name": "9"
 						}
 					]
 				],
 				"paddingPositions": [
-					17,
-					14,
-					16,
-					8,
-					1
+					740,
+					880,
+					521,
+					972,
+					380
 				],
 				"gameType": "freegame",
 				"anticipation": [
@@ -1545,83 +1541,125 @@ export default [
 			},
 			{
 				"index": 7,
-				"type": "winInfo",
-				"totalWin": 10240,
-				"wins": [
-					{
-						"symbol": "A",
-						"kind": 5,
-						"win": 10240,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 1
-							},
-							{
-								"reel": 0,
-								"row": 2
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 1,
-								"row": 2
-							},
-							{
-								"reel": 2,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 1
-							},
-							{
-								"reel": 3,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 1
-							},
-							{
-								"reel": 4,
-								"row": 2
-							}
-						],
-						"meta": {
-							"ways": 32,
-							"globalMult": 1,
-							"winWithoutMult": 10240,
-							"symbolMult": 0
-						}
-					}
-				]
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 8,
-				"type": "setWin",
-				"amount": 10240,
-				"winLevel": 9
-			},
-			{
-				"index": 9,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
-				"index": 10,
 				"type": "updateFreeSpin",
 				"amount": 1,
 				"total": 10
 			},
 			{
+				"index": 9,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "K"
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "J"
+						}
+					],
+					[
+						{
+							"name": "N",
+							"non_winnable": true
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						},
+						{
+							"name": "K"
+						},
+						{
+							"name": "10"
+						}
+					],
+					[
+						{
+							"name": "Q"
+						},
+						{
+							"name": "9"
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						},
+						{
+							"name": "A"
+						}
+					],
+					[
+						{
+							"name": "J"
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						},
+						{
+							"name": "Q"
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						}
+					],
+					[
+						{
+							"name": "Q"
+						},
+						{
+							"name": "A"
+						},
+						{
+							"name": "N",
+							"non_winnable": true
+						},
+						{
+							"name": "Q"
+						}
+					]
+				],
+				"paddingPositions": [
+					455,
+					514,
+					274,
+					922,
+					36
+				],
+				"gameType": "freegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 10,
+				"type": "setTotalWin",
+				"amount": 0
+			},
+			{
 				"index": 11,
+				"type": "updateFreeSpin",
+				"amount": 2,
+				"total": 10
+			},
+			{
+				"index": 12,
 				"type": "reveal",
 				"board": [
 					[
@@ -1717,18 +1755,18 @@ export default [
 				]
 			},
 			{
-				"index": 12,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 13,
-				"type": "updateFreeSpin",
-				"amount": 2,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 14,
+				"type": "updateFreeSpin",
+				"amount": 3,
+				"total": 10
+			},
+			{
+				"index": 15,
 				"type": "reveal",
 				"board": [
 					[
@@ -1826,18 +1864,18 @@ export default [
 				]
 			},
 			{
-				"index": 15,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 16,
-				"type": "updateFreeSpin",
-				"amount": 3,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 17,
+				"type": "updateFreeSpin",
+				"amount": 4,
+				"total": 10
+			},
+			{
+				"index": 18,
 				"type": "reveal",
 				"board": [
 					[
@@ -1932,18 +1970,18 @@ export default [
 				]
 			},
 			{
-				"index": 18,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 19,
-				"type": "updateFreeSpin",
-				"amount": 4,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 20,
+				"type": "updateFreeSpin",
+				"amount": 5,
+				"total": 10
+			},
+			{
+				"index": 21,
 				"type": "reveal",
 				"board": [
 					[
@@ -2038,18 +2076,18 @@ export default [
 				]
 			},
 			{
-				"index": 21,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 22,
-				"type": "updateFreeSpin",
-				"amount": 5,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 23,
+				"type": "updateFreeSpin",
+				"amount": 6,
+				"total": 10
+			},
+			{
+				"index": 24,
 				"type": "reveal",
 				"board": [
 					[
@@ -2144,18 +2182,18 @@ export default [
 				]
 			},
 			{
-				"index": 24,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 25,
-				"type": "updateFreeSpin",
-				"amount": 6,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 26,
+				"type": "updateFreeSpin",
+				"amount": 7,
+				"total": 10
+			},
+			{
+				"index": 27,
 				"type": "reveal",
 				"board": [
 					[
@@ -2250,18 +2288,18 @@ export default [
 				]
 			},
 			{
-				"index": 27,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 28,
-				"type": "updateFreeSpin",
-				"amount": 7,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 29,
+				"type": "updateFreeSpin",
+				"amount": 8,
+				"total": 10
+			},
+			{
+				"index": 30,
 				"type": "reveal",
 				"board": [
 					[
@@ -2357,18 +2395,18 @@ export default [
 				]
 			},
 			{
-				"index": 30,
-				"type": "setTotalWin",
-				"amount": 10240
-			},
-			{
 				"index": 31,
-				"type": "updateFreeSpin",
-				"amount": 8,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 0
 			},
 			{
 				"index": 32,
+				"type": "updateFreeSpin",
+				"amount": 9,
+				"total": 10
+			},
+			{
+				"index": 33,
 				"type": "reveal",
 				"board": [
 					[
@@ -2463,7 +2501,7 @@ export default [
 				]
 			},
 			{
-				"index": 33,
+				"index": 34,
 				"type": "winInfo",
 				"totalWin": 120,
 				"wins": [
@@ -2495,1638 +2533,31 @@ export default [
 				]
 			},
 			{
-				"index": 34,
+				"index": 35,
 				"type": "setWin",
 				"amount": 120,
 				"winLevel": 3
 			},
 			{
-				"index": 35,
-				"type": "setTotalWin",
-				"amount": 10360
-			},
-			{
 				"index": 36,
-				"type": "updateFreeSpin",
-				"amount": 9,
-				"total": 10
+				"type": "setTotalWin",
+				"amount": 120
 			},
 			{
 				"index": 37,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "K"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						}
-					]
-				],
-				"paddingPositions": [
-					285,
-					947,
-					510,
-					512,
-					527
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
+				"type": "freeSpinEnd",
+				"amount": 120,
+				"winLevel": 2
 			},
 			{
 				"index": 38,
-				"type": "winInfo",
-				"totalWin": 190,
-				"wins": [
-					{
-						"symbol": "J",
-						"kind": 4,
-						"win": 190,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 2
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 1
-							}
-						],
-						"meta": {
-							"ways": 1,
-							"globalMult": 1,
-							"winWithoutMult": 190,
-							"symbolMult": 0
-						}
-					}
-				]
-			},
-			{
-				"index": 39,
-				"type": "setWin",
-				"amount": 190,
-				"winLevel": 3
-			},
-			{
-				"index": 40,
-				"type": "setTotalWin",
-				"amount": 10550
-			},
-			{
-				"index": 41,
-				"type": "freeSpinEnd",
-				"amount": 10550,
-				"winLevel": 7
-			},
-			{
-				"index": 42,
 				"type": "finalWin",
-				"amount": 10550
+				"amount": 120
 			}
 		],
 		"criteria": "freegame",
 		"baseGameWins": 0.0,
-		"freeGameWins": 105.5
-	},
-	{
-		"id": 3,
-		"payoutMultiplier": 21100,
-		"events": [
-			{
-				"index": 0,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "Q"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "S",
-							"scatter": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "9"
-						},
-						{
-							"name": "S",
-							"scatter": true
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "K"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "S",
-							"scatter": true
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						}
-					]
-				],
-				"paddingPositions": [
-					283,
-					17,
-					229,
-					433,
-					798
-				],
-				"gameType": "basegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					1,
-					2
-				]
-			},
-			{
-				"index": 1,
-				"type": "modifierReveal",
-				"modifier": {
-					"name": "X2",
-					"modifier": true,
-					"multiplier": 2
-				},
-				"multiplier": 2,
-				"modifierReelId": "MR0",
-				"modifierPosition": 13,
-				"persists": false
-			},
-			{
-				"index": 2,
-				"type": "setTotalWin",
-				"amount": 0
-			},
-			{
-				"index": 3,
-				"type": "freeSpinTrigger",
-				"totalFs": 10,
-				"positions": [
-					{
-						"reel": 1,
-						"row": 1
-					},
-					{
-						"reel": 2,
-						"row": 1
-					},
-					{
-						"reel": 3,
-						"row": 2
-					}
-				]
-			},
-			{
-				"index": 4,
-				"type": "modifierReveal",
-				"modifier": {
-					"name": "X1",
-					"modifier": true,
-					"multiplier": 1
-				},
-				"multiplier": 1,
-				"modifierReelId": "MR0",
-				"modifierPosition": 3,
-				"persists": true
-			},
-			{
-				"index": 5,
-				"type": "updateFreeSpin",
-				"amount": 0,
-				"total": 10
-			},
-			{
-				"index": 6,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "Q"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "Q"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "W",
-							"wild": true
-						}
-					]
-				],
-				"paddingPositions": [
-					826,
-					266,
-					819,
-					278,
-					198
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 7,
-				"type": "setTotalWin",
-				"amount": 0
-			},
-			{
-				"index": 8,
-				"type": "updateFreeSpin",
-				"amount": 1,
-				"total": 10
-			},
-			{
-				"index": 9,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "Q"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "Q"
-						}
-					],
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "J"
-						}
-					]
-				],
-				"paddingPositions": [
-					296,
-					642,
-					888,
-					749,
-					983
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 10,
-				"type": "setTotalWin",
-				"amount": 0
-			},
-			{
-				"index": 11,
-				"type": "updateFreeSpin",
-				"amount": 2,
-				"total": 10
-			},
-			{
-				"index": 12,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "Q"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "A"
-						}
-					]
-				],
-				"paddingPositions": [
-					901,
-					381,
-					88,
-					865,
-					620
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 13,
-				"type": "winInfo",
-				"totalWin": 240,
-				"wins": [
-					{
-						"symbol": "J",
-						"kind": 5,
-						"win": 240,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 2
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 2
-							}
-						],
-						"meta": {
-							"ways": 1,
-							"globalMult": 1,
-							"winWithoutMult": 240,
-							"symbolMult": 0
-						}
-					}
-				]
-			},
-			{
-				"index": 14,
-				"type": "setWin",
-				"amount": 240,
-				"winLevel": 4
-			},
-			{
-				"index": 15,
-				"type": "setTotalWin",
-				"amount": 240
-			},
-			{
-				"index": 16,
-				"type": "updateFreeSpin",
-				"amount": 3,
-				"total": 10
-			},
-			{
-				"index": 17,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "W",
-							"wild": true
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "W",
-							"wild": true
-						}
-					],
-					[
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "Q"
-						}
-					]
-				],
-				"paddingPositions": [
-					397,
-					518,
-					254,
-					182,
-					253
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 18,
-				"type": "setTotalWin",
-				"amount": 240
-			},
-			{
-				"index": 19,
-				"type": "updateFreeSpin",
-				"amount": 4,
-				"total": 10
-			},
-			{
-				"index": 20,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "9"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "J"
-						}
-					]
-				],
-				"paddingPositions": [
-					91,
-					967,
-					957,
-					837,
-					886
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 21,
-				"type": "winInfo",
-				"totalWin": 380,
-				"wins": [
-					{
-						"symbol": "K",
-						"kind": 3,
-						"win": 380,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 1
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							}
-						],
-						"meta": {
-							"ways": 2,
-							"globalMult": 1,
-							"winWithoutMult": 380,
-							"symbolMult": 0
-						}
-					}
-				]
-			},
-			{
-				"index": 22,
-				"type": "setWin",
-				"amount": 380,
-				"winLevel": 4
-			},
-			{
-				"index": 23,
-				"type": "setTotalWin",
-				"amount": 620
-			},
-			{
-				"index": 24,
-				"type": "updateFreeSpin",
-				"amount": 5,
-				"total": 10
-			},
-			{
-				"index": 25,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "W",
-							"wild": true
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					]
-				],
-				"paddingPositions": [
-					9,
-					0,
-					9,
-					18,
-					9
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 26,
-				"type": "winInfo",
-				"totalWin": 10240,
-				"wins": [
-					{
-						"symbol": "A",
-						"kind": 5,
-						"win": 10240,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 1
-							},
-							{
-								"reel": 0,
-								"row": 2
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 1,
-								"row": 2
-							},
-							{
-								"reel": 2,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 1
-							},
-							{
-								"reel": 3,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 1
-							},
-							{
-								"reel": 4,
-								"row": 2
-							}
-						],
-						"meta": {
-							"ways": 32,
-							"globalMult": 1,
-							"winWithoutMult": 10240,
-							"symbolMult": 0
-						}
-					}
-				]
-			},
-			{
-				"index": 27,
-				"type": "setWin",
-				"amount": 10240,
-				"winLevel": 9
-			},
-			{
-				"index": 28,
-				"type": "setTotalWin",
-				"amount": 10860
-			},
-			{
-				"index": 29,
-				"type": "updateFreeSpin",
-				"amount": 6,
-				"total": 10
-			},
-			{
-				"index": 30,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "K"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					],
-					[
-						{
-							"name": "9"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "Q"
-						}
-					]
-				],
-				"paddingPositions": [
-					520,
-					199,
-					423,
-					433,
-					613
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 31,
-				"type": "setTotalWin",
-				"amount": 10860
-			},
-			{
-				"index": 32,
-				"type": "updateFreeSpin",
-				"amount": 7,
-				"total": 10
-			},
-			{
-				"index": 33,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "9"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "9"
-						},
-						{
-							"name": "K"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "10"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						}
-					]
-				],
-				"paddingPositions": [
-					462,
-					165,
-					238,
-					312,
-					265
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 34,
-				"type": "setTotalWin",
-				"amount": 10860
-			},
-			{
-				"index": 35,
-				"type": "updateFreeSpin",
-				"amount": 8,
-				"total": 10
-			},
-			{
-				"index": 36,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "J"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "J"
-						}
-					],
-					[
-						{
-							"name": "Q"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "Q"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "J"
-						},
-						{
-							"name": "Q"
-						}
-					],
-					[
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "Q"
-						},
-						{
-							"name": "K"
-						},
-						{
-							"name": "9"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "N",
-							"non_winnable": true
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "J"
-						}
-					]
-				],
-				"paddingPositions": [
-					44,
-					83,
-					47,
-					473,
-					641
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 37,
-				"type": "setTotalWin",
-				"amount": 10860
-			},
-			{
-				"index": 38,
-				"type": "updateFreeSpin",
-				"amount": 9,
-				"total": 10
-			},
-			{
-				"index": 39,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						}
-					],
-					[
-						{
-							"name": "A"
-						},
-						{
-							"name": "A"
-						},
-						{
-							"name": "W",
-							"wild": true
-						},
-						{
-							"name": "A"
-						}
-					]
-				],
-				"paddingPositions": [
-					16,
-					17,
-					15,
-					10,
-					4
-				],
-				"gameType": "freegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 40,
-				"type": "winInfo",
-				"totalWin": 10240,
-				"wins": [
-					{
-						"symbol": "A",
-						"kind": 5,
-						"win": 10240,
-						"positions": [
-							{
-								"reel": 0,
-								"row": 1
-							},
-							{
-								"reel": 0,
-								"row": 2
-							},
-							{
-								"reel": 1,
-								"row": 1
-							},
-							{
-								"reel": 1,
-								"row": 2
-							},
-							{
-								"reel": 2,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 1
-							},
-							{
-								"reel": 3,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 1
-							},
-							{
-								"reel": 4,
-								"row": 2
-							}
-						],
-						"meta": {
-							"ways": 32,
-							"globalMult": 1,
-							"winWithoutMult": 10240,
-							"symbolMult": 0
-						}
-					}
-				]
-			},
-			{
-				"index": 41,
-				"type": "setWin",
-				"amount": 10240,
-				"winLevel": 9
-			},
-			{
-				"index": 42,
-				"type": "setTotalWin",
-				"amount": 21100
-			},
-			{
-				"index": 43,
-				"type": "freeSpinEnd",
-				"amount": 21100,
-				"winLevel": 7
-			},
-			{
-				"index": 44,
-				"type": "finalWin",
-				"amount": 21100
-			}
-		],
-		"criteria": "freegame",
-		"baseGameWins": 0.0,
-		"freeGameWins": 211.0
+		"freeGameWins": 1.2
 	},
 	{
 		"id": 4,

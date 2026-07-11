@@ -134,7 +134,9 @@ state = state.replace(
 )
 (APP / "game/stateGame.svelte.ts").write_text(state, encoding="utf-8")
 
-reveal = json.loads((ROOT / "event_config_base.json").read_text(encoding="utf-8"))["reveal"]["board"]
+manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+base_samples = json.loads((ROOT / manifest["curated_samples"]["base"]["file"]).read_text(encoding="utf-8"))
+reveal = next(iter(base_samples.values()))["events"][0]["board"]
 initial_lines = []
 for reel in reveal:
     syms = []

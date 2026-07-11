@@ -1,5 +1,7 @@
 ﻿from pathlib import Path
 import json
+import re
+
 APP = Path(__file__).resolve().parent.parent / "src"
 ROOT = Path(__file__).resolve().parent.parent.parent / "math-exports" / "card_ways"
 
@@ -29,19 +31,24 @@ handler = handler.replace("import { playBookEvent } from './utils';\n", "")
 bonus_events_path = APP / "stories/data/bonus_events.ts"
 text = bonus_events_path.read_text(encoding="utf-8")
 if "wincap" not in text:
-    data = json.loads((ROOT / "books_bonus.json").read_text(encoding="utf-8"))
+    manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+    samples = json.loads(
+        (ROOT / manifest["curated_samples"]["bonus_3"]["file"]).read_text(encoding="utf-8")
+    )
     wincap = None
-    for b in data:
-        for e in b["events"]:
-            if e["type"] == "wincap":
-                wincap = {k: e[k] for k in e if k != "index"}
+    for book in samples.values():
+        for event in book.get("events", []):
+            if event.get("type") == "wincap":
+                wincap = {k: event[k] for k in event if k != "index"}
                 break
         if wincap:
             break
     if not wincap:
         wincap = {"type": "wincap", "amount": 500000}
-    import re
-    text = text.rstrip().rstrip("};") + f"\t\"wincap\": {json.dumps(wincap, indent='\t').replace(chr(10), chr(10)+chr(9))},\n}};\n"
+    text = (
+        text.rstrip().rstrip("};")
+        + f"\t\"wincap\": {json.dumps(wincap, indent='\t').replace(chr(10), chr(10)+chr(9))},\n}};\n"
+    )
     bonus_events_path.write_text(text, encoding="utf-8")
 
 print("fixes applied")

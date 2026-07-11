@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'TABELA WYPŁAT',
 	'GR.SYMBOL.NON_WIN': 'Symbol bez wygranej. Nie wypłaca i nie tworzy wygrywających dróg.',
 	'GR.SYMBOL.WILD': 'Zastępuje wszystkie płatne symbole.',
-	'GR.SYMBOL.SCATTER': '3 lub więcej Scatterów daje 10 Darmowych Spinów.',
+	'GR.SYMBOL.SCATTER': '3 Scattery dają 10, 4 dają 15, a 5 daje 20 Darmowych Spinów.',
 	'GR.SYMBOL.MODIFIER': 'Karta modyfikatora. Dotyczy wygranych dróg. Brak bezpośredniej wypłaty.',
 	'GR.UI.SPIN': 'SPIN | Rozpoczyna spin z aktualną kwotą zakładu.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Otwiera menu Auto Spin.',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': 'Wild zastępuje wszystkie płatne symbole. Wild nie zastępuje Scattera.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / DARMOWE SPINY',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Symbole Scatter pojawiają się na wszystkich bębnach. Trafienie 3 lub więcej Scatterów w jednym spinie daje 10 Darmowych Spinów. Wygrane Scatter są liczone oddzielnie od wygranych dróg.',
+		'Symbole Scatter pojawiają się na wszystkich bębnach. 3 Scattery dają 10 Darmowych Spinów, 4 Scattery dają 15 Darmowych Spinów, a 5 Scatterów daje 20 Darmowych Spinów. Wygrane Scatter są oceniane oddzielnie od wygranych ways.',
 	'GR.MODIFIER_BASE.TITLE': 'BĘBEN MODYFIKATORA (GRA PODSTAWOWA)',
 	'GR.MODIFIER_BASE.TEXT':
 		'W każdym spinie gry podstawowej Bęben Modyfikatora ujawnia kartę mnożnika: ×1, ×2 lub ×3. Przy wygranej stosowany jest aktywny mnożnik. Modyfikator może się zmienić w następnym spinie. Jeśli po wyższym mnożniku pojawi się karta ×1, mnożnik jest resetowany.',
@@ -34,11 +34,11 @@ export default {
 		'Wszystkie płatne symbole wypłacają od lewej do prawej na sąsiednich bębnach, zaczynając od lewego bębna. Tylko symbole na kolejnych bębnach tworzą ważną drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wypłacają i nie tworzą dróg. Wiele dróg tego samego symbolu jest sumowanych. Wild zastępuje, aby uzupełnić drogi.',
 	'GR.SECTION.BET_MODES': 'TRYBY ZAKŁADÓW',
 	'GR.BET_MODES.TEXT':
-		'Tryb normalny ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może też kupić Darmowe Spiny za {bonusCost}× podstawowy zakład. Tryb zakupu Darmowych Spinów ma teoretyczny zwrot {bonusRtp}%. Zakup Darmowych Spinów natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie to {maxWin}× podstawowy zakład.',
+		'Normalny tryb ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może kupić Darmowe Spiny na trzech poziomach: {bonusCost3}× (10 spinów), {bonusCost4}× (15 spinów) lub {bonusCost5}× (20 spinów) zakładu podstawowego. Każdy tryb zakupu ma teoretyczny zwrot {bonusRtp}%. Zakup natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie to {maxWin}× zakład podstawowy.',
 	'GR.SECTION.BONUS_BUY': 'KUP BONUS',
-	'GR.BONUS_BUY.TITLE': 'KUP BONUS — DARMOWE SPINY',
-	'GR.BONUS_BUY.TEXT':
-		'Koszt: {bonusCost}× całkowity zakład\nNatychmiast przyznaje funkcję Darmowych Spinów (10 spinów)\nTeoretyczny RTP: {bonusRtp}%\nMaksymalna wygrana: {maxWin}× zakład\nKup Bonus może być wyłączony w niektórych jurysdykcjach',
+	'GR.BONUS_BUY.TIER.TITLE': 'KUP BONUS — {scatterCount} SCATTER ({freeSpins} SPINÓW)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Koszt: {bonusCost}× całkowity zakład\nNatychmiast przyznaje funkcję Darmowych Spinów ({freeSpins} spinów)\nTeoretyczny RTP: {bonusRtp}%\nMaksymalna wygrana: {maxWin}× zakład\nKup Bonus może być wyłączony w niektórych jurysdykcjach',
 	'GR.SECTION.UI_GUIDE': 'PRZEWODNIK INTERFEJSU',
 	'GR.SECTION.LEGAL_NOTICE': 'INFORMACJA PRAWNA',
 	'GR.LEGAL_NOTICE.TEXT':

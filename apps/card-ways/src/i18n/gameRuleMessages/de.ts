@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'AUSZAHLUNGSTABELLE',
 	'GR.SYMBOL.NON_WIN': 'Nicht-Gewinnsymbol. Zahlt nicht aus und kann keine Gewinnwege bilden.',
 	'GR.SYMBOL.WILD': 'Ersetzt alle zahlenden Symbole.',
-	'GR.SYMBOL.SCATTER': '3 oder mehr Scatter gewähren 10 Freispiele.',
+	'GR.SYMBOL.SCATTER': '3 Scatter gewähren 10, 4 gewähren 15 und 5 gewähren 20 Freispiele.',
 	'GR.SYMBOL.MODIFIER': 'Modifikator-Karte. Gilt für Wege-Gewinne. Keine direkte Auszahlung.',
 	'GR.UI.SPIN': 'SPIN | Startet einen Spin mit dem aktuellen Einsatzbetrag.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Öffnet das Auto-Spin-Popup-Menü.',
@@ -20,7 +20,7 @@ export default {
 		'Das Wild ersetzt alle zahlenden Symbole. Wild ersetzt kein Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / FREISPIELE',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Scatter-Symbole erscheinen auf allen Walzen. 3 oder mehr Scatter in einem Spin gewähren 10 Freispiele. Scatter-Gewinne werden getrennt von Wege-Gewinnen berechnet.',
+		'Scatter-Symbole erscheinen auf allen Walzen. 3 Scatter gewähren 10 Freispiele, 4 Scatter gewähren 15 Freispiele und 5 Scatter gewähren 20 Freispiele. Scatter-Gewinne werden getrennt von Ways-Gewinnen bewertet.',
 	'GR.MODIFIER_BASE.TITLE': 'MODIFIKATOR-WALZE (BASISSPIEL)',
 	'GR.MODIFIER_BASE.TEXT':
 		'Bei jedem Basisspiel-Spin zeigt die Modifikator-Walze eine Multiplikator-Karte: ×1, ×2 oder ×3. Bei einem Gewinn wird der aktive Modifikator-Multiplikator angewendet. Der Modifikator kann beim nächsten Spin wechseln. Wird nach einem höheren Multiplikator eine ×1-Karte gezeigt, wird der Multiplikator zurückgesetzt.',
@@ -36,11 +36,11 @@ export default {
 		'Alle zahlenden Symbole zahlen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole zahlen nicht aus und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen.',
 	'GR.SECTION.BET_MODES': 'EINSATZMODI',
 	'GR.BET_MODES.TEXT':
-		'Der Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann auch Freispiele für {bonusCost}× den Grundeinsatz kaufen. Der Freispiel-Kaufmodus hat eine theoretische erwartete Rendite von {bonusRtp}%. Der Kauf von Freispielen löst das Bonus-Feature sofort aus.\n\nDer maximale Gewinn in jedem Einsatzmodus beträgt {maxWin}× den Grundeinsatz.',
+		'Der Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen kaufen: {bonusCost3}× (10 Spins), {bonusCost4}× (15 Spins) oder {bonusCost5}× (20 Spins) des Grundeinsatzes. Jeder Freispiel-Kaufmodus hat eine theoretische Rendite von {bonusRtp}%. Der Kauf löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Einsatzmodus beträgt {maxWin}× den Grundeinsatz.',
 	'GR.SECTION.BONUS_BUY': 'BONUS KAUFEN',
-	'GR.BONUS_BUY.TITLE': 'BONUS KAUFEN — FREISPIELE',
-	'GR.BONUS_BUY.TEXT':
-		'Kosten: {bonusCost}× Gesamteinsatz\nGewährt sofort das Freispiel-Feature (10 Spins)\nTheoretischer RTP: {bonusRtp}%\nMaximalgewinn: {maxWin}× Einsatz\nBonus-Kauf kann in bestimmten Rechtsgebieten deaktiviert sein',
+	'GR.BONUS_BUY.TIER.TITLE': 'BONUS KAUFEN — {scatterCount} SCATTER ({freeSpins} SPINS)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Kosten: {bonusCost}× Gesamteinsatz\nGewährt sofort die Freispiel-Funktion ({freeSpins} Spins)\nTheoretischer RTP: {bonusRtp}%\nMaximalgewinn: {maxWin}× Einsatz\nBonus-Kauf kann in bestimmten Rechtsgebieten deaktiviert sein',
 	'GR.SECTION.UI_GUIDE': 'BENUTZEROBERFLÄCHEN-LEITFADEN',
 	'GR.SECTION.LEGAL_NOTICE': 'RECHTLICHER HINWEIS',
 	'GR.LEGAL_NOTICE.TEXT':

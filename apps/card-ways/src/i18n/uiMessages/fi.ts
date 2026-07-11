@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'PELIN SÄÄNNÖT',
 	BUY: 'OSTA',
 	'BONUS BUY ACTIVATED': 'BONUKSEN OSTO AKTIVOITU',
-	'UI.BONUS_BUY.DIALOG': 'Osta ilmaiskierrokset hintaan {bonusCost}× panos.',
-	'UI.BONUS_BUY.DESCRIPTION': 'Käynnistää ilmaiskierrosominaisuuden heti.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} ILMAISKIERROSTA',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Antaa heti {freeSpins} ilmaiskierrosta {scatterCount} scatterilla.',
+	'UI.BONUS_BUY.TIER.DIALOG': 'Osta hintaan {bonusCost}× panos.',
+	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER BONUS-OSTO AKTIVOITU',
 };

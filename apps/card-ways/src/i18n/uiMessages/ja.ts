@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'ゲームルール',
 	BUY: '購入',
 	'BONUS BUY ACTIVATED': 'ボーナス購入が有効になりました',
-	'UI.BONUS_BUY.DIALOG': 'ベットの{bonusCost}×でフリースピンを購入。',
-	'UI.BONUS_BUY.DESCRIPTION': 'フリースピン機能を即座に開始します。',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} フリースピン',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount}個のスキャッターで{freeSpins}回のフリースピンを即座に付与。',
+	'UI.BONUS_BUY.TIER.DIALOG': 'ベットの{bonusCost}×で購入。',
+	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER ボーナス購入が有効',
 };

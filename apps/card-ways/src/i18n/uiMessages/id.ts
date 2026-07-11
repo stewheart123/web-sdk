@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': 'ATURAN PERMAINAN',
 	BUY: 'BELI',
 	'BONUS BUY ACTIVATED': 'BELI BONUS DIAKTIFKAN',
-	'UI.BONUS_BUY.DIALOG': 'Beli Putaran Gratis seharga {bonusCost}× taruhan Anda.',
-	'UI.BONUS_BUY.DESCRIPTION': 'Langsung memicu fitur Putaran Gratis.',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} PUTARAN GRATIS',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': 'Langsung memberikan {freeSpins} Putaran Gratis dengan {scatterCount} Scatter.',
+	'UI.BONUS_BUY.TIER.DIALOG': 'Beli seharga {bonusCost}× taruhan Anda.',
+	'UI.BONUS_BUY.TIER.TICKER': 'BELI BONUS {scatterCount} SCATTER DIAKTIFKAN',
 };

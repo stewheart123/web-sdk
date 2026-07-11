@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'TABLA DE PAGOS',
 	'GR.SYMBOL.NON_WIN': 'Símbolo sin premio. No paga y no puede formar combinaciones ganadoras.',
 	'GR.SYMBOL.WILD': 'Sustituye a todos los símbolos de pago.',
-	'GR.SYMBOL.SCATTER': '3 o más Scatters otorgan 10 Giros Gratis.',
+	'GR.SYMBOL.SCATTER': '3 Scatters otorgan 10, 4 otorgan 15 y 5 otorgan 20 Giros Gratis.',
 	'GR.SYMBOL.MODIFIER': 'Carta modificadora. Se aplica a premios por formas. Sin pago directo.',
 	'GR.UI.SPIN': 'GIRO | Inicia un giro con el importe de apuesta actual.',
 	'GR.UI.AUTO_SPIN': 'GIRO AUTO | Abre el menú emergente de Giro Automático.',
@@ -20,7 +20,7 @@ export default {
 		'El Wild sustituye a todos los símbolos de pago. El Wild no sustituye al Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / GIROS GRATIS',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Los símbolos Scatter aparecen en todos los rodillos. Obtener 3 o más Scatters en un solo giro otorga 10 Giros Gratis. Los premios Scatter se evalúan por separado de los premios por formas.',
+		'Los símbolos Scatter aparecen en todos los rodillos. 3 Scatters otorgan 10 Giros Gratis, 4 Scatters otorgan 15 Giros Gratis y 5 Scatters otorgan 20 Giros Gratis. Las ganancias Scatter se evalúan por separado de las ganancias por formas.',
 	'GR.MODIFIER_BASE.TITLE': 'RODILLO MODIFICADOR (JUEGO BASE)',
 	'GR.MODIFIER_BASE.TEXT':
 		'En cada giro del juego base, el Rodillo Modificador revela una carta multiplicadora: ×1, ×2 o ×3. Cuando hay un premio, se aplica el multiplicador activo. El modificador puede cambiar en el siguiente giro. Si se revela una carta ×1 tras un multiplicador mayor, el multiplicador se reinicia.',
@@ -36,11 +36,11 @@ export default {
 		'Todos los símbolos de pago pagan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no pagan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APUESTA',
 	'GR.BET_MODES.TEXT':
-		'El modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador también puede comprar Giros Gratis por {bonusCost}× la apuesta base. El modo de compra de Giros Gratis tiene un retorno teórico del {bonusRtp}%. Comprar Giros Gratis activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de apuesta es {maxWin}× la apuesta base.',
+		'El modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede comprar Giros Gratis en tres niveles: {bonusCost3}× (10 giros), {bonusCost4}× (15 giros) o {bonusCost5}× (20 giros) la apuesta base. Cada modo de compra tiene un retorno teórico del {bonusRtp}%. La compra activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de apuesta es {maxWin}× la apuesta base.',
 	'GR.SECTION.BONUS_BUY': 'COMPRA DE BONO',
-	'GR.BONUS_BUY.TITLE': 'COMPRA DE BONO — GIROS GRATIS',
-	'GR.BONUS_BUY.TEXT':
-		'Costo: {bonusCost}× apuesta total\nOtorga instantáneamente la función de Giros Gratis (10 giros)\nRTP teórico: {bonusRtp}%\nPremio máximo: {maxWin}× apuesta\nLa Compra de Bono puede estar deshabilitada en ciertas jurisdicciones',
+	'GR.BONUS_BUY.TIER.TITLE': 'COMPRA DE BONO — {scatterCount} SCATTER ({freeSpins} GIROS)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Costo: {bonusCost}× apuesta total\nOtorga instantáneamente la función de Giros Gratis ({freeSpins} giros)\nRTP teórico: {bonusRtp}%\nPremio máximo: {maxWin}× apuesta\nLa Compra de Bono puede estar deshabilitada en ciertas jurisdicciones',
 	'GR.SECTION.UI_GUIDE': 'GUÍA DE INTERFAZ',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':

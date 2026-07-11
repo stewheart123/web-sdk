@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: '페이테이블',
 	'GR.SYMBOL.NON_WIN': '비당첨 심볼. 지급되지 않으며 당첨 웨이를 형성할 수 없습니다.',
 	'GR.SYMBOL.WILD': '모든 지급 심볼을 대체합니다.',
-	'GR.SYMBOL.SCATTER': '스캐터 3개 이상 시 프리 스핀 10회 지급.',
+	'GR.SYMBOL.SCATTER': '스캐터 3개는 10회, 4개는 15회, 5개는 20회 프리 스핀을 지급합니다.',
 	'GR.SYMBOL.MODIFIER': '수정자 카드. 웨이 당첨에 적용. 직접 지급 없음.',
 	'GR.UI.SPIN': '스핀 | 현재 베팅 금액으로 스핀을 시작합니다.',
 	'GR.UI.AUTO_SPIN': '자동 스핀 | 자동 스핀 팝업 메뉴를 엽니다.',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': '와일드는 모든 지급 심볼을 대체합니다. 스캐터는 대체하지 않습니다.',
 	'GR.SCATTER_FREE_SPINS.TITLE': '스캐터 / 프리 스핀',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'스캐터 심볼은 모든 릴에 나타납니다. 한 스핀에서 스캐터 3개 이상 시 프리 스핀 10회를 지급합니다. 스캐터 당첨은 웨이 당첨과 별도로 계산됩니다.',
+		'스캐터 심볼은 모든 릴에 나타납니다. 스캐터 3개는 10회, 4개는 15회, 5개는 20회 프리 스핀을 지급합니다. 스캐터 승리는 ways 승리와 별도로 평가됩니다.',
 	'GR.MODIFIER_BASE.TITLE': '수정자 릴 (기본 게임)',
 	'GR.MODIFIER_BASE.TEXT':
 		'기본 게임의 각 스핀에서 수정자 릴은 ×1, ×2 또는 ×3 배수 카드를 공개합니다. 당첨 시 활성 수정자 배수가 적용됩니다. 다음 스핀에서 변경될 수 있습니다. 더 높은 배수 후 ×1 카드가 나오면 배수가 초기화됩니다.',
@@ -34,11 +34,11 @@ export default {
 		'모든 지급 심볼은 가장 왼쪽 릴부터 인접 릴에서 왼쪽에서 오른쪽으로 지급됩니다. 연속 릴의 심볼만 유효한 웨이를 형성합니다. 스캐터에는 적용되지 않습니다. 비당첨 심볼은 지급되지 않으며 당첨 웨이를 형성할 수 없습니다. 동일 심볼의 여러 웨이는 합산됩니다. 와일드는 웨이 완성을 위해 대체합니다.',
 	'GR.SECTION.BET_MODES': '베팅 모드',
 	'GR.BET_MODES.TEXT':
-		'일반 모드의 이론적 기대 수익률은 {baseRtp}%입니다.\n\n플레이어는 기본 베팅의 {bonusCost}×로 프리 스핀을 구매할 수 있습니다. 프리 스핀 구매 모드의 이론적 수익률은 {bonusRtp}%입니다. 프리 스핀 구매 시 보너스 기능이 즉시 시작됩니다.\n\n각 베팅 모드의 최대 당첨은 기본 베팅의 {maxWin}×입니다.',
+		'일반 모드의 이론적 기대 수익률은 {baseRtp}%입니다.\n\n플레이어는 세 가지 단계로 프리 스핀을 구매할 수 있습니다: {bonusCost3}×(10회), {bonusCost4}×(15회), {bonusCost5}×(20회) 기본 베팅. 각 구매 모드의 이론적 수익률은 {bonusRtp}%입니다. 구매 시 보너스 기능이 즉시 시작됩니다.\n\n각 베팅 모드의 최대 당첨은 기본 베팅의 {maxWin}×입니다.',
 	'GR.SECTION.BONUS_BUY': '보너스 구매',
-	'GR.BONUS_BUY.TITLE': '보너스 구매 — 프리 스핀',
-	'GR.BONUS_BUY.TEXT':
-		'비용: 총 베팅의 {bonusCost}×\n즉시 프리 스핀 기능(10회) 지급\n이론 RTP: {bonusRtp}%\n최대 당첨: 베팅의 {maxWin}×\n일부 관할 구역에서는 보너스 구매가 비활성화될 수 있음',
+	'GR.BONUS_BUY.TIER.TITLE': '보너스 구매 — {scatterCount} SCATTER ({freeSpins}회)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'비용: 총 베팅의 {bonusCost}×\n즉시 프리 스핀 기능({freeSpins}회) 지급\n이론 RTP: {bonusRtp}%\n최대 당첨: 베팅의 {maxWin}×\n일부 관할 구역에서는 보너스 구매가 비활성화될 수 있음',
 	'GR.SECTION.UI_GUIDE': '사용자 인터페이스 가이드',
 	'GR.SECTION.LEGAL_NOTICE': '법적 고지',
 	'GR.LEGAL_NOTICE.TEXT':

@@ -44,6 +44,8 @@ export default {
 	'GAME RULES': '游戏规则',
 	BUY: '购买',
 	'BONUS BUY ACTIVATED': '奖励购买已激活',
-	'UI.BONUS_BUY.DIALOG': '以{bonusCost}×投注购买免费旋转。',
-	'UI.BONUS_BUY.DESCRIPTION': '立即触发免费旋转功能。',
+	'UI.BONUS_BUY.TIER.TITLE': '{scatterCount} SCATTER — {freeSpins} 免费旋转',
+	'UI.BONUS_BUY.TIER.DESCRIPTION': '立即获得 {scatterCount} 个 Scatter 的 {freeSpins} 次免费旋转。',
+	'UI.BONUS_BUY.TIER.DIALOG': '以 {bonusCost}× 投注购买。',
+	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER 奖励购买已激活',
 };

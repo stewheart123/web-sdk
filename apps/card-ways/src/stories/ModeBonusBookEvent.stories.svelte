@@ -2,7 +2,7 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 
 	const { Story } = defineMeta({
-		title: 'MODE_BONUS/bookEvent',
+		title: 'MODE_BONUS/bookEvent (all tiers)',
 	});
 </script>
 

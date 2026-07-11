@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'TABELA DE PAGAMENTOS',
 	'GR.SYMBOL.NON_WIN': 'Símbolo sem prémio. Não paga e não forma combinações vencedoras.',
 	'GR.SYMBOL.WILD': 'Substitui todos os símbolos pagantes.',
-	'GR.SYMBOL.SCATTER': '3 ou mais Scatters concedem 10 Rodadas Grátis.',
+	'GR.SYMBOL.SCATTER': '3 Scatters concedem 10, 4 concedem 15 e 5 concedem 20 Rodadas Grátis.',
 	'GR.SYMBOL.MODIFIER': 'Carta modificadora. Aplica-se a prémios por formas. Sem pagamento direto.',
 	'GR.UI.SPIN': 'RODADA | Inicia uma rodada com o valor de aposta atual.',
 	'GR.UI.AUTO_SPIN': 'RODADA AUTO | Abre o menu pop-up de Rodada Automática.',
@@ -19,7 +19,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT': 'O Wild substitui todos os símbolos pagantes. O Wild não substitui o Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / RODADAS GRÁTIS',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Os símbolos Scatter aparecem em todos os rolos. Obter 3 ou mais Scatters numa única rodada concede 10 Rodadas Grátis. Os prémios Scatter são avaliados separadamente dos prémios por formas.',
+		'Os símbolos Scatter aparecem em todos os rolos. 3 Scatters concedem 10 Rodadas Grátis, 4 Scatters concedem 15 Rodadas Grátis e 5 Scatters concedem 20 Rodadas Grátis. Os ganhos Scatter são avaliados separadamente dos ganhos por formas.',
 	'GR.MODIFIER_BASE.TITLE': 'ROLO MODIFICADOR (JOGO BASE)',
 	'GR.MODIFIER_BASE.TEXT':
 		'Em cada rodada do jogo base, o Rolo Modificador revela uma carta multiplicadora: ×1, ×2 ou ×3. Quando há um prémio, o multiplicador ativo é aplicado. O modificador pode mudar na próxima rodada. Se uma carta ×1 for revelada após um multiplicador maior, o multiplicador é reposto.',
@@ -34,11 +34,11 @@ export default {
 		'Todos os símbolos pagantes pagam da esquerda para a direita em rolos adjacentes, começando no rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica aos símbolos Scatter. Símbolos sem prémio não pagam e não formam combinações. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APOSTA',
 	'GR.BET_MODES.TEXT':
-		'O modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador também pode comprar Rodadas Grátis por {bonusCost}× a aposta base. O modo de compra de Rodadas Grátis tem um retorno teórico de {bonusRtp}%. Comprar Rodadas Grátis ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de aposta é {maxWin}× a aposta base.',
+		'O modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode comprar Rodadas Grátis em três níveis: {bonusCost3}× (10 rodadas), {bonusCost4}× (15 rodadas) ou {bonusCost5}× (20 rodadas) a aposta base. Cada modo de compra tem um retorno teórico de {bonusRtp}%. A compra ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de aposta é {maxWin}× a aposta base.',
 	'GR.SECTION.BONUS_BUY': 'COMPRAR BÓNUS',
-	'GR.BONUS_BUY.TITLE': 'COMPRAR BÓNUS — RODADAS GRÁTIS',
-	'GR.BONUS_BUY.TEXT':
-		'Custo: {bonusCost}× aposta total\nConcede instantaneamente a funcionalidade Rodadas Grátis (10 rodadas)\nRTP teórico: {bonusRtp}%\nPrémio máximo: {maxWin}× aposta\nA Compra de Bónus pode estar desativada em certas jurisdições',
+	'GR.BONUS_BUY.TIER.TITLE': 'COMPRAR BÓNUS — {scatterCount} SCATTER ({freeSpins} RODADAS)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Custo: {bonusCost}× aposta total\nConcede instantaneamente a funcionalidade Rodadas Grátis ({freeSpins} rodadas)\nRTP teórico: {bonusRtp}%\nPrémio máximo: {maxWin}× aposta\nA Compra de Bónus pode estar desativada em certas jurisdições',
 	'GR.SECTION.UI_GUIDE': 'GUIA DA INTERFACE',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':

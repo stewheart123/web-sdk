@@ -4,7 +4,7 @@ export default {
 	PAYTABLE: 'PAYTABLE',
 	'GR.SYMBOL.NON_WIN': 'Non-win symbol. Does not pay and cannot form winning ways.',
 	'GR.SYMBOL.WILD': 'Substitutes for all paying symbols.',
-	'GR.SYMBOL.SCATTER': '3 or more Scatters award 10 Free Spins.',
+	'GR.SYMBOL.SCATTER': '3 Scatters award 10, 4 award 15, and 5 award 20 Free Spins.',
 	'GR.SYMBOL.MODIFIER': 'Modifier card. Applies to ways wins. No direct pay.',
 	'GR.UI.SPIN': 'SPIN | Initiates a spin with the current bet amount.',
 	'GR.UI.AUTO_SPIN': 'AUTO SPIN | Open the Auto Spin pop-up menu.',
@@ -20,7 +20,7 @@ export default {
 		'The Wild substitutes for all paying symbols. Wild does not substitute for Scatter.',
 	'GR.SCATTER_FREE_SPINS.TITLE': 'SCATTER / FREE SPINS',
 	'GR.SCATTER_FREE_SPINS.TEXT':
-		'Scatter symbols appear on all reels. Landing 3 or more Scatters in a single spin awards 10 Free Spins. Scatter wins are evaluated separately from ways wins.',
+		'Scatter symbols appear on all reels. Landing 3 Scatters awards 10 Free Spins, 4 Scatters awards 15 Free Spins, and 5 Scatters awards 20 Free Spins. Scatter wins are evaluated separately from ways wins.',
 	'GR.MODIFIER_BASE.TITLE': 'MODIFIER REEL (BASE GAME)',
 	'GR.MODIFIER_BASE.TEXT':
 		'On each base-game spin, the Modifier Reel reveals a multiplier card: ×1, ×2, or ×3. When a win occurs, the active modifier multiplier is applied to that win. The modifier may change on the next spin. If a ×1 card is revealed after a higher multiplier, the multiplier resets.',
@@ -36,11 +36,11 @@ export default {
 		'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
 	'GR.SECTION.BET_MODES': 'BET MODES',
 	'GR.BET_MODES.TEXT':
-		'The normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player also has the option to buy Free Spins for {bonusCost}× the underlying bet. The Free Spins buy mode has a theoretical expected return of {bonusRtp}%. Purchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is {maxWin}× the underlying bet.',
+		'The normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can buy Free Spins at three tiers: {bonusCost3}× (10 spins), {bonusCost4}× (15 spins), or {bonusCost5}× (20 spins) the underlying bet. Each Free Spins buy mode has a theoretical expected return of {bonusRtp}%. Purchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is {maxWin}× the underlying bet.',
 	'GR.SECTION.BONUS_BUY': 'BONUS BUY',
-	'GR.BONUS_BUY.TITLE': 'BONUS BUY — FREE SPINS',
-	'GR.BONUS_BUY.TEXT':
-		'Cost: {bonusCost}× total bet\nInstantly awards the Free Spins feature (10 spins)\nTheoretical RTP: {bonusRtp}%\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions',
+	'GR.BONUS_BUY.TIER.TITLE': 'BONUS BUY — {scatterCount} SCATTER ({freeSpins} SPINS)',
+	'GR.BONUS_BUY.TIER.TEXT':
+		'Cost: {bonusCost}× total bet\nInstantly awards the Free Spins feature ({freeSpins} spins)\nTheoretical RTP: {bonusRtp}%\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions',
 	'GR.SECTION.UI_GUIDE': 'USER INTERFACE GUIDE',
 	'GR.SECTION.LEGAL_NOTICE': 'LEGAL NOTICE',
 	'GR.LEGAL_NOTICE.TEXT':
