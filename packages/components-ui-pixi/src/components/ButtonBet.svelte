@@ -7,14 +7,17 @@
 	import UiCircularButton from './UiCircularButton.svelte';
 	import ButtonBetProvider from './ButtonBetProvider.svelte';
 	import { getContext } from '../context';
-	import { isBettingControlsLocked } from '../bettingControlsLocked';
+	import { canCancelAutoplay, isBettingControlsLocked } from '../bettingControlsLocked';
 	import { UI_BASE_SIZE } from '../constants';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
-	const disabled = $derived(controlsLocked || !stateBetDerived.isBetCostAvailable());
+	const disabled = $derived(
+		(controlsLocked && !canCancelAutoplay()) ||
+			(!stateBetDerived.isBetCostAvailable() && !canCancelAutoplay()),
+	);
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
 </script>
 

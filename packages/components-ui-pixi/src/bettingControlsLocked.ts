@@ -1,4 +1,4 @@
-import { stateUi } from 'state-shared';
+import { stateBet, stateBetDerived, stateUi } from 'state-shared';
 
 export const isBettingControlsLocked = (isIdle: boolean) =>
 	!isIdle ||
@@ -7,3 +7,6 @@ export const isBettingControlsLocked = (isIdle: boolean) =>
 	stateUi.isFreeSpinIntroActive ||
 	stateUi.isFreeSpinOutroActive ||
 	stateUi.isWinOverlayActive;
+
+export const canCancelAutoplay = () =>
+	stateBetDerived.hasAutoBetCounter() && !stateBet.isSpaceHold;

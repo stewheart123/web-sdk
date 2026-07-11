@@ -5,7 +5,7 @@
 
 	import UiCircularButton from './UiCircularButton.svelte';
 	import { getContext } from '../context';
-	import { isBettingControlsLocked } from '../bettingControlsLocked';
+	import { canCancelAutoplay, isBettingControlsLocked } from '../bettingControlsLocked';
 	import { UI_BASE_SIZE } from '../constants';
 	import ButtonBetAutoSpinsCounter from './ButtonBetAutoSpinsCounter.svelte';
 
@@ -15,6 +15,7 @@
 	const active = $derived(stateBetDerived.hasAutoBetCounter());
 	const controlsLocked = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 	const disabled = $derived.by(() => {
+		if (canCancelAutoplay()) return false;
 		if (stateBet.isSpaceHold) return true;
 		if (controlsLocked) return true;
 		if (!stateBetDerived.isBetCostAvailable()) return true;

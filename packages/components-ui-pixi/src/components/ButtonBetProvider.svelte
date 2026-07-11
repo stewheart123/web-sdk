@@ -8,7 +8,7 @@
 	import { stateBet, stateBetDerived } from 'state-shared';
 
 	import { getContext } from '../context';
-	import { isBettingControlsLocked } from '../bettingControlsLocked';
+	import { canCancelAutoplay, isBettingControlsLocked } from '../bettingControlsLocked';
 
 	type Props = {
 		children: Snippet<
@@ -34,13 +34,16 @@
 
 	const stop = () => {
 		if (!stopDisabled) {
-			if (stateBetDerived.hasAutoBetCounter()) stateBet.autoSpinsCounter = 0;
+			if (stateBetDerived.hasAutoBetCounter()) {
+				stateBet.autoSpinsCounter = 0;
+				return;
+			}
 			context.eventEmitter.broadcast({ type: 'stopButtonClick' });
 		}
 	};
 
 	const onpress = () => {
-		if (controlsLocked) return;
+		if (controlsLocked && !canCancelAutoplay()) return;
 
 		context.eventEmitter.broadcast({ type: 'soundPressBet' });
 
