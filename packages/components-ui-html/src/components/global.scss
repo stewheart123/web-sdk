@@ -1,5 +1,13 @@
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('../assets/fonts/notoSansKR/NotoSansKR-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
 body {
-	font-family: 'proxima-nova', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	cursor: default;
 	-webkit-user-select: none;
 	-moz-user-select: none;

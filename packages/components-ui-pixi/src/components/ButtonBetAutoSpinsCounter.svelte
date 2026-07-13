@@ -33,7 +33,7 @@
 		anchor={0.5}
 		text={stateBet.autoSpinsCounter === Infinity ? '∞' : stateBet.autoSpinsCounter}
 		style={{
-			fontFamily: 'proxima-nova',
+			fontFamily: 'Noto Sans KR',
 			fill: WHITE,
 			fontWeight,
 			fontSize,

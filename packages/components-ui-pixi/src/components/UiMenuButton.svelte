@@ -87,7 +87,7 @@
 					align: 'center',
 					wordWrap: true,
 					wordWrapWidth: sizes.width * 0.9,
-					fontFamily: 'proxima-nova',
+					fontFamily: 'Noto Sans KR',
 					fontWeight,
 					fontSize,
 					fill: variant === 'light' ? 0x000000 : 0xffffff,

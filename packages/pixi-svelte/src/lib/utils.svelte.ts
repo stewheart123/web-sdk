@@ -1,5 +1,3 @@
-import WebFont from 'webfontloader';
-
 import type { PixiPoint, Sizes } from './types';
 
 export const REM = 16;
@@ -61,7 +59,7 @@ export function detectWebGL() {
 export const preloadFont = () =>
 	new Promise<void>((resolve) => {
 		const timeout = setTimeout(() => {
-			console.warn('Web font load timed out, continuing without fonts');
+			console.warn('Font preload timed out, continuing without fonts');
 			resolve();
 		}, 5000);
 
@@ -71,16 +69,18 @@ export const preloadFont = () =>
 		};
 
 		try {
-			WebFont.load({
-				typekit: {
-					id: 'aba0ebl',
-				},
-				active: finish,
-				inactive: () => {
-					console.error('Web font load inactive');
-					finish();
-				},
-			});
+			// Ensure the font is loaded before Pixi Text renders,
+			// otherwise it may render with a fallback and never re-measure.
+			if (document?.fonts?.load) {
+				Promise.all([document.fonts.load('400 1em \"Noto Sans KR\"')])
+					.then(() => finish())
+					.catch((error) => {
+						console.error(error);
+						finish();
+					});
+			} else {
+				finish();
+			}
 		} catch (error) {
 			console.error(error);
 			finish();

@@ -55,14 +55,14 @@
 	const tickerWidth = $derived(contentWidth * 0.98);
 
 	const labelStyle = $derived({
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Noto Sans KR',
 		fontSize,
 		fontWeight,
 		fill: WHITE,
 	} as const);
 
 	const valueStyle = $derived({
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Noto Sans KR',
 		fontSize,
 		fontWeight,
 		fill: WHITE,

@@ -98,7 +98,7 @@
 					align: 'center',
 					wordWrap: true,
 					wordWrapWidth,
-					fontFamily: 'proxima-nova',
+					fontFamily: 'Noto Sans KR',
 					fontWeight,
 					fontSize,
 					fill: variant === 'dark' ? 0xffffff : 0x000000,

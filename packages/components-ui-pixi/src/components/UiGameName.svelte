@@ -33,7 +33,7 @@
 	);
 	const textProps = $derived({
 		style: {
-			fontFamily: 'proxima-nova',
+			fontFamily: 'Noto Sans KR',
 			fontSize: REM * fontSizeRem,
 			fontWeight: '600',
 			lineHeight: REM * (fontSizeRem + 0.35),

@@ -79,7 +79,7 @@
 				align: 'center',
 				wordWrap: true,
 				wordWrapWidth: 200,
-				fontFamily: 'proxima-nova',
+				fontFamily: 'Noto Sans KR',
 				fontWeight,
 				fontSize,
 				fill: 0xffffff,
