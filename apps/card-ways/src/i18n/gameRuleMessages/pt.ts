@@ -34,11 +34,11 @@ export default {
 		'Todos os símbolos pagantes pagam da esquerda para a direita em rolos adjacentes, começando no rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica aos símbolos Scatter. Símbolos sem prémio não pagam e não formam combinações. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APOSTA',
 	'GR.BET_MODES.TEXT':
-		'O modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode comprar Rodadas Grátis em três níveis:\n• 3 Scatters / {freeSpins3} rodadas — {bonusCost3}× aposta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} rodadas — {bonusCost4}× aposta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} rodadas — {bonusCost5}× aposta — RTP {bonusRtp5}%\n\nA compra ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de aposta é {maxWin}× a aposta base.',
+		'MODO NORMAL: Rodadas padrão do jogo base a {baseCost}× a sua aposta selecionada.\n\nO modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode comprar Rodadas Grátis em três níveis:\n• 3 Scatters / {freeSpins3} rodadas — {bonusCost3}× aposta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} rodadas — {bonusCost4}× aposta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} rodadas — {bonusCost5}× aposta — RTP {bonusRtp5}%\n\nA compra ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de aposta é {maxWin}× a aposta base.',
 	'GR.SECTION.BONUS_BUY': 'COMPRAR BÓNUS',
 	'GR.BONUS_BUY.TITLE': 'COMPRAR BÓNUS — RODADAS GRÁTIS',
 	'GR.BONUS_BUY.TEXT':
-		'Concede instantaneamente a funcionalidade Rodadas Grátis. Os níveis de compra concedem 10, 15 ou 20 rodadas grátis.\n\nPrémio máximo: {maxWin}× aposta\nA Compra de Bónus pode estar desativada em certas jurisdições',
+		'Concede instantaneamente a funcionalidade Rodadas Grátis num de três níveis:\n\n• 3 Scatters ({freeSpins3} rodadas): {bonusCost3}× aposta total\n• 4 Scatters ({freeSpins4} rodadas): {bonusCost4}× aposta total\n• 5 Scatters ({freeSpins5} rodadas): {bonusCost5}× aposta total\n\nPrémio máximo: {maxWin}× aposta\nA Compra de Bónus pode estar desativada em certas jurisdições',
 	'GR.SECTION.UI_GUIDE': 'GUIA DA INTERFACE',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':

@@ -9,7 +9,7 @@ GR_DIR = APP / "src" / "i18n" / "gameRuleMessages"
 UI_DIR = APP / "src" / "i18n" / "uiMessages"
 
 GR_BONUS_BUY_TEXT = {
-    "en": "Instantly awards the Free Spins feature. Purchase tiers award 10, 15, or 20 free spins.\n\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions",
+    "en": "Instantly awards the Free Spins feature at one of three tiers:\n\n• 3 Scatters ({freeSpins3} spins): {bonusCost3}× total bet\n• 4 Scatters ({freeSpins4} spins): {bonusCost4}× total bet\n• 5 Scatters ({freeSpins5} spins): {bonusCost5}× total bet\n\nMaximum win: {maxWin}× bet\nBonus Buy may be disabled in certain jurisdictions",
     "de": "Gewährt sofort die Freispiel-Funktion. Kaufstufen gewähren 10, 15 oder 20 Freispiele.\n\nMaximalgewinn: {maxWin}× Einsatz\nBonus-Kauf kann in bestimmten Rechtsgebieten deaktiviert sein",
     "es": "Otorga instantáneamente la función de Giros Gratis. Los niveles de compra otorgan 10, 15 o 20 giros gratis.\n\nPremio máximo: {maxWin}× apuesta\nLa Compra de Bono puede estar deshabilitada en ciertas jurisdicciones",
     "fr": "Accorde instantanément la fonction Tours Gratuits. Les niveaux d'achat accordent 10, 15 ou 20 tours gratuits.\n\nGain maximum : {maxWin}× mise\nL'Achat Bonus peut être désactivé dans certaines juridictions",

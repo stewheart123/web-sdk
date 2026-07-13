@@ -193,6 +193,7 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 
 const numericValues = {
 	maxWin: maxWin.toLocaleString(),
+	baseCost: String(config.betModes.base.cost),
 	baseRtp: baseRtp.toFixed(1),
 	bonusCost3: String(config.betModes.bonus_3.cost),
 	bonusCost4: String(config.betModes.bonus_4.cost),

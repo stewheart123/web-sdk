@@ -34,11 +34,11 @@ export default {
 		'모든 지급 심볼은 가장 왼쪽 릴부터 인접 릴에서 왼쪽에서 오른쪽으로 지급됩니다. 연속 릴의 심볼만 유효한 웨이를 형성합니다. 스캐터에는 적용되지 않습니다. 비당첨 심볼은 지급되지 않으며 당첨 웨이를 형성할 수 없습니다. 동일 심볼의 여러 웨이는 합산됩니다. 와일드는 웨이 완성을 위해 대체합니다.',
 	'GR.SECTION.BET_MODES': '베팅 모드',
 	'GR.BET_MODES.TEXT':
-		'일반 모드의 이론적 기대 수익률은 {baseRtp}%입니다.\n\n플레이어는 세 가지 단계로 프리 스핀을 구매할 수 있습니다:\n• 3 스캐터 / {freeSpins3}회 — {bonusCost3}× 베팅 — RTP {bonusRtp3}%\n• 4 스캐터 / {freeSpins4}회 — {bonusCost4}× 베팅 — RTP {bonusRtp4}%\n• 5 스캐터 / {freeSpins5}회 — {bonusCost5}× 베팅 — RTP {bonusRtp5}%\n\n구매 시 보너스 기능이 즉시 시작됩니다.\n\n각 베팅 모드의 최대 당첨은 기본 베팅의 {maxWin}×입니다.',
+		'일반 모드: 선택한 베팅의 {baseCost}×로 표준 베이스 게임 스핀.\n\n일반 모드의 이론적 기대 수익률은 {baseRtp}%입니다.\n\n플레이어는 세 가지 단계로 프리 스핀을 구매할 수 있습니다:\n• 3 스캐터 / {freeSpins3}회 — {bonusCost3}× 베팅 — RTP {bonusRtp3}%\n• 4 스캐터 / {freeSpins4}회 — {bonusCost4}× 베팅 — RTP {bonusRtp4}%\n• 5 스캐터 / {freeSpins5}회 — {bonusCost5}× 베팅 — RTP {bonusRtp5}%\n\n구매 시 보너스 기능이 즉시 시작됩니다.\n\n각 베팅 모드의 최대 당첨은 기본 베팅의 {maxWin}×입니다.',
 	'GR.SECTION.BONUS_BUY': '보너스 구매',
 	'GR.BONUS_BUY.TITLE': '보너스 구매 — 프리 스핀',
 	'GR.BONUS_BUY.TEXT':
-		'프리 스핀 기능을 즉시 지급합니다. 구매 단계에 따라 10, 15 또는 20회 프리 스핀을 받습니다.\n\n최대 당첨: {maxWin}× 베팅\n일부 관할 구역에서는 보너스 구매가 비활성화될 수 있음',
+		'세 가지 단계 중 하나로 프리 스핀 기능을 즉시 지급:\n\n• 3 스캐터({freeSpins3}회): {bonusCost3}× 총 베팅\n• 4 스캐터({freeSpins4}회): {bonusCost4}× 총 베팅\n• 5 스캐터({freeSpins5}회): {bonusCost5}× 총 베팅\n\n최대 당첨: {maxWin}× 베팅\n일부 관할 구역에서는 보너스 구매가 비활성화될 수 있음',
 	'GR.SECTION.UI_GUIDE': '사용자 인터페이스 가이드',
 	'GR.SECTION.LEGAL_NOTICE': '법적 고지',
 	'GR.LEGAL_NOTICE.TEXT':

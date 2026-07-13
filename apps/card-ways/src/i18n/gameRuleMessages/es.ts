@@ -36,11 +36,11 @@ export default {
 		'Todos los símbolos de pago pagan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no pagan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APUESTA',
 	'GR.BET_MODES.TEXT':
-		'El modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede comprar Giros Gratis en tres niveles:\n• 3 Scatters / {freeSpins3} giros — {bonusCost3}× apuesta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} giros — {bonusCost4}× apuesta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} giros — {bonusCost5}× apuesta — RTP {bonusRtp5}%\n\nLa compra activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de apuesta es {maxWin}× la apuesta base.',
+		'MODO NORMAL: Giros estándar del juego base a {baseCost}× su apuesta seleccionada.\n\nEl modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede comprar Giros Gratis en tres niveles:\n• 3 Scatters / {freeSpins3} giros — {bonusCost3}× apuesta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} giros — {bonusCost4}× apuesta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} giros — {bonusCost5}× apuesta — RTP {bonusRtp5}%\n\nLa compra activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de apuesta es {maxWin}× la apuesta base.',
 	'GR.SECTION.BONUS_BUY': 'COMPRA DE BONO',
 	'GR.BONUS_BUY.TITLE': 'COMPRA DE BONO — GIROS GRATIS',
 	'GR.BONUS_BUY.TEXT':
-		'Otorga instantáneamente la función de Giros Gratis. Los niveles de compra otorgan 10, 15 o 20 giros gratis.\n\nPremio máximo: {maxWin}× apuesta\nLa Compra de Bono puede estar deshabilitada en ciertas jurisdicciones',
+		'Otorga instantáneamente la función de Giros Gratis en uno de tres niveles:\n\n• 3 Scatters ({freeSpins3} giros): {bonusCost3}× apuesta total\n• 4 Scatters ({freeSpins4} giros): {bonusCost4}× apuesta total\n• 5 Scatters ({freeSpins5} giros): {bonusCost5}× apuesta total\n\nPremio máximo: {maxWin}× apuesta\nLa Compra de Bono puede estar deshabilitada en ciertas jurisdicciones',
 	'GR.SECTION.UI_GUIDE': 'GUÍA DE INTERFAZ',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':

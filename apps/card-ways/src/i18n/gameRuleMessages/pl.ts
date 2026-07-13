@@ -34,11 +34,11 @@ export default {
 		'Wszystkie płatne symbole wypłacają od lewej do prawej na sąsiednich bębnach, zaczynając od lewego bębna. Tylko symbole na kolejnych bębnach tworzą ważną drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wypłacają i nie tworzą dróg. Wiele dróg tego samego symbolu jest sumowanych. Wild zastępuje, aby uzupełnić drogi.',
 	'GR.SECTION.BET_MODES': 'TRYBY ZAKŁADÓW',
 	'GR.BET_MODES.TEXT':
-		'Normalny tryb ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może kupić Darmowe Spiny na trzech poziomach:\n• 3 Scattery / {freeSpins3} spinów — {bonusCost3}× zakład — RTP {bonusRtp3}%\n• 4 Scattery / {freeSpins4} spinów — {bonusCost4}× zakład — RTP {bonusRtp4}%\n• 5 Scatterów / {freeSpins5} spinów — {bonusCost5}× zakład — RTP {bonusRtp5}%\n\nZakup natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie to {maxWin}× zakład podstawowy.',
+		'TRYB NORMALNY: Standardowe obroty w grze podstawowej za {baseCost}× wybrany zakład.\n\nNormalny tryb ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może kupić Darmowe Spiny na trzech poziomach:\n• 3 Scattery / {freeSpins3} spinów — {bonusCost3}× zakład — RTP {bonusRtp3}%\n• 4 Scattery / {freeSpins4} spinów — {bonusCost4}× zakład — RTP {bonusRtp4}%\n• 5 Scatterów / {freeSpins5} spinów — {bonusCost5}× zakład — RTP {bonusRtp5}%\n\nZakup natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie to {maxWin}× zakład podstawowy.',
 	'GR.SECTION.BONUS_BUY': 'KUP BONUS',
 	'GR.BONUS_BUY.TITLE': 'KUP BONUS — DARMOWE SPINY',
 	'GR.BONUS_BUY.TEXT':
-		'Natychmiast przyznaje funkcję Darmowych Spinów. Poziomy zakupu dają 10, 15 lub 20 darmowych spinów.\n\nMaksymalna wygrana: {maxWin}× zakład\nKup Bonus może być wyłączony w niektórych jurysdykcjach',
+		'Natychmiast przyznaje funkcję Darmowych Spinów na jednym z trzech poziomów:\n\n• 3 Scattery ({freeSpins3} spinów): {bonusCost3}× całkowity zakład\n• 4 Scattery ({freeSpins4} spinów): {bonusCost4}× całkowity zakład\n• 5 Scatterów ({freeSpins5} spinów): {bonusCost5}× całkowity zakład\n\nMaksymalna wygrana: {maxWin}× zakład\nKup Bonus może być wyłączony w niektórych jurysdykcjach',
 	'GR.SECTION.UI_GUIDE': 'PRZEWODNIK INTERFEJSU',
 	'GR.SECTION.LEGAL_NOTICE': 'INFORMACJA PRAWNA',
 	'GR.LEGAL_NOTICE.TEXT':

@@ -34,11 +34,11 @@ export default {
 		'所有赔付符号从最左侧转轴开始，在相邻转轴上从左至右赔付。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赔付且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。',
 	'GR.SECTION.BET_MODES': '投注模式',
 	'GR.BET_MODES.TEXT':
-		'正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档购买免费旋转：\n• 3个Scatter / {freeSpins3}次 — {bonusCost3}×投注 — RTP {bonusRtp3}%\n• 4个Scatter / {freeSpins4}次 — {bonusCost4}×投注 — RTP {bonusRtp4}%\n• 5个Scatter / {freeSpins5}次 — {bonusCost5}×投注 — RTP {bonusRtp5}%\n\n购买后立即触发奖励功能。\n\n各投注模式的最大赢赏为{maxWin}×基础投注。',
+		'正常模式：以所选投注的{baseCost}×进行标准基础游戏旋转。\n\n正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档购买免费旋转：\n• 3个Scatter / {freeSpins3}次 — {bonusCost3}×投注 — RTP {bonusRtp3}%\n• 4个Scatter / {freeSpins4}次 — {bonusCost4}×投注 — RTP {bonusRtp4}%\n• 5个Scatter / {freeSpins5}次 — {bonusCost5}×投注 — RTP {bonusRtp5}%\n\n购买后立即触发奖励功能。\n\n各投注模式的最大赢赏为{maxWin}×基础投注。',
 	'GR.SECTION.BONUS_BUY': '奖励购买',
 	'GR.BONUS_BUY.TITLE': '奖励购买 — 免费旋转',
 	'GR.BONUS_BUY.TEXT':
-		'立即获得免费旋转功能。购买档位分别奖励10、15或20次免费旋转。\n\n最大赢赏: {maxWin}×投注\n部分司法管辖区可能禁用奖励购买',
+		'立即以三档之一获得免费旋转功能：\n\n• 3个Scatter（{freeSpins3}次）: {bonusCost3}×总投注\n• 4个Scatter（{freeSpins4}次）: {bonusCost4}×总投注\n• 5个Scatter（{freeSpins5}次）: {bonusCost5}×总投注\n\n最大赢赏: {maxWin}×投注\n部分司法管辖区可能禁用奖励购买',
 	'GR.SECTION.UI_GUIDE': '用户界面指南',
 	'GR.SECTION.LEGAL_NOTICE': '法律声明',
 	'GR.LEGAL_NOTICE.TEXT':

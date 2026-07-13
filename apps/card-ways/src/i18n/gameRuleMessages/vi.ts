@@ -34,11 +34,11 @@ export default {
 		'Tất cả biểu tượng trả thưởng từ trái sang phải trên các cuộn liền kề, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ biểu tượng trên các cuộn liên tiếp tạo đường hợp lệ. Không áp dụng cho Scatter. Biểu tượng không thắng không trả thưởng và không tạo đường thắng. Nhiều đường cùng biểu tượng được cộng lại. Wild thay thế để hoàn thành đường.',
 	'GR.SECTION.BET_MODES': 'CHẾ ĐỘ CƯỢC',
 	'GR.BET_MODES.TEXT':
-		'Chế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi có thể mua Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} vòng — {bonusCost3}× cược — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} vòng — {bonusCost4}× cược — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} vòng — {bonusCost5}× cược — RTP {bonusRtp5}%\n\nMua sẽ kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.',
+		'CHẾ ĐỘ THƯỜNG: Vòng quay chuẩn ở trò chơi cơ bản với {baseCost}× cược đã chọn.\n\nChế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi có thể mua Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} vòng — {bonusCost3}× cược — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} vòng — {bonusCost4}× cược — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} vòng — {bonusCost5}× cược — RTP {bonusRtp5}%\n\nMua sẽ kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.',
 	'GR.SECTION.BONUS_BUY': 'MUA BONUS',
 	'GR.BONUS_BUY.TITLE': 'MUA BONUS — VÒNG QUAY MIỄN PHÍ',
 	'GR.BONUS_BUY.TEXT':
-		'Trao ngay tính năng Vòng Quay Miễn Phí. Các cấp mua thưởng 10, 15 hoặc 20 vòng quay miễn phí.\n\nThắng tối đa: {maxWin}× cược\nMua Bonus có thể bị vô hiệu ở một số khu vực pháp lý',
+		'Trao ngay tính năng Vòng Quay Miễn Phí ở một trong ba cấp:\n\n• 3 Scatter ({freeSpins3} vòng): {bonusCost3}× tổng cược\n• 4 Scatter ({freeSpins4} vòng): {bonusCost4}× tổng cược\n• 5 Scatter ({freeSpins5} vòng): {bonusCost5}× tổng cược\n\nThắng tối đa: {maxWin}× cược\nMua Bonus có thể bị vô hiệu ở một số khu vực pháp lý',
 	'GR.SECTION.UI_GUIDE': 'HƯỚNG DẪN GIAO DIỆN',
 	'GR.SECTION.LEGAL_NOTICE': 'THÔNG BÁO PHÁP LÝ',
 	'GR.LEGAL_NOTICE.TEXT':

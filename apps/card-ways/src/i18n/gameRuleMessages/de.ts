@@ -36,11 +36,11 @@ export default {
 		'Alle zahlenden Symbole zahlen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole zahlen nicht aus und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen.',
 	'GR.SECTION.BET_MODES': 'EINSATZMODI',
 	'GR.BET_MODES.TEXT':
-		'Der Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen kaufen:\n• 3 Scatter / {freeSpins3} Spins — {bonusCost3}× Einsatz — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} Spins — {bonusCost4}× Einsatz — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} Spins — {bonusCost5}× Einsatz — RTP {bonusRtp5}%\n\nDer Kauf löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Einsatzmodus beträgt {maxWin}× den Grundeinsatz.',
+		'NORMALMODUS: Standard-Basisspiel-Drehungen zu {baseCost}× Ihrem gewählten Einsatz.\n\nDer Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen kaufen:\n• 3 Scatter / {freeSpins3} Spins — {bonusCost3}× Einsatz — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} Spins — {bonusCost4}× Einsatz — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} Spins — {bonusCost5}× Einsatz — RTP {bonusRtp5}%\n\nDer Kauf löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Einsatzmodus beträgt {maxWin}× den Grundeinsatz.',
 	'GR.SECTION.BONUS_BUY': 'BONUS KAUFEN',
 	'GR.BONUS_BUY.TITLE': 'BONUS KAUFEN — FREISPIELE',
 	'GR.BONUS_BUY.TEXT':
-		'Gewährt sofort die Freispiel-Funktion. Kaufstufen gewähren 10, 15 oder 20 Freispiele.\n\nMaximalgewinn: {maxWin}× Einsatz\nBonus-Kauf kann in bestimmten Rechtsgebieten deaktiviert sein',
+		'Gewährt sofort die Freispiel-Funktion in einer von drei Stufen:\n\n• 3 Scatter ({freeSpins3} Spins): {bonusCost3}× Gesamteinsatz\n• 4 Scatter ({freeSpins4} Spins): {bonusCost4}× Gesamteinsatz\n• 5 Scatter ({freeSpins5} Spins): {bonusCost5}× Gesamteinsatz\n\nMaximalgewinn: {maxWin}× Einsatz\nBonus-Kauf kann in bestimmten Rechtsgebieten deaktiviert sein',
 	'GR.SECTION.UI_GUIDE': 'BENUTZEROBERFLÄCHEN-LEITFADEN',
 	'GR.SECTION.LEGAL_NOTICE': 'RECHTLICHER HINWEIS',
 	'GR.LEGAL_NOTICE.TEXT':
