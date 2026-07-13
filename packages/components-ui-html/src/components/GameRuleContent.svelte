@@ -173,6 +173,29 @@
 			max-width: 22%;
 		}
 
+		/* Modifier reel rows: stack multiplier cards vertically for legibility */
+		.rule-container.image-left:has(.rule-images) {
+			flex-direction: column;
+			align-items: stretch;
+			text-align: left;
+			gap: 0.75rem;
+		}
+
+		.rule-container.image-left:has(.rule-images) .rule-images {
+			flex-direction: column;
+			align-items: center;
+			max-width: 100%;
+			width: 100%;
+			gap: 0.65rem;
+		}
+
+		.rule-container.image-left:has(.rule-images) .rule-image {
+			width: 5.75rem;
+			height: 5.75rem;
+			max-width: 55%;
+			max-height: 5.75rem;
+		}
+
 		.rule-image {
 			width: 3.5rem;
 			height: 3.5rem;
@@ -181,10 +204,20 @@
 			object-fit: contain;
 		}
 
+		.rule-container.image-top {
+			align-items: center;
+			text-align: center;
+		}
+
 		.rule-container.image-top .rule-image {
 			width: auto;
-			max-width: 5.5rem;
-			max-height: 5.5rem;
+			max-width: 8.5rem;
+			max-height: 8.5rem;
+		}
+
+		.rule-container.image-top .rule-text {
+			width: 100%;
+			text-align: left;
 		}
 
 		.rule-text {
