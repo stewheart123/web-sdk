@@ -105,7 +105,7 @@
 
 	const barContentWidth = getUiBarContentWidth();
 
-	const menuPanel = $derived(getUiMenuPanelLayout(flow.menu.scale));
+	const menuPanel = $derived(getUiMenuPanelLayout(flow.menu.scale, UI_BAR_SLOT_CENTER_Y, flow.menu.centerX, layoutType));
 
 </script>
 

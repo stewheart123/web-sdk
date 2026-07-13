@@ -143,36 +143,70 @@
 	}
 
 	@media (orientation: portrait) {
-		.rule-image {
-			max-width: 6.5rem;
-			max-height: 6.5rem;
+		.rule-section {
+			padding: 0.6rem 0.35rem;
+			border-radius: 0.35rem;
 		}
 
-		.rule-container.image-top .rule-image {
-			max-height: 11rem;
-		}
-
-		.rule-images {
+		.rule-grid {
+			grid-template-columns: 1fr !important;
+			grid-template-rows: none !important;
 			gap: 0.5rem;
 		}
 
-		.rule-container.image-left {
-			gap: 1rem;
+		.rule-container {
+			grid-column: auto !important;
+			grid-row: auto !important;
+			width: 100%;
+			padding: 0.6rem 0.65rem;
 		}
-	}
 
-	@media (orientation: portrait) and (max-width: 500px) {
+		.rule-container.image-left {
+			flex-direction: row;
+			align-items: center;
+			text-align: left;
+			gap: 0.85rem;
+		}
+
+		.rule-container.image-left .rule-images {
+			flex-shrink: 0;
+			max-width: 22%;
+		}
+
 		.rule-image {
-			max-width: 56px;
-			max-height: 56px;
+			width: 3.5rem;
+			height: 3.5rem;
+			max-width: 18%;
+			max-height: 3.5rem;
+			object-fit: contain;
 		}
 
 		.rule-container.image-top .rule-image {
-			max-height: 96px;
+			width: auto;
+			max-width: 5.5rem;
+			max-height: 5.5rem;
+		}
+
+		.rule-text {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.rule-container-title {
+			font-size: 15px;
+		}
+
+		.rule-container-text {
+			font-size: 14px;
+			line-height: 1.45;
+		}
+
+		.rule-section-title {
+			font-size: 13px;
 		}
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 500px) and (orientation: landscape) {
 		.rule-section-title {
 			font-size: 13px;
 		}
@@ -183,6 +217,17 @@
 
 		.rule-container-text {
 			font-size: 14px;
+			line-height: 1.6;
+		}
+
+		.rule-container.image-left {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.rule-container.image-left .rule-text {
+			width: 100%;
 		}
 	}
 </style>

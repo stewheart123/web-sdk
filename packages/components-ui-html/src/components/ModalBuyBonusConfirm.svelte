@@ -40,20 +40,38 @@
 				{stateBonusDerived.selectedBetModeData().text.dialog}
 			</BaseScrollable>
 			<BaseButtonWrap type="max-width">
-				<Button
-					data-test="confirm-button"
-					onclick={() => {
-						confirm();
-						eventEmitter.broadcast({ type: 'soundPressGeneral' });
-						stateModal.modal = null;
-					}}
-				>
-					<BaseIcon width="100%" height="3rem" />
-					<BaseButtonContent>
-						<span style="font-size: 1rem;">{i18nDerived.confirm}</span>
-					</BaseButtonContent>
-				</Button>
+				<div class="confirm-wrap">
+					<Button
+						data-test="confirm-button"
+						onclick={() => {
+							confirm();
+							eventEmitter.broadcast({ type: 'soundPressGeneral' });
+							stateModal.modal = null;
+						}}
+					>
+						<BaseIcon width="100%" height="3rem" />
+						<BaseButtonContent>
+							<span class="confirm-label">{i18nDerived.confirm}</span>
+						</BaseButtonContent>
+					</Button>
+				</div>
 			</BaseButtonWrap>
 		</BaseContent>
 	</Popup>
 {/if}
+
+<style lang="scss">
+	.confirm-wrap :global(.rectangle) {
+		height: 3rem;
+	}
+
+	.confirm-label {
+		font-size: 1rem;
+	}
+
+	@media (max-width: 500px) {
+		.confirm-wrap :global(.rectangle) {
+			height: 3.5rem;
+		}
+	}
+</style>

@@ -240,7 +240,46 @@
 
 
 
-	@media (max-width: 500px) {
+	@media (orientation: portrait) {
+		:global(.ui-popup-standard-content-wrap) {
+			width: 100%;
+			max-width: 100% !important;
+			align-items: stretch;
+		}
+
+		.info-panel {
+			width: 100%;
+			max-width: 100%;
+			max-height: 100dvh;
+			border-radius: 0;
+			border-left: none;
+			border-right: none;
+			padding: 0.85rem 0.65rem 0.75rem;
+		}
+
+		.info-scroll {
+			padding-right: 0;
+		}
+
+		.section {
+			padding-bottom: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.section-body {
+			width: 100%;
+		}
+
+		.section-title {
+			font-size: 16px;
+		}
+
+		.info-footer {
+			font-size: 12px;
+		}
+	}
+
+	@media (max-width: 500px) and (orientation: landscape) {
 
 		.info-panel {
 

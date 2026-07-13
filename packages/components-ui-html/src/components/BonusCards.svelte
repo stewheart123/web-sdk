@@ -42,20 +42,22 @@
 			{/snippet}
 
 			{#snippet button()}
-				<Button
-					onclick={() => {
-						stateBonus.selectedBetModeKey = betModeData.mode;
-						eventEmitter.broadcast({ type: 'buyBonusConfirm' });
-						eventEmitter.broadcast({ type: 'soundPressGeneral' });
-					}}
-					disabled={stateBet.betAmount <= 0 ||
-						stateBet.balanceAmount < stateBet.betAmount * betModeData.costMultiplier}
-				>
-					<BaseIcon width="100%" height="2rem" border="2px solid white;" />
-					<BaseButtonContent>
-						<span style="font-size: 1rem;">{betModeData.text.button}</span>
-					</BaseButtonContent>
-				</Button>
+				<div class="purchase-wrap">
+					<Button
+						onclick={() => {
+							stateBonus.selectedBetModeKey = betModeData.mode;
+							eventEmitter.broadcast({ type: 'buyBonusConfirm' });
+							eventEmitter.broadcast({ type: 'soundPressGeneral' });
+						}}
+						disabled={stateBet.betAmount <= 0 ||
+							stateBet.balanceAmount < stateBet.betAmount * betModeData.costMultiplier}
+					>
+						<BaseIcon width="100%" height="2rem" border="2px solid white;" />
+						<BaseButtonContent>
+							<span class="purchase-label">{betModeData.text.button}</span>
+						</BaseButtonContent>
+					</Button>
+				</div>
 			{/snippet}
 		</BonusCard>
 	{/if}
@@ -86,5 +88,19 @@
 		line-height: 1rem;
 		text-align: center;
 		white-space: nowrap;
+	}
+
+	.purchase-wrap :global(.rectangle) {
+		height: 2rem;
+	}
+
+	.purchase-label {
+		font-size: 1rem;
+	}
+
+	@media (max-width: 500px) {
+		.purchase-wrap :global(.rectangle) {
+			height: 3rem;
+		}
 	}
 </style>

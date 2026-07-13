@@ -88,11 +88,57 @@ export const UI_MENU_AUDIO_TOGGLE_HEIGHT = UI_MENU_AUDIO_ROW_HEIGHT * 0.88;
 /** Total width of one audio control row (toggle only). */
 export const UI_MENU_AUDIO_ROW_WIDTH = UI_MENU_AUDIO_LABEL_WIDTH;
 
-/** Shared size for SOUND / MUSIC / INFO menu toggle buttons. */
+/** Shared size for SOUND / MUSIC / INFO menu toggle buttons (desktop baseline). */
 export const UI_MENU_TOGGLE_SIZES = {
 	width: UI_MENU_AUDIO_LABEL_WIDTH,
 	height: UI_MENU_AUDIO_TOGGLE_HEIGHT,
 } as const;
+
+/** Touch-target scale multiplier per layout type for bar-level buttons (menu, buy bonus). */
+export const UI_MOBILE_TOUCH_SCALE: Partial<Record<UiLayoutType, number>> = {
+	portrait: 1.3,
+	landscape: 1.25,
+	tablet: 1.1,
+};
+
+/** Larger scale for expanded menu-panel toggles (sound / music / info) — opens upward with room to spare. */
+export const UI_MENU_PANEL_TOUCH_SCALE: Partial<Record<UiLayoutType, number>> = {
+	portrait: 1.35,
+	landscape: 1.25,
+	tablet: 1.15,
+};
+
+export const getUiMobileTouchScale = (layoutType: UiLayoutType) =>
+	UI_MOBILE_TOUCH_SCALE[layoutType] ?? 1;
+
+export const getUiMenuPanelTouchScale = (layoutType: UiLayoutType) =>
+	UI_MENU_PANEL_TOUCH_SCALE[layoutType] ?? 0;
+
+/** Layout-aware size for SOUND / MUSIC / INFO menu toggle buttons. */
+export const getUiMenuToggleSizes = (layoutType: UiLayoutType) => {
+	const panelScale = getUiMenuPanelTouchScale(layoutType);
+
+	if (panelScale > 0) {
+		const size = UI_BASE_SIZE * panelScale;
+
+		return { width: size, height: size };
+	}
+
+	return {
+		width: UI_MENU_AUDIO_LABEL_WIDTH,
+		height: UI_MENU_AUDIO_TOGGLE_HEIGHT,
+	};
+};
+
+/** Layout-aware size for bar-level circular buttons (menu, buy bonus). */
+export const getUiBarButtonSize = (layoutType: UiLayoutType) => {
+	const scale = getUiMobileTouchScale(layoutType);
+
+	return {
+		width: UI_BASE_SIZE * scale,
+		height: UI_BASE_SIZE * scale,
+	};
+};
 export const UI_BET_STEPPER_SIZE = UI_BASE_SIZE * 0.75;
 /** Font size for +/- icons — sized for legibility after bar height scaling. */
 export const UI_BET_STEPPER_ICON_FONT_RATIO = 0.82;
@@ -406,12 +452,18 @@ export const getUiMenuPanelLayout = (
 	menuScale: number,
 	menuCenterY: number = UI_BAR_SLOT_CENTER_Y,
 	menuCenterX: number = UI_BAR_SLOTS.menu,
+	layoutType: UiLayoutType = 'desktop',
 ): UiMenuPanelLayout => {
-	const menuButtonSize = UI_BASE_SIZE * menuScale;
+	const toggleSizes = getUiMenuToggleSizes(layoutType);
+	const toggleHeight = toggleSizes.height;
+	const toggleWidth = toggleSizes.width;
+	const panelSpacingScale = getUiMenuPanelTouchScale(layoutType) || 1;
+	const rowGap = UI_MENU_PANEL.rowGap * panelSpacingScale;
+	const paddingY = UI_MENU_PANEL.paddingY * panelSpacingScale;
+	const menuButtonSize = getUiBarButtonSize(layoutType).width * menuScale;
 	const panelWidth = Math.max(
-		UI_MENU_PANEL.width,
+		toggleWidth + UI_MENU_PANEL.paddingX * 2,
 		menuButtonSize + UI_MENU_PANEL.paddingX * 2,
-		UI_MENU_AUDIO_ROW_WIDTH + UI_MENU_PANEL.paddingX * 2,
 	);
 	const panelLeftX = menuCenterX - panelWidth * 0.5;
 	const rowCenterX = menuCenterX;
@@ -419,19 +471,10 @@ export const getUiMenuPanelLayout = (
 	const menuButtonTop = menuCenterY - menuButtonSize * 0.5;
 	const panelBottomY = menuButtonTop - UI_MENU_PANEL.gapAboveMenu;
 
-	const infoY = panelBottomY - UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 - UI_MENU_PANEL.paddingY;
-	const musicY =
-		infoY -
-		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 -
-		UI_MENU_PANEL.rowGap -
-		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5;
-	const soundY =
-		musicY -
-		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 -
-		UI_MENU_PANEL.rowGap -
-		UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5;
-	const panelTopY =
-		soundY - UI_MENU_AUDIO_TOGGLE_HEIGHT * 0.5 - UI_MENU_PANEL.paddingY;
+	const infoY = panelBottomY - toggleHeight * 0.5 - paddingY;
+	const musicY = infoY - toggleHeight * 0.5 - rowGap - toggleHeight * 0.5;
+	const soundY = musicY - toggleHeight * 0.5 - rowGap - toggleHeight * 0.5;
+	const panelTopY = soundY - toggleHeight * 0.5 - paddingY;
 	const panelHeight = panelBottomY - panelTopY;
 
 	return {

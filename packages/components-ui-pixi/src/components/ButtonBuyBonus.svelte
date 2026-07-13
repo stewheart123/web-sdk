@@ -1,16 +1,19 @@
 <script lang="ts">
 	import type { ButtonProps } from 'components-pixi';
 	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { getContextLayout } from 'utils-layout';
 
 	import UiCircularButton from './UiCircularButton.svelte';
-	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
 	import { isBettingControlsLocked } from '../bettingControlsLocked';
+	import { getUiBarButtonSize, type UiLayoutType } from '../uiLayoutConfig';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const { stateLayoutDerived } = getContextLayout();
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+	const sizes = $derived(getUiBarButtonSize(layoutType));
 	const disabled = $derived(isBettingControlsLocked(context.stateXstateDerived.isIdle));
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 

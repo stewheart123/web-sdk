@@ -28,21 +28,43 @@
 	};
 </script>
 
-<OptionsGrid
-	value={stateBet.betAmount}
-	{options}
-	onchange={(value) => (stateBet.betAmount = value)}
->
-	{#snippet option({ option })}
-		<BaseIcon
-			width="100%"
-			height="2rem"
-			border={option === stateBet.betAmount ? '2px white solid' : '2px black solid'}
-		/>
-		<BaseButtonContent>
-			<span style="font-size: 1rem;"
-				>{isMaxValue(option) ? i18nDerived.max : formatValue(option)}</span
-			>
-		</BaseButtonContent>
-	{/snippet}
-</OptionsGrid>
+<div class="bet-amount-grid">
+	<OptionsGrid
+		value={stateBet.betAmount}
+		{options}
+		onchange={(value) => (stateBet.betAmount = value)}
+	>
+		{#snippet option({ option })}
+			<BaseIcon
+				width="100%"
+				height="2rem"
+				border={option === stateBet.betAmount ? '2px white solid' : '2px black solid'}
+			/>
+			<BaseButtonContent>
+				<span class="option-label"
+					>{isMaxValue(option) ? i18nDerived.max : formatValue(option)}</span
+				>
+			</BaseButtonContent>
+		{/snippet}
+	</OptionsGrid>
+</div>
+
+<style lang="scss">
+	.bet-amount-grid :global(.rectangle) {
+		height: 2rem;
+	}
+
+	.option-label {
+		font-size: 1rem;
+	}
+
+	@media (max-width: 500px) {
+		.bet-amount-grid :global(.rectangle) {
+			height: 3rem;
+		}
+
+		.option-label {
+			font-size: 1.125rem;
+		}
+	}
+</style>

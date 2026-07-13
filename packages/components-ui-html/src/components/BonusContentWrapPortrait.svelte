@@ -1,11 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { getContextLayout } from 'utils-layout';
-	import { resizeObserver, type ContentRect } from 'utils-resize-observer';
-
 	import BaseContent from './BaseContent.svelte';
-	import BaseScrollable from './BaseScrollable.svelte';
 
 	type Props = {
 		maxListLength: number;
@@ -15,81 +11,73 @@
 	};
 
 	const props: Props = $props();
-
-	const { stateLayoutDerived } = getContextLayout();
-
-	let contentRect = $state({ width: 0, height: 0, left: 0, top: 0 } as ContentRect);
-
-	const horizontalScale = $derived(
-		stateLayoutDerived.canvasSizes().width / (240 * (props.maxListLength || 1)),
-	); // {maxListLength} columns, 240 is the width benchmark
-	const verticalScale = $derived(
-		(stateLayoutDerived.canvasSizes().height - 250) / (contentRect?.height || 0),
-	);
-	const scale = $derived(Math.min(verticalScale, horizontalScale));
-	const scaled = $derived(scale < 1);
 </script>
 
 <BaseContent maxWidth="100%">
-	<div class="wrap" class:scaled>
-		<div
-			class="bonuses"
-			style="transform: scale({Math.min(scale, 1)});"
-			use:resizeObserver={(value) => (contentRect = value)}
-		>
-			<BaseScrollable type="row" noScroll>
-				{@render props.bonusCardsActivate()}
-			</BaseScrollable>
-
-			<BaseScrollable type="row" noScroll>
-				{@render props.bonusCardsBuy()}
-			</BaseScrollable>
-		</div>
-
-		{#if !scaled}
-			<div>
-				{@render props.betAmount()}
-			</div>
-		{/if}
-	</div>
-
-	{#if scaled}
-		<div class="badge-amount-wrap-scaled">
+	<div class="portrait-wrap">
+		<div class="bet-amount">
 			{@render props.betAmount()}
 		</div>
-	{/if}
+
+		<div class="bonus-stack">
+			{@render props.bonusCardsActivate()}
+			{@render props.bonusCardsBuy()}
+		</div>
+	</div>
 </BaseContent>
 
 <style lang="scss">
-	.wrap {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, calc(-50%));
-
+	.portrait-wrap {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-
-		&.scaled {
-			transform: translate(-50%, calc(-50% - 4rem));
-		}
+		width: min(96vw, 24rem);
 	}
 
-	.bonuses {
+	.bet-amount {
+		flex-shrink: 0;
+		width: 100%;
+	}
+
+	.bonus-stack {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-
-		transform-origin: center center;
+		align-items: stretch;
+		gap: 0.85rem;
+		width: 100%;
 	}
 
-	.badge-amount-wrap-scaled {
-		position: fixed;
-		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, -20%);
+	.bonus-stack :global(.bonus-card-wrap) {
+		min-width: unset;
+		max-width: none;
+		width: 100%;
+		padding: 0.85rem 1rem;
+	}
+
+	.bonus-stack :global(.title) {
+		font-size: 1.2rem;
+		line-height: 1.3;
+		font-weight: 700;
+	}
+
+	.bonus-stack :global(.description) {
+		font-size: 1rem;
+		line-height: 1.4;
+		min-height: auto;
+	}
+
+	.bonus-stack :global(.price) {
+		font-size: 1.15rem;
+		line-height: 1.25;
+		font-weight: 700;
+	}
+
+	.bonus-stack :global(.purchase-label) {
+		font-size: 1.05rem;
+	}
+
+	.bonus-stack :global(.purchase-wrap .rectangle) {
+		height: 3rem;
 	}
 </style>
