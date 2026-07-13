@@ -44,5 +44,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'BENUTZEROBERFLÄCHEN-LEITFADEN',
 	'GR.SECTION.LEGAL_NOTICE': 'RECHTLICHER HINWEIS',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Bei Fehlfunktion sind alle Auszahlungen und Spiele ungültig. Eine stabile Internetverbindung ist erforderlich. Bei einer Unterbrechung laden Sie das Spiel neu, um unvollständige Einsätze abzuschließen. Die theoretische erwartete Rendite wird über viele Spins berechnet. Walzenbewegungen repräsentieren kein physisches Gerät und dienen nur zur Veranschaulichung. TM und © Stake Engine.',
+		'Bei Fehlfunktion sind alle Gewinne und Spiele ungültig. Eine stabile Internetverbindung ist erforderlich. Bei einer Unterbrechung laden Sie das Spiel neu, um unvollständige Runden abzuschließen. Die erwartete Auszahlungsquote wird über viele Spiele berechnet. Die Spielanzeige repräsentiert kein physisches Gerät und dient nur zur Veranschaulichung. Gewinne werden gemäß dem vom Remote Game Server erhaltenen Betrag und nicht anhand von Ereignissen im Webbrowser ausgezahlt. TM und © 2026 Stake Engine.',
 };

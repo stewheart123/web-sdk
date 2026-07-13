@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'GUIA DA INTERFACE',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Avaria anula todos os pagamentos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir apostas incompletas. O retorno teórico esperado é calculado ao longo de muitas rodadas. O movimento dos rolos não representa qualquer dispositivo físico e é apenas ilustrativo. TM e © Stake Engine.',
+		'Avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir rondas incompletas. O retorno esperado é calculado ao longo de muitas jogadas. O ecrã do jogo não representa qualquer dispositivo físico e é apenas ilustrativo. Os ganhos são liquidados de acordo com o valor recebido do Remote Game Server e não com eventos no navegador web. TM e © 2026 Stake Engine.',
 };

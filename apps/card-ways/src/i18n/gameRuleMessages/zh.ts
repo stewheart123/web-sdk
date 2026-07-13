@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': '用户界面指南',
 	'GR.SECTION.LEGAL_NOTICE': '法律声明',
 	'GR.LEGAL_NOTICE.TEXT':
-		'故障使所有赔付和游戏无效。需要稳定的互联网连接。若发生断线，请重新加载游戏以完成未完成的投注。理论预期回报率基于大量旋转计算。转轴运动不代表任何物理设备，仅供说明之用。TM and © Stake Engine.',
+		'故障使所有赢利和游戏无效。需要稳定的互联网连接。若发生断线，请重新加载游戏以完成未完成的回合。预期回报率基于大量游戏计算。游戏画面不代表任何物理设备，仅供说明之用。赢利根据从 Remote Game Server 收到的金额结算，而非根据网页浏览器内的事件。TM and © 2026 Stake Engine.',
 };

@@ -44,5 +44,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'GUÍA DE INTERFAZ',
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Un mal funcionamiento anula todos los pagos y jugadas. Se requiere una conexión a internet estable. En caso de desconexión, recargue el juego para completar apuestas pendientes. El retorno teórico esperado se calcula sobre muchos giros. El movimiento de los rodillos no representa ningún dispositivo físico y es solo ilustrativo. TM y © Stake Engine.',
+		'Un mal funcionamiento anula todas las ganancias y jugadas. Se requiere una conexión a internet estable. En caso de desconexión, recargue el juego para completar rondas incompletas. El retorno esperado se calcula sobre muchas jugadas. La pantalla del juego no representa ningún dispositivo físico y es solo ilustrativa. Las ganancias se liquidan según el importe recibido del Remote Game Server y no según los eventos del navegador web. TM y © 2026 Stake Engine.',
 };

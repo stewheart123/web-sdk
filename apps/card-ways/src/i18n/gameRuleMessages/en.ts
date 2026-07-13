@@ -44,5 +44,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'USER INTERFACE GUIDE',
 	'GR.SECTION.LEGAL_NOTICE': 'LEGAL NOTICE',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Malfunction voids all pays and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted bets. The theoretical expected return is calculated over many spins. Movement of reels are not representative of any physical device, and is for illustrative purposes only. TM and © Stake Engine.',
+		'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser. TM and © 2026 Stake Engine.',
 } as const;

@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'PRZEWODNIK INTERFEJSU',
 	'GR.SECTION.LEGAL_NOTICE': 'INFORMACJA PRAWNA',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Awarie unieważniają wszystkie wypłaty i gry. Wymagane jest stabilne połączenie internetowe. W razie rozłączenia przeładuj grę, aby dokończyć niedokończone zakłady. Teoretyczny zwrot jest obliczany na podstawie wielu spinów. Ruch bębnów nie reprezentuje żadnego urządzenia fizycznego i służy wyłącznie ilustracji. TM i © Stake Engine.',
+		'Awaria unieważnia wszystkie wygrane i gry. Wymagane jest stabilne połączenie internetowe. W razie rozłączenia przeładuj grę, aby dokończyć niedokończone rundy. Oczekiwany zwrot jest obliczany na podstawie wielu gier. Wyświetlacz gry nie reprezentuje żadnego urządzenia fizycznego i służy wyłącznie ilustracji. Wygrane są rozliczane zgodnie z kwotą otrzymaną z Remote Game Server, a nie na podstawie zdarzeń w przeglądarce. TM i © 2026 Stake Engine.',
 };

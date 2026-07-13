@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'HƯỚNG DẪN GIAO DIỆN',
 	'GR.SECTION.LEGAL_NOTICE': 'THÔNG BÁO PHÁP LÝ',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Sự cố làm vô hiệu mọi thanh toán và lượt chơi. Cần kết nối internet ổn định. Nếu mất kết nối, tải lại trò chơi để hoàn tất cược chưa xong. Tỷ lệ hoàn trả lý thuyết được tính qua nhiều vòng quay. Chuyển động cuộn không đại diện cho thiết bị vật lý và chỉ mang tính minh họa. TM và © Stake Engine.',
+		'Sự cố làm vô hiệu mọi chiến thắng và lượt chơi. Cần kết nối internet ổn định. Nếu mất kết nối, tải lại trò chơi để hoàn tất vòng chơi chưa xong. Tỷ lệ hoàn trả dự kiến được tính qua nhiều lượt chơi. Màn hình trò chơi không đại diện cho thiết bị vật lý và chỉ mang tính minh họa. Tiền thắng được thanh toán theo số tiền nhận từ Remote Game Server, không theo sự kiện trong trình duyệt web. TM và © 2026 Stake Engine.',
 };

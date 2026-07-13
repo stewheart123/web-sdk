@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'KÄYTTÖLIITTYMÄOPAS',
 	'GR.SECTION.LEGAL_NOTICE': 'OIKEUDELLINEN ILMOITUS',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Toimintahäiriö mitätöi kaikki voitot ja pelit. Vakaa internetyhteys vaaditaan. Yhteyden katketessa lataa peli uudelleen keskeneräisten panosten viimeistelemiseksi. Teoreettinen odotettu tuotto lasketaan monien pyöräytysten perusteella. Rullien liike ei edusta fyysistä laitetta ja on vain havainnollistava. TM ja © Stake Engine.',
+		'Toimintahäiriö mitätöi kaikki voitot ja pelit. Vakaa internetyhteys vaaditaan. Yhteyden katketessa lataa peli uudelleen keskeneräisten kierrosten viimeistelemiseksi. Odotettu palautus lasketaan monien pelien perusteella. Pelinäyttö ei edusta fyysistä laitetta ja on vain havainnollistava. Voitot maksetaan Remote Game Serveriltä saadun summan mukaan, ei selaimen tapahtumien perusteella. TM ja © 2026 Stake Engine.',
 };

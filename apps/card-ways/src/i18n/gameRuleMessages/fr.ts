@@ -44,5 +44,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'GUIDE DE L\'INTERFACE',
 	'GR.SECTION.LEGAL_NOTICE': 'MENTIONS LÉGALES',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Un dysfonctionnement annule tous les paiements et jeux. Une connexion internet stable est requise. En cas de déconnexion, rechargez le jeu pour terminer les mises incomplètes. Le retour théorique attendu est calculé sur de nombreux tours. Le mouvement des rouleaux ne représente aucun appareil physique et est à titre illustratif uniquement. TM et © Stake Engine.',
+		'Un dysfonctionnement annule tous les gains et jeux. Une connexion internet stable est requise. En cas de déconnexion, rechargez le jeu pour terminer les manches incomplètes. Le retour attendu est calculé sur de nombreuses parties. L\'affichage du jeu ne représente aucun appareil physique et est à titre illustratif uniquement. Les gains sont réglés selon le montant reçu du Remote Game Server et non selon les événements du navigateur web. TM et © 2026 Stake Engine.',
 };

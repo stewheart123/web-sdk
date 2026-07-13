@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'ARAYÜZ KILAVUZU',
 	'GR.SECTION.LEGAL_NOTICE': 'YASAL UYARI',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Arıza tüm ödemeleri ve oyunları geçersiz kılar. Kararlı internet bağlantısı gereklidir. Bağlantı kesilirse tamamlanmamış bahisleri bitirmek için oyunu yeniden yükleyin. Teorik beklenen getiri birçok döndürme üzerinden hesaplanır. Makara hareketi fiziksel bir cihazı temsil etmez ve yalnızca açıklama amaçlıdır. TM ve © Stake Engine.',
+		'Arıza tüm kazançları ve oyunları geçersiz kılar. Kararlı internet bağlantısı gereklidir. Bağlantı kesilirse tamamlanmamış turları bitirmek için oyunu yeniden yükleyin. Beklenen getiri birçok oyun üzerinden hesaplanır. Oyun ekranı fiziksel bir cihazı temsil etmez ve yalnızca açıklama amaçlıdır. Kazançlar, web tarayıcısındaki olaylara göre değil, Remote Game Server\'dan alınan tutara göre ödenir. TM ve © 2026 Stake Engine.',
 };

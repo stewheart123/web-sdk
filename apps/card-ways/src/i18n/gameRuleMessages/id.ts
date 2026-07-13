@@ -42,5 +42,5 @@ export default {
 	'GR.SECTION.UI_GUIDE': 'PANDUAN ANTARMUKA',
 	'GR.SECTION.LEGAL_NOTICE': 'PEMBERITAHUAN HUKUM',
 	'GR.LEGAL_NOTICE.TEXT':
-		'Kerusakan membatalkan semua pembayaran dan permainan. Koneksi internet yang stabil diperlukan. Jika terputus, muat ulang permainan untuk menyelesaikan taruhan yang belum selesai. Pengembalian teoritis dihitung dari banyak putaran. Gerakan gulungan tidak mewakili perangkat fisik apa pun dan hanya untuk ilustrasi. TM dan © Stake Engine.',
+		'Kerusakan membatalkan semua kemenangan dan permainan. Koneksi internet yang stabil diperlukan. Jika terputus, muat ulang permainan untuk menyelesaikan ronde yang belum selesai. Pengembalian yang diharapkan dihitung dari banyak permainan. Tampilan game tidak mewakili perangkat fisik apa pun dan hanya untuk ilustrasi. Kemenangan diselesaikan sesuai jumlah yang diterima dari Remote Game Server, bukan dari peristiwa di browser web. TM dan © 2026 Stake Engine.',
 };
