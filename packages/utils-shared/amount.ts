@@ -1,6 +1,6 @@
 import { stateI18n } from 'state-shared';
 
-import { BOOK_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
+import { BOOK_AMOUNT_MULTIPLIER, SMALLEST_FIAT_UNIT } from 'constants-shared/bet';
 import { stateBet } from 'state-shared';
 
 const NO_LOCALISATION_CURRENCY_MAP: Record<string, string> = {
@@ -30,11 +30,14 @@ export const bookEventAmountToNormalisedAmount = (bookEventAmount: number) => {
 export const numberToFloat = (value: number) => Number.parseFloat(`${value}`);
 
 export const numberToCurrencyString = (value: number) => {
+	const displayValue =
+		value > 0 && value < SMALLEST_FIAT_UNIT ? SMALLEST_FIAT_UNIT : value;
+
 	if (stateBet.currency in NO_LOCALISATION_CURRENCY_MAP) {
-		return `${NO_LOCALISATION_CURRENCY_MAP[stateBet.currency]} ${numberToFloat(value).toFixed(2)}`;
+		return `${NO_LOCALISATION_CURRENCY_MAP[stateBet.currency]} ${numberToFloat(displayValue).toFixed(2)}`;
 	}
 
-	return stateI18n.i18n.number(value, {
+	return stateI18n.i18n.number(displayValue, {
 		minimumFractionDigits: 2,
 		maximumFractionDigits: 2,
 		style: 'currency',
