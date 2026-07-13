@@ -3,7 +3,13 @@
 
 	import { requestAuthenticate, requestReplay } from 'rgs-requests';
 	import { stateUrlDerived, stateBet, stateConfig, stateModal, stateUi } from 'state-shared';
-	import { API_AMOUNT_MULTIPLIER, MOST_USED_BET_INDEXES } from 'constants-shared/bet';
+	import {
+		API_AMOUNT_MULTIPLIER,
+		MOST_USED_BET_INDEXES,
+		apiAmountToBetAmount,
+		resolveInitialBetApiAmount,
+		snapBetAmountToOptions,
+	} from 'constants-shared/bet';
 
 	type Props = { children: Snippet };
 
@@ -68,6 +74,8 @@
 				);
 			}
 
+			let betAmountFromRound = false;
+
 			// round
 			if (authenticateData?.round) {
 				// Example of authenticateData.round 
@@ -87,18 +95,35 @@
 					stateBet.betToResume =  authenticateData.round;
 				}
 
-				if(authenticateData.round?.amount) {
+				if (authenticateData.round?.amount) {
 					const betAmountValue =
 						authenticateData.round.amount > 0
-							? authenticateData.round.amount / API_AMOUNT_MULTIPLIER
+							? apiAmountToBetAmount(authenticateData.round.amount)
 							: 0;
 					stateBet.betAmount = betAmountValue;
 					stateBet.wageredBetAmount = betAmountValue;
+					betAmountFromRound = betAmountValue > 0;
 				}
 
 				if (authenticateData.round?.mode) {
 					stateBet.activeBetModeKey = authenticateData.round.mode;
-				};
+				}
+			}
+
+			if (!betAmountFromRound && authenticateData?.config) {
+				const initialBetApiAmount = resolveInitialBetApiAmount({
+					defaultBetLevel: authenticateData.config.defaultBetLevel,
+					betLevels: authenticateData.config.betLevels,
+				});
+
+				if (initialBetApiAmount !== null) {
+					const betAmount = snapBetAmountToOptions(
+						apiAmountToBetAmount(initialBetApiAmount),
+						stateConfig.betAmountOptions,
+					);
+					stateBet.betAmount = betAmount;
+					stateBet.wageredBetAmount = betAmount;
+				}
 			}
 		} catch (error) {
 			console.error(error);
@@ -107,8 +132,9 @@
 	};
 
 	const handleReplay = async () => {
-		stateBet.betAmount = (stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER) || 0;
-		stateBet.wageredBetAmount = (stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER) || 0;
+		const replayBetAmount = apiAmountToBetAmount(stateUrlDerived.amount()) || 0;
+		stateBet.betAmount = replayBetAmount;
+		stateBet.wageredBetAmount = replayBetAmount;
 		stateBet.activeBetModeKey = stateUrlDerived.mode();
 
 		const data = await requestReplay({

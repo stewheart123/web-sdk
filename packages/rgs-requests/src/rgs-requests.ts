@@ -1,4 +1,4 @@
-import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
+import { betAmountToApiAmount } from 'constants-shared/bet';
 import { rgsFetcher } from 'rgs-fetcher';
 
 export * from './types';
@@ -66,7 +66,7 @@ export const requestBet = async (options: {
 			mode: options.mode,
 			currency: options.currency,
 			sessionID: options.sessionID,
-			amount: options.amount * API_AMOUNT_MULTIPLIER,
+			amount: betAmountToApiAmount(options.amount),
 		},
 	});
 
