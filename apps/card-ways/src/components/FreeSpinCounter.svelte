@@ -14,6 +14,7 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
+	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import { getFreeSpinCounterLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import { anchorToPivot, BitmapText, Container, type Sizes } from 'pixi-svelte';
 
@@ -39,7 +40,10 @@
 	const current = $derived(stateUi.freeSpinCounterCurrent);
 	const total = $derived(stateUi.freeSpinCounterTotal);
 
-	const textureKey = $derived(`freespinslabel_${stateUrlDerived.lang()}.png`);
+	const spriteLang = $derived(resolveSpriteLang(stateUrlDerived.lang()));
+	const textureKey = $derived(
+		resolveLocalizedSpriteKey('freespinslabel', spriteLang, context.stateApp.loadedAssets),
+	);
 	const texture = $derived(
 		(context.stateApp.loadedAssets?.[textureKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
 	);
@@ -90,7 +94,7 @@
 			>
 				<AspectFitSprite
 					label={SCENE_LABELS.freeSpin.counter.title}
-					key="freespinslabel_{stateUrlDerived.lang()}.png"
+					key={textureKey}
 					anchor={titleLabel.anchor}
 					maxWidth={titleLabel.maxWidth}
 					maxHeight={titleLabel.maxHeight}

@@ -17,6 +17,7 @@
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import { OVERLAY, resolveFreeSpinOutroLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
@@ -89,7 +90,8 @@
 				{#key outroKey}
 					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 						{#snippet children({ sizes })}
-							{@const layout = resolveFreeSpinOutroLayout(sizes, stateUrlDerived.lang())}
+							{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
+							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang)}
 
 							<FreeSpinNumberDisplay
 								layout={layout.numberText}
@@ -110,7 +112,7 @@
 									maxWidth={layout.bigWinCongrats.maxWidth}
 									maxHeight={layout.bigWinCongrats.maxHeight}
 									y={layout.bigWinCongrats.y}
-									key="freespins_{stateUrlDerived.lang()}.png"
+									key={resolveLocalizedSpriteKey('freespins', spriteLang, context.stateApp.loadedAssets)}
 									zIndex={layout.youWon.zIndex}
 								/>
 							{:else}
@@ -122,7 +124,7 @@
 									x={layout.youWon.x}
 									y={layout.youWon.y}
 									zIndex={layout.youWon.zIndex}
-									key="winsmall_{stateUrlDerived.lang()}.png"
+									key={resolveLocalizedSpriteKey('winsmall', spriteLang, context.stateApp.loadedAssets)}
 								/>
 							{/if}
 
@@ -134,7 +136,7 @@
 								x={layout.totalWin.x}
 								y={layout.totalWin.y}
 								zIndex={layout.totalWin.zIndex}
-								key="totalwin_{stateUrlDerived.lang()}.png"
+								key={resolveLocalizedSpriteKey('totalwin', spriteLang, context.stateApp.loadedAssets)}
 							/>
 
 							<PressToContinue

@@ -14,6 +14,7 @@
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import { OVERLAY, resolveFreeSpinIntroLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
@@ -69,7 +70,8 @@
 	{#key introKey}
 		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
 			{#snippet children({ sizes })}
-				{@const layout = resolveFreeSpinIntroLayout(sizes, stateUrlDerived.lang())}
+				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
+				{@const layout = resolveFreeSpinIntroLayout(sizes, spriteLang)}
 
 				<AspectFitSprite
 					label={SCENE_LABELS.freeSpin.intro.congrats}
@@ -77,7 +79,7 @@
 					maxWidth={layout.congrats.maxWidth}
 					maxHeight={layout.congrats.maxHeight}
 					y={layout.congrats.y}
-					key="freespins_{stateUrlDerived.lang()}.png"
+					key={resolveLocalizedSpriteKey('freespins', spriteLang, context.stateApp.loadedAssets)}
 				/>
 
 				<FreeSpinNumberDisplay
@@ -96,7 +98,7 @@
 					anchor={layout.freeSpinsLabel.anchor}
 					maxWidth={layout.freeSpinsLabel.maxWidth}
 					maxHeight={layout.freeSpinsLabel.maxHeight}
-					key="freespinslabel_{stateUrlDerived.lang()}.png"
+					key={resolveLocalizedSpriteKey('freespinslabel', spriteLang, context.stateApp.loadedAssets)}
 				/>
 
 				<PressToContinue

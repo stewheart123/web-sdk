@@ -6,6 +6,7 @@
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
+	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import {
 		getPressToContinueLayout,
 		SCENE_LABELS,
@@ -32,7 +33,10 @@
 		props.embedded && props.layout ? props.layout.label : SCENE_LABELS.ui.pressToContinue,
 	);
 
-	const textureKey = $derived(`pressToContinueText_${stateUrlDerived.lang()}.png`);
+	const spriteLang = $derived(resolveSpriteLang(stateUrlDerived.lang()));
+	const textureKey = $derived(
+		resolveLocalizedSpriteKey('pressToContinueText', spriteLang, context.stateApp.loadedAssets),
+	);
 	const texture = $derived(
 		(context.stateApp.loadedAssets?.[textureKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
 	);
