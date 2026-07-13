@@ -3,12 +3,26 @@
 
 	import { Text, REM } from 'pixi-svelte';
 	import { WHITE } from 'constants-shared/colors';
+	import { getContextLayout } from 'utils-layout';
+
+	import type { UiLayoutType } from '../uiLayoutConfig';
 
 	type Props = {
 		name: string;
 	};
 
 	const props: Props = $props();
+	const { stateLayoutDerived } = getContextLayout();
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+
+	const CHROME_FONT_REM_BY_TYPE: Record<UiLayoutType, number> = {
+		desktop: 1.15,
+		tablet: 1.1,
+		landscape: 1,
+		portrait: 1,
+	};
+
+	const fontSizeRem = $derived(CHROME_FONT_REM_BY_TYPE[layoutType]);
 	const reactiveDate = new SvelteDate();
 	const clock = $derived(
 		reactiveDate.toLocaleTimeString('en-US', {
@@ -17,15 +31,15 @@
 			hour12: false,
 		}),
 	);
-	const textProps = {
+	const textProps = $derived({
 		style: {
 			fontFamily: 'proxima-nova',
-			fontSize: REM * 1.5,
+			fontSize: REM * fontSizeRem,
 			fontWeight: '600',
-			lineHeight: REM * 2,
+			lineHeight: REM * (fontSizeRem + 0.35),
 			fill: WHITE,
 		},
-	} as const;
+	} as const);
 
 	let clockSizes = $state({ width: 0, height: 0 });
 

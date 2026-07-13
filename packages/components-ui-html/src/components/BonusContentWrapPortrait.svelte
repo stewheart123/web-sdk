@@ -33,26 +33,28 @@
 		align-items: center;
 		gap: 1rem;
 		width: min(96vw, 24rem);
+		--bonus-option-width: min(88vw, 20rem);
 	}
 
 	.bet-amount {
 		flex-shrink: 0;
-		width: 100%;
+		width: var(--bonus-option-width);
 	}
 
 	.bonus-stack {
 		display: flex;
 		flex-direction: column;
-		align-items: stretch;
+		align-items: center;
 		gap: 0.85rem;
 		width: 100%;
 	}
 
 	.bonus-stack :global(.bonus-card-wrap) {
 		min-width: unset;
-		max-width: none;
-		width: 100%;
+		max-width: var(--bonus-option-width);
+		width: var(--bonus-option-width);
 		padding: 0.85rem 1rem;
+		box-sizing: border-box;
 	}
 
 	.bonus-stack :global(.title) {
