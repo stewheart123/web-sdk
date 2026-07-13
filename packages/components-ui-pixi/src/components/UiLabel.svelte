@@ -8,7 +8,7 @@
 	import { UI_BASE_FONT_SIZE, UI_COLORS, UI_BORDER_RADIUS } from '../constants';
 	import {
 		UI_BAR_CONTENT_MAX_HEIGHT,
-		getUiBarLabelFontSize,
+		getUiBarLabelFontSizeForText,
 		getUiFontScale,
 		getUiFontWeight,
 		type UiLayoutType,
@@ -36,11 +36,17 @@
 	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
 	const fontScale = $derived(getUiFontScale(layoutType));
 	const fontWeight = $derived(getUiFontWeight(layoutType));
+	const barCharCount = $derived(Math.max(props.label.length, props.value.length, 1));
 	const baseFontSize = $derived(
 		props.size === 'winFloat'
 			? Math.min(contentHeight * 0.55, contentWidth * 0.08)
 			: props.size === 'bar'
-				? getUiBarLabelFontSize({ contentHeight, contentWidth, layoutType })
+				? getUiBarLabelFontSizeForText({
+						contentHeight,
+						contentWidth,
+						layoutType,
+						charCount: barCharCount,
+					})
 				: Math.min(UI_BASE_FONT_SIZE, contentHeight * 0.22, contentWidth * 0.12),
 	);
 	const fontSize = $derived(props.size === 'bar' ? baseFontSize : baseFontSize * fontScale);

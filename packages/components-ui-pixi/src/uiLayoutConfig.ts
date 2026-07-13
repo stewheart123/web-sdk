@@ -37,11 +37,21 @@ export const UI_BAR_LABEL_MAX_HEIGHT = UI_BAR_CONTENT_MAX_HEIGHT * 1.3;
 export const UI_BAR_LABEL_FONT_HEIGHT_RATIO = 0.22;
 export const UI_BAR_LABEL_FONT_WIDTH_RATIO = 0.13;
 
+const UI_BAR_LABEL_FONT_HEIGHT_RATIO_BY_TYPE: Partial<Record<UiLayoutType, number>> = {
+	landscape: 0.26,
+	portrait: 0.28,
+};
+
+const UI_BAR_LABEL_FONT_WIDTH_RATIO_BY_TYPE: Partial<Record<UiLayoutType, number>> = {
+	landscape: 0.15,
+	portrait: 0.17,
+};
+
 export const UI_BAR_LABEL_FONT_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
 	desktop: 0.85,
 	tablet: 1,
-	landscape: 1,
-	portrait: 1.2,
+	landscape: 1.28,
+	portrait: 1.42,
 };
 
 export const getUiBarLabelFontSize = ({
@@ -52,11 +62,51 @@ export const getUiBarLabelFontSize = ({
 	contentHeight: number;
 	contentWidth: number;
 	layoutType: UiLayoutType;
-}) =>
-	Math.min(
-		contentHeight * UI_BAR_LABEL_FONT_HEIGHT_RATIO,
-		contentWidth * UI_BAR_LABEL_FONT_WIDTH_RATIO,
-	) * UI_BAR_LABEL_FONT_SCALE_BY_TYPE[layoutType];
+}) => {
+	const heightRatio =
+		UI_BAR_LABEL_FONT_HEIGHT_RATIO_BY_TYPE[layoutType] ?? UI_BAR_LABEL_FONT_HEIGHT_RATIO;
+	const widthRatio =
+		UI_BAR_LABEL_FONT_WIDTH_RATIO_BY_TYPE[layoutType] ?? UI_BAR_LABEL_FONT_WIDTH_RATIO;
+
+	return (
+		Math.min(contentHeight * heightRatio, contentWidth * widthRatio) *
+		UI_BAR_LABEL_FONT_SCALE_BY_TYPE[layoutType]
+	);
+};
+
+/** Heuristic average character width as a fraction of font size (proxima-nova currency). */
+export const UI_BAR_LABEL_CHAR_WIDTH_RATIO = 0.58;
+
+/** Horizontal inset fraction when fitting text to the bar label slot. */
+export const UI_BAR_LABEL_TEXT_WIDTH_PADDING_RATIO = 0.92;
+
+/** Floor as a fraction of the layout max — avoids unreadably small amounts. */
+export const UI_BAR_LABEL_MIN_FONT_SIZE_RATIO = 0.65;
+
+/**
+ * Bar label font size capped by slot size, then shrunk to fit `charCount` (currency included).
+ * Recomputed whenever balance/bet formatted strings change.
+ */
+export const getUiBarLabelFontSizeForText = ({
+	contentHeight,
+	contentWidth,
+	layoutType,
+	charCount,
+}: {
+	contentHeight: number;
+	contentWidth: number;
+	layoutType: UiLayoutType;
+	charCount: number;
+}) => {
+	const maxFontSize = getUiBarLabelFontSize({ contentHeight, contentWidth, layoutType });
+	const safeCharCount = Math.max(charCount, 1);
+	const fitFontSize =
+		(contentWidth * UI_BAR_LABEL_TEXT_WIDTH_PADDING_RATIO) /
+		(safeCharCount * UI_BAR_LABEL_CHAR_WIDTH_RATIO);
+	const minFontSize = maxFontSize * UI_BAR_LABEL_MIN_FONT_SIZE_RATIO;
+
+	return Math.max(minFontSize, Math.min(maxFontSize, fitFontSize));
+};
 
 /** Nudge interactive controls upward within the bar (standard-layout pixels). */
 export const UI_BAR_CONTENT_Y_NUDGE_UP = 70;
