@@ -42,6 +42,8 @@ const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 const handleRequestEndRound = async () => {
 	if(stateUrlDerived.replay()) return;
 
+	console.info('[RGS] POST /wallet/end-round');
+
 	try {
 		const data = await requestEndRound({
 			sessionID: stateUrlDerived.sessionID(),
@@ -149,6 +151,10 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 
 			const bet = data.round as TBet;
 			const betType = getBetType({ bet });
+			console.info('[RGS] bet classified as', betType, {
+				payoutMultiplier: bet.payoutMultiplier,
+				active: bet.active,
+			});
 			await BET_TYPE_METHODS_MAP[betType].newGame();
 
 			return { bet };
