@@ -27,6 +27,7 @@
 		size?: 'default' | 'bar' | 'winFloat';
 		width?: number;
 		maxHeight?: number;
+		fitCharCount?: number;
 	};
 
 	const props: Props = $props();
@@ -36,7 +37,9 @@
 	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
 	const fontScale = $derived(getUiFontScale(layoutType));
 	const fontWeight = $derived(getUiFontWeight(layoutType));
-	const barCharCount = $derived(Math.max(props.label.length, props.value.length, 1));
+	const barCharCount = $derived(
+		props.fitCharCount ?? Math.max(props.label.length, props.value.length, 1),
+	);
 	const baseFontSize = $derived(
 		props.size === 'winFloat'
 			? Math.min(contentHeight * 0.55, contentWidth * 0.08)

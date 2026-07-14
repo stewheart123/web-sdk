@@ -29,9 +29,43 @@ export const bookEventAmountToNormalisedAmount = (bookEventAmount: number) => {
 
 export const numberToFloat = (value: number) => Number.parseFloat(`${value}`);
 
+const getDisplayValue = (value: number) =>
+	value > 0 && value < SMALLEST_FIAT_UNIT ? SMALLEST_FIAT_UNIT : value;
+
+const getAmountLocale = () => stateI18n.i18n.locale || 'en';
+
+export const getCurrencyDisplaySymbol = () => {
+	if (stateBet.currency in NO_LOCALISATION_CURRENCY_MAP) {
+		return NO_LOCALISATION_CURRENCY_MAP[stateBet.currency];
+	}
+
+	const parts = new Intl.NumberFormat(getAmountLocale(), {
+		style: 'currency',
+		currency: stateBet.currency,
+		currencyDisplay: 'narrowSymbol',
+	}).formatToParts(0);
+
+	return parts.find((part) => part.type === 'currency')?.value ?? stateBet.currency;
+};
+
+export const numberToAmountString = (value: number) => {
+	const displayValue = getDisplayValue(value);
+
+	if (stateBet.currency in NO_LOCALISATION_CURRENCY_MAP) {
+		return numberToFloat(displayValue).toFixed(2);
+	}
+
+	return new Intl.NumberFormat(getAmountLocale(), {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	}).format(displayValue);
+};
+
+export const formatLabelWithCurrency = (label: string) =>
+	`${label} (${getCurrencyDisplaySymbol()})`;
+
 export const numberToCurrencyString = (value: number) => {
-	const displayValue =
-		value > 0 && value < SMALLEST_FIAT_UNIT ? SMALLEST_FIAT_UNIT : value;
+	const displayValue = getDisplayValue(value);
 
 	if (stateBet.currency in NO_LOCALISATION_CURRENCY_MAP) {
 		return `${NO_LOCALISATION_CURRENCY_MAP[stateBet.currency]} ${numberToFloat(displayValue).toFixed(2)}`;
