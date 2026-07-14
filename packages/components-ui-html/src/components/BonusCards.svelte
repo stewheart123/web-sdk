@@ -99,6 +99,12 @@
 	}
 
 	@media (max-width: 500px) {
+		.price {
+			max-width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
 		.purchase-wrap :global(.rectangle) {
 			height: 3rem;
 		}

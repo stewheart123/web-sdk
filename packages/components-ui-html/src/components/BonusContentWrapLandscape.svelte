@@ -41,6 +41,7 @@
 		gap: 1rem;
 		padding: 0.5rem;
 		box-sizing: border-box;
+		overflow-x: hidden;
 	}
 
 	.bet-row {
@@ -65,5 +66,9 @@
 		justify-content: center;
 		gap: 0.75rem;
 		width: 100%;
+	}
+
+	.bonuses :global(.bonus-card-wrap) {
+		min-width: 0;
 	}
 </style>

@@ -36,7 +36,7 @@
 
 {#if stateModal.modal?.name === 'buyBonus'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		<div class="buy-bonus-content">
+		<div class="buy-bonus-content scrollY scroll-mini">
 			{#if isMiniPlayer}
 				<BonusContentWrapMiniPlayer
 					{maxListLength}
@@ -95,8 +95,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		overflow-y: auto;
 		min-height: 0;
+	}
+
+	@media (max-width: 500px) and (min-height: 301px) {
+		:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
+			padding: 3rem 0.5rem 0.5rem;
+		}
 	}
 
 	@media (max-width: 450px) and (max-height: 300px) {

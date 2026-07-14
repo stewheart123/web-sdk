@@ -69,6 +69,11 @@
 		overflow-x: auto;
 		overflow-y: hidden;
 		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	.bonus-row.scroll-x :global(.bonus-card-wrap) {

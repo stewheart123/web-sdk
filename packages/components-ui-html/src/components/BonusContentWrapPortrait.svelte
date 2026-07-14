@@ -31,9 +31,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1rem;
-		width: min(96vw, 24rem);
-		--bonus-option-width: min(88vw, 20rem);
+		gap: 0.75rem;
+		width: 100%;
+		max-width: 24rem;
+		box-sizing: border-box;
+		overflow-x: hidden;
+		--bonus-option-width: 100%;
 	}
 
 	.bet-amount {
@@ -47,7 +50,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.85rem;
+		gap: 0.65rem;
 		width: 100%;
 	}
 
@@ -87,6 +90,10 @@
 
 	@media (orientation: portrait) and (max-height: 740px),
 		(orientation: portrait) and (max-width: 400px) {
+		.bonus-stack :global(.bonus-card-wrap) {
+			padding: 0.75rem 0.85rem;
+		}
+
 		.bonus-stack :global(.purchase-wrap .rectangle) {
 			height: 2.5rem;
 		}
