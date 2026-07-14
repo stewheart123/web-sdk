@@ -22,6 +22,11 @@
 	import { COIN_LOOP_DURATION_MS, MUSIC_VOLUME_SCALE } from '../game/audioConfig';
 	import { getContext } from '../game/context';
 
+	type Props = {
+		fadeInMs?: number;
+	};
+
+	const props: Props = $props();
 	const context = getContext();
 
 	const COIN_LOOP_SOUND = 'sfx_bigwin_coinloop' as const;
@@ -72,6 +77,31 @@
 		sound.players?.music?.stop({ name });
 		warnPlay('music', name);
 		sound.players.music.play({ name });
+	};
+
+	const waitForSoundReady = async (maxWaitMs = 5000) => {
+		const start = performance.now();
+
+		while (!sound.players?.music && performance.now() - start < maxWaitMs) {
+			await waitForTimeout(50);
+		}
+	};
+
+	const playMusicWithFadeIn = async (name: MusicName, duration: number) => {
+		const musicVolume = stateSoundDerived.volumeMusic() * MUSIC_VOLUME_SCALE;
+
+		if (musicVolume === 0) {
+			return;
+		}
+
+		await waitForSoundReady();
+		if (!sound.players?.music) return;
+
+		sound.players.music.volume(musicVolume);
+		sound.players.music.stop({ name });
+		warnPlay('music', name);
+		sound.players.music.play({ name });
+		await sound.players.music.fade({ name, from: 0, to: 1, duration });
 	};
 
 	const playSoundOnce = (name: SoundEffectName, forcePlay?: boolean) => {
@@ -165,17 +195,15 @@
 	onMount(async () => {
 		await Howler.ctx.resume();
 
-		if (stateBet.activeBetModeKey === 'SUPERSPIN') {
+		const ambientMusic = getAmbientMusic();
+
+		if (props.fadeInMs !== undefined) {
+			await playMusicWithFadeIn(ambientMusic, props.fadeInMs);
+		} else if (stateBet.activeBetModeKey === 'SUPERSPIN') {
 			// check if SUPERSPIN, when resume bet and the bet is a super spin.
 			playMusic('bgm_freespin');
 		} else {
 			playMusic('bgm_main');
-
-			//How to control volume per soundfile(use fade)
-			// sound.players.music.fade({ name: 'bgm_main', from: 0, to: 1, duration: 2000 });
-
-			//How to control rate per soundfile
-			// sound.players.music.rate({ rate: 2, name: 'bgm_main'}); // change play back rate(1: default, 0: slow, 1+ fasterm and higher pitch )
 		}
 	});
 </script>

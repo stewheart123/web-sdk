@@ -10,6 +10,7 @@
 	import { UI, UiGameName } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 
+	import { LOADING_TRANSITION_DURATION_MS } from '../game/audioConfig';
 	import { getContext } from '../game/context';
 	import { SCENE_LABELS } from '../game/visualLayoutConfig';
 	import EnableSound from './EnableSound.svelte';
@@ -30,8 +31,22 @@
 
 	const context = getContext();
 
+	let soundActive = $state(false);
+	let initialMusicFadeInMs = $state<number | undefined>(undefined);
+
+	const handleTransitionStart = () => {
+		initialMusicFadeInMs = LOADING_TRANSITION_DURATION_MS;
+		soundActive = true;
+	};
+
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
+	});
+
+	$effect(() => {
+		if (!context.stateLayout.showLoadingScreen && !soundActive) {
+			soundActive = true;
+		}
 	});
 
 	context.eventEmitter.subscribeOnMount({
@@ -50,15 +65,22 @@
 	<Background />
 
 	{#if context.stateLayout.showLoadingScreen}
-		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />
-	{:else}
-		<ResumeBet />
+		<LoadingScreen
+			ontransitionstart={handleTransitionStart}
+			onloaded={() => (context.stateLayout.showLoadingScreen = false)}
+		/>
+	{/if}
+
+	{#if soundActive}
 		<!--
-			The reason why <Sound /> is rendered after clicking the loading screen:
-			"Autoplay with sound is allowed if: The user has interacted with the domain (click, tap, etc.)."
+			Mounted on press-to-continue (user gesture) so autoplay with sound is allowed.
 			Ref: https://developer.chrome.com/blog/autoplay
 		-->
-		<Sound />
+		<Sound fadeInMs={initialMusicFadeInMs} />
+	{/if}
+
+	{#if !context.stateLayout.showLoadingScreen}
+		<ResumeBet />
 
 		<MainContainer label={SCENE_LABELS.layout.frameLayer}>
 			<BoardFrame />

@@ -11,6 +11,7 @@
 
 	type Props = {
 		onloaded: () => void;
+		ontransitionstart?: () => void;
 	};
 
 	const props: Props = $props();
@@ -21,6 +22,7 @@
 	let loadingType = $state<'start' | 'transition'>('start');
 
 	const handleContinue = () => {
+		props.ontransitionstart?.();
 		loadingType = 'transition';
 	};
 </script>
