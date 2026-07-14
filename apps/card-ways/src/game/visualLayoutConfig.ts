@@ -66,6 +66,12 @@ export type AspectFitSpriteLayout = {
 	zIndex?: number;
 };
 
+/** Per-layout overrides for free-spin modal number text sizing. */
+export type FreeSpinNumberTextLayoutByType = {
+	fontSizeRatio?: number;
+	maxWidthRatio?: number;
+};
+
 /** layoutSpace: modal-local — static bitmap number in FreeSpinNumberDisplay.svelte */
 export type FreeSpinNumberTextLayout = {
 	label: string;
@@ -79,6 +85,7 @@ export type FreeSpinNumberTextLayout = {
 	fontSizeRatio: number;
 	/** Max display width as a fraction of modal width (outro ResponsiveBitmapText). */
 	maxWidthRatio?: number;
+	layoutByType?: Partial<Record<LayoutType, FreeSpinNumberTextLayoutByType>>;
 };
 
 export type ResolvedFreeSpinNumberTextLayout = {
@@ -465,7 +472,13 @@ export const VISUAL_LAYOUT = {
 				anchor: { x: 0.5, y: 0.5 },
 				offsetY: -20,
 				fontSizeRatio: 0.2,
-				maxWidthRatio: 0.1,
+				maxWidthRatio: 0.85,
+				layoutByType: {
+					desktop: { fontSizeRatio: 0.2, maxWidthRatio: 0.85 },
+					tablet: { fontSizeRatio: 0.18, maxWidthRatio: 0.85 },
+					portrait: { fontSizeRatio: 0.14, maxWidthRatio: 0.85 },
+					landscape: { fontSizeRatio: 0.15, maxWidthRatio: 0.85 },
+				} satisfies Record<LayoutType, FreeSpinNumberTextLayoutByType>,
 			},
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
@@ -775,17 +788,24 @@ export const getFreeSpinModalSizes = (layoutType: LayoutType) => {
 const resolveNumberTextLayout = (
 	text: FreeSpinNumberTextLayout,
 	modalWidth: number,
-): ResolvedFreeSpinNumberTextLayout => ({
-	label: text.label,
-	x: text.x ?? 0,
-	y: text.y ?? 0,
-	zIndex: text.zIndex,
-	anchor: text.anchor,
-	offsetY: text.offsetY ?? 0,
-	fontSizeRatio: text.fontSizeRatio,
-	maxWidth:
-		text.maxWidthRatio !== undefined ? modalWidth * text.maxWidthRatio : undefined,
-});
+	layoutType: LayoutType = 'desktop',
+): ResolvedFreeSpinNumberTextLayout => {
+	const layoutOverride = text.layoutByType?.[layoutType];
+	const fontSizeRatio = layoutOverride?.fontSizeRatio ?? text.fontSizeRatio;
+	const maxWidthRatio = layoutOverride?.maxWidthRatio ?? text.maxWidthRatio;
+
+	return {
+		label: text.label,
+		x: text.x ?? 0,
+		y: text.y ?? 0,
+		zIndex: text.zIndex,
+		anchor: text.anchor,
+		offsetY: text.offsetY ?? 0,
+		fontSizeRatio,
+		maxWidth:
+			maxWidthRatio !== undefined ? modalWidth * maxWidthRatio : undefined,
+	};
+};
 
 const resolveAspectFitSprite = ({
 	label: _label,
@@ -835,14 +855,18 @@ export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize, lang?: Langu
 	};
 };
 
-export const resolveFreeSpinOutroLayout = (modalSizes: VirtualSize, lang?: Language) => {
+export const resolveFreeSpinOutroLayout = (
+	modalSizes: VirtualSize,
+	lang?: Language,
+	layoutType: LayoutType = 'desktop',
+) => {
 	const { outro } = VISUAL_LAYOUT.freeSpin;
 	const pressToContinueOverride = lang
 		? FREE_SPIN_PRESS_TO_CONTINUE_LANG_OVERRIDES[lang]
 		: undefined;
 
 	return {
-		numberText: resolveNumberTextLayout(outro.numberText, modalSizes.width),
+		numberText: resolveNumberTextLayout(outro.numberText, modalSizes.width, layoutType),
 		bigWinCongrats: resolveAspectFitSprite(outro.bigWinCongrats),
 		youWon: resolveAspectFitSprite(outro.youWon),
 		totalWin: {
@@ -1074,9 +1098,11 @@ export const FREE_SPIN_INTRO = resolveFreeSpinIntroLayout(
 	getFreeSpinModalSizes('desktop'),
 );
 
-/** @deprecated Use resolveFreeSpinOutroLayout(modalSizes) */
+/** @deprecated Use resolveFreeSpinOutroLayout(modalSizes, lang, layoutType) */
 export const FREE_SPIN_OUTRO = resolveFreeSpinOutroLayout(
 	getFreeSpinModalSizes('desktop'),
+	undefined,
+	'desktop',
 );
 
 export const FREE_SPIN_COUNTER = getFreeSpinCounterLayout('desktop');

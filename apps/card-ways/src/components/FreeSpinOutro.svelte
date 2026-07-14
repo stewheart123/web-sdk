@@ -91,7 +91,7 @@
 					<FreeSpinAnimation modalKey="FOIL-MODAL-RED.png">
 						{#snippet children({ sizes })}
 							{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
-							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang)}
+							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang, layoutType)}
 
 							<FreeSpinNumberDisplay
 								layout={layout.numberText}
