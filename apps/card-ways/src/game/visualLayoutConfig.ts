@@ -465,7 +465,7 @@ export const VISUAL_LAYOUT = {
 				anchor: { x: 0.5, y: 0.5 },
 				offsetY: -20,
 				fontSizeRatio: 0.2,
-				maxWidthRatio: 0.4,
+				maxWidthRatio: 0.1,
 			},
 			bigWinCongrats: {
 				label: 'FreeSpin/Outro/BigWinCongrats',
