@@ -9,6 +9,7 @@
 	import BonusContentWrapLarge from './BonusContentWrapLarge.svelte';
 	import BonusContentWrapPortrait from './BonusContentWrapPortrait.svelte';
 	import BonusContentWrapLandscape from './BonusContentWrapLandscape.svelte';
+	import BonusContentWrapMiniPlayer from './BonusContentWrapMiniPlayer.svelte';
 
 	const { stateLayoutDerived } = getContextLayout();
 
@@ -19,6 +20,9 @@
 	const buyList = $derived(
 		stateMetaDerived.betModeMetaList().filter((item) => item.type === 'buy'),
 	);
+
+	const isMiniPlayer = $derived(stateLayoutDerived.isMiniPlayerViewport());
+	const maxListLength = $derived(Math.max(activateList.length, buyList.length));
 
 	const COMPONENT_MAP = {
 		desktop: BonusContentWrapLarge,
@@ -32,18 +36,37 @@
 
 {#if stateModal.modal?.name === 'buyBonus'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		<BonusContentWrap maxListLength={Math.max(activateList.length, buyList.length)}>
-			{#snippet betAmount()}
-				<BetMenuAmountToggle />
-			{/snippet}
+		{#if isMiniPlayer}
+			<BonusContentWrapMiniPlayer
+				{maxListLength}
+				showActivateRow={activateList.length > 0}
+			>
+				{#snippet betAmount()}
+					<BetMenuAmountToggle />
+				{/snippet}
 
-			{#snippet bonusCardsActivate()}
-				<BonusCards list={activateList} />
-			{/snippet}
+				{#snippet bonusCardsActivate()}
+					<BonusCards list={activateList} />
+				{/snippet}
 
-			{#snippet bonusCardsBuy()}
-				<BonusCards list={buyList} />
-			{/snippet}
-		</BonusContentWrap>
+				{#snippet bonusCardsBuy()}
+					<BonusCards list={buyList} />
+				{/snippet}
+			</BonusContentWrapMiniPlayer>
+		{:else}
+			<BonusContentWrap {maxListLength}>
+				{#snippet betAmount()}
+					<BetMenuAmountToggle />
+				{/snippet}
+
+				{#snippet bonusCardsActivate()}
+					<BonusCards list={activateList} />
+				{/snippet}
+
+				{#snippet bonusCardsBuy()}
+					<BonusCards list={buyList} />
+				{/snippet}
+			</BonusContentWrap>
+		{/if}
 	</Popup>
 {/if}
