@@ -588,9 +588,9 @@ export const VISUAL_LAYOUT = {
 		normalText: { label: 'Win/NormalText' },
 		bigAnimation: { label: 'Win/BigAnimation' },
 		layout: {
-			bigWinTextContainerScale: 0.7,
+			bigWinTextContainerScale: 0.5,
 			bigWinTextMaxWidth: 2130,
-			animationScale: 0.55,
+			animationScale: 0.45,
 			countUpCompleteDelayMs: 300,
 		},
 		// layoutSpace: board-local — offsets from board pivot inside Win/Root
