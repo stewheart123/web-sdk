@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { EnableSpaceHold } from 'components-shared';
+	import { getContextLayout } from 'utils-layout';
 
 	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
 	import UiFadeContainer from './UiFadeContainer.svelte';
@@ -16,7 +17,21 @@
 	import { UI_COLORS } from '../constants';
 	import type { LayoutUiProps } from '../types';
 	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
-	import { UI_MENU_PANEL, getUiMenuPanelLayout } from '../uiLayoutConfig';
+	import {
+		UI_BAR_LABEL_MAX_HEIGHT,
+		UI_MENU_PANEL,
+		getUiMenuPanelLayout,
+		getUiReplayBetY,
+		getUiReplayChromeScale,
+		getUiReplayFreeSpinY,
+		getUiReplayLabelScale,
+		getUiReplayLabelWidthRatio,
+		getUiReplayMenuScale,
+		getUiReplayMenuX,
+		getUiReplayMenuY,
+		getUiReplayWinY,
+		type UiLayoutType,
+	} from '../uiLayoutConfig';
 
 	type Props = {
 		gameName: LayoutUiProps['gameName'];
@@ -25,16 +40,33 @@
 
 	const props: Props = $props();
 	const context = getContext();
+	const { stateLayoutDerived } = getContextLayout();
 
-	const menuScale = 0.7;
-	const menuPanel = getUiMenuPanelLayout(1, 0, 0);
+	const layoutType = $derived(stateLayoutDerived.layoutType() as UiLayoutType);
+	const mainLayout = $derived(context.stateLayoutDerived.mainLayoutStandard());
+	const labelScale = $derived(getUiReplayLabelScale(layoutType));
+	const menuScale = $derived(getUiReplayMenuScale(layoutType));
+	const chromeScale = $derived(getUiReplayChromeScale(layoutType));
+	const labelWidth = $derived(mainLayout.width * getUiReplayLabelWidthRatio(layoutType));
+	const labelProps = $derived({
+		stacked: true as const,
+		size: 'bar' as const,
+		maxHeight: UI_BAR_LABEL_MAX_HEIGHT,
+		width: labelWidth,
+	});
+	const menuX = $derived(getUiReplayMenuX({ layoutType, menuScale }));
+	const winY = $derived(getUiReplayWinY(mainLayout.height, layoutType));
+	const betY = $derived(getUiReplayBetY(mainLayout.height, layoutType));
+	const menuY = $derived(getUiReplayMenuY(mainLayout.height, layoutType));
+	const freeSpinY = $derived(getUiReplayFreeSpinY(mainLayout.height, layoutType));
+	const menuPanel = $derived(getUiMenuPanelLayout(menuScale, 0, 0, layoutType));
 </script>
 
 <EnableSpaceHold />
 <BettingControlsLockSync />
 
 <UiFadeContainer>
-	<Container x={20}>
+	<Container x={20} scale={chromeScale}>
 		{@render props.gameName()}
 	</Container>
 
@@ -43,33 +75,21 @@
 	</Container>
 
 	<MainContainer standard alignVertical="bottom">
-		{#if stateUi.freeSpinCounterShow && ['portrait', 'tablet'].includes(context.stateLayoutDerived.layoutType())}
-			<Container x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5} y={120}>
-				<LabelFreeSpinCounter stacked />
+		{#if stateUi.freeSpinCounterShow && ['portrait', 'tablet'].includes(layoutType)}
+			<Container x={mainLayout.width * 0.5} y={freeSpinY} scale={labelScale}>
+				<LabelFreeSpinCounter {...labelProps} />
 			</Container>
 		{/if}
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 270}
-			scale={0.8}
-		>
-			<LabelWin stacked />
+		<Container x={mainLayout.width * 0.5} y={winY} scale={labelScale}>
+			<LabelWin {...labelProps} />
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 150}
-			scale={0.8}
-		>
-			<LabelBet stacked />
+		<Container x={mainLayout.width * 0.5} y={betY} scale={labelScale}>
+			<LabelBet {...labelProps} />
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
-			scale={menuScale}
-		>
+		<Container x={menuX} y={menuY} scale={menuScale}>
 			<ButtonMenu />
 		</Container>
 	</MainContainer>
@@ -90,11 +110,7 @@
 		/>
 
 		<MainContainer standard alignVertical="bottom">
-			<Container
-				x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-				y={context.stateLayoutDerived.mainLayoutStandard().height - 210}
-				scale={menuScale}
-			>
+			<Container x={menuX} y={menuY} scale={menuScale}>
 				<Rectangle
 					x={menuPanel.panelLeftX}
 					y={menuPanel.panelTopY}

@@ -579,6 +579,85 @@ export const getUiLayoutScale = (layoutType: UiLayoutType) => UI_LAYOUT_SCALE_BY
 export const getUiBarBottomPadding = (layoutType: UiLayoutType) =>
 	UI_BAR_BOTTOM_PADDING_BY_TYPE[layoutType];
 
+/** Label slot width as a fraction of the standard layout width (replay HUD). */
+export const UI_REPLAY_LABEL_WIDTH_RATIO_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 0.32,
+	tablet: 0.38,
+	landscape: 0.38,
+	portrait: 0.38,
+};
+
+/** Container scale for replay Win/Bet labels — no extra shrink on mobile. */
+export const UI_REPLAY_LABEL_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 0.85,
+	tablet: 1,
+	landscape: 1,
+	portrait: 1,
+};
+
+/** Menu button scale in replay mode. */
+export const UI_REPLAY_MENU_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 0.7,
+	tablet: 0.9,
+	landscape: 0.95,
+	portrait: 1,
+};
+
+/** Game name / clock scale in replay mode only. */
+export const UI_REPLAY_CHROME_SCALE_BY_TYPE: Record<UiLayoutType, number> = {
+	desktop: 1,
+	tablet: 1.15,
+	landscape: 1.2,
+	portrait: 1.3,
+};
+
+/** Distance from the bottom of the standard layout to each replay element centre. */
+export const UI_REPLAY_Y_OFFSET_FROM_BOTTOM_BY_TYPE: Record<
+	UiLayoutType,
+	{ win: number; bet: number; menu: number; freeSpin: number }
+> = {
+	desktop: { win: 270, bet: 150, menu: 210, freeSpin: 120 },
+	tablet: { win: 280, bet: 160, menu: 220, freeSpin: 130 },
+	landscape: { win: 280, bet: 160, menu: 220, freeSpin: 130 },
+	portrait: { win: 290, bet: 165, menu: 225, freeSpin: 140 },
+};
+
+export const getUiReplayLabelWidthRatio = (layoutType: UiLayoutType) =>
+	UI_REPLAY_LABEL_WIDTH_RATIO_BY_TYPE[layoutType];
+
+export const getUiReplayLabelScale = (layoutType: UiLayoutType) =>
+	UI_REPLAY_LABEL_SCALE_BY_TYPE[layoutType];
+
+export const getUiReplayMenuScale = (layoutType: UiLayoutType) =>
+	UI_REPLAY_MENU_SCALE_BY_TYPE[layoutType];
+
+export const getUiReplayChromeScale = (layoutType: UiLayoutType) =>
+	UI_REPLAY_CHROME_SCALE_BY_TYPE[layoutType];
+
+export const getUiReplayWinY = (mainLayoutHeight: number, layoutType: UiLayoutType) =>
+	mainLayoutHeight - UI_REPLAY_Y_OFFSET_FROM_BOTTOM_BY_TYPE[layoutType].win;
+
+export const getUiReplayBetY = (mainLayoutHeight: number, layoutType: UiLayoutType) =>
+	mainLayoutHeight - UI_REPLAY_Y_OFFSET_FROM_BOTTOM_BY_TYPE[layoutType].bet;
+
+export const getUiReplayMenuY = (mainLayoutHeight: number, layoutType: UiLayoutType) =>
+	mainLayoutHeight - UI_REPLAY_Y_OFFSET_FROM_BOTTOM_BY_TYPE[layoutType].menu;
+
+export const getUiReplayFreeSpinY = (_mainLayoutHeight: number, layoutType: UiLayoutType) =>
+	UI_REPLAY_Y_OFFSET_FROM_BOTTOM_BY_TYPE[layoutType].freeSpin;
+
+export const getUiReplayMenuX = ({
+	layoutType,
+	menuScale,
+}: {
+	layoutType: UiLayoutType;
+	menuScale: number;
+}) => {
+	const menuButtonSize = getUiBarButtonSize(layoutType).width * menuScale;
+
+	return UI_SIDE_PADDING + menuButtonSize * 0.5;
+};
+
 /** Scene-graph labels for the Pixi UI (debug overlay, tooling). */
 export const UI_SCENE_LABELS = {
 	root: 'UI',
