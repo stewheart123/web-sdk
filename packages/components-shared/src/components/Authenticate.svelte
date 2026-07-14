@@ -138,6 +138,11 @@
 		stateBet.wageredBetAmount = replayBetAmount;
 		stateBet.activeBetModeKey = stateUrlDerived.mode();
 
+		const replayCurrency = stateUrlDerived.currency();
+		if (replayCurrency) {
+			stateBet.currency = replayCurrency;
+		}
+
 		const data = await requestReplay({
 			rgsUrl: stateUrlDerived.rgsUrl(),
 			game: stateUrlDerived.game(),

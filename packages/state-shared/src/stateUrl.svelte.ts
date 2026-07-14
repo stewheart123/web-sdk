@@ -33,6 +33,7 @@ const lang = () =>
 const sessionID = () => getUrlSearchParam('sessionID') || '';
 const rgsUrl = () => getUrlSearchParam('rgs_url') || '';
 const social = () => getUrlSearchParam('social') === 'true';
+const currency = () => getUrlSearchParam('currency')?.toUpperCase() || '';
 
 // params for replay
 const replay = () => getUrlSearchParam('replay') === 'true';
@@ -48,6 +49,7 @@ export const stateUrlDerived = {
 	sessionID,
 	rgsUrl,
 	social,
+	currency,
 	// states for replay
 	replay,
 	amount,
