@@ -118,9 +118,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateUi.freeSpinCounterShow = true;
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
-			current: undefined,
+			current: 1,
 			total: bookEvent.totalFs,
 		});
+		stateUi.freeSpinCounterCurrent = 1;
 		stateUi.freeSpinCounterTotal = bookEvent.totalFs;
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
 	},
@@ -157,6 +158,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
+		stateUi.freeSpinCounterCurrent = 0;
+		stateUi.freeSpinCounterTotal = 0;
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
 		if (bookEvent.amount > 0) {
