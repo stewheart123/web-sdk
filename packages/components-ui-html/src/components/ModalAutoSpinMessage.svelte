@@ -5,7 +5,6 @@
 
 	import BaseContent from './BaseContent.svelte';
 	import BaseTitle from './BaseTitle.svelte';
-	import BaseScrollable from './BaseScrollable.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const messageMap = $derived({
@@ -17,16 +16,14 @@
 
 {#if stateModal.modal?.name === 'autoSpinMessage'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		<BaseContent maxWidth="100%">
+		<BaseContent maxWidth="500px">
 			<BaseTitle>
 				{i18nDerived.notification}
 			</BaseTitle>
-			<BaseScrollable type="column">
-				<span class="text" data-test="auto-spin-stop-info">{i18nDerived.autoSpinsStopInfo}</span>
-				<div class="scrollY info-text" data-test="auto-spin-stop-content">
-					{messageMap[stateModal.modal.message]}
-				</div>
-			</BaseScrollable>
+			<span class="text" data-test="auto-spin-stop-info">{i18nDerived.autoSpinsStopInfo}</span>
+			<div class="info-text" data-test="auto-spin-stop-content">
+				{messageMap[stateModal.modal.message]}
+			</div>
 		</BaseContent>
 	</Popup>
 {/if}
@@ -38,7 +35,6 @@
 
 	.info-text {
 		text-align: center;
-		max-height: 100px;
 		max-width: 480px;
 		border-radius: 8px;
 		border: 1px solid white;
