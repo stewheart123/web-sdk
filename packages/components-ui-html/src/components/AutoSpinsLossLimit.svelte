@@ -10,7 +10,6 @@
 <span class="title">{i18nDerived.lossLimit}</span>
 
 <OptionsGrid
-	miniSize
 	value={stateUi.autoSpinsLossLimitText}
 	options={LOSS_LIMIT_TEXT_OPTIONS}
 	onchange={(value) => (stateUi.autoSpinsLossLimitText = value)}

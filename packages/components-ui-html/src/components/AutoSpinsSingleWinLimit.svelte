@@ -10,7 +10,6 @@
 <span class="title">{i18nDerived.singleWinLimit}</span>
 
 <OptionsGrid
-	miniSize
 	value={stateUi.autoSpinsSingleWinLimitText}
 	options={SINGLE_WIN_LIMIT_TEXT_OPTIONS}
 	onchange={(value) => (stateUi.autoSpinsSingleWinLimitText = value)}
