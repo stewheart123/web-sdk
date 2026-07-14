@@ -33,6 +33,10 @@
 		align-items: center;
 		gap: 1rem;
 		width: min(96vw, 24rem);
+		max-height: calc(100dvh - 3.5rem);
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior: contain;
 		--bonus-option-width: min(88vw, 20rem);
 	}
 
@@ -81,5 +85,51 @@
 
 	.bonus-stack :global(.purchase-wrap .rectangle) {
 		height: 3rem;
+	}
+
+	@media (orientation: portrait) and (max-height: 740px),
+		(orientation: portrait) and (max-width: 400px) {
+		.portrait-wrap {
+			gap: 0.65rem;
+		}
+
+		.bonus-stack {
+			gap: 0.55rem;
+		}
+
+		.bonus-stack :global(.bonus-card-wrap) {
+			padding: 0.6rem 0.75rem;
+		}
+
+		.bonus-stack :global(.title) {
+			font-size: 1.05rem;
+			line-height: 1.2;
+		}
+
+		.bonus-stack :global(.description) {
+			font-size: 0.875rem;
+			line-height: 1.3;
+		}
+
+		.bonus-stack :global(.price) {
+			font-size: 1rem;
+		}
+
+		.bonus-stack :global(.purchase-label) {
+			font-size: 0.95rem;
+		}
+
+		.bonus-stack :global(.purchase-wrap .rectangle) {
+			height: 2.5rem;
+		}
+
+		.bet-amount :global(.rectangle) {
+			width: 2.75rem;
+			height: 2.75rem;
+		}
+
+		.bet-amount :global(.stepper-symbol) {
+			font-size: 2rem;
+		}
 	}
 </style>

@@ -733,7 +733,7 @@ export const VISUAL_LAYOUT = {
 		scaleByType: {
 			desktop: 1,
 			landscape: 1,
-			portrait: 1,
+			portrait: 0.9,
 			tablet: 1,
 		} satisfies Record<LayoutType, number>,
 	},
