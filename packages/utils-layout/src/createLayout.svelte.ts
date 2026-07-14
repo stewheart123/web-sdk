@@ -55,6 +55,10 @@ export const createLayout = (layoutOptions: {
 		return 'desktop' as const;
 	};
 	const isStacked = () => ['portrait', 'almostSquare'].includes(layoutType());
+	const isMiniPlayerViewport = () => {
+		const { width, height } = canvasSizes();
+		return width <= 450 && height <= 300;
+	};
 
 	const createMainLayout = (mainSizesMap: MainSizesMap) => () => {
 		const x = canvasSizes().width * 0.5;
@@ -156,6 +160,7 @@ export const createLayout = (layoutOptions: {
 		canvasSizeType,
 		layoutType,
 		isStacked,
+		isMiniPlayerViewport,
 		mainLayout,
 		mainLayoutStandard,
 		normalBackgroundLayout,

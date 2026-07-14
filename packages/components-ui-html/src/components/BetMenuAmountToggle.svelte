@@ -2,6 +2,7 @@
 	import { stateBet, stateConfig } from 'state-shared';
 	import { Button, OptionsToggle } from 'components-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
+	import { getContextLayout } from 'utils-layout';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
 	import BaseIcon from './BaseIcon.svelte';
@@ -9,6 +10,8 @@
 	import type { EmitterEventModal } from '../types';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventModal>();
+	const { stateLayoutDerived } = getContextLayout();
+	const isMiniPlayer = $derived(stateLayoutDerived.isMiniPlayerViewport());
 </script>
 
 <OptionsToggle
@@ -20,7 +23,7 @@
 	}}
 >
 	{#snippet children({ disabledDown, disabledUp, toggleDown, toggleUp })}
-		<div class="toggle-wrap">
+		<div class="toggle-wrap" class:mini={isMiniPlayer}>
 			<Button data-test="down-button" disabled={disabledDown} onclick={toggleDown}>
 				<BaseIcon width="2.5rem" height="2.5rem" />
 				<BaseButtonContent>
@@ -46,10 +49,21 @@
 		flex-direction: row;
 		align-items: center;
 		gap: 0.5rem;
+		width: 100%;
+		max-width: 100%;
 	}
 
 	.stepper-symbol {
 		font-size: 2rem;
+		line-height: 1;
+	}
+
+	.amount {
+		font-size: inherit;
+		flex: 1;
+		min-width: 0;
+		text-align: center;
+		line-height: 1.1;
 	}
 
 	.toggle-wrap :global(.rectangle) {
@@ -57,7 +71,12 @@
 		height: 2.5rem;
 	}
 
-	@media (max-width: 500px) {
+	.toggle-wrap :global(.button) {
+		flex-shrink: 0;
+		width: auto;
+	}
+
+	@media (max-width: 500px) and (min-height: 301px) {
 		.stepper-symbol {
 			font-size: 2.5rem;
 		}
@@ -66,5 +85,22 @@
 			width: 3.5rem;
 			height: 3.5rem;
 		}
+	}
+
+	.toggle-wrap.mini {
+		gap: calc(0.5rem * var(--mini-scale));
+	}
+
+	.toggle-wrap.mini .stepper-symbol {
+		font-size: calc(2.5rem * var(--mini-scale));
+	}
+
+	.toggle-wrap.mini .amount {
+		font-size: calc(1rem * var(--mini-scale));
+	}
+
+	.toggle-wrap.mini :global(.rectangle) {
+		width: calc(3.5rem * var(--mini-scale));
+		height: calc(3.5rem * var(--mini-scale));
 	}
 </style>

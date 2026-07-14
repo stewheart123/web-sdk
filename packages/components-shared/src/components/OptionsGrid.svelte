@@ -14,7 +14,7 @@
 	const props: Props = $props();
 </script>
 
-<div class="wrap">
+<div class="wrap" class:miniSize={props.miniSize}>
 	<div class="content-wrap">
 		<div class="grid" class:miniSize={props.miniSize}>
 			{#each props.options as option, index (option)}
@@ -44,10 +44,10 @@
 		}
 	}
 
-	// Minimum height in portrait is 255px
+	// Minimum height in landscape — skip for mini player viewports
 	@media (orientation: landscape) {
-		@media (min-height: 255px) and (max-height: 480px) {
-			.wrap {
+		@media (min-height: 301px) and (max-height: 480px) {
+			.wrap:not(.miniSize) {
 				min-width: 23rem;
 			}
 		}
@@ -67,17 +67,24 @@
 	}
 
 	@media (max-height: 480px) {
-		.grid {
+		.grid:not(.miniSize) {
 			grid-template-columns: repeat(4, 1fr);
 		}
 	}
 
-	.miniSize {
-		@media (max-width: 500px) {
-			grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-		}
-		@media (max-height: 500px) {
-			grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-		}
+	.wrap.miniSize {
+		min-width: unset;
+		width: 100%;
+	}
+
+	.wrap.miniSize .content-wrap {
+		width: 100%;
+	}
+
+	.grid.miniSize {
+		gap: calc(0.75rem * var(--mini-scale, 1));
+		width: 100%;
+		grid-template-columns: repeat(4, 1fr);
+		place-content: start stretch;
 	}
 </style>

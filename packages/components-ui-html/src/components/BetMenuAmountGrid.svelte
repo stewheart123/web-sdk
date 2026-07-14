@@ -8,6 +8,7 @@
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const { stateLayoutDerived } = getContextLayout();
+	const isMiniPlayer = $derived(stateLayoutDerived.isMiniPlayerViewport());
 	const count = $derived(stateLayoutDerived.layoutType() === 'landscape' ? 15 : 18);
 	const options = $derived(
 		[
@@ -28,10 +29,11 @@
 	};
 </script>
 
-<div class="bet-amount-grid">
+<div class="bet-amount-grid" class:mini={isMiniPlayer}>
 	<OptionsGrid
 		value={stateBet.betAmount}
 		{options}
+		miniSize={isMiniPlayer}
 		onchange={(value) => (stateBet.betAmount = value)}
 	>
 		{#snippet option({ option })}
@@ -56,9 +58,11 @@
 
 	.option-label {
 		font-size: 1rem;
+		line-height: 1;
+		white-space: nowrap;
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 500px) and (min-height: 301px) {
 		.bet-amount-grid :global(.rectangle) {
 			height: 3rem;
 		}
@@ -66,5 +70,17 @@
 		.option-label {
 			font-size: 1.125rem;
 		}
+	}
+
+	.bet-amount-grid.mini {
+		width: 100%;
+	}
+
+	.bet-amount-grid.mini :global(.rectangle) {
+		height: calc(3rem * var(--mini-scale));
+	}
+
+	.bet-amount-grid.mini .option-label {
+		font-size: calc(1.125rem * var(--mini-scale));
 	}
 </style>

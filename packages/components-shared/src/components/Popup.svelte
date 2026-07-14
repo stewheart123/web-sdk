@@ -131,4 +131,12 @@
 		width: 3rem;
 		height: 3rem;
 	}
+
+	@media (max-width: 450px) and (max-height: 300px) {
+		.close-button {
+			font-size: 1.75rem;
+			width: 1.75rem;
+			height: 1.75rem;
+		}
+	}
 </style>

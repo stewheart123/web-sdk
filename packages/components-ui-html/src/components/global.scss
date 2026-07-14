@@ -74,3 +74,18 @@ body {
 .scroll-light::-webkit-scrollbar-thumb {
 	background: var(--grey);
 }
+
+.scroll-mini {
+	--scrollbar-size: 3px;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.scroll-mini::-webkit-scrollbar {
+	width: var(--scrollbar-size);
+}
+
+.scroll-mini::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.35);
+	border-radius: 10px;
+}
