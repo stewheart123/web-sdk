@@ -34,26 +34,12 @@
 </BaseContent>
 
 <style lang="scss">
-	:global(.pop-up-wrap:has(.mini-bonus-panel) .top-layer) {
-		align-items: stretch;
-		justify-content: stretch;
-	}
-
-	:global(.pop-up-wrap:has(.mini-bonus-panel) .ui-popup-standard-content-wrap) {
-		width: 100%;
-		max-width: 100%;
-		align-items: stretch;
-		flex: 1;
-		min-height: 0;
-	}
-
 	.mini-bonus-panel {
 		--mini-scale: 0.6;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
 		width: 100%;
-		height: 100dvh;
 		max-height: 100%;
 		gap: calc(0.5rem * var(--mini-scale));
 		padding: calc(0.35rem * var(--mini-scale)) 0.15rem;
@@ -64,6 +50,8 @@
 	.bet-row {
 		flex-shrink: 0;
 		width: 100%;
+		max-width: calc(100% - 2rem);
+		margin: 0 auto;
 		display: flex;
 		justify-content: center;
 	}

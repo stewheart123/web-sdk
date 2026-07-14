@@ -36,37 +36,72 @@
 
 {#if stateModal.modal?.name === 'buyBonus'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		{#if isMiniPlayer}
-			<BonusContentWrapMiniPlayer
-				{maxListLength}
-				showActivateRow={activateList.length > 0}
-			>
-				{#snippet betAmount()}
-					<BetMenuAmountToggle />
-				{/snippet}
+		<div class="buy-bonus-content">
+			{#if isMiniPlayer}
+				<BonusContentWrapMiniPlayer
+					{maxListLength}
+					showActivateRow={activateList.length > 0}
+				>
+					{#snippet betAmount()}
+						<BetMenuAmountToggle />
+					{/snippet}
 
-				{#snippet bonusCardsActivate()}
-					<BonusCards list={activateList} />
-				{/snippet}
+					{#snippet bonusCardsActivate()}
+						<BonusCards list={activateList} />
+					{/snippet}
 
-				{#snippet bonusCardsBuy()}
-					<BonusCards list={buyList} />
-				{/snippet}
-			</BonusContentWrapMiniPlayer>
-		{:else}
-			<BonusContentWrap {maxListLength}>
-				{#snippet betAmount()}
-					<BetMenuAmountToggle />
-				{/snippet}
+					{#snippet bonusCardsBuy()}
+						<BonusCards list={buyList} />
+					{/snippet}
+				</BonusContentWrapMiniPlayer>
+			{:else}
+				<BonusContentWrap {maxListLength}>
+					{#snippet betAmount()}
+						<BetMenuAmountToggle />
+					{/snippet}
 
-				{#snippet bonusCardsActivate()}
-					<BonusCards list={activateList} />
-				{/snippet}
+					{#snippet bonusCardsActivate()}
+						<BonusCards list={activateList} />
+					{/snippet}
 
-				{#snippet bonusCardsBuy()}
-					<BonusCards list={buyList} />
-				{/snippet}
-			</BonusContentWrap>
-		{/if}
+					{#snippet bonusCardsBuy()}
+						<BonusCards list={buyList} />
+					{/snippet}
+				</BonusContentWrap>
+			{/if}
+		</div>
 	</Popup>
 {/if}
+
+<style lang="scss">
+	:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
+		justify-content: center;
+		align-items: center;
+		padding: 3.25rem 0.5rem 0.5rem;
+		box-sizing: border-box;
+	}
+
+	:global(.pop-up-wrap:has(.buy-bonus-content) .ui-popup-standard-content-wrap) {
+		width: 100%;
+		max-width: 100%;
+		max-height: 100%;
+		min-height: 0;
+	}
+
+	.buy-bonus-content {
+		width: 100%;
+		max-height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		overflow-y: auto;
+		min-height: 0;
+	}
+
+	@media (max-width: 450px) and (max-height: 300px) {
+		:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
+			padding: 2rem 0.35rem 0.35rem;
+		}
+	}
+</style>

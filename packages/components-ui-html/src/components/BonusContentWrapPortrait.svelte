@@ -39,6 +39,8 @@
 	.bet-amount {
 		flex-shrink: 0;
 		width: var(--bonus-option-width);
+		max-width: calc(100% - 2rem);
+		margin: 0 auto;
 	}
 
 	.bonus-stack {
