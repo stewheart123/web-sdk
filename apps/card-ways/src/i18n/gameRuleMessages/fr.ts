@@ -45,4 +45,26 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'MENTIONS LÉGALES',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Un dysfonctionnement annule tous les gains et jeux. Une connexion internet stable est requise. En cas de déconnexion, rechargez le jeu pour terminer les manches incomplètes. Le retour attendu est calculé sur de nombreuses parties. L\'affichage du jeu ne représente aucun appareil physique et est à titre illustratif uniquement. Les gains sont réglés selon le montant reçu du Remote Game Server et non selon les événements du navigateur web. TM et © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'TOUR | Lance un tour avec le montant de spin actuel.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'JOUER BONUS | Ouvre le menu Bonus pour jouer des Tours Gratuits.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Symbole non gagnant. Ne gagne pas et ne peut pas former de combinaisons gagnantes.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Remplace tous les symboles gagnants.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Carte modificateur. S\'applique aux gains par façons. Pas de gain direct.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Le Wild remplace tous les symboles gagnants. Le Wild ne remplace pas le Scatter.',
+	'GR.SECTION.WIN_TABLE': 'TABLE DES GAINS',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Tous les symboles gagnants gagnent de gauche à droite sur des rouleaux adjacents, en commençant par le rouleau le plus à gauche. Seuls les symboles sur des rouleaux consécutifs forment une façon valide. Cela ne s\'applique pas aux symboles Scatter. Les symboles non gagnants ne gagnent pas et ne forment pas de combinaisons. Les façons multiples du même symbole s\'additionnent. Les Wild remplacent pour compléter les façons.',
+	'GR.SECTION.SPIN_MODES': 'MODES DE SPIN',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'MODE NORMAL : Tours standard du jeu de base à {baseCost}× votre spin sélectionné.\n\nLe mode normal a un retour théorique attendu de {baseRtp}%.\n\nLe joueur peut jouer des Tours Gratuits en trois niveaux :\n• 3 Scatters / {freeSpins3} tours — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} tours — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} tours — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nLa sélection déclenche immédiatement la fonction bonus.\n\nLe gain maximum dans chaque mode de spin est de {maxWin}× le spin de base.',
+	'GR.SECTION.BONUS_SELECT': 'SÉLECTION BONUS',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'SÉLECTION BONUS — TOURS GRATUITS',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Accorde instantanément la fonction Tours Gratuits à l\'un des trois niveaux :\n\n• 3 Scatters ({freeSpins3} tours) : {bonusCost3}× spin total\n• 4 Scatters ({freeSpins4} tours) : {bonusCost4}× spin total\n• 5 Scatters ({freeSpins5} tours) : {bonusCost5}× spin total\n\nGain maximum : {maxWin}× spin\nLa Sélection Bonus peut être désactivée dans certaines juridictions',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Le gain maximum dans tout mode de spin est de {maxWin}× le spin de base. Une fois atteint, le tour se termine et le plafond de gain est attribué.',
 };

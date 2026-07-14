@@ -45,4 +45,23 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'LEGAL NOTICE',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser. TM and © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'SPIN | Initiates a spin with the current spin amount.',
+	'GR.UI.BUY_BONUS.SOCIAL': 'PLAY BONUS | Opens the Bonus menu to play Free Spins.',
+	'GR.SYMBOL.NON_WIN.SOCIAL': 'Non-win symbol. Does not win and cannot form winning ways.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Substitutes for all winning symbols.',
+	'GR.SYMBOL.MODIFIER.SOCIAL': 'Modifier card. Applies to ways wins. No direct win.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'The Wild substitutes for all winning symbols. Wild does not substitute for Scatter.',
+	'GR.SECTION.WIN_TABLE': 'WIN TABLE',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'All winning symbols win from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not win and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
+	'GR.SECTION.SPIN_MODES': 'SPIN MODES',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'NORMAL MODE: Standard base-game spins at {baseCost}× your selected spin.\n\nThe normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can play Free Spins at three tiers:\n• 3 Scatters / {freeSpins3} spins — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} spins — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} spins — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nSelecting Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each spin mode is {maxWin}× the underlying spin.',
+	'GR.SECTION.BONUS_SELECT': 'BONUS SELECT',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'BONUS SELECT — FREE SPINS',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Instantly awards the Free Spins feature at one of three tiers:\n\n• 3 Scatters ({freeSpins3} spins): {bonusCost3}× total spin\n• 4 Scatters ({freeSpins4} spins): {bonusCost4}× total spin\n• 5 Scatters ({freeSpins5} spins): {bonusCost5}× total spin\n\nMaximum win: {maxWin}× spin\nBonus Select may be disabled in certain jurisdictions',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'The maximum win in any spin mode is {maxWin}× the underlying spin. Once reached, the round ends and the win cap is awarded.',
 } as const;

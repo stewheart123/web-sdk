@@ -45,4 +45,26 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'RECHTLICHER HINWEIS',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Bei Fehlfunktion sind alle Gewinne und Spiele ungültig. Eine stabile Internetverbindung ist erforderlich. Bei einer Unterbrechung laden Sie das Spiel neu, um unvollständige Runden abzuschließen. Die erwartete Auszahlungsquote wird über viele Spiele berechnet. Die Spielanzeige repräsentiert kein physisches Gerät und dient nur zur Veranschaulichung. Gewinne werden gemäß dem vom Remote Game Server erhaltenen Betrag und nicht anhand von Ereignissen im Webbrowser ausgezahlt. TM und © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'SPIN | Startet einen Spin mit dem aktuellen Spin-Betrag.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'BONUS SPIELEN | Öffnet das Bonus-Menü zum Spielen von Freispielen.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Nicht-Gewinnsymbol. Gewinnt nicht und kann keine Gewinnwege bilden.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Ersetzt alle Gewinnsymbole.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Modifikator-Karte. Gilt für Wege-Gewinne. Kein direkter Gewinn.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Das Wild ersetzt alle Gewinnsymbole. Wild ersetzt kein Scatter.',
+	'GR.SECTION.WIN_TABLE': 'GEWINNTABELLE',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Alle Gewinnsymbole gewinnen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole gewinnen nicht und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen.',
+	'GR.SECTION.SPIN_MODES': 'SPIN-MODI',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'NORMALMODUS: Standard-Basisspiel-Drehungen zu {baseCost}× Ihrem gewählten Spin.\n\nDer Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen spielen:\n• 3 Scatter / {freeSpins3} Spins — {bonusCost3}× Spin — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} Spins — {bonusCost4}× Spin — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} Spins — {bonusCost5}× Spin — RTP {bonusRtp5}%\n\nDie Auswahl löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Spin-Modus beträgt {maxWin}× den Grundeinsatz.',
+	'GR.SECTION.BONUS_SELECT': 'BONUS-AUSWAHL',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'BONUS-AUSWAHL — FREISPIELE',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Gewährt sofort die Freispiel-Funktion in einer von drei Stufen:\n\n• 3 Scatter ({freeSpins3} Spins): {bonusCost3}× Gesamtspin\n• 4 Scatter ({freeSpins4} Spins): {bonusCost4}× Gesamtspin\n• 5 Scatter ({freeSpins5} Spins): {bonusCost5}× Gesamtspin\n\nMaximalgewinn: {maxWin}× Spin\nBonus-Auswahl kann in bestimmten Rechtsgebieten deaktiviert sein',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Der maximale Gewinn in jedem Spin-Modus beträgt {maxWin}× den Grundeinsatz. Bei Erreichen endet die Runde und die Gewinnobergrenze wird ausgezahlt.',
 };

@@ -48,4 +48,12 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount}个Scatter · {bonusCost}×投注',
 	'UI.BONUS_BUY.TIER.DIALOG': '以 {bonusCost}× 投注购买。',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER 奖励购买已激活',
+	'SPIN MENU': '旋转菜单',
+	'SELECT YOUR SPIN': '选择旋转',
+	SELECT: '选择',
+	'WIN TABLE': '赢奖表',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.': '资金不足，无法旋转。请充值或降低旋转等级。',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount}个Scatter · {bonusCost}×旋转',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': '以 {bonusCost}× 旋转选择。',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': '{scatterCount} SCATTER 奖励已选择',
 };

@@ -43,4 +43,25 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'YASAL UYARI',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Arıza tüm kazançları ve oyunları geçersiz kılar. Kararlı internet bağlantısı gereklidir. Bağlantı kesilirse tamamlanmamış turları bitirmek için oyunu yeniden yükleyin. Beklenen getiri birçok oyun üzerinden hesaplanır. Oyun ekranı fiziksel bir cihazı temsil etmez ve yalnızca açıklama amaçlıdır. Kazançlar, web tarayıcısındaki olaylara göre değil, Remote Game Server\'dan alınan tutara göre ödenir. TM ve © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'DÖNDÜR | Mevcut spin miktarıyla bir spin başlatır.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'BONUS OYNA | Ücretsiz Döndürme oynamak için Bonus menüsünü açar.',
+	'GR.SYMBOL.NON_WIN.SOCIAL': 'Kazançsız sembol. Kazanmaz ve kazanan yollar oluşturamaz.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Tüm kazanan sembollerin yerine geçer.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Modifikatör kartı. Yol kazançlarına uygulanır. Doğrudan kazanç yok.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Wild tüm kazanan sembollerin yerine geçer. Wild Scatter\'ın yerine geçmez.',
+	'GR.SECTION.WIN_TABLE': 'KAZANÇ TABLOSU',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Tüm kazanan semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa kazanır. Yalnızca ardışık makaralardaki semboller geçerli bir yol oluşturur. Scatter sembollerine uygulanmaz. Kazançsız semboller kazanmaz ve kazanan yollar oluşturamaz. Aynı sembol için birden fazla yol toplanır. Wild sembolleri yolları tamamlamak için yerine geçer.',
+	'GR.SECTION.SPIN_MODES': 'SPIN MODLARI',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'NORMAL MOD: Seçilen spininizin {baseCost}× katında standart temel oyun spinleri.\n\nNormal modun teorik beklenen getirisi {baseRtp}%\'dir.\n\nOyuncu üç kademede Ücretsiz Döndürme oynayabilir:\n• 3 Scatter / {freeSpins3} spin — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} spin — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} spin — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nSeçim bonus özelliğini hemen tetikler.\n\nHer spin modundaki maksimum kazanç {maxWin}× temel spindir.',
+	'GR.SECTION.BONUS_SELECT': 'BONUS SEÇİMİ',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'BONUS SEÇİMİ — ÜCRETSİZ DÖNDÜRME',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Üç kademeden birinde anında Ücretsiz Döndürme özelliğini verir:\n\n• 3 Scatter ({freeSpins3} spin): {bonusCost3}× toplam spin\n• 4 Scatter ({freeSpins4} spin): {bonusCost4}× toplam spin\n• 5 Scatter ({freeSpins5} spin): {bonusCost5}× toplam spin\n\nMaksimum kazanç: {maxWin}× spin\nBonus Seçimi belirli yargı bölgelerinde devre dışı bırakılabilir',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Herhangi bir spin modundaki maksimum kazanç {maxWin}× temel spindir. Ulaşıldığında tur sona erer ve kazanç sınırı verilir.',
 };

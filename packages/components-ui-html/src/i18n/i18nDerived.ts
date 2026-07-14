@@ -1,13 +1,20 @@
-import { stateI18n, stateI18nDerived } from 'state-shared';
+import { stateI18n, stateI18nDerived, stateUrlDerived } from 'state-shared';
 
 const trackLocale = () => {
 	void stateI18n.locale;
 };
 
+const trackSocial = () => {
+	void stateUrlDerived.social();
+};
+
 export const i18nDerived = {
 	get bet() {
 		trackLocale();
-		return stateI18nDerived.translate('BET');
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('SPIN')
+			: stateI18nDerived.translate('BET');
 	},
 	get max() {
 		trackLocale();
@@ -15,11 +22,17 @@ export const i18nDerived = {
 	},
 	get betMenu() {
 		trackLocale();
-		return stateI18nDerived.translate('BET MENU');
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('SPIN MENU')
+			: stateI18nDerived.translate('BET MENU');
 	},
 	get selectYourBet() {
 		trackLocale();
-		return stateI18nDerived.translate('SELECT YOUR BET');
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('SELECT YOUR SPIN')
+			: stateI18nDerived.translate('SELECT YOUR BET');
 	},
 	get confirm() {
 		trackLocale();
@@ -71,9 +84,14 @@ export const i18nDerived = {
 	},
 	get insufficientFunds() {
 		trackLocale();
-		return stateI18nDerived.translate(
-			'INSUFFICIENT FUNDS TO PLACE THIS BET. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.',
-		);
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate(
+					'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.',
+				)
+			: stateI18nDerived.translate(
+					'INSUFFICIENT FUNDS TO PLACE THIS BET. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.',
+				);
 	},
 	get lossLimitReached() {
 		trackLocale();
@@ -93,7 +111,10 @@ export const i18nDerived = {
 	},
 	get payTable() {
 		trackLocale();
-		return stateI18nDerived.translate('PAYTABLE');
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('WIN TABLE')
+			: stateI18nDerived.translate('PAYTABLE');
 	},
 	get gameRules() {
 		trackLocale();

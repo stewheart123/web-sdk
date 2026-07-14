@@ -43,4 +43,22 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': '법적 고지',
 	'GR.LEGAL_NOTICE.TEXT':
 		'오작동 시 모든 승리와 플레이가 무효입니다. 안정적인 인터넷 연결이 필요합니다. 연결이 끊기면 게임을 다시 로드하여 미완료 라운드를 완료하세요. 기대 수익률은 많은 플레이에 걸쳐 계산됩니다. 게임 화면은 실제 물리적 장치를 나타내지 않으며 설명 목적입니다. 상금은 웹 브라우저 내 이벤트가 아닌 Remote Game Server에서 수신한 금액에 따라 정산됩니다. TM and © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': '스핀 | 현재 스핀 금액으로 스핀을 시작합니다.',
+	'GR.UI.BUY_BONUS.SOCIAL': '보너스 플레이 | 프리 스핀을 플레이하는 보너스 메뉴를 엽니다.',
+	'GR.SYMBOL.NON_WIN.SOCIAL': '비당첨 심볼. 승리하지 않으며 당첨 웨이를 형성할 수 없습니다.',
+	'GR.SYMBOL.WILD.SOCIAL': '모든 당첨 심볼을 대체합니다.',
+	'GR.SYMBOL.MODIFIER.SOCIAL': '수정자 카드. 웨이 당첨에 적용됩니다. 직접 승리 없음.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL': '와일드는 모든 당첨 심볼을 대체합니다. 와일드는 스캐터를 대체하지 않습니다.',
+	'GR.SECTION.WIN_TABLE': '승리 표',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'모든 당첨 심볼은 가장 왼쪽 릴부터 인접 릴에서 왼쪽에서 오른쪽으로 승리합니다. 연속된 릴의 심볼만 유효한 웨이를 형성합니다. 스캐터 심볼에는 적용되지 않습니다. 비당첨 심볼은 승리하지 않으며 당첨 웨이를 형성할 수 없습니다. 동일 심볼의 여러 웨이는 합산됩니다. 와일드 심볼은 웨이 완성을 위해 대체됩니다.',
+	'GR.SECTION.SPIN_MODES': '스핀 모드',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'일반 모드: 선택한 스핀의 {baseCost}×로 표준 기본 게임 스핀.\n\n일반 모드의 이론적 기대 수익률은 {baseRtp}%입니다.\n\n플레이어는 3단계에서 프리 스핀을 플레이할 수 있습니다:\n• 3 스캐터 / {freeSpins3}회 — {bonusCost3}× 스핀 — RTP {bonusRtp3}%\n• 4 스캐터 / {freeSpins4}회 — {bonusCost4}× 스핀 — RTP {bonusRtp4}%\n• 5 스캐터 / {freeSpins5}회 — {bonusCost5}× 스핀 — RTP {bonusRtp5}%\n\n선택 시 즉시 보너스 기능이 발동됩니다.\n\n각 스핀 모드의 최대 당첨은 스핀의 {maxWin}×입니다.',
+	'GR.SECTION.BONUS_SELECT': '보너스 선택',
+	'GR.BONUS_BUY.TITLE.SOCIAL': '보너스 선택 — 프리 스핀',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'3단계 중 하나에서 프리 스핀 기능을 즉시 부여:\n\n• 3 스캐터 ({freeSpins3}회): {bonusCost3}× 총 스핀\n• 4 스캐터 ({freeSpins4}회): {bonusCost4}× 총 스핀\n• 5 스캐터 ({freeSpins5}회): {bonusCost5}× 총 스핀\n\n최대 당첨: {maxWin}× 스핀\n일부 지역에서는 보너스 선택이 비활성화될 수 있습니다',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'모든 스핀 모드에서 최대 당첨은 스핀의 {maxWin}×입니다. 도달하면 라운드가 종료되고 당첨 상한이 지급됩니다.',
 };

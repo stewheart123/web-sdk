@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Container } from 'pixi-svelte';
-	import { stateBetDerived, stateModal, stateI18n } from 'state-shared';
+	import { stateBetDerived, stateModal, stateI18n, stateUrlDerived } from 'state-shared';
 	import { formatLabelWithCurrency, numberToAmountString } from 'utils-shared/amount';
 
 	import UiLabel from './UiLabel.svelte';
@@ -13,6 +13,7 @@
 	const context = getContext();
 	const label = $derived.by(() => {
 		stateI18n.locale;
+		void stateUrlDerived.social();
 		const baseLabel = stateBetDerived.activeBetMode()?.text.betAmountLabel || i18nDerived.bet;
 		return formatLabelWithCurrency(baseLabel);
 	});

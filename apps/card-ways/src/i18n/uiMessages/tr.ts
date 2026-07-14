@@ -48,4 +48,13 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatter · {bonusCost}× bahis',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Bahsinizin {bonusCost}× katına satın alın.',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER BONUS SATIN ALMA ETKİN',
+	'SPIN MENU': 'SPIN MENÜSÜ',
+	'SELECT YOUR SPIN': 'SPİN SEÇİN',
+	SELECT: 'SEÇ',
+	'WIN TABLE': 'KAZANÇ TABLOSU',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.':
+		'BU SPİN İÇİN YETERSİZ BAKİYE. BAKİYE EKLEYİN VEYA SPİN SEVİYESİNİ DÜŞÜRÜN.',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} Scatter · {bonusCost}× spin',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': 'Spininizin {bonusCost}× katı için seçin.',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': '{scatterCount} SCATTER BONUS SEÇİLDİ',
 };

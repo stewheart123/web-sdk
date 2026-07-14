@@ -43,4 +43,21 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': '法的通知',
 	'GR.LEGAL_NOTICE.TEXT':
 		'故障時はすべての勝利とプレイが無効になります。安定したインターネット接続が必要です。切断時はゲームを再読み込みして未完了のラウンドを完了してください。期待還元率は多数のプレイに基づき計算されます。ゲーム画面は物理デバイスを表すものではなく、説明目的のみです。賞金はウェブブラウザ内のイベントではなく、Remote Game Serverから受け取った金額に基づいて精算されます。TM and © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'スピン | 現在のスピン額でスピンを開始します。',
+	'GR.UI.BUY_BONUS.SOCIAL': 'ボーナスプレイ | フリースピンをプレイするボーナスメニューを開きます。',
+	'GR.SYMBOL.NON_WIN.SOCIAL': '非当たりシンボル。勝利なし、当たりウェイを形成できません。',
+	'GR.SYMBOL.WILD.SOCIAL': 'すべての当たりシンボルの代わりになります。',
+	'GR.SYMBOL.MODIFIER.SOCIAL': 'モディファイアカード。ウェイ当たりに適用。直接勝利なし。',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL': 'ワイルドはすべての当たりシンボルの代わりになります。スキャッターは代用できません。',
+	'GR.SECTION.WIN_TABLE': '勝利表',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'当たりシンボルは最左リールから隣接リール上で左から右へ勝利します。連続リール上のシンボルのみが有効なウェイです。スキャッターには適用されません。非当たりシンボルは勝利せずウェイを形成できません。同一シンボルの複数ウェイは合算されます。ワイルドはウェイ完成の代用になります。',
+	'GR.SECTION.SPIN_MODES': 'スピンモード',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'通常モード: 選択したスピンの{baseCost}×で標準のベースゲームスピン。\n\n通常モードの理論上の期待還元率は{baseRtp}%です。\n\nプレイヤーは3段階でフリースピンをプレイできます：\n• 3スキャッター / {freeSpins3}回 — {bonusCost3}×スピン — RTP {bonusRtp3}%\n• 4スキャッター / {freeSpins4}回 — {bonusCost4}×スピン — RTP {bonusRtp4}%\n• 5スキャッター / {freeSpins5}回 — {bonusCost5}×スピン — RTP {bonusRtp5}%\n\n選択で即座にボーナス機能が発動します。\n\n各スピンモードの最大当たりはスピンの{maxWin}×です。',
+	'GR.SECTION.BONUS_SELECT': 'ボーナス選択',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'ボーナス選択 — フリースピン',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'3段階のいずれかでフリースピン機能を即座に付与:\n\n• 3スキャッター（{freeSpins3}回）: {bonusCost3}×総スピン\n• 4スキャッター（{freeSpins4}回）: {bonusCost4}×総スピン\n• 5スキャッター（{freeSpins5}回）: {bonusCost5}×総スピン\n\n最大当たり: {maxWin}×スピン\n一部地域ではボーナス選択が無効の場合があります',
+	'GR.MAX_WIN.TEXT.SOCIAL': 'いずれのスピンモードでも最大当たりはスピンの{maxWin}×です。到達するとラウンド終了し上限が支払われます。',
 };

@@ -45,4 +45,25 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Un mal funcionamiento anula todas las ganancias y jugadas. Se requiere una conexión a internet estable. En caso de desconexión, recargue el juego para completar rondas incompletas. El retorno esperado se calcula sobre muchas jugadas. La pantalla del juego no representa ningún dispositivo físico y es solo ilustrativa. Las ganancias se liquidan según el importe recibido del Remote Game Server y no según los eventos del navegador web. TM y © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'GIRO | Inicia un giro con el importe de giro actual.',
+	'GR.UI.BUY_BONUS.SOCIAL': 'JUGAR BONO | Abre el menú de Bono para jugar Giros Gratis.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Símbolo sin premio. No gana y no puede formar combinaciones ganadoras.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Sustituye a todos los símbolos ganadores.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Carta modificadora. Se aplica a premios por formas. Sin ganancia directa.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'El Wild sustituye a todos los símbolos ganadores. El Wild no sustituye al Scatter.',
+	'GR.SECTION.WIN_TABLE': 'TABLA DE GANANCIAS',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Todos los símbolos ganadores ganan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no ganan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas.',
+	'GR.SECTION.SPIN_MODES': 'MODOS DE GIRO',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'MODO NORMAL: Giros estándar del juego base a {baseCost}× su giro seleccionado.\n\nEl modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede jugar Giros Gratis en tres niveles:\n• 3 Scatters / {freeSpins3} giros — {bonusCost3}× giro — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} giros — {bonusCost4}× giro — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} giros — {bonusCost5}× giro — RTP {bonusRtp5}%\n\nLa selección activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de giro es {maxWin}× el giro base.',
+	'GR.SECTION.BONUS_SELECT': 'SELECCIÓN DE BONO',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'SELECCIÓN DE BONO — GIROS GRATIS',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Otorga instantáneamente la función de Giros Gratis en uno de tres niveles:\n\n• 3 Scatters ({freeSpins3} giros): {bonusCost3}× giro total\n• 4 Scatters ({freeSpins4} giros): {bonusCost4}× giro total\n• 5 Scatters ({freeSpins5} giros): {bonusCost5}× giro total\n\nPremio máximo: {maxWin}× giro\nLa Selección de Bono puede estar deshabilitada en ciertas jurisdicciones',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'El premio máximo en cualquier modo de giro es {maxWin}× el giro base. Al alcanzarlo, la ronda termina y se otorga el límite de premio.',
 };

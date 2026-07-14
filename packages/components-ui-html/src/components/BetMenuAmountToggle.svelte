@@ -76,6 +76,13 @@
 		width: auto;
 	}
 
+	@media (min-width: 768px) {
+		.toggle-wrap {
+			max-width: 22rem;
+			margin-inline: auto;
+		}
+	}
+
 	@media (max-width: 500px) and (min-height: 301px) {
 		.stepper-symbol {
 			font-size: 2.5rem;

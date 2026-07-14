@@ -43,4 +43,26 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'AVISO LEGAL',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir rondas incompletas. O retorno esperado é calculado ao longo de muitas jogadas. O ecrã do jogo não representa qualquer dispositivo físico e é apenas ilustrativo. Os ganhos são liquidados de acordo com o valor recebido do Remote Game Server e não com eventos no navegador web. TM e © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'RODAR | Inicia uma rodada com o valor de rodada atual.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'JOGAR BÓNUS | Abre o menu de Bónus para jogar Rodadas Grátis.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Símbolo sem prémio. Não ganha e não pode formar combinações vencedoras.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Substitui todos os símbolos vencedores.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Carta modificadora. Aplica-se a prémios por formas. Sem ganho direto.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'O Wild substitui todos os símbolos vencedores. O Wild não substitui o Scatter.',
+	'GR.SECTION.WIN_TABLE': 'TABELA DE GANHOS',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Todos os símbolos vencedores ganham da esquerda para a direita em rolos adjacentes, começando pelo rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica a símbolos Scatter. Símbolos sem prémio não ganham e não formam combinações vencedoras. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas.',
+	'GR.SECTION.SPIN_MODES': 'MODOS DE RODADA',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'MODO NORMAL: Rodadas padrão do jogo base a {baseCost}× a sua rodada selecionada.\n\nO modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode jogar Rodadas Grátis em três níveis:\n• 3 Scatters / {freeSpins3} rodadas — {bonusCost3}× rodada — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} rodadas — {bonusCost4}× rodada — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} rodadas — {bonusCost5}× rodada — RTP {bonusRtp5}%\n\nA seleção ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de rodada é {maxWin}× a rodada base.',
+	'GR.SECTION.BONUS_SELECT': 'SELEÇÃO DE BÓNUS',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'SELEÇÃO DE BÓNUS — RODADAS GRÁTIS',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Concede instantaneamente a funcionalidade Rodadas Grátis num de três níveis:\n\n• 3 Scatters ({freeSpins3} rodadas): {bonusCost3}× rodada total\n• 4 Scatters ({freeSpins4} rodadas): {bonusCost4}× rodada total\n• 5 Scatters ({freeSpins5} rodadas): {bonusCost5}× rodada total\n\nPrémio máximo: {maxWin}× rodada\nA Seleção de Bónus pode estar desativada em certas jurisdições',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'O prémio máximo em qualquer modo de rodada é {maxWin}× a rodada base. Ao ser atingido, a ronda termina e o limite de prémio é atribuído.',
 };

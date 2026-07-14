@@ -48,4 +48,12 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} 스캐터 · {bonusCost}× 베팅',
 	'UI.BONUS_BUY.TIER.DIALOG': '베팅의 {bonusCost}×로 구매.',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER 보너스 구매 활성화',
+	'SPIN MENU': '스핀 메뉴',
+	'SELECT YOUR SPIN': '스핀 선택',
+	SELECT: '선택',
+	'WIN TABLE': '승리 표',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.': '이 스핀을 실행할 자금이 부족합니다. 충전하거나 스핀 레벨을 낮추세요.',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} 스캐터 · {bonusCost}× 스핀',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': '스핀의 {bonusCost}×로 선택.',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': '{scatterCount} SCATTER 보너스 선택됨',
 };

@@ -1,4 +1,4 @@
-import { stateI18n, stateI18nDerived, type Language } from 'state-shared';
+import { stateI18n, stateI18nDerived, stateUrlDerived, type Language } from 'state-shared';
 
 import gameRuleMessagesEn from './gameRuleMessages/en';
 import uiMessagesEn from './uiMessages/en';
@@ -42,5 +42,13 @@ export const translateWithValues = (
 };
 
 const t = (key: string, values?: Record<string, string | number>) => translateWithValues(key, values);
+
+export const isSocialMode = () => stateUrlDerived.social();
+
+export const tSocial = (
+	standardKey: string,
+	socialKey: string,
+	values?: Record<string, string | number>,
+) => (isSocialMode() ? t(socialKey, values) : t(standardKey, values));
 
 export { t };

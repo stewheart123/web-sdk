@@ -43,4 +43,24 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'THÔNG BÁO PHÁP LÝ',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Sự cố làm vô hiệu mọi chiến thắng và lượt chơi. Cần kết nối internet ổn định. Nếu mất kết nối, tải lại trò chơi để hoàn tất vòng chơi chưa xong. Tỷ lệ hoàn trả dự kiến được tính qua nhiều lượt chơi. Màn hình trò chơi không đại diện cho thiết bị vật lý và chỉ mang tính minh họa. Tiền thắng được thanh toán theo số tiền nhận từ Remote Game Server, không theo sự kiện trong trình duyệt web. TM và © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'QUAY | Bắt đầu một lượt quay với số tiền quay hiện tại.',
+	'GR.UI.BUY_BONUS.SOCIAL': 'CHƠI BONUS | Mở menu Bonus để chơi Vòng Quay Miễn Phí.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Biểu tượng không thắng. Không thắng và không thể tạo đường thắng.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Thay thế tất cả biểu tượng thắng.',
+	'GR.SYMBOL.MODIFIER.SOCIAL': 'Thẻ sửa đổi. Áp dụng cho thắng ways. Không thắng trực tiếp.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Wild thay thế tất cả biểu tượng thắng. Wild không thay thế Scatter.',
+	'GR.SECTION.WIN_TABLE': 'BẢNG THẮNG',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Tất cả biểu tượng thắng thắng từ trái sang phải trên các guồng liền kề, bắt đầu từ guồng ngoài cùng bên trái. Chỉ biểu tượng trên các guồng liên tiếp tạo thành đường hợp lệ. Không áp dụng cho biểu tượng Scatter. Biểu tượng không thắng không thắng và không tạo đường thắng. Nhiều đường cho cùng biểu tượng được cộng lại. Biểu tượng Wild thay thế để hoàn thành đường.',
+	'GR.SECTION.SPIN_MODES': 'CHẾ ĐỘ QUAY',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'CHẾ ĐỘ BÌNH THƯỜNG: Vòng quay chuẩn ở {baseCost}× lượt quay đã chọn.\n\nChế độ bình thường có tỷ lệ hoàn trả lý thuyết {baseRtp}%.\n\nNgười chơi có thể chơi Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} lượt — {bonusCost3}× quay — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} lượt — {bonusCost4}× quay — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} lượt — {bonusCost5}× quay — RTP {bonusRtp5}%\n\nChọn Vòng Quay Miễn Phí kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa ở mỗi chế độ quay là {maxWin}× lượt quay cơ bản.',
+	'GR.SECTION.BONUS_SELECT': 'CHỌN BONUS',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'CHỌN BONUS — VÒNG QUAY MIỄN PHÍ',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Trao ngay tính năng Vòng Quay Miễn Phí ở một trong ba cấp:\n\n• 3 Scatter ({freeSpins3} lượt): {bonusCost3}× tổng quay\n• 4 Scatter ({freeSpins4} lượt): {bonusCost4}× tổng quay\n• 5 Scatter ({freeSpins5} lượt): {bonusCost5}× tổng quay\n\nThắng tối đa: {maxWin}× quay\nChọn Bonus có thể bị vô hiệu ở một số khu vực pháp lý',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Thắng tối đa ở bất kỳ chế độ quay nào là {maxWin}× lượt quay cơ bản. Khi đạt, vòng chơi kết thúc và trần thắng được trao.',
 };

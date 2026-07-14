@@ -43,4 +43,26 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'PEMBERITAHUAN HUKUM',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Kerusakan membatalkan semua kemenangan dan permainan. Koneksi internet yang stabil diperlukan. Jika terputus, muat ulang permainan untuk menyelesaikan ronde yang belum selesai. Pengembalian yang diharapkan dihitung dari banyak permainan. Tampilan game tidak mewakili perangkat fisik apa pun dan hanya untuk ilustrasi. Kemenangan diselesaikan sesuai jumlah yang diterima dari Remote Game Server, bukan dari peristiwa di browser web. TM dan © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'PUTAR | Memulai putaran dengan jumlah putaran saat ini.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'MAIN BONUS | Membuka menu Bonus untuk memainkan Putaran Gratis.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Simbol non-menang. Tidak menang dan tidak dapat membentuk cara menang.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Menggantikan semua simbol menang.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Kartu modifier. Berlaku untuk kemenangan ways. Tanpa kemenangan langsung.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Wild menggantikan semua simbol menang. Wild tidak menggantikan Scatter.',
+	'GR.SECTION.WIN_TABLE': 'TABEL MENANG',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Semua simbol menang menang dari kiri ke kanan pada reel yang berdekatan, dimulai dari reel paling kiri. Hanya simbol pada reel berturut-turut yang membentuk cara valid. Tidak berlaku untuk simbol Scatter. Simbol non-menang tidak menang dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara.',
+	'GR.SECTION.SPIN_MODES': 'MODE PUTARAN',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'MODE NORMAL: Putaran permainan dasar standar pada {baseCost}× putaran yang dipilih.\n\nMode normal memiliki pengembalian teoretis yang diharapkan sebesar {baseRtp}%.\n\nPemain dapat memainkan Putaran Gratis pada tiga tingkat:\n• 3 Scatter / {freeSpins3} putaran — {bonusCost3}× putaran — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} putaran — {bonusCost4}× putaran — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} putaran — {bonusCost5}× putaran — RTP {bonusRtp5}%\n\nMemilih Putaran Gratis memicu fitur bonus segera.\n\nKemenangan maksimum di setiap mode putaran adalah {maxWin}× putaran dasar.',
+	'GR.SECTION.BONUS_SELECT': 'PILIHAN BONUS',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'PILIHAN BONUS — PUTARAN GRATIS',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Langsung memberikan fitur Putaran Gratis pada salah satu dari tiga tingkat:\n\n• 3 Scatter ({freeSpins3} putaran): {bonusCost3}× total putaran\n• 4 Scatter ({freeSpins4} putaran): {bonusCost4}× total putaran\n• 5 Scatter ({freeSpins5} putaran): {bonusCost5}× total putaran\n\nKemenangan maksimum: {maxWin}× putaran\nPilihan Bonus mungkin dinonaktifkan di yurisdiksi tertentu',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Kemenangan maksimum dalam mode putaran apa pun adalah {maxWin}× putaran dasar. Setelah tercapai, ronde berakhir dan batas kemenangan diberikan.',
 };

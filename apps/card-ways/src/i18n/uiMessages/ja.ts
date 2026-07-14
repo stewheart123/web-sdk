@@ -48,4 +48,12 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount}スキャッター · {bonusCost}×ベット',
 	'UI.BONUS_BUY.TIER.DIALOG': 'ベットの{bonusCost}×で購入。',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount} SCATTER ボーナス購入が有効',
+	'SPIN MENU': 'スピンメニュー',
+	'SELECT YOUR SPIN': 'スピンを選択',
+	SELECT: '選択',
+	'WIN TABLE': '勝利表',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.': 'このスピンを行う資金が不足しています。入金するかスピンレベルを下げてください。',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount}スキャッター · {bonusCost}×スピン',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': 'スピンの{bonusCost}×で選択。',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': '{scatterCount} SCATTER ボーナス選択済み',
 };

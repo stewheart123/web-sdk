@@ -43,4 +43,21 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': '法律声明',
 	'GR.LEGAL_NOTICE.TEXT':
 		'故障使所有赢利和游戏无效。需要稳定的互联网连接。若发生断线，请重新加载游戏以完成未完成的回合。预期回报率基于大量游戏计算。游戏画面不代表任何物理设备，仅供说明之用。赢利根据从 Remote Game Server 收到的金额结算，而非根据网页浏览器内的事件。TM and © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': '旋转 | 以当前旋转金额发起一次旋转。',
+	'GR.UI.BUY_BONUS.SOCIAL': '玩奖励 | 打开奖励菜单以玩免费旋转。',
+	'GR.SYMBOL.NON_WIN.SOCIAL': '非中奖符号。不赢奖且无法形成中奖路。',
+	'GR.SYMBOL.WILD.SOCIAL': '可替代所有赢奖符号。',
+	'GR.SYMBOL.MODIFIER.SOCIAL': '修饰卡。适用于路数赢奖。无直接赢奖。',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL': '百搭可替代所有赢奖符号。百搭不能替代Scatter。',
+	'GR.SECTION.WIN_TABLE': '赢奖表',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'所有赢奖符号从最左侧转轴开始，在相邻转轴上从左至右赢奖。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赢奖且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。',
+	'GR.SECTION.SPIN_MODES': '旋转模式',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'正常模式：以所选旋转的{baseCost}×进行标准基础游戏旋转。\n\n正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档玩免费旋转：\n• 3个Scatter / {freeSpins3}次 — {bonusCost3}×旋转 — RTP {bonusRtp3}%\n• 4个Scatter / {freeSpins4}次 — {bonusCost4}×旋转 — RTP {bonusRtp4}%\n• 5个Scatter / {freeSpins5}次 — {bonusCost5}×旋转 — RTP {bonusRtp5}%\n\n选择后立即触发奖励功能。\n\n各旋转模式的最大赢赏为{maxWin}×基础旋转。',
+	'GR.SECTION.BONUS_SELECT': '奖励选择',
+	'GR.BONUS_BUY.TITLE.SOCIAL': '奖励选择 — 免费旋转',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'立即以三档之一获得免费旋转功能：\n\n• 3个Scatter（{freeSpins3}次）: {bonusCost3}×总旋转\n• 4个Scatter（{freeSpins4}次）: {bonusCost4}×总旋转\n• 5个Scatter（{freeSpins5}次）: {bonusCost5}×总旋转\n\n最大赢赏: {maxWin}×旋转\n部分司法管辖区可能禁用奖励选择',
+	'GR.MAX_WIN.TEXT.SOCIAL': '任何旋转模式的最高奖金为基础旋转的{maxWin}×。达到后回合结束并发放奖金上限。',
 };

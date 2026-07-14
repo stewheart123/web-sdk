@@ -48,4 +48,13 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} scatters · {bonusCost}× رهان',
 	'UI.BONUS_BUY.TIER.DIALOG': 'اشترِ مقابل {bonusCost}× رهانك.',
 	'UI.BONUS_BUY.TIER.TICKER': 'تم تفعيل شراء المكافأة {scatterCount} SCATTER',
+	'SPIN MENU': 'قائمة الدوران',
+	'SELECT YOUR SPIN': 'اختر دورانك',
+	SELECT: 'اختيار',
+	'WIN TABLE': 'جدول الربح',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.':
+		'رصيد غير كافٍ لهذا الدوران. أضف أموالاً أو خفّض مستوى الدوران.',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} scatters · {bonusCost}× دوران',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': 'اختر مقابل {bonusCost}× دورانك.',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': 'تم اختيار مكافأة {scatterCount} SCATTER',
 };

@@ -61,7 +61,10 @@ export const i18nDerived = {
 	},
 	get payTable() {
 		trackLocale();
-		return stateI18nDerived.translate('PAYTABLE');
+		void stateUrlDerived.social();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('WIN TABLE')
+			: stateI18nDerived.translate('PAYTABLE');
 	},
 	get info() {
 		trackLocale();

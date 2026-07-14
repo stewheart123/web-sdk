@@ -48,4 +48,13 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} скаттера · {bonusCost}× ставка',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Купить за {bonusCost}× ставки.',
 	'UI.BONUS_BUY.TIER.TICKER': 'ПОКУПКА БОНУСА {scatterCount} SCATTER АКТИВИРОВАНА',
+	'SPIN MENU': 'МЕНЮ СПИНА',
+	'SELECT YOUR SPIN': 'ВЫБЕРИТЕ СПИН',
+	SELECT: 'ВЫБРАТЬ',
+	'WIN TABLE': 'ТАБЛИЦА ВЫИГРЫШЕЙ',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.':
+		'НЕДОСТАТОЧНО СРЕДСТВ ДЛЯ ЭТОГО СПИНА. ПОПОЛНИТЕ СЧЁТ ИЛИ УМЕНЬШИТЕ УРОВЕНЬ СПИНА.',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} скаттера · {bonusCost}× спин',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': 'Выбрать за {bonusCost}× спина.',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': 'БОНУС {scatterCount} SCATTER ВЫБРАН',
 };

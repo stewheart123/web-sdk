@@ -43,4 +43,25 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'INFORMACJA PRAWNA',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Awaria unieważnia wszystkie wygrane i gry. Wymagane jest stabilne połączenie internetowe. W razie rozłączenia przeładuj grę, aby dokończyć niedokończone rundy. Oczekiwany zwrot jest obliczany na podstawie wielu gier. Wyświetlacz gry nie reprezentuje żadnego urządzenia fizycznego i służy wyłącznie ilustracji. Wygrane są rozliczane zgodnie z kwotą otrzymaną z Remote Game Server, a nie na podstawie zdarzeń w przeglądarce. TM i © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL': 'SPIN | Rozpoczyna spin z bieżącą kwotą spinu.',
+	'GR.UI.BUY_BONUS.SOCIAL': 'GRAJ BONUS | Otwiera menu bonusu, aby grać darmowe spiny.',
+	'GR.SYMBOL.NON_WIN.SOCIAL':
+		'Symbol bez wygranej. Nie wygrywa i nie może tworzyć wygrywających dróg.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Zastępuje wszystkie wygrywające symbole.',
+	'GR.SYMBOL.MODIFIER.SOCIAL':
+		'Karta modyfikatora. Dotyczy wygranych ways. Brak bezpośredniej wygranej.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL':
+		'Wild zastępuje wszystkie wygrywające symbole. Wild nie zastępuje Scattera.',
+	'GR.SECTION.WIN_TABLE': 'TABELA WYGRANYCH',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Wszystkie wygrywające symbole wygrywają od lewej do prawej na sąsiednich bębnach, zaczynając od skrajnie lewego. Tylko symbole na kolejnych bębnach tworzą prawidłową drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wygrywają i nie tworzą wygrywających dróg. Wiele dróg tego samego symbolu jest sumowanych. Symbole Wild zastępują, aby uzupełnić drogi.',
+	'GR.SECTION.SPIN_MODES': 'TRYBY SPINU',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'TRYB NORMALNY: Standardowe obroty gry bazowej przy {baseCost}× wybranym spinie.\n\nTryb normalny ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może grać darmowe spiny na trzech poziomach:\n• 3 Scattery / {freeSpins3} spinów — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scattery / {freeSpins4} spinów — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatteringów / {freeSpins5} spinów — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nWybór darmowych spinów natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie spinu to {maxWin}× bazowy spin.',
+	'GR.SECTION.BONUS_SELECT': 'WYBÓR BONUSU',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'WYBÓR BONUSU — DARMOWE SPINY',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Natychmiast przyznaje funkcję darmowych spinów na jednym z trzech poziomów:\n\n• 3 Scattery ({freeSpins3} spinów): {bonusCost3}× całkowity spin\n• 4 Scattery ({freeSpins4} spinów): {bonusCost4}× całkowity spin\n• 5 Scatteringów ({freeSpins5} spinów): {bonusCost5}× całkowity spin\n\nMaksymalna wygrana: {maxWin}× spin\nWybór bonusu może być wyłączony w niektórych jurysdykcjach',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Maksymalna wygrana w dowolnym trybie spinu to {maxWin}× bazowy spin. Po osiągnięciu runda kończy się i przyznawany jest limit wygranej.',
 };

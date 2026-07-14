@@ -2,7 +2,7 @@ import { DEFAULT_GAME_RULE_META } from 'state-shared/src/constants';
 import type { GameRuleContainer, GameRuleData } from 'state-shared';
 import { toAbsoluteAssetUrl } from 'pixi-svelte';
 
-import { t } from '../i18n/translate';
+import { t, tSocial } from '../i18n/translate';
 import { BONUS_BUY_TIERS } from './bonusBuyTiers';
 import config from './config';
 
@@ -129,7 +129,7 @@ const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
 	for (const special of specialSymbols) {
 		containers.push({
 			title: special.title,
-			text: t(special.textKey),
+			text: tSocial(special.textKey, `${special.textKey}.SOCIAL`),
 			image: specialSymbolImageMap[special.title],
 			imagePosition: 'left',
 			row: special.row,
@@ -143,7 +143,7 @@ const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
 const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => [
 	{
 		title: '',
-		text: t('GR.UI.SPIN'),
+		text: tSocial('GR.UI.SPIN', 'GR.UI.SPIN.SOCIAL'),
 		image: images.spin,
 		imagePosition: 'left',
 		row: 0,
@@ -159,7 +159,7 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	},
 	{
 		title: '',
-		text: t('GR.UI.BUY_BONUS'),
+		text: tSocial('GR.UI.BUY_BONUS', 'GR.UI.BUY_BONUS.SOCIAL'),
 		image: images.bonusBuy,
 		imagePosition: 'left',
 		row: 2,
@@ -226,7 +226,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				},
 				{
 					title: t('GR.WILD_SYMBOL.TITLE'),
-					text: t('GR.WILD_SYMBOL.TEXT'),
+					text: tSocial('GR.WILD_SYMBOL.TEXT', 'GR.WILD_SYMBOL.TEXT.SOCIAL'),
 					image: images.wild,
 					imagePosition: 'left',
 					row: 1,
@@ -260,7 +260,7 @@ export const buildCardWaysGameRuleMeta = () => {
 				},
 				{
 					title: t('GR.MAX_WIN.TITLE'),
-					text: t('GR.MAX_WIN.TEXT', numericValues),
+					text: tSocial('GR.MAX_WIN.TEXT', 'GR.MAX_WIN.TEXT.SOCIAL', numericValues),
 					image: '',
 					imagePosition: 'left',
 					row: 5,
@@ -269,7 +269,7 @@ export const buildCardWaysGameRuleMeta = () => {
 			],
 		},
 		{
-			title: t('GR.SECTION.PAYTABLE'),
+			title: tSocial('GR.SECTION.PAYTABLE', 'GR.SECTION.WIN_TABLE'),
 			rows: 4,
 			columns: 3,
 			containers: buildSymbolContainers(images),
@@ -281,7 +281,7 @@ export const buildCardWaysGameRuleMeta = () => {
 			containers: [
 				{
 					title: '',
-					text: t('GR.WIN_WAYS.TEXT'),
+					text: tSocial('GR.WIN_WAYS.TEXT', 'GR.WIN_WAYS.TEXT.SOCIAL'),
 					image: images.nonWin,
 					imagePosition: 'top',
 					row: 0,
@@ -293,13 +293,13 @@ export const buildCardWaysGameRuleMeta = () => {
 
 	const gameRulesSections: GameRuleData[] = [
 		{
-			title: t('GR.SECTION.BET_MODES'),
+			title: tSocial('GR.SECTION.BET_MODES', 'GR.SECTION.SPIN_MODES'),
 			rows: 1,
 			columns: 1,
 			containers: [
 				{
 					title: '',
-					text: t('GR.BET_MODES.TEXT', numericValues),
+					text: tSocial('GR.BET_MODES.TEXT', 'GR.BET_MODES.TEXT.SOCIAL', numericValues),
 					image: images.scatter,
 					imagePosition: 'top',
 					row: 0,
@@ -308,13 +308,13 @@ export const buildCardWaysGameRuleMeta = () => {
 			],
 		},
 		{
-			title: t('GR.SECTION.BONUS_BUY'),
+			title: tSocial('GR.SECTION.BONUS_BUY', 'GR.SECTION.BONUS_SELECT'),
 			rows: 1,
 			columns: 1,
 			containers: [
 				{
-					title: t('GR.BONUS_BUY.TITLE'),
-					text: t('GR.BONUS_BUY.TEXT', numericValues),
+					title: tSocial('GR.BONUS_BUY.TITLE', 'GR.BONUS_BUY.TITLE.SOCIAL'),
+					text: tSocial('GR.BONUS_BUY.TEXT', 'GR.BONUS_BUY.TEXT.SOCIAL', numericValues),
 					image: images.bonusBuy,
 					imagePosition: 'left',
 					row: 0,

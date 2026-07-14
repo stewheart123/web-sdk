@@ -48,4 +48,13 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} Scatter · {bonusCost}× cược',
 	'UI.BONUS_BUY.TIER.DIALOG': 'Mua với {bonusCost}× cược của bạn.',
 	'UI.BONUS_BUY.TIER.TICKER': 'MUA BONUS {scatterCount} SCATTER ĐÃ KÍCH HOẠT',
+	'SPIN MENU': 'MENU QUAY',
+	'SELECT YOUR SPIN': 'CHỌN LƯỢT QUAY',
+	SELECT: 'CHỌN',
+	'WIN TABLE': 'BẢNG THẮNG',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.':
+		'KHÔNG ĐỦ TIỀN CHO LƯỢT QUAY NÀY. NẠP THÊM HOẶC GIẢM MỨC QUAY.',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} Scatter · {bonusCost}× lượt quay',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': 'Chọn với {bonusCost}× lượt quay của bạn.',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': 'BONUS {scatterCount} SCATTER ĐÃ CHỌN',
 };

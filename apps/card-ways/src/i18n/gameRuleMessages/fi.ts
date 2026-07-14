@@ -43,4 +43,24 @@ export default {
 	'GR.SECTION.LEGAL_NOTICE': 'OIKEUDELLINEN ILMOITUS',
 	'GR.LEGAL_NOTICE.TEXT':
 		'Toimintahäiriö mitätöi kaikki voitot ja pelit. Vakaa internetyhteys vaaditaan. Yhteyden katketessa lataa peli uudelleen keskeneräisten kierrosten viimeistelemiseksi. Odotettu palautus lasketaan monien pelien perusteella. Pelinäyttö ei edusta fyysistä laitetta ja on vain havainnollistava. Voitot maksetaan Remote Game Serveriltä saadun summan mukaan, ei selaimen tapahtumien perusteella. TM ja © 2026 Stake Engine.',
+	'GR.UI.SPIN.SOCIAL':
+		'PYÖRÄYTÄ | Aloittaa pyöräytyksen nykyisellä pyöräytyssummalla.',
+	'GR.UI.BUY_BONUS.SOCIAL':
+		'PELAA BONUS | Avaa bonusvalikon ilmaiskierrosten pelaamiseen.',
+	'GR.SYMBOL.NON_WIN.SOCIAL': 'Ei-voitto-symboli. Ei voita eikä voi muodostaa voittotapoja.',
+	'GR.SYMBOL.WILD.SOCIAL': 'Korvaa kaikki voittosymbolit.',
+	'GR.SYMBOL.MODIFIER.SOCIAL': 'Modifiointikortti. Koskee tapavoittoja. Ei suoraa voittoa.',
+	'GR.WILD_SYMBOL.TEXT.SOCIAL': 'Wild korvaa kaikki voittosymbolit. Wild ei korvaa Scatteria.',
+	'GR.SECTION.WIN_TABLE': 'VOITTOTAULUKKO',
+	'GR.WIN_WAYS.TEXT.SOCIAL':
+		'Kaikki voittosymbolit voittavat vasemmalta oikealle vierekkäisillä rullilla, alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleja. Ei-voitto-symbolit eivät voita eivätkä muodosta voittotapoja. Saman symbolin useat tavat lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi.',
+	'GR.SECTION.SPIN_MODES': 'PYÖRÄYTYSMOODIT',
+	'GR.BET_MODES.TEXT.SOCIAL':
+		'NORMAALITILA: Vakiopohjapelin pyöräytykset {baseCost}× valitsemallasi pyöräytyksellä.\n\nNormaalitilan teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi pelata ilmaiskierroksia kolmella tasolla:\n• 3 scatteria / {freeSpins3} pyöräytystä — {bonusCost3}× pyöräytys — RTP {bonusRtp3}%\n• 4 scatteria / {freeSpins4} pyöräytystä — {bonusCost4}× pyöräytys — RTP {bonusRtp4}%\n• 5 scatteria / {freeSpins5} pyöräytystä — {bonusCost5}× pyöräytys — RTP {bonusRtp5}%\n\nIlmaiskierrosten valinta käynnistää bonusominaisuuden heti.\n\nSuurin voitto jokaisessa pyöräytysmoodissa on {maxWin}× peruspyöräytys.',
+	'GR.SECTION.BONUS_SELECT': 'BONUKSEN VALINTA',
+	'GR.BONUS_BUY.TITLE.SOCIAL': 'BONUKSEN VALINTA — ILMAISKIERROKSET',
+	'GR.BONUS_BUY.TEXT.SOCIAL':
+		'Antaa heti ilmaiskierrosominaisuuden yhdellä kolmesta tasosta:\n\n• 3 scatteria ({freeSpins3} pyöräytystä): {bonusCost3}× kokonaispyöräytys\n• 4 scatteria ({freeSpins4} pyöräytystä): {bonusCost4}× kokonaispyöräytys\n• 5 scatteria ({freeSpins5} pyöräytystä): {bonusCost5}× kokonaispyöräytys\n\nSuurin voitto: {maxWin}× pyöräytys\nBonuksen valinta voi olla pois käytöstä tietyillä alueilla',
+	'GR.MAX_WIN.TEXT.SOCIAL':
+		'Suurin voitto missä tahansa pyöräytysmoodissa on {maxWin}× peruspyöräytys. Saavutettaessa kierros päättyy ja voittokatto maksetaan.',
 };

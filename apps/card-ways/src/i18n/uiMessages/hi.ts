@@ -48,4 +48,13 @@ export default {
 	'UI.BONUS_BUY.TIER.DESCRIPTION': '{scatterCount} स्कैटर · {bonusCost}× बेट',
 	'UI.BONUS_BUY.TIER.DIALOG': '{bonusCost}× बेट पर खरीदें।',
 	'UI.BONUS_BUY.TIER.TICKER': '{scatterCount}-SCATTER बोनस खरीद सक्रिय',
+	'SPIN MENU': 'स्पिन मेनू',
+	'SELECT YOUR SPIN': 'अपना स्पिन चुनें',
+	SELECT: 'चुनें',
+	'WIN TABLE': 'जीत तालिका',
+	'INSUFFICIENT FUNDS TO PLACE THIS SPIN. PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE SPIN LEVEL.':
+		'इस स्पिन के लिए अपर्याप्त धनराशि। धन जोड़ें या स्पिन स्तर कम करें।',
+	'UI.BONUS_BUY.TIER.DESCRIPTION.SOCIAL': '{scatterCount} स्कैटर · {bonusCost}× स्पिन',
+	'UI.BONUS_BUY.TIER.DIALOG.SOCIAL': '{bonusCost}× स्पिन पर चुनें।',
+	'UI.BONUS_BUY.TIER.TICKER.SOCIAL': '{scatterCount}-SCATTER बोनस चयनित',
 };
