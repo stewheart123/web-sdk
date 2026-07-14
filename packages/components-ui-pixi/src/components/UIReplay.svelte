@@ -3,9 +3,11 @@
 	import { getContextLayout } from 'utils-layout';
 
 	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
+	import ReplayStateSync from './ReplayStateSync.svelte';
 	import UiFadeContainer from './UiFadeContainer.svelte';
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
+	import ButtonReplayAgain from './ButtonReplayAgain.svelte';
 	import ButtonGameRules from './ButtonGameRules.svelte';
 	import ButtonMenu from './ButtonMenu.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
@@ -64,6 +66,7 @@
 
 <EnableSpaceHold />
 <BettingControlsLockSync />
+<ReplayStateSync />
 
 <UiFadeContainer>
 	<Container x={20} scale={chromeScale}>
@@ -93,6 +96,14 @@
 			<ButtonMenu />
 		</Container>
 	</MainContainer>
+
+	{#if stateUi.replayFinished}
+		<MainContainer standard>
+			<Container x={mainLayout.width * 0.5} y={mainLayout.height * 0.5} scale={labelScale}>
+				<ButtonReplayAgain {...labelProps} />
+			</Container>
+		</MainContainer>
+	{/if}
 
 	{#if stateUi.menuOpen}
 		<Rectangle

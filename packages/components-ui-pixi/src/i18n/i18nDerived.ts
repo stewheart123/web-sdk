@@ -91,4 +91,8 @@ export const i18nDerived = {
 		trackLocale();
 		return stateI18nDerived.translate('EXIT');
 	},
+	get watchReplayAgain() {
+		trackLocale();
+		return stateI18nDerived.translate('WATCH REPLAY AGAIN');
+	},
 };

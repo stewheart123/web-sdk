@@ -10,6 +10,7 @@
 		resolveInitialBetApiAmount,
 		snapBetAmountToOptions,
 	} from 'constants-shared/bet';
+	import { prepareReplayRound } from '../replay';
 
 	type Props = { children: Snippet };
 
@@ -145,14 +146,11 @@
 			event: stateUrlDerived.event(),
 		});
 
-		if(data) {
+		if (data) {
+			const replayRound = prepareReplayRound(data, stateUrlDerived.mode());
+			stateBet.replayRoundCache = structuredClone(replayRound);
 			// @ts-ignore
-			stateBet.betToResume = {
-				...data,
-				event: '0',
-				active: true,
-				mode: stateUrlDerived.mode(),
-			};
+			stateBet.betToResume = replayRound;
 		}
 	};
 

@@ -15,6 +15,7 @@
 		freeSpinCounterCurrent?: number;
 		freeSpinCounterTotal?: number;
 		menuOpen?: boolean;
+		replayFinished?: boolean;
 	};
 
 	const props: Props = $props();
@@ -36,6 +37,7 @@
 		stateUi.isWinFloatShowing = false;
 		stateUi.isFreeSpinIntroActive = false;
 		stateUi.isFreeSpinOutroActive = false;
+		stateUi.replayFinished = props.replayFinished ?? false;
 	};
 
 	onMount(() => {
@@ -45,6 +47,7 @@
 			stateUi.config.mode = 'default';
 			stateUi.menuOpen = false;
 			stateUi.freeSpinCounterShow = false;
+			stateUi.replayFinished = false;
 		};
 	});
 

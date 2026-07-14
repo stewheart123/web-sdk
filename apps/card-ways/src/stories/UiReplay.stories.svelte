@@ -46,3 +46,11 @@
 		</StoryUiIdle>
 	</StoryGameTemplate>
 </Story>
+
+<Story name="replay finished">
+	<StoryGameTemplate skipLoadingScreen={true} action={async () => {}}>
+		<StoryUiIdle uiMode="replay" betAmount={1} winAmount={12.5} replayFinished={true}>
+			<Game />
+		</StoryUiIdle>
+	</StoryGameTemplate>
+</Story>

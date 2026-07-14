@@ -70,6 +70,7 @@ export const stateUi = $state({
 	isWinFloatShowing: false,
 	isFreeSpinIntroActive: false,
 	isFreeSpinOutroActive: false,
+	replayFinished: false,
 	config: {
 		mode: 'default' as UIConfigMode,
 	}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, Popup } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
-	import { stateModal } from 'state-shared';
+	import { stateModal, stateUi } from 'state-shared';
 	import { getContextLayout } from 'utils-layout';
 
 	import BaseIcon from './BaseIcon.svelte';
@@ -22,7 +22,7 @@
 	};
 </script>
 
-{#if stateModal.modal?.name === 'betAmountMenu'}
+{#if stateModal.modal?.name === 'betAmountMenu' && stateUi.config.mode !== 'replay'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<div class="bet-menu-panel" class:mini={isMiniPlayer}>
