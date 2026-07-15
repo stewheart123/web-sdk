@@ -8,7 +8,6 @@
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
 	import ButtonReplayAgain from './ButtonReplayAgain.svelte';
-	import ButtonGameRules from './ButtonGameRules.svelte';
 	import ButtonMenu from './ButtonMenu.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
 	import ButtonMusicSwitch from './ButtonMusicSwitch.svelte';
@@ -139,10 +138,6 @@
 
 				<Container x={menuPanel.rowCenterX} y={menuPanel.musicY}>
 					<ButtonMusicSwitch anchor={0.5} />
-				</Container>
-
-				<Container x={menuPanel.rowCenterX} y={menuPanel.infoY}>
-					<ButtonGameRules anchor={0.5} />
 				</Container>
 			</Container>
 		</MainContainer>

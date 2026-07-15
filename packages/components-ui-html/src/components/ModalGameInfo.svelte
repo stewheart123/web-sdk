@@ -8,7 +8,7 @@
 
 	import { zIndex } from 'constants-shared/zIndex';
 
-	import { stateModal } from 'state-shared';
+	import { stateModal, stateUi } from 'state-shared';
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-{#if stateModal.modal?.name === 'gameInfo'}
+{#if stateModal.modal?.name === 'gameInfo' && stateUi.config.mode !== 'replay'}
 
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
 
