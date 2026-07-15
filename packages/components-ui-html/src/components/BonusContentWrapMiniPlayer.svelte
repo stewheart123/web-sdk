@@ -16,7 +16,7 @@
 </script>
 
 <BaseContent maxWidth="100%">
-	<div class="mini-bonus-panel scrollY scroll-mini">
+	<div class="mini-bonus-panel scrollY scroll-micro">
 		<div class="bet-row">
 			{@render props.betAmount()}
 		</div>

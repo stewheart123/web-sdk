@@ -36,7 +36,7 @@
 
 {#if stateModal.modal?.name === 'buyBonus'}
 	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		<div class="buy-bonus-content scrollY scroll-mini">
+		<div class="buy-bonus-content scrollY scroll-micro">
 			{#if isMiniPlayer}
 				<BonusContentWrapMiniPlayer
 					{maxListLength}
