@@ -10,7 +10,7 @@
 		resolveInitialBetApiAmount,
 		snapBetAmountToOptions,
 	} from 'constants-shared/bet';
-	import { prepareReplayRound } from '../replay';
+	import { prepareReplayRound, cloneReplayRound, clearReplayState } from '../replay';
 
 	type Props = { children: Snippet };
 
@@ -153,9 +153,9 @@
 
 		if (data) {
 			const replayRound = prepareReplayRound(data, stateUrlDerived.mode());
-			stateBet.replayRoundCache = structuredClone(replayRound);
+			stateBet.replayRoundCache = cloneReplayRound(replayRound);
 			// @ts-ignore
-			stateBet.betToResume = replayRound;
+			stateBet.betToResume = cloneReplayRound(replayRound);
 		}
 	};
 
@@ -165,6 +165,7 @@
 			await handleReplay();
 		} else {
 			stateUi.config.mode = 'default';
+			clearReplayState();
 			await authenticate();
 		};
 

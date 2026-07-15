@@ -1,17 +1,15 @@
 <script lang="ts">
 	import { PUBLIC_CHROMATIC } from 'envs';
-	import { stateBet } from 'state-shared';
+	import { tryStartInitialResume } from 'components-shared';
 	import { getContext } from '../game/context';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 
 	const context = getContext();
 
-	onMount(() => {
+	onMount(async () => {
 		if (PUBLIC_CHROMATIC) return;
 
-		if (stateBet.betToResume?.active && stateBet.betToResume.mode) {
-			stateBet.activeBetModeKey = stateBet.betToResume.mode;
-		}
-		context.eventEmitter.broadcast({ type: 'resumeBet' });
+		await tick();
+		tryStartInitialResume({ eventEmitter: context.eventEmitter });
 	});
 </script>

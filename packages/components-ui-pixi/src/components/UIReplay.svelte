@@ -7,7 +7,6 @@
 	import UiFadeContainer from './UiFadeContainer.svelte';
 	import LabelWin from './LabelWin.svelte';
 	import LabelBet from './LabelBet.svelte';
-	import ButtonReplayAgain from './ButtonReplayAgain.svelte';
 	import ButtonMenu from './ButtonMenu.svelte';
 	import ButtonSoundSwitch from './ButtonSoundSwitch.svelte';
 	import ButtonMusicSwitch from './ButtonMusicSwitch.svelte';
@@ -95,14 +94,6 @@
 			<ButtonMenu />
 		</Container>
 	</MainContainer>
-
-	{#if stateUi.replayFinished}
-		<MainContainer standard>
-			<Container x={mainLayout.width * 0.5} y={mainLayout.height * 0.5} scale={labelScale}>
-				<ButtonReplayAgain {...labelProps} />
-			</Container>
-		</MainContainer>
-	{/if}
 
 	{#if stateUi.menuOpen}
 		<Rectangle

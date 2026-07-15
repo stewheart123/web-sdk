@@ -9,7 +9,7 @@
 
 	const props: LabelUiProps = $props();
 	const context = getContext();
-	const label = $derived(i18nDerived.watchReplayAgain);
+	const label = $derived(i18nDerived.playAgain);
 	const fitCharCount = $derived(label.length);
 
 	const onpress = () => {

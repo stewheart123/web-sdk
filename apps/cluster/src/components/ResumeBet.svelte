@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { stateBet } from 'state-shared';
+	import { tryStartInitialResume } from 'components-shared';
 	import { getContext } from '../game/context';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 
 	const context = getContext();
 
-	onMount(() => {
-		if (stateBet.betToResume?.active && stateBet.betToResume.mode) {
-			stateBet.activeBetModeKey = stateBet.betToResume.mode;
-		}
-		context.eventEmitter.broadcast({ type: 'resumeBet' });
+	onMount(async () => {
+		await tick();
+		tryStartInitialResume({ eventEmitter: context.eventEmitter });
 	});
 </script>

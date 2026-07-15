@@ -28,7 +28,8 @@ export type EmitterEventUi =
 	| { type: 'freeSpinIntroShow' }
 	| { type: 'freeSpinIntroHide' }
 	| { type: 'freeSpinOutroShow' }
-	| { type: 'freeSpinOutroHide' };
+	| { type: 'freeSpinOutroHide' }
+	| { type: 'replayRestart' };
 
 export type ButtonIcon =
 	| 'decrease'

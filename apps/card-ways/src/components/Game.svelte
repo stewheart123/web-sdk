@@ -5,13 +5,15 @@
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
 	import { App } from 'pixi-svelte';
-	import { stateModal } from 'state-shared';
+	import { stateModal, stateUi } from 'state-shared';
 
-	import { UI, UiGameName } from 'components-ui-pixi';
+	import { UI, UiGameName, UiReplayPlayAgain } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 
 	import { LOADING_TRANSITION_DURATION_MS } from '../game/audioConfig';
 	import { getContext } from '../game/context';
+	import { INITIAL_BOARD, normalizeBoard } from '../game/constants';
+	import { stateGame } from '../game/stateGame.svelte';
 	import { SCENE_LABELS } from '../game/visualLayoutConfig';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
@@ -52,6 +54,15 @@
 	context.eventEmitter.subscribeOnMount({
 		buyBonusConfirm: () => {
 			stateModal.modal = { name: 'buyBonusConfirm' };
+		},
+		replayRestart: () => {
+			stateGame.gameType = 'basegame';
+			stateGame.modifierPersists = false;
+			stateGame.modifierMultiplier = 1;
+			context.stateGameDerived.enhancedBoard.settle(normalizeBoard(INITIAL_BOARD));
+			context.eventEmitter.broadcast({ type: 'modifierReelHide' });
+			context.eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
+			context.eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		},
 	});
 </script>
@@ -103,11 +114,14 @@
 		<FreeSpinCounter />
 		<FreeSpinOutro />
 		<Transition />
+		{#if stateUi.config.mode === 'replay' && stateUi.replayFinished}
+			<UiReplayPlayAgain />
+		{/if}
 	{/if}
 </App>
 
 <Modals>
 	{#snippet version()}
-		<GameVersion version="0.0.0" />
+		<GameVersion version="1.0.0" />
 	{/snippet}
 </Modals>
