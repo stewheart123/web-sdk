@@ -20,11 +20,19 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { OVERLAY, resolveWinPressToContinueLayout, WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		OVERLAY,
+		resolveWinPressToContinueLayout,
+		resolveWinTextMaxWidth,
+		WIN_LAYOUT,
+		SCENE_LABELS,
+	} from '../game/visualLayoutConfig';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
+	const mainLayout = $derived(context.stateLayoutDerived.mainLayout());
+	const canvasSizes = $derived(context.stateLayoutDerived.canvasSizes());
 
 	const stopCoinCountSound = () => {
 		context.eventEmitter.broadcast({
@@ -56,8 +64,14 @@
 		{@const duration = winLevelData.presentDuration}
 		<WinCountUpProvider {amount} {duration} oncomplete={stopCoinCountSound}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
+				{@const winTextVariant = winLevelData.animation ? 'bigWin' : 'normalWin'}
+				{@const winTextMaxWidth = resolveWinTextMaxWidth(winTextVariant, layoutType, boardLayout, {
+					canvasWidth: canvasSizes.width,
+					mainLayoutScale: mainLayout.scale,
+					boardScale: boardLayout.scale,
+				})}
 				{@const pressToContinueLayout = resolveWinPressToContinueLayout(
-					winLevelData.animation ? 'bigWin' : 'normalWin',
+					winTextVariant,
 					boardLayout,
 				)}
 				{#if isBigWin}
@@ -90,7 +104,8 @@
 									<ResponsiveBitmapText
 										label={SCENE_LABELS.win.bigText}
 										anchor={0.5}
-										maxWidth={WIN_LAYOUT.bigWinTextMaxWidth}
+										maxWidth={winTextMaxWidth}
+										minFitScale={WIN_LAYOUT.bigWinMinFitScale}
 										text={bookEventAmountToCurrencyString(countUpAmount)}
 										style={{
 											...getBitmapFontStyle('winBig', {
@@ -108,8 +123,7 @@
 								x={boardLayout.pivot.x}
 								y={boardLayout.pivot.y}
 								anchor={0.5}
-								maxWidth={context.stateLayoutDerived.canvasSizes().width /
-									context.stateLayoutDerived.mainLayout().scale}
+								maxWidth={winTextMaxWidth}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
 									...getBitmapFontStyle('winNormal', {

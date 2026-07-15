@@ -602,7 +602,17 @@ export const VISUAL_LAYOUT = {
 		bigAnimation: { label: 'Win/BigAnimation' },
 		layout: {
 			bigWinTextContainerScale: 0.5,
-			bigWinTextMaxWidth: 2130,
+			bigWinTextMaxWidthByType: {
+				desktop: 2130,
+				tablet: 1800,
+				landscape: 1600,
+				portrait: 1400,
+			} satisfies Record<LayoutType, number>,
+			/** Do not shrink big-win amount text below this fraction of winBig font size. */
+			bigWinMinFitScale: 0.35,
+			normalWinTextMaxWidthRatio: 0.95,
+			/** Fraction of canvas width available for win text after layout + board scale. */
+			canvasWidthPaddingRatio: 0.88,
 			animationScale: 0.45,
 			countUpCompleteDelayMs: 300,
 		},
@@ -902,6 +912,40 @@ export const resolveLoadingScreenLayout = (
 			anchor: pressToContinue.anchor,
 		},
 	};
+};
+
+export type WinTextMaxWidthContext = {
+	canvasWidth: number;
+	mainLayoutScale: number;
+	boardScale: number;
+};
+
+export const resolveWinTextMaxWidth = (
+	variant: 'bigWin' | 'normalWin',
+	layoutType: LayoutType,
+	boardLayout: BoardLayoutRect,
+	context?: WinTextMaxWidthContext,
+) => {
+	const { layout } = VISUAL_LAYOUT.win;
+	const boardScale = context?.boardScale ?? 1;
+	const canvasLocalMax =
+		context !== undefined
+			? (context.canvasWidth * layout.canvasWidthPaddingRatio) /
+				(context.mainLayoutScale * boardScale)
+			: undefined;
+
+	if (variant === 'normalWin') {
+		const boardMax = boardLayout.width * layout.normalWinTextMaxWidthRatio;
+		return canvasLocalMax !== undefined ? Math.min(boardMax, canvasLocalMax) : boardMax;
+	}
+
+	const configuredMax = layout.bigWinTextMaxWidthByType[layoutType];
+	const bigWinScale = layout.bigWinTextContainerScale * layout.animationScale;
+	const canvasDerivedMax =
+		canvasLocalMax !== undefined ? canvasLocalMax / bigWinScale : undefined;
+
+	// Canvas budget accounts for spine animation + container scale; use it when available.
+	return canvasDerivedMax ?? configuredMax;
 };
 
 export const resolveWinPressToContinueLayout = (
