@@ -110,8 +110,12 @@
 			{...borderProps}
 		/>
 	{/if}
-	<Text anchor={{ x: 0.5, y: 0.5 }} text={props.label} style={labelStyle} y={-lineGap * 0.5} />
-	<Text anchor={{ x: 0.5, y: 0.5 }} text={props.value} style={valueStyle} y={lineGap * 0.5} />
+	{#if props.label}
+		<Text anchor={{ x: 0.5, y: 0.5 }} text={props.label} style={labelStyle} y={-lineGap * 0.5} />
+		<Text anchor={{ x: 0.5, y: 0.5 }} text={props.value} style={valueStyle} y={lineGap * 0.5} />
+	{:else}
+		<Text anchor={{ x: 0.5, y: 0.5 }} text={props.value} style={valueStyle} />
+	{/if}
 {:else}
 	{#if props.tiled}
 		<UiSprite

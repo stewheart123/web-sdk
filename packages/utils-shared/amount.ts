@@ -34,18 +34,29 @@ const getDisplayValue = (value: number) =>
 
 const getAmountLocale = () => stateI18n.i18n.locale || 'en';
 
+const getCurrencyPart = (currencyDisplay: 'narrowSymbol' | 'symbol') => {
+	const parts = new Intl.NumberFormat(getAmountLocale(), {
+		style: 'currency',
+		currency: stateBet.currency,
+		currencyDisplay,
+	}).formatToParts(0);
+
+	return parts.find((part) => part.type === 'currency')?.value;
+};
+
 export const getCurrencyDisplaySymbol = () => {
 	if (stateBet.currency in NO_LOCALISATION_CURRENCY_MAP) {
 		return NO_LOCALISATION_CURRENCY_MAP[stateBet.currency];
 	}
 
-	const parts = new Intl.NumberFormat(getAmountLocale(), {
-		style: 'currency',
-		currency: stateBet.currency,
-		currencyDisplay: 'narrowSymbol',
-	}).formatToParts(0);
+	const narrowSymbol = getCurrencyPart('narrowSymbol');
+	const symbol = getCurrencyPart('symbol');
 
-	return parts.find((part) => part.type === 'currency')?.value ?? stateBet.currency;
+	if (narrowSymbol && symbol && narrowSymbol !== symbol) {
+		return symbol;
+	}
+
+	return narrowSymbol ?? symbol ?? stateBet.currency;
 };
 
 export const numberToAmountString = (value: number) => {

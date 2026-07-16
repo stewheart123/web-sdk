@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { OptionsGrid } from 'components-shared';
 	import { getContextLayout } from 'utils-layout';
-	import { stateBet, stateConfig } from 'state-shared';
+	import { stateBet, stateConfig, stateI18n } from 'state-shared';
+	import { getCurrencyDisplaySymbol } from 'utils-shared/amount';
 
 	import BaseIcon from './BaseIcon.svelte';
 	import BaseButtonContent from './BaseButtonContent.svelte';
@@ -18,14 +19,21 @@
 	); //always includes last, and without duplicate
 
 	const isMaxValue = (value: number) => value === options[options.length - 1];
+	const currencySymbol = $derived.by(() => {
+		stateI18n.locale;
+		stateBet.currency;
+		return getCurrencyDisplaySymbol();
+	});
 	const formatValue = (value: number) => {
+		let amount: string;
 		if (Math.abs(value) > 999999) {
-			return `${(Math.abs(value) / 1000000).toFixed(2)}M`;
+			amount = `${(Math.abs(value) / 1000000).toFixed(2)}M`;
+		} else if (Math.abs(value) > 999) {
+			amount = `${(Math.abs(value) / 1000).toFixed(2)}K`;
+		} else {
+			amount = Math.abs(value).toFixed(2);
 		}
-		if (Math.abs(value) > 999) {
-			return `${(Math.abs(value) / 1000).toFixed(2)}K`;
-		}
-		return Math.abs(value).toFixed(2);
+		return `${currencySymbol}${amount}`;
 	};
 </script>
 
