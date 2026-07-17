@@ -552,7 +552,7 @@ export const VISUAL_LAYOUT = {
 						x: 900,
 						y: 0,
 						containerAnchor: { x: 1.05, y: 0 },
-						counterTextAnchor: { x: 0.5, y: 1.1 },
+						counterTextAnchor: { x: 0.55, y: 1.1 },
 						lineGap: 30,
 					},
 				},
