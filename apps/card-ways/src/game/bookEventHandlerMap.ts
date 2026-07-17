@@ -1,6 +1,8 @@
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
 import { stateBet, stateUi } from 'state-shared';
 import { sequence } from 'utils-shared/sequence';
+import { waitForTimeout } from 'utils-shared/wait';
+import { SECOND } from 'constants-shared/time';
 
 import { eventEmitter } from './eventEmitter';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
@@ -9,6 +11,26 @@ import type { MusicName } from './sound';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
 import { normalizeBoard } from './constants';
+
+/** Brief hold after a losing free spin so the board result is readable before the next spin. */
+const FREE_SPIN_NO_WIN_PAUSE_MS = 0.6 * SECOND;
+
+const hasWinBeforeNextReveal = ({
+	bookEvent,
+	bookEvents,
+}: {
+	bookEvent: BookEventOfType<'reveal'>;
+	bookEvents: BookEvent[];
+}) => {
+	const currentIndex = bookEvents.findIndex((event) => event.index === bookEvent.index);
+	if (currentIndex === -1) return false;
+
+	const following = bookEvents.slice(currentIndex + 1);
+	const nextRevealIndex = following.findIndex((event) => event.type === 'reveal');
+	const untilNextReveal = nextRevealIndex === -1 ? following : following.slice(0, nextRevealIndex);
+
+	return untilNextReveal.some((event) => event.type === 'winInfo' || event.type === 'setWin');
+};
 
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
@@ -74,6 +96,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			},
 		});
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
+
+		if (
+			bookEvent.gameType === 'freegame' &&
+			!hasWinBeforeNextReveal({ bookEvent, bookEvents })
+		) {
+			await waitForTimeout(FREE_SPIN_NO_WIN_PAUSE_MS);
+		}
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_end' });
