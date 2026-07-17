@@ -56,6 +56,7 @@
 	.rule-section {
 		display: flex;
 		flex-direction: column;
+		box-sizing: border-box;
 		gap: 0.65rem;
 		margin-bottom: 1rem;
 		padding: 0.85rem 0.9rem;
@@ -81,6 +82,7 @@
 	.rule-container {
 		display: flex;
 		flex-direction: column;
+		box-sizing: border-box;
 		gap: 0.5rem;
 		padding: 0.7rem 0.8rem;
 		background: rgba(0, 0, 0, 0.22);

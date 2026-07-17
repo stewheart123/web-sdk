@@ -118,6 +118,8 @@
 
 		flex-direction: column;
 
+		box-sizing: border-box;
+
 		width: min(42rem, 92vw);
 
 		max-height: min(85vh, 52rem);
