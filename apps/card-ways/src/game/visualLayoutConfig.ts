@@ -348,7 +348,7 @@ export const VISUAL_LAYOUT = {
 		spine: { label: 'Logo/Spine' },
 		layoutByType: {
 			desktop: { width: 140, x: 55, y: 145, align: 'topLeft', offset: { x: 24, y: 0 } },
-			landscape: { width: 120, x: 1340, y: 40, align: 'topRight' },
+			landscape: { width: 120, x: 1314, y: 40, align: 'topRight' },
 			portrait: { width: 150, x: 108, y: 100, align: 'topLeft' },
 			tablet: { width: 120, x: 150, y: 50, align: 'topLeft' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
@@ -387,8 +387,8 @@ export const VISUAL_LAYOUT = {
 				scrollDistance: 204,
 				scrollDuration: 333,
 				scale: 1,
-				x: 166,
-				y: 300,
+				x: 240,
+				y: 294,
 			},
 			portrait: {
 				slabWidth: 194,
@@ -551,7 +551,7 @@ export const VISUAL_LAYOUT = {
 					text: {
 						x: 900,
 						y: 0,
-						containerAnchor: { x: 1, y: 0 },
+						containerAnchor: { x: 1.05, y: 0 },
 						counterTextAnchor: { x: 0.5, y: 1.1 },
 						lineGap: 30,
 					},
