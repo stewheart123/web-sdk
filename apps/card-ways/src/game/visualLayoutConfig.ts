@@ -350,7 +350,7 @@ export const VISUAL_LAYOUT = {
 			desktop: { width: 140, x: 55, y: 145, align: 'topLeft', offset: { x: 24, y: 0 } },
 			landscape: { width: 120, x: 1314, y: 40, align: 'topRight' },
 			portrait: { width: 150, x: 108, y: 100, align: 'topLeft' },
-			tablet: { width: 120, x: 150, y: 50, align: 'topLeft' },
+			tablet: { width: 120, x: 150, y: 65, align: 'topLeft' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
 	// layoutSpace: board-local — ModifierReel.svelte; x/y offset from board right edge
