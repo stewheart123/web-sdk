@@ -311,8 +311,8 @@ export const VISUAL_LAYOUT = {
 		frameGlow: {
 			label: 'Board/FrameGlow',
 			spine: { label: 'Board/FrameGlow/Spine' },
-			spineScale: { width: 0.62 * 2.5, height: 0.66 * 2 },
-			positionAdjustment: 1.01,
+			spineScale: { width: 0.62 * 2.55, height: 0.66 * 2.2 },
+			positionAdjustment: { x: 1.008, y: 1 },
 			fadeDuration: 500,
 		},
 		layoutByType: {

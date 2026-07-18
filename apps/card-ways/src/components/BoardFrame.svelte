@@ -55,8 +55,8 @@
 	<Container
 		label={SCENE_LABELS.board.frameGlow}
 		alpha={glowAlpha.current}
-		x={context.stateGameDerived.boardLayout().x * FRAME_GLOW.positionAdjustment}
-		y={context.stateGameDerived.boardLayout().y * FRAME_GLOW.positionAdjustment}
+		x={context.stateGameDerived.boardLayout().x * FRAME_GLOW.positionAdjustment.x}
+		y={context.stateGameDerived.boardLayout().y * FRAME_GLOW.positionAdjustment.y}
 		pivot={context.stateGameDerived.boardLayout().pivot}
 		scale={context.stateGameDerived.boardLayout().scale}
 	>
