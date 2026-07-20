@@ -2,7 +2,7 @@
 	import { onMount, type Snippet } from 'svelte';
 
 	import { requestAuthenticate, requestReplay } from 'rgs-requests';
-	import { stateUrlDerived, stateBet, stateConfig, stateModal, stateUi } from 'state-shared';
+	import { stateUrlDerived, stateBet, stateConfig, stateModal, stateUi, stateSound } from 'state-shared';
 	import {
 		API_AMOUNT_MULTIPLIER,
 		MOST_USED_BET_INDEXES,
@@ -162,6 +162,7 @@
 	onMount(async () => {
 		if(stateUrlDerived.replay()) {
 			stateUi.config.mode = 'replay';
+			stateSound.volumeValueMusic = 0;
 			await handleReplay();
 		} else {
 			stateUi.config.mode = 'default';
