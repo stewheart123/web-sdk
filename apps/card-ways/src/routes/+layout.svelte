@@ -19,10 +19,31 @@
 		`${base}/assets/sprites/studio/DirtyDegenCasino-Logo.png`,
 	);
 
-	// Parent controls dismiss when LoadingScreen mounts; timeout is a safety fallback only.
+	// Parent controls dismiss; timeout is a safety fallback only.
 	const STUDIO_LOADER_TIMEOUT_MS = 2_147_483_647;
 	const STUDIO_LOADER_MAX_WIDTH = 400;
-	const STUDIO_LOADER_BACKGROUND = '#000000';
+	const STUDIO_LOADER_BACKGROUND = '#041721';
+	const MIN_STUDIO_VISIBLE_MS = 1000;
+
+	let studioShownAt = $state<number | null>(null);
+
+	const handleStakeEngineComplete = () => {
+		stateSplash.showStudioLoader = true;
+		studioShownAt = Date.now();
+	};
+
+	// Keep studio up for at least 1s, then hand off once Pixi LoadingScreen is ready.
+	$effect(() => {
+		if (!stateSplash.showStudioLoader || studioShownAt === null) return;
+		if (!stateSplash.loadingScreenReady) return;
+
+		const remaining = Math.max(0, MIN_STUDIO_VISIBLE_MS - (Date.now() - studioShownAt));
+		const id = setTimeout(() => {
+			stateSplash.showStudioLoader = false;
+		}, remaining);
+
+		return () => clearTimeout(id);
+	});
 
 	setContext();
 </script>
@@ -35,10 +56,7 @@
 	</Authenticate>
 </GlobalStyle>
 
-<LoaderStakeEngine
-	src={loaderUrlStakeEngine}
-	oncomplete={() => (stateSplash.showStudioLoader = true)}
-/>
+<LoaderStakeEngine src={loaderUrlStakeEngine} oncomplete={handleStakeEngineComplete} />
 
 {#if stateSplash.showStudioLoader}
 	<LoaderBase

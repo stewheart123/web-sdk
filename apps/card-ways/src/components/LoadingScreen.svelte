@@ -24,7 +24,7 @@
 	let loadingType = $state<'start' | 'transition'>('start');
 
 	onMount(() => {
-		stateSplash.showStudioLoader = false;
+		stateSplash.loadingScreenReady = true;
 	});
 
 	const handleContinue = () => {
