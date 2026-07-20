@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { SpineProvider, SpineTrack, Container, Sprite } from 'pixi-svelte';
 	import { FadeContainer, LoadingProgress } from 'components-pixi';
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
 
 	import { getContext } from '../game/context';
+	import { stateSplash } from '../game/stateSplash.svelte';
 	import { resolveLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
@@ -20,6 +22,10 @@
 	const layout = $derived(resolveLoadingScreenLayout(layoutType));
 
 	let loadingType = $state<'start' | 'transition'>('start');
+
+	onMount(() => {
+		stateSplash.showStudioLoader = false;
+	});
 
 	const handleContinue = () => {
 		props.ontransitionstart?.();
