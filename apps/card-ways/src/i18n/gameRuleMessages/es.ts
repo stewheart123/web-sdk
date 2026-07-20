@@ -33,7 +33,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'TABLA DE PAGOS',
 	'GR.SECTION.WIN_WAYS': 'FORMAS DE PREMIO',
 	'GR.WIN_WAYS.TEXT':
-		'Todos los símbolos de pago pagan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no pagan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas.',
+		'Todos los símbolos de pago pagan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no pagan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas. Cuando un símbolo gana en múltiples formas, todos los símbolos que contribuyen se resaltan en una sola animación.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APUESTA',
 	'GR.BET_MODES.TEXT':
 		'MODO NORMAL: Giros estándar del juego base a {baseCost}× su apuesta seleccionada.\n\nEl modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede comprar Giros Gratis en tres niveles:\n• 3 Scatters / {freeSpins3} giros — {bonusCost3}× apuesta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} giros — {bonusCost4}× apuesta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} giros — {bonusCost5}× apuesta — RTP {bonusRtp5}%\n\nLa compra activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de apuesta es {maxWin}× la apuesta base.',
@@ -56,7 +56,7 @@ export default {
 		'El Wild sustituye a todos los símbolos ganadores. El Wild no sustituye al Scatter.',
 	'GR.SECTION.WIN_TABLE': 'TABLA DE GANANCIAS',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Todos los símbolos ganadores ganan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no ganan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas.',
+		'Todos los símbolos ganadores ganan de izquierda a derecha en rodillos adyacentes, comenzando desde el rodillo más a la izquierda. Solo los símbolos en rodillos consecutivos forman una forma válida. Esto no aplica a los símbolos Scatter. Los símbolos sin premio no ganan y no forman combinaciones ganadoras. Múltiples formas del mismo símbolo se suman. Los Wild sustituyen para completar formas. Cuando un símbolo gana en múltiples formas, todos los símbolos que contribuyen se resaltan en una sola animación.',
 	'GR.SECTION.SPIN_MODES': 'MODOS DE GIRO',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'MODO NORMAL: Giros estándar del juego base a {baseCost}× su giro seleccionado.\n\nEl modo normal tiene un retorno teórico esperado del {baseRtp}%.\n\nEl jugador puede jugar Giros Gratis en tres niveles:\n• 3 Scatters / {freeSpins3} giros — {bonusCost3}× giro — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} giros — {bonusCost4}× giro — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} giros — {bonusCost5}× giro — RTP {bonusRtp5}%\n\nLa selección activa la función de bono inmediatamente.\n\nEl premio máximo en cada modo de giro es {maxWin}× el giro base.',

@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'TABELA WYPŁAT',
 	'GR.SECTION.WIN_WAYS': 'DROGI WYGRANYCH',
 	'GR.WIN_WAYS.TEXT':
-		'Wszystkie płatne symbole wypłacają od lewej do prawej na sąsiednich bębnach, zaczynając od lewego bębna. Tylko symbole na kolejnych bębnach tworzą ważną drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wypłacają i nie tworzą dróg. Wiele dróg tego samego symbolu jest sumowanych. Wild zastępuje, aby uzupełnić drogi.',
+		'Wszystkie płatne symbole wypłacają od lewej do prawej na sąsiednich bębnach, zaczynając od lewego bębna. Tylko symbole na kolejnych bębnach tworzą ważną drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wypłacają i nie tworzą dróg. Wiele dróg tego samego symbolu jest sumowanych. Wild zastępuje, aby uzupełnić drogi. Gdy symbol wygrywa na wielu drogach, wszystkie uczestniczące symbole są podświetlane w jednej animacji.',
 	'GR.SECTION.BET_MODES': 'TRYBY ZAKŁADÓW',
 	'GR.BET_MODES.TEXT':
 		'TRYB NORMALNY: Standardowe obroty w grze podstawowej za {baseCost}× wybrany zakład.\n\nNormalny tryb ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może kupić Darmowe Spiny na trzech poziomach:\n• 3 Scattery / {freeSpins3} spinów — {bonusCost3}× zakład — RTP {bonusRtp3}%\n• 4 Scattery / {freeSpins4} spinów — {bonusCost4}× zakład — RTP {bonusRtp4}%\n• 5 Scatterów / {freeSpins5} spinów — {bonusCost5}× zakład — RTP {bonusRtp5}%\n\nZakup natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie to {maxWin}× zakład podstawowy.',
@@ -54,7 +54,7 @@ export default {
 		'Wild zastępuje wszystkie wygrywające symbole. Wild nie zastępuje Scattera.',
 	'GR.SECTION.WIN_TABLE': 'TABELA WYGRANYCH',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Wszystkie wygrywające symbole wygrywają od lewej do prawej na sąsiednich bębnach, zaczynając od skrajnie lewego. Tylko symbole na kolejnych bębnach tworzą prawidłową drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wygrywają i nie tworzą wygrywających dróg. Wiele dróg tego samego symbolu jest sumowanych. Symbole Wild zastępują, aby uzupełnić drogi.',
+		'Wszystkie wygrywające symbole wygrywają od lewej do prawej na sąsiednich bębnach, zaczynając od skrajnie lewego. Tylko symbole na kolejnych bębnach tworzą prawidłową drogę. Nie dotyczy symboli Scatter. Symbole bez wygranej nie wygrywają i nie tworzą wygrywających dróg. Wiele dróg tego samego symbolu jest sumowanych. Symbole Wild zastępują, aby uzupełnić drogi. Gdy symbol wygrywa na wielu drogach, wszystkie uczestniczące symbole są podświetlane w jednej animacji.',
 	'GR.SECTION.SPIN_MODES': 'TRYBY SPINU',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'TRYB NORMALNY: Standardowe obroty gry bazowej przy {baseCost}× wybranym spinie.\n\nTryb normalny ma teoretyczny oczekiwany zwrot {baseRtp}%.\n\nGracz może grać darmowe spiny na trzech poziomach:\n• 3 Scattery / {freeSpins3} spinów — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scattery / {freeSpins4} spinów — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatteringów / {freeSpins5} spinów — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nWybór darmowych spinów natychmiast uruchamia funkcję bonusową.\n\nMaksymalna wygrana w każdym trybie spinu to {maxWin}× bazowy spin.',

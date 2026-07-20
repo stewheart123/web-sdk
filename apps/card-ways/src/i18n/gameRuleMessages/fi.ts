@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'VOITTOTAULUKKO',
 	'GR.SECTION.WIN_WAYS': 'VOITTOTAVAT',
 	'GR.WIN_WAYS.TEXT':
-		'Kaikki maksavat symbolit maksavat vasemmalta oikealle vierekkäisillä rullilla alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleita. Ei-voitto-symbolit eivät maksa eivätkä muodosta voittotapoja. Useat tavat samalle symbolille lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi.',
+		'Kaikki maksavat symbolit maksavat vasemmalta oikealle vierekkäisillä rullilla alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleita. Ei-voitto-symbolit eivät maksa eivätkä muodosta voittotapoja. Useat tavat samalle symbolille lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi. Kun symboli voittaa usealla tavalla, kaikki osallistuvat symbolit korostetaan yhdessä animaatiossa.',
 	'GR.SECTION.BET_MODES': 'PANOSTILAT',
 	'GR.BET_MODES.TEXT':
 		'NORMAALITILA: Vakiopelikierrokset valitulla panoksella {baseCost}×.\n\nNormaalitilassa teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi ostaa ilmaiskierroksia kolmella tasolla:\n• 3 scatteria / {freeSpins3} kierrosta — {bonusCost3}× panos — RTP {bonusRtp3}%\n• 4 scatteria / {freeSpins4} kierrosta — {bonusCost4}× panos — RTP {bonusRtp4}%\n• 5 scatteria / {freeSpins5} kierrosta — {bonusCost5}× panos — RTP {bonusRtp5}%\n\nOsto käynnistää bonusominaisuuden heti.\n\nMaksimivoitto jokaisessa panostilassa on {maxWin}× peruspanos.',
@@ -53,7 +53,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT.SOCIAL': 'Wild korvaa kaikki voittosymbolit. Wild ei korvaa Scatteria.',
 	'GR.SECTION.WIN_TABLE': 'VOITTOTAULUKKO',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Kaikki voittosymbolit voittavat vasemmalta oikealle vierekkäisillä rullilla, alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleja. Ei-voitto-symbolit eivät voita eivätkä muodosta voittotapoja. Saman symbolin useat tavat lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi.',
+		'Kaikki voittosymbolit voittavat vasemmalta oikealle vierekkäisillä rullilla, alkaen vasemmanpuoleisimmasta rullasta. Vain peräkkäisillä rullilla olevat symbolit muodostavat kelvollisen tavan. Tämä ei koske Scatter-symboleja. Ei-voitto-symbolit eivät voita eivätkä muodosta voittotapoja. Saman symbolin useat tavat lasketaan yhteen. Wild-symbolit korvaavat tapojen täydentämiseksi. Kun symboli voittaa usealla tavalla, kaikki osallistuvat symbolit korostetaan yhdessä animaatiossa.',
 	'GR.SECTION.SPIN_MODES': 'PYÖRÄYTYSMOODIT',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'NORMAALITILA: Vakiopohjapelin pyöräytykset {baseCost}× valitsemallasi pyöräytyksellä.\n\nNormaalitilan teoreettinen odotettu tuotto on {baseRtp}%.\n\nPelaaja voi pelata ilmaiskierroksia kolmella tasolla:\n• 3 scatteria / {freeSpins3} pyöräytystä — {bonusCost3}× pyöräytys — RTP {bonusRtp3}%\n• 4 scatteria / {freeSpins4} pyöräytystä — {bonusCost4}× pyöräytys — RTP {bonusRtp4}%\n• 5 scatteria / {freeSpins5} pyöräytystä — {bonusCost5}× pyöräytys — RTP {bonusRtp5}%\n\nIlmaiskierrosten valinta käynnistää bonusominaisuuden heti.\n\nSuurin voitto jokaisessa pyöräytysmoodissa on {maxWin}× peruspyöräytys.',

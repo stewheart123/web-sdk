@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'TABELA DE PAGAMENTOS',
 	'GR.SECTION.WIN_WAYS': 'FORMAS DE PRÉMIO',
 	'GR.WIN_WAYS.TEXT':
-		'Todos os símbolos pagantes pagam da esquerda para a direita em rolos adjacentes, começando no rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica aos símbolos Scatter. Símbolos sem prémio não pagam e não formam combinações. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas.',
+		'Todos os símbolos pagantes pagam da esquerda para a direita em rolos adjacentes, começando no rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica aos símbolos Scatter. Símbolos sem prémio não pagam e não formam combinações. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas. Quando um símbolo ganha em múltiplas formas, todos os símbolos contribuintes são destacados numa única animação.',
 	'GR.SECTION.BET_MODES': 'MODOS DE APOSTA',
 	'GR.BET_MODES.TEXT':
 		'MODO NORMAL: Rodadas padrão do jogo base a {baseCost}× a sua aposta selecionada.\n\nO modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode comprar Rodadas Grátis em três níveis:\n• 3 Scatters / {freeSpins3} rodadas — {bonusCost3}× aposta — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} rodadas — {bonusCost4}× aposta — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} rodadas — {bonusCost5}× aposta — RTP {bonusRtp5}%\n\nA compra ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de aposta é {maxWin}× a aposta base.',
@@ -55,7 +55,7 @@ export default {
 		'O Wild substitui todos os símbolos vencedores. O Wild não substitui o Scatter.',
 	'GR.SECTION.WIN_TABLE': 'TABELA DE GANHOS',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Todos os símbolos vencedores ganham da esquerda para a direita em rolos adjacentes, começando pelo rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica a símbolos Scatter. Símbolos sem prémio não ganham e não formam combinações vencedoras. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas.',
+		'Todos os símbolos vencedores ganham da esquerda para a direita em rolos adjacentes, começando pelo rolo mais à esquerda. Apenas símbolos em rolos consecutivos formam uma forma válida. Isto não se aplica a símbolos Scatter. Símbolos sem prémio não ganham e não formam combinações vencedoras. Múltiplas formas do mesmo símbolo são somadas. Os Wild substituem para completar formas. Quando um símbolo ganha em múltiplas formas, todos os símbolos contribuintes são destacados numa única animação.',
 	'GR.SECTION.SPIN_MODES': 'MODOS DE RODADA',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'MODO NORMAL: Rodadas padrão do jogo base a {baseCost}× a sua rodada selecionada.\n\nO modo normal tem um retorno teórico esperado de {baseRtp}%.\n\nO jogador pode jogar Rodadas Grátis em três níveis:\n• 3 Scatters / {freeSpins3} rodadas — {bonusCost3}× rodada — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} rodadas — {bonusCost4}× rodada — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} rodadas — {bonusCost5}× rodada — RTP {bonusRtp5}%\n\nA seleção ativa a funcionalidade de bónus imediatamente.\n\nO prémio máximo em cada modo de rodada é {maxWin}× a rodada base.',

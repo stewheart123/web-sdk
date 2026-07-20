@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'BẢNG TRẢ THƯỞNG',
 	'GR.SECTION.WIN_WAYS': 'ĐƯỜNG THẮNG',
 	'GR.WIN_WAYS.TEXT':
-		'Tất cả biểu tượng trả thưởng từ trái sang phải trên các cuộn liền kề, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ biểu tượng trên các cuộn liên tiếp tạo đường hợp lệ. Không áp dụng cho Scatter. Biểu tượng không thắng không trả thưởng và không tạo đường thắng. Nhiều đường cùng biểu tượng được cộng lại. Wild thay thế để hoàn thành đường.',
+		'Tất cả biểu tượng trả thưởng từ trái sang phải trên các cuộn liền kề, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ biểu tượng trên các cuộn liên tiếp tạo đường hợp lệ. Không áp dụng cho Scatter. Biểu tượng không thắng không trả thưởng và không tạo đường thắng. Nhiều đường cùng biểu tượng được cộng lại. Wild thay thế để hoàn thành đường. Khi một biểu tượng thắng trên nhiều đường, tất cả biểu tượng đóng góp được làm nổi bật trong một hoạt ảnh duy nhất.',
 	'GR.SECTION.BET_MODES': 'CHẾ ĐỘ CƯỢC',
 	'GR.BET_MODES.TEXT':
 		'CHẾ ĐỘ THƯỜNG: Vòng quay chuẩn ở trò chơi cơ bản với {baseCost}× cược đã chọn.\n\nChế độ thường có tỷ lệ hoàn trả lý thuyết kỳ vọng {baseRtp}%.\n\nNgười chơi có thể mua Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} vòng — {bonusCost3}× cược — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} vòng — {bonusCost4}× cược — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} vòng — {bonusCost5}× cược — RTP {bonusRtp5}%\n\nMua sẽ kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa trong mỗi chế độ cược là {maxWin}× cược cơ bản.',
@@ -53,7 +53,7 @@ export default {
 		'Wild thay thế tất cả biểu tượng thắng. Wild không thay thế Scatter.',
 	'GR.SECTION.WIN_TABLE': 'BẢNG THẮNG',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Tất cả biểu tượng thắng thắng từ trái sang phải trên các guồng liền kề, bắt đầu từ guồng ngoài cùng bên trái. Chỉ biểu tượng trên các guồng liên tiếp tạo thành đường hợp lệ. Không áp dụng cho biểu tượng Scatter. Biểu tượng không thắng không thắng và không tạo đường thắng. Nhiều đường cho cùng biểu tượng được cộng lại. Biểu tượng Wild thay thế để hoàn thành đường.',
+		'Tất cả biểu tượng thắng thắng từ trái sang phải trên các guồng liền kề, bắt đầu từ guồng ngoài cùng bên trái. Chỉ biểu tượng trên các guồng liên tiếp tạo thành đường hợp lệ. Không áp dụng cho biểu tượng Scatter. Biểu tượng không thắng không thắng và không tạo đường thắng. Nhiều đường cho cùng biểu tượng được cộng lại. Biểu tượng Wild thay thế để hoàn thành đường. Khi một biểu tượng thắng trên nhiều đường, tất cả biểu tượng đóng góp được làm nổi bật trong một hoạt ảnh duy nhất.',
 	'GR.SECTION.SPIN_MODES': 'CHẾ ĐỘ QUAY',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'CHẾ ĐỘ BÌNH THƯỜNG: Vòng quay chuẩn ở {baseCost}× lượt quay đã chọn.\n\nChế độ bình thường có tỷ lệ hoàn trả lý thuyết {baseRtp}%.\n\nNgười chơi có thể chơi Vòng Quay Miễn Phí ở ba cấp:\n• 3 Scatter / {freeSpins3} lượt — {bonusCost3}× quay — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} lượt — {bonusCost4}× quay — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} lượt — {bonusCost5}× quay — RTP {bonusRtp5}%\n\nChọn Vòng Quay Miễn Phí kích hoạt tính năng bonus ngay lập tức.\n\nThắng tối đa ở mỗi chế độ quay là {maxWin}× lượt quay cơ bản.',

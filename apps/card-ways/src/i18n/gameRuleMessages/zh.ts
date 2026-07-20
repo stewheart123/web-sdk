@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': '赔付表',
 	'GR.SECTION.WIN_WAYS': '中奖路',
 	'GR.WIN_WAYS.TEXT':
-		'所有赔付符号从最左侧转轴开始，在相邻转轴上从左至右赔付。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赔付且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。',
+		'所有赔付符号从最左侧转轴开始，在相邻转轴上从左至右赔付。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赔付且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。当同一符号在多条路上中奖时，所有相关符号会在同一次动画中高亮显示。',
 	'GR.SECTION.BET_MODES': '投注模式',
 	'GR.BET_MODES.TEXT':
 		'正常模式：以所选投注的{baseCost}×进行标准基础游戏旋转。\n\n正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档购买免费旋转：\n• 3个Scatter / {freeSpins3}次 — {bonusCost3}×投注 — RTP {bonusRtp3}%\n• 4个Scatter / {freeSpins4}次 — {bonusCost4}×投注 — RTP {bonusRtp4}%\n• 5个Scatter / {freeSpins5}次 — {bonusCost5}×投注 — RTP {bonusRtp5}%\n\n购买后立即触发奖励功能。\n\n各投注模式的最大赢赏为{maxWin}×基础投注。',
@@ -51,7 +51,7 @@ export default {
 	'GR.WILD_SYMBOL.TEXT.SOCIAL': '百搭可替代所有赢奖符号。百搭不能替代Scatter。',
 	'GR.SECTION.WIN_TABLE': '赢奖表',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'所有赢奖符号从最左侧转轴开始，在相邻转轴上从左至右赢奖。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赢奖且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。',
+		'所有赢奖符号从最左侧转轴开始，在相邻转轴上从左至右赢奖。仅连续转轴上的符号形成有效路。此规则不适用于Scatter符号。非中奖符号不赢奖且无法形成中奖路。同一符号的多条路数奖金相加。百搭符号可替代以完成路数。当同一符号在多条路上中奖时，所有相关符号会在同一次动画中高亮显示。',
 	'GR.SECTION.SPIN_MODES': '旋转模式',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'正常模式：以所选旋转的{baseCost}×进行标准基础游戏旋转。\n\n正常模式的理论预期回报为{baseRtp}%。\n\n玩家可分三档玩免费旋转：\n• 3个Scatter / {freeSpins3}次 — {bonusCost3}×旋转 — RTP {bonusRtp3}%\n• 4个Scatter / {freeSpins4}次 — {bonusCost4}×旋转 — RTP {bonusRtp4}%\n• 5个Scatter / {freeSpins5}次 — {bonusCost5}×旋转 — RTP {bonusRtp5}%\n\n选择后立即触发奖励功能。\n\n各旋转模式的最大赢赏为{maxWin}×基础旋转。',

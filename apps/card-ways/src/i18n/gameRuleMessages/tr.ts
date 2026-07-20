@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'ÖDEME TABLOSU',
 	'GR.SECTION.WIN_WAYS': 'KAZANÇ YOLLARI',
 	'GR.WIN_WAYS.TEXT':
-		'Tüm ödemeli semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa öder. Yalnızca ardışık makaralardaki semboller geçerli yol oluşturur. Bu Scatter sembolleri için geçerli değildir. Kazançsız semboller ödeme yapmaz ve kazanç yolu oluşturamaz. Aynı sembolün birden fazla yolu toplanır. Wild sembolleri yolları tamamlamak için yerine geçer.',
+		'Tüm ödemeli semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa öder. Yalnızca ardışık makaralardaki semboller geçerli yol oluşturur. Bu Scatter sembolleri için geçerli değildir. Kazançsız semboller ödeme yapmaz ve kazanç yolu oluşturamaz. Aynı sembolün birden fazla yolu toplanır. Wild sembolleri yolları tamamlamak için yerine geçer. Bir sembol birden fazla yolda kazandığında, katkıda bulunan tüm semboller tek bir animasyonda vurgulanır.',
 	'GR.SECTION.BET_MODES': 'BAHİS MODLARI',
 	'GR.BET_MODES.TEXT':
 		'NORMAL MOD: Seçilen bahsinizin {baseCost}× katında standart temel oyun döndürmeleri.\n\nNormal modun teorik beklenen getirisi %{baseRtp}.\n\nOyuncu üç kademede Ücretsiz Döndürme satın alabilir:\n• 3 Scatter / {freeSpins3} döndürme — {bonusCost3}× bahis — RTP %{bonusRtp3}\n• 4 Scatter / {freeSpins4} döndürme — {bonusCost4}× bahis — RTP %{bonusRtp4}\n• 5 Scatter / {freeSpins5} döndürme — {bonusCost5}× bahis — RTP %{bonusRtp5}\n\nSatın alma bonus özelliğini anında tetikler.\n\nHer bahis modunda maksimum kazanç temel bahsin {maxWin}× katıdır.',
@@ -54,7 +54,7 @@ export default {
 		'Wild tüm kazanan sembollerin yerine geçer. Wild Scatter\'ın yerine geçmez.',
 	'GR.SECTION.WIN_TABLE': 'KAZANÇ TABLOSU',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Tüm kazanan semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa kazanır. Yalnızca ardışık makaralardaki semboller geçerli bir yol oluşturur. Scatter sembollerine uygulanmaz. Kazançsız semboller kazanmaz ve kazanan yollar oluşturamaz. Aynı sembol için birden fazla yol toplanır. Wild sembolleri yolları tamamlamak için yerine geçer.',
+		'Tüm kazanan semboller en soldaki makaradan başlayarak bitişik makaralarda soldan sağa kazanır. Yalnızca ardışık makaralardaki semboller geçerli bir yol oluşturur. Scatter sembollerine uygulanmaz. Kazançsız semboller kazanmaz ve kazanan yollar oluşturamaz. Aynı sembol için birden fazla yol toplanır. Wild sembolleri yolları tamamlamak için yerine geçer. Bir sembol birden fazla yolda kazandığında, katkıda bulunan tüm semboller tek bir animasyonda vurgulanır.',
 	'GR.SECTION.SPIN_MODES': 'SPIN MODLARI',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'NORMAL MOD: Seçilen spininizin {baseCost}× katında standart temel oyun spinleri.\n\nNormal modun teorik beklenen getirisi {baseRtp}%\'dir.\n\nOyuncu üç kademede Ücretsiz Döndürme oynayabilir:\n• 3 Scatter / {freeSpins3} spin — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} spin — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} spin — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nSeçim bonus özelliğini hemen tetikler.\n\nHer spin modundaki maksimum kazanç {maxWin}× temel spindir.',

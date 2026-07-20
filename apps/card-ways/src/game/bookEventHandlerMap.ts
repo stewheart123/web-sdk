@@ -105,8 +105,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_end' });
-
 		const shouldPlayModifierWin =
 			stateGame.modifierMultiplier > 1 || stateGame.gameType === 'freegame';
 
@@ -116,6 +114,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		await Promise.all([
 			sequence(bookEvent.wins, async (win) => {
+				eventEmitter.broadcast({
+					type: 'soundOnce',
+					name: 'sfx_youwon_panel',
+					forcePlay: true,
+				});
 				await animateSymbols({ positions: win.positions });
 			}),
 			modifierWin,

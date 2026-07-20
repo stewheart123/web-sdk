@@ -33,7 +33,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'PAYTABLE',
 	'GR.SECTION.WIN_WAYS': 'WIN WAYS',
 	'GR.WIN_WAYS.TEXT':
-		'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
+		'All paying symbols pay from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not pay and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways. When a symbol wins on multiple ways, all contributing symbols are highlighted in a single animation.',
 	'GR.SECTION.BET_MODES': 'BET MODES',
 	'GR.BET_MODES.TEXT':
 		'NORMAL MODE: Standard base-game spins at {baseCost}× your selected bet.\n\nThe normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can buy Free Spins at three tiers:\n• 3 Scatters / {freeSpins3} spins — {bonusCost3}× bet — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} spins — {bonusCost4}× bet — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} spins — {bonusCost5}× bet — RTP {bonusRtp5}%\n\nPurchasing Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each bet mode is {maxWin}× the underlying bet.',
@@ -54,7 +54,7 @@ export default {
 		'The Wild substitutes for all winning symbols. Wild does not substitute for Scatter.',
 	'GR.SECTION.WIN_TABLE': 'WIN TABLE',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'All winning symbols win from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not win and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways.',
+		'All winning symbols win from left to right on adjacent reels, starting from the leftmost reel. Only symbols on consecutive reels form a valid way. This does not apply to Scatter symbols. Non-win symbols do not win and cannot form winning ways. Multiple ways for the same symbol are added together. Wild symbols substitute to complete ways. When a symbol wins on multiple ways, all contributing symbols are highlighted in a single animation.',
 	'GR.SECTION.SPIN_MODES': 'SPIN MODES',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'NORMAL MODE: Standard base-game spins at {baseCost}× your selected spin.\n\nThe normal mode of this game has a theoretical expected return of {baseRtp}%.\n\nThe player can play Free Spins at three tiers:\n• 3 Scatters / {freeSpins3} spins — {bonusCost3}× spin — RTP {bonusRtp3}%\n• 4 Scatters / {freeSpins4} spins — {bonusCost4}× spin — RTP {bonusRtp4}%\n• 5 Scatters / {freeSpins5} spins — {bonusCost5}× spin — RTP {bonusRtp5}%\n\nSelecting Free Spins triggers the bonus feature immediately.\n\nThe maximum win in each spin mode is {maxWin}× the underlying spin.',

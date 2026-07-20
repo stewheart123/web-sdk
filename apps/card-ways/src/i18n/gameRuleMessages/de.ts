@@ -33,7 +33,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'AUSZAHLUNGSTABELLE',
 	'GR.SECTION.WIN_WAYS': 'GEWINNWEGE',
 	'GR.WIN_WAYS.TEXT':
-		'Alle zahlenden Symbole zahlen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole zahlen nicht aus und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen.',
+		'Alle zahlenden Symbole zahlen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole zahlen nicht aus und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen. Wenn ein Symbol auf mehreren Wegen gewinnt, werden alle beteiligten Symbole in einer einzigen Animation hervorgehoben.',
 	'GR.SECTION.BET_MODES': 'EINSATZMODI',
 	'GR.BET_MODES.TEXT':
 		'NORMALMODUS: Standard-Basisspiel-Drehungen zu {baseCost}× Ihrem gewählten Einsatz.\n\nDer Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen kaufen:\n• 3 Scatter / {freeSpins3} Spins — {bonusCost3}× Einsatz — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} Spins — {bonusCost4}× Einsatz — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} Spins — {bonusCost5}× Einsatz — RTP {bonusRtp5}%\n\nDer Kauf löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Einsatzmodus beträgt {maxWin}× den Grundeinsatz.',
@@ -57,7 +57,7 @@ export default {
 		'Das Wild ersetzt alle Gewinnsymbole. Wild ersetzt kein Scatter.',
 	'GR.SECTION.WIN_TABLE': 'GEWINNTABELLE',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Alle Gewinnsymbole gewinnen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole gewinnen nicht und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen.',
+		'Alle Gewinnsymbole gewinnen von links nach rechts auf benachbarten Walzen, beginnend bei der linken Walze. Nur Symbole auf aufeinanderfolgenden Walzen bilden einen gültigen Weg. Dies gilt nicht für Scatter-Symbole. Nicht-Gewinnsymbole gewinnen nicht und bilden keine Gewinnwege. Mehrere Wege desselben Symbols werden addiert. Wild-Symbole ersetzen zur Vervollständigung von Wegen. Wenn ein Symbol auf mehreren Wegen gewinnt, werden alle beteiligten Symbole in einer einzigen Animation hervorgehoben.',
 	'GR.SECTION.SPIN_MODES': 'SPIN-MODI',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'NORMALMODUS: Standard-Basisspiel-Drehungen zu {baseCost}× Ihrem gewählten Spin.\n\nDer Normalmodus hat eine theoretische erwartete Rendite von {baseRtp}%.\n\nDer Spieler kann Freispiele in drei Stufen spielen:\n• 3 Scatter / {freeSpins3} Spins — {bonusCost3}× Spin — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} Spins — {bonusCost4}× Spin — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} Spins — {bonusCost5}× Spin — RTP {bonusRtp5}%\n\nDie Auswahl löst die Bonus-Funktion sofort aus.\n\nDer maximale Gewinn in jedem Spin-Modus beträgt {maxWin}× den Grundeinsatz.',

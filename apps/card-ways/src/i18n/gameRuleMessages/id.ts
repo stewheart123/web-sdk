@@ -31,7 +31,7 @@ export default {
 	'GR.SECTION.PAYTABLE': 'TABEL BAYARAN',
 	'GR.SECTION.WIN_WAYS': 'CARA MENANG',
 	'GR.WIN_WAYS.TEXT':
-		'Semua simbol berbayar dari kiri ke kanan pada gulungan berdekatan, dimulai dari gulungan paling kiri. Hanya simbol pada gulungan berurutan yang membentuk cara valid. Ini tidak berlaku untuk simbol Scatter. Simbol non-menang tidak membayar dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara.',
+		'Semua simbol berbayar dari kiri ke kanan pada gulungan berdekatan, dimulai dari gulungan paling kiri. Hanya simbol pada gulungan berurutan yang membentuk cara valid. Ini tidak berlaku untuk simbol Scatter. Simbol non-menang tidak membayar dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara. Ketika sebuah simbol menang pada beberapa cara, semua simbol yang berkontribusi disorot dalam satu animasi.',
 	'GR.SECTION.BET_MODES': 'MODE TARUHAN',
 	'GR.BET_MODES.TEXT':
 		'MODE NORMAL: Putaran permainan dasar standar pada {baseCost}× taruhan yang Anda pilih.\n\nMode normal memiliki pengembalian teoritis yang diharapkan sebesar {baseRtp}%.\n\nPemain dapat membeli Putaran Gratis dalam tiga tingkat:\n• 3 Scatter / {freeSpins3} putaran — {bonusCost3}× taruhan — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} putaran — {bonusCost4}× taruhan — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} putaran — {bonusCost5}× taruhan — RTP {bonusRtp5}%\n\nPembelian langsung memicu fitur bonus.\n\nKemenangan maksimum di setiap mode taruhan adalah {maxWin}× taruhan dasar.',
@@ -55,7 +55,7 @@ export default {
 		'Wild menggantikan semua simbol menang. Wild tidak menggantikan Scatter.',
 	'GR.SECTION.WIN_TABLE': 'TABEL MENANG',
 	'GR.WIN_WAYS.TEXT.SOCIAL':
-		'Semua simbol menang menang dari kiri ke kanan pada reel yang berdekatan, dimulai dari reel paling kiri. Hanya simbol pada reel berturut-turut yang membentuk cara valid. Tidak berlaku untuk simbol Scatter. Simbol non-menang tidak menang dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara.',
+		'Semua simbol menang menang dari kiri ke kanan pada reel yang berdekatan, dimulai dari reel paling kiri. Hanya simbol pada reel berturut-turut yang membentuk cara valid. Tidak berlaku untuk simbol Scatter. Simbol non-menang tidak menang dan tidak membentuk cara menang. Beberapa cara untuk simbol yang sama dijumlahkan. Simbol Wild menggantikan untuk melengkapi cara. Ketika sebuah simbol menang pada beberapa cara, semua simbol yang berkontribusi disorot dalam satu animasi.',
 	'GR.SECTION.SPIN_MODES': 'MODE PUTARAN',
 	'GR.BET_MODES.TEXT.SOCIAL':
 		'MODE NORMAL: Putaran permainan dasar standar pada {baseCost}× putaran yang dipilih.\n\nMode normal memiliki pengembalian teoretis yang diharapkan sebesar {baseRtp}%.\n\nPemain dapat memainkan Putaran Gratis pada tiga tingkat:\n• 3 Scatter / {freeSpins3} putaran — {bonusCost3}× putaran — RTP {bonusRtp3}%\n• 4 Scatter / {freeSpins4} putaran — {bonusCost4}× putaran — RTP {bonusRtp4}%\n• 5 Scatter / {freeSpins5} putaran — {bonusCost5}× putaran — RTP {bonusRtp5}%\n\nMemilih Putaran Gratis memicu fitur bonus segera.\n\nKemenangan maksimum di setiap mode putaran adalah {maxWin}× putaran dasar.',
