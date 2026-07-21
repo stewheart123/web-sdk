@@ -68,7 +68,7 @@
 	/>
 
 	{#key introKey}
-		<FreeSpinAnimation modalKey="FOIL-MODAL-BLUE.png">
+		<FreeSpinAnimation>
 			{#snippet children({ sizes })}
 				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 				{@const layout = resolveFreeSpinIntroLayout(sizes, spriteLang)}

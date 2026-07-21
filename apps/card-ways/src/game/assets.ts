@@ -59,6 +59,15 @@ export default {
 			scale: 2,
 		},
 	},
+	fsModal: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/fsModal/FS-MODAL.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/fsModal/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/fsModal/FS-MODAL.png', import.meta.url).href,
+			scale: 2,
+		},
+	},
 	foregroundAnimation: {
 		type: 'spine',
 		src: {
@@ -113,13 +122,6 @@ export default {
 		src: {
 			json: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.json', import.meta.url).href,
 			image: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.png', import.meta.url).href,
-		},
-	},
-	freeSpinModal: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/reelsFrame/MODAL.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/reelsFrame/MODAL.png', import.meta.url).href,
 		},
 	},
 	winSmall: {

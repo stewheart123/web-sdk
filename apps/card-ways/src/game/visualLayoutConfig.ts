@@ -51,9 +51,12 @@ export type VirtualSize = {
 export type ModalLayoutSettings = VirtualSize & {
 	/** Offset from boardLayout x/y (board center anchor). */
 	offsetFromBoard: VirtualOffset;
-	/** Shine spine + content panel origin within the modal (top-left local space). */
-	content: VirtualOffset;
-	shineWidth: number;
+	/** fsModal spine origin within the modal (local space). */
+	spine: VirtualOffset;
+	/** Intro/outro content panel origin within the modal (local space). */
+	panel: VirtualOffset;
+	/** Display width for the fsModal spine (height follows skeleton aspect). */
+	spineWidth: number;
 };
 
 export type AspectFitSpriteLayout = {
@@ -254,34 +257,39 @@ export type BitmapFontUsageConfig = {
 // ---------------------------------------------------------------------------
 
 // layoutSpace: board — FreeSpinAnimation.svelte: boardLayout + offsetFromBoard
+// fsModal skeleton is 1024×1536 (portrait); height = spineWidth * 1.5
 const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = {
 	desktop: {
-		width: 1020 * 0.7,
-		height: 651 * 0.7,
+		width: 600,
+		height: 900,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510 * 0.7, y: 260 },
-		shineWidth: 600,
+		spine: { x: 380, y: 489 },
+		panel: { x: 308, y: 460 },
+		spineWidth: 600 * 0.3,
 	},
 	landscape: {
-		width: 1020 * 0.8,
-		height: 651 * 0.8,
+		width: 700,
+		height: 1050,
 		offsetFromBoard: { x: 0, y: 20 },
-		content: { x: 510, y: 260 },
-		shineWidth: 700,
+		spine: { x: 350, y: 525 },
+		panel: { x: 350, y: 525 },
+		spineWidth: 700 * 0.3,
 	},
 	portrait: {
-		width: 1020 * 0.7,
-		height: 651 * 0.7,
+		width: 600,
+		height: 900,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510 * 0.7, y: 260 },
-		shineWidth: 600,
+		spine: { x: 300, y: 450 },
+		panel: { x: 300, y: 450 },
+		spineWidth: 600 * 0.3,
 	},
 	tablet: {
-		width: 1020 * 0.7,
-		height: 651 * 0.7,
+		width: 600,
+		height: 900,
 		offsetFromBoard: { x: 0, y: -60 },
-		content: { x: 510 * 0.7, y: 260 },
-		shineWidth: 600,
+		spine: { x: 300, y: 450 },
+		panel: { x: 300, y: 450 },
+		spineWidth: 600 * 0.3,
 	},
 };
 
@@ -424,10 +432,8 @@ export const VISUAL_LAYOUT = {
 		// layoutSpace: board — see FREE_SPIN_MODAL_LAYOUT_BY_TYPE
 		modal: {
 			root: { label: 'FreeSpin/Modal/Root' },
-			shine: { label: 'FreeSpin/Modal/Shine' },
+			spine: { label: 'FreeSpin/Modal/Spine' },
 			panel: { label: 'FreeSpin/Modal/Panel' },
-			foil: { label: 'FreeSpin/Modal/Foil' },
-			spriteAnchor: { x: 0.5, y: 0.5 },
 			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
 		// layoutSpace: modal-local — children positioned inside modal panel
@@ -1015,9 +1021,8 @@ export const SCENE_LABELS = {
 	freeSpin: {
 		modal: {
 			root: VISUAL_LAYOUT.freeSpin.modal.root.label,
-			shine: VISUAL_LAYOUT.freeSpin.modal.shine.label,
+			spine: VISUAL_LAYOUT.freeSpin.modal.spine.label,
 			panel: VISUAL_LAYOUT.freeSpin.modal.panel.label,
-			foil: VISUAL_LAYOUT.freeSpin.modal.foil.label,
 		},
 		intro: {
 			congrats: VISUAL_LAYOUT.freeSpin.intro.congrats.label,
@@ -1134,7 +1139,6 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutBy
 
 export const FREE_SPIN_MODAL = {
 	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
-	modalSpriteAnchor: VISUAL_LAYOUT.freeSpin.modal.spriteAnchor,
 } as const;
 
 /** @deprecated Use resolveFreeSpinIntroLayout(modalSizes) */

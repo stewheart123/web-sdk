@@ -4,7 +4,6 @@
 	import {
 		anchorToPivot,
 		Container,
-		Sprite,
 		SpineProvider,
 		SpineTrack,
 		type Sizes,
@@ -15,19 +14,15 @@
 	import {
 		getFreeSpinModalLayout,
 		SCENE_LABELS,
-		VISUAL_LAYOUT,
 	} from '../game/visualLayoutConfig';
 
-	type ModalKey = 'FOIL-MODAL-BLUE.png' | 'FOIL-MODAL-RED.png';
-
 	type Props = {
-		modalKey: ModalKey;
 		children: Snippet<[{ sizes: Sizes }]>;
 	};
 
 	const props: Props = $props();
 
-	type AnimationName = 'NEW-SHINE-INTRO' | 'NEW-SHINE';
+	type AnimationName = 'FS-MODAL-INTRO' | 'FS-MODAL-IDLE';
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
@@ -35,7 +30,7 @@
 	const modalSizes = $derived({ width: modalLayout.width, height: modalLayout.height });
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 
-	let animationName = $state<AnimationName>('NEW-SHINE-INTRO');
+	let animationName = $state<AnimationName>('FS-MODAL-INTRO');
 </script>
 
 <MainContainer label={SCENE_LABELS.layout.freeSpinModal}>
@@ -46,34 +41,27 @@
 		pivot={anchorToPivot({ anchor: 0.5, sizes: modalSizes })}
 	>
 		<SpineProvider
-			label={SCENE_LABELS.freeSpin.modal.shine}
-			key="fsIntro"
-			width={modalLayout.shineWidth}
-			x={modalLayout.content.x}
-			y={modalLayout.content.y}
+			label={SCENE_LABELS.freeSpin.modal.spine}
+			key="fsModal"
+			width={modalLayout.spineWidth}
+			x={modalLayout.spine.x}
+			y={modalLayout.spine.y}
 		>
 			<SpineTrack
 				trackIndex={0}
 				{animationName}
-				loop={animationName === 'NEW-SHINE'}
+				loop={animationName === 'FS-MODAL-IDLE'}
 				listener={{
-					complete: () => (animationName = 'NEW-SHINE'),
+					complete: () => (animationName = 'FS-MODAL-IDLE'),
 				}}
 			/>
 		</SpineProvider>
 
 		<Container
 			label={SCENE_LABELS.freeSpin.modal.panel}
-			x={modalLayout.content.x}
-			y={modalLayout.content.y}
+			x={modalLayout.panel.x}
+			y={modalLayout.panel.y}
 		>
-			<Sprite
-				label={SCENE_LABELS.freeSpin.modal.foil}
-				key={props.modalKey}
-				anchor={VISUAL_LAYOUT.freeSpin.modal.spriteAnchor}
-				width={modalSizes.width}
-				height={modalSizes.height}
-			/>
 			{@render props.children({ sizes: modalSizes })}
 		</Container>
 	</Container>
