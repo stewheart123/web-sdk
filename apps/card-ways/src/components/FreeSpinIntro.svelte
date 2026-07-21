@@ -99,6 +99,7 @@
 					layout={layout.numberText}
 					layoutKey={layoutType}
 					text={String(freeSpinsFromEvent)}
+					pulse
 					textStyle={getBitmapFontStyle('freeSpinIntro', {
 						width: sizes.width,
 						layoutType,
