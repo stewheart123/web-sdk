@@ -40,6 +40,13 @@
 	const current = $derived(stateUi.freeSpinCounterCurrent);
 	const total = $derived(stateUi.freeSpinCounterTotal);
 
+	const handleFadeComplete = () => {
+		if (!show) {
+			stateUi.freeSpinCounterCurrent = 0;
+			stateUi.freeSpinCounterTotal = 0;
+		}
+	};
+
 	const spriteLang = $derived(resolveSpriteLang(stateUrlDerived.lang()));
 	const textureKey = $derived(
 		resolveLocalizedSpriteKey('freespinslabel', spriteLang, context.stateApp.loadedAssets),
@@ -75,6 +82,7 @@
 		{show}
 		{...position}
 		scale={counterLayout.scale}
+		oncomplete={handleFadeComplete}
 		label={SCENE_LABELS.fade.freeSpinCounter}
 	>
 		<Container
