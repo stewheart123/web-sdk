@@ -29,6 +29,10 @@
 	type Props = {
 		children: Snippet<[{ sizes: Sizes }]>;
 		exiting?: boolean;
+		/** When true, fade panel content before starting FS-MODAL-OUTRO. */
+		fadePanelBeforeOutro?: boolean;
+		/** Fired when FS-MODAL-OUTRO actually begins. */
+		onOutroStarted?: () => void;
 	};
 
 	const props: Props = $props();
@@ -41,6 +45,7 @@
 
 	let animationName = $state<AnimationName>('FS-MODAL-INTRO');
 	let panelShow = $state(false);
+	let outroStarted = $state(false);
 
 	const isHoldAnimation = $derived(
 		animationName === 'FS-MODAL-IDLE' || animationName === 'FS-MODAL-FINISH',
@@ -49,15 +54,31 @@
 		animationName === 'FS-MODAL-OUTRO' ? FREE_SPIN_MODAL.outroTimeScale : 1,
 	);
 
-	$effect(() => {
-		if (
-			props.exiting &&
-			animationName !== 'FS-MODAL-OUTRO' &&
-			animationName !== 'FS-MODAL-FINISH'
-		) {
-			animationName = 'FS-MODAL-OUTRO';
+	const startOutro = () => {
+		if (outroStarted || animationName === 'FS-MODAL-OUTRO' || animationName === 'FS-MODAL-FINISH') {
+			return;
 		}
+		outroStarted = true;
+		animationName = 'FS-MODAL-OUTRO';
+		props.onOutroStarted?.();
+	};
+
+	$effect(() => {
+		if (!props.exiting || outroStarted) return;
+
+		if (props.fadePanelBeforeOutro) {
+			panelShow = false;
+			return;
+		}
+
+		startOutro();
 	});
+
+	const handlePanelFadeComplete = () => {
+		if (props.exiting && props.fadePanelBeforeOutro && !panelShow) {
+			startOutro();
+		}
+	};
 
 	onMount(() => {
 		panelShow = true;
@@ -99,7 +120,9 @@
 			label={SCENE_LABELS.freeSpin.modal.panel}
 			show={panelShow}
 			duration={OVERLAY.fadeDurationMs}
+			outDuration={FREE_SPIN_MODAL.panelFadeOutDurationMs}
 			delay={FREE_SPIN_MODAL.panelFadeDelayMs}
+			oncomplete={handlePanelFadeComplete}
 			x={modalLayout.panel.x}
 			y={modalLayout.panel.y}
 		>

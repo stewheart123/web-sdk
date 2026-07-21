@@ -436,6 +436,8 @@ export const VISUAL_LAYOUT = {
 			panel: { label: 'FreeSpin/Modal/Panel' },
 			/** Delay before intro/outro panel content fades in (ms). Spine starts immediately. */
 			panelFadeDelayMs: 1100,
+			/** Panel text/sprite fade-out before FS-MODAL-OUTRO (end-of-FS only). */
+			panelFadeOutDurationMs: 300,
 			/** Native FS-MODAL-OUTRO duration from spine (ms), before timeScale. */
 			outroDurationMs: 533,
 			/** Playback rate for FS-MODAL-OUTRO (1 = spine default). */
@@ -1150,6 +1152,7 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutBy
 export const FREE_SPIN_MODAL = {
 	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
 	panelFadeDelayMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeDelayMs,
+	panelFadeOutDurationMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeOutDurationMs,
 	outroDurationMs: VISUAL_LAYOUT.freeSpin.modal.outroDurationMs,
 	outroTimeScale: VISUAL_LAYOUT.freeSpin.modal.outroTimeScale,
 	fadeOutStartRatio: VISUAL_LAYOUT.freeSpin.modal.fadeOutStartRatio,

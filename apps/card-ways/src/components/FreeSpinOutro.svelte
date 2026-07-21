@@ -37,6 +37,7 @@
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
+	let outroStartedResolve = $state<(() => void) | null>(null);
 	let fadeOutResolve = $state<(() => void) | null>(null);
 
 	const stopCoinCountSound = () => {
@@ -54,6 +55,11 @@
 		}
 	};
 
+	const handleOutroStarted = () => {
+		outroStartedResolve?.();
+		outroStartedResolve = null;
+	};
+
 	const handleContinue = async (countUpCompleted: boolean, finishCountUp: () => void) => {
 		if (!countUpCompleted) {
 			finishCountUp();
@@ -61,8 +67,9 @@
 		}
 		if (exiting) return;
 
-		// Play first half of OUTRO fully visible, then fade through the rest.
+		// Panel text fades first, then OUTRO; outer fade starts partway through OUTRO.
 		exiting = true;
+		await waitForResolve((resolve) => (outroStartedResolve = resolve));
 		await waitForTimeout(FREE_SPIN_MODAL.outroFadeStartDelayMs);
 		show = false;
 		await waitForResolve((resolve) => (fadeOutResolve = resolve));
@@ -105,7 +112,11 @@
 				/>
 
 				{#key outroKey}
-					<FreeSpinAnimation {exiting}>
+					<FreeSpinAnimation
+						{exiting}
+						fadePanelBeforeOutro
+						onOutroStarted={handleOutroStarted}
+					>
 						{#snippet children({ sizes })}
 							{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang, layoutType)}
