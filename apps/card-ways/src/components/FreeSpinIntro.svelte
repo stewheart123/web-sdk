@@ -33,6 +33,7 @@
 	let introKey = $state(0);
 	let freeSpinsFromEvent = $state(0);
 	let oncomplete = $state(() => {});
+	let outroStartedResolve = $state<(() => void) | null>(null);
 	let fadeOutResolve = $state<(() => void) | null>(null);
 
 	const handleFadeOutComplete = () => {
@@ -42,11 +43,17 @@
 		}
 	};
 
+	const handleOutroStarted = () => {
+		outroStartedResolve?.();
+		outroStartedResolve = null;
+	};
+
 	const handleContinue = async () => {
 		if (exiting) return;
 
-		// Play first half of OUTRO fully visible, then fade through the rest.
+		// Panel text fades first, then OUTRO; outer fade starts partway through OUTRO.
 		exiting = true;
+		await waitForResolve((resolve) => (outroStartedResolve = resolve));
 		await waitForTimeout(FREE_SPIN_MODAL.outroFadeStartDelayMs);
 		show = false;
 		await waitForResolve((resolve) => (fadeOutResolve = resolve));
@@ -81,7 +88,11 @@
 	/>
 
 	{#key introKey}
-		<FreeSpinAnimation {exiting}>
+		<FreeSpinAnimation
+			{exiting}
+			fadePanelBeforeOutro
+			onOutroStarted={handleOutroStarted}
+		>
 			{#snippet children({ sizes })}
 				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 				{@const layout = resolveFreeSpinIntroLayout(sizes, spriteLang)}
