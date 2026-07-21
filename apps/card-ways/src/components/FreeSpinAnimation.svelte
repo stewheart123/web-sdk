@@ -31,6 +31,8 @@
 		exiting?: boolean;
 		/** When true, fade panel content before starting FS-MODAL-OUTRO. */
 		fadePanelBeforeOutro?: boolean;
+		/** Fired when panel content has finished fading in. */
+		onPanelFadeInComplete?: () => void;
 		/** Fired when FS-MODAL-OUTRO actually begins. */
 		onOutroStarted?: () => void;
 	};
@@ -82,6 +84,16 @@
 
 	onMount(() => {
 		panelShow = true;
+		if (!props.onPanelFadeInComplete) return;
+
+		// Drive "panel ready" off the known fade timings rather than FadeContainer's
+		// oncomplete — that callback can resolve early when tweens are interrupted.
+		const panelReadyMs =
+			FREE_SPIN_MODAL.panelFadeDelayMs + (OVERLAY.fadeDurationMs ?? 0);
+		const readyTimer = setTimeout(() => {
+			props.onPanelFadeInComplete?.();
+		}, panelReadyMs);
+		return () => clearTimeout(readyTimer);
 	});
 </script>
 

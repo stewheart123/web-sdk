@@ -12,7 +12,7 @@
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { CanvasSizeRectangle, OnPressFullScreen } from 'components-layout';
-	import { OnHotkey, OnMount } from 'components-shared';
+	import { OnHotkey } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
@@ -39,6 +39,7 @@
 	let oncomplete = $state(() => {});
 	let outroStartedResolve = $state<(() => void) | null>(null);
 	let fadeOutResolve = $state<(() => void) | null>(null);
+	let countUpStarted = $state(false);
 
 	const stopCoinCountSound = () => {
 		context.eventEmitter.broadcast({
@@ -46,6 +47,12 @@
 			name: 'sfx_bigwin_coinloop',
 			afterCurrentLoop: true,
 		});
+	};
+
+	const startCoinCountSound = () => {
+		if (!winLevelData || winLevelData.presentDuration <= 0) return;
+		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+		context.eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bigwin_coinloop' });
 	};
 
 	const handleFadeOutComplete = () => {
@@ -80,6 +87,7 @@
 		freeSpinOutroShow: () => {
 			outroKey += 1;
 			exiting = false;
+			countUpStarted = false;
 			show = true;
 		},
 		freeSpinOutroHide: async () => (show = false),
@@ -103,8 +111,6 @@
 		{@const isBigWin = winLevelData.type === 'big'}
 		<WinCountUpProvider {amount} {duration} oncomplete={stopCoinCountSound}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
-				<OnMount onmount={() => startCountUp()} />
-
 				<CanvasSizeRectangle
 					label={SCENE_LABELS.overlay.dim}
 					backgroundColor={OVERLAY.backgroundColor}
@@ -115,6 +121,12 @@
 					<FreeSpinAnimation
 						{exiting}
 						fadePanelBeforeOutro
+						onPanelFadeInComplete={() => {
+							if (countUpStarted) return;
+							countUpStarted = true;
+							startCoinCountSound();
+							startCountUp();
+						}}
 						onOutroStarted={handleOutroStarted}
 					>
 						{#snippet children({ sizes })}
