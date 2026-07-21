@@ -8,17 +8,22 @@
 		show: boolean;
 		persistent?: boolean;
 		duration?: number;
+		/** Fade-out duration in ms. Defaults to `duration`. */
+		outDuration?: number;
 		/** Delay before fade-in only (ms). Fade-out starts immediately. */
 		delay?: number;
 		oncomplete?: () => void;
 	};
 
-	const { show, persistent, duration, delay = 0, oncomplete, children, ...restProps }: Props = $props();
+	const { show, persistent, duration, outDuration, delay = 0, oncomplete, children, ...restProps }: Props = $props();
 	const alpha = new Tween(show ? 1 : 0, { duration, delay });
 
 	$effect(() => {
 		alpha
-			.set(show ? 1 : 0, { duration, delay: show ? delay : 0 })
+			.set(show ? 1 : 0, {
+				duration: show ? duration : (outDuration ?? duration),
+				delay: show ? delay : 0,
+			})
 			.then(() => oncomplete?.());
 	});
 

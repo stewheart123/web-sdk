@@ -10,7 +10,7 @@
 <script lang="ts">
 	import { AspectFitSprite, FadeContainer, WinCountUpProvider } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { CanvasSizeRectangle, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey, OnMount } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
@@ -18,7 +18,12 @@
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
 	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
-	import { OVERLAY, resolveFreeSpinOutroLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		FREE_SPIN_MODAL,
+		OVERLAY,
+		resolveFreeSpinOutroLayout,
+		SCENE_LABELS,
+	} from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
 	import PressToContinue from './PressToContinue.svelte';
@@ -27,6 +32,7 @@
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 
 	let show = $state(true);
+	let exiting = $state(false);
 	let outroKey = $state(0);
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
@@ -53,7 +59,11 @@
 			finishCountUp();
 			return;
 		}
+		if (exiting) return;
 
+		// Play first half of OUTRO fully visible, then fade through the rest.
+		exiting = true;
+		await waitForTimeout(FREE_SPIN_MODAL.outroFadeStartDelayMs);
 		show = false;
 		await waitForResolve((resolve) => (fadeOutResolve = resolve));
 		oncomplete();
@@ -62,6 +72,7 @@
 	context.eventEmitter.subscribeOnMount({
 		freeSpinOutroShow: () => {
 			outroKey += 1;
+			exiting = false;
 			show = true;
 		},
 		freeSpinOutroHide: async () => (show = false),
@@ -73,7 +84,13 @@
 	});
 </script>
 
-<FadeContainer {show} duration={OVERLAY.fadeDurationMs} oncomplete={handleFadeOutComplete} label={SCENE_LABELS.fade.freeSpinOutro}>
+<FadeContainer
+	{show}
+	duration={OVERLAY.fadeDurationMs}
+	outDuration={FREE_SPIN_MODAL.fadeOutDurationMs}
+	oncomplete={handleFadeOutComplete}
+	label={SCENE_LABELS.fade.freeSpinOutro}
+>
 	{#if winLevelData}
 		{@const duration = winLevelData.presentDuration}
 		{@const isBigWin = winLevelData.type === 'big'}
@@ -88,7 +105,7 @@
 				/>
 
 				{#key outroKey}
-					<FreeSpinAnimation>
+					<FreeSpinAnimation {exiting}>
 						{#snippet children({ sizes })}
 							{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang, layoutType)}

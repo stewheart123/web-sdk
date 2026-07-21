@@ -436,6 +436,14 @@ export const VISUAL_LAYOUT = {
 			panel: { label: 'FreeSpin/Modal/Panel' },
 			/** Delay before intro/outro panel content fades in (ms). Spine starts immediately. */
 			panelFadeDelayMs: 1100,
+			/** Native FS-MODAL-OUTRO duration from spine (ms), before timeScale. */
+			outroDurationMs: 533,
+			/** Playback rate for FS-MODAL-OUTRO (1 = spine default). */
+			outroTimeScale: 0.55,
+			/** Start outer fade after this fraction of the wall-clock OUTRO. */
+			fadeOutStartRatio: 0.2,
+			/** Fade-out duration overlapping the second half of OUTRO (ms). */
+			fadeOutDurationMs: 500,
 			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
 		// layoutSpace: modal-local — children positioned inside modal panel
@@ -1142,6 +1150,16 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutBy
 export const FREE_SPIN_MODAL = {
 	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
 	panelFadeDelayMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeDelayMs,
+	outroDurationMs: VISUAL_LAYOUT.freeSpin.modal.outroDurationMs,
+	outroTimeScale: VISUAL_LAYOUT.freeSpin.modal.outroTimeScale,
+	fadeOutStartRatio: VISUAL_LAYOUT.freeSpin.modal.fadeOutStartRatio,
+	fadeOutDurationMs: VISUAL_LAYOUT.freeSpin.modal.fadeOutDurationMs,
+	/** Wall-clock delay before fade starts (half of scaled OUTRO by default). */
+	outroFadeStartDelayMs: Math.round(
+		(VISUAL_LAYOUT.freeSpin.modal.outroDurationMs /
+			VISUAL_LAYOUT.freeSpin.modal.outroTimeScale) *
+			VISUAL_LAYOUT.freeSpin.modal.fadeOutStartRatio,
+	),
 } as const;
 
 /** @deprecated Use resolveFreeSpinIntroLayout(modalSizes) */

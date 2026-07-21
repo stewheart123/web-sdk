@@ -10,12 +10,17 @@
 	import { OnHotkey } from 'components-shared';
 	import { stateUrlDerived } from 'state-shared';
 	import { AspectFitSprite, FadeContainer } from 'components-pixi';
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
 	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
-	import { OVERLAY, resolveFreeSpinIntroLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		FREE_SPIN_MODAL,
+		OVERLAY,
+		resolveFreeSpinIntroLayout,
+		SCENE_LABELS,
+	} from '../game/visualLayoutConfig';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
@@ -24,6 +29,7 @@
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 
 	let show = $state(false);
+	let exiting = $state(false);
 	let introKey = $state(0);
 	let freeSpinsFromEvent = $state(0);
 	let oncomplete = $state(() => {});
@@ -37,6 +43,11 @@
 	};
 
 	const handleContinue = async () => {
+		if (exiting) return;
+
+		// Play first half of OUTRO fully visible, then fade through the rest.
+		exiting = true;
+		await waitForTimeout(FREE_SPIN_MODAL.outroFadeStartDelayMs);
 		show = false;
 		await waitForResolve((resolve) => (fadeOutResolve = resolve));
 		oncomplete();
@@ -45,6 +56,7 @@
 	context.eventEmitter.subscribeOnMount({
 		freeSpinIntroShow: () => {
 			introKey += 1;
+			exiting = false;
 			show = true;
 		},
 		freeSpinIntroHide: () => (show = false),
@@ -59,6 +71,7 @@
 	label={SCENE_LABELS.fade.freeSpinIntro}
 	{show}
 	duration={OVERLAY.fadeDurationMs}
+	outDuration={FREE_SPIN_MODAL.fadeOutDurationMs}
 	oncomplete={handleFadeOutComplete}
 >
 	<CanvasSizeRectangle
@@ -68,7 +81,7 @@
 	/>
 
 	{#key introKey}
-		<FreeSpinAnimation>
+		<FreeSpinAnimation {exiting}>
 			{#snippet children({ sizes })}
 				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 				{@const layout = resolveFreeSpinIntroLayout(sizes, spriteLang)}
