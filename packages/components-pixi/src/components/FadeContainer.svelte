@@ -8,20 +8,24 @@
 		show: boolean;
 		persistent?: boolean;
 		duration?: number;
+		/** Delay before fade-in only (ms). Fade-out starts immediately. */
+		delay?: number;
 		oncomplete?: () => void;
 	};
 
-	const { show, persistent, duration, oncomplete, children, ...restProps }: Props = $props();
-	const alpha = new Tween(show ? 1 : 0, { duration: duration });
+	const { show, persistent, duration, delay = 0, oncomplete, children, ...restProps }: Props = $props();
+	const alpha = new Tween(show ? 1 : 0, { duration, delay });
 
 	$effect(() => {
-		alpha.set(show ? 1 : 0, { duration: duration }).then(() => oncomplete?.());
+		alpha
+			.set(show ? 1 : 0, { duration, delay: show ? delay : 0 })
+			.then(() => oncomplete?.());
 	});
 
 	onMount(async () => {
 		if (show) {
 			await alpha.set(0, { duration: 0 });
-			await alpha.set(1);
+			await alpha.set(1, { duration, delay });
 			oncomplete?.();
 		}
 	});

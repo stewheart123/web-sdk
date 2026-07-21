@@ -263,9 +263,9 @@ const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = 
 		width: 600,
 		height: 900,
 		offsetFromBoard: { x: 0, y: -60 },
-		spine: { x: 380, y: 489 },
+		spine: { x: 361, y: 510 },
 		panel: { x: 308, y: 460 },
-		spineWidth: 600 * 0.3,
+		spineWidth: 600 * 0.26,
 	},
 	landscape: {
 		width: 700,
@@ -434,6 +434,8 @@ export const VISUAL_LAYOUT = {
 			root: { label: 'FreeSpin/Modal/Root' },
 			spine: { label: 'FreeSpin/Modal/Spine' },
 			panel: { label: 'FreeSpin/Modal/Panel' },
+			/** Delay before intro/outro panel content fades in (ms). Spine starts immediately. */
+			panelFadeDelayMs: 1100,
 			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
 		// layoutSpace: modal-local — children positioned inside modal panel
@@ -1139,6 +1141,7 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutBy
 
 export const FREE_SPIN_MODAL = {
 	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
+	panelFadeDelayMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeDelayMs,
 } as const;
 
 /** @deprecated Use resolveFreeSpinIntroLayout(modalSizes) */
