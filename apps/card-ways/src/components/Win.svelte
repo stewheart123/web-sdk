@@ -12,8 +12,8 @@
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
-	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
-	import { OnMount } from 'components-shared';
+	import { CanvasSizeRectangle, MainContainer, OnPressFullScreen } from 'components-layout';
+	import { OnHotkey, OnMount } from 'components-shared';
 
 	import WinAnimation from './WinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
@@ -74,6 +74,8 @@
 					winTextVariant,
 					boardLayout,
 				)}
+				{@const handleContinue = () =>
+					countUpCompleted ? oncomplete() : finishCountUp()}
 				{#if isBigWin}
 					<CanvasSizeRectangle
 						label={SCENE_LABELS.win.dim}
@@ -137,11 +139,15 @@
 
 						<PressToContinue
 							embedded
+							visualOnly
 							layout={pressToContinueLayout}
-							onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())}
+							onpress={handleContinue}
 						/>
 					</Container>
 				</MainContainer>
+
+				<OnHotkey hotkey="Space" onpress={handleContinue} />
+				<OnPressFullScreen onpress={handleContinue} />
 			{/snippet}
 		</WinCountUpProvider>
 	{/if}
