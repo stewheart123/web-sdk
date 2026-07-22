@@ -95,7 +95,7 @@
 		>
 			{#snippet children({ sizes })}
 				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
-				{@const layout = resolveFreeSpinIntroLayout(sizes, spriteLang)}
+				{@const layout = resolveFreeSpinIntroLayout(sizes)}
 
 				<AspectFitSprite
 					label={SCENE_LABELS.freeSpin.intro.congrats}

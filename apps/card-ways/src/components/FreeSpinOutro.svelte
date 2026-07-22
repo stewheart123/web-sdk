@@ -131,7 +131,7 @@
 					>
 						{#snippet children({ sizes })}
 							{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
-							{@const layout = resolveFreeSpinOutroLayout(sizes, spriteLang, layoutType)}
+							{@const layout = resolveFreeSpinOutroLayout(sizes, layoutType)}
 
 							<FreeSpinNumberDisplay
 								layout={layout.numberText}

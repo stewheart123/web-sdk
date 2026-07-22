@@ -1,0 +1,179 @@
+{
+	"frames": {
+		"freespins.png": {
+			"frame": {
+				"x": 2,
+				"y": 807,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_ar.png": {
+			"frame": {
+				"x": 2,
+				"y": 692,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_de.png": {
+			"frame": {
+				"x": 2,
+				"y": 577,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_en.png": {
+			"frame": {
+				"x": 2,
+				"y": 462,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_es.png": {
+			"frame": {
+				"x": 2,
+				"y": 347,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_fi.png": {
+			"frame": {
+				"x": 2,
+				"y": 232,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_fr.png": {
+			"frame": {
+				"x": 2,
+				"y": 117,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		},
+		"freespins_hi.png": {
+			"frame": {
+				"x": 2,
+				"y": 2,
+				"w": 568,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 568,
+				"h": 113
+			},
+			"sourceSize": {
+				"w": 568,
+				"h": 113
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "freeSpinsMessage.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 572,
+			"h": 922
+		},
+		"scale": "0.4",
+		"related_multi_packs": [
+			"freeSpinsMessage_2.json",
+			"freeSpinsMessage_3.json"
+		]
+	}
+}

@@ -17,6 +17,14 @@ export default {
 		},
 		preload: true,
 	},
+	pressToContinueText2: {
+		type: 'sprites',
+		src: {
+			json: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE_2.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE_2.png', import.meta.url).href,
+		},
+		preload: true,
+	},
 	cardSymbols: {
 		type: 'spine',
 		src: {
@@ -106,15 +114,22 @@ export default {
 	freeSpins: {
 		type: 'sprites',
 		src: {
-			json: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
+			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage.json', import.meta.url).href,
 			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage.png', import.meta.url).href,
 		},
 	},
 	freeSpins2: {
 		type: 'sprites',
 		src: {
-			json: new URL('../../assets/sprites/freeSpins/freeSpins_2.json', import.meta.url).href,
+			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_2.json', import.meta.url).href,
 			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_2.png', import.meta.url).href,
+		},
+	},
+	freeSpins3: {
+		type: 'sprites',
+		src: {
+			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_3.json', import.meta.url).href,
+			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_3.png', import.meta.url).href,
 		},
 	},
 	freeSpinsMultiLang: {
