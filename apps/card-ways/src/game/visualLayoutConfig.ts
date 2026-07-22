@@ -336,9 +336,9 @@ export const VISUAL_LAYOUT = {
 			},
 			portrait: {
 				symbolScale: 1.18,
-				boardXOffset: 0,
+				boardXOffset: -6,
 				boardYOffset: -100,
-				frame: { offsetX: 2, offsetY: 85, width: 706 * 1.255, height: 550 * 1.36 },
+				frame: { offsetX: 0, offsetY: 85, width: 706 * 1.255, height: 550 * 1.36 },
 			},
 			tablet: {
 				symbolScale: 1.09,
