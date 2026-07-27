@@ -37,12 +37,7 @@ export type SpineSrc = {
 	[key: `texturePage${number}`]: string | undefined;
 };
 export type SpritesSrc = { json: string; image: string };
-export type FontSrc = {
-	xml: string;
-	image: string;
-	/** Texture filtering when the font atlas is scaled. Default: nearest. */
-	scaleMode?: 'linear' | 'nearest';
-};
+export type FontSrc = { xml: string; image: string };
 export type Asset = {
 	type: RawType;
 	src: string | SpineSrc | SpritesSrc | FontSrc;
