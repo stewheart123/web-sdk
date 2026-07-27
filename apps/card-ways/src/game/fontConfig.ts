@@ -19,7 +19,7 @@ export type BitmapFontConfig = {
 };
 
 export const BITMAP_FONTS: Record<BitmapFontId, BitmapFontConfig> = {
-	cinzYellow: { family: 'cinz-yellow', scale: 0.5, letterSpacing: -10, atlasSize: 72 },
+	gold: { family: 'gold', scale: 0.5, letterSpacing: -10, atlasSize: 72 },
 };
 
 /** @deprecated Use TEXT_LAYOUT from visualLayoutConfig */

@@ -101,7 +101,7 @@ modifier_reel = r"""<script lang="ts" module>
 							anchor={0.5}
 							text={`${Math.round(previousMultiplier.current)}×`}
 							style={{
-								fontFamily: 'cinz-yellow',
+								fontFamily: 'gold',
 								fontSize: SYMBOL_SIZE * 5.2,
 							}}
 						/>
@@ -111,7 +111,7 @@ modifier_reel = r"""<script lang="ts" module>
 							anchor={0.5}
 							text={`${multiplier}×`}
 							style={{
-								fontFamily: 'cinz-yellow',
+								fontFamily: 'gold',
 								fontSize: SYMBOL_SIZE * 5.2,
 							}}
 						/>

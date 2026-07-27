@@ -223,7 +223,7 @@ export type BonusTransitionLayoutSettings = {
 	scale?: number;
 };
 
-export type BitmapFontId = 'cinzYellow';
+export type BitmapFontId = 'gold';
 
 export type BitmapFontUsage =
 	| 'winBig'
@@ -762,12 +762,12 @@ export const VISUAL_LAYOUT = {
 	// layoutSpace: n/a — bitmap font sizing rules, not position
 	fonts: {
 		textLayout: {
-			winBig: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },
-			winNormal: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 0.5, align: 'center' },
-			symbolMultiplier: { font: 'cinzYellow', sizeMode: 'absolute', size: 50 },
-			freeSpinCounter: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 0.275 },
-			freeSpinIntro: { font: 'cinzYellow', sizeMode: 'widthRatio', size: 0.05 },
-			freeSpinOutro: { font: 'cinzYellow', sizeMode: 'widthRatio', size: 0.08 },
+			winBig: { font: 'gold', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },
+			winNormal: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.5, align: 'center' },
+			symbolMultiplier: { font: 'gold', sizeMode: 'absolute', size: 50 },
+			freeSpinCounter: { font: 'gold', sizeMode: 'symbolMultiplier', size: 0.275 },
+			freeSpinIntro: { font: 'gold', sizeMode: 'widthRatio', size: 0.05 },
+			freeSpinOutro: { font: 'gold', sizeMode: 'widthRatio', size: 0.08 },
 		} satisfies Record<BitmapFontUsage, BitmapFontUsageConfig>,
 		scaleByType: {
 			desktop: 1,
