@@ -3,7 +3,7 @@
 	import * as PIXI from 'pixi.js';
 
 	import { getContextApp } from '../context.svelte';
-	import { applyNearestScaleModeToBitmapFont } from '../bitmapFontUtils';
+	import { applyBitmapFontScaleMode } from '../bitmapFontUtils';
 	import { getProcessed } from '../assetLoad';
 	import { loadFontBundle, loadSpineBundle, toAbsoluteAssetUrl } from '../resolvedAssetLoad';
 	import type { FontSrc, LoadedAssets, RawAsset, RawSprites, SpineSrc, SpritesSrc } from '../types';
@@ -90,11 +90,12 @@
 		}
 
 		if (type === 'font') {
-			const rawAsset = await loadFontBundle(
-				isFontSrc(src) ? src : (src as string),
-				onProgress,
+			const fontSrc = isFontSrc(src) ? src : (src as string);
+			const rawAsset = await loadFontBundle(fontSrc, onProgress);
+			applyBitmapFontScaleMode(
+				rawAsset,
+				typeof fontSrc === 'object' ? (fontSrc.scaleMode ?? 'nearest') : 'nearest',
 			);
-			applyNearestScaleModeToBitmapFont(rawAsset);
 			return getProcessed({ key, rawAsset, type, src });
 		}
 

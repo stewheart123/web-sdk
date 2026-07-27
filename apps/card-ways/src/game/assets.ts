@@ -45,8 +45,9 @@ export default {
 	cinzYellowFont: {
 		type: 'font',
 		src: {
-			xml: new URL('../../assets/fonts/cinz-yellow/cinz-yellow.xml', import.meta.url).href,
-			image: new URL('../../assets/fonts/cinz-yellow/cinz-yellow.png', import.meta.url).href,
+			xml: new URL('../../assets/fonts/cinz-yellow/CINZEL-Q-YELLOW-5.xml', import.meta.url).href,
+			image: new URL('../../assets/fonts/cinz-yellow/CINZEL-Q-YELLOW-5.png', import.meta.url).href,
+			scaleMode: 'linear',
 		},
 	},
 	bigwin: {
