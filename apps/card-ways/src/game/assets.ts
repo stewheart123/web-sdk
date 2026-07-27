@@ -42,11 +42,11 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reelsFrame/SLAB-FRAME.png', import.meta.url).href,
 	},
-	goldFont: {
+	cinzYellowFont: {
 		type: 'font',
 		src: {
-			xml: new URL('../../assets/fonts/goldFont/stenz-glow-green.xml', import.meta.url).href,
-			image: new URL('../../assets/fonts/goldFont/stenz-glow-green.png', import.meta.url).href,
+			xml: new URL('../../assets/fonts/cinz-yellow/cinz-yellow.xml', import.meta.url).href,
+			image: new URL('../../assets/fonts/cinz-yellow/cinz-yellow.png', import.meta.url).href,
 		},
 	},
 	bigwin: {
