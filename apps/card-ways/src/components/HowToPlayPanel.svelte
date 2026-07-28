@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { Container, Sprite, Text, Rectangle } from 'pixi-svelte';
+	import * as PIXI from 'pixi.js';
+	import { Container, Sprite, Text } from 'pixi-svelte';
 
+	import { getContext } from '../game/context';
 	import type { HowToPlayPanelDef } from '../game/howToPlayPanels';
 	import type { HowToPlayPanelLayoutSettings } from '../game/visualLayoutConfig';
 	import { SCENE_LABELS } from '../game/visualLayoutConfig';
@@ -13,6 +15,16 @@
 	};
 
 	const props: Props = $props();
+	const context = getContext();
+
+	const bgTexture = $derived(
+		(context.stateApp.loadedAssets?.[props.panel.bgKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
+	);
+	const panelHeight = $derived(
+		bgTexture.width > 0
+			? props.layout.panelWidth * (bgTexture.height / bgTexture.width)
+			: props.layout.panelHeight,
+	);
 </script>
 
 <Container
@@ -24,19 +36,8 @@
 		label={SCENE_LABELS.loading.howToPlay.panelBg}
 		key={props.panel.bgKey}
 		width={props.layout.panelWidth}
-		height={props.layout.panelHeight}
+		height={panelHeight}
 		anchor={0.5}
-	/>
-	<Rectangle
-		width={props.layout.panelWidth}
-		height={props.layout.panelHeight}
-		anchor={0.5}
-		borderRadius={16}
-		backgroundColor={0x1a1228}
-		backgroundAlpha={0.55}
-		borderColor={0xc9a227}
-		borderWidth={2}
-		borderAlpha={0.85}
 	/>
 	<Sprite
 		label={SCENE_LABELS.loading.howToPlay.panelFg}
