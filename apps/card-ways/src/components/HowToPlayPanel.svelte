@@ -20,11 +20,28 @@
 	const bgTexture = $derived(
 		(context.stateApp.loadedAssets?.[props.panel.bgKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
 	);
+	const fgTexture = $derived(
+		(context.stateApp.loadedAssets?.[props.panel.fgKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
+	);
+
 	const panelHeight = $derived(
 		bgTexture.width > 0
 			? props.layout.panelWidth * (bgTexture.height / bgTexture.width)
 			: props.layout.panelHeight,
 	);
+
+	/** Nearly card-width, preserving each FG's native aspect ratio. */
+	const fgSizes = $derived.by(() => {
+		const maxWidth = props.layout.panelWidth * 0.86;
+		if (fgTexture.width <= 0 || fgTexture.height <= 0) {
+			return { width: maxWidth, height: props.layout.fgSize };
+		}
+		const scale = maxWidth / fgTexture.width;
+		return {
+			width: maxWidth,
+			height: fgTexture.height * scale,
+		};
+	});
 </script>
 
 <Container
@@ -42,7 +59,8 @@
 	<Sprite
 		label={SCENE_LABELS.loading.howToPlay.panelFg}
 		key={props.panel.fgKey}
-		width={props.layout.fgSize}
+		width={fgSizes.width}
+		height={fgSizes.height}
 		anchor={0.5}
 		y={props.layout.fgY}
 	/>
