@@ -104,6 +104,26 @@ export default {
 		},
 		preload: true,
 	},
+	howToPlayPanelBg: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/howToPlay/PANEL-BG.png', import.meta.url).href,
+		preload: true,
+	},
+	howToPlayWays: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/howToPlay/PANEL-WAYS.png', import.meta.url).href,
+		preload: true,
+	},
+	howToPlayMultiplier: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/howToPlay/PANEL-MULTIPLIER.png', import.meta.url).href,
+		preload: true,
+	},
+	howToPlayFreeSpins: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/howToPlay/PANEL-FREESPINS.png', import.meta.url).href,
+		preload: true,
+	},
 	uiButtons: {
 		type: 'sprites',
 		src: {

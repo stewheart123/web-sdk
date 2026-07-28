@@ -205,11 +205,40 @@ export type BoardLayoutRect = VirtualSize & {
 
 export type LoadingScreenLayoutSettings = VirtualOffset & {
 	logoWidth: number;
+	/** Logo Y offset from Loading/Root (negative places it above the how-to panels). */
+	logoY: number;
 	progressBar: VirtualOffset & VirtualSize;
 };
 
 export type ResolvedLoadingScreenLayout = LoadingScreenLayoutSettings & {
 	pressToContinue: EmbeddedPressToContinueLayout;
+};
+
+export type HowToPlayPanelLayoutSettings = {
+	/** Panel card size. */
+	panelWidth: number;
+	panelHeight: number;
+	/** Gap between panels in the 3-across row / carousel stride. */
+	gap: number;
+	/** Offset of the how-to root from Loading/Root. */
+	y: number;
+	/** Foreground illustration max size inside a panel. */
+	fgSize: number;
+	/** Y of FG relative to panel center (negative = above center). */
+	fgY: number;
+	/** Text block max width and style. */
+	textMaxWidth: number;
+	fontSize: number;
+	/** Y of text relative to panel center. */
+	textY: number;
+	/** Page-dot row Y relative to how-to root (carousel only). */
+	dotsY: number;
+	dotDiameter: number;
+	dotGap: number;
+};
+
+export type ResolvedHowToPlayLayout = HowToPlayPanelLayoutSettings & {
+	carousel: boolean;
 };
 
 export type BonusTransitionLayoutSettings = {
@@ -659,31 +688,102 @@ export const VISUAL_LAYOUT = {
 		progress: { label: 'Loading/Progress' },
 		progressBg: { label: 'Loading/ProgressBg' },
 		progressFill: { label: 'Loading/ProgressFill' },
+		howToPlay: {
+			root: { label: 'Loading/HowToPlay' },
+			panel: { label: 'Loading/HowToPlay/Panel' },
+			panelBg: { label: 'Loading/HowToPlay/PanelBg' },
+			panelFg: { label: 'Loading/HowToPlay/PanelFg' },
+			panelText: { label: 'Loading/HowToPlay/PanelText' },
+			track: { label: 'Loading/HowToPlay/Track' },
+			dots: { label: 'Loading/HowToPlay/Dots' },
+			layoutByType: {
+				desktop: {
+					panelWidth: 300,
+					panelHeight: 420,
+					gap: 28,
+					y: 0,
+					fgSize: 160,
+					fgY: -70,
+					textMaxWidth: 260,
+					fontSize: 20,
+					textY: 120,
+					dotsY: 250,
+					dotDiameter: 14,
+					dotGap: 16,
+				},
+				tablet: {
+					panelWidth: 260,
+					panelHeight: 380,
+					gap: 20,
+					y: 0,
+					fgSize: 140,
+					fgY: -60,
+					textMaxWidth: 230,
+					fontSize: 18,
+					textY: 110,
+					dotsY: 230,
+					dotDiameter: 14,
+					dotGap: 16,
+				},
+				landscape: {
+					panelWidth: 340,
+					panelHeight: 360,
+					gap: 24,
+					y: 0,
+					fgSize: 140,
+					fgY: -55,
+					textMaxWidth: 300,
+					fontSize: 18,
+					textY: 100,
+					dotsY: 210,
+					dotDiameter: 16,
+					dotGap: 18,
+				},
+				portrait: {
+					panelWidth: 420,
+					panelHeight: 520,
+					gap: 28,
+					y: 0,
+					fgSize: 200,
+					fgY: -90,
+					textMaxWidth: 360,
+					fontSize: 24,
+					textY: 140,
+					dotsY: 300,
+					dotDiameter: 18,
+					dotGap: 20,
+				},
+			} satisfies Record<LayoutType, HowToPlayPanelLayoutSettings>,
+		},
 		screen: {
 			layoutByType: {
 				desktop: {
 					x: 711,
-					y: 400,
-					logoWidth: 300,
-					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+					y: 360,
+					logoWidth: 200,
+					logoY: -260,
+					progressBar: { x: 0, y: 360, width: 393, height: 69 },
 				},
 				landscape: {
 					x: 800,
-					y: 450,
-					logoWidth: 300,
-					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+					y: 340,
+					logoWidth: 160,
+					logoY: -220,
+					progressBar: { x: 0, y: 280, width: 393, height: 69 },
 				},
 				portrait: {
 					x: 400,
-					y: 711,
-					logoWidth: 300,
-					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+					y: 520,
+					logoWidth: 180,
+					logoY: -360,
+					progressBar: { x: 0, y: 420, width: 393, height: 69 },
 				},
 				tablet: {
 					x: 500,
-					y: 500,
-					logoWidth: 300,
-					progressBar: { x: 0, y: 250, width: 393, height: 69 },
+					y: 340,
+					logoWidth: 180,
+					logoY: -240,
+					progressBar: { x: 0, y: 320, width: 393, height: 69 },
 				},
 			} satisfies Record<LayoutType, LoadingScreenLayoutSettings>,
 		},
@@ -691,7 +791,7 @@ export const VISUAL_LAYOUT = {
 		pressToContinue: {
 			label: 'Loading/PressToContinue',
 			x: 0,
-			y: 220,
+			y: -30,
 			widthRatio: 1.6,
 			anchor: { x: 0.5, y: 0.5 },
 		},
@@ -902,10 +1002,21 @@ export const resolveLoadingScreenLayout = (
 		pressToContinue: {
 			label: pressToContinue.label,
 			x: pressToContinue.x ?? 0,
-			y: pressToContinue.y,
+			y: screen.progressBar.y + (pressToContinue.y ?? 0),
 			width: screen.progressBar.width * pressToContinue.widthRatio,
 			anchor: pressToContinue.anchor,
 		},
+	};
+};
+
+export const getHowToPlayLayout = (layoutType: LayoutType) =>
+	VISUAL_LAYOUT.loading.howToPlay.layoutByType[layoutType];
+
+export const resolveHowToPlayLayout = (layoutType: LayoutType): ResolvedHowToPlayLayout => {
+	const layout = getHowToPlayLayout(layoutType);
+	return {
+		...layout,
+		carousel: layoutType === 'portrait' || layoutType === 'landscape',
 	};
 };
 
@@ -1051,6 +1162,15 @@ export const SCENE_LABELS = {
 		progressBg: VISUAL_LAYOUT.loading.progressBg.label,
 		progressFill: VISUAL_LAYOUT.loading.progressFill.label,
 		pressToContinue: VISUAL_LAYOUT.loading.pressToContinue.label,
+		howToPlay: {
+			root: VISUAL_LAYOUT.loading.howToPlay.root.label,
+			panel: VISUAL_LAYOUT.loading.howToPlay.panel.label,
+			panelBg: VISUAL_LAYOUT.loading.howToPlay.panelBg.label,
+			panelFg: VISUAL_LAYOUT.loading.howToPlay.panelFg.label,
+			panelText: VISUAL_LAYOUT.loading.howToPlay.panelText.label,
+			track: VISUAL_LAYOUT.loading.howToPlay.track.label,
+			dots: VISUAL_LAYOUT.loading.howToPlay.dots.label,
+		},
 	},
 	layout: {
 		frameLayer: VISUAL_LAYOUT.layout.frameLayer.label,
