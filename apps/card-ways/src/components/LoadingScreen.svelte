@@ -8,6 +8,7 @@
 	import { getContext } from '../game/context';
 	import { stateSplash } from '../game/stateSplash.svelte';
 	import { isHowToPlayCarouselLayout } from '../game/howToPlayPanels';
+	import { preloadCinzelFont } from '../game/preloadCinzelFont';
 	import {
 		OVERLAY,
 		resolveLoadingScreenLayout,
@@ -30,7 +31,8 @@
 
 	let loadingType = $state<'start' | 'transition'>('start');
 
-	onMount(() => {
+	onMount(async () => {
+		await preloadCinzelFont();
 		stateSplash.loadingScreenReady = true;
 	});
 

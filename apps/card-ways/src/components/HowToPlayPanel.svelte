@@ -4,6 +4,7 @@
 
 	import { getContext } from '../game/context';
 	import type { HowToPlayPanelDef } from '../game/howToPlayPanels';
+	import { CINZEL_FONT_FAMILY } from '../game/preloadCinzelFont';
 	import type { HowToPlayPanelLayoutSettings } from '../game/visualLayoutConfig';
 	import { SCENE_LABELS } from '../game/visualLayoutConfig';
 
@@ -70,7 +71,7 @@
 		anchor={{ x: 0.5, y: 0 }}
 		y={props.layout.textY}
 		style={{
-			fontFamily: 'Arial, sans-serif',
+			fontFamily: CINZEL_FONT_FAMILY,
 			fontSize: props.layout.fontSize,
 			fontWeight: '600',
 			fill: 0xffffff,
@@ -78,6 +79,13 @@
 			wordWrap: true,
 			wordWrapWidth: props.layout.textMaxWidth,
 			lineHeight: props.layout.fontSize * 1.3,
+			dropShadow: {
+				alpha: 0.75,
+				color: 0x000000,
+				blur: 3,
+				distance: 2,
+				angle: Math.PI / 4,
+			},
 		}}
 	/>
 </Container>
