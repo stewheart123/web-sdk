@@ -685,6 +685,7 @@ export const VISUAL_LAYOUT = {
 	loading: {
 		root: { label: 'Loading/Root' },
 		logo: { label: 'Loading/Logo' },
+		dim: { label: 'Loading/Dim' },
 		progress: { label: 'Loading/Progress' },
 		progressBg: { label: 'Loading/ProgressBg' },
 		progressFill: { label: 'Loading/ProgressFill' },
@@ -1158,6 +1159,7 @@ export const SCENE_LABELS = {
 	loading: {
 		root: VISUAL_LAYOUT.loading.root.label,
 		logo: VISUAL_LAYOUT.loading.logo.label,
+		dim: VISUAL_LAYOUT.loading.dim.label,
 		progress: VISUAL_LAYOUT.loading.progress.label,
 		progressBg: VISUAL_LAYOUT.loading.progressBg.label,
 		progressFill: VISUAL_LAYOUT.loading.progressFill.label,

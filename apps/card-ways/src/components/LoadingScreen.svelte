@@ -2,13 +2,17 @@
 	import { onMount } from 'svelte';
 	import { SpineProvider, SpineTrack, Container, Sprite, Rectangle } from 'pixi-svelte';
 	import { FadeContainer, LoadingProgress } from 'components-pixi';
-	import { MainContainer, OnPressFullScreen } from 'components-layout';
+	import { CanvasSizeRectangle, MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
 
 	import { getContext } from '../game/context';
 	import { stateSplash } from '../game/stateSplash.svelte';
 	import { isHowToPlayCarouselLayout } from '../game/howToPlayPanels';
-	import { resolveLoadingScreenLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import {
+		OVERLAY,
+		resolveLoadingScreenLayout,
+		SCENE_LABELS,
+	} from '../game/visualLayoutConfig';
 	import BonusTransitionAnimation from './BonusTransitionAnimation.svelte';
 	import HowToPlayPanels from './HowToPlayPanels.svelte';
 	import PressToContinue from './PressToContinue.svelte';
@@ -37,6 +41,11 @@
 </script>
 
 <FadeContainer show={loadingType === 'start'} label={SCENE_LABELS.fade.loadingStart}>
+	<CanvasSizeRectangle
+		label={SCENE_LABELS.loading.dim}
+		backgroundColor={OVERLAY.backgroundColor}
+		backgroundAlpha={OVERLAY.backgroundAlpha}
+	/>
 	<MainContainer label={SCENE_LABELS.layout.loading}>
 		<Container label={SCENE_LABELS.loading.root} x={layout.x} y={layout.y}>
 			<SpineProvider
