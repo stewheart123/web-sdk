@@ -40,7 +40,7 @@
 
 					reelSymbol.symbolState = 'win';
 					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
-					reelSymbol.symbolState = 'static';
+					reelSymbol.symbolState = 'postWinStatic';
 				});
 
 			await Promise.all(getPromises());

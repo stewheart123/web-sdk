@@ -3,9 +3,10 @@
 	import SymbolSprite from './SymbolSprite.svelte';
 	import { getSymbolInfo } from '../game/utils';
 	import type { SymbolState, RawSymbol } from '../game/types';
-	import { BitmapText } from 'pixi-svelte';
+	import { BitmapText, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
+	import { SYMBOL_CONTENT_SCALE, SYMBOL_SIZE } from '../game/constants';
 	import { sceneLabel } from '../game/visualLayoutConfig';
 	import { waitForTimeout } from 'utils-shared/wait';
 
@@ -31,6 +32,7 @@
 	const isSprite = $derived(symbolInfo.type === 'sprite');
 	const symbolLabel = $derived(sceneLabel.symbol(props.reelIndex, props.row));
 	const isWin = $derived(props.state === 'win');
+	const showWinMarking = $derived(props.state === 'postWinStatic');
 
 	let winPlaysCompleted = $state(0);
 
@@ -80,6 +82,18 @@
 			complete: handleSpineComplete,
 		}}
 	/>
+{/if}
+
+{#if showWinMarking}
+	<SpineProvider
+		x={props.x}
+		y={props.y}
+		key="cardSymbols"
+		height={SYMBOL_SIZE}
+		scale={SYMBOL_CONTENT_SCALE}
+	>
+		<SpineTrack trackIndex={0} animationName="WIN-MARKING-WEAK" loop={true} />
+	</SpineProvider>
 {/if}
 
 {#if props.rawSymbol.multiplier}

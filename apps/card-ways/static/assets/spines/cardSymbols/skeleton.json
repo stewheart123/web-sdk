@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "uCaQRYzsebQ",
+	"hash": "GhN0MAmkXnM",
 	"spine": "4.3.23",
 	"x": -584.0554,
 	"y": -958.4995,
@@ -21,7 +21,8 @@
 	{ "name": "CHARACTER-SHINE", "parent": "CHARACTER" },
 	{ "name": "BG-SHINE", "parent": "BG" },
 	{ "name": "SHINE4", "parent": "SHINE-LAYERS" },
-	{ "name": "MOTION-BLUR", "parent": "CHARACTER" }
+	{ "name": "MOTION-BLUR", "parent": "CHARACTER" },
+	{ "name": "HALO", "parent": "root", "x": -6.65527, "y": -17.22885, "scaleX": 1.08243, "scaleY": 1.08243 }
 ],
 "slots": [
 	{ "name": "CARD_SHADOW", "bone": "SHADOW", "attachment": "CARD_SHADOW" },
@@ -29,9 +30,9 @@
 	{ "name": "bg_shine-0", "bone": "BG-SHINE", "attachment": "edge-" },
 	{ "name": "CHARACTER", "bone": "CHARACTER", "attachment": "SCATTER_COIN" },
 	{ "name": "upper-side-0", "bone": "SHINE", "color": "00ffd54c", "attachment": "upper-side-" },
-	{ "name": "upper-side-1", "bone": "SHINE2", "color": "ffffff5e", "attachment": "upper-side-" },
-	{ "name": "upper-side-2", "bone": "SHINE3", "color": "9015ff55", "attachment": "upper-side-" },
-	{ "name": "upper-side-3", "bone": "SHINE4", "color": "9015ff55", "attachment": "upper-side-" },
+	{ "name": "upper-side-1", "bone": "SHINE2", "color": "17ffee5d", "attachment": "upper-side-" },
+	{ "name": "upper-side-2", "bone": "SHINE3", "color": "9015ff54", "attachment": "upper-side-" },
+	{ "name": "upper-side-3", "bone": "SHINE4", "color": "ff707054", "attachment": "upper-side-" },
 	{ "name": "queen", "bone": "CHARACTER-SHINE", "attachment": "queen-" },
 	{ "name": "king", "bone": "CHARACTER-SHINE", "attachment": "king-" },
 	{ "name": "jack", "bone": "CHARACTER-SHINE", "attachment": "jack-" },
@@ -40,7 +41,9 @@
 	{ "name": "ace", "bone": "CHARACTER-SHINE", "attachment": "ace-" },
 	{ "name": "wild", "bone": "CHARACTER-SHINE", "attachment": "wild-" },
 	{ "name": "scatter", "bone": "CHARACTER-SHINE", "attachment": "scatter-" },
-	{ "name": "CARD-MOTION", "bone": "MOTION-BLUR" }
+	{ "name": "halo-0", "bone": "HALO" },
+	{ "name": "halo-1", "bone": "HALO" },
+	{ "name": "halo-2", "bone": "HALO" }
 ],
 "skins": [
 	{
@@ -71,17 +74,6 @@
 					"width": 862.0,
 					"height": 1276.0
 				}
-			},
-			"CARD-MOTION": {
-				"9-MOTION": { "width": 1024, "height": 1536 },
-				"A-MOTION": { "width": 1024, "height": 1536 },
-				"J-MOTION": { "width": 1024, "height": 1536 },
-				"K-MOTION": { "width": 1024, "height": 1536 },
-				"NON-WIN-MOTION": { "width": 1024, "height": 1536 },
-				"Q-MOTION": { "width": 1024, "height": 1536 },
-				"SCATTER-MOTION": { "width": 1024, "height": 1536 },
-				"TEN-MOTION": { "width": 1026, "height": 1648 },
-				"W-MOTION": { "width": 1024, "height": 1536 }
 			},
 			"CARD_BG_4": {
 				"CARD_BG_1": {
@@ -147,6 +139,48 @@
 				"Q_LETTER": { "width": 1024, "height": 1536 },
 				"SCATTER_COIN": { "width": 1024, "height": 1536 },
 				"WILD_HORIZONTAL": { "width": 1024, "height": 1536 }
+			},
+			"halo-0": {
+				"halo-": {
+					"type": "mesh",
+					"color": "edffaf91",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 501.64, -756.67, -504.42, -756.67, -504.42, 755.16, 501.64, 755.16 ],
+					"hull": 4,
+					"sequence": { "count": 9, "start": 0, "digits": 1 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 1024.0,
+					"height": 1536.0
+				}
+			},
+			"halo-1": {
+				"halo-": {
+					"type": "mesh",
+					"color": "2afbd9c2",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 501.64, -756.67, -504.42, -756.67, -504.42, 755.16, 501.64, 755.16 ],
+					"hull": 4,
+					"sequence": { "count": 9, "start": 0, "digits": 1, "setup": 8 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 1024.0,
+					"height": 1536.0
+				}
+			},
+			"halo-2": {
+				"halo-": {
+					"type": "mesh",
+					"color": "5b2afbc5",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 501.64, -756.67, -504.42, -756.67, -504.42, 755.16, 501.64, 755.16 ],
+					"hull": 4,
+					"sequence": { "count": 9, "start": 0, "digits": 1, "setup": 7 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 1024.0,
+					"height": 1536.0
+				}
 			},
 			"jack": {
 				"jack-": {
@@ -310,190 +344,6 @@
 			"scatter": {
 				"attachment": [
 					{}
-				]
-			}
-		}
-	},
-	"9-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "9-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"rgba": [
-					{ "color": "ffffff00" },
-					{ "time": 0.23333333, "color": "ffffffff" }
-				],
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "9_LETTER_PURPLE" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"MOTION-BLUR": {
-				"translate": [
-					{ "y": 101.63794 }
-				]
-			},
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"9-LAND-OLD": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "9-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "9_LETTER_PURPLE" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"9-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "9-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"rgba": [
-					{ "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "9_LETTER_PURPLE" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"MOTION-BLUR": {
-				"translate": [
-					{ "y": 101.63795 }
-				]
-			},
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
 				]
 			}
 		}
@@ -770,116 +620,6 @@
 			}
 		}
 	},
-	"10-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "TEN-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "10_LETTER_YELLOW" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"10-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "TEN-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "10_LETTER_YELLOW" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
-				]
-			}
-		}
-	},
 	"10-WIN": {
 		"slots": {
 			"CARD_BG_4": {
@@ -1148,116 +888,6 @@
 			"scatter": {
 				"attachment": [
 					{}
-				]
-			}
-		}
-	},
-	"A-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "A-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "A_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"A-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "A-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "A_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
 				]
 			}
 		}
@@ -1539,116 +1169,6 @@
 			}
 		}
 	},
-	"J-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "J-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "J_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"J-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "J-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "J_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
-				]
-			}
-		}
-	},
 	"J-WIN": {
 		"slots": {
 			"CARD_BG_4": {
@@ -1917,116 +1437,6 @@
 			"scatter": {
 				"attachment": [
 					{}
-				]
-			}
-		}
-	},
-	"K-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "K-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "K_LETTER_GREEN" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"K-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "K-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "K_LETTER_GREEN" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
 				]
 			}
 		}
@@ -2303,116 +1713,6 @@
 			}
 		}
 	},
-	"NON-WIN-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "NON-WIN-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_4" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{}
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"NON-WIN-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "NON-WIN-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_4" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{}
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
-				]
-			}
-		}
-	},
 	"Q-IDLE": {
 		"slots": {
 			"CARD_BG_4": {
@@ -2428,116 +1728,6 @@
 			"scatter": {
 				"attachment": [
 					{}
-				]
-			}
-		}
-	},
-	"Q-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "Q-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "Q_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"Q-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "Q-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_1" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "Q_LETTER" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
 				]
 			}
 		}
@@ -2804,96 +1994,6 @@
 			}
 		}
 	},
-	"SCATTER-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "SCATTER-MOTION" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"SCATTER-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "SCATTER-MOTION" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
-				]
-			}
-		}
-	},
 	"SCATTER-WIN": {
 		"slots": {
 			"CARD_SHADOW": {
@@ -3156,116 +2256,6 @@
 			}
 		}
 	},
-	"WILD-LAND": {
-		"slots": {
-			"CARD-MOTION": {
-				"rgba": [
-					{ "color": "ffffffff" },
-					{ "time": 0.2666667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "W-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_2" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{
-						"color": "ffffff9c",
-						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333, "color": "ffffffff" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "WILD_HORIZONTAL" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{
-						"y": 126.92798,
-						"curve": [ 0.04444444, 0, -0.1777778, 0, 0.04444444, 126.92798, -0.1777778, 0 ]
-					},
-					{ "time": 0.13333334 }
-				],
-				"scale": [
-					{
-						"x": 1.01,
-						"y": 1.01,
-						"curve": [ 0.04444444, 1.01, 0.08888888, 1, 0.04444444, 1.01, 0.08888888, 1 ]
-					},
-					{ "time": 0.13333334 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{
-						"x": 1.03,
-						"y": 1.03,
-						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
-					},
-					{ "time": 0.3333333 }
-				]
-			}
-		}
-	},
-	"WILD-MOTION": {
-		"slots": {
-			"CARD-MOTION": {
-				"attachment": [
-					{ "name": "W-MOTION" }
-				]
-			},
-			"CARD_BG_4": {
-				"attachment": [
-					{ "name": "CARD_BG_2" }
-				]
-			},
-			"CARD_SHADOW": {
-				"rgba": [
-					{ "color": "ffffff9c" }
-				]
-			},
-			"CHARACTER": {
-				"attachment": [
-					{ "name": "WILD_HORIZONTAL" }
-				]
-			},
-			"scatter": {
-				"attachment": [
-					{}
-				]
-			}
-		},
-		"bones": {
-			"root": {
-				"translate": [
-					{ "y": 126.92798 }
-				],
-				"scale": [
-					{ "x": 1.01, "y": 1.01 }
-				]
-			},
-			"SHADOW": {
-				"scale": [
-					{ "x": 1.03, "y": 1.03 }
-				]
-			}
-		}
-	},
 	"WILD-WIN": {
 		"slots": {
 			"CARD_BG_4": {
@@ -3513,6 +2503,185 @@
 					"wild-": {
 						"sequence": [
 							{ "time": 0.06666667, "mode": "once", "delay": 0.05 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"WIN-MARKING-STRONG": {
+		"slots": {
+			"CARD_BG_4": {
+				"attachment": [
+					{}
+				]
+			},
+			"CARD_SHADOW": {
+				"attachment": [
+					{}
+				]
+			},
+			"CHARACTER": {
+				"attachment": [
+					{}
+				]
+			},
+			"halo-0": {
+				"rgba": [
+					{
+						"color": "ffffffff",
+						"curve": [ 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 0.842 ]
+					},
+					{
+						"time": 0.8333333,
+						"color": "ffffffd7",
+						"curve": [ 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 0.842, 1.2555556, 1.3726 ]
+					},
+					{ "time": 1.4666667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-1": {
+				"rgba": [
+					{
+						"color": "ffffffff",
+						"curve": [ 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 0.842 ]
+					},
+					{
+						"time": 0.8333333,
+						"color": "ffffffd7",
+						"curve": [ 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 0.842, 1.2555556, 1.3726 ]
+					},
+					{ "time": 1.4666667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-2": {
+				"rgba": [
+					{
+						"color": "ffffffff",
+						"curve": [ 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 1, 0.2777778, 1, 0.5555555, 0.842 ]
+					},
+					{
+						"time": 0.8333333,
+						"color": "ffffffd7",
+						"curve": [ 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 1, 1.2555556, 1, 1.0444444, 0.842, 1.2555556, 1.3726 ]
+					},
+					{ "time": 1.4666667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"scatter": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"halo-0": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-1": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 8, "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-2": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 7, "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"WIN-MARKING-WEAK": {
+		"slots": {
+			"CARD_BG_4": {
+				"attachment": [
+					{}
+				]
+			},
+			"CARD_SHADOW": {
+				"attachment": [
+					{}
+				]
+			},
+			"CHARACTER": {
+				"attachment": [
+					{}
+				]
+			},
+			"halo-0": {
+				"rgba": [
+					{ "color": "ffffff89" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-1": {
+				"rgba": [
+					{ "color": "ffffff59" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-2": {
+				"rgba": [
+					{ "color": "ffffff7c" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"scatter": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"halo-0": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-1": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 8, "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-2": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 7, "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
 						]
 					}
 				}
