@@ -38,6 +38,13 @@
 		if (isWin) winPlaysCompleted = 0;
 	});
 
+	// Looping land (IDLE) never "finishes" meaningfully — complete immediately so settle → static.
+	$effect(() => {
+		if (props.state === 'land' && symbolInfo.type === 'spine' && symbolInfo.loop) {
+			props.oncomplete?.();
+		}
+	});
+
 	const handleSpineComplete = () => {
 		if (isWin) {
 			winPlaysCompleted += 1;

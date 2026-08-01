@@ -148,16 +148,6 @@ const createCardSymbol = (
 		animationName: idleName ?? `${prefix}-IDLE`,
 		loop: true,
 	};
-	const spin = {
-		...base,
-		animationName: `${prefix}-MOTION`,
-		loop: true,
-	};
-	const land = {
-		...base,
-		animationName: `${prefix}-LAND`,
-		loop: false,
-	};
 	const win = hasWin
 		? {
 				...base,
@@ -166,7 +156,8 @@ const createCardSymbol = (
 			}
 		: idle;
 
-	return { static: idle, spin, land, postWinStatic: idle, win };
+	// MOTION/LAND clips deferred until next asset pass — use IDLE while falling/settling.
+	return { static: idle, spin: idle, land: idle, postWinStatic: idle, win };
 };
 
 export const SYMBOL_INFO_MAP = {

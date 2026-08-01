@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "nRdqvnBg57k",
+	"hash": "uCaQRYzsebQ",
 	"spine": "4.3.23",
 	"x": -584.0554,
 	"y": -958.4995,
@@ -20,7 +20,8 @@
 	{ "name": "SHINE3", "parent": "SHINE-LAYERS" },
 	{ "name": "CHARACTER-SHINE", "parent": "CHARACTER" },
 	{ "name": "BG-SHINE", "parent": "BG" },
-	{ "name": "SHINE4", "parent": "SHINE-LAYERS" }
+	{ "name": "SHINE4", "parent": "SHINE-LAYERS" },
+	{ "name": "MOTION-BLUR", "parent": "CHARACTER" }
 ],
 "slots": [
 	{ "name": "CARD_SHADOW", "bone": "SHADOW", "attachment": "CARD_SHADOW" },
@@ -39,7 +40,7 @@
 	{ "name": "ace", "bone": "CHARACTER-SHINE", "attachment": "ace-" },
 	{ "name": "wild", "bone": "CHARACTER-SHINE", "attachment": "wild-" },
 	{ "name": "scatter", "bone": "CHARACTER-SHINE", "attachment": "scatter-" },
-	{ "name": "CARD-MOTION", "bone": "CHARACTER" }
+	{ "name": "CARD-MOTION", "bone": "MOTION-BLUR" }
 ],
 "skins": [
 	{
@@ -325,6 +326,72 @@
 				]
 			},
 			"CARD_BG_4": {
+				"rgba": [
+					{ "color": "ffffff00" },
+					{ "time": 0.23333333, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "CARD_BG_1" }
+				]
+			},
+			"CARD_SHADOW": {
+				"rgba": [
+					{
+						"color": "ffffff9c",
+						"curve": [ 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 1, 0.22222222, 1, 0.11111112, 0.6127, 0.22222222, 1 ]
+					},
+					{ "time": 0.3333333, "color": "ffffffff" }
+				]
+			},
+			"CHARACTER": {
+				"attachment": [
+					{ "name": "9_LETTER_PURPLE" }
+				]
+			},
+			"scatter": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"MOTION-BLUR": {
+				"translate": [
+					{ "y": 101.63794 }
+				]
+			},
+			"root": {
+				"translate": [
+					{ "y": 126.92798 }
+				],
+				"scale": [
+					{ "x": 1.01, "y": 1.01 }
+				]
+			},
+			"SHADOW": {
+				"scale": [
+					{
+						"x": 1.03,
+						"y": 1.03,
+						"curve": [ 0.11111112, 1.03, 0.22222222, 1, 0.11111112, 1.03, 0.22222222, 1 ]
+					},
+					{ "time": 0.3333333 }
+				]
+			}
+		}
+	},
+	"9-LAND-OLD": {
+		"slots": {
+			"CARD-MOTION": {
+				"rgba": [
+					{ "color": "ffffffff" },
+					{ "time": 0.2666667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "9-MOTION" }
+				]
+			},
+			"CARD_BG_4": {
 				"attachment": [
 					{ "name": "CARD_BG_1" }
 				]
@@ -387,6 +454,9 @@
 				]
 			},
 			"CARD_BG_4": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				],
 				"attachment": [
 					{ "name": "CARD_BG_1" }
 				]
@@ -408,6 +478,11 @@
 			}
 		},
 		"bones": {
+			"MOTION-BLUR": {
+				"translate": [
+					{ "y": 101.63795 }
+				]
+			},
 			"root": {
 				"translate": [
 					{ "y": 126.92798 }
