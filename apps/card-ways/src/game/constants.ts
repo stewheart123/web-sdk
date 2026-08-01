@@ -134,25 +134,37 @@ export const zIndexes = {
 	},
 };
 
-const createCardSymbol = (suffix: string, hasWin = true) => {
+const createCardSymbol = (
+	prefix: string,
+	{ hasWin = true, idleName }: { hasWin?: boolean; idleName?: string } = {},
+) => {
+	const sizeRatios = { width: CARD_ASPECT, height: 1 };
+	const base = { type: 'spine' as const, assetKey: 'cardSymbols', sizeRatios };
+
 	const idle = {
-		type: 'spine' as const,
-		assetKey: 'cardSymbols',
-		animationName: `IDLE_${suffix}`,
-		sizeRatios: { width: CARD_ASPECT, height: 1 },
+		...base,
+		animationName: idleName ?? `${prefix}-IDLE`,
 		loop: true,
+	};
+	const spin = {
+		...base,
+		animationName: `${prefix}-MOTION`,
+		loop: true,
+	};
+	const land = {
+		...base,
+		animationName: `${prefix}-LAND`,
+		loop: false,
 	};
 	const win = hasWin
 		? {
-				type: 'spine' as const,
-				assetKey: 'cardSymbols',
-				animationName: `WIN_${suffix}`,
-				sizeRatios: { width: CARD_ASPECT, height: 1 },
+				...base,
+				animationName: `${prefix}-WIN`,
 				loop: false,
 			}
 		: idle;
 
-	return { static: idle, spin: idle, land: idle, postWinStatic: idle, win };
+	return { static: idle, spin, land, postWinStatic: idle, win };
 };
 
 export const SYMBOL_INFO_MAP = {
@@ -163,9 +175,6 @@ export const SYMBOL_INFO_MAP = {
 	K: createCardSymbol('K'),
 	Q: createCardSymbol('Q'),
 	S: createCardSymbol('SCATTER'),
-	W: createCardSymbol('W'),
-	N: createCardSymbol('NW', false),
-	X1: createCardSymbol('X1'),
-	X2: createCardSymbol('X2'),
-	X3: createCardSymbol('X3'),
+	W: createCardSymbol('WILD'),
+	N: createCardSymbol('NON-WIN', { hasWin: false, idleName: 'NON-WIN' }),
 };

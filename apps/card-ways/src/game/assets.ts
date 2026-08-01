@@ -32,6 +32,9 @@ export default {
 			skeleton: new URL('../../assets/spines/cardSymbols/skeleton.json', import.meta.url).href,
 			texturePage1: new URL('../../assets/spines/cardSymbols/SYMBOLS.png', import.meta.url).href,
 			texturePage2: new URL('../../assets/spines/cardSymbols/SYMBOLS_2.png', import.meta.url).href,
+			texturePage3: new URL('../../assets/spines/cardSymbols/SYMBOLS_3.png', import.meta.url).href,
+			texturePage4: new URL('../../assets/spines/cardSymbols/SYMBOLS_4.png', import.meta.url).href,
+			texturePage5: new URL('../../assets/spines/cardSymbols/SYMBOLS_5.png', import.meta.url).href,
 		},
 	},
 	reelsFrame: {

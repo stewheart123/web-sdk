@@ -20,24 +20,37 @@
 		loop?: boolean;
 	};
 
+	const WIN_PLAY_COUNT = 2;
+	/** ~1.6s per play; buffer so book events never hang waiting on Spine complete. */
+	const WIN_FALLBACK_MS = 1700 * WIN_PLAY_COUNT;
+
 	const props: Props = $props();
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const symbolInfo = $derived(getSymbolInfo({ rawSymbol: props.rawSymbol, state: props.state }));
 	const isSprite = $derived(symbolInfo.type === 'sprite');
 	const symbolLabel = $derived(sceneLabel.symbol(props.reelIndex, props.row));
+	const isWin = $derived(props.state === 'win');
+
+	let winPlaysCompleted = $state(0);
 
 	$effect(() => {
-		if (props.state === 'land' && symbolInfo.type === 'spine' && symbolInfo.loop) {
-			props.oncomplete?.();
-		}
+		if (isWin) winPlaysCompleted = 0;
 	});
 
-	// WIN animations are ~1.6s; fallback so book events (e.g. free spin trigger) never hang.
+	const handleSpineComplete = () => {
+		if (isWin) {
+			winPlaysCompleted += 1;
+			if (winPlaysCompleted < WIN_PLAY_COUNT) return;
+		}
+		props.oncomplete?.();
+	};
+
+	// Fallback so book events (e.g. free spin trigger) never hang if Spine complete is missed.
 	$effect(() => {
-		if (props.state === 'win' && symbolInfo.type === 'spine' && !symbolInfo.loop) {
+		if (isWin && symbolInfo.type === 'spine') {
 			let cancelled = false;
-			waitForTimeout(1700).then(() => {
+			waitForTimeout(WIN_FALLBACK_MS).then(() => {
 				if (!cancelled) props.oncomplete?.();
 			});
 			return () => {
@@ -52,12 +65,12 @@
 {:else}
 	<SymbolSpine
 		label={symbolLabel}
-		loop={props.loop}
+		loop={isWin ? true : props.loop}
 		{symbolInfo}
 		x={props.x}
 		y={props.y}
 		listener={{
-			complete: props.oncomplete,
+			complete: handleSpineComplete,
 		}}
 	/>
 {/if}

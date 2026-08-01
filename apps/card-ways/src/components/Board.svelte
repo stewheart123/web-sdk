@@ -59,6 +59,7 @@
 
 	<BoardContext animate={true}>
 		<BoardContainer>
+			<BoardMask />
 			<BoardBase />
 		</BoardContainer>
 	</BoardContext>
