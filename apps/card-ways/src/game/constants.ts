@@ -16,6 +16,8 @@ export const normalizeBoard = (board: RawSymbol[][]) =>
 export const SYMBOL_SCALE = 1.7;
 const SYMBOL_BASE_SIZE = 120;
 export const SYMBOL_SIZE = SYMBOL_BASE_SIZE * SYMBOL_SCALE;
+/** Extra spine draw scale to offset transparent padding in the cardSymbols AABB. Does not change cell spacing. */
+export const SYMBOL_CONTENT_SCALE = 1.15;
 const CARD_ASPECT = 225 / 338;
 export const SYMBOL_WIDTH = SYMBOL_SIZE * CARD_ASPECT;
 

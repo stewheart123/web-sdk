@@ -340,6 +340,13 @@ export const VISUAL_LAYOUT = {
 			label: 'Board/Mask',
 			/** Horizontal mask padding as a multiple of SYMBOL_SIZE (applied left and right). */
 			horizontalPadding: 1,
+			/** Vertical mask padding as a multiple of SYMBOL_SIZE (applied top and bottom). */
+			verticalPadding: 0,
+			/**
+			 * Extra vertical bleed for the animate (land/win) layer so FX aren't clipped.
+			 * Frame art covers the overflow.
+			 */
+			animateVerticalPadding: 0.35,
 		},
 		maskDebug: { label: 'Board/MaskDebug' },
 		frame: { label: 'Board/Frame' },
@@ -1234,6 +1241,8 @@ export const BOARD_LAYOUT_BY_TYPE = VISUAL_LAYOUT.board.layoutByType;
 
 export const BOARD_MASK = {
 	horizontalPadding: VISUAL_LAYOUT.board.mask.horizontalPadding,
+	verticalPadding: VISUAL_LAYOUT.board.mask.verticalPadding,
+	animateVerticalPadding: VISUAL_LAYOUT.board.mask.animateVerticalPadding,
 } as const;
 
 export const FRAME_GLOW = {

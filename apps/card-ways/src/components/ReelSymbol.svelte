@@ -21,8 +21,7 @@
 	row={props.symbolIndex}
 	x={getSymbolX(props.reelIndex)}
 	y={props.reelSymbol.symbolY.current}
-	animating={symbolInfo.type === 'spine' &&
-		(props.reelSymbol.symbolState === 'land' || props.reelSymbol.symbolState === 'win')}
+	animating={symbolInfo.type === 'spine' && props.reelSymbol.symbolState === 'win'}
 >
 	<Symbol
 		reelIndex={props.reelIndex}

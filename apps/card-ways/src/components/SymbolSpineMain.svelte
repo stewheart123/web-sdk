@@ -3,7 +3,7 @@
 	import { stateBetDerived } from 'state-shared';
 
 	import { getSymbolInfo } from '../game/utils';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_CONTENT_SCALE, SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
 		label?: string;
@@ -29,6 +29,7 @@
 	key={props.symbolInfo.assetKey}
 	anchor={props.anchor}
 	{height}
+	scale={SYMBOL_CONTENT_SCALE}
 >
 	<SpineTrack
 		loop={props.loop ?? props.symbolInfo.loop ?? false}

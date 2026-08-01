@@ -20,6 +20,7 @@
 	import BoardMask from './BoardMask.svelte';
 	import BoardBase from './BoardBase.svelte';
 	import { normalizeBoard } from '../game/constants';
+	import { BOARD_MASK } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 
@@ -59,7 +60,7 @@
 
 	<BoardContext animate={true}>
 		<BoardContainer>
-			<BoardMask />
+			<BoardMask verticalPadding={BOARD_MASK.animateVerticalPadding} />
 			<BoardBase />
 		</BoardContainer>
 	</BoardContext>
