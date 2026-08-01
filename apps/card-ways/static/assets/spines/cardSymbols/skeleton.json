@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "GhN0MAmkXnM",
+	"hash": "n3xc1M1aS44",
 	"spine": "4.3.23",
 	"x": -584.0554,
 	"y": -958.4995,
@@ -901,7 +901,7 @@
 			},
 			"CARD_SHADOW": {
 				"rgb": [
-					{ "color": "000000" }
+					{ "color": "ffffff" }
 				],
 				"alpha": [
 					{
@@ -2681,6 +2681,82 @@
 					"halo-": {
 						"sequence": [
 							{ "mode": "loop", "index": 7, "delay": 0.03333333 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"WIN-MARKING-WEAK2": {
+		"slots": {
+			"CARD_BG_4": {
+				"attachment": [
+					{}
+				]
+			},
+			"CARD_SHADOW": {
+				"attachment": [
+					{}
+				]
+			},
+			"CHARACTER": {
+				"attachment": [
+					{}
+				]
+			},
+			"halo-0": {
+				"rgba": [
+					{ "color": "ffffff50" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-1": {
+				"rgba": [
+					{ "color": "ffffff50" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"halo-2": {
+				"rgba": [
+					{ "color": "ffffff50" }
+				],
+				"attachment": [
+					{ "name": "halo-" }
+				]
+			},
+			"scatter": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"halo-0": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "delay": 0.05555556 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-1": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 8, "delay": 0.05555556 },
+							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
+						]
+					}
+				},
+				"halo-2": {
+					"halo-": {
+						"sequence": [
+							{ "mode": "loop", "index": 7, "delay": 0.05555556 },
 							{ "time": 1.4666667, "mode": "loop", "delay": 0.1 }
 						]
 					}

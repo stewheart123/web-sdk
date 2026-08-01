@@ -21,9 +21,8 @@
 		loop?: boolean;
 	};
 
-	const WIN_PLAY_COUNT = 2;
 	/** ~1.6s per play; buffer so book events never hang waiting on Spine complete. */
-	const WIN_FALLBACK_MS = 1700 * WIN_PLAY_COUNT;
+	const WIN_FALLBACK_MS = 1700;
 
 	const props: Props = $props();
 	const context = getContext();
@@ -34,26 +33,12 @@
 	const isWin = $derived(props.state === 'win');
 	const showWinMarking = $derived(props.state === 'postWinStatic');
 
-	let winPlaysCompleted = $state(0);
-
-	$effect(() => {
-		if (isWin) winPlaysCompleted = 0;
-	});
-
 	// Looping land (IDLE) never "finishes" meaningfully — complete immediately so settle → static.
 	$effect(() => {
 		if (props.state === 'land' && symbolInfo.type === 'spine' && symbolInfo.loop) {
 			props.oncomplete?.();
 		}
 	});
-
-	const handleSpineComplete = () => {
-		if (isWin) {
-			winPlaysCompleted += 1;
-			if (winPlaysCompleted < WIN_PLAY_COUNT) return;
-		}
-		props.oncomplete?.();
-	};
 
 	// Fallback so book events (e.g. free spin trigger) never hang if Spine complete is missed.
 	$effect(() => {
@@ -74,12 +59,12 @@
 {:else}
 	<SymbolSpine
 		label={symbolLabel}
-		loop={isWin ? true : props.loop}
+		loop={props.loop}
 		{symbolInfo}
 		x={props.x}
 		y={props.y}
 		listener={{
-			complete: handleSpineComplete,
+			complete: props.oncomplete,
 		}}
 	/>
 {/if}
@@ -92,7 +77,7 @@
 		height={SYMBOL_SIZE}
 		scale={SYMBOL_CONTENT_SCALE}
 	>
-		<SpineTrack trackIndex={0} animationName="WIN-MARKING-WEAK" loop={true} />
+		<SpineTrack trackIndex={0} animationName="WIN-MARKING-WEAK2" loop={true} />
 	</SpineProvider>
 {/if}
 
