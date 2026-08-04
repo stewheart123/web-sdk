@@ -29,7 +29,6 @@
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import ModifierReel from './ModifierReel.svelte';
-	import GameLogo from './GameLogo.svelte';
 
 	const context = getContext();
 
@@ -94,7 +93,6 @@
 
 		<MainContainer label={SCENE_LABELS.layout.frameLayer}>
 			<BoardFrame />
-			<GameLogo  />
 		</MainContainer>
 
 		<MainContainer label={SCENE_LABELS.layout.boardLayer}>

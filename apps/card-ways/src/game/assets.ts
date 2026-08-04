@@ -39,7 +39,7 @@ export default {
 	},
 	reelsFrame: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/VENDING-FRAME.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/VENDING-FRAME-LOGO.png', import.meta.url).href,
 	},
 	modifierSlabFrame: {
 		type: 'sprite',

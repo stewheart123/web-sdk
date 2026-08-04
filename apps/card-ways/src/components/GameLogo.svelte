@@ -25,6 +25,6 @@
 
 <Container label={SCENE_LABELS.logo.root} x={position.x} y={position.y}>
 	<SpineProvider label={SCENE_LABELS.logo.spine} key="logo" width={layout.width} {anchor}>
-		<SpineTrack trackIndex={0} animationName="IDLE" loop />
+		<SpineTrack trackIndex={0} animationName="IDLE" loop timeScale={0} />
 	</SpineProvider>
 </Container>

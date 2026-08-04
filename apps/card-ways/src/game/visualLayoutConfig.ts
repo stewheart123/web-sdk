@@ -357,8 +357,8 @@ export const VISUAL_LAYOUT = {
 			desktop: {
 				symbolScale: 1.1,
 				boardXOffset: 0,
-				boardYOffset: 20,
-				frame: { offsetX: 6, offsetY: 75, width: 832, height: 700 },
+				boardYOffset: -50,
+				frame: { offsetX: 4, offsetY: 10, width: 842, height: 800 },
 			},
 			landscape: {
 				symbolScale: 1.4,
