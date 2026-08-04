@@ -13,7 +13,7 @@
 </script>
 
 <script lang="ts">
-	import { Container, SpineProvider, SpineTrack, Sprite } from 'pixi-svelte';
+	import { Container, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { waitForTimeout } from 'utils-shared/wait';
 
@@ -28,10 +28,6 @@
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const layout = $derived(getModifierLayoutSettings(layoutType));
-	const position = $derived({
-		x: context.stateGameDerived.boardLayout().width + layout.x,
-		y: layout.y,
-	});
 
 	let show = $state(false);
 	let multiplier = $state(1);
@@ -128,22 +124,19 @@
 	});
 </script>
 
-<FadeContainer {show} label={SCENE_LABELS.fade.modifier}>
+<FadeContainer {show} persistent label={SCENE_LABELS.fade.modifier}>
 	<BoardContainer>
-		<Container label={SCENE_LABELS.modifier.root} {...position} scale={layout.scale}>
-			<Sprite
-				label={SCENE_LABELS.modifier.slab}
-				key="modifierSlabFrame"
-				anchor={0.5}
-				width={layout.slabWidth}
-				height={layout.slabHeight}
-			/>
+		<Container
+			label={SCENE_LABELS.modifier.root}
+			x={layout.x}
+			y={layout.y}
+			scale={layout.scale}
+		>
 			<SpineProvider
 				label={SCENE_LABELS.modifier.spine}
 				key="slab"
 				anchor={0.5}
 				width={layout.spineWidth}
-				y={layout.spineY}
 			>
 				<SpineTrack
 					trackIndex={0}

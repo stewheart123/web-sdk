@@ -41,10 +41,6 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reelsFrame/VENDING-FRAME-LOGO.png', import.meta.url).href,
 	},
-	modifierSlabFrame: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/SLAB-FRAME.png', import.meta.url).href,
-	},
 	slab: {
 		type: 'spine',
 		src: {

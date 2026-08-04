@@ -88,8 +88,10 @@ const animateSymbols = async ({ positions }: { positions: Position[] }) => {
 export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContext> = {
 	reveal: async (bookEvent: BookEventOfType<'reveal'>, { bookEvents }: BookEventContext) => {
 		eventEmitter.broadcast({ type: 'spinStart' });
-		// Fire-and-forget: OUTRO runs in parallel with the reel spin.
-		eventEmitter.broadcast({ type: 'modifierReelOutro' });
+		// During free spins the multiplier persists — keep IDLE visible, don't OUTRO each spin.
+		if (!stateGame.modifierPersists) {
+			eventEmitter.broadcast({ type: 'modifierReelOutro' });
+		}
 		const isBonusGame = checkIsMultipleRevealEvents({ bookEvents });
 		if (isBonusGame) {
 			eventEmitter.broadcast({ type: 'stopButtonEnable' });

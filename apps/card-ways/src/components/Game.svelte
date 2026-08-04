@@ -93,13 +93,16 @@
 	{#if !context.stateLayout.showLoadingScreen}
 		<ResumeBet />
 
+		<MainContainer label={SCENE_LABELS.layout.modifierLayer}>
+			<ModifierReel />
+		</MainContainer>
+
 		<MainContainer label={SCENE_LABELS.layout.frameLayer}>
 			<BoardFrame />
 		</MainContainer>
 
 		<MainContainer label={SCENE_LABELS.layout.boardLayer}>
 			<Board />
-			<ModifierReel />
 		</MainContainer>
 
 		<!-- <MainContainerDebugOverlay />  -->

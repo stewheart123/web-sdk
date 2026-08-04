@@ -107,15 +107,11 @@ export type ResolvedFreeSpinTotalWinLayout = ResolvedAspectFitSprite & {
 };
 
 export type ModifierLayoutSettings = {
-	slabWidth: number;
-	slabHeight: number;
 	/** Display width for the SLAB spine (height follows skeleton aspect ~245×130). */
 	spineWidth: number;
-	/** Vertical offset of spine relative to slab center. */
-	spineY: number;
 	/** Container scale in board-local space. */
 	scale: number;
-	/** x = boardLayout.width + x; y = y (board-local pixels). */
+	/** Board-local position (origin = board top-left). */
 	x: number;
 	y: number;
 };
@@ -387,47 +383,34 @@ export const VISUAL_LAYOUT = {
 			tablet: { width: 120, x: 150, y: 65, align: 'topLeft' },
 		} satisfies Record<LayoutType, LogoLayoutSettings>,
 	},
-	// layoutSpace: board-local — ModifierReel.svelte; x/y offset from board right edge
+	// layoutSpace: board-local — ModifierReel.svelte; top-right of board/frame (tunable)
 	modifier: {
 		root: { label: 'Modifier/Root' },
-		slab: { label: 'Modifier/Slab' },
 		spine: { label: 'Modifier/Spine' },
 		layoutByType: {
 			desktop: {
-				slabWidth: 204,
-				slabHeight: 296,
-				spineWidth: 204,
-				spineY: 0,
-				scale: 1,
-				x: 153,
-				y: 204,
+				spineWidth: 220,
+				scale: 0.8,
+				x: 626,
+				y: -40,
 			},
 			landscape: {
-				slabWidth: 204,
-				slabHeight: 296,
-				spineWidth: 204,
-				spineY: 0,
+				spineWidth: 220,
 				scale: 1,
-				x: 240,
-				y: 294,
+				x: 640,
+				y: 40,
 			},
 			portrait: {
-				slabWidth: 194,
-				slabHeight: 296,
-				spineWidth: 194,
-				spineY: 0,
+				spineWidth: 200,
 				scale: 0.9,
-				x: -100,
-				y: -200,
+				x: 620,
+				y: 30,
 			},
 			tablet: {
-				slabWidth: 204,
-				slabHeight: 296,
-				spineWidth: 204,
-				spineY: 0,
+				spineWidth: 210,
 				scale: 0.85,
-				x: -50,
-				y: -170,
+				x: 630,
+				y: 35,
 			},
 		} satisfies Record<LayoutType, ModifierLayoutSettings>,
 	},
@@ -777,6 +760,7 @@ export const VISUAL_LAYOUT = {
 	layout: {
 		frameLayer: { label: 'Layout/FrameLayer' },
 		boardLayer: { label: 'Layout/BoardLayer' },
+		modifierLayer: { label: 'Layout/ModifierLayer' },
 		freeSpinModal: { label: 'Layout/FreeSpinModal' },
 		pressToContinue: { label: 'Layout/PressToContinue' },
 		win: { label: 'Layout/Win' },
@@ -1089,7 +1073,6 @@ export const SCENE_LABELS = {
 	},
 	modifier: {
 		root: VISUAL_LAYOUT.modifier.root.label,
-		slab: VISUAL_LAYOUT.modifier.slab.label,
 		spine: VISUAL_LAYOUT.modifier.spine.label,
 	},
 	freeSpin: {
@@ -1150,6 +1133,7 @@ export const SCENE_LABELS = {
 	layout: {
 		frameLayer: VISUAL_LAYOUT.layout.frameLayer.label,
 		boardLayer: VISUAL_LAYOUT.layout.boardLayer.label,
+		modifierLayer: VISUAL_LAYOUT.layout.modifierLayer.label,
 		freeSpinModal: VISUAL_LAYOUT.layout.freeSpinModal.label,
 		pressToContinue: VISUAL_LAYOUT.layout.pressToContinue.label,
 		win: VISUAL_LAYOUT.layout.win.label,
