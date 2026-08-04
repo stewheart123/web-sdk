@@ -324,6 +324,7 @@ export const VISUAL_LAYOUT = {
 	// layoutSpace: canvas — Background.svelte; centeredBackgroundLayout on window
 	background: {
 		backdrop: { label: 'Background/Backdrop', zIndex: -3 },
+		intro: { label: 'Background/Intro', zIndex: -2 },
 		base: { label: 'Background/Base', zIndex: -2 },
 		feature: { label: 'Background/Feature', zIndex: -1 },
 		ratio: {
@@ -332,6 +333,8 @@ export const VISUAL_LAYOUT = {
 		},
 		artSize: { width: 1264, height: 842 },
 		offset: { x: 0, y: 0 },
+		/** Multiplier on cover scale. <1 zooms out (may show backdrop at edges). */
+		scale: 1, // BACKGROUND SCALE? 
 	},
 	// layoutSpace: virtual — board origin derived in stateGame; frame.offset* is board-local
 	board: {
@@ -816,6 +819,7 @@ export const VISUAL_LAYOUT = {
 	},
 	// layoutSpace: n/a — FadeContainer scene labels only
 	fade: {
+		backgroundIntro: { label: 'Fade/Background/Intro' },
 		backgroundBase: { label: 'Fade/Background/Base' },
 		backgroundFeature: { label: 'Fade/Background/Feature' },
 		freeSpinIntro: { label: 'Fade/FreeSpin/Intro' },
@@ -1103,6 +1107,7 @@ export const getFontScale = (layoutType: LayoutType) =>
 export const SCENE_LABELS = {
 	background: {
 		backdrop: VISUAL_LAYOUT.background.backdrop.label,
+		intro: VISUAL_LAYOUT.background.intro.label,
 		base: VISUAL_LAYOUT.background.base.label,
 		feature: VISUAL_LAYOUT.background.feature.label,
 	},
@@ -1191,6 +1196,7 @@ export const SCENE_LABELS = {
 		loading: VISUAL_LAYOUT.layout.loading.label,
 	},
 	fade: {
+		backgroundIntro: VISUAL_LAYOUT.fade.backgroundIntro.label,
 		backgroundBase: VISUAL_LAYOUT.fade.backgroundBase.label,
 		backgroundFeature: VISUAL_LAYOUT.fade.backgroundFeature.label,
 		freeSpinIntro: VISUAL_LAYOUT.fade.freeSpinIntro.label,
@@ -1225,8 +1231,11 @@ export const BACKGROUND_ART_SIZE = VISUAL_LAYOUT.background.artSize;
 
 export const BACKGROUND_OFFSET = VISUAL_LAYOUT.background.offset;
 
+export const BACKGROUND_SCALE = VISUAL_LAYOUT.background.scale;
+
 export const BACKGROUND_LAYERS = {
 	backdrop: VISUAL_LAYOUT.background.backdrop.zIndex,
+	intro: VISUAL_LAYOUT.background.intro.zIndex,
 	normal: VISUAL_LAYOUT.background.base.zIndex,
 	feature: VISUAL_LAYOUT.background.feature.zIndex,
 } as const;
