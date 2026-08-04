@@ -29,6 +29,7 @@
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import ModifierReel from './ModifierReel.svelte';
+	import MainContainerDebugOverlay from './MainContainerDebugOverlay.svelte';
 
 	const context = getContext();
 
@@ -99,6 +100,9 @@
 			<Board />
 			<ModifierReel />
 		</MainContainer>
+
+		<!-- <MainContainerDebugOverlay />  -->
+		<!-- TODO remove this -->
 
 		<UI>
 			{#snippet gameName()}
