@@ -35,7 +35,7 @@
 		loop={props.loop ?? props.symbolInfo.loop ?? false}
 		trackIndex={0}
 		animationName={props.symbolInfo.animationName}
-		timeScale={stateBetDerived.timeScale()}
+		timeScale={stateBetDerived.timeScale() * 0.75}
 		listener={props.listener}
 	/>
 </SpineProvider>
