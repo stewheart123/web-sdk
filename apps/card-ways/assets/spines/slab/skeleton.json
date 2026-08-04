@@ -1,0 +1,299 @@
+{
+"skeleton": {
+	"hash": "WQowxqhhnGk",
+	"spine": "4.3.23",
+	"x": -122.5,
+	"y": -65,
+	"width": 245,
+	"height": 130,
+	"images": "./SLAB/",
+	"audio": null
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "SLAB-BASE", "parent": "root" },
+	{ "name": "STICKER", "parent": "SLAB-BASE" },
+	{ "name": "SHINE", "parent": "SLAB-BASE" }
+],
+"slots": [
+	{ "name": "SLAB-BASE", "bone": "SLAB-BASE", "attachment": "SLAB-BASE" },
+	{ "name": "SLAB-STICKERS", "bone": "STICKER", "attachment": "SLAB-STICKER-X1" },
+	{ "name": "SLAB-SHINE-0", "bone": "SHINE", "attachment": "SLAB-SHINE-" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"SLAB-BASE": {
+				"SLAB-BASE": { "width": 245, "height": 130 }
+			},
+			"SLAB-SHINE-0": {
+				"SLAB-SHINE-": {
+					"width": 245,
+					"height": 130,
+					"sequence": { "count": 7, "start": 0, "digits": 1 }
+				}
+			},
+			"SLAB-STICKERS": {
+				"SLAB-STICKER-X1": { "width": 245, "height": 130 },
+				"SLAB-STICKER-X2": { "width": 245, "height": 130 },
+				"SLAB-STICKER-X3": { "width": 245, "height": 130 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{
+						"y": -71,
+						"curve": [ 0.08888891, 2.204365E-15, 0.17777777, 3.061621E-15, 0.08888891, -71, 0.17777777, 50.00006 ]
+					},
+					{ "time": 0.2666667, "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"IDLE-X1": {
+		"slots": {
+			"SLAB-SHINE-0": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"IDLE-X2": {
+		"slots": {
+			"SLAB-SHINE-0": {
+				"attachment": [
+					{}
+				]
+			},
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X2" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"IDLE-X3": {
+		"slots": {
+			"SLAB-SHINE-0": {
+				"attachment": [
+					{}
+				]
+			},
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X3" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"INTRO-X1": {
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{
+						"y": -71,
+						"curve": [ 0.08888891, 2.204365E-15, 0.17777777, 3.061621E-15, 0.08888891, -71, 0.17777777, 50.00006 ]
+					},
+					{ "time": 0.2666667, "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"INTRO-X2": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X2" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{
+						"y": -71,
+						"curve": [ 0.08888891, 2.204365E-15, 0.17777777, 3.061621E-15, 0.08888891, -71, 0.17777777, 50.00006 ]
+					},
+					{ "time": 0.2666667, "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"INTRO-X3": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X3" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{
+						"y": -71,
+						"curve": [ 0.08888891, 2.204365E-15, 0.17777777, 3.061621E-15, 0.08888891, -71, 0.17777777, 50.00006 ]
+					},
+					{ "time": 0.2666667, "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
+							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"OUTRO-X1": {
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 },
+					{ "time": 0.2666667, "y": -71 }
+				]
+			}
+		}
+	},
+	"OUTRO-X2": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X2" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 },
+					{ "time": 0.2666667, "y": -71 }
+				]
+			}
+		}
+	},
+	"OUTRO-X3": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X3" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 },
+					{ "time": 0.2666667, "y": -71 }
+				]
+			}
+		}
+	}
+}
+}

@@ -45,6 +45,14 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reelsFrame/SLAB-FRAME.png', import.meta.url).href,
 	},
+	slab: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/slab/SLAB.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/slab/skeleton.json', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/slab/SLAB.png', import.meta.url).href,
+		},
+	},
 	cinzYellowFont: {
 		type: 'font',
 		src: {

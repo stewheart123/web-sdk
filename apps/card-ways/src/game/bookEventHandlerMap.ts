@@ -88,6 +88,8 @@ const animateSymbols = async ({ positions }: { positions: Position[] }) => {
 export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContext> = {
 	reveal: async (bookEvent: BookEventOfType<'reveal'>, { bookEvents }: BookEventContext) => {
 		eventEmitter.broadcast({ type: 'spinStart' });
+		// Fire-and-forget: OUTRO runs in parallel with the reel spin.
+		eventEmitter.broadcast({ type: 'modifierReelOutro' });
 		const isBonusGame = checkIsMultipleRevealEvents({ bookEvents });
 		if (isBonusGame) {
 			eventEmitter.broadcast({ type: 'stopButtonEnable' });
@@ -181,6 +183,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.gameType = 'basegame';
 		stateGame.modifierPersists = false;
 		stateGame.modifierMultiplier = 1;
+		await eventEmitter.broadcastAsync({ type: 'modifierReelOutro' });
 		eventEmitter.broadcast({ type: 'modifierReelHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
 		eventEmitter.broadcast({ type: 'soundFade', name: 'bgm_freespin', from: 1, to: 0, duration: 300 });

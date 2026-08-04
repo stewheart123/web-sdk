@@ -55,11 +55,12 @@
 		buyBonusConfirm: () => {
 			stateModal.modal = { name: 'buyBonusConfirm' };
 		},
-		replayRestart: () => {
+		replayRestart: async () => {
 			stateGame.gameType = 'basegame';
 			stateGame.modifierPersists = false;
 			stateGame.modifierMultiplier = 1;
 			context.stateGameDerived.enhancedBoard.settle(normalizeBoard(INITIAL_BOARD));
+			await context.eventEmitter.broadcastAsync({ type: 'modifierReelOutro' });
 			context.eventEmitter.broadcast({ type: 'modifierReelHide' });
 			context.eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		},

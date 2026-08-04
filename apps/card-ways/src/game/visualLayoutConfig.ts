@@ -109,14 +109,10 @@ export type ResolvedFreeSpinTotalWinLayout = ResolvedAspectFitSprite & {
 export type ModifierLayoutSettings = {
 	slabWidth: number;
 	slabHeight: number;
-	cardHeight: number;
-	cardWindowY: number;
-	/** Card-only vertical offset inside the mask window. Negative moves the card up. */
-	cardYOffset: number;
-	cardWindowWidth: number;
-	cardWindowHeight: number;
-	scrollDistance: number;
-	scrollDuration: number;
+	/** Display width for the SLAB spine (height follows skeleton aspect ~245×130). */
+	spineWidth: number;
+	/** Vertical offset of spine relative to slab center. */
+	spineY: number;
 	/** Container scale in board-local space. */
 	scale: number;
 	/** x = boardLayout.width + x; y = y (board-local pixels). */
@@ -395,21 +391,13 @@ export const VISUAL_LAYOUT = {
 	modifier: {
 		root: { label: 'Modifier/Root' },
 		slab: { label: 'Modifier/Slab' },
-		cardWindow: { label: 'Modifier/CardWindow' },
-		cardWindowMask: { label: 'Modifier/CardWindow/Mask' },
-		card: { label: 'Modifier/Card' },
-		cardSpine: { label: 'Modifier/Card/Spine' },
+		spine: { label: 'Modifier/Spine' },
 		layoutByType: {
 			desktop: {
 				slabWidth: 204,
 				slabHeight: 296,
-				cardHeight: 194,
-				cardWindowY: 31,
-				cardYOffset: -92,
-				cardWindowWidth: 204,
-				cardWindowHeight: 224,
-				scrollDistance: 204,
-				scrollDuration: 333,
+				spineWidth: 204,
+				spineY: 0,
 				scale: 1,
 				x: 153,
 				y: 204,
@@ -417,13 +405,8 @@ export const VISUAL_LAYOUT = {
 			landscape: {
 				slabWidth: 204,
 				slabHeight: 296,
-				cardHeight: 194,
-				cardWindowY: 31,
-				cardYOffset: -92,
-				cardWindowWidth: 204,
-				cardWindowHeight: 224,
-				scrollDistance: 204,
-				scrollDuration: 333,
+				spineWidth: 204,
+				spineY: 0,
 				scale: 1,
 				x: 240,
 				y: 294,
@@ -431,13 +414,8 @@ export const VISUAL_LAYOUT = {
 			portrait: {
 				slabWidth: 194,
 				slabHeight: 296,
-				cardHeight: 194,
-				cardWindowY: 31,
-				cardYOffset: -92,
-				cardWindowWidth: 204,
-				cardWindowHeight: 224,
-				scrollDistance: 204,
-				scrollDuration: 333,
+				spineWidth: 194,
+				spineY: 0,
 				scale: 0.9,
 				x: -100,
 				y: -200,
@@ -445,13 +423,8 @@ export const VISUAL_LAYOUT = {
 			tablet: {
 				slabWidth: 204,
 				slabHeight: 296,
-				cardHeight: 194,
-				cardWindowY: 31,
-				cardYOffset: -92,
-				cardWindowWidth: 204,
-				cardWindowHeight: 224,
-				scrollDistance: 204,
-				scrollDuration: 333,
+				spineWidth: 204,
+				spineY: 0,
 				scale: 0.85,
 				x: -50,
 				y: -170,
@@ -1117,10 +1090,7 @@ export const SCENE_LABELS = {
 	modifier: {
 		root: VISUAL_LAYOUT.modifier.root.label,
 		slab: VISUAL_LAYOUT.modifier.slab.label,
-		cardWindow: VISUAL_LAYOUT.modifier.cardWindow.label,
-		cardWindowMask: VISUAL_LAYOUT.modifier.cardWindowMask.label,
-		card: VISUAL_LAYOUT.modifier.card.label,
-		cardSpine: VISUAL_LAYOUT.modifier.cardSpine.label,
+		spine: VISUAL_LAYOUT.modifier.spine.label,
 	},
 	freeSpin: {
 		modal: {

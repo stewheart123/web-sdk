@@ -3,6 +3,7 @@
 		| { type: 'modifierReelShow' }
 		| { type: 'modifierReelHide' }
 		| { type: 'modifierReelWin' }
+		| { type: 'modifierReelOutro' }
 		| {
 				type: 'modifierReelUpdate';
 				multiplier: number;
@@ -12,17 +13,17 @@
 </script>
 
 <script lang="ts">
-	import { Tween } from 'svelte/motion';
-
-	import { BitmapText, Container, Rectangle, Sprite } from 'pixi-svelte';
+	import { Container, SpineProvider, SpineTrack, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	import BoardContainer from './BoardContainer.svelte';
 	import { getContext } from '../game/context';
-	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getModifierLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
 	import { resolveModifierSymbolName, type ModifierSymbolName } from '../game/utils';
+
+	type AnimationPhase = 'INTRO' | 'IDLE' | 'OUTRO';
+	type AnimationName = `${AnimationPhase}-${ModifierSymbolName}`;
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
@@ -31,84 +32,98 @@
 		x: context.stateGameDerived.boardLayout().width + layout.x,
 		y: layout.y,
 	});
-	const textStyle = $derived(
-		getBitmapFontStyle('winNormal', { symbolSize: layout.cardHeight, layoutType }),
-	);
-
-	const previousCardY = new Tween(0);
-	const currentCardY = new Tween(0);
 
 	let show = $state(false);
-	let isAnimating = $state(false);
 	let multiplier = $state(1);
-	let previousMultiplier = $state(1);
-	let incomingMultiplier = $state(1);
 	let modifierName = $state<ModifierSymbolName>('X1');
+	let animationName = $state<AnimationName>('IDLE-X1');
+	/** True while INTRO/IDLE is active (false after OUTRO completes or before first reveal). */
+	let hasActiveSlab = $state(false);
 
-	const formatMultiplier = (value: number) => `${value}X`;
+	let resolveOutro: (() => void) | null = null;
+	let outroPromise: Promise<void> | null = null;
+	let resolveIntro: (() => void) | null = null;
+
+	const animFor = (phase: AnimationPhase, name: ModifierSymbolName): AnimationName =>
+		`${phase}-${name}`;
+
+	const isIdle = $derived(animationName.startsWith('IDLE-'));
+
+	const playOutro = async () => {
+		if (!show || !hasActiveSlab) {
+			return;
+		}
+		if (outroPromise) {
+			await outroPromise;
+			return;
+		}
+
+		outroPromise = new Promise<void>((resolve) => {
+			resolveOutro = resolve;
+		});
+		animationName = animFor('OUTRO', modifierName);
+		await outroPromise;
+		outroPromise = null;
+		hasActiveSlab = false;
+	};
 
 	const playWinAnimation = async () => {
 		const inBonus = context.stateGame.gameType === 'freegame';
 
-		if (!show || isAnimating) return;
+		if (!show || !hasActiveSlab) return;
 		if (!inBonus && multiplier <= 1) return;
 
-		// Placeholder until multiplier cards have dedicated art / win anims.
+		// Placeholder until multiplier cards have dedicated win anims.
 		await waitForTimeout(400);
 	};
 
-	const playScrollAnimation = async () => {
-		const { scrollDistance, scrollDuration } = getModifierLayoutSettings(
-			context.stateLayoutDerived.layoutType(),
-		);
-
-		isAnimating = true;
-		previousCardY.set(0, { duration: 0 });
-		currentCardY.set(scrollDistance, { duration: 0 });
-
-		await Promise.all([
-			previousCardY.set(-scrollDistance, { duration: scrollDuration }),
-			currentCardY.set(0, { duration: scrollDuration }),
-		]);
-
-		previousCardY.set(0, { duration: 0 });
-		currentCardY.set(0, { duration: 0 });
-		isAnimating = false;
+	const onTrackComplete = () => {
+		if (animationName.startsWith('INTRO-')) {
+			animationName = animFor('IDLE', modifierName);
+			resolveIntro?.();
+			resolveIntro = null;
+		} else if (animationName.startsWith('OUTRO-')) {
+			resolveOutro?.();
+			resolveOutro = null;
+		}
 	};
 
 	context.eventEmitter.subscribeOnMount({
 		modifierReelShow: () => (show = true),
-		modifierReelHide: () => (show = false),
+		modifierReelHide: () => {
+			show = false;
+			hasActiveSlab = false;
+			outroPromise = null;
+			resolveOutro = null;
+			resolveIntro = null;
+		},
 		modifierReelWin: async () => {
 			await playWinAnimation();
 		},
+		modifierReelOutro: async () => {
+			await playOutro();
+		},
 		modifierReelUpdate: async (emitterEvent) => {
+			if (outroPromise) {
+				await outroPromise;
+			}
+
 			const nextName = resolveModifierSymbolName(
 				emitterEvent.modifierName,
 				emitterEvent.multiplier,
 			);
 			const nextMultiplier = emitterEvent.multiplier;
 
-			const symbolChanged = nextName !== modifierName;
+			multiplier = nextMultiplier;
+			modifierName = nextName;
+			hasActiveSlab = true;
+			show = true;
 
-			if (symbolChanged) {
-				if (nextMultiplier === 1 && multiplier !== 1) {
-					await waitForTimeout(300);
-				}
-				previousMultiplier = multiplier;
-				incomingMultiplier = nextMultiplier;
-				multiplier = nextMultiplier;
-				await playScrollAnimation();
-				modifierName = nextName;
-				previousMultiplier = multiplier;
-			} else {
-				multiplier = nextMultiplier;
-				modifierName = nextName;
-				previousMultiplier = multiplier;
-				incomingMultiplier = nextMultiplier;
-				previousCardY.set(0, { duration: 0 });
-				currentCardY.set(0, { duration: 0 });
-			}
+			const introDone = new Promise<void>((resolve) => {
+				resolveIntro = resolve;
+			});
+			animationName = animFor('INTRO', nextName);
+			await introDone;
 		},
 	});
 </script>
@@ -123,42 +138,22 @@
 				width={layout.slabWidth}
 				height={layout.slabHeight}
 			/>
-			<Container label={SCENE_LABELS.modifier.cardWindow} y={layout.cardWindowY}>
-				<Rectangle
-					label={SCENE_LABELS.modifier.cardWindowMask}
-					isMask
-					anchor={0.5}
-					width={layout.cardWindowWidth}
-					height={layout.cardWindowHeight}
-					backgroundAlpha={0}
+			<SpineProvider
+				label={SCENE_LABELS.modifier.spine}
+				key="slab"
+				anchor={0.5}
+				width={layout.spineWidth}
+				y={layout.spineY}
+			>
+				<SpineTrack
+					trackIndex={0}
+					{animationName}
+					loop={isIdle}
+					listener={{
+						complete: onTrackComplete,
+					}}
 				/>
-				<Container label={SCENE_LABELS.modifier.card} y={layout.cardYOffset}>
-					{#if isAnimating}
-						<BitmapText
-							label={SCENE_LABELS.modifier.cardSpine}
-							anchor={0.5}
-							y={previousCardY.current}
-							text={formatMultiplier(previousMultiplier)}
-							style={textStyle}
-						/>
-						<BitmapText
-							label={SCENE_LABELS.modifier.cardSpine}
-							anchor={0.5}
-							y={currentCardY.current}
-							text={formatMultiplier(incomingMultiplier)}
-							style={textStyle}
-						/>
-					{:else}
-						<BitmapText
-							label={SCENE_LABELS.modifier.cardSpine}
-							anchor={0.5}
-							y={0}
-							text={formatMultiplier(multiplier)}
-							style={textStyle}
-						/>
-					{/if}
-				</Container>
-			</Container>
+			</SpineProvider>
 		</Container>
 	</BoardContainer>
 </FadeContainer>
