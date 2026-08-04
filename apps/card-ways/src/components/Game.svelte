@@ -61,7 +61,6 @@
 			stateGame.modifierMultiplier = 1;
 			context.stateGameDerived.enhancedBoard.settle(normalizeBoard(INITIAL_BOARD));
 			context.eventEmitter.broadcast({ type: 'modifierReelHide' });
-			context.eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 			context.eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		},
 	});

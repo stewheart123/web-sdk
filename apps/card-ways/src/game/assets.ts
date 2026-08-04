@@ -62,15 +62,6 @@ export default {
 			scale: 2,
 		},
 	},
-	fsIntro: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
-			texturePage1: new URL('../../assets/spines/fsIntro/MODAL.png', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	fsModal: {
 		type: 'spine',
 		src: {
@@ -90,15 +81,6 @@ export default {
 			texturePage3: new URL('../../assets/spines/foregroundAnimation/CARDS_BG_3.png', import.meta.url).href,
 		},
 		preload: true,
-	},
-	reelhouse: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/MODAL.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/skeleton.json', import.meta.url).href,
-			texturePage1: new URL('../../assets/spines/fsIntro/MODAL.png', import.meta.url).href,
-			scale: 2,
-		},
 	},
 	progressBar: {
 		type: 'sprites',

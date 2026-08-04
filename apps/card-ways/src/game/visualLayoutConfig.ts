@@ -353,13 +353,6 @@ export const VISUAL_LAYOUT = {
 		},
 		maskDebug: { label: 'Board/MaskDebug' },
 		frame: { label: 'Board/Frame' },
-		frameGlow: {
-			label: 'Board/FrameGlow',
-			spine: { label: 'Board/FrameGlow/Spine' },
-			spineScale: { width: 0.62 * 2.55, height: 0.66 * 2.2 },
-			positionAdjustment: { x: 1.008, y: 1 },
-			fadeDuration: 500,
-		},
 		layoutByType: {
 			desktop: {
 				symbolScale: 1.1,
@@ -1116,8 +1109,6 @@ export const SCENE_LABELS = {
 		mask: VISUAL_LAYOUT.board.mask.label,
 		maskDebug: VISUAL_LAYOUT.board.maskDebug.label,
 		frame: VISUAL_LAYOUT.board.frame.label,
-		frameGlow: VISUAL_LAYOUT.board.frameGlow.label,
-		frameGlowSpine: VISUAL_LAYOUT.board.frameGlow.spine.label,
 	},
 	logo: {
 		root: VISUAL_LAYOUT.logo.root.label,
@@ -1252,12 +1243,6 @@ export const BOARD_MASK = {
 	horizontalPadding: VISUAL_LAYOUT.board.mask.horizontalPadding,
 	verticalPadding: VISUAL_LAYOUT.board.mask.verticalPadding,
 	animateVerticalPadding: VISUAL_LAYOUT.board.mask.animateVerticalPadding,
-} as const;
-
-export const FRAME_GLOW = {
-	spineScale: VISUAL_LAYOUT.board.frameGlow.spineScale,
-	positionAdjustment: VISUAL_LAYOUT.board.frameGlow.positionAdjustment,
-	fadeDuration: VISUAL_LAYOUT.board.frameGlow.fadeDuration,
 } as const;
 
 export const LOGO_LAYOUT_BY_TYPE = VISUAL_LAYOUT.logo.layoutByType;
