@@ -29,6 +29,12 @@
 		| `IDLE-${ModifierSymbolName}`
 		| `IDLE-${ModifierSymbolName}-FS`;
 
+	/**
+	 * Partial gate after INTRO starts before book events continue (winInfo).
+	 * Full INTRO is ~1333ms (settle ~267ms, shine from ~600ms). Tune this to taste.
+	 */
+	const INTRO_BEFORE_WIN_MS = 600;
+
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const layout = $derived(getModifierLayoutSettings(layoutType));
@@ -44,7 +50,6 @@
 
 	let resolveOutro: (() => void) | null = null;
 	let outroPromise: Promise<void> | null = null;
-	let resolveIntro: (() => void) | null = null;
 
 	const animFor = (phase: AnimationPhase, name: ModifierSymbolName): AnimationName => {
 		if (phase === 'IDLE' && useFsIdle) {
@@ -93,8 +98,6 @@
 	const onTrackComplete = () => {
 		if (animationName.startsWith('INTRO-')) {
 			animationName = animFor('IDLE', modifierName);
-			resolveIntro?.();
-			resolveIntro = null;
 		} else if (animationName.startsWith('OUTRO-')) {
 			resolveOutro?.();
 			resolveOutro = null;
@@ -109,7 +112,6 @@
 			useFsIdle = false;
 			outroPromise = null;
 			resolveOutro = null;
-			resolveIntro = null;
 		},
 		modifierReelWin: async () => {
 			await playWinAnimation();
@@ -144,11 +146,10 @@
 				return;
 			}
 
-			const introDone = new Promise<void>((resolve) => {
-				resolveIntro = resolve;
-			});
+			// Partial await: let the slab settle briefly, then continue so win
+			// anims overlap the remaining INTRO shine (~1333ms total).
 			animationName = animFor('INTRO', nextName);
-			await introDone;
+			await waitForTimeout(INTRO_BEFORE_WIN_MS);
 		},
 	});
 </script>

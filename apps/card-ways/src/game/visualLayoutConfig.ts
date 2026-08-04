@@ -615,6 +615,8 @@ export const VISUAL_LAYOUT = {
 			/** Do not shrink big-win amount text below this fraction of winBig font size. */
 			bigWinMinFitScale: 0.35,
 			normalWinTextMaxWidthRatio: 0.95,
+			/** Board-local Y offset from pivot; negative moves up toward the gap between visible rows. */
+			normalWinTextOffsetY: -18,
 			/** Fraction of canvas width available for win text after layout + board scale. */
 			canvasWidthPaddingRatio: 0.88,
 			animationScale: 0.45,
@@ -825,7 +827,13 @@ export const VISUAL_LAYOUT = {
 	fonts: {
 		textLayout: {
 			winBig: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 1.6, align: 'center' },
-			winNormal: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 0.5, align: 'center' },
+			winNormal: {
+				font: 'cinzYellow',
+				sizeMode: 'symbolMultiplier',
+				size: 0.2,
+				letterSpacing: 0,
+				align: 'center',
+			},
 			symbolMultiplier: { font: 'cinzYellow', sizeMode: 'absolute', size: 50 },
 			freeSpinCounter: { font: 'cinzYellow', sizeMode: 'symbolMultiplier', size: 0.275 },
 			freeSpinIntro: { font: 'cinzYellow', sizeMode: 'widthRatio', size: 0.05 },

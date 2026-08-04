@@ -123,7 +123,7 @@
 							<ResponsiveBitmapText
 								label={SCENE_LABELS.win.normalText}
 								x={boardLayout.pivot.x}
-								y={boardLayout.pivot.y}
+								y={boardLayout.pivot.y + WIN_LAYOUT.normalWinTextOffsetY}
 								anchor={0.5}
 								maxWidth={winTextMaxWidth}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
