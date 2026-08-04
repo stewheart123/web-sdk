@@ -155,6 +155,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
 		stateGame.gameType = 'freegame';
+		// Lock the trigger-spin multiplier into FS idle immediately (no OUTRO).
+		stateGame.modifierPersists = true;
+		eventEmitter.broadcast({ type: 'modifierReelFsActivate' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 		stateUi.freeSpinCounterShow = true;
@@ -185,8 +188,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.gameType = 'basegame';
 		stateGame.modifierPersists = false;
 		stateGame.modifierMultiplier = 1;
-		await eventEmitter.broadcastAsync({ type: 'modifierReelOutro' });
-		eventEmitter.broadcast({ type: 'modifierReelHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
 		eventEmitter.broadcast({ type: 'soundFade', name: 'bgm_freespin', from: 1, to: 0, duration: 300 });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs', forcePlay: true });
@@ -201,6 +202,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
+		// Slab OUTRO after the summary panel has closed.
+		await eventEmitter.broadcastAsync({ type: 'modifierReelOutro' });
+		eventEmitter.broadcast({ type: 'modifierReelHide' });
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
 		if (bookEvent.amount > 0) {
@@ -228,16 +232,23 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		if (bookEvent.persists) {
 			stateGame.modifierPersists = true;
 		}
-		if (bookEvent.multiplier === 1 && stateGame.modifierMultiplier > 1 && !bookEvent.persists) {
+		// FS lock event can undershoot the trigger-spin multiplier in book data (e.g. X2 then persists X1).
+		// Never drop the active multiplier when locking into free spins; still allow upgrades (X1 → X3).
+		const nextMultiplier = bookEvent.persists
+			? Math.max(bookEvent.multiplier, stateGame.modifierMultiplier)
+			: bookEvent.multiplier;
+		if (nextMultiplier === 1 && stateGame.modifierMultiplier > 1 && !bookEvent.persists) {
 			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_reset' });
-		} else if (bookEvent.multiplier > stateGame.modifierMultiplier) {
+		} else if (nextMultiplier > stateGame.modifierMultiplier) {
 			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_update' });
 		}
-		stateGame.modifierMultiplier = bookEvent.multiplier;
+		stateGame.modifierMultiplier = nextMultiplier;
 		await eventEmitter.broadcastAsync({
 			type: 'modifierReelUpdate',
-			multiplier: bookEvent.multiplier,
-			modifierName: bookEvent.modifier.name,
+			multiplier: nextMultiplier,
+			modifierName: bookEvent.persists
+				? `X${nextMultiplier}`
+				: bookEvent.modifier.name,
 			persists: bookEvent.persists,
 		});
 	},

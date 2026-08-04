@@ -4,6 +4,7 @@
 		| { type: 'modifierReelHide' }
 		| { type: 'modifierReelWin' }
 		| { type: 'modifierReelOutro' }
+		| { type: 'modifierReelFsActivate' }
 		| {
 				type: 'modifierReelUpdate';
 				multiplier: number;
@@ -23,7 +24,10 @@
 	import { resolveModifierSymbolName, type ModifierSymbolName } from '../game/utils';
 
 	type AnimationPhase = 'INTRO' | 'IDLE' | 'OUTRO';
-	type AnimationName = `${AnimationPhase}-${ModifierSymbolName}`;
+	type AnimationName =
+		| `${Exclude<AnimationPhase, 'IDLE'>}-${ModifierSymbolName}`
+		| `IDLE-${ModifierSymbolName}`
+		| `IDLE-${ModifierSymbolName}-FS`;
 
 	const context = getContext();
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
@@ -35,15 +39,27 @@
 	let animationName = $state<AnimationName>('IDLE-X1');
 	/** True while INTRO/IDLE is active (false after OUTRO completes or before first reveal). */
 	let hasActiveSlab = $state(false);
+	/** When true, INTRO completes into IDLE-Xn-FS and same-Xn persists updates swap to FS idle. */
+	let useFsIdle = $state(false);
 
 	let resolveOutro: (() => void) | null = null;
 	let outroPromise: Promise<void> | null = null;
 	let resolveIntro: (() => void) | null = null;
 
-	const animFor = (phase: AnimationPhase, name: ModifierSymbolName): AnimationName =>
-		`${phase}-${name}`;
+	const animFor = (phase: AnimationPhase, name: ModifierSymbolName): AnimationName => {
+		if (phase === 'IDLE' && useFsIdle) {
+			return `IDLE-${name}-FS`;
+		}
+		return `${phase}-${name}`;
+	};
 
 	const isIdle = $derived(animationName.startsWith('IDLE-'));
+
+	const swapToFsIdle = () => {
+		if (!show || !hasActiveSlab) return;
+		useFsIdle = true;
+		animationName = animFor('IDLE', modifierName);
+	};
 
 	const playOutro = async () => {
 		if (!show || !hasActiveSlab) {
@@ -61,6 +77,7 @@
 		await outroPromise;
 		outroPromise = null;
 		hasActiveSlab = false;
+		useFsIdle = false;
 	};
 
 	const playWinAnimation = async () => {
@@ -89,6 +106,7 @@
 		modifierReelHide: () => {
 			show = false;
 			hasActiveSlab = false;
+			useFsIdle = false;
 			outroPromise = null;
 			resolveOutro = null;
 			resolveIntro = null;
@@ -98,6 +116,9 @@
 		},
 		modifierReelOutro: async () => {
 			await playOutro();
+		},
+		modifierReelFsActivate: () => {
+			swapToFsIdle();
 		},
 		modifierReelUpdate: async (emitterEvent) => {
 			if (outroPromise) {
@@ -109,11 +130,19 @@
 				emitterEvent.multiplier,
 			);
 			const nextMultiplier = emitterEvent.multiplier;
+			const alreadyShowingSame = hasActiveSlab && nextName === modifierName;
 
+			useFsIdle = emitterEvent.persists || useFsIdle;
 			multiplier = nextMultiplier;
 			modifierName = nextName;
 			hasActiveSlab = true;
 			show = true;
+
+			// FS activate / lock with same multiplier already on screen: swap to IDLE-Xn-FS, no INTRO.
+			if (useFsIdle && alreadyShowingSame) {
+				animationName = animFor('IDLE', nextName);
+				return;
+			}
 
 			const introDone = new Promise<void>((resolve) => {
 				resolveIntro = resolve;

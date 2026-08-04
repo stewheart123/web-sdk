@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "WQowxqhhnGk",
+	"hash": "jTtZnsbJQHs",
 	"spine": "4.3.23",
 	"x": -122.5,
 	"y": -65,
@@ -43,31 +43,6 @@
 	}
 ],
 "animations": {
-	"animation": {
-		"bones": {
-			"SLAB-BASE": {
-				"translate": [
-					{
-						"y": -71,
-						"curve": [ 0.08888891, 2.204365E-15, 0.17777777, 3.061621E-15, 0.08888891, -71, 0.17777777, 50.00006 ]
-					},
-					{ "time": 0.2666667, "y": 50.00006 }
-				]
-			}
-		},
-		"attachments": {
-			"default": {
-				"SLAB-SHINE-0": {
-					"SLAB-SHINE-": {
-						"sequence": [
-							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
-							{ "time": 0.4, "mode": "once", "index": 6 }
-						]
-					}
-				}
-			}
-		}
-	},
 	"IDLE-X1": {
 		"slots": {
 			"SLAB-SHINE-0": {
@@ -90,6 +65,28 @@
 						"sequence": [
 							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
 							{ "time": 0.4, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"IDLE-X1-FS": {
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.2666667, "mode": "once", "delay": 0.125 },
+							{ "time": 0.9666666, "mode": "once", "index": 6, "delay": 0.05 },
+							{ "time": 3.733333, "mode": "once", "index": 6 }
 						]
 					}
 				}
@@ -129,6 +126,35 @@
 			}
 		}
 	},
+	"IDLE-X2-FS": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X2" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.2666667, "mode": "once", "delay": 0.125 },
+							{ "time": 0.9666666, "mode": "once", "index": 6, "delay": 0.05 },
+							{ "time": 3.733333, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
 	"IDLE-X3": {
 		"slots": {
 			"SLAB-SHINE-0": {
@@ -162,6 +188,35 @@
 			}
 		}
 	},
+	"IDLE-X3-FS": {
+		"slots": {
+			"SLAB-STICKERS": {
+				"attachment": [
+					{ "name": "SLAB-STICKER-X3" }
+				]
+			}
+		},
+		"bones": {
+			"SLAB-BASE": {
+				"translate": [
+					{ "y": 50.00006 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SLAB-SHINE-0": {
+					"SLAB-SHINE-": {
+						"sequence": [
+							{ "time": 0.2666667, "mode": "once", "delay": 0.125 },
+							{ "time": 0.9666666, "mode": "once", "index": 6, "delay": 0.05 },
+							{ "time": 3.733333, "mode": "once", "index": 6 }
+						]
+					}
+				}
+			}
+		}
+	},
 	"INTRO-X1": {
 		"bones": {
 			"SLAB-BASE": {
@@ -179,8 +234,8 @@
 				"SLAB-SHINE-0": {
 					"SLAB-SHINE-": {
 						"sequence": [
-							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
-							{ "time": 0.4, "mode": "once", "index": 6 }
+							{ "time": 0.6, "mode": "once", "delay": 0.1 },
+							{ "time": 1.3333334, "mode": "once", "index": 6, "delay": 0.05 }
 						]
 					}
 				}
@@ -211,8 +266,8 @@
 				"SLAB-SHINE-0": {
 					"SLAB-SHINE-": {
 						"sequence": [
-							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
-							{ "time": 0.4, "mode": "once", "index": 6 }
+							{ "time": 0.6, "mode": "once", "delay": 0.1 },
+							{ "time": 1.3333334, "mode": "once", "index": 6, "delay": 0.05 }
 						]
 					}
 				}
@@ -243,8 +298,8 @@
 				"SLAB-SHINE-0": {
 					"SLAB-SHINE-": {
 						"sequence": [
-							{ "time": 0.16666667, "mode": "once", "delay": 0.05 },
-							{ "time": 0.4, "mode": "once", "index": 6 }
+							{ "time": 0.6, "mode": "once", "delay": 0.1 },
+							{ "time": 1.3333334, "mode": "once", "index": 6, "delay": 0.05 }
 						]
 					}
 				}
