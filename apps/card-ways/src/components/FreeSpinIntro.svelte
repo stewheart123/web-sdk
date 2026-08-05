@@ -8,20 +8,17 @@
 <script lang="ts">
 	import { CanvasSizeRectangle, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
-	import { stateUrlDerived } from 'state-shared';
-	import { AspectFitSprite, FadeContainer } from 'components-pixi';
+	import { FadeContainer } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
-	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import {
 		FREE_SPIN_MODAL,
 		OVERLAY,
 		resolveFreeSpinIntroLayout,
 		SCENE_LABELS,
 	} from '../game/visualLayoutConfig';
-	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
 
@@ -51,7 +48,6 @@
 	const handleContinue = async () => {
 		if (exiting) return;
 
-		// Panel text fades first, then OUTRO; outer fade starts partway through OUTRO.
 		exiting = true;
 		await waitForResolve((resolve) => (outroStartedResolve = resolve));
 		await waitForTimeout(FREE_SPIN_MODAL.outroFadeStartDelayMs);
@@ -88,23 +84,9 @@
 	/>
 
 	{#key introKey}
-		<FreeSpinAnimation
-			{exiting}
-			fadePanelBeforeOutro
-			onOutroStarted={handleOutroStarted}
-		>
+		<FreeSpinAnimation mode="intro" {exiting} onOutroStarted={handleOutroStarted}>
 			{#snippet children({ sizes })}
-				{@const spriteLang = resolveSpriteLang(stateUrlDerived.lang())}
 				{@const layout = resolveFreeSpinIntroLayout(sizes)}
-
-				<AspectFitSprite
-					label={SCENE_LABELS.freeSpin.intro.congrats}
-					anchor={layout.congrats.anchor}
-					maxWidth={layout.congrats.maxWidth}
-					maxHeight={layout.congrats.maxHeight}
-					y={layout.congrats.y}
-					key={resolveLocalizedSpriteKey('freespins', spriteLang, context.stateApp.loadedAssets)}
-				/>
 
 				<FreeSpinNumberDisplay
 					layout={layout.numberText}
@@ -116,21 +98,6 @@
 						layoutType,
 						sizeRatio: layout.numberText.fontSizeRatio,
 					})}
-				/>
-
-				<AspectFitSprite
-					label={SCENE_LABELS.freeSpin.intro.freeSpinsLabel}
-					anchor={layout.freeSpinsLabel.anchor}
-					maxWidth={layout.freeSpinsLabel.maxWidth}
-					maxHeight={layout.freeSpinsLabel.maxHeight}
-					key={resolveLocalizedSpriteKey('freespinslabel', spriteLang, context.stateApp.loadedAssets)}
-				/>
-
-				<PressToContinue
-					embedded
-					visualOnly
-					layout={layout.pressToContinue}
-					onpress={handleContinue}
 				/>
 			{/snippet}
 		</FreeSpinAnimation>

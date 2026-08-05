@@ -69,9 +69,9 @@ export default {
 	fsModal: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/fsModal/FS-MODAL.atlas', import.meta.url).href,
+			atlas: new URL('../../assets/spines/fsModal/FREE_SPINS_MODAL.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/fsModal/skeleton.json', import.meta.url).href,
-			texturePage1: new URL('../../assets/spines/fsModal/FS-MODAL.png', import.meta.url).href,
+			texturePage1: new URL('../../assets/spines/fsModal/FREE_SPINS_MODAL.png', import.meta.url).href,
 			scale: 2,
 		},
 	},

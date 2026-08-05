@@ -1,296 +1,309 @@
 {
 "skeleton": {
-	"hash": "Oj3jf72WgIM",
+	"hash": "Cj5Cj9SZ0mg",
 	"spine": "4.3.23",
-	"x": -512,
-	"y": -768,
-	"width": 1024,
-	"height": 1536,
-	"images": "./EXPORT/COMPLETE-CARDS/",
+	"x": -360.5,
+	"y": -159.0826,
+	"width": 721,
+	"height": 1176.6807,
+	"images": "./FREE_SPINS_MODAL/",
 	"audio": null
 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "bone", "parent": "root" },
-	{ "name": "bone2", "parent": "root" },
-	{ "name": "bone3", "parent": "root" },
-	{ "name": "bone4", "parent": "root" },
-	{ "name": "bone5", "parent": "root" }
+	{ "name": "MODAL-BACKGROUND", "parent": "root", "y": 428.4174 },
+	{ "name": "MESSAGE-TEXT", "parent": "MODAL-BACKGROUND", "y": -91.64196 },
+	{ "name": "VALUE-BONE", "parent": "MESSAGE-TEXT", "y": 38.90404 },
+	{ "name": "FS-MODAL-SHINE", "parent": "MODAL-BACKGROUND", "y": 1.6806946 },
+	{ "name": "CLICK-CONTINUE-TXT", "parent": "MODAL-BACKGROUND", "y": 423.8195 },
+	{ "name": "CARD-SHINE", "parent": "MODAL-BACKGROUND" },
+	{ "name": "CARD-SHINE2", "parent": "MODAL-BACKGROUND" },
+	{ "name": "CARD-SHINE3", "parent": "MODAL-BACKGROUND" }
 ],
 "slots": [
-	{ "name": "SCATTER1", "bone": "bone", "attachment": "SCATTER" },
-	{ "name": "SCATTER2", "bone": "bone2", "attachment": "SCATTER" },
-	{ "name": "SCATTER3", "bone": "bone3", "attachment": "SCATTER" },
-	{ "name": "SCATTER4", "bone": "bone4", "attachment": "SCATTER" },
-	{ "name": "SCATTER5", "bone": "bone5", "attachment": "SCATTER" }
+	{ "name": "FREE-SPINS-MODAL-BG", "bone": "MODAL-BACKGROUND", "attachment": "FREE_SPINS_MODAL_BG" },
+	{ "name": "FS_MODAL_INTRO_TXT", "bone": "MESSAGE-TEXT", "attachment": "FS_MODAL_SUMMARY_TXT" },
+	{ "name": "FS_MODAL_PLACEHOLDER_VALUE", "bone": "VALUE-BONE", "attachment": "FS_MODAL_PLACEHOLDER_VALUE" },
+	{ "name": "SHINE", "bone": "FS-MODAL-SHINE", "attachment": "FS_MODAL_SHINE-" },
+	{ "name": "FS_MODAL_CLICK_TO_CONTINUE", "bone": "CLICK-CONTINUE-TXT", "attachment": "FS_MODAL_CLICK_TO_CONTINUE" },
+	{ "name": "upper-side-0", "bone": "CARD-SHINE", "attachment": "upper-side-" },
+	{ "name": "upper-side-1", "bone": "CARD-SHINE2", "attachment": "upper-side-" },
+	{ "name": "upper-side-2", "bone": "CARD-SHINE3", "attachment": "upper-side-" }
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
-			"SCATTER1": {
-				"SCATTER": { "width": 1024, "height": 1536 }
+			"FREE-SPINS-MODAL-BG": {
+				"FREE_SPINS_MODAL_BG": { "width": 721, "height": 1175 }
 			},
-			"SCATTER2": {
-				"SCATTER": { "width": 1024, "height": 1536 }
+			"FS_MODAL_CLICK_TO_CONTINUE": {
+				"FS_MODAL_CLICK_TO_CONTINUE": { "scaleX": 0.3319491, "scaleY": 0.3319491, "width": 1438, "height": 361 }
 			},
-			"SCATTER3": {
-				"SCATTER": { "width": 1024, "height": 1536 }
+			"FS_MODAL_INTRO_TXT": {
+				"FS_MODAL_INTRO_TXT": { "y": 78.048, "scaleX": 0.3187203, "scaleY": 0.3187203, "width": 1536, "height": 1024 },
+				"FS_MODAL_SUMMARY_TXT": { "y": 32.78323, "scaleX": 0.32507125, "scaleY": 0.32507125, "width": 1418, "height": 948 }
 			},
-			"SCATTER4": {
-				"SCATTER": { "width": 1024, "height": 1536 }
+			"FS_MODAL_PLACEHOLDER_VALUE": {
+				"FS_MODAL_PLACEHOLDER_VALUE": { "scaleX": 0.578401, "scaleY": 0.578401, "width": 212, "height": 157 }
 			},
-			"SCATTER5": {
-				"SCATTER": { "width": 1024, "height": 1536 }
+			"SHINE": {
+				"FS_MODAL_SHINE-": {
+					"color": "ffffffbc",
+					"width": 721,
+					"height": 1175,
+					"sequence": { "count": 8, "start": 0, "digits": 1 }
+				}
+			},
+			"upper-side-0": {
+				"upper-side-": {
+					"type": "mesh",
+					"color": "0070ff81",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 257.43, -494.83, -242.89, -494.83, -242.89, 260.37, 257.43, 260.37 ],
+					"hull": 4,
+					"sequence": { "count": 7, "start": 0, "digits": 1 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 155.0,
+					"height": 110.0
+				}
+			},
+			"upper-side-1": {
+				"upper-side-": {
+					"type": "mesh",
+					"color": "f9ffd8ca",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 257.43, -494.83, -242.89, -494.83, -242.89, 260.37, 257.43, 260.37 ],
+					"hull": 4,
+					"sequence": { "count": 7, "start": 0, "digits": 1 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 155.0,
+					"height": 110.0
+				}
+			},
+			"upper-side-2": {
+				"upper-side-": {
+					"type": "mesh",
+					"color": "00ff724e",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 257.43, -494.83, -242.89, -494.83, -242.89, 260.37, 257.43, 260.37 ],
+					"hull": 4,
+					"sequence": { "count": 7, "start": 0, "digits": 1 },
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 155.0,
+					"height": 110.0
+				}
 			}
 		}
 	}
 ],
 "animations": {
-	"FS-MODAL-FINISH": {
+	"INTRO-IDLE": {
 		"slots": {
-			"SCATTER1": {
-				"rgb": [
-					{ "color": "5f5f5f" }
-				]
-			},
-			"SCATTER2": {
-				"rgb": [
-					{ "color": "999999" }
-				]
-			},
-			"SCATTER3": {
-				"rgb": [
-					{ "color": "999999" }
-				]
-			},
-			"SCATTER4": {
-				"rgb": [
-					{ "color": "cacaca" }
-				]
-			},
-			"SCATTER5": {
+			"FS_MODAL_INTRO_TXT": {
 				"attachment": [
-					{ "time": 0.16666667, "name": "SCATTER" }
+					{ "name": "FS_MODAL_INTRO_TXT" }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"SHINE": {
+					"FS_MODAL_SHINE-": {
+						"sequence": [
+							{ "time": 1.3333334, "mode": "once", "delay": 0.05 },
+							{ "time": 3.666667, "mode": "once", "index": 7, "delay": 0.08333333 }
+						]
+					}
+				},
+				"upper-side-0": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.3333334, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-1": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.4, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-2": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.4333333, "mode": "once", "delay": 0.05 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"INTRO-IN": {
+		"slots": {
+			"FS_MODAL_INTRO_TXT": {
+				"attachment": [
+					{ "name": "FS_MODAL_INTRO_TXT" }
 				]
 			}
 		},
 		"bones": {
-			"bone": {
+			"MODAL-BACKGROUND": {
 				"translate": [
-					{ "x": -1614 }
+					{
+						"y": -1004.3222,
+						"curve": [ 0.3222222, -6.1497E-14, 0.6444444, 0, 0.3222222, -1004.3222, 0.6444444, 0 ]
+					},
+					{ "time": 0.9666666 }
 				]
-			},
-			"bone2": {
-				"translate": [
-					{ "x": -1614 }
+			}
+		},
+		"attachments": {
+			"default": {
+				"SHINE": {
+					"FS_MODAL_SHINE-": {
+						"sequence": [
+							{ "time": 0.9, "mode": "once", "delay": 0.05 },
+							{ "time": 1.5333333, "mode": "once", "index": 7, "delay": 0.08333333 }
+						]
+					}
+				},
+				"upper-side-0": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 0.9, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-1": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 0.9666666, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-2": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1, "mode": "once", "delay": 0.05 }
+						]
+					}
+				}
+			}
+		}
+	},
+	"INTRO-OUT": {
+		"slots": {
+			"FS_MODAL_INTRO_TXT": {
+				"attachment": [
+					{ "name": "FS_MODAL_INTRO_TXT" }
 				]
-			},
-			"bone3": {
+			}
+		},
+		"bones": {
+			"MODAL-BACKGROUND": {
 				"translate": [
-					{ "x": -1614 }
-				]
-			},
-			"bone4": {
-				"translate": [
-					{ "x": -1614 }
-				]
-			},
-			"bone5": {
-				"translate": [
-					{ "x": -1614 }
+					{
+						"curve": [ 0.2888889, 0, 0.5777777, -6.1497E-14, 0.2888889, 0, 0.5777777, -1004.3222 ]
+					},
+					{ "time": 0.8666667, "y": -1004.3222 }
 				]
 			}
 		}
 	},
-	"FS-MODAL-IDLE": {
-		"slots": {
-			"SCATTER1": {
-				"rgb": [
-					{ "color": "5f5f5f" }
-				]
-			},
-			"SCATTER2": {
-				"rgb": [
-					{ "color": "999999" }
-				]
-			},
-			"SCATTER3": {
-				"rgb": [
-					{ "color": "bbbbbb" }
-				]
-			},
-			"SCATTER4": {
-				"rgb": [
-					{ "color": "cacaca" }
-				]
-			}
-		},
-		"bones": {
-			"bone": {
-				"translate": [
-					{ "x": -904 }
-				]
-			},
-			"bone2": {
-				"translate": [
-					{ "x": -549 }
-				]
-			},
-			"bone3": {
-				"translate": [
-					{ "x": -194.0001 }
-				]
-			},
-			"bone4": {
-				"translate": [
-					{ "x": 161 }
-				]
-			},
-			"bone5": {
-				"translate": [
-					{ "x": 516.0001, "curve": "stepped" },
-					{ "time": 0.2666667, "x": 516.0001 }
-				]
+	"SUMMARY-IDLE": {
+		"attachments": {
+			"default": {
+				"SHINE": {
+					"FS_MODAL_SHINE-": {
+						"sequence": [
+							{ "time": 1.3333334, "mode": "once", "delay": 0.05 },
+							{ "time": 3.666667, "mode": "once", "index": 7, "delay": 0.08333333 }
+						]
+					}
+				},
+				"upper-side-0": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.3333334, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-1": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.4, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-2": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1.4333333, "mode": "once", "delay": 0.05 }
+						]
+					}
+				}
 			}
 		}
 	},
-	"FS-MODAL-INTRO": {
-		"slots": {
-			"SCATTER1": {
-				"rgb": [
-					{ "color": "5f5f5f" }
-				]
-			},
-			"SCATTER2": {
-				"rgb": [
-					{ "color": "999999" }
-				]
-			},
-			"SCATTER3": {
-				"rgb": [
+	"SUMMARY-IN": {
+		"bones": {
+			"MODAL-BACKGROUND": {
+				"translate": [
 					{
-						"color": "999999",
-						"curve": [ 0.1777778, 0.6, 0.3555555, 0.7333333, 0.1777778, 0.6, 0.3555555, 0.7333333, 0.1777778, 0.6, 0.3555555, 0.7333333 ]
+						"y": -1004.3222,
+						"curve": [ 0.3222222, -6.1497E-14, 0.6444444, 0, 0.3222222, -1004.3222, 0.6444444, 0 ]
 					},
-					{ "time": 0.5333333, "color": "bbbbbb" }
-				]
-			},
-			"SCATTER4": {
-				"rgb": [
-					{ "color": "cacaca" }
+					{ "time": 0.9666666 }
 				]
 			}
 		},
-		"bones": {
-			"bone": {
-				"translate": [
-					{
-						"x": -1614,
-						"curve": [ 0, -1647.9937, 0.08888888, -904.0001, 0.04444446, 0, 0.08888888, 0 ]
-					},
-					{ "time": 0.13333334, "x": -904 }
-				]
-			},
-			"bone2": {
-				"translate": [
-					{
-						"x": -1614,
-						"curve": [ 0, -1681.9878, 0.13333334, -549, 0.06666667, 0, 0.13333334, 0 ]
-					},
-					{ "time": 0.2, "x": -549 }
-				]
-			},
-			"bone3": {
-				"translate": [
-					{
-						"x": -1614,
-						"curve": [ 0, -1580.0062, 0.17777777, -194.00017, 0.0888889, 0, 0.17777777, 0 ]
-					},
-					{ "time": 0.2666667, "x": -194.0001 }
-				]
-			},
-			"bone4": {
-				"translate": [
-					{
-						"x": -1614,
-						"curve": [ 0, -1673.8517, 0.22222222, 161, 0.11111113, 0, 0.22222222, 0 ]
-					},
-					{ "time": 0.3333333, "x": 161 }
-				]
-			},
-			"bone5": {
-				"translate": [
-					{
-						"x": -1614,
-						"curve": [ 0, -1514.152, 0.2666667, 516.0001, 0.13333334, 0, 0.2666667, 0 ]
-					},
-					{ "time": 0.4, "x": 516.0001 }
-				]
+		"attachments": {
+			"default": {
+				"SHINE": {
+					"FS_MODAL_SHINE-": {
+						"sequence": [
+							{ "time": 0.9, "mode": "once", "delay": 0.05 },
+							{ "time": 1.5333333, "mode": "once", "index": 7, "delay": 0.08333333 }
+						]
+					}
+				},
+				"upper-side-0": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 0.9, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-1": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 0.9666666, "mode": "once", "delay": 0.05 }
+						]
+					}
+				},
+				"upper-side-2": {
+					"upper-side-": {
+						"sequence": [
+							{ "time": 1, "mode": "once", "delay": 0.05 }
+						]
+					}
+				}
 			}
 		}
 	},
-	"FS-MODAL-OUTRO": {
-		"slots": {
-			"SCATTER1": {
-				"rgb": [
-					{ "color": "5f5f5f" }
-				]
-			},
-			"SCATTER2": {
-				"rgb": [
-					{ "color": "999999" }
-				]
-			},
-			"SCATTER3": {
-				"rgb": [
-					{
-						"color": "bbbbbb",
-						"curve": [ 0.1777778, 0.7333333, 0.3555555, 0.6, 0.1777778, 0.7333333, 0.3555555, 0.6, 0.1777778, 0.7333333, 0.3555555, 0.6 ]
-					},
-					{ "time": 0.5333333, "color": "999999" }
-				]
-			},
-			"SCATTER4": {
-				"rgb": [
-					{ "color": "cacaca" }
-				]
-			}
-		},
+	"SUMMARY-OUT": {
 		"bones": {
-			"bone": {
+			"MODAL-BACKGROUND": {
 				"translate": [
-					{ "x": -904, "curve": "stepped" },
-					{ "time": 0.3666667, "x": -904 },
-					{ "time": 0.5333333, "x": -1614 }
-				]
-			},
-			"bone2": {
-				"translate": [
-					{ "x": -549, "curve": "stepped" },
-					{ "time": 0.3, "x": -549 },
-					{ "time": 0.5333333, "x": -1614 }
-				]
-			},
-			"bone3": {
-				"translate": [
-					{ "x": -194.0001, "curve": "stepped" },
-					{ "time": 0.23333333, "x": -194.0001 },
-					{ "time": 0.5333333, "x": -1614 }
-				]
-			},
-			"bone4": {
-				"translate": [
-					{ "x": 161, "curve": "stepped" },
-					{ "time": 0.16666667, "x": 161 },
-					{ "time": 0.5333333, "x": -1614 }
-				]
-			},
-			"bone5": {
-				"translate": [
-					{ "x": 516.0001, "curve": "stepped" },
-					{ "time": 0.1, "x": 516.0001 },
-					{ "time": 0.5333333, "x": -1614 }
+					{
+						"curve": [ 0.2888889, 0, 0.5777777, -6.1497E-14, 0.2888889, 0, 0.5777777, -1004.3222 ]
+					},
+					{ "time": 0.8666667, "y": -1004.3222 }
 				]
 			}
 		}

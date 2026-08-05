@@ -51,20 +51,8 @@ export type ModalLayoutSettings = VirtualSize & {
 	offsetFromBoard: VirtualOffset;
 	/** fsModal spine origin within the modal (local space). */
 	spine: VirtualOffset;
-	/** Intro/outro content panel origin within the modal (local space). */
-	panel: VirtualOffset;
 	/** Display width for the fsModal spine (height follows skeleton aspect). */
 	spineWidth: number;
-};
-
-export type AspectFitSpriteLayout = {
-	label: string;
-	maxWidth: number;
-	maxHeight?: number;
-	x?: number;
-	y?: number;
-	anchor: { x: number; y: number };
-	zIndex?: number;
 };
 
 /** Per-layout overrides for free-spin modal number text sizing. */
@@ -98,12 +86,6 @@ export type ResolvedFreeSpinNumberTextLayout = {
 	offsetY: number;
 	fontSizeRatio: number;
 	maxWidth?: number;
-};
-
-export type ResolvedAspectFitSprite = Omit<AspectFitSpriteLayout, 'label'>;
-
-export type ResolvedFreeSpinTotalWinLayout = ResolvedAspectFitSprite & {
-	bigMaxWidth: number;
 };
 
 export type ModifierLayoutSettings = {
@@ -145,18 +127,8 @@ export type PressToContinueLayoutSettings = {
 	anchor: { x: number; y: number };
 };
 
-/** layoutSpace: modal-local — PressToContinue inside free-spin intro/outro panel */
-export type FreeSpinPressToContinueLayout = {
-	label: string;
-	x?: number;
-	y: number;
-	/** Display width as a fraction of modal width. */
-	widthRatio: number;
-	anchor: { x: number; y: number };
-	zIndex?: number;
-};
-
-export type ResolvedFreeSpinPressToContinueLayout = {
+/** Shared resolved layout for PressToContinue rendered inside a parent container. */
+export type EmbeddedPressToContinueLayout = {
 	label: string;
 	x: number;
 	y: number;
@@ -164,9 +136,6 @@ export type ResolvedFreeSpinPressToContinueLayout = {
 	anchor: { x: number; y: number };
 	zIndex?: number;
 };
-
-/** Shared resolved layout for PressToContinue rendered inside a parent container. */
-export type EmbeddedPressToContinueLayout = ResolvedFreeSpinPressToContinueLayout;
 
 /** layoutSpace: loading-local — PressToContinue inside LoadingScreen root container */
 export type LoadingPressToContinueLayout = {
@@ -276,39 +245,35 @@ export type BitmapFontUsageConfig = {
 // ---------------------------------------------------------------------------
 
 // layoutSpace: board — FreeSpinAnimation.svelte: boardLayout + offsetFromBoard
-// fsModal skeleton is 1024×1536 (portrait); height = spineWidth * 1.5
+// FREE_SPINS_MODAL skeleton is ~721×1176 (portrait)
 const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = {
 	desktop: {
 		width: 600,
 		height: 900,
-		offsetFromBoard: { x: 0, y: -60 },
-		spine: { x: 361, y: 510 },
-		panel: { x: 308, y: 460 },
-		spineWidth: 600 * 0.26,
+		offsetFromBoard: { x: 0, y: 0 },
+		spine: { x: 300, y: 720 },
+		spineWidth: 250,
 	},
 	landscape: {
-		width: 700,
-		height: 1050,
-		offsetFromBoard: { x: 0, y: 20 },
-		spine: { x: 429, y: 508 },
-		panel: { x: 353, y: 465 },
-		spineWidth: 700 * 0.285,
+		width: 600,
+		height: 900,
+		offsetFromBoard: { x: 0, y: 0 },
+		spine: { x: 300, y: 720 },
+		spineWidth: 250,
 	},
 	portrait: {
 		width: 600,
 		height: 900,
-		offsetFromBoard: { x: 0, y: -60 },
-		spine: { x: 364, y: 509 },
-		panel: { x: 300, y: 450 },
-		spineWidth: 600 * 0.28,
+		offsetFromBoard: { x: 0, y: 0 },
+		spine: { x: 300, y: 820 },
+		spineWidth: 400,
 	},
 	tablet: {
 		width: 600,
 		height: 900,
-		offsetFromBoard: { x: 0, y: -60 },
-		spine: { x: 364, y: 508 },
-		panel: { x: 300, y: 450 },
-		spineWidth: 600 * 0.255,
+		offsetFromBoard: { x: 0, y: 0 },
+		spine: { x: 300, y: 720 },
+		spineWidth: 250,
 	},
 };
 
@@ -419,54 +384,29 @@ export const VISUAL_LAYOUT = {
 		modal: {
 			root: { label: 'FreeSpin/Modal/Root' },
 			spine: { label: 'FreeSpin/Modal/Spine' },
-			panel: { label: 'FreeSpin/Modal/Panel' },
-			/** Delay before intro/outro panel content fades in (ms). Spine starts immediately. */
-			panelFadeDelayMs: 1100,
-			/** Panel text/sprite fade-out before FS-MODAL-OUTRO. */
-			panelFadeOutDurationMs: 300,
-			/** Native FS-MODAL-OUTRO duration from spine (ms), before timeScale. */
-			outroDurationMs: 533,
-			/** Playback rate for FS-MODAL-OUTRO (1 = spine default). */
+			/** Native INTRO-OUT / SUMMARY-OUT duration from spine (ms), before timeScale. */
+			outroDurationMs: 867,
+			/** Playback rate for OUT animations (1 = spine default). */
 			outroTimeScale: 0.55,
-			/** Start outer fade after this fraction of the wall-clock OUTRO. */
+			/** Start outer fade after this fraction of the wall-clock OUT. */
 			fadeOutStartRatio: 0.2,
-			/** Fade-out duration overlapping the second half of OUTRO (ms). */
+			/** Fade-out duration overlapping the second half of OUT (ms). */
 			fadeOutDurationMs: 500,
 			layoutByType: FREE_SPIN_MODAL_LAYOUT_BY_TYPE,
 		},
-		// layoutSpace: modal-local — children positioned inside modal panel
+		// layoutSpace: slot-local — FreeSpinNumberDisplay inside FS_MODAL_PLACEHOLDER_VALUE
 		intro: {
-			congrats: {
-				label: 'FreeSpin/Intro/Congrats',
-				maxWidth: 682 * 0.8,
-				maxHeight: 160 * 0.8,
-				y: 0,
-				anchor: { x: 0.5, y: 1.5 },
-			},
 			numberText: {
 				label: 'FreeSpin/Intro/NumberText',
 				x: 0,
 				y: 0,
 				zIndex: 1,
 				anchor: { x: 0.5, y: 0.5 },
-				offsetY: -8,
+				offsetY: 0,
 				fontSizeRatio: 0.25 * 0.7,
 			},
-			freeSpinsLabel: {
-				label: 'FreeSpin/Intro/FreeSpinsLabel',
-				maxWidth: 700 * 0.8,
-				maxHeight: 150 * 0.8,
-				anchor: { x: 0.5, y: -1 },
-			},
-			pressToContinue: {
-				label: 'FreeSpin/Intro/PressToContinue',
-				x: 0,
-				y: 190,
-				widthRatio: 0.8,
-				anchor: { x: 0.5, y: -1 },
-			},
 		},
-		// layoutSpace: modal-local — children positioned inside modal panel
+		// layoutSpace: slot-local — FreeSpinNumberDisplay inside FS_MODAL_PLACEHOLDER_VALUE
 		outro: {
 			numberText: {
 				label: 'FreeSpin/Outro/NumberText',
@@ -474,7 +414,7 @@ export const VISUAL_LAYOUT = {
 				y: 0,
 				zIndex: 1,
 				anchor: { x: 0.5, y: 0.5 },
-				offsetY: -0,
+				offsetY: 0,
 				fontSizeRatio: 0.2,
 				maxWidthRatio: 0.85,
 				layoutByType: {
@@ -483,40 +423,6 @@ export const VISUAL_LAYOUT = {
 					portrait: { fontSizeRatio: 0.14, maxWidthRatio: 0.85 },
 					landscape: { fontSizeRatio: 0.15, maxWidthRatio: 0.85 },
 				} satisfies Record<LayoutType, FreeSpinNumberTextLayoutByType>,
-			},
-			bigWinCongrats: {
-				label: 'FreeSpin/Outro/BigWinCongrats',
-				maxWidth: 682 * 0.8,
-				maxHeight: 360 * 0.8,
-				y: 80,
-				anchor: { x: 0.5, y: 1.8 },
-			},
-			youWon: {
-				label: 'FreeSpin/Outro/YouWon',
-				anchor: { x: 0.5, y: 0.5 },
-				maxWidth: 714 * 0.8,
-				maxHeight: 120 * 0.8,
-				x: 0,
-				y: -120,
-				zIndex: 2,
-			},
-			totalWin: {
-				label: 'FreeSpin/Outro/TotalWin',
-				anchor: { x: 0.5, y: 0.5 },
-				maxWidth: 561,
-				bigMaxWidth: 408,
-				maxHeight: 80,
-				x: 0,
-				y: 182,
-				zIndex: 2,
-			},
-			pressToContinue: {
-				label: 'FreeSpin/Outro/PressToContinue',
-				x: 0,
-				y: 180,
-				widthRatio: 0.9,
-				anchor: { x: 0.5, y: -1 },
-				zIndex: 3,
 			},
 		},
 		// layoutSpace: board — FreeSpinCounter.svelte; position computed from boardLayout
@@ -903,34 +809,11 @@ const resolveNumberTextLayout = (
 	};
 };
 
-const resolveAspectFitSprite = ({
-	label: _label,
-	...layout
-}: AspectFitSpriteLayout): ResolvedAspectFitSprite => layout;
-
-const resolveFreeSpinPressToContinueLayout = (
-	layout: FreeSpinPressToContinueLayout,
-	modalWidth: number,
-): ResolvedFreeSpinPressToContinueLayout => ({
-	label: layout.label,
-	x: layout.x ?? 0,
-	y: layout.y,
-	width: modalWidth * layout.widthRatio,
-	anchor: layout.anchor,
-	zIndex: layout.zIndex,
-});
-
 export const resolveFreeSpinIntroLayout = (modalSizes: VirtualSize) => {
 	const { intro } = VISUAL_LAYOUT.freeSpin;
 
 	return {
-		congrats: resolveAspectFitSprite(intro.congrats),
-		freeSpinsLabel: resolveAspectFitSprite(intro.freeSpinsLabel),
 		numberText: resolveNumberTextLayout(intro.numberText, modalSizes.width),
-		pressToContinue: resolveFreeSpinPressToContinueLayout(
-			intro.pressToContinue,
-			modalSizes.width,
-		),
 	};
 };
 
@@ -942,16 +825,6 @@ export const resolveFreeSpinOutroLayout = (
 
 	return {
 		numberText: resolveNumberTextLayout(outro.numberText, modalSizes.width, layoutType),
-		bigWinCongrats: resolveAspectFitSprite(outro.bigWinCongrats),
-		youWon: resolveAspectFitSprite(outro.youWon),
-		totalWin: {
-			...resolveAspectFitSprite(outro.totalWin),
-			bigMaxWidth: outro.totalWin.bigMaxWidth,
-		} satisfies ResolvedFreeSpinTotalWinLayout,
-		pressToContinue: resolveFreeSpinPressToContinueLayout(
-			outro.pressToContinue,
-			modalSizes.width,
-		),
 	};
 };
 
@@ -1087,20 +960,12 @@ export const SCENE_LABELS = {
 		modal: {
 			root: VISUAL_LAYOUT.freeSpin.modal.root.label,
 			spine: VISUAL_LAYOUT.freeSpin.modal.spine.label,
-			panel: VISUAL_LAYOUT.freeSpin.modal.panel.label,
 		},
 		intro: {
-			congrats: VISUAL_LAYOUT.freeSpin.intro.congrats.label,
 			numberText: VISUAL_LAYOUT.freeSpin.intro.numberText.label,
-			freeSpinsLabel: VISUAL_LAYOUT.freeSpin.intro.freeSpinsLabel.label,
-			pressToContinue: VISUAL_LAYOUT.freeSpin.intro.pressToContinue.label,
 		},
 		outro: {
 			numberText: VISUAL_LAYOUT.freeSpin.outro.numberText.label,
-			bigWinCongrats: VISUAL_LAYOUT.freeSpin.outro.bigWinCongrats.label,
-			youWon: VISUAL_LAYOUT.freeSpin.outro.youWon.label,
-			totalWin: VISUAL_LAYOUT.freeSpin.outro.totalWin.label,
-			pressToContinue: VISUAL_LAYOUT.freeSpin.outro.pressToContinue.label,
 		},
 		counter: {
 			text: VISUAL_LAYOUT.freeSpin.counter.text.label,
@@ -1215,13 +1080,11 @@ export const BONUS_TRANSITION_LAYOUT_BY_TYPE = VISUAL_LAYOUT.transition.layoutBy
 
 export const FREE_SPIN_MODAL = {
 	yOffsetFromBoard: FREE_SPIN_MODAL_LAYOUT_BY_TYPE.desktop.offsetFromBoard.y,
-	panelFadeDelayMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeDelayMs,
-	panelFadeOutDurationMs: VISUAL_LAYOUT.freeSpin.modal.panelFadeOutDurationMs,
 	outroDurationMs: VISUAL_LAYOUT.freeSpin.modal.outroDurationMs,
 	outroTimeScale: VISUAL_LAYOUT.freeSpin.modal.outroTimeScale,
 	fadeOutStartRatio: VISUAL_LAYOUT.freeSpin.modal.fadeOutStartRatio,
 	fadeOutDurationMs: VISUAL_LAYOUT.freeSpin.modal.fadeOutDurationMs,
-	/** Wall-clock delay before fade starts (half of scaled OUTRO by default). */
+	/** Wall-clock delay before fade starts (fraction of scaled OUT by default). */
 	outroFadeStartDelayMs: Math.round(
 		(VISUAL_LAYOUT.freeSpin.modal.outroDurationMs /
 			VISUAL_LAYOUT.freeSpin.modal.outroTimeScale) *

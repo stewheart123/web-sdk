@@ -1,39 +1,40 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { onMount } from 'svelte';
 
 	import {
 		anchorToPivot,
 		Container,
 		SpineProvider,
+		SpineSlot,
 		SpineTrack,
 		type Sizes,
 	} from 'pixi-svelte';
 	import { MainContainer } from 'components-layout';
-	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../game/context';
 	import {
 		FREE_SPIN_MODAL,
 		getFreeSpinModalLayout,
-		OVERLAY,
 		SCENE_LABELS,
 	} from '../game/visualLayoutConfig';
 
+	type Mode = 'intro' | 'summary';
+
 	type AnimationName =
-		| 'FS-MODAL-INTRO'
-		| 'FS-MODAL-IDLE'
-		| 'FS-MODAL-OUTRO'
-		| 'FS-MODAL-FINISH';
+		| 'INTRO-IN'
+		| 'INTRO-IDLE'
+		| 'INTRO-OUT'
+		| 'SUMMARY-IN'
+		| 'SUMMARY-IDLE'
+		| 'SUMMARY-OUT';
 
 	type Props = {
+		mode: Mode;
 		children: Snippet<[{ sizes: Sizes }]>;
 		exiting?: boolean;
-		/** When true, fade panel content before starting FS-MODAL-OUTRO. */
-		fadePanelBeforeOutro?: boolean;
-		/** Fired when panel content has finished fading in. */
-		onPanelFadeInComplete?: () => void;
-		/** Fired when FS-MODAL-OUTRO actually begins. */
+		/** Fired when the IN animation completes and IDLE begins (e.g. start count-up). */
+		onReady?: () => void;
+		/** Fired when the OUT animation actually begins. */
 		onOutroStarted?: () => void;
 	};
 
@@ -45,55 +46,45 @@
 	const modalSizes = $derived({ width: modalLayout.width, height: modalLayout.height });
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 
-	let animationName = $state<AnimationName>('FS-MODAL-INTRO');
-	let panelShow = $state(false);
-	let outroStarted = $state(false);
+	const inAnimation = $derived(
+		(props.mode === 'intro' ? 'INTRO-IN' : 'SUMMARY-IN') as AnimationName,
+	);
+	const idleAnimation = $derived(
+		(props.mode === 'intro' ? 'INTRO-IDLE' : 'SUMMARY-IDLE') as AnimationName,
+	);
+	const outAnimation = $derived(
+		(props.mode === 'intro' ? 'INTRO-OUT' : 'SUMMARY-OUT') as AnimationName,
+	);
 
-	const isHoldAnimation = $derived(
-		animationName === 'FS-MODAL-IDLE' || animationName === 'FS-MODAL-FINISH',
+	let animationName = $state<AnimationName>(
+		props.mode === 'summary' ? 'SUMMARY-IN' : 'INTRO-IN',
 	);
+	let outroStarted = $state(false);
+	let readyFired = $state(false);
+
+	const isHoldAnimation = $derived(animationName === idleAnimation);
 	const timeScale = $derived(
-		animationName === 'FS-MODAL-OUTRO' ? FREE_SPIN_MODAL.outroTimeScale : 1,
+		animationName === outAnimation ? FREE_SPIN_MODAL.outroTimeScale : 1,
 	);
+
+	const fireReady = () => {
+		if (readyFired) return;
+		readyFired = true;
+		props.onReady?.();
+	};
 
 	const startOutro = () => {
-		if (outroStarted || animationName === 'FS-MODAL-OUTRO' || animationName === 'FS-MODAL-FINISH') {
+		if (outroStarted || animationName === outAnimation) {
 			return;
 		}
 		outroStarted = true;
-		animationName = 'FS-MODAL-OUTRO';
+		animationName = outAnimation;
 		props.onOutroStarted?.();
 	};
 
 	$effect(() => {
 		if (!props.exiting || outroStarted) return;
-
-		if (props.fadePanelBeforeOutro) {
-			panelShow = false;
-			return;
-		}
-
 		startOutro();
-	});
-
-	const handlePanelFadeComplete = () => {
-		if (props.exiting && props.fadePanelBeforeOutro && !panelShow) {
-			startOutro();
-		}
-	};
-
-	onMount(() => {
-		panelShow = true;
-		if (!props.onPanelFadeInComplete) return;
-
-		// Drive "panel ready" off the known fade timings rather than FadeContainer's
-		// oncomplete — that callback can resolve early when tweens are interrupted.
-		const panelReadyMs =
-			FREE_SPIN_MODAL.panelFadeDelayMs + (OVERLAY.fadeDurationMs ?? 0);
-		const readyTimer = setTimeout(() => {
-			props.onPanelFadeInComplete?.();
-		}, panelReadyMs);
-		return () => clearTimeout(readyTimer);
 	});
 </script>
 
@@ -118,27 +109,16 @@
 				{timeScale}
 				listener={{
 					complete: () => {
-						if (animationName === 'FS-MODAL-INTRO') {
-							animationName = 'FS-MODAL-IDLE';
-						} else if (animationName === 'FS-MODAL-OUTRO') {
-							animationName = 'FS-MODAL-FINISH';
+						if (animationName === inAnimation) {
+							animationName = idleAnimation;
+							fireReady();
 						}
 					},
 				}}
 			/>
+			<SpineSlot slotName="FS_MODAL_PLACEHOLDER_VALUE">
+				{@render props.children({ sizes: modalSizes })}
+			</SpineSlot>
 		</SpineProvider>
-
-		<FadeContainer
-			label={SCENE_LABELS.freeSpin.modal.panel}
-			show={panelShow}
-			duration={OVERLAY.fadeDurationMs}
-			outDuration={FREE_SPIN_MODAL.panelFadeOutDurationMs}
-			delay={FREE_SPIN_MODAL.panelFadeDelayMs}
-			oncomplete={handlePanelFadeComplete}
-			x={modalLayout.panel.x}
-			y={modalLayout.panel.y}
-		>
-			{@render props.children({ sizes: modalSizes })}
-		</FadeContainer>
 	</Container>
 </MainContainer>
