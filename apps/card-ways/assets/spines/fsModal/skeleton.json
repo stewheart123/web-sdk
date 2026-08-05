@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "Cj5Cj9SZ0mg",
+	"hash": "pAhh8ch1M3g",
 	"spine": "4.3.23",
 	"x": -360.5,
 	"y": -159.0826,
@@ -18,17 +18,19 @@
 	{ "name": "CLICK-CONTINUE-TXT", "parent": "MODAL-BACKGROUND", "y": 423.8195 },
 	{ "name": "CARD-SHINE", "parent": "MODAL-BACKGROUND" },
 	{ "name": "CARD-SHINE2", "parent": "MODAL-BACKGROUND" },
-	{ "name": "CARD-SHINE3", "parent": "MODAL-BACKGROUND" }
+	{ "name": "CARD-SHINE3", "parent": "MODAL-BACKGROUND" },
+	{ "name": "MESSAGE-FOOT", "parent": "CLICK-CONTINUE-TXT" }
 ],
 "slots": [
 	{ "name": "FREE-SPINS-MODAL-BG", "bone": "MODAL-BACKGROUND", "attachment": "FREE_SPINS_MODAL_BG" },
 	{ "name": "FS_MODAL_INTRO_TXT", "bone": "MESSAGE-TEXT", "attachment": "FS_MODAL_SUMMARY_TXT" },
-	{ "name": "FS_MODAL_PLACEHOLDER_VALUE", "bone": "VALUE-BONE", "attachment": "FS_MODAL_PLACEHOLDER_VALUE" },
+	{ "name": "FS_MODAL_PLACEHOLDER_VALUE", "bone": "VALUE-BONE" },
 	{ "name": "SHINE", "bone": "FS-MODAL-SHINE", "attachment": "FS_MODAL_SHINE-" },
 	{ "name": "FS_MODAL_CLICK_TO_CONTINUE", "bone": "CLICK-CONTINUE-TXT", "attachment": "FS_MODAL_CLICK_TO_CONTINUE" },
 	{ "name": "upper-side-0", "bone": "CARD-SHINE", "attachment": "upper-side-" },
 	{ "name": "upper-side-1", "bone": "CARD-SHINE2", "attachment": "upper-side-" },
-	{ "name": "upper-side-2", "bone": "CARD-SHINE3", "attachment": "upper-side-" }
+	{ "name": "upper-side-2", "bone": "CARD-SHINE3", "attachment": "upper-side-" },
+	{ "name": "FS_MODAL_INTRO_TXT_B", "bone": "MESSAGE-FOOT", "attachment": "FS_MODAL_SUMMARY_TXT_B" }
 ],
 "skins": [
 	{
@@ -41,8 +43,12 @@
 				"FS_MODAL_CLICK_TO_CONTINUE": { "scaleX": 0.3319491, "scaleY": 0.3319491, "width": 1438, "height": 361 }
 			},
 			"FS_MODAL_INTRO_TXT": {
-				"FS_MODAL_INTRO_TXT": { "y": 78.048, "scaleX": 0.3187203, "scaleY": 0.3187203, "width": 1536, "height": 1024 },
-				"FS_MODAL_SUMMARY_TXT": { "y": 32.78323, "scaleX": 0.32507125, "scaleY": 0.32507125, "width": 1418, "height": 948 }
+				"FS_MODAL_INTRO_TXT": { "y": 78.048, "scaleX": 0.3187203, "scaleY": 0.3187203, "width": 1511, "height": 385 },
+				"FS_MODAL_SUMMARY_TXT": { "y": 124.02066, "scaleX": 0.32507125, "scaleY": 0.32507125, "width": 1415, "height": 296 }
+			},
+			"FS_MODAL_INTRO_TXT_B": {
+				"FS_MODAL_INTRO_TXT_B": { "x": 8.394378, "y": -654.5018, "scaleX": 0.3488473, "scaleY": 0.3488473, "width": 860, "height": 196 },
+				"FS_MODAL_SUMMARY_TXT_B": { "y": -638.6615, "scaleX": 0.328481, "scaleY": 0.328481, "width": 1418, "height": 300 }
 			},
 			"FS_MODAL_PLACEHOLDER_VALUE": {
 				"FS_MODAL_PLACEHOLDER_VALUE": { "scaleX": 0.578401, "scaleY": 0.578401, "width": 212, "height": 157 }
@@ -107,6 +113,11 @@
 				"attachment": [
 					{ "name": "FS_MODAL_INTRO_TXT" }
 				]
+			},
+			"FS_MODAL_INTRO_TXT_B": {
+				"attachment": [
+					{ "name": "FS_MODAL_INTRO_TXT_B" }
+				]
 			}
 		},
 		"attachments": {
@@ -148,6 +159,11 @@
 			"FS_MODAL_INTRO_TXT": {
 				"attachment": [
 					{ "name": "FS_MODAL_INTRO_TXT" }
+				]
+			},
+			"FS_MODAL_INTRO_TXT_B": {
+				"attachment": [
+					{ "name": "FS_MODAL_INTRO_TXT_B" }
 				]
 			}
 		},
@@ -201,6 +217,11 @@
 			"FS_MODAL_INTRO_TXT": {
 				"attachment": [
 					{ "name": "FS_MODAL_INTRO_TXT" }
+				]
+			},
+			"FS_MODAL_INTRO_TXT_B": {
+				"attachment": [
+					{ "name": "FS_MODAL_INTRO_TXT_B" }
 				]
 			}
 		},

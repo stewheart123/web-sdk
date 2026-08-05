@@ -402,8 +402,8 @@ export const VISUAL_LAYOUT = {
 				y: 0,
 				zIndex: 1,
 				anchor: { x: 0.5, y: 0.5 },
-				offsetY: 0,
-				fontSizeRatio: 0.25 * 0.7,
+				offsetY: 90,
+				fontSizeRatio: 0.25,
 			},
 		},
 		// layoutSpace: slot-local — FreeSpinNumberDisplay inside FS_MODAL_PLACEHOLDER_VALUE
