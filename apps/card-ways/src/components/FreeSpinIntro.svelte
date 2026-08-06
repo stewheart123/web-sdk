@@ -18,6 +18,7 @@
 		OVERLAY,
 		resolveFreeSpinIntroLayout,
 		SCENE_LABELS,
+		SCENE_LAYERS,
 	} from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
@@ -76,6 +77,7 @@
 	duration={OVERLAY.fadeDurationMs}
 	outDuration={FREE_SPIN_MODAL.fadeOutDurationMs}
 	oncomplete={handleFadeOutComplete}
+	zIndex={SCENE_LAYERS.overlay}
 >
 	<CanvasSizeRectangle
 		label={SCENE_LABELS.overlay.dim}

@@ -4,25 +4,24 @@
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
-	import { BACKGROUND_ART_SIZE, BACKGROUND_OFFSET, BACKGROUND_SCALE } from '../game/stateLayout';
+	import {
+		BACKGROUND_ART_SIZE,
+		BACKGROUND_OFFSET,
+		BACKGROUND_SCALE,
+		BACKGROUND_SPINE_LAYOUT_ARGS,
+		resolveBackgroundSpineProps,
+	} from '../game/stateLayout';
 	import { BACKGROUND_LAYERS, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	const context = getContext();
 
 	// Scale against the BG plate size, not the skeleton AABB (smoke FX inflate bounds).
 	// Position on root (no anchor) — plate is authored centered on root.
-	const backgroundProps = $derived.by(() => {
-		const layout = context.stateLayoutDerived.centeredBackgroundLayout({
-			artSize: BACKGROUND_ART_SIZE,
-			scale: BACKGROUND_SCALE,
-		})();
-
-		return {
-			x: layout.x + BACKGROUND_OFFSET.x,
-			y: layout.y + BACKGROUND_OFFSET.y,
-			scale: layout.scale,
-		};
-	});
+	const backgroundProps = $derived.by(() =>
+		resolveBackgroundSpineProps(
+			context.stateLayoutDerived.centeredBackgroundLayout(BACKGROUND_SPINE_LAYOUT_ARGS)(),
+		),
+	);
 	const showIntroBackground = $derived(context.stateLayout.showLoadingScreen);
 	const showBaseBackground = $derived(
 		!context.stateLayout.showLoadingScreen && context.stateGame.gameType === 'basegame',

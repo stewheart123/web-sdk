@@ -15,7 +15,7 @@
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getBitmapFontStyle } from '../game/fontConfig';
 	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
-	import { getFreeSpinCounterLayout, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { getFreeSpinCounterLayout, SCENE_LABELS, SCENE_LAYERS } from '../game/visualLayoutConfig';
 	import { anchorToPivot, BitmapText, Container, type Sizes } from 'pixi-svelte';
 
 	const context = getContext();
@@ -76,7 +76,7 @@
 	});
 </script>
 
-<MainContainer label={SCENE_LABELS.layout.freeSpinCounter}>
+<MainContainer label={SCENE_LABELS.layout.freeSpinCounter} zIndex={SCENE_LAYERS.overlay}>
 	<FadeContainer
 		persistent
 		{show}

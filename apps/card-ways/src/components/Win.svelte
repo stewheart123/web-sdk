@@ -26,6 +26,7 @@
 		resolveWinTextMaxWidth,
 		WIN_LAYOUT,
 		SCENE_LABELS,
+		SCENE_LAYERS,
 	} from '../game/visualLayoutConfig';
 
 	const context = getContext();
@@ -58,7 +59,7 @@
 	});
 </script>
 
-<FadeContainer {show} label={SCENE_LABELS.fade.win}>
+<FadeContainer {show} label={SCENE_LABELS.fade.win} zIndex={SCENE_LAYERS.overlay}>
 	{#if winLevelData}
 		{@const isBigWin = winLevelData.type === 'big'}
 		{@const duration = winLevelData.presentDuration}

@@ -4,7 +4,7 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App } from 'pixi-svelte';
+	import { App, Container } from 'pixi-svelte';
 	import { stateModal, stateUi } from 'state-shared';
 
 	import { UI, UiGameName, UiReplayPlayAgain } from 'components-ui-pixi';
@@ -14,12 +14,13 @@
 	import { getContext } from '../game/context';
 	import { INITIAL_BOARD, normalizeBoard } from '../game/constants';
 	import { stateGame } from '../game/stateGame.svelte';
-	import { SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { SCENE_LABELS, SCENE_LAYERS } from '../game/visualLayoutConfig';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
 	import Sound from './Sound.svelte';
 	import Background from './Background.svelte';
+	import ForegroundAnimation from './ForegroundAnimation.svelte';
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
@@ -93,35 +94,41 @@
 	{#if !context.stateLayout.showLoadingScreen}
 		<ResumeBet />
 
-		<MainContainer label={SCENE_LABELS.layout.modifierLayer}>
+		<MainContainer label={SCENE_LABELS.layout.modifierLayer} zIndex={SCENE_LAYERS.modifier}>
 			<ModifierReel />
 		</MainContainer>
 
-		<MainContainer label={SCENE_LABELS.layout.frameLayer}>
+		<MainContainer label={SCENE_LABELS.layout.frameLayer} zIndex={SCENE_LAYERS.frame}>
 			<BoardFrame />
 		</MainContainer>
 
-		<MainContainer label={SCENE_LABELS.layout.boardLayer}>
+		<ForegroundAnimation />
+
+		<MainContainer label={SCENE_LABELS.layout.boardLayer} zIndex={SCENE_LAYERS.board}>
 			<Board />
 		</MainContainer>
 
 		<!-- <MainContainerDebugOverlay />  -->
 		<!-- TODO remove this -->
 
-		<UI>
-			{#snippet gameName()}
-				<UiGameName name="BOOSTER BREAK WAYS" />
-			{/snippet}
-			{#snippet logo()}{/snippet}
-		</UI>
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinCounter />
 		<FreeSpinOutro />
 		<Transition />
-		{#if stateUi.config.mode === 'replay' && stateUi.replayFinished}
-			<UiReplayPlayAgain />
-		{/if}
+
+		<!-- UI last + highest zIndex — remounting game FX must never cover controls -->
+		<Container label={SCENE_LABELS.layout.uiLayer} zIndex={SCENE_LAYERS.ui}>
+			<UI>
+				{#snippet gameName()}
+					<UiGameName name="BOOSTER BREAK WAYS" />
+				{/snippet}
+				{#snippet logo()}{/snippet}
+			</UI>
+			{#if stateUi.config.mode === 'replay' && stateUi.replayFinished}
+				<UiReplayPlayAgain />
+			{/if}
+		</Container>
 	{/if}
 </App>
 

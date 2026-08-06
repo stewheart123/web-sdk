@@ -21,6 +21,7 @@
 		OVERLAY,
 		resolveFreeSpinOutroLayout,
 		SCENE_LABELS,
+		SCENE_LAYERS,
 	} from '../game/visualLayoutConfig';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 	import FreeSpinNumberDisplay from './FreeSpinNumberDisplay.svelte';
@@ -101,6 +102,7 @@
 	outDuration={FREE_SPIN_MODAL.fadeOutDurationMs}
 	oncomplete={handleFadeOutComplete}
 	label={SCENE_LABELS.fade.freeSpinOutro}
+	zIndex={SCENE_LAYERS.overlay}
 >
 	{#if winLevelData}
 		{@const duration = winLevelData.presentDuration}

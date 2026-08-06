@@ -16,6 +16,7 @@
 		children,
 		standard,
 		label,
+		zIndex,
 		...containerProps
 	}: Props = $props();
 	const positionLabel = $derived(label ? `${label}/Position` : undefined);
@@ -42,7 +43,7 @@
 	const x = $derived.by(getX);
 </script>
 
-<Container label={positionLabel} {x} {y}>
+<Container label={positionLabel} {x} {y} {zIndex}>
 	<Container
 		{label}
 		{...containerProps}

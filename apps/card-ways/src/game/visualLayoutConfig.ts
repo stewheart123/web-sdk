@@ -284,6 +284,8 @@ export const VISUAL_LAYOUT = {
 		intro: { label: 'Background/Intro', zIndex: -2 },
 		base: { label: 'Background/Base', zIndex: -2 },
 		feature: { label: 'Background/Feature', zIndex: -1 },
+		/** Free-spin FX in front of BoardFrame (ForegroundAnimation.svelte). */
+		foreground: { label: 'Background/Foreground' },
 		ratio: {
 			normal: 1264 / 842,
 			portrait: 1242 / 2208,
@@ -669,17 +671,31 @@ export const VISUAL_LAYOUT = {
 		frameLayer: { label: 'Layout/FrameLayer' },
 		boardLayer: { label: 'Layout/BoardLayer' },
 		modifierLayer: { label: 'Layout/ModifierLayer' },
+		uiLayer: { label: 'Layout/UiLayer' },
 		freeSpinModal: { label: 'Layout/FreeSpinModal' },
 		pressToContinue: { label: 'Layout/PressToContinue' },
 		win: { label: 'Layout/Win' },
 		freeSpinCounter: { label: 'Layout/FreeSpinCounter' },
 		loading: { label: 'Layout/Loading' },
 	},
+	/**
+	 * App-root sibling draw order (pixi-svelte addChild + sortChildren).
+	 * UI is always highest so remounting game FX cannot cover controls.
+	 */
+	sceneLayers: {
+		modifier: 0,
+		frame: 1,
+		foreground: 2,
+		board: 3,
+		overlay: 50,
+		ui: 100,
+	},
 	// layoutSpace: n/a — FadeContainer scene labels only
 	fade: {
 		backgroundIntro: { label: 'Fade/Background/Intro' },
 		backgroundBase: { label: 'Fade/Background/Base' },
 		backgroundFeature: { label: 'Fade/Background/Feature' },
+		backgroundForeground: { label: 'Fade/Background/Foreground' },
 		freeSpinIntro: { label: 'Fade/FreeSpin/Intro' },
 		freeSpinOutro: { label: 'Fade/FreeSpin/Outro' },
 		modifier: { label: 'Fade/Modifier' },
@@ -941,6 +957,7 @@ export const SCENE_LABELS = {
 		intro: VISUAL_LAYOUT.background.intro.label,
 		base: VISUAL_LAYOUT.background.base.label,
 		feature: VISUAL_LAYOUT.background.feature.label,
+		foreground: VISUAL_LAYOUT.background.foreground.label,
 	},
 	board: {
 		root: VISUAL_LAYOUT.board.root.label,
@@ -1007,6 +1024,7 @@ export const SCENE_LABELS = {
 		frameLayer: VISUAL_LAYOUT.layout.frameLayer.label,
 		boardLayer: VISUAL_LAYOUT.layout.boardLayer.label,
 		modifierLayer: VISUAL_LAYOUT.layout.modifierLayer.label,
+		uiLayer: VISUAL_LAYOUT.layout.uiLayer.label,
 		freeSpinModal: VISUAL_LAYOUT.layout.freeSpinModal.label,
 		pressToContinue: VISUAL_LAYOUT.layout.pressToContinue.label,
 		win: VISUAL_LAYOUT.layout.win.label,
@@ -1017,6 +1035,7 @@ export const SCENE_LABELS = {
 		backgroundIntro: VISUAL_LAYOUT.fade.backgroundIntro.label,
 		backgroundBase: VISUAL_LAYOUT.fade.backgroundBase.label,
 		backgroundFeature: VISUAL_LAYOUT.fade.backgroundFeature.label,
+		backgroundForeground: VISUAL_LAYOUT.fade.backgroundForeground.label,
 		freeSpinIntro: VISUAL_LAYOUT.fade.freeSpinIntro.label,
 		freeSpinOutro: VISUAL_LAYOUT.fade.freeSpinOutro.label,
 		modifier: VISUAL_LAYOUT.fade.modifier.label,
@@ -1057,6 +1076,8 @@ export const BACKGROUND_LAYERS = {
 	normal: VISUAL_LAYOUT.background.base.zIndex,
 	feature: VISUAL_LAYOUT.background.feature.zIndex,
 } as const;
+
+export const SCENE_LAYERS = VISUAL_LAYOUT.sceneLayers;
 
 export const OVERLAY = {
 	backgroundColor: VISUAL_LAYOUT.overlay.backgroundColor,

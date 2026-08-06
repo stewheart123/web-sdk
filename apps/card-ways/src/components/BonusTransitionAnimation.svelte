@@ -2,7 +2,7 @@
 	import { SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { getBonusTransitionLayoutSettings, SCENE_LABELS } from '../game/visualLayoutConfig';
+	import { getBonusTransitionLayoutSettings, SCENE_LABELS, SCENE_LAYERS } from '../game/visualLayoutConfig';
 
 	type Props = {
 		oncomplete: () => void;
@@ -25,6 +25,7 @@
 	height={canvas.height * layout.heightScale}
 	anchor={layout.anchor ?? 0.5}
 	scale={layout.scale}
+	zIndex={SCENE_LAYERS.overlay}
 >
 	<SpineTrack
 		trackIndex={0}
