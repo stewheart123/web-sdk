@@ -10,19 +10,8 @@ export default {
 		preload: true,
 	},
 	pressToContinueText: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE.png', import.meta.url).href,
-		},
-		preload: true,
-	},
-	pressToContinueText2: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE_2.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/pressToContinueText/PRESSANYWHERE_2.png', import.meta.url).href,
-		},
+		type: 'sprite',
+		src: new URL('../../assets/sprites/pressToContinueText/CLICK-TO-CONTINUE.png', import.meta.url).href,
 		preload: true,
 	},
 	cardSymbols: {

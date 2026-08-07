@@ -2,11 +2,9 @@
 	import * as PIXI from 'pixi.js';
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
-	import { stateUrlDerived } from 'state-shared';
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { resolveLocalizedSpriteKey, resolveSpriteLang } from '../game/syncLocale';
 	import {
 		getPressToContinueLayout,
 		SCENE_LABELS,
@@ -33,10 +31,7 @@
 		props.embedded && props.layout ? props.layout.label : SCENE_LABELS.ui.pressToContinue,
 	);
 
-	const spriteLang = $derived(resolveSpriteLang(stateUrlDerived.lang()));
-	const textureKey = $derived(
-		resolveLocalizedSpriteKey('pressToContinueText', spriteLang, context.stateApp.loadedAssets),
-	);
+	const textureKey = 'pressToContinueText';
 	const texture = $derived(
 		(context.stateApp.loadedAssets?.[textureKey] ?? PIXI.Texture.EMPTY) as PIXI.Texture,
 	);

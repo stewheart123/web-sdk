@@ -1,6 +1,5 @@
 import { createAsset } from 'pixi-svelte';
 
-import img from './PRESSANYWHERE.png';
-import atlas from './PRESSANYWHERE.json';
+import img from './CLICK-TO-CONTINUE.png';
 
-export default createAsset({ img, atlas });
+export default createAsset({ img });
