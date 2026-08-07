@@ -3,6 +3,7 @@
 
 	const { Story } = defineMeta({
 		title: 'COMPONENTS/<UiLocalization>',
+		component: Game,
 	});
 </script>
 

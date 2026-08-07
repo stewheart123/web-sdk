@@ -120,4 +120,51 @@ export const i18nDerived = {
 		trackLocale();
 		return stateI18nDerived.translate('GAME RULES');
 	},
+	get balance() {
+		trackLocale();
+		return stateI18nDerived.translate('BALANCE');
+	},
+	get win() {
+		trackLocale();
+		return stateI18nDerived.translate('WIN');
+	},
+	get stop() {
+		trackLocale();
+		return stateI18nDerived.translate('STOP');
+	},
+	get buyBonus() {
+		trackLocale();
+		trackSocial();
+		return stateUrlDerived.social()
+			? stateI18nDerived.translate('PLAY BONUS')
+			: stateI18nDerived.translate('BUY BONUS');
+	},
+	get disable() {
+		trackLocale();
+		return stateI18nDerived.translate('DISABLE');
+	},
+	get turbo() {
+		trackLocale();
+		return stateI18nDerived.translate('TURBO');
+	},
+	get autoSpin() {
+		trackLocale();
+		return stateI18nDerived.translate('AUTO SPIN');
+	},
+	get menu() {
+		trackLocale();
+		return stateI18nDerived.translate('MENU');
+	},
+	get sound() {
+		trackLocale();
+		return stateI18nDerived.translate('SOUND');
+	},
+	get music() {
+		trackLocale();
+		return stateI18nDerived.translate('MUSIC');
+	},
+	get playAgain() {
+		trackLocale();
+		return stateI18nDerived.translate('PLAY AGAIN');
+	},
 };

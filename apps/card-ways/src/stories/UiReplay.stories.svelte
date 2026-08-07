@@ -2,7 +2,8 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 
 	const { Story } = defineMeta({
-		title: 'COMPONENTS/<UiReplay>',
+		title: 'COMPONENTS/<HtmlUI replay>',
+		component: Game,
 	});
 </script>
 

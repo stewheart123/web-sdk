@@ -3,6 +3,7 @@
 
 	const { Story } = defineMeta({
 		title: 'COMPONENTS/<UiAutoSpinMessage>',
+		component: Game,
 	});
 </script>
 

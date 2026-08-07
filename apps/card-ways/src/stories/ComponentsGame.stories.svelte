@@ -3,6 +3,7 @@
 
 	const { Story } = defineMeta({
 		title: 'COMPONENTS/<Game>',
+		component: Game,
 	});
 </script>
 

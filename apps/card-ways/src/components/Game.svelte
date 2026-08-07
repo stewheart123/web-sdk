@@ -4,11 +4,10 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Container } from 'pixi-svelte';
-	import { stateModal, stateUi } from 'state-shared';
+	import { App } from 'pixi-svelte';
+	import { stateModal } from 'state-shared';
 
-	import { UI, UiGameName, UiReplayPlayAgain } from 'components-ui-pixi';
-	import { GameVersion, Modals } from 'components-ui-html';
+	import { GameVersion, HtmlUI, HudGameName, Modals } from 'components-ui-html';
 
 	import { LOADING_TRANSITION_DURATION_MS } from '../game/audioConfig';
 	import { getContext } from '../game/context';
@@ -30,7 +29,6 @@
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import ModifierReel from './ModifierReel.svelte';
-	import MainContainerDebugOverlay from './MainContainerDebugOverlay.svelte';
 
 	const context = getContext();
 
@@ -116,21 +114,16 @@
 		<FreeSpinCounter />
 		<FreeSpinOutro />
 		<Transition />
-
-		<!-- UI last + highest zIndex — remounting game FX must never cover controls -->
-		<Container label={SCENE_LABELS.layout.uiLayer} zIndex={SCENE_LAYERS.ui}>
-			<UI>
-				{#snippet gameName()}
-					<UiGameName name="BOOSTER BREAK WAYS" />
-				{/snippet}
-				{#snippet logo()}{/snippet}
-			</UI>
-			{#if stateUi.config.mode === 'replay' && stateUi.replayFinished}
-				<UiReplayPlayAgain />
-			{/if}
-		</Container>
 	{/if}
 </App>
+
+{#if !context.stateLayout.showLoadingScreen}
+	<HtmlUI>
+		{#snippet gameName()}
+			<HudGameName name="BOOSTER BREAK WAYS" />
+		{/snippet}
+	</HtmlUI>
+{/if}
 
 <Modals>
 	{#snippet version()}
