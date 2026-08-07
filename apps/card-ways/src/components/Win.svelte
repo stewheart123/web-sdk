@@ -103,7 +103,12 @@
 					>
 						{#if winLevelData?.animation}
 							<WinAnimation animationName={winLevelData.animation}>
-								<Container label={SCENE_LABELS.win.bigText} scale={WIN_LAYOUT.bigWinTextContainerScale}>
+								<Container
+									label={SCENE_LABELS.win.bigText}
+									x={WIN_LAYOUT.bigWinTextOffset.x}
+									y={WIN_LAYOUT.bigWinTextOffset.y}
+									scale={WIN_LAYOUT.bigWinTextContainerScale}
+								>
 									<ResponsiveBitmapText
 										label={SCENE_LABELS.win.bigText}
 										anchor={0.5}

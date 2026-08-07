@@ -513,7 +513,13 @@ export const VISUAL_LAYOUT = {
 		normalText: { label: 'Win/NormalText' },
 		bigAnimation: { label: 'Win/BigAnimation' },
 		layout: {
-			bigWinTextContainerScale: 0.5,
+			/** Scale of amount text inside WIN-AMOUNT-SLOT (slot-local). */
+			bigWinTextContainerScale: 1,
+			/**
+			 * Slot-local offset for amount text relative to WIN-AMOUNT bone.
+			 * Seeded from PLACEHOLDER-WIN-AMOUNT attachment position in the spine.
+			 */
+			bigWinTextOffset: { x: -80, y: 200 },
 			bigWinTextMaxWidthByType: {
 				desktop: 2130,
 				tablet: 1800,

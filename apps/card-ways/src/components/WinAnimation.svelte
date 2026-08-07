@@ -7,7 +7,7 @@
 	import { WIN_LAYOUT, SCENE_LABELS } from '../game/visualLayoutConfig';
 
 	type Props = {
-		animationName: 'UNCOMMON-WIN' | 'RARE-WIN' | 'ULTRA-RARE-WIN' | 'LEGENDARY-WIN' | 'MAX-WIN';
+		animationName: 'COMMON-WIN' | 'MINT-WIN' | 'RARE-WIN' | 'LEGENDARY-WIN' | 'MAX-WIN';
 		children: Snippet;
 	};
 
@@ -24,7 +24,7 @@
 	key="bigwin"
 >
 	<SpineTrack trackIndex={0} animationName={props.animationName} loop={true} />
-	<SpineSlot slotName="slot_win_count">
+	<SpineSlot slotName="WIN-AMOUNT-SLOT">
 		{@render props.children()}
 	</SpineSlot>
 </SpineProvider>

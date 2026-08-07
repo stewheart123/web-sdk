@@ -99,7 +99,7 @@ export const largeWinCases: WinAmountCase[] = [
 		winLevel: 4,
 	},
 	{
-		label: 'NGN 262k big win (uncommon animation)',
+		label: 'NGN 262k big win (common animation)',
 		currency: 'NGN',
 		betAmount: 1,
 		bookAmount: 26290320,
