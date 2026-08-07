@@ -19,8 +19,8 @@
 	label={SCENE_LABELS.win.bigAnimation}
 	width={context.stateGameDerived.boardLayout().width}
 	scale={WIN_LAYOUT.animationScale}
-	x={context.stateGameDerived.boardLayout().pivot.x}
-	y={context.stateGameDerived.boardLayout().pivot.y}
+	x={context.stateGameDerived.boardLayout().pivot.x + WIN_LAYOUT.animationOffset.x}
+	y={context.stateGameDerived.boardLayout().pivot.y + WIN_LAYOUT.animationOffset.y}
 	key="bigwin"
 >
 	<SpineTrack trackIndex={0} animationName={props.animationName} loop={true} />

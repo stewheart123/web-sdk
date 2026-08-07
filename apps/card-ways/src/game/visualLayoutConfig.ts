@@ -534,6 +534,8 @@ export const VISUAL_LAYOUT = {
 			/** Fraction of canvas width available for win text after layout + board scale. */
 			canvasWidthPaddingRatio: 0.88,
 			animationScale: 0.45,
+			/** Board-local offset for the big-win spine from board pivot. Positive Y moves down. */
+			animationOffset: { x: 0, y: -60 },
 			countUpCompleteDelayMs: 1000,
 		},
 		// layoutSpace: board-local — offsets from board pivot inside Win/Root
