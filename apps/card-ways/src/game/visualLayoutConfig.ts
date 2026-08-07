@@ -519,7 +519,7 @@ export const VISUAL_LAYOUT = {
 			 * Slot-local offset for amount text relative to WIN-AMOUNT bone.
 			 * Seeded from PLACEHOLDER-WIN-AMOUNT attachment position in the spine.
 			 */
-			bigWinTextOffset: { x: -80, y: 250 },
+			bigWinTextOffset: { x: -80, y: 350 },
 			bigWinTextMaxWidthByType: {
 				desktop: 2130,
 				tablet: 1800,
@@ -534,7 +534,7 @@ export const VISUAL_LAYOUT = {
 			/** Fraction of canvas width available for win text after layout + board scale. */
 			canvasWidthPaddingRatio: 0.88,
 			animationScale: 0.45,
-			countUpCompleteDelayMs: 300,
+			countUpCompleteDelayMs: 1000,
 		},
 		// layoutSpace: board-local — offsets from board pivot inside Win/Root
 		pressToContinue: {

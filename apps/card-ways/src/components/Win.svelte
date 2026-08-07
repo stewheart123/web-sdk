@@ -88,6 +88,7 @@
 				<OnMount
 					onmount={async () => {
 						await startCountUp();
+						if (!context.stateXstateDerived.isAutoBetting) return;
 						await waitForTimeout(WIN_LAYOUT.countUpCompleteDelayMs);
 						oncomplete();
 					}}
