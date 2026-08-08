@@ -4,9 +4,10 @@
 
 	import { getContext } from '../game/context';
 	import type { HowToPlayPanelDef } from '../game/howToPlayPanels';
-	import { CINZEL_FONT_FAMILY } from '../game/preloadCinzelFont';
 	import type { HowToPlayPanelLayoutSettings } from '../game/visualLayoutConfig';
 	import { SCENE_LABELS } from '../game/visualLayoutConfig';
+
+	const PANEL_FONT_FAMILY = 'Noto Sans KR';
 
 	type Props = {
 		panel: HowToPlayPanelDef;
@@ -43,6 +44,10 @@
 			height: fgTexture.height * scale,
 		};
 	});
+
+	/** Opposite of panel shadow bias — keeps FG/text on the visible card face. */
+	const contentX = $derived(-props.layout.shadowBiasX);
+	const contentY = $derived(-props.layout.shadowBiasY);
 </script>
 
 <Container
@@ -63,17 +68,19 @@
 		width={fgSizes.width}
 		height={fgSizes.height}
 		anchor={0.5}
-		y={props.layout.fgY}
+		x={contentX}
+		y={props.layout.fgY + contentY}
 	/>
 	<Text
 		label={SCENE_LABELS.loading.howToPlay.panelText}
 		text={props.panel.text}
 		anchor={{ x: 0.5, y: 0 }}
-		y={props.layout.textY}
+		x={contentX}
+		y={props.layout.textY + contentY}
 		style={{
-			fontFamily: CINZEL_FONT_FAMILY,
+			fontFamily: PANEL_FONT_FAMILY,
 			fontSize: props.layout.fontSize,
-			fontWeight: '600',
+			fontWeight: '400',
 			fill: 0xffffff,
 			align: 'center',
 			wordWrap: true,

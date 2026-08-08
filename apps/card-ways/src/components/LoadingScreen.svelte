@@ -8,7 +8,6 @@
 	import { getContext } from '../game/context';
 	import { stateSplash } from '../game/stateSplash.svelte';
 	import { isHowToPlayCarouselLayout } from '../game/howToPlayPanels';
-	import { preloadCinzelFont } from '../game/preloadCinzelFont';
 	import {
 		OVERLAY,
 		resolveLoadingScreenLayout,
@@ -32,7 +31,13 @@
 	let loadingType = $state<'start' | 'transition'>('start');
 
 	onMount(async () => {
-		await preloadCinzelFont();
+		try {
+			if (typeof document !== 'undefined' && document.fonts?.load) {
+				await document.fonts.load('400 1em "Noto Sans KR"');
+			}
+		} catch {
+			// Fall through with system font if preload fails.
+		}
 		stateSplash.loadingScreenReady = true;
 	});
 
