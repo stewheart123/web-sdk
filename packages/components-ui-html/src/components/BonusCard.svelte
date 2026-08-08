@@ -11,33 +11,37 @@
 	const props: Props = $props();
 </script>
 
-<div class="bonus-card-wrap">
-	<div class="info">
+<div class="bonus-card">
+	<div class="bonus-card__info">
 		{@render props.title()}
 		{@render props.description()}
 		{@render props.price()}
 	</div>
-	{@render props.button()}
+	<div class="bonus-card__action">
+		{@render props.button()}
+	</div>
 </div>
 
 <style lang="scss">
-	.bonus-card-wrap {
-		padding: 0.5rem;
-		flex-direction: column;
+	.bonus-card {
 		display: flex;
-		justify-content: space-between;
-
-		border-radius: 10px;
-		background: rgba(0, 0, 0, 0.5);
-		text-align: left;
-		min-width: 155px;
-		max-width: 180px;
-		gap: 0.5rem;
+		flex-direction: column;
+		gap: 0.75rem;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 1rem;
+		border-radius: 0.75rem;
+		background: #12151c;
+		border: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
-	.info {
+	.bonus-card__info {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5em;
+		gap: 0.45rem;
+	}
+
+	.bonus-card__action {
+		width: 100%;
 	}
 </style>

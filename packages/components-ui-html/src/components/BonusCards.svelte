@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { stateBet, stateModal, type BetModeData } from 'state-shared';
-	import { Button } from 'components-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
-	import BaseIcon from './BaseIcon.svelte';
+	import HudPanelCta from './HudPanelCta.svelte';
 	import BonusCard from './BonusCard.svelte';
-	import BaseButtonContent from './BaseButtonContent.svelte';
 	import { stateBonus } from '../stateBonus.svelte';
 	import type { EmitterEventModal } from '../types';
 
@@ -42,22 +40,17 @@
 			{/snippet}
 
 			{#snippet button()}
-				<div class="purchase-wrap">
-					<Button
-						onclick={() => {
-							stateBonus.selectedBetModeKey = betModeData.mode;
-							eventEmitter.broadcast({ type: 'buyBonusConfirm' });
-							eventEmitter.broadcast({ type: 'soundPressGeneral' });
-						}}
-						disabled={stateBet.betAmount <= 0 ||
-							stateBet.balanceAmount < stateBet.betAmount * betModeData.costMultiplier}
-					>
-						<BaseIcon width="100%" height="2rem" border="2px solid white;" />
-						<BaseButtonContent>
-							<span class="purchase-label">{betModeData.text.button}</span>
-						</BaseButtonContent>
-					</Button>
-				</div>
+				<HudPanelCta
+					onclick={() => {
+						stateBonus.selectedBetModeKey = betModeData.mode;
+						eventEmitter.broadcast({ type: 'buyBonusConfirm' });
+						eventEmitter.broadcast({ type: 'soundPressGeneral' });
+					}}
+					disabled={stateBet.betAmount <= 0 ||
+						stateBet.balanceAmount < stateBet.betAmount * betModeData.costMultiplier}
+				>
+					{betModeData.text.button}
+				</HudPanelCta>
 			{/snippet}
 		</BonusCard>
 	{/if}
@@ -66,17 +59,17 @@
 <style lang="scss">
 	.title {
 		font-size: 1rem;
-		line-height: 1rem;
-		text-align: center;
+		font-weight: 700;
+		line-height: 1.2;
+		text-align: left;
 	}
 
 	.description {
-		font-size: 0.75rem;
-		text-align: center;
-		min-height: 4rem;
+		font-size: 0.8rem;
+		line-height: 1.35;
+		text-align: left;
+		color: rgba(255, 255, 255, 0.65);
 		white-space: pre-line;
-		display: inline-flex;
-		align-items: center;
 	}
 
 	.description:empty {
@@ -84,29 +77,10 @@
 	}
 
 	.price {
-		font-size: 1rem;
-		line-height: 1rem;
-		text-align: center;
+		font-size: 1.15rem;
+		font-weight: 700;
+		line-height: 1.2;
+		text-align: left;
 		white-space: nowrap;
-	}
-
-	.purchase-wrap :global(.rectangle) {
-		height: 2rem;
-	}
-
-	.purchase-label {
-		font-size: 1rem;
-	}
-
-	@media (max-width: 500px) {
-		.price {
-			max-width: 100%;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-
-		.purchase-wrap :global(.rectangle) {
-			height: 3rem;
-		}
 	}
 </style>

@@ -1,17 +1,11 @@
 <script lang="ts">
-	import { Popup } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
-	import { getContextLayout } from 'utils-layout';
 	import { stateModal, stateMetaDerived } from 'state-shared';
 
+	import HudPanel from './HudPanel.svelte';
 	import BonusCards from './BonusCards.svelte';
 	import BetMenuAmountToggle from './BetMenuAmountToggle.svelte';
-	import BonusContentWrapLarge from './BonusContentWrapLarge.svelte';
-	import BonusContentWrapPortrait from './BonusContentWrapPortrait.svelte';
-	import BonusContentWrapLandscape from './BonusContentWrapLandscape.svelte';
-	import BonusContentWrapMiniPlayer from './BonusContentWrapMiniPlayer.svelte';
-
-	const { stateLayoutDerived } = getContextLayout();
+	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const activateList = $derived(
 		stateMetaDerived.betModeMetaList().filter((item) => item.type === 'activate'),
@@ -20,93 +14,63 @@
 	const buyList = $derived(
 		stateMetaDerived.betModeMetaList().filter((item) => item.type === 'buy'),
 	);
-
-	const isMiniPlayer = $derived(stateLayoutDerived.isMiniPlayerViewport());
-	const maxListLength = $derived(Math.max(activateList.length, buyList.length));
-
-	const COMPONENT_MAP = {
-		desktop: BonusContentWrapLarge,
-		tablet: BonusContentWrapLarge,
-		portrait: BonusContentWrapPortrait,
-		landscape: BonusContentWrapLandscape,
-	} as const;
-
-	const BonusContentWrap = $derived(COMPONENT_MAP[stateLayoutDerived.layoutType()]);
 </script>
 
 {#if stateModal.modal?.name === 'buyBonus'}
-	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
-		<div class="buy-bonus-content scrollY scroll-micro">
-			{#if isMiniPlayer}
-				<BonusContentWrapMiniPlayer
-					{maxListLength}
-					showActivateRow={activateList.length > 0}
-				>
-					{#snippet betAmount()}
-						<BetMenuAmountToggle />
-					{/snippet}
-
-					{#snippet bonusCardsActivate()}
-						<BonusCards list={activateList} />
-					{/snippet}
-
-					{#snippet bonusCardsBuy()}
-						<BonusCards list={buyList} />
-					{/snippet}
-				</BonusContentWrapMiniPlayer>
-			{:else}
-				<BonusContentWrap {maxListLength}>
-					{#snippet betAmount()}
-						<BetMenuAmountToggle />
-					{/snippet}
-
-					{#snippet bonusCardsActivate()}
-						<BonusCards list={activateList} />
-					{/snippet}
-
-					{#snippet bonusCardsBuy()}
-						<BonusCards list={buyList} />
-					{/snippet}
-				</BonusContentWrap>
+	<HudPanel
+		title={i18nDerived.buyBonus}
+		zIndex={zIndex.modal}
+		onclose={() => (stateModal.modal = null)}
+	>
+		<div class="buy-bonus-body">
+			{#if activateList.length > 0}
+				<div class="card-stack">
+					<BonusCards list={activateList} />
+				</div>
+			{/if}
+			{#if buyList.length > 0}
+				<div class="card-stack">
+					<BonusCards list={buyList} />
+				</div>
 			{/if}
 		</div>
-	</Popup>
+
+		{#snippet footer()}
+			<div class="bet-bar">
+				<span class="bet-bar__label">{i18nDerived.bet}</span>
+				<BetMenuAmountToggle />
+			</div>
+		{/snippet}
+	</HudPanel>
 {/if}
 
 <style lang="scss">
-	:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
-		justify-content: center;
-		align-items: center;
-		padding: 3.25rem 0.5rem 0.5rem;
-		box-sizing: border-box;
-	}
-
-	:global(.pop-up-wrap:has(.buy-bonus-content) .ui-popup-standard-content-wrap) {
-		width: 100%;
-		max-width: 100%;
-		max-height: 100%;
-		min-height: 0;
-	}
-
-	.buy-bonus-content {
-		width: 100%;
-		max-height: 100%;
+	.buy-bonus-body {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		min-height: 0;
+		gap: 0.75rem;
+		width: 100%;
 	}
 
-	@media (max-width: 500px) and (min-height: 301px) {
-		:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
-			padding: 3rem 0.5rem 0.5rem;
-		}
+	.card-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		width: 100%;
 	}
 
-	@media (max-width: 450px) and (max-height: 300px) {
-		:global(.pop-up-wrap:has(.buy-bonus-content) .top-layer) {
-			padding: 2rem 0.35rem 0.35rem;
-		}
+	.bet-bar {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		width: 100%;
+	}
+
+	.bet-bar__label {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.55);
 	}
 </style>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from 'components-shared';
 	import {
 		stateUi,
 		stateBet,
@@ -11,8 +10,7 @@
 	} from 'state-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
 
-	import BaseIcon from './BaseIcon.svelte';
-	import BaseButtonContent from './BaseButtonContent.svelte';
+	import HudPanelCta from './HudPanelCta.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import type { EmitterEventModal } from '../types';
 
@@ -20,8 +18,11 @@
 
 	const startAutoBet = () => {
 		stateBet.autoSpinsCounter = AUTO_SPINS_TEXT_OPTION_MAP[stateUi.autoSpinsText];
-		stateBet.autoSpinsLossLimitAmount = stateBet.betAmount * AUTO_SPINS_LOSS_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsLossLimitText]; // prettier-ignore
-		stateBet.autoSpinsSingleWinLimitAmount = stateBet.betAmount * AUTO_SPINS_SINGLE_WIN_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsSingleWinLimitText]; // prettier-ignore
+		stateBet.autoSpinsLossLimitAmount =
+			stateBet.betAmount * AUTO_SPINS_LOSS_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsLossLimitText];
+		stateBet.autoSpinsSingleWinLimitAmount =
+			stateBet.betAmount *
+			AUTO_SPINS_SINGLE_WIN_LIMIT_MULTIPLIER_MAP[stateUi.autoSpinsSingleWinLimitText];
 		if (stateBetDerived.activeBetMode().type === 'buy') stateBet.activeBetModeKey = 'BASE';
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
 		eventEmitter.broadcast({ type: 'autoBet' });
@@ -29,9 +30,6 @@
 	};
 </script>
 
-<Button disabled={!stateBetDerived.isBetCostAvailable()} onclick={startAutoBet}>
-	<BaseIcon width="100%" height="3rem" />
-	<BaseButtonContent>
-		<span style="font-size: 1rem;">{i18nDerived.startAutoplay}</span>
-	</BaseButtonContent>
-</Button>
+<HudPanelCta disabled={!stateBetDerived.isBetCostAvailable()} onclick={startAutoBet}>
+	{i18nDerived.startAutoplay}
+</HudPanelCta>
