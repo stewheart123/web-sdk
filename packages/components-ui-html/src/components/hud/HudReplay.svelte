@@ -37,33 +37,32 @@
 				{@render props.gameName()}
 			{/if}
 			<HudClock />
-			{#if isBottomLayout}
-				<HudBalance />
-			{/if}
-			{#if stateUi.freeSpinCounterShow}
+			{#if !isBottomLayout && stateUi.freeSpinCounterShow}
 				<HudFreeSpinCounter />
 			{/if}
 		</div>
 
 		<div class="hud-replay__top-right">
-			{#if isBottomLayout}
-				<div class="hud-replay__top-actions">
-					<div class="hud-replay__menu">
-						<HudMenu />
-						<HudMenuPanel anchor="top" />
-					</div>
+			<div class="hud-replay__top-actions">
+				<HudSoundIcon />
+				<div class="hud-replay__menu">
+					<HudMenu />
+					<HudMenuPanel anchor="top" />
+				</div>
+			</div>
+		</div>
+
+		{#if isBottomLayout}
+			<div class="hud-replay__top-stats">
+				<div class="hud-replay__top-stats-start">
+					<HudBalance />
+					{#if stateUi.freeSpinCounterShow}
+						<HudFreeSpinCounter />
+					{/if}
 				</div>
 				<HudBet />
-			{:else}
-				<div class="hud-replay__top-actions">
-					<HudSoundIcon />
-					<div class="hud-replay__menu">
-						<HudMenu />
-						<HudMenuPanel anchor="top" />
-					</div>
-				</div>
-			{/if}
-		</div>
+			</div>
+		{/if}
 
 		<div class="hud-replay__bottom-left">
 			{#if !isBottomLayout}
@@ -93,6 +92,7 @@
 
 		&__top-left,
 		&__top-right,
+		&__top-stats,
 		&__bottom-left,
 		&__bottom-right {
 			position: absolute;
@@ -126,6 +126,25 @@
 			align-items: center;
 			gap: 0.55rem;
 			pointer-events: auto;
+		}
+
+		&__top-stats {
+			top: calc(0.65rem + 2.35rem + 0.5rem);
+			left: 0.85rem;
+			right: 0.85rem;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 0.75rem;
+			pointer-events: none;
+		}
+
+		&__top-stats-start {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.2rem;
+			min-width: 0;
 		}
 
 		&__bottom-left {

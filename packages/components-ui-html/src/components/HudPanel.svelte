@@ -119,7 +119,7 @@
 			position: absolute;
 			display: flex;
 			flex-direction: column;
-			background: #1a1d24;
+			background: #1a1d24ba;
 			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 			min-height: 0;
 			pointer-events: auto;

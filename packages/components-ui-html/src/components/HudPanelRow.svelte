@@ -28,13 +28,14 @@
 		border: none;
 		border-radius: 0.55rem;
 		padding: 0.85rem 1rem;
-		background: #12151c;
+		background: #12151cd4;
 		color: #fff;
 		font: inherit;
 		font-size: 1rem;
 		font-weight: 600;
 		text-align: center;
 		cursor: pointer;
+		border: 1px solid #ffffff30;
 
 		&:disabled {
 			opacity: 0.45;

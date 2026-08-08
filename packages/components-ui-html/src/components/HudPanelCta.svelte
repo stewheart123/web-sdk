@@ -42,7 +42,7 @@
 		}
 
 		&--danger {
-			background: #b02f59;
+			background: #ff1a628c;
 		}
 
 		&--primary {

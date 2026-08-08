@@ -30,40 +30,40 @@
 </script>
 
 <div class="hud-chrome" data-layout={layoutType} data-mode={chromeMode}>
-	<!-- Top left: name + clock (+ balance on bottom layouts, then free spins) -->
+	<!-- Top left: name + clock (+ free spins on rail layouts) -->
 	<div class="hud-chrome__top-left">
 		{#if props.gameName}
 			{@render props.gameName()}
 		{/if}
 		<HudClock />
-		{#if isBottomLayout}
-			<HudBalance />
-		{/if}
-		{#if stateUi.freeSpinCounterShow}
+		{#if !isBottomLayout && stateUi.freeSpinCounterShow}
 			<HudFreeSpinCounter />
 		{/if}
 	</div>
 
-	<!-- Top right -->
+	<!-- Top right: mute + menu (same placement in all layouts) -->
 	<div class="hud-chrome__top-right">
-		{#if isBottomLayout}
-			<div class="hud-chrome__top-actions">
-				<div class="hud-chrome__menu-slot">
-					<HudMenu />
-					<HudMenuPanel anchor="top" />
-				</div>
+		<div class="hud-chrome__top-actions">
+			<HudSoundIcon />
+			<div class="hud-chrome__menu-slot">
+				<HudMenu />
+				<HudMenuPanel anchor="top" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Portrait/tablet: balance + bet on one baseline -->
+	{#if isBottomLayout}
+		<div class="hud-chrome__top-stats">
+			<div class="hud-chrome__top-stats-start">
+				<HudBalance />
+				{#if stateUi.freeSpinCounterShow}
+					<HudFreeSpinCounter />
+				{/if}
 			</div>
 			<HudBet />
-		{:else}
-			<div class="hud-chrome__top-actions">
-				<HudSoundIcon />
-				<div class="hud-chrome__menu-slot">
-					<HudMenu />
-					<HudMenuPanel anchor="top" />
-				</div>
-			</div>
-		{/if}
-	</div>
+		</div>
+	{/if}
 
 	<!-- Bottom left -->
 	<div class="hud-chrome__bottom-left">
@@ -73,7 +73,6 @@
 					<HudBuyBonus />
 				</div>
 				<div class="hud-chrome__left-row">
-					<HudSoundIcon />
 					<HudAutoSpin />
 					<HudTurbo />
 				</div>
@@ -148,7 +147,7 @@
 			height: min(28vh, 12rem);
 			background: linear-gradient(
 				to top,
-				rgba(0, 0, 0, 0.5) 0%,
+				rgba(0, 0, 0, 0.7) 0%,
 				rgba(0, 0, 0, 0.22) 45%,
 				rgba(0, 0, 0, 0) 100%
 			);
@@ -158,6 +157,7 @@
 
 		&__top-left,
 		&__top-right,
+		&__top-stats,
 		&__bottom-left,
 		&__bottom-right,
 		&__bottom-center,
@@ -199,6 +199,26 @@
 			align-items: center;
 			gap: 0.55rem;
 			pointer-events: auto;
+		}
+
+		&__top-stats {
+			/* Sit below the sm mute/menu row so balance + bet share one baseline */
+			top: calc(max(0.65rem, env(safe-area-inset-top)) + 2.35rem + 0.5rem);
+			left: max(0.85rem, env(safe-area-inset-left));
+			right: max(0.85rem, env(safe-area-inset-right));
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 0.75rem;
+			pointer-events: none;
+		}
+
+		&__top-stats-start {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.2rem;
+			min-width: 0;
 		}
 
 		&__bottom-left {

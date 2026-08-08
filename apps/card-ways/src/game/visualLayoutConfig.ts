@@ -258,15 +258,15 @@ const FREE_SPIN_MODAL_LAYOUT_BY_TYPE: Record<LayoutType, ModalLayoutSettings> = 
 		width: 600,
 		height: 900,
 		offsetFromBoard: { x: 0, y: 0 },
-		spine: { x: 300, y: 720 },
+		spine: { x: 300, y: 760 },
 		spineWidth: 250,
 	},
 	portrait: {
 		width: 600,
 		height: 900,
 		offsetFromBoard: { x: 0, y: 0 },
-		spine: { x: 300, y: 820 },
-		spineWidth: 400,
+		spine: { x: 300, y: 900 },
+		spineWidth: 350,
 	},
 	tablet: {
 		width: 600,
