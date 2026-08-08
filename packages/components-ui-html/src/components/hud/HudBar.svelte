@@ -190,6 +190,8 @@
 			flex-direction: column;
 			align-items: flex-end;
 			gap: 0.2rem;
+			/* Above rail/bonus so the open menu (SFX/music/info) is not covered */
+			z-index: 5;
 		}
 
 		&__top-actions {

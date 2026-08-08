@@ -35,13 +35,13 @@
 		position: fixed;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.45);
-		z-index: 1;
+		z-index: 4;
 		cursor: pointer;
 	}
 
 	.hud-menu-panel {
 		position: absolute;
-		z-index: 2;
+		z-index: 5;
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
