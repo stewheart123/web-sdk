@@ -557,7 +557,7 @@ export const VISUAL_LAYOUT = {
 			normalWin: {
 				label: 'Win/NormalWin/PressToContinue',
 				x: 0,
-				y: 140,
+				y: 225,
 				widthRatio: 0.6,
 				anchor: { x: 0.5, y: 0.5 },
 				zIndex: 10,

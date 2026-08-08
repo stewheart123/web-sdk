@@ -127,6 +127,7 @@
 
 	.rule-container.image-top {
 		flex-direction: column;
+		align-items: stretch;
 	}
 
 	.rule-images {
@@ -170,6 +171,22 @@
 		max-height: 2.25rem;
 		width: 6.5rem;
 		height: auto;
+	}
+
+	.rule-container.image-top .rule-images {
+		width: 100%;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: 0.5rem;
+	}
+
+	.rule-container.image-top .rule-images .rule-image {
+		width: 100%;
+		max-width: 100%;
+		max-height: 7rem;
+		align-self: stretch;
+		object-fit: contain;
+		background: #000;
 	}
 
 	.rule-container.image-top .rule-image {

@@ -2,7 +2,7 @@ import { DEFAULT_BET_MODE_META } from 'state-shared/src/constants';
 import type { BetModeMeta } from 'state-shared';
 
 import { t, tSocial } from '../i18n/translate';
-import { BONUS_BUY_TIERS } from './bonusBuyTiers';
+import { BONUS_BUY_TIERS, bonusBuyImageForTier } from './bonusBuyTiers';
 import config from './config';
 
 const buildBonusBuyMeta = () =>
@@ -15,6 +15,7 @@ const buildBonusBuyMeta = () =>
 				freeSpins: String(tier.freeSpins),
 				bonusCost: String(bonusCost),
 			};
+			const dialogImage = bonusBuyImageForTier(tier);
 
 			return [
 				tier.mode,
@@ -24,6 +25,11 @@ const buildBonusBuyMeta = () =>
 					type: 'buy' as const,
 					costMultiplier: bonusCost,
 					maxWin: betMode.max_win,
+					assets: {
+						...DEFAULT_BET_MODE_META.BONUS.assets,
+						icon: dialogImage,
+						dialogImage,
+					},
 					text: {
 						...DEFAULT_BET_MODE_META.BONUS.text,
 						title: t('UI.BONUS_BUY.TIER.TITLE', tierValues),

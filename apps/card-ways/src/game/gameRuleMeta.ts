@@ -3,7 +3,7 @@ import type { GameRuleContainer, GameRuleData } from 'state-shared';
 import { toAbsoluteAssetUrl } from 'pixi-svelte';
 
 import { t, tSocial } from '../i18n/translate';
-import { BONUS_BUY_TIERS } from './bonusBuyTiers';
+import { BONUS_BUY_TIERS, BONUS_BUY_IMAGES } from './bonusBuyTiers';
 import config from './config';
 
 const baseRtp = config.betModes.base.rtp * 100;
@@ -305,8 +305,8 @@ export const buildCardWaysGameRuleMeta = () => {
 					title: tSocial('GR.BONUS_BUY.TITLE', 'GR.BONUS_BUY.TITLE.SOCIAL'),
 					text: tSocial('GR.BONUS_BUY.TEXT', 'GR.BONUS_BUY.TEXT.SOCIAL', numericValues),
 					image: '',
-					icon: 'bonus',
-					imagePosition: 'left',
+					images: Object.values(BONUS_BUY_IMAGES),
+					imagePosition: 'top',
 					row: 0,
 					column: 0,
 				},

@@ -335,8 +335,8 @@
 		&[data-layout='portrait'],
 		&[data-layout='tablet'] {
 			.hud-chrome__bottom-center :global(.hud-btn--lg) {
-				width: 6.35rem;
-				height: 6.35rem;
+				width: 5.5rem;
+				height: 5.5rem;
 				font-size: 2.5rem;
 			}
 		}

@@ -37,6 +37,13 @@
 				{stateBonusDerived.selectedBetModeData().text.title}
 			</BaseTitle>
 			<BaseScrollable type="column">
+				{#if stateBonusDerived.selectedBetModeData().assets.dialogImage}
+					<img
+						class="confirm-image"
+						src={stateBonusDerived.selectedBetModeData().assets.dialogImage}
+						alt=""
+					/>
+				{/if}
 				{stateBonusDerived.selectedBetModeData().text.dialog}
 			</BaseScrollable>
 			<BaseButtonWrap type="max-width">
@@ -67,6 +74,17 @@
 
 	.confirm-label {
 		font-size: 1rem;
+	}
+
+	.confirm-image {
+		display: block;
+		width: 100%;
+		max-width: 22rem;
+		height: auto;
+		margin: 0 auto 0.75rem;
+		border-radius: 0.5rem;
+		object-fit: contain;
+		background: #000;
 	}
 
 	@media (max-width: 500px) {
