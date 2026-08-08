@@ -3,6 +3,7 @@ import { locales } from 'config-lingui';
 import { stateUrlOverride, type Language } from 'state-shared';
 
 import { initLocale } from '../src/game/syncLocale';
+import '../../../packages/components-ui-html/src/components/global.scss';
 
 initLocale('en');
 

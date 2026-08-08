@@ -37,6 +37,8 @@
 		// to prevent that you can't scroll the page with touch on the canvas. https://github.com/pixijs/pixijs/issues/4824
 		context.stateApp.pixiApplication.renderer.events.autoPreventDefault = false;
 		context.stateApp.pixiApplication.renderer.canvas.style.touchAction = 'auto';
+		// Avoid inline-canvas baseline gap that grows the document and shows a page scrollbar.
+		context.stateApp.pixiApplication.canvas.style.display = 'block';
 	};
 
 	onMount(async () => {
@@ -55,8 +57,17 @@
 	});
 </script>
 
-<div bind:this={wrap}>
+<div class="pixi-app-wrap" bind:this={wrap}>
 	{#if initialised}
 		{@render props.children()}
 	{/if}
 </div>
+
+<style>
+	.pixi-app-wrap {
+		position: fixed;
+		inset: 0;
+		overflow: hidden;
+		background: #000;
+	}
+</style>
