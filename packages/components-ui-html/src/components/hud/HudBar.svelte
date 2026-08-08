@@ -78,10 +78,14 @@
 		{/if}
 	</div>
 
-	<!-- Mobile landscape only: bonus on left (avoids overlapping top-right sound/menu) -->
+	<!-- Mobile landscape: bonus + auto/turbo on left (keeps right rail clear of sound/menu) -->
 	{#if isMobileLandscape}
-		<div class="hud-chrome__left-bonus">
+		<div class="hud-chrome__left-controls">
 			<HudBuyBonus />
+			<div class="hud-chrome__rail-pair">
+				<HudAutoSpin />
+				<HudTurbo />
+			</div>
 		</div>
 	{/if}
 
@@ -107,11 +111,11 @@
 		<div class="hud-chrome__right-rail">
 			{#if !isMobileLandscape}
 				<HudBuyBonus />
+				<div class="hud-chrome__rail-pair">
+					<HudAutoSpin />
+					<HudTurbo />
+				</div>
 			{/if}
-			<div class="hud-chrome__rail-pair">
-				<HudAutoSpin />
-				<HudTurbo />
-			</div>
 			<HudBetIcon />
 			<div class="hud-chrome__rail-spin">
 				<HudWinFloat />
@@ -135,7 +139,7 @@
 		&__bottom-left,
 		&__bottom-right,
 		&__bottom-center,
-		&__left-bonus,
+		&__left-controls,
 		&__right-rail {
 			position: absolute;
 			pointer-events: none;
@@ -216,9 +220,13 @@
 			pointer-events: auto;
 		}
 
-		&__left-bonus {
-			left: max(2.1rem, calc(env(safe-area-inset-left) + 1.25rem));
+		&__left-controls {
+			left: max(0.85rem, env(safe-area-inset-left));
 			bottom: max(4.5rem, calc(env(safe-area-inset-bottom) + 3.5rem));
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.55rem;
 			pointer-events: auto;
 
 			:global(.hud-btn--md) {
