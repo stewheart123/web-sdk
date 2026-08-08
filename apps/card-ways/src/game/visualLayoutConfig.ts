@@ -604,8 +604,8 @@ export const VISUAL_LAYOUT = {
 					dotGap: 16,
 				},
 				landscape: {
-					panelWidth: 340 * 0.8,
-					panelHeight: 360 * 0.8,
+					panelWidth: 340,
+					panelHeight: 360,
 					gap: 24,
 					y: 50,
 					fgSize: 140,
@@ -644,9 +644,9 @@ export const VISUAL_LAYOUT = {
 				},
 				landscape: {
 					x: 800,
-					y: 340,
+					y: 440,
 					logoWidth: 160,
-					logoY: -220,
+					logoY: -300,
 					progressBar: { x: 0, y: 280, width: 393, height: 69 },
 				},
 				portrait: {
@@ -669,8 +669,8 @@ export const VISUAL_LAYOUT = {
 		pressToContinue: {
 			label: 'Loading/PressToContinue',
 			x: 0,
-			y: -30,
-			widthRatio: 1.0,
+			y: 20,
+			widthRatio: 1.3,
 			anchor: { x: 0.5, y: 0.5 },
 		},
 	},
@@ -883,7 +883,7 @@ export const resolveHowToPlayLayout = (layoutType: LayoutType): ResolvedHowToPla
 	const layout = getHowToPlayLayout(layoutType);
 	return {
 		...layout,
-		carousel: layoutType === 'portrait' || layoutType === 'landscape',
+		carousel: layoutType === 'portrait',
 	};
 };
 

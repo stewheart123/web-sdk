@@ -31,4 +31,4 @@ export const HOW_TO_PLAY_PANELS: HowToPlayPanelDef[] = [
 ];
 
 export const isHowToPlayCarouselLayout = (layoutType: LayoutType) =>
-	layoutType === 'portrait' || layoutType === 'landscape';
+	layoutType === 'portrait';
