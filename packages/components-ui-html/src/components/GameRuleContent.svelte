@@ -40,6 +40,8 @@
 				{@const hasImages = Boolean(container.images?.length)}
 				{@const hasImage = Boolean(container.image)}
 				{@const showMedia = hasIcon || hasImages || hasImage}
+				{@const isWideMultiplier =
+					container.title === '×1' || container.title === '×2' || container.title === '×3'}
 				<div
 					class="rule-container"
 					class:image-top={showMedia && container.imagePosition === 'top'}
@@ -58,7 +60,12 @@
 							{/each}
 						</div>
 					{:else if hasImage}
-						<img class="rule-image" src={container.image} alt="" />
+						<img
+							class="rule-image"
+							class:rule-image--wide={isWideMultiplier}
+							src={container.image}
+							alt=""
+						/>
 					{/if}
 					<div class="rule-text">
 						{#if container.title}
@@ -158,6 +165,13 @@
 		border-radius: 0.25rem;
 	}
 
+	.rule-image--wide {
+		max-width: 6.5rem;
+		max-height: 2.25rem;
+		width: 6.5rem;
+		height: auto;
+	}
+
 	.rule-container.image-top .rule-image {
 		max-width: 100%;
 		max-height: 7rem;
@@ -234,10 +248,10 @@
 		}
 
 		.rule-container.image-left:has(.rule-images) .rule-image {
-			width: 5.75rem;
-			height: 5.75rem;
-			max-width: 55%;
-			max-height: 5.75rem;
+			width: auto;
+			height: auto;
+			max-width: min(12rem, 70%);
+			max-height: 12rem;
 		}
 
 		.rule-icon-badge {
@@ -258,6 +272,13 @@
 			max-width: 18%;
 			max-height: 3.5rem;
 			object-fit: contain;
+		}
+
+		.rule-image--wide {
+			width: auto;
+			height: auto;
+			max-width: 38%;
+			max-height: 2.5rem;
 		}
 
 		.rule-container.image-top {

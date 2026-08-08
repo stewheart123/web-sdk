@@ -22,6 +22,8 @@ type GameRuleImages = {
 	x1: string;
 	x2: string;
 	x3: string;
+	/** Stacked X3/X2/X1 intro card used for modifier overview rows. */
+	multipliers: string;
 };
 
 /** Resolve hashed Vite asset paths against the live game origin at runtime. */
@@ -39,6 +41,7 @@ const createGameRuleImages = (): GameRuleImages => {
 		x1: new URL('../../assets/sprites/gameRules/X1.png', import.meta.url).href,
 		x2: new URL('../../assets/sprites/gameRules/X2.png', import.meta.url).href,
 		x3: new URL('../../assets/sprites/gameRules/X3.png', import.meta.url).href,
+		multipliers: new URL('../../assets/sprites/introCards/CARD-2-FG.png', import.meta.url).href,
 	} satisfies GameRuleImages;
 
 	return Object.fromEntries(
@@ -112,7 +115,7 @@ const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
 			title: special.title,
 			text: tSocial(special.textKey, `${special.textKey}.SOCIAL`),
 			image: specialSymbolImageMap[special.title],
-			imagePosition: 'left',
+			imagePosition: 'top',
 			row: special.row,
 			column: special.column,
 		});
@@ -195,7 +198,6 @@ const numericValues = {
 
 export const buildCardWaysGameRuleMeta = () => {
 	const images = createGameRuleImages();
-	const modifierImages = [images.x1, images.x2, images.x3] as const;
 
 	const payTableSections: GameRuleData[] = [
 		{
@@ -231,7 +233,7 @@ export const buildCardWaysGameRuleMeta = () => {
 					title: t('GR.MODIFIER_BASE.TITLE'),
 					text: t('GR.MODIFIER_BASE.TEXT'),
 					image: '',
-					images: [...modifierImages],
+					images: [images.multipliers],
 					imagePosition: 'left',
 					row: 3,
 					column: 0,
@@ -240,7 +242,7 @@ export const buildCardWaysGameRuleMeta = () => {
 					title: t('GR.MODIFIER_FREE_SPINS.TITLE'),
 					text: t('GR.MODIFIER_FREE_SPINS.TEXT'),
 					image: '',
-					images: [...modifierImages],
+					images: [images.multipliers],
 					imagePosition: 'left',
 					row: 4,
 					column: 0,
