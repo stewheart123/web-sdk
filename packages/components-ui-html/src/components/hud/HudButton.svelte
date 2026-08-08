@@ -83,7 +83,7 @@
 
 		&--spin {
 			border-radius: 999px;
-			border-width: 2px;
+			border-width: 3px;
 			border-color: rgba(255, 255, 255, 0.95);
 		}
 
@@ -123,9 +123,9 @@
 		}
 
 		&--lg:not(.hud-btn--text) {
-			width: 3.75rem;
-			height: 3.75rem;
-			font-size: 1.55rem;
+			width: 6.5rem;
+			height: 6.5rem;
+			font-size: 2.6rem;
 		}
 
 		&__label {

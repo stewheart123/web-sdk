@@ -34,6 +34,7 @@
 			{#if props.gameName}
 				{@render props.gameName()}
 			{/if}
+			<HudClock />
 			{#if isBottomLayout}
 				<HudBalance />
 			{/if}
@@ -41,7 +42,12 @@
 
 		<div class="hud-replay__top-right">
 			{#if isBottomLayout}
-				<HudClock />
+				<div class="hud-replay__top-actions">
+					<div class="hud-replay__menu">
+						<HudMenu />
+						<HudMenuPanel anchor="top" />
+					</div>
+				</div>
 				<HudBet />
 			{:else}
 				<div class="hud-replay__top-actions">
@@ -50,18 +56,12 @@
 						<HudMenu />
 						<HudMenuPanel anchor="top" />
 					</div>
-					<HudClock />
 				</div>
 			{/if}
 		</div>
 
 		<div class="hud-replay__bottom-left">
-			{#if isBottomLayout}
-				<div class="hud-replay__menu">
-					<HudMenu />
-					<HudMenuPanel anchor="bottom" />
-				</div>
-			{:else}
+			{#if !isBottomLayout}
 				<HudBalance />
 			{/if}
 		</div>

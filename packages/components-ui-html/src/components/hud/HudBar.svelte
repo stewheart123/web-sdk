@@ -23,15 +23,17 @@
 	const { stateLayoutDerived } = getContextLayout();
 	const layoutType = $derived(stateLayoutDerived.layoutType());
 	const isBottomLayout = $derived(layoutType === 'portrait' || layoutType === 'tablet');
+	const isMobileLandscape = $derived(layoutType === 'landscape');
 	const chromeMode = $derived(isBottomLayout ? 'bottom' : 'rail');
 </script>
 
 <div class="hud-chrome" data-layout={layoutType} data-mode={chromeMode}>
-	<!-- Top left: name (+ balance on bottom layouts) -->
+	<!-- Top left: name + clock (+ balance on bottom layouts) -->
 	<div class="hud-chrome__top-left">
 		{#if props.gameName}
 			{@render props.gameName()}
 		{/if}
+		<HudClock />
 		{#if isBottomLayout}
 			<HudBalance />
 		{/if}
@@ -40,7 +42,12 @@
 	<!-- Top right -->
 	<div class="hud-chrome__top-right">
 		{#if isBottomLayout}
-			<HudClock />
+			<div class="hud-chrome__top-actions">
+				<div class="hud-chrome__menu-slot">
+					<HudMenu />
+					<HudMenuPanel anchor="top" />
+				</div>
+			</div>
 			<HudBet />
 		{:else}
 			<div class="hud-chrome__top-actions">
@@ -49,7 +56,6 @@
 					<HudMenu />
 					<HudMenuPanel anchor="top" />
 				</div>
-				<HudClock />
 			</div>
 		{/if}
 	</div>
@@ -72,16 +78,17 @@
 		{/if}
 	</div>
 
+	<!-- Mobile landscape only: bonus on left (avoids overlapping top-right sound/menu) -->
+	{#if isMobileLandscape}
+		<div class="hud-chrome__left-bonus">
+			<HudBuyBonus />
+		</div>
+	{/if}
+
 	<!-- Bottom right -->
 	<div class="hud-chrome__bottom-right">
 		{#if isBottomLayout}
-			<div class="hud-chrome__right-cluster">
-				<div class="hud-chrome__menu-slot">
-					<HudMenu />
-					<HudMenuPanel anchor="bottom" />
-				</div>
-				<HudBetIcon />
-			</div>
+			<HudBetIcon />
 		{:else}
 			<HudBet />
 		{/if}
@@ -98,7 +105,9 @@
 	<!-- Landscape/desktop: right rail -->
 	{#if !isBottomLayout}
 		<div class="hud-chrome__right-rail">
-			<HudBuyBonus />
+			{#if !isMobileLandscape}
+				<HudBuyBonus />
+			{/if}
 			<div class="hud-chrome__rail-pair">
 				<HudAutoSpin />
 				<HudTurbo />
@@ -126,6 +135,7 @@
 		&__bottom-left,
 		&__bottom-right,
 		&__bottom-center,
+		&__left-bonus,
 		&__right-rail {
 			position: absolute;
 			pointer-events: none;
@@ -201,17 +211,21 @@
 			gap: 0.45rem;
 		}
 
-		&__right-cluster {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-			gap: 0.45rem;
-			pointer-events: auto;
-		}
-
 		&__menu-slot {
 			position: relative;
 			pointer-events: auto;
+		}
+
+		&__left-bonus {
+			left: max(2.1rem, calc(env(safe-area-inset-left) + 1.25rem));
+			bottom: max(4.5rem, calc(env(safe-area-inset-bottom) + 3.5rem));
+			pointer-events: auto;
+
+			:global(.hud-btn--md) {
+				width: 3.35rem;
+				height: 3.35rem;
+				font-size: 1.4rem;
+			}
 		}
 
 		&__right-rail {
@@ -221,7 +235,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: 0.65rem;
+			gap: 0.85rem;
 			pointer-events: auto;
 		}
 
@@ -237,7 +251,7 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 0.35rem;
-			margin-top: 0.35rem;
+			margin-top: 1.15rem;
 		}
 
 		&[data-mode='rail'] {
@@ -246,21 +260,20 @@
 				bottom: max(4.5rem, calc(env(safe-area-inset-bottom) + 3.5rem));
 				transform: none;
 			}
-		}
 
-		&[data-layout='portrait'] {
-			.hud-chrome__bottom-center :global(.hud-btn--lg) {
-				width: 3.6rem;
-				height: 3.6rem;
-				font-size: 1.45rem;
+			.hud-chrome__rail-spin :global(.hud-btn--lg) {
+				width: 6rem;
+				height: 6rem;
+				font-size: 3rem;
 			}
 		}
 
-		&[data-mode='rail'] {
-			.hud-chrome__rail-spin :global(.hud-btn--lg) {
-				width: 4.1rem;
-				height: 4.1rem;
-				font-size: 1.65rem;
+		&[data-layout='portrait'],
+		&[data-layout='tablet'] {
+			.hud-chrome__bottom-center :global(.hud-btn--lg) {
+				width: 6.35rem;
+				height: 6.35rem;
+				font-size: 2.5rem;
 			}
 		}
 	}

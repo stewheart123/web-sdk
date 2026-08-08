@@ -21,13 +21,19 @@
 
 <span class="hud-icon" aria-hidden="true">
 	{#if props.name === 'spin'}
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<path
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				d="M4.5 12a7.5 7.5 0 0 1 12.4-5.7M19.5 12a7.5 7.5 0 0 1-12.4 5.7"
+				d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
 			/>
-			<path stroke-linecap="round" stroke-linejoin="round" d="M16 4.8V8h3.2M8 19.2V16H4.8" />
+			<path stroke-linecap="round" stroke-linejoin="round" d="M21 3v5h-5" />
+			<path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+			/>
+			<path stroke-linecap="round" stroke-linejoin="round" d="M8 16H3v5" />
 		</svg>
 	{:else if props.name === 'stop'}
 		<svg viewBox="0 0 24 24" fill="currentColor">

@@ -8,12 +8,15 @@
 	import HudIcon from './HudIcon.svelte';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
-	const muted = $derived(stateSound.volumeValueSoundEffect === 0);
+	const muted = $derived(stateSound.volumeValueMaster === 0);
 
 	const onToggle = () => {
-		stateSound.volumeValueSoundEffect =
-			stateSound.volumeValueSoundEffect === 0 ? DEFAULT_VOLUME_VALUE : 0;
-		eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		const nextMuted = stateSound.volumeValueMaster !== 0;
+		stateSound.volumeValueMaster = nextMuted ? 0 : DEFAULT_VOLUME_VALUE;
+
+		if (!nextMuted) {
+			eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		}
 	};
 </script>
 
