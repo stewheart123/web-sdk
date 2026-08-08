@@ -57,17 +57,11 @@
 	});
 </script>
 
-<div class="pixi-app-wrap" bind:this={wrap}>
+<div
+	bind:this={wrap}
+	style="position: fixed; inset: 0; overflow: hidden; background: #000;"
+>
 	{#if initialised}
 		{@render props.children()}
 	{/if}
 </div>
-
-<style>
-	.pixi-app-wrap {
-		position: fixed;
-		inset: 0;
-		overflow: hidden;
-		background: #000;
-	}
-</style>
