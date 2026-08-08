@@ -18,4 +18,4 @@
 	});
 </script>
 
-<HudLabel {label} {value} />
+<HudLabel {label} {value} variant="inline" />

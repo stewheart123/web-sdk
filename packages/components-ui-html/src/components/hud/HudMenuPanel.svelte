@@ -4,6 +4,12 @@
 	import HudSoundSwitch from './HudSoundSwitch.svelte';
 	import HudMusicSwitch from './HudMusicSwitch.svelte';
 	import HudGameRules from './HudGameRules.svelte';
+
+	type Props = {
+		anchor?: 'bottom' | 'top';
+	};
+
+	const { anchor = 'bottom' }: Props = $props();
 </script>
 
 {#if stateUi.menuOpen}
@@ -14,7 +20,7 @@
 		onclick={() => (stateUi.menuOpen = false)}
 	></button>
 
-	<div class="hud-menu-panel" role="dialog" aria-modal="true">
+	<div class="hud-menu-panel hud-menu-panel--{anchor}" role="dialog" aria-modal="true">
 		<HudSoundSwitch />
 		<HudMusicSwitch />
 		<HudGameRules />
@@ -35,8 +41,6 @@
 
 	.hud-menu-panel {
 		position: absolute;
-		left: 0.75rem;
-		bottom: calc(100% + 0.5rem);
 		z-index: 2;
 		display: flex;
 		flex-direction: column;
@@ -47,5 +51,15 @@
 		background: rgba(18, 20, 26, 0.94);
 		border: 1px solid rgba(255, 255, 255, 0.12);
 		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+		&--bottom {
+			right: 0;
+			bottom: calc(100% + 0.5rem);
+		}
+
+		&--top {
+			right: 0;
+			top: calc(100% + 0.5rem);
+		}
 	}
 </style>

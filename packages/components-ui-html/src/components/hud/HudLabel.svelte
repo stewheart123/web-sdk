@@ -2,18 +2,16 @@
 	type Props = {
 		label: string;
 		value: string;
-		bordered?: boolean;
 		disabled?: boolean;
-		variant?: 'default' | 'win';
+		variant?: 'default' | 'win' | 'inline';
 		onclick?: () => void;
 	};
 
 	const {
 		label,
 		value,
-		bordered = false,
 		disabled = false,
-		variant = 'default',
+		variant = 'inline',
 		onclick,
 	}: Props = $props();
 
@@ -23,23 +21,17 @@
 {#if interactive}
 	<button
 		type="button"
-		class="hud-label"
-		class:hud-label--bordered={bordered}
-		class:hud-label--win={variant === 'win'}
+		class="hud-label hud-label--{variant}"
 		class:hud-label--disabled={disabled}
 		disabled={disabled}
 		{onclick}
 	>
-		<span class="hud-label__caption">{label}</span>
+		<span class="hud-label__caption">{label}:</span>
 		<span class="hud-label__value">{value}</span>
 	</button>
 {:else}
-	<div
-		class="hud-label"
-		class:hud-label--bordered={bordered}
-		class:hud-label--win={variant === 'win'}
-	>
-		<span class="hud-label__caption">{label}</span>
+	<div class="hud-label hud-label--{variant}">
+		<span class="hud-label__caption">{label}:</span>
 		<span class="hud-label__value">{value}</span>
 	</div>
 {/if}
@@ -51,30 +43,31 @@
 		background: transparent;
 		color: #fff;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.15rem;
-		min-width: 4.5rem;
-		padding: 0.35rem 0.5rem;
+		align-items: baseline;
+		gap: 0.35rem;
+		padding: 0;
 		font-family: inherit;
-		text-align: center;
+		text-align: left;
+		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
 
-		&--bordered {
-			border-radius: 10px;
-			border: 1px solid rgba(255, 255, 255, 0.2);
-			background: rgba(12, 14, 18, 0.45);
-			cursor: pointer;
-
-			&:not(:disabled):hover {
-				border-color: rgba(255, 255, 255, 0.4);
-			}
+		&--inline {
+			flex-direction: row;
+			min-width: 0;
 		}
 
 		&--win {
+			flex-direction: column;
+			align-items: center;
+			gap: 0.1rem;
+
 			.hud-label__value {
 				color: #fde68a;
 			}
+		}
+
+		&--default {
+			flex-direction: column;
+			align-items: center;
 		}
 
 		&--disabled,
@@ -83,17 +76,25 @@
 			cursor: not-allowed;
 		}
 
+		&:not(:disabled) {
+			cursor: inherit;
+		}
+
+		&:is(button):not(:disabled) {
+			cursor: pointer;
+		}
+
 		&__caption {
-			font-size: 0.65rem;
-			font-weight: 600;
-			letter-spacing: 0.06em;
-			text-transform: uppercase;
-			opacity: 0.75;
+			font-size: 0.85rem;
+			font-weight: 500;
+			opacity: 0.9;
 			white-space: nowrap;
+			text-transform: none;
+			letter-spacing: 0;
 		}
 
 		&__value {
-			font-size: 0.95rem;
+			font-size: 0.85rem;
 			font-weight: 700;
 			line-height: 1.1;
 			white-space: nowrap;

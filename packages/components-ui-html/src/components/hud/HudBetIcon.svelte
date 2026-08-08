@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { stateModal } from 'state-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
 	import { getContextXstate } from 'utils-xstate';
 
@@ -11,22 +11,15 @@
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
 	const { stateXstateDerived } = getContextXstate();
-
 	const disabled = $derived(isBettingControlsLocked(stateXstateDerived.isIdle));
-	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
-	const label = $derived(active ? i18nDerived.disable : i18nDerived.buyBonus);
 
 	const onpress = () => {
+		if (disabled) return;
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
-
-		if (active) {
-			stateBet.activeBetModeKey = 'BASE';
-		} else {
-			stateModal.modal = { name: 'buyBonus' };
-		}
+		stateModal.modal = { name: 'betAmountMenu' };
 	};
 </script>
 
-<HudButton ariaLabel={label} variant="bonus" size="md" {disabled} {active} onclick={onpress}>
-	<HudIcon name="bonus" />
+<HudButton ariaLabel={i18nDerived.bet} variant="icon" size="sm" {disabled} onclick={onpress}>
+	<HudIcon name="bet" />
 </HudButton>

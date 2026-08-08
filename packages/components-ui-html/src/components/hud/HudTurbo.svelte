@@ -7,6 +7,7 @@
 	import { i18nDerived } from '../../i18n/i18nDerived';
 	import type { EmitterEventHud } from '../../types';
 	import HudButton from './HudButton.svelte';
+	import HudIcon from './HudIcon.svelte';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
 	const { stateXstateDerived } = getContextXstate();
@@ -28,11 +29,11 @@
 
 <HudButton
 	ariaLabel={i18nDerived.turbo}
-	variant="circle"
+	variant="icon"
 	size="sm"
 	{active}
 	{disabled}
 	onclick={onpress}
 >
-	<span>T</span>
+	<HudIcon name="turbo" />
 </HudButton>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { getContextLayout } from 'utils-layout';
 
 	import HudBuyBonus from './HudBuyBonus.svelte';
@@ -6,140 +7,260 @@
 	import HudMenuPanel from './HudMenuPanel.svelte';
 	import HudBalance from './HudBalance.svelte';
 	import HudBet from './HudBet.svelte';
+	import HudBetIcon from './HudBetIcon.svelte';
 	import HudSpinButton from './HudSpinButton.svelte';
 	import HudTurbo from './HudTurbo.svelte';
 	import HudAutoSpin from './HudAutoSpin.svelte';
 	import HudWinFloat from './HudWinFloat.svelte';
+	import HudSoundIcon from './HudSoundIcon.svelte';
+	import HudClock from './HudClock.svelte';
 
+	type Props = {
+		gameName?: Snippet;
+	};
+
+	const props: Props = $props();
 	const { stateLayoutDerived } = getContextLayout();
 	const layoutType = $derived(stateLayoutDerived.layoutType());
+	const isBottomLayout = $derived(layoutType === 'portrait' || layoutType === 'tablet');
+	const chromeMode = $derived(isBottomLayout ? 'bottom' : 'rail');
 </script>
 
-<div class="hud-bar" data-layout={layoutType}>
-	<div class="hud-bar__inner">
-		<div class="hud-bar__menu-slot">
-			<HudMenu />
-			<HudMenuPanel />
-		</div>
+<div class="hud-chrome" data-layout={layoutType} data-mode={chromeMode}>
+	<!-- Top left: name (+ balance on bottom layouts) -->
+	<div class="hud-chrome__top-left">
+		{#if props.gameName}
+			{@render props.gameName()}
+		{/if}
+		{#if isBottomLayout}
+			<HudBalance />
+		{/if}
+	</div>
 
-		<div class="hud-bar__buy">
-			<HudBuyBonus />
-		</div>
-
-		<div class="hud-bar__cluster">
-			<HudWinFloat />
-
-			<div class="hud-bar__row">
-				<HudBalance />
-				<HudBet />
-
-				<div class="hud-bar__spin">
-					<HudSpinButton />
+	<!-- Top right -->
+	<div class="hud-chrome__top-right">
+		{#if isBottomLayout}
+			<HudClock />
+			<HudBet />
+		{:else}
+			<div class="hud-chrome__top-actions">
+				<HudSoundIcon />
+				<div class="hud-chrome__menu-slot">
+					<HudMenu />
+					<HudMenuPanel anchor="top" />
 				</div>
+				<HudClock />
+			</div>
+		{/if}
+	</div>
 
-				<div class="hud-bar__side">
-					<HudTurbo />
+	<!-- Bottom left -->
+	<div class="hud-chrome__bottom-left">
+		{#if isBottomLayout}
+			<div class="hud-chrome__left-cluster">
+				<div class="hud-chrome__bonus-slot">
+					<HudBuyBonus />
+				</div>
+				<div class="hud-chrome__left-row">
+					<HudSoundIcon />
 					<HudAutoSpin />
+					<HudTurbo />
 				</div>
 			</div>
-		</div>
+		{:else}
+			<HudBalance />
+		{/if}
 	</div>
+
+	<!-- Bottom right -->
+	<div class="hud-chrome__bottom-right">
+		{#if isBottomLayout}
+			<div class="hud-chrome__right-cluster">
+				<div class="hud-chrome__menu-slot">
+					<HudMenu />
+					<HudMenuPanel anchor="bottom" />
+				</div>
+				<HudBetIcon />
+			</div>
+		{:else}
+			<HudBet />
+		{/if}
+	</div>
+
+	<!-- Portrait/tablet: centered spin -->
+	{#if isBottomLayout}
+		<div class="hud-chrome__bottom-center">
+			<HudWinFloat />
+			<HudSpinButton />
+		</div>
+	{/if}
+
+	<!-- Landscape/desktop: right rail -->
+	{#if !isBottomLayout}
+		<div class="hud-chrome__right-rail">
+			<HudBuyBonus />
+			<div class="hud-chrome__rail-pair">
+				<HudAutoSpin />
+				<HudTurbo />
+			</div>
+			<HudBetIcon />
+			<div class="hud-chrome__rail-spin">
+				<HudWinFloat />
+				<HudSpinButton />
+			</div>
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
-	.hud-bar {
+	.hud-chrome {
 		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		inset: 0;
 		z-index: 1;
 		pointer-events: none;
-		padding: 0.75rem 0.85rem max(0.85rem, env(safe-area-inset-bottom));
+		padding: max(0.65rem, env(safe-area-inset-top)) max(0.85rem, env(safe-area-inset-right))
+			max(0.75rem, env(safe-area-inset-bottom)) max(0.85rem, env(safe-area-inset-left));
 
-		&__inner {
+		&__top-left,
+		&__top-right,
+		&__bottom-left,
+		&__bottom-right,
+		&__bottom-center,
+		&__right-rail {
+			position: absolute;
+			pointer-events: none;
+
+			:global(button),
+			:global(.hud-label) {
+				pointer-events: auto;
+			}
+		}
+
+		&__top-left {
+			top: max(0.65rem, env(safe-area-inset-top));
+			left: max(0.85rem, env(safe-area-inset-left));
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.2rem;
+			pointer-events: none;
+		}
+
+		&__top-right {
+			top: max(0.65rem, env(safe-area-inset-top));
+			right: max(0.85rem, env(safe-area-inset-right));
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0.2rem;
+		}
+
+		&__top-actions {
+			display: flex;
+			align-items: center;
+			gap: 0.55rem;
 			pointer-events: auto;
-			display: grid;
-			grid-template-columns: auto auto 1fr;
-			align-items: end;
-			gap: 0.65rem;
-			max-width: 56rem;
-			margin: 0 auto;
+		}
+
+		&__bottom-left {
+			bottom: max(0.75rem, env(safe-area-inset-bottom));
+			left: max(0.85rem, env(safe-area-inset-left));
+		}
+
+		&__bottom-right {
+			bottom: max(0.75rem, env(safe-area-inset-bottom));
+			right: max(0.85rem, env(safe-area-inset-right));
+		}
+
+		&__bottom-center {
+			bottom: max(0.55rem, env(safe-area-inset-bottom));
+			left: 50%;
+			transform: translateX(-50%);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.35rem;
+			pointer-events: auto;
+		}
+
+		&__left-cluster {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.45rem;
+			pointer-events: auto;
+		}
+
+		&__bonus-slot {
+			margin-left: 0.15rem;
+		}
+
+		&__left-row {
+			display: flex;
+			align-items: center;
+			gap: 0.45rem;
+		}
+
+		&__right-cluster {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0.45rem;
+			pointer-events: auto;
 		}
 
 		&__menu-slot {
 			position: relative;
-			align-self: end;
+			pointer-events: auto;
 		}
 
-		&__buy {
-			align-self: end;
-		}
-
-		&__cluster {
-			position: relative;
-			justify-self: stretch;
-			min-width: 0;
-		}
-
-		&__row {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			gap: 0.55rem;
-			padding: 0.55rem 0.7rem;
-			border-radius: 1.25rem;
-			background: linear-gradient(
-				180deg,
-				rgba(28, 32, 40, 0.88) 0%,
-				rgba(10, 12, 16, 0.92) 100%
-			);
-			border: 1px solid rgba(255, 255, 255, 0.1);
-			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-			backdrop-filter: blur(8px);
-		}
-
-		&__spin {
-			flex: 0 0 auto;
-			margin: 0 0.15rem;
-		}
-
-		&__side {
+		&__right-rail {
+			top: 50%;
+			right: max(0.75rem, env(safe-area-inset-right));
+			transform: translateY(-50%);
 			display: flex;
 			flex-direction: column;
-			gap: 0.35rem;
+			align-items: center;
+			gap: 0.65rem;
+			pointer-events: auto;
 		}
 
-		&[data-layout='portrait'],
-		&[data-layout='landscape'] {
-			.hud-bar__inner {
-				grid-template-columns: auto 1fr;
-				grid-template-areas:
-					'buy cluster'
-					'menu cluster';
-			}
+		&__rail-pair {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 0.4rem;
+		}
 
-			.hud-bar__buy {
-				grid-area: buy;
-			}
+		&__rail-spin {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.35rem;
+			margin-top: 0.35rem;
+		}
 
-			.hud-bar__menu-slot {
-				grid-area: menu;
-			}
-
-			.hud-bar__cluster {
-				grid-area: cluster;
-			}
-
-			.hud-bar__row {
-				justify-content: space-between;
-				padding: 0.45rem 0.55rem;
+		&[data-mode='rail'] {
+			.hud-chrome__right-rail {
+				top: auto;
+				bottom: max(4.5rem, calc(env(safe-area-inset-bottom) + 3.5rem));
+				transform: none;
 			}
 		}
 
 		&[data-layout='portrait'] {
-			.hud-bar__row {
-				flex-wrap: wrap;
-				justify-content: center;
+			.hud-chrome__bottom-center :global(.hud-btn--lg) {
+				width: 3.6rem;
+				height: 3.6rem;
+				font-size: 1.45rem;
+			}
+		}
+
+		&[data-mode='rail'] {
+			.hud-chrome__rail-spin :global(.hud-btn--lg) {
+				width: 4.1rem;
+				height: 4.1rem;
+				font-size: 1.65rem;
 			}
 		}
 	}

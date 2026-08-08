@@ -28,4 +28,4 @@
 	};
 </script>
 
-<HudLabel {label} {value} bordered {disabled} onclick={onpress} />
+<HudLabel {label} {value} variant="inline" {disabled} onclick={onpress} />

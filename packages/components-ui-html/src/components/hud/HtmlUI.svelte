@@ -43,7 +43,7 @@
 		font-family: 'Noto Sans KR', system-ui, sans-serif;
 
 		:global(button),
-		:global(.hud-label--bordered) {
+		:global(.hud-label) {
 			pointer-events: auto;
 		}
 	}

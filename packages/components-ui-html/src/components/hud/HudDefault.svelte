@@ -16,10 +16,12 @@
 <EnableSpaceHold />
 <BettingControlsLockSync />
 
-{#if props.gameName}
-	{@render props.gameName()}
-{/if}
-
 <HudFade>
-	<HudBar />
+	<HudBar>
+		{#snippet gameName()}
+			{#if props.gameName}
+				{@render props.gameName()}
+			{/if}
+		{/snippet}
+	</HudBar>
 </HudFade>

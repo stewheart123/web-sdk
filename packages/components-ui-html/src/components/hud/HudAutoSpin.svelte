@@ -7,6 +7,7 @@
 	import { i18nDerived } from '../../i18n/i18nDerived';
 	import type { EmitterEventHud } from '../../types';
 	import HudButton from './HudButton.svelte';
+	import HudIcon from './HudIcon.svelte';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
 	const { stateXstateDerived } = getContextXstate();
@@ -36,7 +37,7 @@
 
 <HudButton
 	ariaLabel={i18nDerived.autoSpin}
-	variant="circle"
+	variant="icon"
 	size="sm"
 	{active}
 	{disabled}
@@ -45,13 +46,13 @@
 	{#if stateBet.autoSpinsCounter > 0}
 		<span class="hud-auto__counter">{counterText}</span>
 	{:else}
-		<span>A</span>
+		<HudIcon name="auto" />
 	{/if}
 </HudButton>
 
 <style lang="scss">
 	.hud-auto__counter {
-		font-size: 0.85rem;
+		font-size: 0.8rem;
 		font-weight: 800;
 	}
 </style>

@@ -8,6 +8,7 @@
 	import { i18nDerived } from '../../i18n/i18nDerived';
 	import type { EmitterEventHud } from '../../types';
 	import HudButton from './HudButton.svelte';
+	import HudIcon from './HudIcon.svelte';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
 	const { stateXstateDerived } = getContextXstate();
@@ -56,12 +57,6 @@
 </script>
 
 <OnHotkey hotkey="Space" {disabled} onpress={onpress} />
-<HudButton
-	ariaLabel={label}
-	variant="spin"
-	size="lg"
-	{disabled}
-	onclick={onpress}
->
-	<span>{label}</span>
+<HudButton ariaLabel={label} variant="spin" size="lg" {disabled} onclick={onpress}>
+	<HudIcon name={isSpin ? 'spin' : 'stop'} />
 </HudButton>

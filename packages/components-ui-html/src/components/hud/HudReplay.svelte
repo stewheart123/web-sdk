@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { EnableSpaceHold } from 'components-shared';
+	import { getContextLayout } from 'utils-layout';
 
 	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
 	import ReplayStateSync from './ReplayStateSync.svelte';
@@ -9,63 +10,139 @@
 	import HudWin from './HudWin.svelte';
 	import HudMenu from './HudMenu.svelte';
 	import HudMenuPanel from './HudMenuPanel.svelte';
+	import HudSoundIcon from './HudSoundIcon.svelte';
+	import HudClock from './HudClock.svelte';
+	import HudBalance from './HudBalance.svelte';
 
 	type Props = {
 		gameName?: Snippet;
 	};
 
 	const props: Props = $props();
+	const { stateLayoutDerived } = getContextLayout();
+	const layoutType = $derived(stateLayoutDerived.layoutType());
+	const isBottomLayout = $derived(layoutType === 'portrait' || layoutType === 'tablet');
 </script>
 
 <EnableSpaceHold />
 <BettingControlsLockSync />
 <ReplayStateSync />
 
-{#if props.gameName}
-	{@render props.gameName()}
-{/if}
-
 <HudFade>
-	<div class="hud-replay-chrome">
-		<div class="hud-replay-chrome__labels">
-			<HudWin />
-			<HudBet />
+	<div class="hud-replay" data-layout={layoutType}>
+		<div class="hud-replay__top-left">
+			{#if props.gameName}
+				{@render props.gameName()}
+			{/if}
+			{#if isBottomLayout}
+				<HudBalance />
+			{/if}
 		</div>
-		<div class="hud-replay-chrome__menu">
-			<HudMenu />
-			<HudMenuPanel />
+
+		<div class="hud-replay__top-right">
+			{#if isBottomLayout}
+				<HudClock />
+				<HudBet />
+			{:else}
+				<div class="hud-replay__top-actions">
+					<HudSoundIcon />
+					<div class="hud-replay__menu">
+						<HudMenu />
+						<HudMenuPanel anchor="top" />
+					</div>
+					<HudClock />
+				</div>
+			{/if}
+		</div>
+
+		<div class="hud-replay__bottom-left">
+			{#if isBottomLayout}
+				<div class="hud-replay__menu">
+					<HudMenu />
+					<HudMenuPanel anchor="bottom" />
+				</div>
+			{:else}
+				<HudBalance />
+			{/if}
+		</div>
+
+		<div class="hud-replay__bottom-right">
+			{#if isBottomLayout}
+				<HudWin />
+			{:else}
+				<div class="hud-replay__labels">
+					<HudWin />
+					<HudBet />
+				</div>
+			{/if}
 		</div>
 	</div>
 </HudFade>
 
 <style lang="scss">
-	.hud-replay-chrome {
+	.hud-replay {
 		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 1;
+		inset: 0;
 		pointer-events: none;
-		padding: 0.75rem 0.85rem max(0.85rem, env(safe-area-inset-bottom));
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: 1rem;
+		padding: 0.65rem 0.85rem;
 
-		&__labels {
-			pointer-events: auto;
+		&__top-left,
+		&__top-right,
+		&__bottom-left,
+		&__bottom-right {
+			position: absolute;
+			pointer-events: none;
+
+			:global(button),
+			:global(.hud-label) {
+				pointer-events: auto;
+			}
+		}
+
+		&__top-left {
+			top: 0.65rem;
+			left: 0.85rem;
 			display: flex;
 			flex-direction: column;
-			gap: 0.35rem;
-			padding: 0.55rem 0.75rem;
-			border-radius: 1rem;
-			background: rgba(12, 14, 18, 0.75);
-			border: 1px solid rgba(255, 255, 255, 0.1);
+			gap: 0.2rem;
+		}
+
+		&__top-right {
+			top: 0.65rem;
+			right: 0.85rem;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0.2rem;
+		}
+
+		&__top-actions {
+			display: flex;
+			align-items: center;
+			gap: 0.55rem;
+			pointer-events: auto;
+		}
+
+		&__bottom-left {
+			bottom: 0.75rem;
+			left: 0.85rem;
+		}
+
+		&__bottom-right {
+			bottom: 0.75rem;
+			right: 0.85rem;
 		}
 
 		&__menu {
-			pointer-events: auto;
 			position: relative;
+			pointer-events: auto;
+		}
+
+		&__labels {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0.35rem;
 		}
 	}
 </style>

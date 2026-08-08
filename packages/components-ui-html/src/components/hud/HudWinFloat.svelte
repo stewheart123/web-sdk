@@ -65,10 +65,6 @@
 
 <style lang="scss">
 	.hud-win-float {
-		position: absolute;
-		left: 50%;
-		bottom: calc(100% + 0.75rem);
-		transform: translateX(-50%);
 		pointer-events: none;
 		animation: hud-win-in 0.15s ease-out;
 	}
@@ -76,11 +72,11 @@
 	@keyframes hud-win-in {
 		from {
 			opacity: 0;
-			transform: translateX(-50%) translateY(0.35rem);
+			transform: translateY(0.35rem);
 		}
 		to {
 			opacity: 1;
-			transform: translateX(-50%) translateY(0);
+			transform: translateY(0);
 		}
 	}
 </style>
