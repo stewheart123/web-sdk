@@ -4,6 +4,7 @@
 
 	import { i18nDerived } from '../../i18n/i18nDerived';
 	import type { EmitterEventHud } from '../../types';
+	import HudIcon from './HudIcon.svelte';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventHud>();
 	const active = $derived(stateSound.volumeValueSoundEffect > 0);
@@ -16,7 +17,9 @@
 </script>
 
 <button type="button" class="hud-menu-row" class:hud-menu-row--active={active} onclick={onToggle}>
-	<span class="hud-menu-row__icon">S</span>
+	<span class="hud-menu-row__icon">
+		<HudIcon name={active ? 'sound' : 'soundOff'} />
+	</span>
 	<span>{i18nDerived.sound}</span>
 </button>
 
@@ -51,7 +54,8 @@
 			align-items: center;
 			justify-content: center;
 			background: rgba(0, 0, 0, 0.35);
-			font-size: 0.7rem;
+			font-size: 0.95rem;
+			color: #fff;
 		}
 	}
 </style>

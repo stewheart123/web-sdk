@@ -33,6 +33,8 @@ export type GameRuleContainer = {
 	text: string;
 	textImages?: { [key: string]: string };
 	image: string;
+	/** Optional HUD icon name (e.g. spin, turbo) — preferred over image for UI guide rows */
+	icon?: string;
 	images?: string[];
 	row: number;
 	column: number;

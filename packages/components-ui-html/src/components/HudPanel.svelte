@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { fly, fade } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import { onMount, type Snippet } from 'svelte';
 	import { OnHotkey } from 'components-shared';
 	import { getContextLayout } from 'utils-layout';
@@ -13,6 +14,9 @@
 		footer?: Snippet;
 	};
 
+	const PANEL_MS = 420;
+	const BACKDROP_MS = 320;
+
 	const props: Props = $props();
 	const { stateLayoutDerived } = getContextLayout();
 	const layoutType = $derived(stateLayoutDerived.layoutType());
@@ -21,8 +25,25 @@
 
 	let interactReady = $state(false);
 
+	/** iOS-like deceleration curve for a slick panel slide */
+	const slickEase = (t: number) => 1 - Math.pow(1 - t, 2.6);
+
+	const slidePanel = (node: HTMLElement) => {
+		const x = isSheet ? 0 : node.offsetWidth;
+		const y = isSheet ? node.offsetHeight * 0.35 : 0;
+
+		return {
+			duration: PANEL_MS,
+			easing: slickEase,
+			css: (t: number) => {
+				const u = 1 - t;
+				return `transform: translate3d(${u * x}px, ${u * y}px, 0);`;
+			},
+		};
+	};
+
 	onMount(async () => {
-		await waitForTimeout(280);
+		await waitForTimeout(PANEL_MS);
 		interactReady = true;
 	});
 
@@ -35,7 +56,12 @@
 <OnHotkey hotkey="Escape" onpress={close} />
 
 <div class="hud-panel" class:hud-panel--ready={interactReady} data-mode={mode} style:z-index={props.zIndex}>
-	<button type="button" class="hud-panel__backdrop" aria-label="Close" onclick={close} transition:fade={{ duration: 200 }}
+	<button
+		type="button"
+		class="hud-panel__backdrop"
+		aria-label="Close"
+		onclick={close}
+		transition:fade={{ duration: BACKDROP_MS, easing: cubicOut }}
 	></button>
 
 	<div
@@ -43,12 +69,7 @@
 		role="dialog"
 		aria-modal="true"
 		aria-label={props.title}
-		transition:fly={{
-			duration: 280,
-			x: isSheet ? 0 : 48,
-			y: isSheet ? 48 : 0,
-			opacity: 1,
-		}}
+		transition:slidePanel
 	>
 		<header class="hud-panel__header">
 			<h2 class="hud-panel__title">{props.title}</h2>
@@ -102,6 +123,8 @@
 			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 			min-height: 0;
 			pointer-events: auto;
+			will-change: transform;
+			backface-visibility: hidden;
 		}
 
 		&[data-mode='sheet'] .hud-panel__surface {

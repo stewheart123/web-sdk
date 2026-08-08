@@ -8,7 +8,8 @@
 		| 'bet'
 		| 'menu'
 		| 'sound'
-		| 'soundOff';
+		| 'soundOff'
+		| 'music';
 </script>
 
 <script lang="ts">
@@ -75,6 +76,12 @@
 			/>
 			<path stroke-linecap="round" d="M15.2 9.2a3.4 3.4 0 0 1 0 5.6" />
 			<path stroke-linecap="round" d="M17.4 7a6 6 0 0 1 0 10" />
+		</svg>
+	{:else if props.name === 'music'}
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M9 18V6l10-2v12" />
+			<circle cx="7" cy="18" r="2.5" fill="currentColor" stroke="none" />
+			<circle cx="17" cy="16" r="2.5" fill="currentColor" stroke="none" />
 		</svg>
 	{:else}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">

@@ -2,6 +2,8 @@
 	import { stateMeta } from 'state-shared';
 	import type { GameRuleData } from 'state-shared';
 
+	import HudIcon, { type HudIconName } from './hud/HudIcon.svelte';
+
 	type Props = {
 		section: 'payTable' | 'gameRules';
 	};
@@ -9,6 +11,18 @@
 	const props: Props = $props();
 
 	const sections = $derived(stateMeta.gameRuleMeta[props.section] as GameRuleData[]);
+
+	const isHudIcon = (icon: string | undefined): icon is HudIconName =>
+		icon === 'spin' ||
+		icon === 'stop' ||
+		icon === 'auto' ||
+		icon === 'turbo' ||
+		icon === 'bonus' ||
+		icon === 'bet' ||
+		icon === 'menu' ||
+		icon === 'sound' ||
+		icon === 'soundOff' ||
+		icon === 'music';
 </script>
 
 {#each sections as section (section.title || section.containers[0]?.title || section.rows)}
@@ -21,21 +35,29 @@
 			style:grid-template-columns="repeat({section.columns}, minmax(0, 1fr))"
 			style:grid-template-rows="repeat({section.rows}, auto)"
 		>
-			{#each section.containers as container (`${container.row}-${container.column}-${container.title}`)}
+			{#each section.containers as container (`${container.row}-${container.column}-${container.title}-${container.icon || container.image}`)}
+				{@const hasIcon = isHudIcon(container.icon)}
+				{@const hasImages = Boolean(container.images?.length)}
+				{@const hasImage = Boolean(container.image)}
+				{@const showMedia = hasIcon || hasImages || hasImage}
 				<div
 					class="rule-container"
-					class:image-top={(container.images?.length || container.image) && container.imagePosition === 'top'}
-					class:image-left={(container.images?.length || container.image) && container.imagePosition === 'left'}
+					class:image-top={showMedia && container.imagePosition === 'top'}
+					class:image-left={showMedia && container.imagePosition === 'left'}
 					style:grid-row={container.row + 1}
 					style:grid-column={container.column + 1}
 				>
-					{#if container.images?.length}
+					{#if hasIcon}
+						<div class="rule-icon-badge" class:rule-icon-badge--spin={container.icon === 'spin'}>
+							<HudIcon name={container.icon} />
+						</div>
+					{:else if hasImages}
 						<div class="rule-images">
 							{#each container.images as image (`${image}`)}
 								<img class="rule-image" src={image} alt="" />
 							{/each}
 						</div>
-					{:else if container.image}
+					{:else if hasImage}
 						<img class="rule-image" src={container.image} alt="" />
 					{/if}
 					<div class="rule-text">
@@ -106,6 +128,26 @@
 		flex-wrap: wrap;
 		gap: 0.35rem;
 		align-items: center;
+	}
+
+	.rule-icon-badge {
+		flex-shrink: 0;
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: 999px;
+		border: 1.5px solid rgba(255, 255, 255, 0.85);
+		background: transparent;
+		color: #fff;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.35rem;
+
+		&--spin {
+			width: 3.15rem;
+			height: 3.15rem;
+			font-size: 1.55rem;
+		}
 	}
 
 	.rule-image {
@@ -196,6 +238,18 @@
 			height: 5.75rem;
 			max-width: 55%;
 			max-height: 5.75rem;
+		}
+
+		.rule-icon-badge {
+			width: 3rem;
+			height: 3rem;
+			font-size: 1.4rem;
+
+			&--spin {
+				width: 3.35rem;
+				height: 3.35rem;
+				font-size: 1.6rem;
+			}
 		}
 
 		.rule-image {

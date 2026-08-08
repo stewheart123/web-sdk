@@ -22,12 +22,6 @@ type GameRuleImages = {
 	x1: string;
 	x2: string;
 	x3: string;
-	autoplay: string;
-	bonusBuy: string;
-	spin: string;
-	turbo: string;
-	music: string;
-	sfx: string;
 };
 
 /** Resolve hashed Vite asset paths against the live game origin at runtime. */
@@ -45,19 +39,6 @@ const createGameRuleImages = (): GameRuleImages => {
 		x1: new URL('../../assets/sprites/gameRules/X1.png', import.meta.url).href,
 		x2: new URL('../../assets/sprites/gameRules/X2.png', import.meta.url).href,
 		x3: new URL('../../assets/sprites/gameRules/X3.png', import.meta.url).href,
-		autoplay: new URL('../../assets/sprites/gameRules/autoplay_interact_hover.png', import.meta.url)
-			.href,
-		bonusBuy: new URL(
-			'../../assets/sprites/gameRules/bonus_buy_interact_hover.png',
-			import.meta.url,
-		).href,
-		spin: new URL(
-			'../../assets/sprites/gameRules/spin_button_interact_hover.png',
-			import.meta.url,
-		).href,
-		turbo: new URL('../../assets/sprites/gameRules/turbo_interact_hover.png', import.meta.url).href,
-		music: new URL('../../assets/sprites/gameRules/music_icon.png', import.meta.url).href,
-		sfx: new URL('../../assets/sprites/gameRules/sfx_icon.png', import.meta.url).href,
 	} satisfies GameRuleImages;
 
 	return Object.fromEntries(
@@ -140,11 +121,12 @@ const buildSymbolContainers = (images: GameRuleImages): GameRuleContainer[] => {
 	return containers;
 };
 
-const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => [
+const buildUiGuideContainers = (): GameRuleContainer[] => [
 	{
 		title: '',
 		text: tSocial('GR.UI.SPIN', 'GR.UI.SPIN.SOCIAL'),
-		image: images.spin,
+		image: '',
+		icon: 'spin',
 		imagePosition: 'left',
 		row: 0,
 		column: 0,
@@ -152,7 +134,8 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	{
 		title: '',
 		text: t('GR.UI.AUTO_SPIN'),
-		image: images.autoplay,
+		image: '',
+		icon: 'auto',
 		imagePosition: 'left',
 		row: 1,
 		column: 0,
@@ -160,7 +143,8 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	{
 		title: '',
 		text: tSocial('GR.UI.BUY_BONUS', 'GR.UI.BUY_BONUS.SOCIAL'),
-		image: images.bonusBuy,
+		image: '',
+		icon: 'bonus',
 		imagePosition: 'left',
 		row: 2,
 		column: 0,
@@ -168,7 +152,8 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	{
 		title: '',
 		text: t('GR.UI.TURBO'),
-		image: images.turbo,
+		image: '',
+		icon: 'turbo',
 		imagePosition: 'left',
 		row: 3,
 		column: 0,
@@ -176,7 +161,8 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	{
 		title: '',
 		text: t('GR.UI.MUSIC'),
-		image: images.music,
+		image: '',
+		icon: 'music',
 		imagePosition: 'left',
 		row: 4,
 		column: 0,
@@ -184,7 +170,8 @@ const buildUiGuideContainers = (images: GameRuleImages): GameRuleContainer[] => 
 	{
 		title: '',
 		text: t('GR.UI.SOUND'),
-		image: images.sfx,
+		image: '',
+		icon: 'sound',
 		imagePosition: 'left',
 		row: 5,
 		column: 0,
@@ -315,7 +302,8 @@ export const buildCardWaysGameRuleMeta = () => {
 				{
 					title: tSocial('GR.BONUS_BUY.TITLE', 'GR.BONUS_BUY.TITLE.SOCIAL'),
 					text: tSocial('GR.BONUS_BUY.TEXT', 'GR.BONUS_BUY.TEXT.SOCIAL', numericValues),
-					image: images.bonusBuy,
+					image: '',
+					icon: 'bonus',
 					imagePosition: 'left',
 					row: 0,
 					column: 0,
@@ -326,7 +314,7 @@ export const buildCardWaysGameRuleMeta = () => {
 			title: t('GR.SECTION.UI_GUIDE'),
 			rows: 6,
 			columns: 1,
-			containers: buildUiGuideContainers(images),
+			containers: buildUiGuideContainers(),
 		},
 		{
 			title: t('GR.SECTION.LEGAL_NOTICE'),
