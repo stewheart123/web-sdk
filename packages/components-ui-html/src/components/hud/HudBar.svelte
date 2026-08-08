@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { stateUi } from 'state-shared';
 	import { getContextLayout } from 'utils-layout';
 
 	import HudBuyBonus from './HudBuyBonus.svelte';
@@ -14,6 +15,7 @@
 	import HudWinFloat from './HudWinFloat.svelte';
 	import HudSoundIcon from './HudSoundIcon.svelte';
 	import HudClock from './HudClock.svelte';
+	import HudFreeSpinCounter from './HudFreeSpinCounter.svelte';
 
 	type Props = {
 		gameName?: Snippet;
@@ -28,7 +30,7 @@
 </script>
 
 <div class="hud-chrome" data-layout={layoutType} data-mode={chromeMode}>
-	<!-- Top left: name + clock (+ balance on bottom layouts) -->
+	<!-- Top left: name + clock (+ balance on bottom layouts, then free spins) -->
 	<div class="hud-chrome__top-left">
 		{#if props.gameName}
 			{@render props.gameName()}
@@ -36,6 +38,9 @@
 		<HudClock />
 		{#if isBottomLayout}
 			<HudBalance />
+		{/if}
+		{#if stateUi.freeSpinCounterShow}
+			<HudFreeSpinCounter />
 		{/if}
 	</div>
 
@@ -134,6 +139,23 @@
 		padding: max(0.65rem, env(safe-area-inset-top)) max(0.85rem, env(safe-area-inset-right))
 			max(0.75rem, env(safe-area-inset-bottom)) max(0.85rem, env(safe-area-inset-left));
 
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: min(28vh, 12rem);
+			background: linear-gradient(
+				to top,
+				rgba(0, 0, 0, 0.5) 0%,
+				rgba(0, 0, 0, 0.22) 45%,
+				rgba(0, 0, 0, 0) 100%
+			);
+			pointer-events: none;
+			z-index: 0;
+		}
+
 		&__top-left,
 		&__top-right,
 		&__bottom-left,
@@ -143,6 +165,7 @@
 		&__right-rail {
 			position: absolute;
 			pointer-events: none;
+			z-index: 1;
 
 			:global(button),
 			:global(.hud-label) {

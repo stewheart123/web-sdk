@@ -163,6 +163,10 @@ export const i18nDerived = {
 		trackLocale();
 		return stateI18nDerived.translate('MUSIC');
 	},
+	get freeSpins() {
+		trackLocale();
+		return stateI18nDerived.translate('FREE SPINS');
+	},
 	get playAgain() {
 		trackLocale();
 		return stateI18nDerived.translate('PLAY AGAIN');

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { EnableSpaceHold } from 'components-shared';
+	import { stateUi } from 'state-shared';
 	import { getContextLayout } from 'utils-layout';
 
 	import BettingControlsLockSync from './BettingControlsLockSync.svelte';
@@ -13,6 +14,7 @@
 	import HudSoundIcon from './HudSoundIcon.svelte';
 	import HudClock from './HudClock.svelte';
 	import HudBalance from './HudBalance.svelte';
+	import HudFreeSpinCounter from './HudFreeSpinCounter.svelte';
 
 	type Props = {
 		gameName?: Snippet;
@@ -37,6 +39,9 @@
 			<HudClock />
 			{#if isBottomLayout}
 				<HudBalance />
+			{/if}
+			{#if stateUi.freeSpinCounterShow}
+				<HudFreeSpinCounter />
 			{/if}
 		</div>
 
