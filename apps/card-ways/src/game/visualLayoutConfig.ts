@@ -421,9 +421,9 @@ export const VISUAL_LAYOUT = {
 				maxWidthRatio: 0.85,
 				layoutByType: {
 					desktop: { fontSizeRatio: 0.2, maxWidthRatio: 0.85 },
-					tablet: { fontSizeRatio: 0.18, maxWidthRatio: 0.85 },
-					portrait: { fontSizeRatio: 0.14, maxWidthRatio: 0.85 },
-					landscape: { fontSizeRatio: 0.15, maxWidthRatio: 0.85 },
+					tablet: { fontSizeRatio: 0.2, maxWidthRatio: 0.85 },
+					portrait: { fontSizeRatio: 0.2, maxWidthRatio: 0.85 },
+					landscape: { fontSizeRatio: 0.2, maxWidthRatio: 0.85 },
 				} satisfies Record<LayoutType, FreeSpinNumberTextLayoutByType>,
 			},
 		},

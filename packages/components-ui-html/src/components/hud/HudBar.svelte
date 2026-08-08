@@ -122,7 +122,9 @@
 			{/if}
 			<HudBetIcon />
 			<div class="hud-chrome__rail-spin">
-				<HudWinFloat />
+				<div class="hud-chrome__rail-win-slot">
+					<HudWinFloat />
+				</div>
 				<HudSpinButton />
 			</div>
 		</div>
@@ -304,7 +306,16 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 0.35rem;
-			margin-top: 1.15rem;
+			margin-top: 0.35rem;
+		}
+
+		/* Always reserve win height so the rail does not jump or overlap bet. */
+		&__rail-win-slot {
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			min-height: 2.6rem;
+			width: 100%;
 		}
 
 		&[data-mode='rail'] {
