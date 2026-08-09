@@ -56,6 +56,7 @@
 	});
 
 	// Re-seed whenever Storybook Controls change args (and when the app finishes loading).
+	// Game.svelte onMount sets showLoadingScreen=true; keep forcing it off after that race.
 	$effect(() => {
 		const loaded = appContext.stateApp.loaded;
 		void props.balance;
@@ -67,6 +68,7 @@
 		void props.freeSpinCounterTotal;
 		void props.menuOpen;
 		void props.replayFinished;
+		void layoutContext.stateLayout.showLoadingScreen;
 
 		if (!loaded) return;
 
