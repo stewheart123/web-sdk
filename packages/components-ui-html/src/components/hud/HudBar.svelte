@@ -26,10 +26,16 @@
 	const layoutType = $derived(stateLayoutDerived.layoutType());
 	const isBottomLayout = $derived(layoutType === 'portrait' || layoutType === 'tablet');
 	const isMobileLandscape = $derived(layoutType === 'landscape');
+	const isMiniPlayer = $derived(stateLayoutDerived.isMiniPlayerViewport());
 	const chromeMode = $derived(isBottomLayout ? 'bottom' : 'rail');
 </script>
 
-<div class="hud-chrome" data-layout={layoutType} data-mode={chromeMode}>
+<div
+	class="hud-chrome"
+	data-layout={layoutType}
+	data-mode={chromeMode}
+	data-mini-player={isMiniPlayer ? 'true' : 'false'}
+>
 	<!-- Top left: name + clock (+ free spins on rail layouts) -->
 	<div class="hud-chrome__top-left">
 		{#if props.gameName}
@@ -330,6 +336,45 @@
 				width: 6rem;
 				height: 6rem;
 				font-size: 3rem;
+			}
+		}
+
+		/* Stake mini player (~400×225): keep WIN below top-right sound/menu. */
+		&[data-mini-player='true'] {
+			.hud-chrome__left-controls {
+				bottom: max(2.25rem, calc(env(safe-area-inset-bottom) + 1.75rem));
+				gap: 0.35rem;
+
+				:global(.hud-btn--md) {
+					width: 2.6rem;
+					height: 2.6rem;
+					font-size: 1.1rem;
+				}
+			}
+
+			&[data-mode='rail'] .hud-chrome__right-rail {
+				bottom: max(2.25rem, calc(env(safe-area-inset-bottom) + 1.75rem));
+				gap: 0.4rem;
+			}
+
+			.hud-chrome__rail-spin {
+				gap: 0.15rem;
+				margin-top: 0;
+			}
+
+			.hud-chrome__rail-win-slot {
+				min-height: 1.6rem;
+			}
+
+			&[data-mode='rail'] .hud-chrome__rail-spin :global(.hud-btn--lg) {
+				width: 3.75rem;
+				height: 3.75rem;
+				font-size: 1.85rem;
+			}
+
+			.hud-chrome__rail-win-slot :global(.hud-win-float .hud-label__caption),
+			.hud-chrome__rail-win-slot :global(.hud-win-float .hud-label__value) {
+				font-size: 0.7rem;
 			}
 		}
 
