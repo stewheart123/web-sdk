@@ -85,6 +85,9 @@
 
 <style lang="scss">
 	.hud-replay {
+		/* Leave room under the parent shell’s replay close (top-right ×). */
+		--hud-replay-top-chrome: max(3.4rem, calc(env(safe-area-inset-top) + 2.9rem));
+
 		position: fixed;
 		inset: 0;
 		pointer-events: none;
@@ -105,16 +108,16 @@
 		}
 
 		&__top-left {
-			top: 0.65rem;
-			left: 0.85rem;
+			top: max(0.65rem, env(safe-area-inset-top));
+			left: max(0.85rem, env(safe-area-inset-left));
 			display: flex;
 			flex-direction: column;
 			gap: 0.2rem;
 		}
 
 		&__top-right {
-			top: 0.65rem;
-			right: 0.85rem;
+			top: var(--hud-replay-top-chrome);
+			right: max(0.85rem, env(safe-area-inset-right));
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
@@ -129,9 +132,9 @@
 		}
 
 		&__top-stats {
-			top: calc(0.65rem + 2.35rem + 0.5rem);
-			left: 0.85rem;
-			right: 0.85rem;
+			top: calc(var(--hud-replay-top-chrome) + 2.35rem + 0.5rem);
+			left: max(0.85rem, env(safe-area-inset-left));
+			right: max(0.85rem, env(safe-area-inset-right));
 			display: flex;
 			align-items: baseline;
 			justify-content: space-between;
