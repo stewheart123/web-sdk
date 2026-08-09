@@ -182,7 +182,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundFade', name: 'bgm_main', from: 1, to: 0, duration: 300 });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_royals_landing', forcePlay: true });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs', forcePlay: true });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinIntroUpdate',
 			totalFreeSpins: bookEvent.totalFs,

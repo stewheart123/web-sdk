@@ -125,6 +125,6 @@
 
 <Modals>
 	{#snippet version()}
-		<GameVersion version="1.0.0" />
+		<GameVersion version="2.0.0" />
 	{/snippet}
 </Modals>
