@@ -58,7 +58,7 @@
 		</div>
 	</div>
 
-	<!-- Portrait/tablet: balance + bet on one baseline -->
+	<!-- Portrait/tablet: balance + bet in the top stats row -->
 	{#if isBottomLayout}
 		<div class="hud-chrome__top-stats">
 			<div class="hud-chrome__top-stats-start">
@@ -211,15 +211,43 @@
 		}
 
 		&__top-stats {
-			/* Sit below the sm mute/menu row so balance + bet share one baseline */
+			/* Sit below the sm mute/menu row; stack caption/value so long NGN amounts fit */
 			top: calc(max(0.65rem, env(safe-area-inset-top)) + 2.35rem + 0.5rem);
 			left: max(0.85rem, env(safe-area-inset-left));
 			right: max(0.85rem, env(safe-area-inset-right));
 			display: flex;
-			align-items: baseline;
+			align-items: flex-start;
 			justify-content: space-between;
-			gap: 0.75rem;
+			gap: 0.5rem;
 			pointer-events: none;
+
+			:global(.hud-label--inline) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.05rem;
+				min-width: 0;
+				max-width: 100%;
+			}
+
+			:global(.hud-label__value) {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 100%;
+			}
+
+			/* Bet is a direct hud-label; keep it right-aligned in its half */
+			> :global(.hud-label) {
+				flex: 0 1 auto;
+				min-width: 0;
+				max-width: 42%;
+				align-items: flex-end;
+
+				:global(.hud-label__caption),
+				:global(.hud-label__value) {
+					text-align: right;
+					width: 100%;
+				}
+			}
 		}
 
 		&__top-stats-start {
@@ -227,7 +255,13 @@
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 0.2rem;
+			flex: 1 1 0;
 			min-width: 0;
+			max-width: 58%;
+
+			:global(.hud-label) {
+				max-width: 100%;
+			}
 		}
 
 		&__bottom-left {

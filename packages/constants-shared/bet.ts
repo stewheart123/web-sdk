@@ -27,6 +27,9 @@ export const snapBetAmountToOptions = (amount: number, options: readonly number[
 	if (options.includes(amount)) return amount;
 	return options[0];
 };
-export const MOST_USED_BET_INDEXES = [
-	0, 2, 5, 7, 10, 13, 15, 16, 20, 23, 25, 26, 28, 29, 30, 32, 36, 37, 38,
-];
+
+/** Insert amount into the ladder if missing so the current/default bet stays selectable. */
+export const ensureBetAmountInOptions = (amount: number, options: readonly number[]) => {
+	if (!(amount > 0) || options.includes(amount)) return [...options];
+	return [...options, amount].sort((a, b) => a - b);
+};

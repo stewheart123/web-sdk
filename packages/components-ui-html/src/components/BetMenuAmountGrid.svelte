@@ -1,19 +1,11 @@
 <script lang="ts">
-	import { getContextLayout } from 'utils-layout';
 	import { stateBet, stateConfig, stateI18n } from 'state-shared';
 	import { getCurrencyDisplaySymbol } from 'utils-shared/amount';
 
 	import HudPanelRow from './HudPanelRow.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
-	const { stateLayoutDerived } = getContextLayout();
-	const count = $derived(stateLayoutDerived.layoutType() === 'landscape' ? 15 : 18);
-	const options = $derived(
-		[
-			...stateConfig.betMenuOptions.slice(0, count - 1),
-			...stateConfig.betMenuOptions.slice(-1),
-		].filter((value, index, array) => array.indexOf(value) === index),
-	);
+	const options = $derived(stateConfig.betMenuOptions);
 
 	const isMaxValue = (value: number) => value === options[options.length - 1];
 	const currencySymbol = $derived.by(() => {

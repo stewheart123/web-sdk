@@ -53,6 +53,7 @@
 		&--inline {
 			flex-direction: row;
 			min-width: 0;
+			max-width: 100%;
 		}
 
 		&--win {

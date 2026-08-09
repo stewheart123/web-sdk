@@ -5,8 +5,8 @@
 	import { stateUrlDerived, stateBet, stateConfig, stateModal, stateUi, stateSound } from 'state-shared';
 	import {
 		API_AMOUNT_MULTIPLIER,
-		MOST_USED_BET_INDEXES,
 		apiAmountToBetAmount,
+		ensureBetAmountInOptions,
 		resolveInitialBetApiAmount,
 		snapBetAmountToOptions,
 	} from 'constants-shared/bet';
@@ -70,9 +70,7 @@
 				stateConfig.betAmountOptions = (authenticateData.config?.betLevels || []).map(
 					(level) => level / API_AMOUNT_MULTIPLIER,
 				);
-				stateConfig.betMenuOptions = stateConfig.betAmountOptions.filter((_, index) =>
-					MOST_USED_BET_INDEXES.includes(index),
-				);
+				stateConfig.betMenuOptions = stateConfig.betAmountOptions;
 			}
 
 			let betAmountFromRound = false;
@@ -125,6 +123,16 @@
 					stateBet.betAmount = betAmount;
 					stateBet.wageredBetAmount = betAmount;
 				}
+			}
+
+			// Keep current/default bet selectable + highlightable in the full RGS ladder
+			if (stateBet.betAmount > 0) {
+				const optionsWithCurrent = ensureBetAmountInOptions(
+					stateBet.betAmount,
+					stateConfig.betAmountOptions,
+				);
+				stateConfig.betAmountOptions = optionsWithCurrent;
+				stateConfig.betMenuOptions = optionsWithCurrent;
 			}
 		} catch (error) {
 			console.error(error);
