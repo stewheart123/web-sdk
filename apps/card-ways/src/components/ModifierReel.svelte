@@ -50,6 +50,9 @@
 
 	let resolveOutro: (() => void) | null = null;
 	let outroPromise: Promise<void> | null = null;
+	/** Prevents stacked appear SFX (duplicate handlers / X2 then FS-lock re-reveal). */
+	let lastAppearSfxAtMs = 0;
+	const APPEAR_SFX_COOLDOWN_MS = 750;
 
 	const animFor = (phase: AnimationPhase, name: ModifierSymbolName): AnimationName => {
 		if (phase === 'IDLE' && useFsIdle) {
@@ -95,6 +98,16 @@
 		await waitForTimeout(400);
 	};
 
+	const playAppearSfx = () => {
+		const now = performance.now();
+		if (now - lastAppearSfxAtMs < APPEAR_SFX_COOLDOWN_MS) return;
+		lastAppearSfxAtMs = now;
+		context.eventEmitter.broadcast({
+			type: 'soundOnce',
+			name: 'sfx_multiplier_update',
+		});
+	};
+
 	const onTrackComplete = () => {
 		if (animationName.startsWith('INTRO-')) {
 			animationName = animFor('IDLE', modifierName);
@@ -132,6 +145,7 @@
 				emitterEvent.multiplier,
 			);
 			const nextMultiplier = emitterEvent.multiplier;
+			const wasActive = hasActiveSlab;
 			const alreadyShowingSame = hasActiveSlab && nextName === modifierName;
 
 			useFsIdle = emitterEvent.persists || useFsIdle;
@@ -140,8 +154,8 @@
 			hasActiveSlab = true;
 			show = true;
 
-			// FS activate / lock with same multiplier already on screen: swap to IDLE-Xn-FS, no INTRO.
-			if (useFsIdle && alreadyShowingSame) {
+			// Same ×n already on screen (e.g. X2 then FS-lock keep X2): no second INTRO / SFX.
+			if (alreadyShowingSame) {
 				animationName = animFor('IDLE', nextName);
 				return;
 			}
@@ -149,6 +163,10 @@
 			// Partial await: let the slab settle briefly, then continue so win
 			// anims overlap the remaining INTRO shine (~1333ms total).
 			animationName = animFor('INTRO', nextName);
+			// Fresh base appear only — never on persists lock/upgrade (avoids X1→X2 double).
+			if (!wasActive && !emitterEvent.persists) {
+				playAppearSfx();
+			}
 			await waitForTimeout(INTRO_BEFORE_WIN_MS);
 		},
 	});

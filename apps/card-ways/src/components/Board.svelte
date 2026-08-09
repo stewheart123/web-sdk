@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { RawSymbol, Position } from '../game/types';
+	import type { SoundEffectName } from '../game/sound';
 
 	export type EmitterEventBoard =
 		| { type: 'boardSettle'; board: RawSymbol[][] }
@@ -8,6 +9,13 @@
 		| {
 				type: 'boardWithAnimateSymbols';
 				symbolPositions: Position[];
+				/** Played once per symbol (e.g. scatter land or ways-win apex). */
+				playLandSfx?: SoundEffectName;
+				/** Ms after win anim starts before playLandSfx (0 = immediate). */
+				playLandSfxDelayMs?: number;
+				/** Played once after the last reel wave starts (e.g. final you-won sting). */
+				playFinishSfx?: SoundEffectName;
+				playFinishSfxDelayMs?: number;
 		  };
 </script>
 
@@ -34,7 +42,13 @@
 		boardSettle: ({ board }) => context.stateGameDerived.enhancedBoard.settle(normalizeBoard(board)),
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),
-		boardWithAnimateSymbols: async ({ symbolPositions }) => {
+		boardWithAnimateSymbols: async ({
+			symbolPositions,
+			playLandSfx,
+			playLandSfxDelayMs = 0,
+			playFinishSfx,
+			playFinishSfxDelayMs = 0,
+		}) => {
 			const eligible = symbolPositions
 				.filter((position) => {
 					const { rawSymbol } =
@@ -58,6 +72,21 @@
 			for (let waveIndex = 0; waveIndex < waves.length; waveIndex++) {
 				const wave = waves[waveIndex];
 
+				if (playFinishSfx && waveIndex === waves.length - 1) {
+					const fireFinish = () => {
+						context.eventEmitter.broadcast({
+							type: 'soundOnce',
+							name: playFinishSfx,
+							forcePlay: true,
+						});
+					};
+					if (playFinishSfxDelayMs > 0) {
+						void waitForTimeout(playFinishSfxDelayMs).then(fireFinish);
+					} else {
+						fireFinish();
+					}
+				}
+
 				for (const position of wave) {
 					const reelSymbol =
 						context.stateGame.board[position.reel].reelState.symbols[position.row];
@@ -70,6 +99,21 @@
 							reelSymbol.symbolState = 'postWinStatic';
 						})(),
 					);
+
+					if (playLandSfx) {
+						const fireSfx = () => {
+							context.eventEmitter.broadcast({
+								type: 'soundOnce',
+								name: playLandSfx,
+								forcePlay: true,
+							});
+						};
+						if (playLandSfxDelayMs > 0) {
+							void waitForTimeout(playLandSfxDelayMs).then(fireSfx);
+						} else {
+							fireSfx();
+						}
+					}
 
 					reelSymbol.symbolState = 'win';
 				}

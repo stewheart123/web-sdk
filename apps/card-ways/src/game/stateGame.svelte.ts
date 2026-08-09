@@ -24,12 +24,12 @@ import {
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 	if (rawSymbol.name === 'S') {
 		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
-		if (stateGame.scatterCounter >= 3) {
-			eventEmitter.broadcast({
-				type: 'soundOnce',
-				name: 'sfx_scatter_stop',
-			});
-		}
+		// if (stateGame.scatterCounter >= 3) {
+		// 	eventEmitter.broadcast({
+		// 		type: 'soundOnce',
+		// 		name: 'sfx_scatter_stop',
+		// 	});
+		// }
 	}
 };
 

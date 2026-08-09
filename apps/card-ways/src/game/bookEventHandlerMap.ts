@@ -7,13 +7,19 @@ import { SECOND } from 'constants-shared/time';
 import { eventEmitter } from './eventEmitter';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import { stateGame, stateGameDerived } from './stateGame.svelte';
-import type { MusicName } from './sound';
+import type { MusicName, SoundEffectName } from './sound';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
 import { normalizeBoard } from './constants';
 
 /** Brief hold after a losing free spin so the board result is readable before the next spin. */
 const FREE_SPIN_NO_WIN_PAUSE_MS = 0.6 * SECOND;
+
+/** Delay from win-anim start to per-symbol SFX (before visual peak of ~1.6s WIN). */
+const WIN_SFX_APEX_MS = 500;
+
+/** After the last win wave starts — final you-won sting (before anims fully finish). */
+const WIN_YOU_WON_SFX_MS = 550;
 
 const hasWinBeforeNextReveal = ({
 	bookEvent,
@@ -77,11 +83,27 @@ const winLevelSoundsStop = ({
 	eventEmitter.broadcastAsync({ type: 'uiShow' });
 };
 
-const animateSymbols = async ({ positions }: { positions: Position[] }) => {
+const animateSymbols = async ({
+	positions,
+	playLandSfx,
+	playLandSfxDelayMs,
+	playFinishSfx,
+	playFinishSfxDelayMs,
+}: {
+	positions: Position[];
+	playLandSfx?: SoundEffectName;
+	playLandSfxDelayMs?: number;
+	playFinishSfx?: SoundEffectName;
+	playFinishSfxDelayMs?: number;
+}) => {
 	eventEmitter.broadcast({ type: 'boardShow' });
 	await eventEmitter.broadcastAsync({
 		type: 'boardWithAnimateSymbols',
 		symbolPositions: positions,
+		playLandSfx,
+		playLandSfxDelayMs,
+		playFinishSfx,
+		playFinishSfxDelayMs,
 	});
 };
 
@@ -129,13 +151,19 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			: Promise.resolve();
 
 		await Promise.all([
-			sequence(bookEvent.wins, async (win) => {
-				eventEmitter.broadcast({
-					type: 'soundOnce',
-					name: 'sfx_youwon_panel',
-					forcePlay: true,
+			sequence(bookEvent.wins, async (win, index, wins) => {
+				const isLastWin = index === wins.length - 1;
+				await animateSymbols({
+					positions: win.positions,
+					playLandSfx: 'sfx_multiplier_win',
+					playLandSfxDelayMs: WIN_SFX_APEX_MS,
+					...(isLastWin
+						? {
+								playFinishSfx: 'sfx_youwon_panel' as const,
+								playFinishSfxDelayMs: WIN_YOU_WON_SFX_MS,
+							}
+						: {}),
 				});
-				await animateSymbols({ positions: win.positions });
 			}),
 			modifierWin,
 		]);
@@ -144,16 +172,17 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateBet.winBookEventAmount = bookEvent.amount;
 	},
 	freeSpinTrigger: async (bookEvent: BookEventOfType<'freeSpinTrigger'>) => {
-		// animate scatters
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win' });
-		await animateSymbols({ positions: bookEvent.positions });
+		// animate scatters — sfx_superfreespin as each scatter win anim starts
+		await animateSymbols({
+			positions: bookEvent.positions,
+			playLandSfx: 'sfx_superfreespin',
+		});
 		// show free spin intro
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundFade', name: 'bgm_main', from: 1, to: 0, duration: 300 });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs', forcePlay: true });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_royals_landing', forcePlay: true });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinIntroUpdate',
 			totalFreeSpins: bookEvent.totalFs,
@@ -245,11 +274,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const nextMultiplier = bookEvent.persists
 			? Math.max(bookEvent.multiplier, stateGame.modifierMultiplier)
 			: bookEvent.multiplier;
-		if (nextMultiplier === 1 && stateGame.modifierMultiplier > 1 && !bookEvent.persists) {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_reset' });
-		} else if (nextMultiplier > stateGame.modifierMultiplier) {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_update' });
-		}
 		stateGame.modifierMultiplier = nextMultiplier;
 		await eventEmitter.broadcastAsync({
 			type: 'modifierReelUpdate',
