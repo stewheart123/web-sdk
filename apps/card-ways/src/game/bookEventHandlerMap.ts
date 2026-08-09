@@ -262,6 +262,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	wincap: async (bookEvent: BookEventOfType<'wincap'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;
+		const waysCount = stateGame.lastWinWaysCount;
 		stateGame.lastWinWaysCount = 0;
 		const winLevelData = winLevelMap[10 as WinLevel];
 		eventEmitter.broadcast({ type: 'winShow' });
@@ -270,6 +271,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			type: 'winUpdate',
 			amount: bookEvent.amount,
 			winLevelData,
+			waysCount,
 		});
 		winLevelSoundsStop({ winLevelData });
 		eventEmitter.broadcast({ type: 'winHide' });

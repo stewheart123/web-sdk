@@ -44,6 +44,20 @@
 		});
 	};
 
+	const waysTextStyle = {
+		fontFamily: CINZEL_FONT_FAMILY,
+		fontWeight: '600' as const,
+		fill: 0xffffff,
+		align: 'center' as const,
+		dropShadow: {
+			alpha: 0.75,
+			color: 0x000000,
+			blur: 3,
+			distance: 2,
+			angle: Math.PI / 4,
+		},
+	};
+
 	let show = $state(false);
 	let amount = $state(0);
 	let waysCount = $state(0);
@@ -80,8 +94,12 @@
 				)}
 				{@const handleContinue = () =>
 					countUpCompleted ? oncomplete() : finishCountUp()}
-				{@const waysFontSize = Math.round(
+				{@const waysLabel = `${waysCount} ${waysCount === 1 ? 'way' : 'ways'}`}
+				{@const normalWaysFontSize = Math.round(
 					WIN_LAYOUT.normalWinWaysFontSize * getFontScale(layoutType),
+				)}
+				{@const bigWaysFontSize = Math.round(
+					WIN_LAYOUT.bigWinWaysFontSize * getFontScale(layoutType),
 				)}
 				{#if isBigWin}
 					<CanvasSizeRectangle
@@ -130,6 +148,19 @@
 											fontWeight: 'bold',
 										}}
 									/>
+									{#if waysCount > 0}
+										<Text
+											label={SCENE_LABELS.win.bigWays}
+											text={waysLabel}
+											anchor={0.5}
+											x={WIN_LAYOUT.bigWinWaysOffset.x}
+											y={WIN_LAYOUT.bigWinWaysOffset.y}
+											style={{
+												...waysTextStyle,
+												fontSize: bigWaysFontSize,
+											}}
+										/>
+									{/if}
 								</Container>
 							</WinAnimation>
 						{:else}
@@ -154,22 +185,12 @@
 								{#if waysCount > 0}
 									<Text
 										label={SCENE_LABELS.win.normalWays}
-										text={`${waysCount} ${waysCount === 1 ? 'way' : 'ways'}`}
+										text={waysLabel}
 										anchor={0.5}
 										y={WIN_LAYOUT.normalWinWaysOffsetY}
 										style={{
-											fontFamily: CINZEL_FONT_FAMILY,
-											fontSize: waysFontSize,
-											fontWeight: '600',
-											fill: 0xffffff,
-											align: 'center',
-											dropShadow: {
-												alpha: 0.75,
-												color: 0x000000,
-												blur: 3,
-												distance: 2,
-												angle: Math.PI / 4,
-											},
+											...waysTextStyle,
+											fontSize: normalWaysFontSize,
 										}}
 									/>
 								{/if}
