@@ -112,48 +112,6 @@ export default {
 		},
 		preload: true,
 	},
-	freeSpins: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage.png', import.meta.url).href,
-		},
-	},
-	freeSpins2: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_2.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_2.png', import.meta.url).href,
-		},
-	},
-	freeSpins3: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_3.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/freeSpins/freeSpinsMessage_3.png', import.meta.url).href,
-		},
-	},
-	freeSpinsMultiLang: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/freeSpinsMultiLang/freeSpinMultiLang.png', import.meta.url).href,
-		},
-	},
-	winSmall: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/winSmall/winSmall.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/winSmall/winSmall.png', import.meta.url).href,
-		},
-	},
-	winSmall2: {
-		type: 'sprites',
-		src: {
-			json: new URL('../../assets/sprites/winSmall/winSmall_2.json', import.meta.url).href,
-			image: new URL('../../assets/sprites/winSmall/winSmall_2.png', import.meta.url).href,
-		},
-	},
 	bonusTransition: {
 		type: 'spine',
 		src: {

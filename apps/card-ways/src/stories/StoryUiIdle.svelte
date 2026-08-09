@@ -25,6 +25,8 @@
 	const seedStoryUiState = () => {
 		stateBet.balanceAmount = props.balance ?? 1000;
 		stateBet.betToResume = null;
+		// Keep ReplayStateSync from auto-marking replay as started in Storybook fixtures.
+		stateBet.replayRoundCache = null;
 		stateBetDerived.setBetAmount(props.betAmount ?? 1);
 		stateBet.winBookEventAmount = props.winAmount ?? 0;
 		stateUi.config.mode = props.uiMode ?? 'default';
@@ -48,14 +50,28 @@
 			stateUi.menuOpen = false;
 			stateUi.freeSpinCounterShow = false;
 			stateUi.replayFinished = false;
+			stateBet.replayRoundCache = null;
+			stateBet.betToResume = null;
 		};
 	});
 
+	// Re-seed whenever Storybook Controls change args (and when the app finishes loading).
 	$effect(() => {
-		if (appContext.stateApp.loaded) {
-			layoutContext.stateLayout.showLoadingScreen = false;
-			seedStoryUiState();
-		}
+		const loaded = appContext.stateApp.loaded;
+		void props.balance;
+		void props.betAmount;
+		void props.uiMode;
+		void props.winAmount;
+		void props.freeSpinCounterShow;
+		void props.freeSpinCounterCurrent;
+		void props.freeSpinCounterTotal;
+		void props.menuOpen;
+		void props.replayFinished;
+
+		if (!loaded) return;
+
+		layoutContext.stateLayout.showLoadingScreen = false;
+		seedStoryUiState();
 	});
 </script>
 

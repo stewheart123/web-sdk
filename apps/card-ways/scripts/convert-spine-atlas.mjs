@@ -158,8 +158,8 @@ function convertAtlas(atlasPath, outputDir) {
 
 const [atlasArg, outputDirArg] = process.argv.slice(2);
 const atlasPath =
-	atlasArg ?? join(__dirname, '../static/assets/sprites/freeSpins/freeSpinsMessage.atlas');
+	atlasArg ?? join(__dirname, '../static/assets/sprites/uiSlotsAssetsBespoke/UI-BUTTONS.atlas');
 const outputDir =
-	outputDirArg ?? join(__dirname, '../static/assets/sprites/freeSpins');
+	outputDirArg ?? join(__dirname, '../static/assets/sprites/uiSlotsAssetsBespoke');
 
 convertAtlas(atlasPath, outputDir);
