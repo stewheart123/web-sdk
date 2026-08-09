@@ -517,6 +517,7 @@ export const VISUAL_LAYOUT = {
 		dim: { label: 'Win/Dim' },
 		bigText: { label: 'Win/BigText' },
 		normalText: { label: 'Win/NormalText' },
+		normalWays: { label: 'Win/NormalWays' },
 		bigAnimation: { label: 'Win/BigAnimation' },
 		layout: {
 			/** Scale of amount text inside WIN-AMOUNT-SLOT (slot-local). */
@@ -537,6 +538,10 @@ export const VISUAL_LAYOUT = {
 			normalWinTextMaxWidthRatio: 0.95,
 			/** Board-local Y offset from pivot; negative moves up toward the gap between visible rows. */
 			normalWinTextOffsetY: -18,
+			/** Board-local Y offset of ways subtitle relative to the amount text center. */
+			normalWinWaysOffsetY: 72,
+			/** Absolute font size for the Cinzel ways subtitle (scaled by layout type). */
+			normalWinWaysFontSize: 36,
 			/** Fraction of canvas width available for win text after layout + board scale. */
 			canvasWidthPaddingRatio: 0.88,
 			animationScale: 0.45,
@@ -1018,6 +1023,7 @@ export const SCENE_LABELS = {
 		dim: VISUAL_LAYOUT.win.dim.label,
 		bigText: VISUAL_LAYOUT.win.bigText.label,
 		normalText: VISUAL_LAYOUT.win.normalText.label,
+		normalWays: VISUAL_LAYOUT.win.normalWays.label,
 		bigAnimation: VISUAL_LAYOUT.win.bigAnimation.label,
 		pressToContinue: {
 			bigWin: VISUAL_LAYOUT.win.pressToContinue.bigWin.label,

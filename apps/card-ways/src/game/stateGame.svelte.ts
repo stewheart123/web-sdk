@@ -78,6 +78,8 @@ export const stateGame = $state({
 	scatterCounter: 0,
 	modifierMultiplier: 1,
 	modifierPersists: false,
+	/** Sum of `meta.ways` from the latest `winInfo` (cleared after `setWin`). */
+	lastWinWaysCount: 0,
 });
 
 const boardLayout = () => {

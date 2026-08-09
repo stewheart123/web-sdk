@@ -4,11 +4,11 @@
 	export type EmitterEventWin =
 		| { type: 'winShow' }
 		| { type: 'winHide' }
-		| { type: 'winUpdate'; amount: number; winLevelData: WinLevelData };
+		| { type: 'winUpdate'; amount: number; winLevelData: WinLevelData; waysCount?: number };
 </script>
 
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
+	import { Container, Text } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -18,7 +18,7 @@
 	import WinAnimation from './WinAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { getBitmapFontStyle } from '../game/fontConfig';
+	import { CINZEL_FONT_FAMILY, getBitmapFontStyle } from '../game/fontConfig';
 	import { getContext } from '../game/context';
 	import {
 		OVERLAY,
@@ -27,6 +27,7 @@
 		WIN_LAYOUT,
 		SCENE_LABELS,
 		SCENE_LAYERS,
+		getFontScale,
 	} from '../game/visualLayoutConfig';
 
 	const context = getContext();
@@ -45,6 +46,7 @@
 
 	let show = $state(false);
 	let amount = $state(0);
+	let waysCount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
 
@@ -53,6 +55,7 @@
 		winHide: () => (show = false),
 		winUpdate: async (emitterEvent) => {
 			amount = emitterEvent.amount;
+			waysCount = emitterEvent.waysCount ?? 0;
 			winLevelData = emitterEvent.winLevelData;
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
@@ -77,6 +80,9 @@
 				)}
 				{@const handleContinue = () =>
 					countUpCompleted ? oncomplete() : finishCountUp()}
+				{@const waysFontSize = Math.round(
+					WIN_LAYOUT.normalWinWaysFontSize * getFontScale(layoutType),
+				)}
 				{#if isBigWin}
 					<CanvasSizeRectangle
 						label={SCENE_LABELS.win.dim}
@@ -127,21 +133,47 @@
 								</Container>
 							</WinAnimation>
 						{:else}
-							<ResponsiveBitmapText
+							<Container
 								label={SCENE_LABELS.win.normalText}
 								x={boardLayout.pivot.x}
 								y={boardLayout.pivot.y + WIN_LAYOUT.normalWinTextOffsetY}
-								anchor={0.5}
-								maxWidth={winTextMaxWidth}
-								text={bookEventAmountToCurrencyString(countUpAmount)}
-								style={{
-									...getBitmapFontStyle('winNormal', {
-										symbolSize: SYMBOL_SIZE,
-										layoutType,
-									}),
-									fontWeight: 'bold',
-								}}
-							/>
+							>
+								<ResponsiveBitmapText
+									label={SCENE_LABELS.win.normalText}
+									anchor={0.5}
+									maxWidth={winTextMaxWidth}
+									text={bookEventAmountToCurrencyString(countUpAmount)}
+									style={{
+										...getBitmapFontStyle('winNormal', {
+											symbolSize: SYMBOL_SIZE,
+											layoutType,
+										}),
+										fontWeight: 'bold',
+									}}
+								/>
+								{#if waysCount > 0}
+									<Text
+										label={SCENE_LABELS.win.normalWays}
+										text={`${waysCount} ${waysCount === 1 ? 'way' : 'ways'}`}
+										anchor={0.5}
+										y={WIN_LAYOUT.normalWinWaysOffsetY}
+										style={{
+											fontFamily: CINZEL_FONT_FAMILY,
+											fontSize: waysFontSize,
+											fontWeight: '600',
+											fill: 0xffffff,
+											align: 'center',
+											dropShadow: {
+												alpha: 0.75,
+												color: 0x000000,
+												blur: 3,
+												distance: 2,
+												angle: Math.PI / 4,
+											},
+										}}
+									/>
+								{/if}
+							</Container>
 						{/if}
 
 						<PressToContinue

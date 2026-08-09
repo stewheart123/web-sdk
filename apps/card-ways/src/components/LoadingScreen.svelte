@@ -6,6 +6,7 @@
 	import { OnHotkey } from 'components-shared';
 
 	import { getContext } from '../game/context';
+	import { preloadCinzelFont } from '../game/fontConfig';
 	import { stateSplash } from '../game/stateSplash.svelte';
 	import { isHowToPlayCarouselLayout } from '../game/howToPlayPanels';
 	import {
@@ -32,9 +33,11 @@
 
 	onMount(async () => {
 		try {
+			const loads: Promise<unknown>[] = [preloadCinzelFont()];
 			if (typeof document !== 'undefined' && document.fonts?.load) {
-				await document.fonts.load('400 1em "Noto Sans KR"');
+				loads.push(document.fonts.load('400 1em "Noto Sans KR"'));
 			}
+			await Promise.all(loads);
 		} catch {
 			// Fall through with system font if preload fails.
 		}

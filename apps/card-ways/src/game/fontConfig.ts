@@ -11,6 +11,36 @@ import {
 
 export type { BitmapFontId, BitmapFontUsage, BitmapFontUsageConfig };
 
+export const CINZEL_FONT_FAMILY = 'Cinzel';
+
+const CINZEL_FONT_URL = new URL(
+	'../../assets/fonts/cinzel/Cinzel-SemiBold.ttf',
+	import.meta.url,
+).href;
+
+let cinzelPreload: Promise<void> | undefined;
+
+/** Register Cinzel-SemiBold so Pixi Text can resolve `fontFamily: 'Cinzel'`. */
+export const preloadCinzelFont = () => {
+	if (cinzelPreload) return cinzelPreload;
+
+	cinzelPreload = (async () => {
+		if (typeof document === 'undefined' || !document.fonts?.add) return;
+
+		const face = new FontFace(CINZEL_FONT_FAMILY, `url(${CINZEL_FONT_URL})`, {
+			weight: '600',
+			style: 'normal',
+		});
+		await face.load();
+		document.fonts.add(face);
+		await document.fonts.load(`600 1em "${CINZEL_FONT_FAMILY}"`);
+	})().catch((error) => {
+		console.error(error);
+	});
+
+	return cinzelPreload;
+};
+
 export type BitmapFontConfig = {
 	family: string;
 	scale: number;

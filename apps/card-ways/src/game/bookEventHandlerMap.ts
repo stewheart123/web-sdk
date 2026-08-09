@@ -116,6 +116,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
+		stateGame.lastWinWaysCount = bookEvent.wins.reduce(
+			(total, win) => total + (win.meta.ways ?? 0),
+			0,
+		);
+
 		const shouldPlayModifierWin =
 			stateGame.modifierMultiplier > 1 || stateGame.gameType === 'freegame';
 
@@ -213,6 +218,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
+		const waysCount = stateGame.lastWinWaysCount;
+		stateGame.lastWinWaysCount = 0;
 
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });
@@ -220,6 +227,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			type: 'winUpdate',
 			amount: bookEvent.amount,
 			winLevelData,
+			waysCount,
 		});
 		winLevelSoundsStop({ winLevelData });
 		eventEmitter.broadcast({ type: 'winHide' });
@@ -254,6 +262,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	wincap: async (bookEvent: BookEventOfType<'wincap'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;
+		stateGame.lastWinWaysCount = 0;
 		const winLevelData = winLevelMap[10 as WinLevel];
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });
