@@ -82,10 +82,11 @@
 		{/if}
 	</div>
 
-	<!-- Mobile landscape: bonus + auto/turbo on left (keeps right rail clear of sound/menu) -->
+	<!-- Mobile landscape: bonus + bet + auto/turbo on left (short height / address bar) -->
 	{#if isMobileLandscape}
 		<div class="hud-chrome__left-controls">
 			<HudBuyBonus />
+			<HudBetIcon />
 			<div class="hud-chrome__rail-pair">
 				<HudAutoSpin />
 				<HudTurbo />
@@ -110,7 +111,7 @@
 		</div>
 	{/if}
 
-	<!-- Landscape/desktop: right rail -->
+	<!-- Landscape/desktop: right rail (mobile landscape keeps only spin + win) -->
 	{#if !isBottomLayout}
 		<div class="hud-chrome__right-rail">
 			{#if !isMobileLandscape}
@@ -119,8 +120,8 @@
 					<HudAutoSpin />
 					<HudTurbo />
 				</div>
+				<HudBetIcon />
 			{/if}
-			<HudBetIcon />
 			<div class="hud-chrome__rail-spin">
 				<div class="hud-chrome__rail-win-slot">
 					<HudWinFloat />
