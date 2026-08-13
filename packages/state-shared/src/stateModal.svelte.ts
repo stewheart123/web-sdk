@@ -57,4 +57,16 @@ type Modal =
 
 export const stateModal = $state({
 	modal: null as Modal,
+	/** Blocks reopen from the same tap that closed a menu (mobile click-through). */
+	suppressOpenUntil: 0,
 });
+
+export const dismissModal = () => {
+	stateModal.modal = null;
+	stateModal.suppressOpenUntil = performance.now() + 400;
+};
+
+export const openModal = (modal: Exclude<Modal, null>) => {
+	if (performance.now() < stateModal.suppressOpenUntil) return;
+	stateModal.modal = modal;
+};

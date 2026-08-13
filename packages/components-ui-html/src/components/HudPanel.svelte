@@ -12,29 +12,44 @@
 		onclose: () => void;
 		children: Snippet;
 		footer?: Snippet;
+		/** Bound so children menus can dismiss through the panel outro (not by unmounting early). */
+		close?: () => void;
 	};
 
-	const PANEL_MS = 420;
+	const PANEL_IN_MS = 420;
+	const PANEL_OUT_MS = 360;
 	const BACKDROP_MS = 320;
 
-	const props: Props = $props();
+	let {
+		title,
+		zIndex,
+		onclose,
+		children,
+		footer,
+		close = $bindable(() => {}),
+	}: Props = $props();
+
 	const { stateLayoutDerived } = getContextLayout();
 	const layoutType = $derived(stateLayoutDerived.layoutType());
 	const isSheet = $derived(layoutType === 'portrait' || layoutType === 'tablet');
 	const mode = $derived(isSheet ? 'sheet' : 'drawer');
 
 	let interactReady = $state(false);
+	let open = $state(true);
+	let finished = $state(false);
 
-	/** iOS-like deceleration curve for a slick panel slide */
-	const slickEase = (t: number) => 1 - Math.pow(1 - t, 2.6);
+	/** iOS-like deceleration for enter */
+	const easeOut = (t: number) => 1 - Math.pow(1 - t, 2.6);
+	/** Accelerate away on dismiss so it clears the screen cleanly */
+	const easeIn = (t: number) => Math.pow(t, 1.65);
 
-	const slidePanel = (node: HTMLElement) => {
+	const slideIn = (node: HTMLElement) => {
 		const x = isSheet ? 0 : node.offsetWidth;
-		const y = isSheet ? node.offsetHeight * 0.35 : 0;
+		const y = isSheet ? Math.round(node.offsetHeight * 0.16) : 0;
 
 		return {
-			duration: PANEL_MS,
-			easing: slickEase,
+			duration: PANEL_IN_MS,
+			easing: easeOut,
 			css: (t: number) => {
 				const u = 1 - t;
 				return `transform: translate3d(${u * x}px, ${u * y}px, 0);`;
@@ -42,53 +57,90 @@
 		};
 	};
 
-	onMount(async () => {
-		await waitForTimeout(PANEL_MS);
-		interactReady = true;
-	});
+	const slideOut = (node: HTMLElement) => {
+		const x = isSheet ? 0 : node.offsetWidth;
+		const y = isSheet ? node.offsetHeight : 0;
 
-	const close = () => {
-		if (!interactReady) return;
-		props.onclose();
+		return {
+			duration: PANEL_OUT_MS,
+			easing: easeIn,
+			css: (t: number) =>
+				`transform: translate3d(${t * x}px, ${t * y}px, 0); opacity: ${1 - t};`,
+		};
 	};
+
+	const finishClose = () => {
+		if (finished) return;
+		finished = true;
+		onclose();
+	};
+
+	const requestClose = () => {
+		if (!interactReady || !open) return;
+		interactReady = false;
+		open = false;
+		// Fallback if outroend doesn't fire (e.g. reduced motion / interrupted transition)
+		void waitForTimeout(PANEL_OUT_MS + 80).then(finishClose);
+	};
+
+	close = requestClose;
+
+	onMount(async () => {
+		await waitForTimeout(PANEL_IN_MS);
+		if (open) interactReady = true;
+	});
 </script>
 
-<OnHotkey hotkey="Escape" onpress={close} />
+<OnHotkey hotkey="Escape" onpress={requestClose} />
 
-<div class="hud-panel" class:hud-panel--ready={interactReady} data-mode={mode} style:z-index={props.zIndex}>
-	<button
-		type="button"
-		class="hud-panel__backdrop"
-		aria-label="Close"
-		onclick={close}
-		transition:fade={{ duration: BACKDROP_MS, easing: cubicOut }}
-	></button>
+{#if open}
+	<!--
+		Keep this root mounted (and pointer-events on) for the whole outro so the
+		closing surface can't click-through to HUD controls underneath and reopen.
+	-->
+	<div class="hud-panel" data-mode={mode} style:z-index={zIndex}>
+		<button
+			type="button"
+			class="hud-panel__backdrop"
+			aria-label="Close"
+			onclick={requestClose}
+			in:fade={{ duration: BACKDROP_MS, easing: cubicOut }}
+			out:fade={{ duration: PANEL_OUT_MS, easing: cubicOut }}
+		></button>
 
-	<div
-		class="hud-panel__surface"
-		role="dialog"
-		aria-modal="true"
-		aria-label={props.title}
-		transition:slidePanel
-	>
-		<header class="hud-panel__header">
-			<h2 class="hud-panel__title">{props.title}</h2>
-			<button type="button" class="hud-panel__close" data-test="close-button" onclick={close}>
-				×
-			</button>
-		</header>
+		<div
+			class="hud-panel__surface"
+			role="dialog"
+			aria-modal="true"
+			aria-label={title}
+			in:slideIn
+			out:slideOut
+			onoutroend={finishClose}
+		>
+			<header class="hud-panel__header">
+				<h2 class="hud-panel__title">{title}</h2>
+				<button
+					type="button"
+					class="hud-panel__close"
+					data-test="close-button"
+					onclick={requestClose}
+				>
+					×
+				</button>
+			</header>
 
-		<div class="hud-panel__body scrollY scroll-micro">
-			{@render props.children()}
+			<div class="hud-panel__body scrollY scroll-micro">
+				{@render children()}
+			</div>
+
+			{#if footer}
+				<footer class="hud-panel__footer">
+					{@render footer()}
+				</footer>
+			{/if}
 		</div>
-
-		{#if props.footer}
-			<footer class="hud-panel__footer">
-				{@render props.footer()}
-			</footer>
-		{/if}
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	.hud-panel {
@@ -97,11 +149,8 @@
 		font-family: 'Noto Sans KR', system-ui, sans-serif;
 		color: #fff;
 		touch-action: manipulation;
-		pointer-events: none;
-
-		&--ready {
-			pointer-events: auto;
-		}
+		pointer-events: auto;
+		overflow: hidden;
 
 		&__backdrop {
 			appearance: none;
@@ -123,7 +172,7 @@
 			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 			min-height: 0;
 			pointer-events: auto;
-			will-change: transform;
+			will-change: transform, opacity;
 			backface-visibility: hidden;
 		}
 

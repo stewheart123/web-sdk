@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { zIndex } from 'constants-shared/zIndex';
-	import { stateModal } from 'state-shared';
-	import { scrollIntoView } from 'utils-shared/scroll';
+	import { dismissModal, stateModal } from 'state-shared';
 
 	import HudPanel from './HudPanel.svelte';
 	import AutoSpinsOptions from './AutoSpinsOptions.svelte';
 	import AutoSpinsAdvanced from './AutoSpinsAdvanced.svelte';
 	import AutoSpinsStartButton from './AutoSpinsStartButton.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import { scrollIntoView } from 'utils-shared/scroll';
 
 	let scrollRoot = $state<HTMLDivElement | null>(null);
 </script>
@@ -16,7 +16,7 @@
 	<HudPanel
 		title={i18nDerived.autoSpins}
 		zIndex={zIndex.modal}
-		onclose={() => (stateModal.modal = null)}
+		onclose={dismissModal}
 	>
 		<div class="auto-spin-body" bind:this={scrollRoot}>
 			<AutoSpinsOptions />

@@ -6,7 +6,15 @@
 	import { applyBitmapFontScaleMode } from '../bitmapFontUtils';
 	import { getProcessed } from '../assetLoad';
 	import { loadFontBundle, loadSpineBundle, toAbsoluteAssetUrl } from '../resolvedAssetLoad';
-	import type { FontSrc, LoadedAssets, RawAsset, RawSprites, SpineSrc, SpritesSrc } from '../types';
+	import type {
+		FontSrc,
+		LoadedAssets,
+		RawAsset,
+		RawAudio,
+		RawSprites,
+		SpineSrc,
+		SpritesSrc,
+	} from '../types';
 
 	type Props = { children: Snippet };
 
@@ -76,7 +84,18 @@
 		src: string | SpritesSrc | SpineSrc | FontSrc;
 	}) => {
 		if (type === 'audio') {
-			return getProcessed({ key, rawAsset: src as RawAsset, type, src });
+			const audioJsonUrl = toAbsoluteAssetUrl(src as string);
+			const response = await fetch(audioJsonUrl);
+			if (!response.ok) {
+				throw new Error(`Failed to load audio json: ${audioJsonUrl}`);
+			}
+			const data = (await response.json()) as RawAudio;
+			const sources = Array.isArray(data.src) ? data.src : [data.src];
+			const rawAsset: RawAudio = {
+				...data,
+				src: sources.map((audioSrc) => toAbsoluteAssetUrl(audioSrc)),
+			};
+			return getProcessed({ key, rawAsset, type, src });
 		}
 
 		if (type === 'sprites' && isSpritesSrc(src)) {

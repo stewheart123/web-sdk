@@ -40,21 +40,20 @@ function createSound<TSoundName extends string>() {
 		};
 
 		// audioContextState and visibilityState
-		const onAudioContextChange = () => (audioContextState = Howler.ctx.state);
+		const onAudioContextChange = () => {
+			if (Howler.ctx) audioContextState = Howler.ctx.state;
+		};
 		const onVisibilityStateChange = () => (visibilityState = document.visibilityState);
 
-		Howler.ctx.addEventListener('statechange', onAudioContextChange);
+		Howler.ctx?.addEventListener('statechange', onAudioContextChange);
 		document.addEventListener('visibilitychange', onVisibilityStateChange);
 
 		const destroy = () => {
-			Howler.ctx.removeEventListener('statechange', onAudioContextChange);
+			Howler.ctx?.removeEventListener('statechange', onAudioContextChange);
 			document.removeEventListener('visibilitychange', onVisibilityStateChange);
 
-			if (players) {
-				players.music.howl.unload();
-				players.loop.howl.unload();
-				players.once.howl.unload();
-			}
+			// All three players share one Howl; unloading it three times closes extra AudioContexts.
+			players?.music.howl.unload();
 		};
 
 		return {

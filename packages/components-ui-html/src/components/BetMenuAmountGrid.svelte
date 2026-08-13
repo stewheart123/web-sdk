@@ -26,7 +26,7 @@
 	};
 </script>
 
-<div class="bet-amount-list">
+<div class="bet-amount-grid">
 	{#each options as option (option)}
 		<HudPanelRow
 			selected={option === stateBet.betAmount}
@@ -38,10 +38,27 @@
 </div>
 
 <style lang="scss">
-	.bet-amount-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0.45rem;
-		width: 100%;
+	.bet-amount-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.35rem;
+		width: min(100%, 28rem);
+		margin-inline: auto;
+
+		@media (min-width: 420px) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			width: min(100%, 32rem);
+		}
+
+		@media (orientation: landscape) and (min-width: 700px) {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			width: min(100%, 36rem);
+		}
+	}
+
+	.bet-amount-grid :global(.hud-panel-row) {
+		padding: 0.5rem 0.35rem;
+		font-size: 0.82rem;
+		border-radius: 0.45rem;
 	}
 </style>

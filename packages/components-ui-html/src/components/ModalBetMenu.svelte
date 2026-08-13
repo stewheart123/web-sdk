@@ -3,13 +3,8 @@
 	import { stateModal, stateUi } from 'state-shared';
 
 	import HudPanel from './HudPanel.svelte';
-	import HudPanelCta from './HudPanelCta.svelte';
 	import BetMenuAmountGrid from './BetMenuAmountGrid.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
-
-	const confirm = () => {
-		stateModal.modal = null;
-	};
 </script>
 
 {#if stateModal.modal?.name === 'betAmountMenu' && stateUi.config.mode !== 'replay'}
@@ -18,21 +13,20 @@
 		zIndex={zIndex.modal}
 		onclose={() => (stateModal.modal = null)}
 	>
-		<div class="bet-list">
+		<div class="bet-menu">
 			<BetMenuAmountGrid />
 		</div>
-
-		{#snippet footer()}
-			<HudPanelCta onclick={confirm}>{i18nDerived.confirm}</HudPanelCta>
-		{/snippet}
 	</HudPanel>
 {/if}
 
 <style lang="scss">
-	.bet-list {
+	.bet-menu {
+		flex: 1 1 auto;
 		display: flex;
-		flex-direction: column;
-		gap: 0.45rem;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
+		min-height: 100%;
+		box-sizing: border-box;
 	}
 </style>
